@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[11pt,a4paper,titlepage,draft]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[greek]{babel}
 \usepackage{amsmath}
@@ -6,14 +6,41 @@
 \usepackage{amssymb}
 \usepackage{commath}
 \usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[skins,theorems]{tcolorbox}
+\usepackage{titlesec}
+
+\usetikzlibrary{arrows.meta}
+
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\makeatletter
+%\newcommand{\attnboxed}[1]{\textcolor{red}{\fbox{\normalcolor\m@th$\displaystyle#1$}}}
+\makeatother
+\tcbset{highlight math style={enhanced,colframe=red,colback=white,%
+  arc=0pt,boxrule=1pt,shrink tight,boxsep=1.5mm,extrude by=0.5mm}}
+\newcommand{\attnboxed}[1]{\tcbhighmath[colback=red!5!white,drop fuzzy shadow,sharpish corners]{#1}}
+\titleformat{\section}{\bf\Large}{Κεφάλαιο \thesection}{1em}{}
+\newtcolorbox{attnbox}[1]{colback=red!5!white,%
+  colframe=red!75!black,fonttitle=\bfseries,title=#1}
+
+
+
+\title{Σημειώσεις Λογισμού ΙΙ}
+\date{2016, Εαρινό εξάμηνο}
+\author{Καναβούρας Κωνσταντίνος \\ \textlatin{\url{http://users.auth.gr/konkanant}}}
+
 
 
 \begin{document}
 
-\setcounter{section}{-2}
+\maketitle
 
-\section{Λογισμός II}
+\tableofcontents
+
+\newpage
+
+\setcounter{section}{-1}
 
 \begin{itemize}
 \item 2 ώρες Ζάχαρης (3.5 μον.)
@@ -31,7 +58,7 @@
 \item Σημειώσεις
 \end{itemize}
 
-\section{Κεφάλαιο 0: Διανυσματικές συναρτήσεις \\ Καμπύλες στο χώρο}
+\section[Διανυσματικές συναρτήσεις \& καμπύλες στο χώρο]{Διανυσματικές συναρτήσεις \\ Καμπύλες στο χώρο}
 
 \paragraph{Ορ.}
 Μία συνάρτηση \( \mathbf{r}: A \subseteq \mathbb R \rightarrow \mathbb R ^ n \) απαρτίζεται από:
@@ -41,17 +68,17 @@
 (β). έναν τύπο έτσι ώστε σε κάθε πραγματικό αριθμό \(t \in A\) αντιστοιχεί \textbf{ΜΟΝΑΔΙΚΟ ΔΙΑΝΥΣΜΑ} \( \mathbf{r}(t) \) στο (διανυσματικό) χώρο \( \mathbb R ^ n \) δηλαδή:
 
 \[
-A \subseteq \mathbb R \rightarrow \mathbb R ^ n: \mathbf{r}(t) = \left( f_1(t), \cdots, f_n(t) \right)
+A \subseteq \mathbb R \rightarrow \mathbb R ^ n: \mathbf{r}(t) = \left( f_1(t), \dots, f_n(t) \right)
 \]
 
-όπου \(f_1: A \le \mathbb R \rightarrow \mathbb R\) \textbf{συνήθεις} πραγματικές συναρτήσεις.
+όπου \(f_1: A \subseteq \mathbb R \rightarrow \mathbb R\) \textbf{συνήθεις} πραγματικές συναρτήσεις.
 
 \paragraph{}
 Πεδίο ορισμού διανυσματικής συνάρτησης είναι εκείνο το υποσύνολο του \( \mathbb R \) για όλα τα σημεία του οποίου ο τύπος της συνάρτησης \textbf{ΕΧΕΙ ΝΟΗΜΑ}.
 
 \emph{Πρακτικά}, αν
-\[ \mathbf{r}(t) = \left( f_1(t), \cdots, f_n(t) \right), \]
-τότε το πεδίο ορισμού της \( \mathbf{r} \) προκύπτει από τη \textbf{συναλήθευση} των πεδίων ορισμού ΟΛΩΝ των συναρτήσεων \( f_1,\cdots,f_n\).
+\[ \mathbf{r}(t) = \left( f_1(t), \dots, f_n(t) \right), \]
+τότε το πεδίο ορισμού της \( \mathbf{r} \) προκύπτει από τη \textbf{συναλήθευση} των πεδίων ορισμού ΟΛΩΝ των συναρτήσεων \( f_1,\dots,f_n\).
 
 \emph{π.χ.}
 \[ \mathbf r (t) = \left( \ln t, \sqrt{1-t^2} \right) 
@@ -68,13 +95,13 @@ t > 0 \text{ (λόγω λογαρίθμου)} \\
 Άρα Π.Ο. της \(\mathbf r\) είναι το \((0,1]\).
 
 \subsubsection{Όριο και συνέχεια διανυσματικών συναρτήσεων}
-\paragraph{Θ.} Έστω \(\mathbf r: A \subseteq \mathbb R \rightarrow \mathbb R ^ n\), \( \mathbf r(t) =  \left( f_1(t), \cdots, f_n(t) \right) \) διανυσματική συνάρτηση και \(t_0\) είναι σημείο συσσώρευσης (σ.σ.) του \(A\).
+\paragraph{Θ.} Έστω \(\mathbf r: A \subseteq \mathbb R \rightarrow \mathbb R ^ n\), \( \mathbf r(t) =  \left( f_1(t), \dots, f_n(t) \right) \) διανυσματική συνάρτηση και \(t_0\) είναι σημείο συσσώρευσης (σ.σ.) του \(A\).
 Τότε:
 
-\[ \lim _{ t \to t_0 } \mathbf r(t) = \vec{a} = \left( a_1, \cdots, a_n \right) \iff
+\[ \lim _{ t \to t_0 } \mathbf r(t) = \vec{a} = \left( a_1, \dots, a_n \right) \iff
 \begin{cases}
  \lim_{ t \to t_0 } f_1(t) = a_1 \\
- \vdots \\
+ \quad \vdots \\
  \lim_{ t \to t_0 } f_n(t) = a_n \\
 \end{cases}
 \]
@@ -82,14 +109,14 @@ t > 0 \text{ (λόγω λογαρίθμου)} \\
 Επίσης, αν \(τ_0 \in A\) είναι και σ.σ. του \(Α\), τότε:
 
 \[ \mathbf r \text{ συνεχής στο } τ_0 \iff
-f_1,f_2,\cdots,f_n  \text{ συνεχείς στο } τ_0
+f_1,f_2,\dots,f_n  \text{ συνεχείς στο } τ_0
 \]
 
 δηλ.
 \[ \lim _{ t \to t_0 } \mathbf r(t) = \mathbf r (t_0) \iff
 \begin{cases}
  \lim_{ t \to t_0 } f_1(t) = f_1(t_0) \\
- \vdots \\
+ \quad \vdots \\
  \lim_{ t \to t_0 } f_n(t) = f_n(t_0) \\
 \end{cases}
 \]
@@ -98,13 +125,42 @@ f_1,f_2,\cdots,f_n  \text{ συνεχείς στο } τ_0
 \paragraph{Ορ.}
 Έστω \(α,β \in \mathbb R\) με \(α<β\). Κάθε \textbf{ΣΥΝΕΧΗΣ} διανυσματική συνάρτηση:
 \[
-\mathbf{\gamma}: [a,b] \rightarrow \mathbb R^n: \mathbf r_\gamma(t) = \left( f_1(t),f_2(t),\cdots,f_n(t) \right)
+\mathbf{\gamma}: \attnboxed{[a,b]}
+\rightarrow \mathbb R^n: \mathbf r_\gamma(t) = \left( f_1(t),f_2(t),\dots,f_n(t) \right)
 \]
 καλείται καμπύλη στο χώρο \( \mathbb R ^n \) (και το γράφημά της καλείται ΙΧΝΟΣ της \(\mathbf \gamma\)).
 
 
-\subsubsection{Γράφημα}
-(\(\cdots\) Graph 1)
+\begin{tikzpicture}
+\draw[gray, thick] (-2.5,-2.5) -- (2.5,2.5);
+\node[above right, rotate=45] at (-2.5,-2.5) {\(+\infty\)};
+\node[above left, rotate=45] at (2.5,2.5) {\(-\infty\)};
+
+\filldraw[black] (0.5,0.5) circle (2pt) node[anchor=west] {\(a\)};
+
+\def\away{7}
+
+\draw[->] (xyz cs:x=\away) -- (xyz cs:x=\away+2.5);
+\draw[->] (xyz cs:y=0,x=\away) -- (xyz cs:y=2.5,x=\away);
+\draw[->] (xyz cs:z=0,x=\away) -- (xyz cs:z=5,x=\away);
+
+\draw[-{>[scale=2.5,width=3]}, gray] (0.5,0.5) to [bend left=90] (\away+1,3);
+
+\coordinate (A) at (\away+1,2);
+\coordinate (B) at (\away+2,1,-0.5);
+\coordinate (C) at (\away+3.5,3.5);
+
+\draw [blue, very thick] plot [smooth, tension=2] coordinates { (A) (B) (C) };
+
+\draw[->, very thick] (\away,0) -- (A) node[anchor=east] {\(\mathbf r(a)\)};
+\draw[->, very thick] (\away,0) -- (B) node[anchor=west] {\(\mathbf r(t)\)};
+\draw[->, very thick] (\away,0) -- (C) node[anchor=east] {\(\mathbf r(b)\)};
+
+\end{tikzpicture}
+
+
+
+\subsubsection*{}
 
 Έστω \( \gamma: [a,b] \rightarrow \mathbb R ^ n \) καμπύλη.
 \begin{itemize}
@@ -112,7 +168,7 @@ f_1,f_2,\cdots,f_n  \text{ συνεχείς στο } τ_0
 
 \item Η \(\gamma\) καλείται \textbf{ΑΝΟΙΚΤΗ}, αν \[\mathbf r(a) \neq \mathbf r(b),\] αλλιώς \textbf{ΚΛΕΙΣΤΗ}.
 
-\item Όλες οι καμπύλες \(\gamma: [a,b] \rightarrow \mathbb R ^ n\) \[\mathbf r_\gamma(t) = \left( f_1(t),f_2(t),\cdots,f_n(t) \right)\] λέμε ότι είναι καμπύλες σε \textbf{ΠΑΡΑΜΕΤΡΙΚΗ} μορφή και οι
+\item Όλες οι καμπύλες \(\gamma: [a,b] \rightarrow \mathbb R ^ n\) \[\mathbf r_\gamma(t) = \left( f_1(t),f_2(t),\dots,f_n(t) \right)\] λέμε ότι είναι καμπύλες σε \textbf{ΠΑΡΑΜΕΤΡΙΚΗ} μορφή και οι
 \(
 \begin{cases}
 x_1 = f_1(t) \\
@@ -134,7 +190,7 @@ x_n = f_n(t)
 
 \item Έστω \(\gamma_1: [a,b] \rightarrow \mathbb R^n, \gamma_2: [b,c] \rightarrow \mathbb R^n\) καμπύλες.
 
-Καλώ \textbf{ΑΝΤΙΘΕΤΗ} της \(\gamma_1\), συμβολικά \(- \gamma_1\), την καμπύλη που έχει ίδιο ΙΧΝΟΣ με τη \(\gamma_1\) αλλά \textbf{αντίθετη} φορά διαφραφής.
+Καλώ \textbf{ΑΝΤΙΘΕΤΗ} της \(\gamma_1\), συμβολικά \(- \gamma_1\), την καμπύλη που έχει ίδιο ΙΧΝΟΣ με τη \(\gamma_1\) αλλά \textbf{αντίθετη} φορά διαγραφής.
 
 \[ -{\gamma_1} : [a,b] \rightarrow \mathbb R^n : \mathbf r_{-\gamma_1}(t) - \mathbf r_{\gamma_1}(a+b-t)
 \]
@@ -159,9 +215,9 @@ x_n = f_n(t)
 \begin{itemize}
 \item Έστω \(A,B \in \mathbb R^n\), το \(\overrightarrow{AB}\) παραμετροποιείται ως:
 \begin{align*}
-\mathbf r(t) &= (\text{αρχή}) + (\text{πέρας}-\text{αρχή}), \quad {\color{red}t \in [0,1]} \\
-&= (a_1, \cdots, a_n) + t \left( (b_1, \cdots, b_n) - (a_1, \cdots, a_n) \right) \\
-&= \left( a_1 + t (b_1 - a_1 ), \cdots, a_n + t (b_n - a_n) \right), \quad {\color{red}t \in [0,1]}
+\mathbf r(t) &= (\text{αρχή}) + (\text{πέρας}-\text{αρχή}), \quad \attnboxed{t \in [0,1]} \\
+&= (a_1, \dots, a_n) + t \left( (b_1, \dots, b_n) - (a_1, \dots, a_n) \right) \\
+&= \left( a_1 + t (b_1 - a_1 ), \dots, a_n + t (b_n - a_n) \right), \quad \attnboxed{t \in [0,1]}
 \end{align*}
 επειδή για κάθε σημείο \(X \in \overrightarrow{AB}\):
 \[
@@ -193,11 +249,11 @@ x_n = f_n(t)
 
 \[
 \begin{cases}
-\frac{x-a}{A} = \cos{t}
-\frac{y-b}{B} = \sin{t}
+\frac{x-a}{A} &= \cos t \\
+\frac{y-b}{B} &= \sin t
 \end{cases}, \text{ τότε}
 \begin{cases}
-\frac{x}{A} = a+ A \cos{t}
+\frac{x}{A} = a+ A \cos{t} \\
 \frac{y}{B} = b+ B \sin{t}
 \end{cases}
 \]
