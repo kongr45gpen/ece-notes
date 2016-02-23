@@ -1,0 +1,215 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[greek]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{commath}
+\usepackage{xcolor}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+
+\begin{document}
+
+\setcounter{section}{-2}
+
+\section{Λογισμός II}
+
+\begin{itemize}
+\item 2 ώρες Ζάχαρης (3.5 μον.)
+\item 4 ώρες εγώ (6.5 μον.)
+
+\textlatin{http://users.auth.gr/natreas}
+\end{itemize}
+
+\paragraph{}
+
+\begin{itemize}
+\item Ρασσιάς Θ.
+\item Κωνσταντινίδου Μ.
+\item Ξένος
+\item Σημειώσεις
+\end{itemize}
+
+\section{Κεφάλαιο 0: Διανυσματικές συναρτήσεις \\ Καμπύλες στο χώρο}
+
+\paragraph{Ορ.}
+Μία συνάρτηση \( \mathbf{r}: A \subseteq \mathbb R \rightarrow \mathbb R ^ n \) απαρτίζεται από:
+
+(α). το πεδίο ορισμού της \(A\) που είναι υποσύνολο της πραγματικής ευθείας και
+
+(β). έναν τύπο έτσι ώστε σε κάθε πραγματικό αριθμό \(t \in A\) αντιστοιχεί \textbf{ΜΟΝΑΔΙΚΟ ΔΙΑΝΥΣΜΑ} \( \mathbf{r}(t) \) στο (διανυσματικό) χώρο \( \mathbb R ^ n \) δηλαδή:
+
+\[
+A \subseteq \mathbb R \rightarrow \mathbb R ^ n: \mathbf{r}(t) = \left( f_1(t), \cdots, f_n(t) \right)
+\]
+
+όπου \(f_1: A \le \mathbb R \rightarrow \mathbb R\) \textbf{συνήθεις} πραγματικές συναρτήσεις.
+
+\paragraph{}
+Πεδίο ορισμού διανυσματικής συνάρτησης είναι εκείνο το υποσύνολο του \( \mathbb R \) για όλα τα σημεία του οποίου ο τύπος της συνάρτησης \textbf{ΕΧΕΙ ΝΟΗΜΑ}.
+
+\emph{Πρακτικά}, αν
+\[ \mathbf{r}(t) = \left( f_1(t), \cdots, f_n(t) \right), \]
+τότε το πεδίο ορισμού της \( \mathbf{r} \) προκύπτει από τη \textbf{συναλήθευση} των πεδίων ορισμού ΟΛΩΝ των συναρτήσεων \( f_1,\cdots,f_n\).
+
+\emph{π.χ.}
+\[ \mathbf r (t) = \left( \ln t, \sqrt{1-t^2} \right) 
+\quad \leftarrow \text{διανυσματική συνάρτηση πραγματικής μεταβλητής}
+\]
+Πρέπει
+\[
+\begin{cases}
+t > 0 \text{ (λόγω λογαρίθμου)} \\
+\quad \text{και} \\
+1-t^2 > 0 \text{ (λόγω ρίζας)}
+\end{cases}
+\]
+Άρα Π.Ο. της \(\mathbf r\) είναι το \((0,1]\).
+
+\subsubsection{Όριο και συνέχεια διανυσματικών συναρτήσεων}
+\paragraph{Θ.} Έστω \(\mathbf r: A \subseteq \mathbb R \rightarrow \mathbb R ^ n\), \( \mathbf r(t) =  \left( f_1(t), \cdots, f_n(t) \right) \) διανυσματική συνάρτηση και \(t_0\) είναι σημείο συσσώρευσης (σ.σ.) του \(A\).
+Τότε:
+
+\[ \lim _{ t \to t_0 } \mathbf r(t) = \vec{a} = \left( a_1, \cdots, a_n \right) \iff
+\begin{cases}
+ \lim_{ t \to t_0 } f_1(t) = a_1 \\
+ \vdots \\
+ \lim_{ t \to t_0 } f_n(t) = a_n \\
+\end{cases}
+\]
+
+Επίσης, αν \(τ_0 \in A\) είναι και σ.σ. του \(Α\), τότε:
+
+\[ \mathbf r \text{ συνεχής στο } τ_0 \iff
+f_1,f_2,\cdots,f_n  \text{ συνεχείς στο } τ_0
+\]
+
+δηλ.
+\[ \lim _{ t \to t_0 } \mathbf r(t) = \mathbf r (t_0) \iff
+\begin{cases}
+ \lim_{ t \to t_0 } f_1(t) = f_1(t_0) \\
+ \vdots \\
+ \lim_{ t \to t_0 } f_n(t) = f_n(t_0) \\
+\end{cases}
+\]
+
+\subsection{Καμπύλες στον \(\mathbb R^n\)}
+\paragraph{Ορ.}
+Έστω \(α,β \in \mathbb R\) με \(α<β\). Κάθε \textbf{ΣΥΝΕΧΗΣ} διανυσματική συνάρτηση:
+\[
+\mathbf{\gamma}: [a,b] \rightarrow \mathbb R^n: \mathbf r_\gamma(t) = \left( f_1(t),f_2(t),\cdots,f_n(t) \right)
+\]
+καλείται καμπύλη στο χώρο \( \mathbb R ^n \) (και το γράφημά της καλείται ΙΧΝΟΣ της \(\mathbf \gamma\)).
+
+
+\subsubsection{Γράφημα}
+(\(\cdots\) Graph 1)
+
+Έστω \( \gamma: [a,b] \rightarrow \mathbb R ^ n \) καμπύλη.
+\begin{itemize}
+\item Η \(\gamma\) θα καλείται \textbf{ΑΠΛΗ} αν είναι 1-1, δηλ. \( \forall t \in (a,b) \) με \(t_1 \neq t_2 \implies \mathbf r(t_1) \neq \mathbf r(t_2)\) (δηλ. ΔΕΝ αυτοτέμνεται).
+
+\item Η \(\gamma\) καλείται \textbf{ΑΝΟΙΚΤΗ}, αν \[\mathbf r(a) \neq \mathbf r(b),\] αλλιώς \textbf{ΚΛΕΙΣΤΗ}.
+
+\item Όλες οι καμπύλες \(\gamma: [a,b] \rightarrow \mathbb R ^ n\) \[\mathbf r_\gamma(t) = \left( f_1(t),f_2(t),\cdots,f_n(t) \right)\] λέμε ότι είναι καμπύλες σε \textbf{ΠΑΡΑΜΕΤΡΙΚΗ} μορφή και οι
+\(
+\begin{cases}
+x_1 = f_1(t) \\
+x_2 = f_2(t) \\
+\quad \vdots \\
+x_n = f_n(t)
+\end{cases}
+\) καλούνται παραμετρικές εξισώσεις της \(\gamma\).
+
+\item Δύο καμπύλες μπορεί να έχουν το \textbf{ΙΔΙΟ ΙΧΝΟΣ}.
+\paragraph{π.χ.}
+\begin{alignat*}{2}
+&\mathbf r_{\gamma_1}(t) = ( \cos t,  && \sin t )  \quad t \in [0, 2 \pi ) \\
+&\mathbf r_{\gamma_2}(t) = ( \cos t, - && \sin t )  \quad t \in [0, 2 \pi )
+\end{alignat*}
+Δηλαδή το ίχνος είναι το ίδιο ΑΛΛΑ αλλάζει η ΦΟΡΑ ΔΙΑΓΡΑΦΗΣ ή ο προσανατολισμός.
+
+\emph{Έτσι}, σε κάθε καμπύλη \(\gamma\) σε παραμετρική μορφή αντιστοιχεί με φυσικό τρόπο ένας \textbf{ΠΡΟΣΑΝΑΤΟΛΙΣΜΟΣ} (ή ΦΟΡΑ ΔΙΑΓΡΑΦΗΣ), πάντα προς την κατεύθυνση αύξησης των \(\gamma\).
+
+\item Έστω \(\gamma_1: [a,b] \rightarrow \mathbb R^n, \gamma_2: [b,c] \rightarrow \mathbb R^n\) καμπύλες.
+
+Καλώ \textbf{ΑΝΤΙΘΕΤΗ} της \(\gamma_1\), συμβολικά \(- \gamma_1\), την καμπύλη που έχει ίδιο ΙΧΝΟΣ με τη \(\gamma_1\) αλλά \textbf{αντίθετη} φορά διαφραφής.
+
+\[ -{\gamma_1} : [a,b] \rightarrow \mathbb R^n : \mathbf r_{-\gamma_1}(t) - \mathbf r_{\gamma_1}(a+b-t)
+\]
+
+\item Αν \(\mathbf r_{\gamma_1}(b) = r_{\gamma_2}(b)\), ορίζω την καμπύλη \( \gamma_1+\gamma_2 \) ως εξής:
+\[
+\gamma_1+\gamma_2: [a,c] \rightarrow \mathbb R^n:
+\mathbf r_{\gamma_1+\gamma_2}(t) =
+\begin{cases}
+\mathbf r_{\gamma_1}, \quad t \in [a,b] \\
+\mathbf r_{\gamma_2}, \quad t \in (b, c]
+\end{cases}
+\]
+
+\item Έστω \( \phi: [c,d] \rightarrow [a,b] \) \textbf{συνεχής} και γνησίως \textbf{μονότονη} συνάρτηση. Τότε η \textbf{σύνθεση}: \[ \mathbf \gamma_1 \circ \phi: [c, d] \rightarrow \mathbb R ^n \]
+είναι καμπύλη που καλείται \textbf{ΙΣΟΔΥΝΑΜΗ} της \(\gamma_1\) και έχει το \textbf{ΙΔΙΟ ΙΧΝΟΣ} με τη \(\gamma_1\).
+
+\item Αν \(\phi\) γν. αύξουσα, τότε η σύνθεση έχει και ίδιο προσανατολισμό, αλλιώς αντίθετο προσανατολισμό σε σχέση με τη \(\gamma_1\).
+\end{itemize}
+
+\subsection{Παραδείγματα καμπύλων σε παραμετρική μορφή}
+\begin{itemize}
+\item Έστω \(A,B \in \mathbb R^n\), το \(\overrightarrow{AB}\) παραμετροποιείται ως:
+\begin{align*}
+\mathbf r(t) &= (\text{αρχή}) + (\text{πέρας}-\text{αρχή}), \quad {\color{red}t \in [0,1]} \\
+&= (a_1, \cdots, a_n) + t \left( (b_1, \cdots, b_n) - (a_1, \cdots, a_n) \right) \\
+&= \left( a_1 + t (b_1 - a_1 ), \cdots, a_n + t (b_n - a_n) \right), \quad {\color{red}t \in [0,1]}
+\end{align*}
+επειδή για κάθε σημείο \(X \in \overrightarrow{AB}\):
+\[
+\overrightarrow{OX} = \overrightarrow{OA} + \overrightarrow{AX}
+= \overrightarrow{OA} + t \overrightarrow{AB}
+\]
+
+\item Κύκλος \( (x-a)^2 + (y-b)^2 = R^2\) στο χώρο \(\mathbb R^2\):
+\[\mathbf r(t) = \left( f_1(t), f_2(t) \right), \quad t \in [a,b] \quad \leftarrow \text{ παραμετροποίηση γενικά} \]
+\emph{Ειδικότερα}
+\[
+\mathbf r(t) = \left( a+R \cos t, b+ R \sin t \right), \quad t \in [0, 2 \pi)
+\]
+με θετική φορά διαγραφής (αντιωρολογιακή).
+
+Ή:
+\[
+\mathbf r(t) = \left( a+R \cos t, b - R \sin t \right), \quad t \in [0, 2 \pi)
+\] με αρνητική φορά διαγραφής.
+
+\item Συνάρτηση \(y=f(x)\) πραγματική όπου \(x \in [a,b]\)
+\[\mathbf r(t) = \left( x(t), y(t) \right), \quad t \in [a,b] \quad \leftarrow \text{ παραμετροποίηση γενικά} \]
+\emph{Ειδικότερα}
+\[
+\mathbf r(t) = \left( t, f(t) \right) \quad t \in [a, b)
+\]
+
+\item Έλλειψη \( \left( \frac{x-a}{A} \right) ^ 2 + \left( \frac{y-b}{B} \right) ^ 2 = 1 \quad \left( \mathbb R^2 \right) \)
+
+\[
+\begin{cases}
+\frac{x-a}{A} = \cos{t}
+\frac{y-b}{B} = \sin{t}
+\end{cases}, \text{ τότε}
+\begin{cases}
+\frac{x}{A} = a+ A \cos{t}
+\frac{y}{B} = b+ B \sin{t}
+\end{cases}
+\]
+Έτσι \(\mathbf r (t) = (x, y) = (a + A \cos t, b + B \sin t), \quad t \in [0, 2 \pi) \) 
+
+\item Υπερβολή \( \left( \frac{x-a}{A} \right) ^ 2 - \left( \frac{y-b}{B} \right) ^ 2 = 1 \quad \left( \mathbb R^2 \right) \)
+
+\[
+\mathbf r (t) = (a + A \cosh t, b + B \sinh t), \quad t \in [0, 2 \pi)
+\]
+
+\end{itemize}
+
+
+\end{document}
