@@ -19,11 +19,12 @@
 \makeatother
 \tcbset{highlight math style={enhanced,colframe=red,colback=white,%
   arc=0pt,boxrule=1pt,shrink tight,boxsep=1.5mm,extrude by=0.5mm}}
-\newcommand{\attnboxed}[1]{\tcbhighmath[colback=red!5!white,drop fuzzy shadow,sharpish corners]{#1}}
+\newcommand{\attnboxed}[1]{\tcbhighmath[colback=red!5!white,drop fuzzy shadow,arc=0mm]{#1}}
 \titleformat{\section}{\bf\Large}{Κεφάλαιο \thesection}{1em}{}
 \newtcolorbox{attnbox}[1]{colback=red!5!white,%
   colframe=red!75!black,fonttitle=\bfseries,title=#1}
-
+\newtcolorbox{infobox}[1]{colback=blue!5!white,%
+  colframe=blue!75!black,fonttitle=\bfseries,title=#1}
 
 
 \title{Σημειώσεις Λογισμού ΙΙ}
@@ -36,9 +37,11 @@
 
 \maketitle
 
-\tableofcontents
+%\tableofcontents
 
 \newpage
+
+\part{Ατρέας}
 
 \setcounter{section}{-1}
 
@@ -266,6 +269,247 @@ x_n = f_n(t)
 \]
 
 \end{itemize}
+
+\subsection{Παράγωγος διανυσματικών συναρτήσεων μίας μεταβλητής}
+\paragraph{Ορ.}
+Έστω \(\mathbf r: A \subset \mathbb R \rightarrow  \mathbb R^n : \mathbf r(t) = \left( f_1(t), \dots, f_n(t) \right), \quad t_0 \in A \) είναι σ.σ. του \(Α\). Θα λέμε ότι η \(\mathbf r\) παραγωγίσιμη στο \(t_0\) αν υπάρχει το όριο:
+\[
+\lim _{t \to t_0} \frac{\mathbf r(t)- \mathbf{r}(t_0)}{t-t_0}
+\]
+ή ισοδύναμα
+\[
+\lim _{h \to 0} \frac{\mathbf r(t_0+h)- \mathbf{r}(t_0)}{h}
+\]
+το οποίο είναι \textbf{ΔΙΑΝΥΣΜΑ} που συμβολίζουμε με \(\mathbf r' (t_0)\) ή \(\frac{\dif \mathbf r}{\dif t}\).
+
+\begin{itemize}
+\item Αν η \(\mathbf r\) παραγωγίσιμη σε κάθε σημείο του \(Α\), λέμε ότι είναι παραγωγίσιμη στο \(Α\).
+\end{itemize}
+
+
+\paragraph{Θ.}
+\(\mathbf{r}\text{ παραγωγίσιμη στο }A \iff f_1,\dots,f_n \text{ παραγ. στο } A\) και
+\[
+\mathbf r'(t) = \left( f_1'(t),\dots, f_n'(t) \right)
+\]
+
+\subsubsection{Γεωμετρική ερμηνεία}
+Έστω \(h > 0\)
+
+\begin{tikzpicture}
+\draw[gray, thick] (-2.5,-2.5) -- (2.5,2.5);
+\node[above right, rotate=45] at (-2.5,-2.5) {\(+\infty\)};
+\node[above left, rotate=45] at (2.5,2.5) {\(-\infty\)};
+
+\filldraw[black] (0.5,0.5) circle (2pt) node[anchor=west] {\(t_0\)};
+\filldraw[black] (-1,-1) circle (2pt) node[anchor=west] {\(t_0+h\)};
+
+
+\def\away{7}
+
+\draw[->] (xyz cs:x=\away) -- (xyz cs:x=\away+2.5);
+\draw[->] (xyz cs:y=0,x=\away) -- (xyz cs:y=2.5,x=\away);
+\draw[->] (xyz cs:z=0,x=\away) -- (xyz cs:z=5,x=\away);
+
+\draw[-{>[scale=2.5,width=3]}, gray] (0.5,0.5) to [bend left=90] (\away+1,3);
+
+\coordinate (A) at (\away+0.2,1);
+\coordinate (B) at (\away+1.5,3.2);
+\coordinate (C) at (\away+4,4);
+
+\draw [blue, very thick] plot [smooth, tension=1] coordinates { (A) (B) (C) };
+
+%\draw[->, very thick] (\away,0) -- (A) node[anchor=east] {\(\mathbf r(a)\)};
+\draw[->, very thick] (\away,0) -- (B) node[anchor=west] {\(\mathbf r(t_0)\)};
+\draw[->, very thick] (\away,0) -- (C) node[anchor=east] {\(\mathbf r(t_0+h)\)};
+
+\draw[->] (B) -- (C);
+
+
+\end{tikzpicture}
+
+Το \( \mathbf r'(t) \) έχει τη διεύθυνση της εφαπτόμενης ευθείας της \( \mathbf r\) στο σημείο \( \mathbf r(τ_0)\) και φορά τη φορά της κίνησης. Μπορεί να αναπαριστά π.χ. την ταχύτητα ενός υλικού σημείου.
+
+\subsubsection{Εξίσωση (Διανυσματική) εφαπτόμενης ευθείας καμπύλης \(\gamma: [a,b] \rightarrow  \mathbb R ^n = \left(f_1(t),\dots,f_n(t) \right)\) παραγωγίσιμης στο σημείο \(t_0\)}
+
+%\small{Αρκεί να ξέρω σημείο της ευθείας και διάνυσμα παράλληλο στην ευθεία}
+%TODO
+\begin{attnbox}{Προσοχή!!!}
+\[
+ \mathbf r_{\text{εφ}}(t) =  \mathbf r(t_0) + \lambda \cdot  \mathbf r'(t_0), \quad \lambda \in  \mathbb R 
+ \]
+ \end{attnbox}
+ 
+\subsubsection{Ιδιότητες παραγώγου}
+Έστω \( \mathbf r_1, \mathbf r_2:[a,b] \rightarrow  \mathbb R ^n\) παραγωγ. καμπύλες, τότε:
+
+\begin{itemize}
+\item \( \big( \mathbf r_1 \cdot  \mathbf r_2 \big) ' (t) =
+ \mathbf r_1' \cdot  \mathbf r_2(t) +  \mathbf r_1 \cdot  \mathbf r_2'(t)
+ \) %TODO \cdot εσωτερικό
+\item \( \big( \mathbf r_1 \cdot  \mathbf r_2 \big) ' (t) =
+ \mathbf r_1' \cdot  \mathbf r_2(t) +  \mathbf r_1 \cdot  \mathbf r_2'(t)
+ \)
+ \item \begin{align*} 
+ [ \mathbf r_1, \mathbf r_2, \mathbf r_3 ]'(t) = 
+ &[ \mathbf r_1', \mathbf r_2, \mathbf r_3 ] + \\
+ &[ \mathbf r_1, \mathbf r_2',\mathbf r_3 ] + \\
+ &[ \mathbf r_1, \mathbf r_2, \mathbf r_3' ]
+\end{align*}
+\end{itemize}
+
+\part{Ζάχαρης}
+
+
+\[P = (x_1,\dots,x_n)  \mathbb \quad R ^n\]
+\[A = (a_1,\dots,a_n)  \mathbb \quad R ^n\]
+\[B = (b_1,\dots,b_n)  \mathbb \quad R ^n\]
+
+\begin{align*}
+d(A,B) = &\norm{\overrightarrow{AB}} = \sqrt{(a_1-b_1)^2 + \dots + (a_n-b_n)^2} \\
+&\norm{\overrightarrow{OA}} = \sqrt{(a_1)^2 + \dots + (a_n)^2} \\
+&\norm{\overrightarrow{OA}} = \sqrt{(b_1)^2 + \dots + (b_n)^2}
+\end{align*}
+
+\paragraph{Περιοχή σημείου \(Α\) ακτίνας \(\epsilon\) \(\Pi_\epsilon(A)\)}
+\[
+\Pi_\epsilon(A) = \left\lbrace P \in  \mathbb R ^n : d(P,A) < \epsilon \right\rbrace
+\]
+%TODO σχήμα
+
+\paragraph{Σημείο συσσώρευσης}
+
+%\begin{tikzpicture}
+%\draw [blue, very thick] plot [smooth, tension=1] coordinates { (0,-2) (1,0) (1,1) (0,-2) };
+%\end{tikzpicture}
+%TODO
+
+\( E = (E' - \lbrace K\rbrace ) \cup \lbrace I\rbrace \)
+
+\begin{itemize}
+\item Σημείο συσσώρευσης: \( \left( \Pi_\epsilon(P) - \left\lbrace P \right\rbrace \right) \cap E \neq \emptyset \)
+\item Παράγωγο σύνολο: \(Ε'\) (τα σημεία συσσώρευσης του \(Ε\))
+\item Κλειστότητα του \(Ε\): \(Ε \cup E'\)
+\item Συνοριακό σημείο \(Α\): \(\forall \epsilon > 0: \Pi_\epsilon(A) \cap E \neq \emptyset\) και \(\Pi_\epsilon(A) \cap \left( \mathbb R^n - E \right) \neq \emptyset\) (το \(Ε\) αλλά και το συμπληρωματικό του ανήκουν σε κάθε περιοχή του \(Α\)).
+\item Κλειστό σύνολο: Συμπεριλαμβάνει το σύνορο
+\item Ανοικτό σύνολο: Δεν συμπεριλαμβάνει κανένα συνοριακό σημείο
+\item Οι χώροι \(\emptyset\) και \( \mathbb R ^ n \) θεωρούνται κλειστοί και ανοικτοί.
+\end{itemize}
+
+\paragraph{Συνεκτικό σύνολο (ή συναφές)}
+Κάθε δύο σημεία του συνόλου μπορούν να ενωθούν με μια γραμμή που ανήκει στο σύνολο.
+%TODO Graph 5
+
+\paragraph{Κυρτό σύνολο}
+Κάθε δύο σημεία του συνόλου μπορούν να ενωθούν με \textit{ευθεία} γραμμή που ανήκει στο σύνολο.
+%TODO Graph 6
+
+\paragraph{Απλά συνεκτικό σύνολο}
+Κάθε καμπύλη του συνόλου θα ανήκει μέσα στο σύνολο αν τη σφίξω.
+
+\paragraph{}
+Η μόνη συσχέτιση που ισχύει είναι η εξής:
+\begin{align*}
+\text{κυρτό} &\implies \text{συνεκτικό} \\
+\text{κυρτό} &\implies \text{απλά συνεκτικό}
+\end{align*}
+
+\begin{tikzpicture}
+\draw[->] (xyz cs:x=0) -- (xyz cs:x=2.5);
+\draw[->] (xyz cs:y=0,x=0) -- (xyz cs:y=2.5,x=0);
+\draw[->] (xyz cs:z=0,x=0) -- (xyz cs:z=5,x=0);
+
+\node (0,0) [anchor=east] {\(O\)};
+
+\filldraw[gray] (1.7,1.5) circle (25pt) node[anchor=north] {\(E\)};
+
+\filldraw[black] (2,1.5) circle (2pt) node[anchor=west] {\(P\)};
+\draw[->,blue, very thick,anchor=west] (0,0) -- (2,1.5);
+\end{tikzpicture}
+
+\paragraph{Φραγμένο σύνολο} ανν \(\norm{\overrightarrow{OP}} = d(O,P)\) πεπερασμένη
+\paragraph{Συμπαγές σύνολο} ανν είναι φραγμένο και περιέχει το σύνορο
+
+\subsubsection{Ορισμός συνάρτησης}
+\(E \subseteq   \mathbb R^n, \quad B \subseteq  \mathbb R \)
+\[f: E \rightarrow B: z = f(x_1, \dots, x_n) \]
+\begin{tikzpicture}
+%TODO Από κύκλο σε ευθεία
+\end{tikzpicture}
+\[P = \left( x_1, \dots, x_n \right) \rightarrow \text{πρότυπα ή αρχέτυπα, }z\text{ εικόνες} \]
+\begin{tikzpicture}
+\draw[->] (xyz cs:x=0) -- (xyz cs:x=2.5);
+\draw[->] (xyz cs:y=0,x=0) -- (xyz cs:y=2.5,x=0);
+\end{tikzpicture}
+\begin{tikzpicture}
+\draw[->] (xyz cs:x=0) -- (xyz cs:x=2.5);
+\draw[->] (xyz cs:y=0,x=0) -- (xyz cs:y=2.5,x=0);
+\draw[->] (xyz cs:z=0,x=0) -- (xyz cs:z=5,x=0);
+\end{tikzpicture}
+Για συνάρτηση από το \( \mathbb R ^n\), χρειάζομαι \(n+1\) άξονες. Άρα γραφικές παραστάσεις θα κάνουμε για συναρτήσεις το πολύ 2 μεταβλητών, με προοπτική παράσταση ή ισουψείς καμπύλες.
+
+\paragraph{Πολυωνυμική συάρτηση}
+Περιέχει όρους της μορφής \(a x_1^{m_1} x_2^{m_2} \cdots x_n^{m_n}, \quad m_1,m_2,\dots,m_n \in  \mathbb N \).
+
+\textit{π.χ.}
+\begin{align*}
+w&=3x^4y^2z^3+4x^5yz^2-7x^3yz \\
+w&=f(x,y,z)
+\end{align*}
+\[
+\mathrm{max} \sum_{i=1}^{n}m_i = \text{βαθμός}(f)
+\]
+
+\subparagraph{Ρητή συνάρτηση}
+\[
+\frac{f(P)}{g(P)} =
+\frac{f(x_1,\dots,x_n)}{g(x_1,\dots,x_n)}
+\quad
+f,g \text{ πολυωνυμικές}
+\]
+
+\subsubsection{Όριο συνάρτησης}
+\[ \lim_{(x,y) \to (x_0,y_0)} f(x,y) = \lambda\]
+
+\paragraph{Διπλά όρια}
+\[ \lim_{x \to x_0} \left( \lim_{y \to y_0} f(x,y) \right), \quad
+   \lim_{y \to y_0} \left( \lim_{x \to x_0} f(x,y) \right)
+\] 
+\begin{attnbox}{}Δεν έχουν απαραίτητα σχέση με το κανονικό όριο (και μπορεί να έχουν διαφορετική τιμή)!
+Η ύπαρξη ή/και ισότητα των ορίων δεν είναι διαγνωστική για το όριο της συνάρτησης. Αν υπάρχει το \(\lambda\) και \textbf{υπάρχουν} τα παραπάνω όρια, τότε είναι ίσα με \(\lambda\). Αν τα παραπάνω όρια \textbf{υπάρχουν} και \textbf{δεν} είναι ίσα, τότε το \(\lambda\) \textbf{δεν} υπάρχει.
+\end{attnbox}
+
+\begin{tikzpicture}
+\draw[->,thick] (0,0) -- (0,4);
+\draw[->,thick] (0,0) -- (4,0);
+
+\draw[->,blue] (1,1)--(1,3);
+\draw[->,blue] (1,3)--(3,3);
+
+\draw[->,orange] (1,1)--(3,1);
+\draw[->,orange] (3,1)--(3,3);
+
+\end{tikzpicture}
+\begin{infobox}{Μεθοδολογία}
+\begin{align*}
+w&=f(x,y) \quad \text{ή}\\
+w&=f(x,y,z)
+\end{align*}
+\[ \lim_{P\to P_0} \]
+\begin{enumerate}
+\item Επιλέγω για την \(f(x,y)\) μια καμπύλη \(y=g(x)\) του \(Ε\) που περνά από το \(Π_0\) ή \\ επιλέγω για την \(f(x,y,z)\) μια καμπύλη \(y=g(x)\) και \(z=h(x)\) του \(Ε\) που περνά από το \(Π_0\)
+\item Αντικαθιστώ και καταλήγω στον υπολογισμό του ορίου \(\lim_{x \to x_0}\)
+\item Αν το αποτέλεσμα εξαρτάται από τις παραμέτρους τις καμπύλης, τότε το όριο δεν υπάρχει, ενώ αν δεν εξαρτάται, το αποτέλεσμα είναι μη διαγνωστικό.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Μεθοδολογία}
+Για ρητές συναρτήσεις \(\frac{f(P)}{g(P}\):
+\begin{enumerate}
+\item Αν \(B \left[ f(P) \right] > B \left[ g(P) \right]\), μάλλον το όριο υπάρχει.
+\item Αν \(B \left[ f(P) \right] \leq B \left[ g(P) \right]\), μάλλον το όριο δεν υπάρχει.
+\end{enumerate}
+\end{infobox}
 
 
 \end{document}
