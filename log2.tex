@@ -360,6 +360,7 @@ x_n = f_n(t)
 
 \part{Ζάχαρης}
 
+\section{Συναρτήσεις πολλών μεταβλητών}
 
 \[P = (x_1,\dots,x_n)  \mathbb \quad R ^n\]
 \[A = (a_1,\dots,a_n)  \mathbb \quad R ^n\]
@@ -448,7 +449,7 @@ d(A,B) = &\norm{\overrightarrow{AB}} = \sqrt{(a_1-b_1)^2 + \dots + (a_n-b_n)^2} 
 \end{tikzpicture}
 Για συνάρτηση από το \( \mathbb R ^n\), χρειάζομαι \(n+1\) άξονες. Άρα γραφικές παραστάσεις θα κάνουμε για συναρτήσεις το πολύ 2 μεταβλητών, με προοπτική παράσταση ή ισουψείς καμπύλες.
 
-\paragraph{Πολυωνυμική συάρτηση}
+\paragraph{Πολυωνυμική συνάρτηση}
 Περιέχει όρους της μορφής \(a x_1^{m_1} x_2^{m_2} \cdots x_n^{m_n}, \quad m_1,m_2,\dots,m_n \in  \mathbb N \).
 
 \textit{π.χ.}
@@ -457,7 +458,7 @@ w&=3x^4y^2z^3+4x^5yz^2-7x^3yz \\
 w&=f(x,y,z)
 \end{align*}
 \[
-\mathrm{max} \sum_{i=1}^{n}m_i = \text{βαθμός}(f)
+\mathrm{max} \left( \sum_{i=1}^{n}m_i \right) = \text{βαθμός}(f)
 \]
 
 \subparagraph{Ρητή συνάρτηση}
@@ -470,12 +471,13 @@ f,g \text{ πολυωνυμικές}
 
 \subsubsection{Όριο συνάρτησης}
 \[ \lim_{(x,y) \to (x_0,y_0)} f(x,y) = \lambda\]
-
+\begin{attnbox}{}
 \paragraph{Διπλά όρια}
 \[ \lim_{x \to x_0} \left( \lim_{y \to y_0} f(x,y) \right), \quad
    \lim_{y \to y_0} \left( \lim_{x \to x_0} f(x,y) \right)
 \] 
-\begin{attnbox}{}Δεν έχουν απαραίτητα σχέση με το κανονικό όριο (και μπορεί να έχουν διαφορετική τιμή)!
+\tcblower
+Δεν έχουν απαραίτητα σχέση με το κανονικό όριο (και μπορεί να έχουν διαφορετική τιμή)!
 Η ύπαρξη ή/και ισότητα των ορίων δεν είναι διαγνωστική για το όριο της συνάρτησης. Αν υπάρχει το \(\lambda\) και \textbf{υπάρχουν} τα παραπάνω όρια, τότε είναι ίσα με \(\lambda\). Αν τα παραπάνω όρια \textbf{υπάρχουν} και \textbf{δεν} είναι ίσα, τότε το \(\lambda\) \textbf{δεν} υπάρχει.
 \end{attnbox}
 
@@ -483,11 +485,29 @@ f,g \text{ πολυωνυμικές}
 \draw[->,thick] (0,0) -- (0,4);
 \draw[->,thick] (0,0) -- (4,0);
 
-\draw[->,blue] (1,1)--(1,3);
-\draw[->,blue] (1,3)--(3,3);
+\filldraw[very thick,fill=green!20] plot [smooth cycle] coordinates {
+(0.4,0.5) (0.5,1) (0.7,2) (0.6, 3.5) (4,3.2) (2,2) (2.5,0.7)
+};
 
-\draw[->,orange] (1,1)--(3,1);
-\draw[->,orange] (3,1)--(3,3);
+\draw[gray,dashed] (3,3) -- (3,0) node[anchor=north] {\(x_0\)};
+\draw[gray,dashed] (3,3) -- (0,3) node[anchor=east] {\(y_0\)};
+\draw[gray,dashed] (1,1) -- (1,0) node[anchor=north] {\(x\)};
+\draw[gray,dashed] (1,1) -- (0,1) node[anchor=east] {\(y\)};
+
+\filldraw[black] (3,3) circle (2pt) node[anchor=west] {\(P_0\)};
+
+\draw[->,blue,thick] (1,1)--(1,3);
+\draw[->,blue,thick] (1,3)--(3,3);
+
+\draw[->,orange,thick] (1,1)--(3,1);
+\draw[->,orange,thick] (3,1)--(3,3);
+
+\draw[->,thick] (1.3,1.3) to [bend left=20] (2.7,2.7);
+\draw[->,thick] (1.3,2.3) to [bend left=20] (2.5,2.7);
+\draw[->,thick] (1.7,3.4) to [bend right=20] (2.8,3.1);
+
+
+\filldraw[black] (1,1) circle (2pt) node[anchor=west] {\(P\)};
 
 \end{tikzpicture}
 \begin{infobox}{Μεθοδολογία}
@@ -496,6 +516,7 @@ w&=f(x,y) \quad \text{ή}\\
 w&=f(x,y,z)
 \end{align*}
 \[ \lim_{P\to P_0} \]
+\tcblower
 \begin{enumerate}
 \item Επιλέγω για την \(f(x,y)\) μια καμπύλη \(y=g(x)\) του \(Ε\) που περνά από το \(Π_0\) ή \\ επιλέγω για την \(f(x,y,z)\) μια καμπύλη \(y=g(x)\) και \(z=h(x)\) του \(Ε\) που περνά από το \(Π_0\)
 \item Αντικαθιστώ και καταλήγω στον υπολογισμό του ορίου \(\lim_{x \to x_0}\)
@@ -504,7 +525,8 @@ w&=f(x,y,z)
 \end{infobox}
 
 \begin{infobox}{Μεθοδολογία}
-Για ρητές συναρτήσεις \(\frac{f(P)}{g(P}\):
+Για ρητές συναρτήσεις \(\frac{f(P)}{g(P)}\)
+\tcblower
 \begin{enumerate}
 \item Αν \(B \left[ f(P) \right] > B \left[ g(P) \right]\), μάλλον το όριο υπάρχει.
 \item Αν \(B \left[ f(P) \right] \leq B \left[ g(P) \right]\), μάλλον το όριο δεν υπάρχει.
