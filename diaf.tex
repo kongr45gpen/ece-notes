@@ -9,6 +9,7 @@
 \usepackage{hyperref}
 \usepackage[skins,theorems]{tcolorbox}
 \usepackage{titlesec}
+\usepackage{circuitikz}
 
 \usetikzlibrary{arrows.meta}
 
@@ -32,6 +33,10 @@
 \author{Καναβούρας Κωνσταντίνος \\ \textlatin{\url{http://users.auth.gr/konkanant}}}
 
 
+\newtcbtheorem[number within=section]{theorem}{Θεώρημα}%
+{colback=green!5,colframe=green!35!black,colbacktitle=green!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-2mm}}{th}
+\newtcbtheorem[number within=section]{defn}{Ορισμός}%
+{colback=green!5,colframe=green!35!black,colbacktitle=green!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-2mm}}{def}
 
 \begin{document}
 
@@ -46,6 +51,12 @@
 Τετάρτη 17:00-18:30
 
 \section{Κεφάλαιο 7: Εισαγωγή στην ανάλυση του \text{Fourier}}
+\begin{circuitikz} \draw
+(0,0) to[american voltage source=$V$] (0,4)
+      to[R=$R$] (4,4) 
+      to[C=$C$] (4,0) -- (0,0);
+\end{circuitikz}
+
 %TODO Σχήμα κυκλώματος RC με εναλλασσόμενο
 H συμπεριφορά του κυκλώματος μπορεί να περιγραφεί με μια διαφορική εξίσωση.
 
@@ -79,9 +90,11 @@ v_2 &= \frac{Q(t)}{C} \\
 x(t)=k \implies \frac{\dif x}{\dif t}+ak=b \implies k =\frac{b}{a} \implies x(t)=k=\frac{b}{a}
 \]
 
-\paragraph{Θ.}
+\begin{theorem*}{}
+%\paragraph{Θ.}
 Η γενική λύση της μη ομογενούς είναι:
 \[x(t) = x_h(t)+x_i(t) \]
+\end{theorem*}
 
 Άρα \[
 \begin{cases}
