@@ -10,6 +10,7 @@
 \usepackage[skins,theorems]{tcolorbox}
 \usepackage{titlesec}
 \usepackage{circuitikz}
+\usepackage{pgfplots}
 
 \usetikzlibrary{arrows.meta}
 
@@ -26,7 +27,8 @@
   colframe=red!75!black,fonttitle=\bfseries,title=#1}
 \newtcolorbox{infobox}[1]{colback=blue!5!white,%
   colframe=blue!75!black,fonttitle=\bfseries,title=#1}
-
+  
+\pgfplotsset{compat=1.12}
 
 \title{Σημειώσεις Διαφορικές Εξισώσεις}
 \date{2016, Εαρινό εξάμηνο}
@@ -57,7 +59,6 @@
       to[C=$C$] (4,0) -- (0,0);
 \end{circuitikz}
 
-%TODO Σχήμα κυκλώματος RC με εναλλασσόμενο
 H συμπεριφορά του κυκλώματος μπορεί να περιγραφεί με μια διαφορική εξίσωση.
 
 \(Q(t)\): Το φορτίο του πυκνωτή σε χρονική στιγμή \(t\)
@@ -70,11 +71,53 @@ v_2 &= \frac{Q(t)}{C} \\
 
 Θα προσπαθήσω να λύσω την εξίσωση για τρεις περιπτώσεις:
 
-\begin{enumerate}
-\item \(V(t) = V_0\)
-\item \(V(t) = V_0 \cdot \sin(nt)\)
-\item \(V(t)\) \textlatin{square wave}
-\end{enumerate}
+\pgfplotsset{width=6.5cm}
+\paragraph{}
+\begin{tikzpicture}
+  \begin{axis}[ 
+    xlabel=$t$,
+    ylabel={$V(t)$},
+    axis lines=middle,
+    xtick=\empty,
+	ytick=\empty,
+	title={$V(t)=V_0$}
+  ] 
+    \addplot[blue,thick,domain=0:5] {5}; 
+  \end{axis}
+\end{tikzpicture}
+\hskip 10pt
+\begin{tikzpicture}
+  \begin{axis}[ 
+    xlabel=$t$,
+    ylabel={$V(t)$},
+    axis lines=middle,
+    xtick=\empty,
+	ytick=\empty,
+	xmin=0,
+	title={$V(t)=V_0\cdot sin(nt)$}
+  ] 
+    \addplot[blue,thick,samples=200] {5*sin(deg(3*x))}; 
+  \end{axis}
+\end{tikzpicture}
+\hskip 10pt
+\begin{tikzpicture}
+  \begin{axis}[ 
+    xlabel=$t$,
+    ylabel={$V(t)$},
+    axis lines=middle,
+    xtick=\empty,
+	ytick=\empty,
+	xmin=0,
+	xmax=8,
+	ymin=-1.4,
+	ymax=1.4,
+	title={$V(t)\text{ τετραγωνική συνάρτηση}$}
+  ] 
+    \addplot+[blue,thick,mark=none,const plot]
+coordinates
+{(0,1) (1,-1) (2,1) (3,-1) (4,1) (5,-1) (6,1) (7,-1)};
+  \end{axis}
+\end{tikzpicture}
 
 \subsubsection{\(V(t) = V_0\)}
 \[
@@ -83,7 +126,7 @@ v_2 &= \frac{Q(t)}{C} \\
 Θα εξετάσω τη γενική λύση \(x_0(t)\) της ομογενούς ΔΕ, και \\
 θα ψάξω μία ειδική λύση της μη ομογενούς ΔΕ.
 
-Ομογενής: \(\frac{\dif x}{\dif t}=0 \implies \frac{\dif x}{\dif t} = -ax \implies x(t)=ce^{-at}.\)\\\(x(0)=0\implies c=0 \implies x_0(t)=0\).
+Ομογενής: \(b=0 \implies \frac{\dif x}{\dif t} = -ax \implies x(t)=ce^{-at}.\)\\\(x(0)=0\implies c=0 \implies x_0(t)=0\).
 
 Μη ομογενής: \(\frac{\dif x}{\dif t}+ax=b\).
 \[
@@ -106,7 +149,18 @@ x(0) = 0
  x(t) =\frac{b}{a}(1-e^{-at})
  \]
 
-%TODO plot του αποτελέσματος
+\begin{tikzpicture}
+  \begin{axis}[ 
+    xlabel=$t$,
+    ylabel={$x(t)$},
+    axis lines=left,
+    xtick=\empty,
+	ytick=\empty
+  ] 
+    \addplot[blue,thick,domain=0:5] {1-e^(-x)}; 
+  \end{axis}
+\end{tikzpicture}
+
  
 \[
 a=\frac{1}{RC}, \quad b= \frac{V_0}{R}
@@ -152,7 +206,7 @@ x(t) = \frac{bn}{a^2+n^2} + \frac{ab}{a^2+n^2} \sin (nt) -  \frac{bn}{a^2+n^2} \
 
 Για το \(RC\) κύκλωμα, \(a=\frac{1}{RC} \leftarrow \) χρονική σταθερά κυκλώματος, \(b=\frac{V_0}{R}\), άρα:
 \[
-Q(t) = \frac{V_0C^2Rn}{C^2R^2n^2+1}e^{\frac{t}{RC}} + \frac{CV_0\sin (nt) - C^2RnV_0 \cos (nt)}{C^2R^2n^2+1}
+Q(t) = \frac{V_0C^2Rn}{C^2R^2n^2+1}e^{-\frac{t}{RC}} + \frac{CV_0\sin (nt) - C^2RnV_0 \cos (nt)}{C^2R^2n^2+1}
 \]
 
 \begin{attnbox}{}
@@ -165,6 +219,20 @@ p \cos (\omega t) + q \sin (\omega t) = \\
 \end{attnbox}
 
 Παρατηρούμε ότι ο πυκνωτής φορτίζει περισσότερο αν είναι μικρότερη η συχνότητα του εναλλασσόμενου ρεύματος.
+
+\pgfplotsset{width=0.8\textwidth}
+\begin{tikzpicture}
+  \begin{axis}[ 
+  	height=5cm,
+    xlabel=$t$,
+    ylabel={$Q(t)$},
+    axis lines=left,
+    xtick=\empty,
+	ytick=\empty
+  ] 
+    \addplot[blue,samples=100,thick,domain=0:2*pi] {1.5*e^(-0.75*x)+0.1*sin(400*x)}; 
+  \end{axis}
+\end{tikzpicture}
 
 \subsubsection{\(V(t) = \mathrm{square}(t)\)}
 %\begin{tikzpicture}[domain=0:14]
@@ -218,10 +286,7 @@ V(t) = \sum _{n = (1,3,5,\dots)}^\infty \frac{4}{n \pi} \sin (n t) = \lim_{t \to
 Q(t) = \sum_{n \in \lbrace1,3,5,\dots\rbrace}Q_n(t)
 \]
 
-Γιατί όμως, αν \(V_1(t) \rightarrow Q_1(t), \quad V_2(t) \rightarrow Q_2(t)\), τότε \(κ_1V_1+k_2V_2 = k_1Q_1 +k_2Q_2\) σε αυτό το κύκλωμα; (αρχή επαλληλίας)
-%\begin{tikzpicture}[domain=0:14]
-%\draw[color=blue]
-%plot (\x,{exp(-\x) + 0.35*sin(5*\x r)})
-%node[right] {$f(x) = \sin x$};
-%\end{tikzpicture}
+Γιατί όμως, αν \(V_1(t) \rightarrow Q_1(t), \ V_2(t) \rightarrow Q_2(t)\), τότε \(k_1V_1+k_2V_2 = k_1Q_1 +k_2Q_2\) σε αυτό το κύκλωμα (αρχή επαλληλίας/γραμμικότητα)?
+
+
 \end{document}
