@@ -11,6 +11,10 @@
 \usepackage{titlesec}
 \usepackage{circuitikz}
 \usepackage{pgfplots}
+\usepackage{gfsartemisia}
+\usepackage{mathtools}
+\usepackage[makeroom]{cancel}
+
 
 \usetikzlibrary{arrows.meta}
 
@@ -28,7 +32,7 @@
 \newtcolorbox{infobox}[1]{colback=blue!5!white,%
   colframe=blue!75!black,fonttitle=\bfseries,title=#1}
   
-\pgfplotsset{compat=1.12}
+%\pgfplotsset{compat=1.12}
 
 \title{Σημειώσεις Διαφορικές Εξισώσεις}
 \date{2016, Εαρινό εξάμηνο}
@@ -38,13 +42,256 @@
 \newtcbtheorem[number within=section]{theorem}{Θεώρημα}%
 {colback=green!5,colframe=green!35!black,colbacktitle=green!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-2mm}}{th}
 \newtcbtheorem[number within=section]{defn}{Ορισμός}%
-{colback=green!5,colframe=green!35!black,colbacktitle=green!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-2mm}}{def}
+{colback=cyan!5,colframe=cyan!35!black,colbacktitle=cyan!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-2mm}}{def}
+\newtcbtheorem[number within=section]{excercise}{Άσκηση}%
+{colback=gray!3,colframe=gray!35!black,colbacktitle=gray!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-2mm}}{exc}
 
 \begin{document}
 
 \maketitle
 
 %\tableofcontents
+
+\newpage
+
+\part{Σεβαστειάδης}
+Χρήστος Σεβαστειάδης
+
+\section{}
+
+\begin{defn*}{Διαφορική εξίσωση}
+Μια εξίσωση που αποτελείται από μια συνάρτηση και τις παραγώγους της
+\end{defn*}
+
+\paragraph{\textlatin{Langrange's}}
+\(x',x'',x''',x^{(4)},\dots\)
+\paragraph{\textlatin{Newton's}}
+\(\dot{x}, \ddot{x}, \dddot{x}\)
+\paragraph{\textlatin{Newton's}}
+\(\od{x}{t}, \od[2]{x}{t}, \od[3]{x}{t}\)
+
+\paragraph{}
+\textit{π.χ.}
+\[
+x(t) \od[2]{x(t)}{t} + 2 \od{x(t)}{t}=x(t)\sin (t)
+\]
+
+\begin{defn}{Τάξη}{}
+\textbf{Τάξη} ονομάζεται ο μεγαλύτερος \emph{βαθμός} παραγώγου που εμφανίζεται στην εξίσωση
+\end{defn}
+
+\begin{defn}{Βαθμός}{}
+\textbf{Βαθμός} ονομάζεται η μεγαλύτερη \emph{δύναμη} παραγώγου που εμφανίζεται στην εξίσωση
+\end{defn}
+
+
+\section{Διαφορική εξίσωση 1ης τάξης}
+\begin{defn*}{}
+\[
+\od{x}{t}=f(t,x)
+\]
+\end{defn*}
+
+\paragraph{}
+
+\subsection{Χωριζόμενες διαφορικές εξισώσεις}
+Τυπική μορφή:
+\[f(t,x) = \frac{-M(t,x)}{N(t,x)} = \od{x}{t}
+\implies \underbrace{N(t,x)}_{N(x)} \dif x + \underbrace{M(t,x)}_{M(t)} \dif t = 0 \]
+
+Αν δηλαδή τα \(N(t,x), \ M(t,x)\) εξαρτώνται μόνο από τα \(x\) και \(t\) αντίστοιχα, η εξίσωση ονομάζεται \textbf{χωριζόμενη}, και το αποτέλεσμά της μπορεί να βρεθεί με ολοκληρώματα:
+
+\[
+\int N(x) \dif x + \int M(t) \dif t = c
+\]
+
+\begin{excercise*}{2.1}
+\[x \dif x - t^2 \dif t = 0 \]
+\tcblower
+\[ N(x) = x, \quad M(t)=-t^2 \]
+\begin{align*}
+&\int x \dif x + \int (-t^2) \dif t = c \implies \\
+&\frac{1}{2} x ^ 2 - \frac{1}{3} t^3 = c \implies \\
+&x = \pm \sqrt{\frac{2}{3} t^3 + 2c} \implies \\
+&x= \pm \sqrt{\frac{2}{3} t^3 + \kappa } \\
+\text{ με } \kappa =2c
+\end{align*}
+\end{excercise*}
+
+\begin{excercise*}{2.2}
+\[x' = x^2t^3 \]
+\tcblower
+\begin{align*}
+&\implies \od{x}{t}=x^2t^3 \\
+&\implies \frac{1}{x^2}\dif x - t^3 \dif t = 0 \\
+&\implies \int \frac{1}{x^2}\dif x + \int (-t^3) \dif t = c \\
+&\implies - \frac{1}{x} - \frac{t^4}{4} = c \\
+&\implies - \frac{1}{x} = c + \frac{t^4}{4} \\
+&\implies - \frac{4}{x} = 4c + t^4 \\
+&\implies x = \frac{-4}{t^4 + \kappa}, \quad \text{με } \kappa = 2c
+\end{align*}
+\end{excercise*}
+
+
+\begin{excercise*}{2.3}
+\[x' = \frac{t+1}{x^4+1} \]
+\tcblower
+\begin{align*}
+&\implies \od{x}{t}=\frac{t+1}{x^4+1} \\
+&\implies (x^4+1) \dif x + (-t-1) \dif t = 0 \\
+&\implies \int (x^4+1)\dif x + \int (-t-1) \dif t = c \\
+&\implies \frac{x^5}{5} + x - \frac{t^2}{2} -t = c \\
+\end{align*}
+\end{excercise*}
+
+Παρατηρούμε ότι, χωρίς αρχική συνθήκη, βρίσκουμε γενικές λύσεις ως αποτέλεσμα. Με τη χρήση μιας αρχικής συνθήκης, μπορούμε να βρούμε και την ειδική λύση της εξίσωσης.
+
+\begin{excercise*}{2.4}
+\[e^t \dif t - x \dif x = 0;\quad x(0)=1 \leftarrow \text{αρχική συνθήκη} \]
+\tcblower
+\begin{align*}
+&\implies \int x \dif x + \int (-e^t) \dif t = c \\
+&\implies \frac{x^2}{2} - e^t = c \\
+&\implies x^2 = 2e^t + 2c \\
+&\implies x^2 = 2e^t+ \kappa, \quad \text{με } \kappa = 2c
+\end{align*}
+Όμως \(x(0) = 1\), άρα:
+\[
+\begin{cases}
+x^2 = 2e^t+ \kappa \\
+x(0) = 1
+\end{cases}
+\implies x(0)^2 = 2e^0 + \kappa \implies \boxed{\kappa = -1}
+\]
+Επομένως τελικά:
+\[
+x^2=2e^t -1 \implies x = \pm \sqrt{2e^t-1} \implies \boxed{x=\sqrt{2e^t-1}}
+\]
+
+Η αρχική συνθήκη πράγματι επαληθεύει το αποτέλεσμα \(x\). Πρέπει όμως και \(x \in \mathbb R, \ 2e^t-1 \geq 0\).
+
+Από τη διαφορική εξίσωση έχουμε \(x' = \frac{e^t}{x}\), άρα πρέπει \(2e^t - 1 > 0 \implies \boxed{t > \ln \frac{1}{2}} \).
+\end{excercise*}
+
+
+
+
+\[
+\int_{x_0}^x N(x) \dif x + \int_{t_0}^t M(t) \dif t = 0, \quad x(t_0)=x_0
+\]
+
+\begin{excercise*}{2.4}
+\[x \cos x \dif x + (1-6t^5) \dif t = 0; \quad t(\pi)=0 \]
+\tcblower
+\(x_0 = \pi,\ t_0 = 0\)
+\begin{align*}
+&\implies \int_\pi^x x \cos x \dif x +
+\int_0^t (1-6t^5) \dif t = 0 \\
+&\implies
+\left. x \sin x \right|_\pi^x
++ \left. \cos x \right|_\pi^x + \left. (t-t^6) \right|_0^t = 0 \\
+&\implies x \sin x + \cos x + 1 + t - t ^ 6 \\
+&\implies \boxed{ x \sin x + \cos x + 1 = t - t^6 }
+\end{align*}
+\end{excercise*}
+
+\subsection{Ομοιογενείς}
+\[
+f(t,x)= \frac{-M(t,x)}{N(t,x)}
+\]
+
+\begin{defn}{}{}
+Αν \(\forall a \in \mathbb R: f(at,ax) = f(t,x)\), λέμε ότι η εξίσωση είναι \textbf{ομοιογενής}.
+\end{defn}
+
+\begin{theorem*}{}
+Αν μια εξίσωση είναι ομοιογενής, μπορούμε να την λύσουμε μειώνοντάς/μετατρέποντάς την σε χωριζόμενη, εφαρμόζοντας το μαθηματικό κόλπο που ονομάζεται "αντικατάσταση μεταβλητής", δηλαδή, όπου \(u\) συνάρτηση:
+\[
+\boxed{
+x=ut \implies \od{x}{t} = \od{u}{t}t+u
+}\]
+\end{theorem*}
+
+\begin{excercise*}{2.6}
+\[x' = \frac{x+t}{t} \]
+\tcblower
+\(\implies \od{x}{t} = \frac{x+t}{t}\), μη χωριζόμενη.
+\[f(t,x) = \od{x}{t},\quad f(at,ax)= \frac{ax+at}{at} = \frac{x+t}{t} \text{ ομοιογενής}
+\]
+Θέτω \(x=ut, \ \od{x}{t}=\od{u}{t}t+u\), άρα η διαφορική εξίσωση γίνεται:
+\begin{align*}
+&\od{u}{t}t+u=\frac{ut+t}{t} \\ \implies&
+\od{u}{t}t+u=u+1 \\ \implies&
+t\od{u}{t} = 1 \\ \implies&
+\frac{1}{t} \dif t - \dif u = 0 \text{ χωριζόμενη} \\ \implies&
+\int \frac{1}{t} \dif t + \int (-1) \dif u = c \\ \implies&
+\ln \abs t - u = c \\ \implies&
+u = \ln \abs t -c \text{ με } c = - \ln \abs \kappa \\ \implies&
+\boxed {u = \ln \abs{\kappa t}} \\ \implies&
+\frac{x}{t} = \ln \abs{\kappa t} \implies
+\boxed {x = t \ln \abs{\kappa t}}
+\end{align*}
+\end{excercise*}
+
+
+\begin{excercise*}{2.7}
+\[x' = \frac{2x^4+t^4}{tx^3} \]
+\tcblower
+\(\implies \od{x}{t} = \frac{2x^4+t^4}{tx^3}\), μη χωριζόμενη.
+\[f(t,x) = \od{x}{t},\quad f(at,ax)= \frac{2(ax)^4+(at)^4}{(at)(ax)^3} = \frac{a^4 2x^4 + a^4t^4}{a^4tx^3} = \frac{2x^4+t^4}{tx^3} \text{ ομοιογενής}
+\]
+Θέτω \(x=ut, \ \od{x}{t}=\od{u}{t}t+u\), άρα η διαφορική εξίσωση γίνεται:
+\begin{align*}
+&
+\od{u}{t}t+u=\frac{2(ut)^4+t^4}{t(ut)^3} \\ \implies&
+\od{u}{t}t+u=\frac{2u^4 \cancel{t^4}+\cancel{t^4}}{u^3 \cancel{t^4}} \\ \implies&
+\od{u}{t}t+u=\frac{2u^4+1}{u^3} \\ \implies&
+\od{u}{t}t=\frac{2u^4+1}{u^3}-u=\frac{u^4+1}{u^3} \\ \implies&
+\frac{u^3}{u^4+1} \dif u - \frac{1}{t} \dif t = 0 \text{ χωριζόμενη} \\ \implies&
+\int \frac{u^3}{u^4+1} \dif u + \int \frac{-1}{t} \dif t = c \\ \implies&
+\frac{1}{4} \ln (u^4+1) - \ln \abs t = c \\ \implies&
+\boxed{u^4+1 = (\kappa t)^4} \text{ με } c = \ln \abs x \\
+& x = ut \implies u = \frac{x}{t} \implies \left( \frac{x}{t} \right) ^ 4
++ 1 = (\kappa t )^4 \\ \implies&
+\frac{x^4}{t^4}+1 = \kappa ^4 t^4 \\ \implies &
+\boxed{x^4 = c_1t^8 - t^4} \text{ με } c_1= \kappa ^4
+\end{align*}
+\end{excercise*}
+
+
+\begin{excercise*}{2.8}
+\[x' = \frac{t^2+x^2}{tx}; x(1) = -2 \]
+\tcblower
+\(\implies \od{x}{t} = \frac{t^2+x^2}{tx}\), μη χωριζόμενη.
+\[f(t,x) = \od{x}{t},\quad f(at,ax)= \frac{(at)^2+(ax)^2}{(at)(ax)} = \frac{\cancel{a^2}t^2+\cancel{a^2}x^2}{\cancel{a^2}tx} = \frac{t^2+x^2}{tx} \text{ ομοιογενής}
+\]
+Θέτω \(x=ut, \ \od{x}{t}=\od{u}{t}t+u\), άρα η διαφορική εξίσωση γίνεται:
+\begin{align*}
+&
+\od{u}{t}t+u=\frac{t^2+(ut)^2}{t(ut)} \\ \implies&
+\od{u}{t}t+u=\frac{\cancel{t^2}+\cancel{t^2}u^2}{\cancel{t^2}u} \\ \implies&
+\od{u}{t}t+u=\frac{1+u^2}{u} \\ \implies&
+\od{u}{t}t=\frac{1+\cancel{u^2}-\cancel{u^2}}{u}=\frac{1}{u} \\ \implies&
+u \dif u - \frac{1}{t} \dif t = 0 \text{ χωριζόμενη} \\ \implies&
+\int u \dif u + \int \frac{-1}{t} \dif t = c \\ \implies&
+\frac{u^2}{2} - \ln \abs t = c \\ \implies&
+u^2=2 \ln \abs t + 2c \\ \implies &
+\boxed{u^2 = \ln t^2 + \kappa} \text{ με } \kappa = 2c \\
+& x = ut \implies u = \frac{x}{t} \implies \frac{x^2}{t^2} = \ln t^2 + \kappa \\ \implies&
+\boxed{x^2=t^2 \ln t^2 + \kappa t ^2}
+\end{align*}
+Επειδή \(x(1)=2\), έχουμε:
+\[
+(-2)^2=1^2 \ln 1^2 + \kappa 1 ^2 \implies 4 = 0 + \kappa \implies
+\boxed{ \kappa = 4}
+\]
+Επομένως τελικά:
+\[
+x^2=t^2 \ln t ^ 2 + 4t^2 \implies
+\boxed{x = - \sqrt{t^2 \ln t^2 +4t^2}}
+\]
+\end{excercise*}
+
 
 \newpage
 
