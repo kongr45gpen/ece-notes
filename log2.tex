@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{commath}
 \usepackage{xcolor}
 \usepackage{hyperref}
@@ -360,6 +361,276 @@ x_n = f_n(t)
  &[ \mathbf r_1, \mathbf r_2, \mathbf r_3' ]
 \end{align*}
 \end{itemize}
+
+\subsection{}
+\begin{infobox}{Πρόταση}
+Έστω \( \gamma: [a,b] \rightarrow \mathbb R^n: \mathbf r_\gamma (t) = \left( f_1(t),\dots,f_n(t) \right) \) είναι μια παραγωγίσιμη καμπύλη στο \( [a,b] \). \emph{Τότε}:
+\[ \left| \mathbf r_\gamma (t) \right| = c = \text{σταθερά } \forall t \iff
+\mathbf r_\gamma (t) \bot \mathbf r'_\gamma (t) \ \forall t \]
+\tcblower
+\begin{proof}
+\begin{align*}
+|\mathbf r_\gamma(t)| = c \iff \\
+|\mathbf r_\gamma(t)|^2 = c^2 \iff \\
+\mathbf r_\gamma (t) \cdot \mathbf r_\gamma (t) = c^2 \iff \\
+(\mathbf r_\gamma \cdot \mathbf r_\gamma)'(t) = 0 \iff \\
+\mathbf r'_\gamma \cdot \mathbf r_\gamma + \mathbf r_\gamma \cdot \mathbf r'_\gamma = 0
+\iff \\
+\mathbf r'_\gamma \cdot \mathbf r_\gamma = 0 \iff \\
+\mathbf r_\gamma \bot \mathbf r'_\gamma
+\end{align*}
+%TODO Graph 1
+\end{proof}
+\end{infobox}
+
+\subsection{Διαφορικό καμπύλης}
+Ορίζω \(\dif   \mathbf r _ \gamma (t) = \mathbf r '_ \gamma (t) \dif t\), \textbf{διάνυσμα} πάνω στην εφαπτόμενη καμπύλη στο σημείο \(t\) και φορά που καθορίζεται από το πρόσημο του \(\dif t\).
+
+%TODO Graph 2
+
+Για \(\dif t \to 0\), δηλ. κοντά στο \(t\) ισχύει:
+\[ \mathbf r _\gamma (t+dt) - \mathbf r _\gamma (t) \approx d\mathbf r_\gamma (t) \]
+
+
+%TODO Graph 3
+
+
+
+\subsubsection{}
+\paragraph{Ορ.}
+Έστω \(\gamma: [a,b] \to \mathbb R ^n\) καμπύλη σε παραμετρική μορφή.
+\begin{enumerate}
+\item Η \(\gamma\) καλείται \textbf{ΟΜΑΛΗ} αν είναι παραγωγίσιμη και \( \mathbf r' _ \gamma \neq \mathbf 0 \ \forall t \)
+\item Η \( \gamma \) καλείται \textbf{ΛΕΙΑ} αν είναι ΟΜΑΛΗ και η \( \mathbf r _ \gamma \) είναι \textbf{ΣΥΝΕΧΗΣ} συνάρτηση στο \([a,b]\). Αν η \( \mathbf r '_ \gamma \) είναι τμηματικά συνεχής στο \([a,b]\), τότε η \( \mathbf r _ \gamma \) καλείται τμηματικά λεία.
+\end{enumerate}
+
+\paragraph{Ορ.}
+Έστω \(\mathbf r:[a,b] \to  \mathbb R ^n: \mathbf r _\gamma(t) = 
+\left( f_1(t), \dots, f_n(t) \right) \) είναι μια καμπύλη. Ορίζουμε το ορισμένο ολοκλήρωμα της \(\mathbf r_\gamma\) ως εξής:
+\[
+\underbrace{\int _a^b  \mathbf r _\gamma (t) \dif t}_{\text{διάνυσμα στον }\mathbb R^n}
+=
+\left(
+\int _a^b f_1(t) \dif t + \int _a^b f_2(t) \dif t + \dots
++ \int _a^b f_n(t) \dif t
+\right)
+\]
+
+Επίσης, υπάρχει παραγωγίσιμη καμπύλη \(\mathbf q:[a,b] \to  \mathbb R ^n:\)
+\[
+\mathbf q'(t) = \mathbf r_\gamma(t) \quad \forall t
+\]
+Η \(\mathbf q\) καλείται αντιπαράγωγος της \( \gamma \). Το σύνολο \(
+ \left\lbrace \mathbf q(t) + \overline{\mathbf c}: \mathbf{q}
+ \text { μια αντιπαράγωγος της }  \mathbf r _ \gamma \text{ και } \mathbf c \in  \mathbb R ^n \text{ σταθερά}  \right\rbrace
+ \) καλείται ΑΟΡΙΣΤΟ ΟΛΟΚΛΗΡΩΜΑ της \( \mathbf r _ \gamma \), συμβολικά \(
+ \int  \mathbf r _ \gamma (t) \dif t \)
+ 
+Πράγματι,
+\begin{align*}
+\int  \mathbf r _\gamma (t) \dif t 
+&= \left( \int f_1(t) \dif t , \int f_2(t) \dif t, \dots, \int f_n(t) \dif t \right) \\
+&= \left( q_1(t)+\overbrace{c_1}^{c_1 \in \mathbb R \text{ αυθαίρετη σταθερά}}, q_2(t)+\overbrace{c_2}^{c_2 \in \mathbb R \text{ αυθαίρετη σταθερά}}, \dots, q_n(t)+\overbrace{c_n}^{c_n \in \mathbb R} \right) \\
+&= \left( q_1(t), q_2(t), \dots, q_n(t) \right) + (c_1,\dots,c_n) = 
+\mathbf q(t) + \underbrace{\mathbf c}_{\text{αυθαίρετο διάνυσμα}} \in \mathbb R^n
+\end{align*}
+
+\subsection{Συμπέρασμα}
+\begin{attnbox}{}
+Η καμπυλότητα και η στρέψη είναι εκτός ύλης
+\end{attnbox}
+
+\subsection{Ασκήσεις}
+\paragraph{Άσκ. 1}
+Αν \(\gamma:[a,b] \to  \mathbb R ^n: \mathbf r^n (t)
+= \left( f_1(t),\dots,f_n(t) \right) \) είναι ΟΜΑΛΗ καμπύλη, ΝΔΟ:
+\[
+\mathbf r_\gamma (t) \cdot \mathbf r' _\gamma(t) = |\mathbf r _\gamma (t)| \cdot
+\left( |\mathbf r_\gamma(t)| \right)'
+\]
+\begin{proof}
+\begin{align*}
+ \mathbf r_\gamma(t) \cdot   \mathbf r'_\gamma(t)
+ &= \left( f_1(t),\dots ,f_n(t) \right) \cdot \left( f_1'(t),\dots,f'_n(t) \right) \\
+&= f_1(t)f'_1(t)+f_2(t)f'2(t)+\dots+f_n(t)f'_n(t)
+\end{align*}
+\begin{align*}
+ |\mathbf r _\gamma (t)| \cdot \left( |\mathbf r_\gamma(t)| \right)'
+ &= \sqrt{f_1^2(t) + \dots + f_n^2(t)} + \left( \sqrt{f_1^2(t) + \dots + f_n^2(t)} \right)' \\
+ &= \sqrt{f_1^2(t) + \dots + f_n^2(t)} + \frac{1}{2} \frac{2f_1(t)f'1(t)+\dots+2f_n(t)=f'_n(t)}{\sqrt{f_1^2(t) + \dots + f_n^2(t)}} \\
+ &= f_1(t)f'_1(t)+f_2(t)f'2(t)+\dots+f_n(t)f'_n(t)
+\end{align*}
+\end{proof}
+
+\paragraph{Άσκ. 2}
+Αν \( \mathbf r_\gamma(t) = t \mathbf i+2 \mathbf j + (t^2-3) \mathbf \kappa\), υπολογίστε την εξίσωση της εφαπτόμενης ευθείας της καμπύλης στο σημείο \((2,2,1)\).
+\begin{proof}
+\[
+\begin{cases}
+\mathbf i &= (1,0,0) \\
+\mathbf j &= (0,1,0) \\
+\mathbf \kappa &= (0,0,1) \\
+\end{cases}
+\]
+\[ \mathbf r_\gamma(t) = \left( t,2,t^2-3 \right) \]
+\begin{align*}
+\mathbf r_\text{εφ}(t) &= 
+\left( \text{σημείο ευθείας γνωστό} \right) +
+t \left( \text{διάνυσμα παράλληλο στην ευθεία} \right), \quad & t \in  \mathbb R 
+\\ &=
+(2,2,1) & t \in \mathbb R
+\end{align*}
+\begin{itemize}
+\item Γνωστό σημείο το \(M=(2,2,1)\). Έτσι
+\(2,2,1) = (t,2,t^2-3) \implies
+\begin{cases}
+t&=2\\2&=2\\t^2-3&=1
+\end{cases}
+\implies t=2
+\)
+\item Διάνυσμα γνωστό παράλληλο στην εφαπτομένη στο \((2,2,1)\) είναι το
+\( \mathbf r'_\gamma(2)\).
+\begin{align*}
+ \mathbf r'_\gamma(t) &= (1,0,2t) \\
+ \mathbf r'_\gamma(2) &= (1,0,4)
+\end{align*}
+και τελικά:
+\begin{align*}
+\boxed{
+\mathbf r_\text{εφ}(t) = (2,2,1) + t(1,0,4), \quad t \in \mathbb R
+}\\
+\text{διανυσματική εξίσωση εφαπτόμενης ευθείας}
+\end{align*}
+\end{itemize}
+
+\end{proof}
+
+\paragraph{Ασκ. 3}
+Αν \(\mathbf v(t) = \left( 2 \cos t, -t \sin (t^2), 2t \right) \) είναι η ταχύτητα του υλικού σημείου, βρείτε την εξίσωση κίνησης \(\mathbf r_\gamma \), αν \( \mathbf r_\gamma (0) = \mathbf i + 3 \mathbf k\)
+\begin{proof}
+Είναι γνωστό ότι \(\mathbf v(t) = \mathbf r'_\gamma(t) \implies \int \mathbf r'_\gamma(t) \dif t = \int \mathbf v(t) \dif t \implies \mathbf r_\gamma(t) = \int \mathbf v(t) \dif t = \left( \int 2 \cos t \dif t, \int - t \sin (t^2) \dif t, \int 2t \dif t \right) = \left( 2 \sin t+ c_1, \frac{\cos (t^2)}{2} + c_2, t^2+c_3 \right)\), όπου \(c_1,c_2,c_3 \in \mathbb R \) αυθαίρετες σταθερές (ΑΝΕΞΑΡΤΗΤΕΣ μεταξύ τους).
+
+\[
+(1,0,3) =^\text{υποθ.}  \mathbf r_\gamma(0) =  %TODO
+\left( c_1, \frac{1}{2} + c_2, c_3 \right) \implies
+\begin{cases}
+c_1&=1 \\
+c_2+\frac{1}{2}&=0 \\
+c_3&=3
+\end{cases}
+\implies
+\begin{cases}
+c_1&=1 \\
+c_2&=-\frac{1}{2}=0 \\
+c_3&=3
+\end{cases}
+\]
+
+Τελικά:
+\[
+\mathbf r_\gamma(t) = 
+\left(
+2 \sin t +1, \frac{\cos (t^2)-1}{2}, t^2+3
+\right)
+\]
+
+\end{proof}
+
+
+\paragraph{Άσκ. 4}
+Να παραμετροποιηθούν οι καμπύλες:
+\begin{enumerate}
+\item \( \left\lbrace \underbrace{x^2+z^2=a^2}_{\text{άπειρος κύλινδρος}}, \ \underbrace{2x+3y+7=1}_{\text{επίπεδο}}  \right\rbrace\)
+\item \( \left\lbrace x^2+y^2+z^2=a^2, \ 2x+3y+z =1  \right\rbrace \)
+\end{enumerate}
+
+\begin{proof}
+
+\begin{enumerate}
+\item Η καμπύλη προκύπτει ως τομή "άπειρου" κυλίνδρου \(x^2+z^2=a^2\) και επιπέδου \(2x+3y+z=1\).
+%TODO Graph 4p
+\begin{infobox}{Παραμετροποίηση καμπύλης}
+Γενικά:
+\[
+\mathbf r_\gamma(t) = \left( x(t), y(t), z(t) \right), \quad t \in [a,b]
+\]
+\end{infobox}
+\[
+ \underbrace{\mathbf r_\text{προβολής}(t)}_{\text{πάντοτε είναι ο κύκλος } 
+  \left\lbrace x^2+z^2=a^2,y=0  \right\rbrace} = \left( x(t), 0 , z(t) \right)
+\]
+Αλλά ο κύκλος \( \left\lbrace  x^2+z^2=a^2,y=0  \right\rbrace \) μπορεί να παραμετροποιηθεί ως εξής:
+\[\mathbf r_\text{προβολής}(t) = \left( a \cos t, 0 , a \sin t \right), \quad t \in [0, 2\pi)\]
+Έτσι
+\[
+ \mathbf r_\gamma(t) = \left( a \cos t, y(t), a \sin t \right), t \in [0, 2\pi)
+\]
+όπου \(2x+3y+z=1 \implies y = \frac{1-z-2x}{3} = \frac{1-a \sin t -2 a \cos t}{3}\).
+
+Τελικά:
+\[
+ \mathbf r_\gamma(t) = \left( a \cos t, \frac{1-a \sin t - 2 a \cos t}{3}, a \sin t \right), \quad t \in [0, 2\pi)
+\]
+
+
+\item 
+\end{enumerate}
+
+Έχουμε \textbf{ΤΟΜΗ} σφαίρας και επιπέδου που είναι \textbf{ΠΑΝΤΑ κύκλος}.
+
+%TODO Graph 5
+Θέτω \(z=t\), οπότε \(x^2+y^2=a^2-t^2\), \(y=2x\), \(x^2=\frac{a^2-t^2}{5}\) και προχωρώ λύνοντας \(2 \times 2\) σύστημα
+
+\emph{ή}
+
+\[
+\begin{cases}
+x^2+y^2+z^2&=a^2 \\
+y&=2x
+\end{cases}
+\iff
+\begin{cases}
+x^2+(2x)^2+z^2&=a^2 \\
+y&=2x
+\end{cases}
+\iff
+\begin{cases}
+5x^2+z^2&=a^2 \\
+y&=2x
+\end{cases}
+\]
+Οι παραστάσεις είναι ισοδύναμες, δηλαδή η καμπύλη εκφράζεται ως τομή κυλίνδρου και επιπέδου, και ανάγομαι στο ερώτημα (α). Έτσι:
+\[
+ \mathbf r_\gamma(t) = \left( x(t),y(t),z(t) \right), t \in [a,b]
+\]
+\[
+ \underbrace{\mathbf r_\text{προβολής}(t)}_{\text{είναι πάντα η έλλειψη } 
+  \left\lbrace 5x^2+z^2=a^2,y=0  \right\rbrace} = \left( x(t), 0 , z(t) \right)
+\]
+
+Άρα:
+\[
+\mathbf r_\text{προβολής}(t) = \left( \frac{a}{\sqrt{5}} \cos t,0,a \sin t \right),\quad t \in [0,2\pi)
+\]
+και έτσι
+\[
+ \mathbf r_\gamma(t) =  \left( \frac{a}{\sqrt{5}} \cos t,y(t),a \sin t \right)
+ \] με \(y(t)=2x(t)=\frac{2a}{\sqrt 5} \cos t\)
+ 
+Τελικά:
+\[
+ \mathbf r_\gamma(t) = \left( \frac{a}{\sqrt 5} \cos t, \frac{2a}{\sqrt 5} \cos t, a \sin t \right), \quad t \in [0, 2\pi)
+\]
+\end{proof}
+
+
+
+
+
+
+
+
+\newpage
 
 \part{Ζάχαρης}
 
