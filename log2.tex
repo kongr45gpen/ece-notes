@@ -9,6 +9,7 @@
 \usepackage{hyperref}
 \usepackage[skins,theorems]{tcolorbox}
 \usepackage{titlesec}
+\usepackage{wrapfig}
 
 \usetikzlibrary{arrows.meta}
 
@@ -25,6 +26,8 @@
   colframe=red!75!black,fonttitle=\bfseries,title=#1}
 \newtcolorbox{infobox}[1]{colback=blue!5!white,%
   colframe=blue!75!black,fonttitle=\bfseries,title=#1}
+\newtcolorbox{tbox}[1]{colback=green!5!white,%
+  colframe=green!75!black,fonttitle=\bfseries,title=Θεώρημα #1}
 
 
 \title{Σημειώσεις Λογισμού ΙΙ}
@@ -287,11 +290,12 @@ x_n = f_n(t)
 \end{itemize}
 
 
-\paragraph{Θ.}
+\begin{tbox}{}
 \(\mathbf{r}\text{ παραγωγίσιμη στο }A \iff f_1,\dots,f_n \text{ παραγ. στο } A\) και
 \[
 \mathbf r'(t) = \left( f_1'(t),\dots, f_n'(t) \right)
 \]
+\end{tbox}
 
 \subsubsection{Γεωμετρική ερμηνεία}
 Έστω \(h > 0\)
@@ -332,8 +336,7 @@ x_n = f_n(t)
 
 \subsubsection{Εξίσωση (Διανυσματική) εφαπτόμενης ευθείας καμπύλης \(\gamma: [a,b] \rightarrow  \mathbb R ^n = \left(f_1(t),\dots,f_n(t) \right)\) παραγωγίσιμης στο σημείο \(t_0\)}
 
-%\small{Αρκεί να ξέρω σημείο της ευθείας και διάνυσμα παράλληλο στην ευθεία}
-%TODO
+{\small Αρκεί να ξέρω σημείο της ευθείας και διάνυσμα παράλληλο στην ευθεία}
 \begin{attnbox}{Προσοχή!!!}
 \[
  \mathbf r_{\text{εφ}}(t) =  \mathbf r(t_0) + \lambda \cdot  \mathbf r'(t_0), \quad \lambda \in  \mathbb R 
@@ -346,9 +349,9 @@ x_n = f_n(t)
 \begin{itemize}
 \item \( \big( \mathbf r_1 \cdot  \mathbf r_2 \big) ' (t) =
  \mathbf r_1' \cdot  \mathbf r_2(t) +  \mathbf r_1 \cdot  \mathbf r_2'(t)
- \) %TODO \cdot εσωτερικό
-\item \( \big( \mathbf r_1 \cdot  \mathbf r_2 \big) ' (t) =
- \mathbf r_1' \cdot  \mathbf r_2(t) +  \mathbf r_1 \cdot  \mathbf r_2'(t)
+ \)
+\item \( \big( \mathbf r_1 \times  \mathbf r_2 \big) ' (t) =
+ \mathbf r_1' \times  \mathbf r_2(t) +  \mathbf r_1 \times  \mathbf r_2'(t)
  \)
  \item \begin{align*} 
  [ \mathbf r_1, \mathbf r_2, \mathbf r_3 ]'(t) = 
@@ -373,19 +376,40 @@ d(A,B) = &\norm{\overrightarrow{AB}} = \sqrt{(a_1-b_1)^2 + \dots + (a_n-b_n)^2} 
 \end{align*}
 
 \paragraph{Περιοχή σημείου \(Α\) ακτίνας \(\epsilon\) \(\Pi_\epsilon(A)\)}
+
+\begin{wrapfigure}{r}{0.25\textwidth}
+\begin{tikzpicture}
+\filldraw[fill=green!20] (0,0) circle (7mm);
+\filldraw[black] (0,0) circle (1.5pt) node[anchor=west] {$A$};
+\draw[gray] (0,0) -- ++(157:7mm) node[midway,above] {$\epsilon$};
+\end{tikzpicture}
+\end{wrapfigure}
 \[
 \Pi_\epsilon(A) = \left\lbrace P \in  \mathbb R ^n : d(P,A) < \epsilon \right\rbrace
 \]
-%TODO σχήμα
 
-\paragraph{Σημείο συσσώρευσης}
+\paragraph{Σημείο συσσώρευσης} \hspace{0pt} \\
 
-%\begin{tikzpicture}
-%\draw [blue, very thick] plot [smooth, tension=1] coordinates { (0,-2) (1,0) (1,1) (0,-2) };
-%\end{tikzpicture}
-%TODO
+
+\begin{wrapfigure}{l}{0.3\textwidth}
+\begin{tikzpicture}
+\filldraw[thick,fill=green!20] plot [smooth cycle] coordinates {
+(0,0) (-0.4, 0.5) (0.6, 1) (2,0.8) ( 4,1) (4,-0.7) (3,-0.85) (2, -0.75) (1,-1)
+};
+\filldraw[thick,fill=white] (1.2,0) circle (4mm);
+\filldraw[fill=white] (3,-0.2) circle(2pt) node[anchor=south west] {$K$};
+\draw (0.3,0.5) node {$E'$};
+\filldraw (2,0.8) circle(2pt) node[anchor=south west] {$A$};
+
+\filldraw (0,2) circle(2pt) node[anchor=south west] {$I \in E$};
+\filldraw (2,-2) circle(2pt) node[anchor=north west] {$P \notin E$};
+\end{tikzpicture}
+\vspace{-40pt}
+\end{wrapfigure}
 
 \( E = (E' - \lbrace K\rbrace ) \cup \lbrace I\rbrace \)
+
+
 
 \begin{itemize}
 \item Σημείο συσσώρευσης: \( \left( \Pi_\epsilon(P) - \left\lbrace P \right\rbrace \right) \cap E \neq \emptyset \)
@@ -399,14 +423,65 @@ d(A,B) = &\norm{\overrightarrow{AB}} = \sqrt{(a_1-b_1)^2 + \dots + (a_n-b_n)^2} 
 
 \paragraph{Συνεκτικό σύνολο (ή συναφές)}
 Κάθε δύο σημεία του συνόλου μπορούν να ενωθούν με μια γραμμή που ανήκει στο σύνολο.
-%TODO Graph 5
 
 \paragraph{Κυρτό σύνολο}
 Κάθε δύο σημεία του συνόλου μπορούν να ενωθούν με \textit{ευθεία} γραμμή που ανήκει στο σύνολο.
-%TODO Graph 6
 
 \paragraph{Απλά συνεκτικό σύνολο}
 Κάθε καμπύλη του συνόλου θα ανήκει μέσα στο σύνολο αν τη σφίξω.
+
+\paragraph{} \hspace{0pt} \\
+\begin{tikzpicture}
+\filldraw[thick,fill=green!20] plot [smooth cycle,tension=1] coordinates {
+(0,0) (3,1) (6,0) (3,-1)
+};
+\fill (2,0) circle (2pt);
+\fill (4,0) circle (2pt);
+\draw[very thick,cyan] (2,0)--(4,0);
+\draw[very thick,blue] plot[smooth,tension=1] coordinates {(2,0) (2.5,0.5)  (3.5,-0.5) (4,0)};
+\draw[very thick,blue] plot[smooth,tension=0.7] coordinates {(2,0) (2.5,-0.87)  (3.5,-0.87) (4,0)};
+\node[anchor=north] at (current bounding box.south) {συνεκτικό, κυρτό, απλά συνεκτικό};
+\end{tikzpicture}
+\hspace{10pt}
+\begin{tikzpicture}
+\filldraw[thick,fill=green!20] plot [smooth cycle,tension=1] coordinates {
+(0,0) (0.5,2) (3,0.3) (5.5,2) (6,0) (3,-0.3)
+};
+\fill (0.7,1.2) circle (2pt);
+\fill (5.3,1.2) circle (2pt);
+\draw[very thick,red] (0.7,1.2)--(5.3,1.2);
+\draw[very thick,blue] plot[smooth,tension=1] coordinates {(0.7,1.2) (3,0) (5.3,1.2)};
+\node[anchor=north] at (current bounding box.south) {συνεκτικό, απλά συνεκτικό};
+\end{tikzpicture}
+
+\paragraph{} \hspace{0pt} \\
+%\\
+\begin{tikzpicture}
+%\filldraw[thick,fill=green!20] (0,0) ellipse (3 and 2);
+\filldraw[thick,fill=green!20] plot [smooth cycle,tension=1.5] coordinates {
+(0,0) (3,1) (6,0) (3,-1)
+};
+\fill (1.5,0) circle (2pt);
+\fill (4.5,0) circle (2pt);
+\draw[very thick,red] (1.5,0)--(4.5,0);
+\filldraw[thick,fill=white!20] (3,0) circle (0.5);
+\draw[dashed,red] (1.75,0)--(4.25,0);
+\draw[very thick,blue] plot[smooth,tension=1] coordinates {(1.5,0) (3,-0.75) (4.5,0)};
+\node[anchor=north] at (current bounding box.south) {συνεκτικό};
+\end{tikzpicture}
+\hspace{40pt}
+\begin{tikzpicture}
+\filldraw[thick,fill=green!20] (0,0.75) circle (0.5);
+\filldraw[thick,fill=green!20] (0,-0.75) circle (0.5);
+\draw[thick] plot[smooth,tension=1] coordinates {(0,0.25) (-0.15,0) (0,-0.25)};
+\node[anchor=north] at (current bounding box.south) {συνεκτικό, απλά συνεκτικό};
+\end{tikzpicture}
+\hspace{40pt}
+\begin{tikzpicture}
+\filldraw[thick,fill=green!20] (0,0.75) circle (0.5);
+\filldraw[thick,fill=green!20] (0,-0.75) circle (0.5);
+\node[anchor=north] at (current bounding box.south) {απλά συνεκτικό};
+\end{tikzpicture}
 
 \paragraph{}
 Η μόνη συσχέτιση που ισχύει είναι η εξής:
@@ -415,6 +490,8 @@ d(A,B) = &\norm{\overrightarrow{AB}} = \sqrt{(a_1-b_1)^2 + \dots + (a_n-b_n)^2} 
 \text{κυρτό} &\implies \text{απλά συνεκτικό}
 \end{align*}
 
+\begin{wrapfigure}{r}{0.3\textwidth}
+\caption{Φραγμένο σύνολο}
 \begin{tikzpicture}
 \draw[->] (xyz cs:x=0) -- (xyz cs:x=2.5);
 \draw[->] (xyz cs:y=0,x=0) -- (xyz cs:y=2.5,x=0);
@@ -427,6 +504,7 @@ d(A,B) = &\norm{\overrightarrow{AB}} = \sqrt{(a_1-b_1)^2 + \dots + (a_n-b_n)^2} 
 \filldraw[black] (2,1.5) circle (2pt) node[anchor=west] {\(P\)};
 \draw[->,blue, very thick,anchor=west] (0,0) -- (2,1.5);
 \end{tikzpicture}
+\end{wrapfigure}
 
 \paragraph{Φραγμένο σύνολο} ανν \(\norm{\overrightarrow{OP}} = d(O,P)\) πεπερασμένη
 \paragraph{Συμπαγές σύνολο} ανν είναι φραγμένο και περιέχει το σύνορο
@@ -479,8 +557,7 @@ f,g \text{ πολυωνυμικές}
 \tcblower
 Δεν έχουν απαραίτητα σχέση με το κανονικό όριο (και μπορεί να έχουν διαφορετική τιμή)!
 Η ύπαρξη ή/και ισότητα των ορίων δεν είναι διαγνωστική για το όριο της συνάρτησης. Αν υπάρχει το \(\lambda\) και \textbf{υπάρχουν} τα παραπάνω όρια, τότε είναι ίσα με \(\lambda\). Αν τα παραπάνω όρια \textbf{υπάρχουν} και \textbf{δεν} είναι ίσα, τότε το \(\lambda\) \textbf{δεν} υπάρχει.
-\end{attnbox}
-
+\begin{center}
 \begin{tikzpicture}
 \draw[->,thick] (0,0) -- (0,4);
 \draw[->,thick] (0,0) -- (4,0);
@@ -508,8 +585,12 @@ f,g \text{ πολυωνυμικές}
 
 
 \filldraw[black] (1,1) circle (2pt) node[anchor=west] {\(P\)};
-
 \end{tikzpicture}
+\end{center}
+\end{attnbox}
+
+
+
 \begin{infobox}{Μεθοδολογία}
 \begin{align*}
 w&=f(x,y) \quad \text{ή}\\
