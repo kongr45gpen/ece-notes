@@ -11,8 +11,15 @@
 \usepackage[skins,theorems]{tcolorbox}
 \usepackage{titlesec}
 \usepackage{wrapfig}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{subcaption}
+\usepackage{float}
 
 \usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+%\usepackage{tkz-euclide} % loads  TikZ and tkz-base
+%\usetkzobj{angles} % important you want to use angles
 
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
@@ -381,6 +388,34 @@ x_n = f_n(t)
 \end{align*}
 %TODO Graph 1
 \end{proof}
+
+\vspace{-20pt}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+\draw[gray, thick] (-2.5,-2.5) -- (2.5,2.5);
+\node[above right, rotate=45] at (-2.5,-2.5) {\(+\infty\)};
+\node[above left, rotate=45] at (2.5,2.5) {\(-\infty\)};
+
+\filldraw[black] (0.5,0.5) circle (2pt) node[anchor=west] {\(t_0\)};
+
+%TODO Right angle symbol
+
+\def\away{7}
+
+\draw[-{>[scale=2.5,width=3]}, gray] (0.5,0.5) to [bend left=90] (\away,3);
+
+\draw[dashed] (\away,0) circle (3);
+
+\draw (\away-4.22,0.37) -- (\away-0.58,3.44);
+\draw (\away+0.15,3.53) -- (\away+3.69,1.1);
+
+\draw (\away,0) -- (\away-1.93,2.3);
+\draw (\away,0) -- (\away+1.78,2.41);
+
+
+\end{tikzpicture}
+\end{center}
 \end{infobox}
 
 \subsection{Διαφορικό καμπύλης}
@@ -394,7 +429,7 @@ x_n = f_n(t)
 
 %TODO Graph 3
 
-
+ testαδφξ
 
 \subsubsection{}
 \paragraph{Ορ.}
@@ -464,7 +499,7 @@ x_n = f_n(t)
 
 \paragraph{Άσκ. 2}
 Αν \( \mathbf r_\gamma(t) = t \mathbf i+2 \mathbf j + (t^2-3) \mathbf \kappa\), υπολογίστε την εξίσωση της εφαπτόμενης ευθείας της καμπύλης στο σημείο \((2,2,1)\).
-\begin{proof}
+\begin{proof}[Απάντηση]
 \[
 \begin{cases}
 \mathbf i &= (1,0,0) \\
@@ -477,12 +512,10 @@ x_n = f_n(t)
 \mathbf r_\text{εφ}(t) &= 
 \left( \text{σημείο ευθείας γνωστό} \right) +
 t \left( \text{διάνυσμα παράλληλο στην ευθεία} \right), \quad & t \in  \mathbb R 
-\\ &=
-(2,2,1) & t \in \mathbb R
 \end{align*}
 \begin{itemize}
 \item Γνωστό σημείο το \(M=(2,2,1)\). Έτσι
-\(2,2,1) = (t,2,t^2-3) \implies
+\((2,2,1) = (t,2,t^2-3) \implies
 \begin{cases}
 t&=2\\2&=2\\t^2-3&=1
 \end{cases}
@@ -505,13 +538,13 @@ t&=2\\2&=2\\t^2-3&=1
 
 \end{proof}
 
-\paragraph{Ασκ. 3}
+\paragraph{Ασκ. 3}[Απάντηση]
 Αν \(\mathbf v(t) = \left( 2 \cos t, -t \sin (t^2), 2t \right) \) είναι η ταχύτητα του υλικού σημείου, βρείτε την εξίσωση κίνησης \(\mathbf r_\gamma \), αν \( \mathbf r_\gamma (0) = \mathbf i + 3 \mathbf k\)
 \begin{proof}
 Είναι γνωστό ότι \(\mathbf v(t) = \mathbf r'_\gamma(t) \implies \int \mathbf r'_\gamma(t) \dif t = \int \mathbf v(t) \dif t \implies \mathbf r_\gamma(t) = \int \mathbf v(t) \dif t = \left( \int 2 \cos t \dif t, \int - t \sin (t^2) \dif t, \int 2t \dif t \right) = \left( 2 \sin t+ c_1, \frac{\cos (t^2)}{2} + c_2, t^2+c_3 \right)\), όπου \(c_1,c_2,c_3 \in \mathbb R \) αυθαίρετες σταθερές (ΑΝΕΞΑΡΤΗΤΕΣ μεταξύ τους).
 
 \[
-(1,0,3) =^\text{υποθ.}  \mathbf r_\gamma(0) =  %TODO
+(1,0,3) \overset{\text{υποθ.}}{=}  \mathbf r_\gamma(0) = 
 \left( c_1, \frac{1}{2} + c_2, c_3 \right) \implies
 \begin{cases}
 c_1&=1 \\
@@ -541,10 +574,10 @@ c_3&=3
 Να παραμετροποιηθούν οι καμπύλες:
 \begin{enumerate}
 \item \( \left\lbrace \underbrace{x^2+z^2=a^2}_{\text{άπειρος κύλινδρος}}, \ \underbrace{2x+3y+7=1}_{\text{επίπεδο}}  \right\rbrace\)
-\item \( \left\lbrace x^2+y^2+z^2=a^2, \ 2x+3y+z =1  \right\rbrace \)
+\item \( \left\lbrace \underbrace{x^2+y^2+z^2=a^2}_{\text{σφαίρα}}, \ \underbrace{2x+3y+z =1}_\text{επίπεδο} \right\rbrace \)
 \end{enumerate}
 
-\begin{proof}
+\begin{proof}[Απάντηση]
 
 \begin{enumerate}
 \item Η καμπύλη προκύπτει ως τομή "άπειρου" κυλίνδρου \(x^2+z^2=a^2\) και επιπέδου \(2x+3y+z=1\).
@@ -556,8 +589,8 @@ c_3&=3
 \]
 \end{infobox}
 \[
- \underbrace{\mathbf r_\text{προβολής}(t)}_{\text{πάντοτε είναι ο κύκλος } 
-  \left\lbrace x^2+z^2=a^2,y=0  \right\rbrace} = \left( x(t), 0 , z(t) \right)
+ \underbrace{\mathbf r_\text{προβολής}(t)}_{\mathclap{\text{πάντοτε είναι ο κύκλος } 
+  \left\lbrace x^2+z^2=a^2,y=0  \right\rbrace}} = \left( x(t), 0 , z(t) \right)
 \]
 Αλλά ο κύκλος \( \left\lbrace  x^2+z^2=a^2,y=0  \right\rbrace \) μπορεί να παραμετροποιηθεί ως εξής:
 \[\mathbf r_\text{προβολής}(t) = \left( a \cos t, 0 , a \sin t \right), \quad t \in [0, 2\pi)\]
@@ -604,8 +637,8 @@ y&=2x
  \mathbf r_\gamma(t) = \left( x(t),y(t),z(t) \right), t \in [a,b]
 \]
 \[
- \underbrace{\mathbf r_\text{προβολής}(t)}_{\text{είναι πάντα η έλλειψη } 
-  \left\lbrace 5x^2+z^2=a^2,y=0  \right\rbrace} = \left( x(t), 0 , z(t) \right)
+ \underbrace{\mathbf r_\text{προβολής}(t)}_{\mathclap{\text{είναι πάντα η έλλειψη } 
+  \left\lbrace 5x^2+z^2=a^2,y=0  \right\rbrace}} = \left( x(t), 0 , z(t) \right)
 \]
 
 Άρα:
@@ -766,7 +799,7 @@ d(A,B) = &\norm{\overrightarrow{AB}} = \sqrt{(a_1-b_1)^2 + \dots + (a_n-b_n)^2} 
 \begin{tikzpicture}
 \draw[->] (xyz cs:x=0) -- (xyz cs:x=2.5);
 \draw[->] (xyz cs:y=0,x=0) -- (xyz cs:y=2.5,x=0);
-\draw[->] (xyz cs:z=0,x=0) -- (xyz cs:z=5,x=0);
+\draw[->] (xyz cs:z=0,x=0) -- (xyz cs:z=3,x=0);
 
 \node (0,0) [anchor=east] {\(O\)};
 
@@ -781,25 +814,69 @@ d(A,B) = &\norm{\overrightarrow{AB}} = \sqrt{(a_1-b_1)^2 + \dots + (a_n-b_n)^2} 
 \paragraph{Συμπαγές σύνολο} ανν είναι φραγμένο και περιέχει το σύνορο
 
 \subsubsection{Ορισμός συνάρτησης}
+
 \(E \subseteq   \mathbb R^n, \quad B \subseteq  \mathbb R \)
 \[f: E \rightarrow B: z = f(x_1, \dots, x_n) \]
-\begin{tikzpicture}
-%TODO Από κύκλο σε ευθεία
-\end{tikzpicture}
 \[P = \left( x_1, \dots, x_n \right) \rightarrow \text{πρότυπα ή αρχέτυπα, }z\text{ εικόνες} \]
-\begin{tikzpicture}
+
+
+\begin{wrapfigure}{r}{0.25\textwidth}
+\centering
+\caption{Τρισορθογώνιο σύστημα συντεταγμένων}
+\begin{tikzpicture}[scale=0.7]
 \draw[->] (xyz cs:x=0) -- (xyz cs:x=2.5);
 \draw[->] (xyz cs:y=0,x=0) -- (xyz cs:y=2.5,x=0);
+\draw[->] (xyz cs:z=0,x=0) -- (xyz cs:z=2.5,x=0);
 \end{tikzpicture}
-\begin{tikzpicture}
-\draw[->] (xyz cs:x=0) -- (xyz cs:x=2.5);
-\draw[->] (xyz cs:y=0,x=0) -- (xyz cs:y=2.5,x=0);
-\draw[->] (xyz cs:z=0,x=0) -- (xyz cs:z=5,x=0);
-\end{tikzpicture}
+\end{wrapfigure}
 Για συνάρτηση από το \( \mathbb R ^n\), χρειάζομαι \(n+1\) άξονες. Άρα γραφικές παραστάσεις θα κάνουμε για συναρτήσεις το πολύ 2 μεταβλητών, με προοπτική παράσταση ή ισουψείς καμπύλες.
+
+
+
+\iffalse
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.44\textwidth}
+\begin{tikzpicture}[scale=0.9]
+\begin{axis}
+[
+    view={0}{90}
+]
+\addplot3[
+    contour gnuplot={levels={0.8, 0.4, 0.2, -0.2}}
+]
+{sin(deg(sqrt(x^2+y^2)))/sqrt(x^2+y^2)};
+\end{axis}
+\end{tikzpicture}
+    \end{subfigure}
+\quad
+\begin{subfigure}[b]{0.44\textwidth}
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    colormap/cool,
+]
+\addplot3[
+    mesh,
+    samples=50,
+    domain=-8:8,
+]
+{sin(deg(sqrt(x^2+y^2)))/sqrt(x^2+y^2)};
+\end{axis}
+\end{tikzpicture}
+\end{subfigure}
+
+%\caption{Τρισδιάστατη γραφική παράσταση}
+\end{figure}
+\fi
+
+
+
 
 \paragraph{Πολυωνυμική συνάρτηση}
 Περιέχει όρους της μορφής \(a x_1^{m_1} x_2^{m_2} \cdots x_n^{m_n}, \quad m_1,m_2,\dots,m_n \in  \mathbb N \).
+
 
 \textit{π.χ.}
 \begin{align*}
