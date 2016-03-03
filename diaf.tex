@@ -54,8 +54,8 @@
 
 \newpage
 
-\part{Σεβαστειάδης}
-Χρήστος Σεβαστειάδης
+\part{Σεβαστιάδης}
+Χρήστος Σεβαστιάδης
 
 \section{}
 
@@ -536,4 +536,98 @@ Q(t) = \sum_{n \in \lbrace1,3,5,\dots\rbrace}Q_n(t)
 Γιατί όμως, αν \(V_1(t) \rightarrow Q_1(t), \ V_2(t) \rightarrow Q_2(t)\), τότε \(k_1V_1+k_2V_2 = k_1Q_1 +k_2Q_2\) σε αυτό το κύκλωμα (αρχή επαλληλίας/γραμμικότητα)?
 
 
+\section{Κεφάλαιο 8: Σειρές Fourier}
+
+\begin{defn*}{}
+Μία συνάρτηση \(f(t)\) λέγεται \textbf{τμηματικά συνεχής} στο \([t_1,t_2]\) ανν μπορώ να διαμερίσω:
+\[ [t_1,t_2] = [\tau_0,\tau_1] \cup [\tau_1,\tau_2] \cup \cdots \cup [\tau_{n-1},\tau_n] \]
+όπου \(\tau_0 = t_1,\ \tau_n = t_2\), τέτοια ώστε \(f(t)\) συνεχής στο κάθε \((\tau_{i-1},\tau_i)\), και υπάρχουν \(\lim_{t \to \tau_i^-} f(t),\ \lim_{t \to \tau_1^+}\ f(t) \forall i\)
+\end{defn*}
+
+\textit{π.χ}
+
+%TODO Graph1
+Η \(f(t)\) είναι τμηματικά συνεχής στο \([-\pi,3\pi]\), επειδή, για \(t_1=-\pi,t_2=3\pi\):
+\[
+[-\pi,3\pi] = [-\pi,0] \cup [0,\pi] \cup [\pi,2\pi] \cup [2\pi,3\pi]
+\]
+Στα \( (-\pi,0),\ (0,\pi) ,\   (\pi,2\pi) ,\   (2\pi,3\pi)\) η \(f\) είναι συνεχής, και υπάρχουν τα αντίστοιχα πλευρικά όρια, %TODO
+άρα η \(f\) είναι τμηματικά συνεχής.
+
+\subsubsection{Συνθήκες του \textlatin{Dirichlet}}
+\begin{enumerate}
+\item Η \(f(t)\) είναι ορισμένη στο \((-L,L)\)
+\item Η \(f(t)\) είναι τμηματικά συνεχής στο \((-L,L)\)
+\item Η \(f(t)\) είναι περιοδική με περίοδο \(2L\).
+\end{enumerate}
+
+\subsection*{}
+
+\begin{theorem*}{}
+Έστω \(f(t)\) η οποία ικανοποιεί τις συνθήκες \textlatin{Dirichlet} στο \((-L,L)\). Τότε:
+\begin{enumerate}
+\item
+Για κάθε σημείο συνέχειας της \(f(t)\):
+\[
+f(t) = \frac{a_0}{2}+\sum_{n=1}^\infty a_n \cos \frac{n\pi t}{L}
++\sum_{n=1}^\infty b_n \sin \frac{n\pi t}{L}
+\]
+όπου:
+\begin{align*}
+a_n&=\frac{1}{L} \int_{-L}^L f(t) \cos \frac{n\pi t}{L} \dif t \\
+b_n&=\frac{1}{L} \int_{-L}^L f(t) \sin \frac{n\pi t}{L} \dif t
+\end{align*}
+
+\item Σε κάθε σημείο ασυνέχειας \(\tau\):
+\[
+\frac{1}{2} \left( \lim_{t \to \tau^-}f(t) + \lim_{t \to \tau^+}f(t) \right) 
+= \frac{a_0}{2}+\sum_{n=1}^\infty a_n \cos \frac{n\pi t}{L}
++\sum_{n=1}^\infty b_n \sin \frac{n\pi t}{L}
+\]
+\end{enumerate}
+
+\end{theorem*}
+
+\paragraph{Παρ.}
+\(f(t) = \text{τετραγωνικός παλμός}\)
+
+\subparagraph{Λύση}
+Η \(f(t)\) ικανοποιεί τις Σ.\textlatin{D} με \(L=\pi\)
+\begin{align*}
+a_0 &= \frac{1}{\pi} \int_{-\pi}^\pi f(t) \dif t = \frac{1}{\pi}\int_{-\pi}^0(-1)\dif t+\frac{1}{\pi}\int_{-\pi}^0 1\dif t = -1 + 1 = 0 \\
+b_n &= \frac{1}{\pi} \int_{-\pi}^\pi f(t) \sin \frac{n \pi t}{\pi} \dif t
+= \frac{2}{\pi} \int_0^\pi 1 \sin (nt) \dif t \\
+&= \frac{2}{\pi} \cdot \left( \frac{-\cos nt}{n} \right)_{t=0}^\pi
+=\frac{2}{\pi} \cdot \left( \frac{1-\cos n\pi}{\pi} \right) =
+\frac{2}{\pi} \left( \frac{1-(-1)^n}{n} \right) = \frac{2}{n\pi} \text{ για άρτια }n
+\end{align*}
+
+Άρα:
+\begin{align*}
+a_0=a_1=a_2=\cdots=0 \\
+b_1=\frac{4}{\pi}, \quad b_3=\frac{4}{3\pi} \\
+\quad b_2=0, \quad b_4 = 0, \dots
+\end{align*}
+%a_n &= \frac{1}{\pi} \int_{-\pi)^\pi \underbrace{f(t)}_{\text{άρτια}} \underbrace{\cos \frac{n \pi t}{\pi}}_{\text{άρτια}}
+
+\paragraph{Απόδειξη} (Μερική)
+
+Θα δεχτούμε ότι η \(f(t)\) γράφεται στη μορφή \(f(t) = \frac{a_0}{2}+\sum_{n=1}^\infty a_n \cos \frac{n\pi t}{L}
++\sum_{n=1}^\infty b_n \sin \frac{n\pi t}{L}\),
+και θα δείξουμε τους τύπους \(
+a_n=\frac{1}{L} \int_{-L}^L f(t) \cos \frac{n\pi t}{L} \dif t ,\ 
+b_n=\frac{1}{L} \int_{-L}^L f(t) \sin \frac{n\pi t}{L} \dif t
+\)
+
+Έστω \(f(t)= \frac{a_0}{2}+\sum_{n=1}^\infty a_n \cos \frac{n\pi t}{L}
++\sum_{n=1}^\infty b_n \sin \frac{n\pi t}{L}\).
+Tότε: \[\int_{-L}^L f(t) \dif t = \int_{-L}^L f(t) \cdots t
+= \int_{-L}^L \frac{a_0}{2} \dif t +
+ \int_{-L}^L a_1 \cos \frac{\pi t}{L} \dif t +
+ \int_{-L}^L a_2 \cos \frac{2\pi t}{L} + \cdots  = a_0\cdot L + 0 + 0 + \dots
+\]
+Άρα:
+\[
+a_0 = \frac{1}{L} \int_{-L}^L f(t) \dif t
+\]
 \end{document}

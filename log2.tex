@@ -15,11 +15,17 @@
 \usepackage{pgfplots}
 \usepackage{subcaption}
 \usepackage{float}
+\usepackage{relsize}
+\usepackage[inline]{enumitem}
+
 
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{calc}
 %\usepackage{tkz-euclide} % loads  TikZ and tkz-base
 %\usetkzobj{angles} % important you want to use angles
+
+\newlist{enumparen}{enumerate}{1}
+\setlist[enumparen]{label=(\arabic*)}
 
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
@@ -48,7 +54,7 @@
 
 \maketitle
 
-%\tableofcontents
+\tableofcontents
 
 \newpage
 
@@ -342,7 +348,7 @@ x_n = f_n(t)
 
 Το \( \mathbf r'(t) \) έχει τη διεύθυνση της εφαπτόμενης ευθείας της \( \mathbf r\) στο σημείο \( \mathbf r(τ_0)\) και φορά τη φορά της κίνησης. Μπορεί να αναπαριστά π.χ. την ταχύτητα ενός υλικού σημείου.
 
-\subsubsection{Εξίσωση (Διανυσματική) εφαπτόμενης ευθείας καμπύλης \(\gamma: [a,b] \rightarrow  \mathbb R ^n = \left(f_1(t),\dots,f_n(t) \right)\) παραγωγίσιμης στο σημείο \(t_0\)}
+\subsubsection[Εξίσωση εφαπτομένης]{Εξίσωση (Διανυσματική) εφαπτόμενης ευθείας καμπύλης \(\gamma: [a,b] \rightarrow  \mathbb R ^n = \left(f_1(t),\dots,f_n(t) \right)\) παραγωγίσιμης στο σημείο \(t_0\)}
 
 {\small Αρκεί να ξέρω σημείο της ευθείας και διάνυσμα παράλληλο στην ευθεία}
 \begin{attnbox}{Προσοχή!!!}
@@ -429,7 +435,7 @@ x_n = f_n(t)
 
 %TODO Graph 3
 
- testαδφξ
+Ο Καφίμπερας είναι πολύ καλός σαν τον καφές ο καφίκμπερας κάφι αδφξ
 
 \subsubsection{}
 \paragraph{Ορ.}
@@ -655,6 +661,82 @@ y&=2x
  \mathbf r_\gamma(t) = \left( \frac{a}{\sqrt 5} \cos t, \frac{2a}{\sqrt 5} \cos t, a \sin t \right), \quad t \in [0, 2\pi)
 \]
 \end{proof}
+
+
+
+
+\section{Διπλά Ολοκληρώματα}
+\begin{attnbox}{}
+Όποιος δεν κατάλαβε τα διπλά ολοκληρώματα, ας μην πάει παρακάτω.
+\end{attnbox}
+
+Έστω \(f: R \subset  \mathbb R ^2 \to  \mathbb R: \ z = f(x,y)\) είναι μια συνάρτηση δύο μεταβλητών ΦΡΑΓΜΕΝΗ επί της \textbf{ορθογώνιας περιοχής}:
+\[R =  \left\lbrace (x,y): a \leq x \leq b, \ c \leq y \leq d  \right\rbrace\]
+
+%TODO Graph 1
+
+\begin{enumparen}
+\item
+Διαμερίζω το ορθογώνιο \(R\) μέσω διαμέρισης: \[
+\Delta = \left( \Delta_x, \Delta_y \right)
+\]
+όπου \(
+\begin{cases}
+\Delta_x &=  \left\lbrace a=x_1<x_2< \cdots < x_N = b  \right\rbrace \\
+\Delta_y &=   \left\lbrace c=y_1 < y_2 < \cdots < y_N = d  \right\rbrace
+\end{cases}
+\) σε στοιχειώδη ορθογώνια \(\Omega_{n,\kappa}\) με εβαδόν:
+\[ Ε_{n,\kappa } = \left( x_{n+1} - x_n \right) \left( y_{k+1} - y_k \right) \]
+\(n=1,\dots,N-1,\ k=1,\dots,M-1\)
+
+\item
+Έστω \((\tilde{x_n}, \tilde{y_n}) \in \Omega_{n,\kappa} \) είναι ΤΥΧΑΙΟ σημείο του \(\Omega_{n,\kappa}\). Ορίζω τις τιμές \(f(\widetilde{x_n}, \widetilde{y_n})\).
+
+\item
+Ορίζω το \textbf{άθροισμα}:
+\[
+S_{N,M,f} := 
+\sum_{n=1}^{N-1} \sum_{k=1}^{M-1} \underbrace{f(\widetilde{x_n}, \widetilde{y_n}) \cdot E_{n_k}}_{\text{παριστάνει τον "όγκο"}}
+ \]
+ 
+\item
+Έστω \(|\Delta| = \max  \left\lbrace \delta_{n, \kappa}:
+\begin{cases}
+n=1,\dots,N_1\\
+k=1,\dots,M-1
+\end{cases}
+  \right\rbrace\)
+(όπου 
+\(\delta_{n,k}= \sqrt{ \left(x_{n+1} - x_n \right) ^2 +  \left(y_{n+1} - y_n \right) ^2 }\)
+είναι το μήκος της διαγωνίου του ορθογωνίου \(\Omega_{n,k}\) ) είναι το ΜΕΓΙΣΤΟ ΠΛΑΤΟΣ της διαμέρισης \(\Delta\). Αν
+\[
+\lim_{|\Delta | \to 0} S_{\Delta, f} = 
+\lim_{|\Delta | \to 0} \sum_{n=1}^{N-1} \sum_{k=1}^{M-1} f(\tilde{x_n}, \tilde{y_n}) \cdot E_{n_k}
+= \lambda \in  \mathbb R 
+\]
+\textbf{ανεξάρτητα} της επιλογής της διαμέρισης \(\Delta\) και ανεξάρτητα της επιλογής των σημείων \( ( \widetilde{x_n},\widetilde{y_n}) \in \Omega_{n, \kappa } \). 
+
+Τότε λέμε ότι η \(f\) είναι ολοκληρώσιμη κατά \textlatin{Riemann} στην ορθογώνια περιοχή \(R\) και γράφουμε:
+
+\[
+\mathlarger{\mathlarger{
+ \iint_R f(x,y) \dif x \dif y = \lambda \in \mathbb R 
+}} 
+ \]
+\end{enumparen}
+
+
+
+Προσεγγιστικά,
+\[ \iint_R f(x,y) \dif x \dif y \approx \sum \sum f(x_n, y_k) \left( x_{n+1}-x_n \right) \left( y_{n+1}-y_n \right) \]
+
+
+
+
+
+
+
+
 
 
 
@@ -954,7 +1036,7 @@ w&=f(x,y,z)
 \end{infobox}
 
 \begin{infobox}{Μεθοδολογία}
-Για ρητές συναρτήσεις \(\frac{f(P)}{g(P)}\)
+Για όρια ρητών συναρτήσεων \(\frac{f(P)}{g(P)}\) στο \((0,0)\):
 \tcblower
 \begin{enumerate}
 \item Αν \(B \left[ f(P) \right] > B \left[ g(P) \right]\), μάλλον το όριο υπάρχει.
@@ -962,5 +1044,170 @@ w&=f(x,y,z)
 \end{enumerate}
 \end{infobox}
 
+\subsubsection{Ιδιότητες ορίων}
+
+Αν \( \lim_{P \to P_0} f(P) = \lambda_1\) και \( \lim_{P \to P_0} g(P) = \lambda_2\) τότε:
+
+\begin{enumparen}
+\item \( \lim_{P \to P_0} f(P) \pm g(P) = \lambda_1 \pm \lambda_2
+\)
+\item \( \lim_{P \to P_0} f(P) \cdot g(P) = \lambda_1 \cdot \lambda_2
+\)
+\item \( \lim_{P \to P_0} \frac{f(P)}{g(P)} = \frac{\lambda_1}{\lambda_2}
+\)
+\item \( \lim_{P \to P_0} \sqrt[n]{f(P)} = \sqrt[n]{\lim_{P \to P_0} f(P)} = \sqrt[n]{\lambda_1 }
+\) \quad (εφ' όσον ορίζεται)
+\item \( \lim_{P \to P_0} |f(P)| = |\lim_{P \to P_0} f(P)| = |\lambda_1 |
+\) \quad (\(\lambda_1 >0, f(P) > 0\))
+\item \( \lim_{P \to P_0} f(P)^{g(P)} = \left[ \lim_{P \to P_0} f(P) \right] ^{\lim_{P \to P_0} g(P)}
+\)
+\item Κρ. παρεμβολής:
+\begin{enumerate}
+\item \(f(P) \leq g(P) \leq h(P) \)
+\item \(\lim_{P \to P_0} f(P) = \lim_{P \to P_0} h(P) = \lambda \) 
+\end{enumerate}
+Τότε \(\lim_{P \to P_0} g(P) = \lambda \)
+
+\item
+\begin{enumerate}
+\item \( |g(P)| \leq h(P) \)
+\item \(\lim_{P \to P_0} h(P) = 0 \) 
+\end{enumerate}
+Τότε \(\lim_{P \to P_0} g(P) = 0\)
+\item
+Αν \begin{enumerate*}[label={\arabic*)},font={\bfseries}]
+\item \(\lim_{P \to P_0} f(P) = 0\) και
+\item η \(g\) είναι φραγμένη,
+\end{enumerate*}
+τότε \( \lim_{P \to P_0} f(P)g(P) = 0 \).
+\end{enumparen}
+Προϋπόθεση για τις παραπάνω ιδιότητες είναι να μην οδηγούμαστε σε απροσδιοριστία (π.χ. \(\frac{\infty}{\infty}\))
+
+\subsubsection{Σύνθεση συναρτήσεων}
+\begin{align*}
+f &: A \subseteq \mathbb R^n \to B \subseteq \mathbb R^n \\
+g &: B \to C \subseteq  \mathbb R 
+\end{align*}
+
+Ορίζω:
+\[
+\left( g \circ f \right)(P) = g \left( f(P) \right)
+\]
+
+Έστω \( \lim _{P \to P_0} f(P) =m\). Τότε, αν οι συναρτήσεις είναι συνεχείς στο πεδίο ορισμού, έχω:
+\[
+\left( g \circ f \right)(P) = g(m) = \lambda
+\]
+
+\subsubsection{Συνέχεια συνάρτησης}
+Μια συνάρτηση ονομάζεται συνεχής σε ένα σημείο όταν το όριό της σε εκείνο το σημείο υπάρχει και είναι ίσο με την τιμή της εκεί.
+
+\subsubsection{}
+\[\lim_{(x,y)\to(0,0)}
+\]
+
+\begin{infobox}{Μεθοδολογία}
+\[ \lim_{(x,y) \to ( \pm \infty, \pm \infty )} f(x,y) \]
+\tcblower
+Για \(u=\frac{1}{x} \to 0, \ v=\frac{1}{y} \to 0\),
+\[
+\lim_{\mathclap{(x,y) \to ( \pm \infty, \pm \infty )}} f(x,y) \; = \;
+\lim_{\mathclap{(u,v) \to ( 0,0 )}} f(u,v)
+\]
+\end{infobox}
+
+\subsection{Ασκήσεις}
+\paragraph{(1)}
+\[
+\lim_{(x,y) \to (2,3)} \frac{x^2+y}{x+y^3} + \cos (xy) = \frac{7}{29} + \cos(6)
+\]
+\paragraph{(2)}
+\[
+\lim_{(x,y) \to (0,0)} \frac{xy^4}{(x^2+y^2)^2}
+\]
+
+Αντικαθιστώ με πολικές συντεταγμένες:
+\[
+\attnboxed{\begin{cases}x = r \cos \theta \\ y = r \sin \theta\end{cases}}
+\]
+
+\begin{align*}
+\lim_{(x,y) \to (0,0)} \frac{xy^4}{(x^2+y^2)^2} \\
+= \lim_{r \to 0^+} \frac{r \cos \theta \, r^4 \sin^4 \theta}{r^4} \\
+= \lim_{r \to 0^+} r \cos \theta \sin^4 \theta = 0
+\end{align*}
+
+
+\paragraph{(3)}
+\[
+\lim_{(x,y) \to (0,0)} \frac{x^2y}{(x^2-y^2)^2}
+\]
+
+Θέτω \(x = \lambda \sqrt y \implies y = \frac{1}{\lambda^2} x^2 \).
+\begin{align*}
+&\lim_{(x,y) \to (0,0)} \frac{x^2y}{(x^2-y^2)^2} \\
+&= \lim_{\lambda \to 0^+} \frac{\lambda^2 |y| \cdot y}{\left( \lambda^2 |y| + y \right)^2} \\
+&= \lim_{\lambda \to 0^+} \frac{\lambda^2 y^2}{\left( \lambda^2 y + y \right)^2} \\
+&= \lim_{\lambda \to 0^+} \frac{\lambda^2 y^2}{y^ 2 \left( \lambda^2 +1 \right)^2} \\
+&= \frac{\lambda^2}{(\lambda^2+1)^2}
+\end{align*}
+Άρα το όριο δεν υπάρχει.
+
+\paragraph{(4)}
+\[
+\lim_{(x,y) \to (\infty,\infty)} \frac{x+2y}{x^2+y^2}
+\]
+
+\(u=\frac{1}{x} \to 0, \ v = \frac{1}{y} \to 0\)
+\begin{align*}
+&\lim_{(x,y) \to (\infty,\infty)} \frac{x+2y}{x^2+y^2}
+\\ &=
+\lim_{(u,v) \to (0,0)} \frac{\frac{1}{u} + \frac{2}{v}}{\frac{1}{u^2}+ \frac{1}{v^2}}
+\\ &=
+\lim_{(u,v) \to (0,0)} \frac{u^2v^2 \left( \frac{1}{u}+\frac{2}{v} \right)}{u^2v^2 \left( \frac{1}{u^2}+\frac{1}{v^2} \right)}
+\\ &=
+\lim_{(u,v) \to (0,0)} \frac{uv (2u+v)}{u^2+v^2}
+\end{align*}
+
+\(u =r\cos \theta,\ v=r\sin\theta\)
+\begin{align*}
+\lim_{r \to 0} \frac{r\cos\theta\sin\theta (2r \cos\theta + r \sin\theta)}{r^2} &= \\
+\lim_{r \to 0} r\cos\theta\sin\theta (2\cos\theta+\sin\theta) = 0
+\end{align*}
+
+
+\paragraph{(5)}
+\[
+\lim_{(x,y,z) \to (0,0,0)} \frac{x^2yz}{x^2+y^2}
+\]
+
+Αντικαθιστώ με σφαιρικές συντεταγμένες:
+\[
+\attnboxed{\begin{cases}x = r \sin\theta\cos\phi \\ y = r \sin \theta\sin\phi \\ z = r\cos\theta \end{cases}}
+\]
+
+\begin{align*}
+&\lim_{r \to 0} \frac{r^2\sin^2\theta\cos^2\phi \, r\sin\theta\sin\phi\, r \cos\theta}{r^2} \\ &=
+\lim_{r \to 0} r^2(\sin^3\theta\cos\theta\cos^3\phi\sin\phi) = 0
+\end{align*}
+
+
+\paragraph{(6)}
+\[
+\lim_{(x,y,z) \to (0,0)} \frac{x+y}{x^2+y^2}
+\]
+
+\begin{align*}
+\lim_{(x,y) \to (0,0)} \frac{x+y}{x^2+y^2}
+\\ &=
+\lim_{x \to 0} \frac{x+\lambda x}{x^2+\lambda^2 x^2}
+\\ &=
+\lim \frac{x(1+\lambda)}{x^2(1+\lambda^2)}
+\\ &=
+\lim_{x \to 0^+} \frac{1+\lambda}{x(1+\lambda^2)}
+\\ &=
+\frac{1+\lambda}{0^+ (1+\lambda^2)}
+\end{align*}
+Ανάλογα με το πρόσημο του \((1+\lambda)\), μπορεί να το όριο να είναι \(\pm\) σε πρόσημο, άρα δεν υπάρχει.
 
 \end{document}

@@ -11,7 +11,7 @@
 \usepackage{titlesec}
 \usepackage{amsthm}
 \usepackage{circuitikz}
-
+\usepackage{cancel}
 
 \usetikzlibrary{arrows.meta}
 
@@ -472,5 +472,193 @@ A_{i \geq 2} &= \left\lbrace \text{στην }i\text{ ρίψη νούμερο δ�
 \\\\
 P(A_1 \cap A_2 \cap A_3 \cap A_4 \cap A_5 \cap A_6) &= P(A_1)P(A_2|A_1)P(A_3|A_1\cap A_2)\dots
 \end{align*}
+
+\subsection{Θεώρημα Ολικής Πιθανότητας}
+%TODO Graph 1
+Αν για τα γεγονότα \(A_1,\dots,A_n\) ισχύει:
+\begin{itemize}
+\item \(A_i \cap A_j = \emptyset\) (ξένα μεταξύ τους)
+\item \( \bigcup\limits_{i=1}^k A_i = S \)
+\end{itemize}
+Ονομάζουμε τα \(A_i\) διαμέριση του \(S\).
+
+Έστω \(B\) ένα σύνολο που τέμνει τη διαμέριση:
+\[
+B = (B \cap A_1) \cup (B \cap A_2) \cup \cdots \cup (B \cap A_k)
+\]
+Τότε:
+\begin{align*}
+P(B)&=P(B \cap A_1)+P(B \cap A_2)+ \cdots + P(B \cap A_k) \\
+&=P(A_1)P(B|A_1)+\cdots+P(A_k)P(B|A_k) \\
+& = \sum_{i=1}^k P(A_i)P(B|A_i)
+\end{align*}
+
+\subsubsection*{Άσκηση}
+%TODO Graph2
+Επιλέγουμε τυχαία μία κάλπη και μία σφαίρα από την κάλπη. Ποια είναι η πιθανότητα \(P(A)\)να επιλέξω την άσπρη σφαίρα?
+
+Τα \(A_1,A_2,A_3\) αποτελούν διαμέριση. Άρα:
+\begin{align*}
+P(A) &= \underbrace{P(A_1)}_\frac{1}{3}\underbrace{P(A|A_1)}_0+
+\underbrace{P(A_2)}_\frac{1}{3}\underbrace{P(A|A_2)}_\frac{1}{2}
++\underbrace{P(A_3)}_\frac{1}{3}\underbrace{P(A|A_3)}_1 \\
+&= 0.50
+\end{align*}
+
+\paragraph{Άσκηση}
+%TODO Graph 3
+\begin{align*}
+P(X=1)&=0.60\\P(X=2)&=0.40
+\end{align*}
+\(P(Y1)=?\)
+
+Τα \(X_1,X_0\) αποτελούν διαμέριση του δειγματικού χώρου.
+\begin{align*}
+P(Y1)=
+\underbrace{P(X1)}_{0.60}
+\underbrace{P(Y1|X1)}_{0.90}
++\underbrace{P(X0)}_{0.40}
+\underbrace{P(Y1|X0)}_{0.20} = 0.62
+\end{align*}
+
+\subsection{Θεώρημα \textlatin{Bayes}}
+%TODO Graph 1!
+\begin{align*}
+P(B)&=P(A_1)P(B|A_1)+\cdots+P(A_k)P(B|A_k) \\
+P(A_i|B)&=\frac{P(A_i \cap B)}{P(B)} \\
+&=\frac{P(A_i)P(B|A_i)}{P(B)}
+\end{align*}
+(Πιθανότητα εκ των υστέρων)
+
+\textit{π.χ.}
+
+Από την προηγούμενη άσκηση, ποια είναι η πιθανότητα το αποτέλεσμα να είναι \(1\) αν και η είσοδος είναι \(1\)?
+\begin{align*}
+P(X1|Y1)=
+\frac{P(X1)P(Y1|X1)}{P(Y1)} = 
+\frac{0.54}{0.62} > P(X1)=0.6
+\end{align*}
+
+Ποια είναι η πιθανότητα \(P(X0|Y1)\)?
+
+\paragraph{}
+Στο παράδειγμα με την κάλπη, ποια είναι η \(P(A_3|A)\) (\(P(A_3)=\frac{1}{3}\))
+\[
+P(A_3|A) = \frac{P(A_3)P(A_1|A_3)}{P(A)} = \frac{\frac{1}{3}\cdot1}{0.50} = \frac{2}{3}
+\]
+Ομοίως:
+\[
+P(A_2|A) = \frac{P(A_2)P(A_1|A_2)}{P(A)} = \frac{\frac{1}{3}\cdot\frac{1}{2}}{0.50} = \frac{1}{3}
+\]
+%TODO Graph 4
+
+\subsection{}
+\begin{align*}
+P(A) &= 1-P(\overline{A}) \\
+P(A \cup B) &= P(A) + P(B) - P (A \cap B) \\
+P \left( (A \cup B)| \Gamma \right) &= P(A| \Gamma )+P(B| \Gamma )
+- P \left( (A \cap B ) | \Gamma \right)
+\end{align*}
+Στο παράδειγμα με τα σήματα:
+\[
+P(X1|Y1) = 1-P(X0|Y1)
+\]
+
+\subsection*{}
+\begin{circuitikz} \draw
+(0,0) node[left] {$A$} -- (1,0) -- (1,1) to[closing switch=$A_1$] (3,1) -- (3,-1) to [closing switch=$A_3$] (2,-1) to [closing switch=$A_2$] (1,-1) -- (1,0);
+\draw (3,0) to (4,0) node[right] {$B$};
+\end{circuitikz}
+
+\( B = A_1 \cap (A_2 \cup A_3) = \left( A_1 \cap A_2 \right) \cup \left( A_1 \cap A_3 \right) \) (\(Β\) η πιθανότητα διακοπής ρεύματος, \(A_i\) η πιθανότητα να είναι ανοικτός ο \(i\)-οστός διακόπτης.
+
+Άρα:
+\begin{align*}
+P(B) &= P(A_1 \cap A_2) + P(A_1 \cap A_3) - P(A_1 \cap A_2 \cap A_3) \\
+&= P(A_1)P(A_2|A_1)+P(A_1)P(A_3|A_1)-P(A_1)\dots \\
+&= P \cdot P + P \cdot P - P^3 \\
+&= 2P^2-P^3\quad\text{(αν }P\text{ η πιθανότητα να είναι ανοιχτός ένας διακόπτης)}
+\end{align*}
+
+\begin{align*}
+P(A_1|B) = \frac{P(A_1 \cap B)}{P(B)}
+\end{align*}
+Όμως \(A_2 \cap B
+= A_1 \cap \left[
+\left( A_1 \cap A_2 \right)
+\cup
+\left( A_1 \cap A_3 \right)
+\right]
+= (A_1 \cap A_2) \cup (A_1 \cap A_3) = B
+\).
+
+Άρα: \(P(A_1|B)= \frac{P(B)}{P(B)} = 1\), κάτι που επιβεβαιώνεται και εμπειρικά.
+
+Ποια είναι η \(P(A_2|B)\)?
+
+\paragraph{Άσκ.}
+
+\begin{tikzpicture}
+    \draw[filled] (-1,1) circle(0.5cm) node {$M$}
+                  (1,1) circle(0.5cm) node {$M$}
+                  (2,-1) circle(0.5cm) node {$A$}
+                  (0.5,-1) circle(0.5cm) node {$A$}
+                  (-1,-1) circle(0.5cm) node {$A$};
+    \draw \boundingbox;
+\end{tikzpicture}
+
+\begin{align*}
+R &= A_1 \cup (\overline{A_1} \cap \overline{B_2}) \\
+P(R) &= P(A_1)+P(\overline{A_1} \cap \overline{B_2})
+- \cancelto{\emptyset}{\left[
+A_2 \cap (\overline{A_1} \cap \overline{B_2})
+\right]} \\
+&= \frac{2}{5} \cdot \frac{1}{4}
+\end{align*}
+
+Ποια είναι η πιθανότητα να κερδίσει ο \(B\)?
+
+\paragraph{Άσκ.}
+%TODO (-2,-2)--(4,2)
+
+\begin{tikzpicture}
+    \draw (-1,-1) rectangle (0,1) node {$I$}; %TODO inside
+    \draw (0,1) rectangle (3,-1) node {$II$}; %TODO inside
+    \draw \boundingbox;
+\end{tikzpicture}
+
+Αν \(P(I)=P_1, P(II)=P_2\), ποια είναι η πιθανότητα, αν δεν έχει πληγεί ο 2ος στόχος, να έχει πληγή ο 1ος;
+
+\[
+P(I|\overline{II}) =
+\frac{P(I \cap \overline{II})}{P(\overline{II})} =
+\frac{P(I)\cancelto{1}{P(\overline{II}|I)}}{1-P_2}
+\]
+
+\paragraph{Άσκ.}
+%TODO Graph 06
+\(P(A) = 0.04,\ P(B|A)=0.20\)
+\[
+\underbrace{R}_\text{πιθανότητα ανύψυσης του βάρους} = \overline{A} \cup (A \cap \overline{B})
+\]
+\begin{align*}
+P(R) &= P(\bar{A})+P(A \cap \overline{B}) -
+\cancelto{\emptyset}{P
+\left(
+\overline{A} \cap (A \cap \overline{B})
+\right)
+} \\
+&= 0.96 + P(A)P(\overline{B}|A) \\
+&= 0.96+0.04\cdot0.80
+\end{align*}
+
+\paragraph{Άσκηση για το σπίτι}
+Σε μια παραγωγή το \(P(A_1)=80\%\) των σιδηροδοκών είναι καλές, και το \(P(A_2)=20\%\) των σιδηροδοκών είναι ελαττωματικές. Το μηχάνημα που πραγματοποιεί τον έλεγχο δεν είναι αξιόπιστο: \(P(\Theta|A_1)=0.10,\ P(\Theta|A_2)=0.80\) (\(\Theta\) η πιθανότητα ο έλεγχος να είναι θετικός).
+\begin{enumerate}
+\item Ποιο ποσοστό από τις σιδηροδοκούς καταστρέφεται (αν καταστρέφεται κάθε δοκός για την οποία ο έλεγχος είναι θετικός)?
+\item Ποιο ποσοστό από αυτές που καταστρέφονται είναι καλές?
+\item Ποιο ποσοστό από τις δοκούς που φεύγουν στην αγορά είναι ελαττωματικές?
+\item Ποιες θα είναι οι απαντήσεις στα προηγούμενα ερωτήματα αν προτείνουμε δύο ελέγχους \(\Theta_1,\Theta_2\) {\small (καταστρέφεται μόνο αν και οι δύο έλεγχοι είναι θετικοί)}?
+\end{enumerate}
 
 \end{document}
