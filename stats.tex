@@ -63,7 +63,7 @@
 \paragraph{Είδη φαινομένων}
 
 \begin{enumerate}
-\item \textbf{Αιτιοκρατικά} (καθοριστικά): Ξέρω το αποτέλεσμα του φαινομένου όταν γνωρίζω τα αίτια/τις προϋποθέσεις/το περιβάλλον του.
+\item \textbf{Αιτιοκρατικά} (καθοριστικά): Ξέρω το αποτέλεσμα του φαινομένου όταν γνωρίζω τα αίτια/τις προϋποθέσεις/το περιβάλλllllον του.
 \item \textbf{Στοχαστικά}: Δεν μπορώ να προβλέψω το αποτέλεσμα, ακόμα και αν γνωρίζω τα παραπάνω.
 \end{enumerate}
 Μπορεί να υπάρχει και αβεβαιότητα λόγω μη ιδανικών μοντέλων πρόβλεψης. Ο μηχανικός πρέπει να γνωρίζει και να μπορεί να μετρά αυτήν την αβεβαιότητα.
@@ -660,5 +660,252 @@ P(R) &= P(\bar{A})+P(A \cap \overline{B}) -
 \item Ποιο ποσοστό από τις δοκούς που φεύγουν στην αγορά είναι ελαττωματικές?
 \item Ποιες θα είναι οι απαντήσεις στα προηγούμενα ερωτήματα αν προτείνουμε δύο ελέγχους \(\Theta_1,\Theta_2\) {\small (καταστρέφεται μόνο αν και οι δύο έλεγχοι είναι θετικοί)}?
 \end{enumerate}
+
+\subsection{}
+
+\subsubsection{Ανεξάρτητα \(A,B\)}
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[outline] \firstcircle node {$A$};
+    \draw[outline] \secondcircle node {$B$};
+    \draw \boundingbox;
+\end{tikzpicture}
+\end{center}
+
+\[P(A|B)=P(A) \iff P(A\cap B)=P(A)P(B)\]
+
+\subsubsection{Ασυμβίβαστα \(A,B\)}
+\begin{center}
+\begin{tikzpicture}
+    \draw[filled] (-0.25,0) circle(1cm) node {$A$}
+                  (2.25,0) circle(1cm) node {$B$};
+    \draw \boundingbox;
+\end{tikzpicture}
+\end{center}
+
+\[A \cap B = \emptyset,\ P(A|B)=0\]
+
+\textit{π.χ}
+
+Αν \(A,B\) είναι ανεξατητα, ισχύει το ίδιο για τα \(\bar A,B\)?
+\begin{proof}
+Έχουμε:
+\begin{align*}
+P(\bar{A}\cap B)
+&=
+P(B)P(\bar A | B)
+\\ &=
+P(B) \left( 1 - P(A|B) \right)
+\\ &=
+P(B) \left( 1-P(A) \right)
+\\ &=
+P(B)P(\bar A)
+\end{align*}
+\end{proof}
+
+Μπορείτε να αποδείξετε ότι ισχύει το ίδιο για τα \(\bar A, \bar B\)?
+
+\paragraph{Άσκηση 18}
+\[ S =
+\begin{cases}
+\mathrm A \mathrm B  \Gamma \\ \mathrm A  \Gamma \mathrm B \\\mathrm B \mathrm A  \Gamma \\\mathrm B  \Gamma \mathrm A \\ \Gamma \mathrm A \mathrm B \\ \Gamma \mathrm B \mathrm A 
+\end{cases}
+\]
+
+\begin{align*}
+W &=  \left\lbrace \mathrm A \mathrm B \Gamma , \mathrm A  \Gamma \mathrm B,  \Gamma \mathrm A \mathrm B  \right\rbrace \\
+R &=  \left\lbrace \mathrm{A} \mathrm{B} \Gamma , \mathrm A  \Gamma  \mathrm B, \mathrm B A \mathrm  \Gamma  \right\rbrace \\
+\text{Πρέπει } \underbrace{P(W \cap R)}_\frac{1}{3} &= 
+\underbrace
+{
+\underbrace{P(W)}_\frac{1}{2}
+\underbrace{P(R)}_\frac{1}{2}
+}
+_\frac{1}{4}
+\end{align*}
+Άρα τα \(W\) και \(R\) δεν είναι ανεξάρτητα.
+
+\subsection{Τεχνικές Συνδυαστικής}
+
+\subsubsection{Πολλαπλασιαστική αρχή}
+Έστω ένα πείραμα στο οποίο ρίχνω ένα νόμισμα και ένα κέρμα.
+\begin{align*}
+S &= S_1 \underbrace{\times}_\text{καρτεσιανό γινόμενο} S_2 \\
+S &=  \left\lbrace \mathrm K  \Gamma  \right\rbrace \times \lbrace 1,2,3,4,5,6 \rbrace \\
+&=  \left\lbrace  \left( \mathrm K,1 \right), \left( \mathrm K,2 \right), \dots,  \left( \mathrm K,6  \right), \left(  \Gamma ,1 \right), \left(  \Gamma ,2 \right),\dots, \left(  \Gamma ,6 \right) \right\rbrace
+\end{align*}
+
+\paragraph{Άσκηση 8}
+\begin{align*}
+S &= S_1 \times S_2 \times \cdots \times S_{13} \\
+&=
+ \left\lbrace 1,2,\times \right\rbrace
+ \times
+  \left\lbrace 1,2,\times \right\rbrace
+  \cdots
+   \left\lbrace 1,2,\times \right\rbrace
+\end{align*}
+\(n=n_1\times n_2 \cdots n_{13}=3^{13}\)
+
+\paragraph{}
+Όταν ρίχνω ένα νόμισμα 3 φορές:
+\begin{align*}
+S &= S_1 \times S_2 \times S_3 \\
+&=  \left\lbrace \mathrm K, \Gamma   \right\rbrace \times  \left\lbrace \mathrm K, \Gamma  \right\rbrace\times \left\lbrace \mathrm K, \Gamma  \right\rbrace \\
+&=
+ \left\lbrace 
+ \mathrm K\mathrm K\mathrm K,
+ \mathrm K\mathrm K \Gamma ,
+ \mathrm K \Gamma \mathrm K,
+  \Gamma \mathrm K\mathrm K,
+  \mathrm K \Gamma  \Gamma ,
+   \Gamma \mathrm K \Gamma ,
+    \Gamma  \Gamma \mathrm K,
+     \Gamma  \Gamma  \Gamma 
+  \right\rbrace
+\end{align*}
+Παρατηρώ ότι στο καρτεσιανό γινόμενο τα ενδεχόμενα π.χ. \((\mathrm K \mathrm K  \Gamma)\) και \((\Gamma \mathrm K \mathrm  K)\) θεωρούνται διαφορετικά. Αντίστοιχα, σε δύο ρίψεις ενός ζαριού, τα ενδεχόμενα \( (1,2)\), \((2,1)\) είναι διαφορετικά.
+
+\subsubsection{}
+Έχω τρία αντικείμενα \(\mathrm A, \mathrm B , \Gamma \). Με πόσους τρόπους μπορώ να τα βάλω στη σειρά?
+\[
+\begin{cases}
+ \mathrm A \mathrm B  \Gamma \\
+  \mathrm A \Gamma  \mathrm B \\
+     \mathrm B   \mathrm A \Gamma \\
+   \mathrm B  \Gamma  \mathrm A\\
+    \Gamma  \mathrm A \mathrm B \\
+     \Gamma  \mathrm B  \mathrm A
+\end{cases}
+\]
+
+Για \(n\) αντικείμενα:
+\[
+n(n-1)(n-2)\cdots 1 = n!
+\]
+
+\begin{align*}
+\mathrm P(n)&=n!\\
+\mathrm P(n,k) &= \frac{n!}{(n-k)!}
+\end{align*}
+
+\subsection{Συνδυασμοί}
+\[\mathrm C(n,k) = \binom{n}{k}
+= \frac{n!}{(n-k)!\ k!}
+\]
+
+\textit{π.χ.}
+Για τα \( \mathrm A, \mathrm B , \Gamma \) με \(n=3,\ k=2\) (συνδυάζω 3 αντικείμενα ανά 2) έχω:
+\[
+ \mathrm A \mathrm B  \Gamma 
+ \begin{cases}
+  \mathrm A \mathrm B \\
+   \mathrm A \Gamma \\
+    \mathrm B \Gamma 
+ \end{cases}
+\]
+
+\textit{π.χ.}
+Είμαστε 100 φοιτητές, πόσες διαφορετικές επιτροπές των 5 ατόμων μπορώ να φτιάξω?
+
+\paragraph{\textit{Άσκηση}}
+Έχουμε 15 καλά και 5 ελαττωματικά ανταλλακτικά. Ποια είναι η πιθανότητα 3 από αυτά να είναι ελαττωματικά?
+
+\subparagraph{Κλασικός τρόπος}
+\begin{align*}
+P(A)= \frac{N(A)}{N(S)} = \frac{\mathrm C(5,3)}{\mathrm C(20,3)} = \frac{\frac{5!}{(5-3)!\ 3!}}{\frac{20!}{(20-3)!\ 3!}} = \frac{1}{114}
+\end{align*}
+
+\subparagraph{Όχι κλασικός τρόπος}
+\begin{align*}
+A &= \left( A_1 \cap A_2 \cap A_3  \right)
+\\
+P(A) &=
+\underbrace{P(A_1)}_\frac{5}{20}
+\underbrace{P(A_2|A_1)}_\frac{4}{19}
+\underbrace{P(A_3|A_1 \cap A_2)}_\frac{3}{18} \\
+&= \frac{1}{114}
+\end{align*}
+
+\subsection{Ασκήσεις}
+\paragraph{Ομάδα μπάσκετ από 10 άτομα}
+\begin{enumerate}
+\item Ομάδα 5 ατόμων: \(\mathrm C(10,5) = \frac{10!}{(10-5)!\;5!}\)
+\item Ομάδα 5 ατόμων όπου παίζει ρόλο η σειρά: \(\mathrm P(10,5) = \frac{10!}{(10-5)!}\)
+\item
+Ομάδα 5 ατόμων που μπορούν να αλλάζουν αριθμό, με 2 \textlatin{standard} παίκτες:
+\(\mathrm C(8,3)\cdot 5!\)
+\end{enumerate}
+
+\paragraph{Άσκηση 2}
+\subparagraph{(α)}
+\begin{align*}
+S&= \left\lbrace 123,124,125,134,135,145,234,235,245,345 \right\rbrace
+\quad \text{(δε με ενδιαφέρει η σειρά)} \\
+A&=  \left\lbrace 123 \right\rbrace\\
+B&=  \left\lbrace 124,134,234 \right\rbrace \\
+ \Gamma &=  \left\lbrace 125,135,145,235,245,345 \right\rbrace
+\end{align*}
+\subparagraph{(β)} Προφανές
+
+\paragraph{Άσκηση 3}
+\begin{tikzpicture}
+\draw (0,0.5) rectangle (4,0);
+\draw (1.4,0) -- (1.4,0.5);
+\draw (0,0) node[anchor=south west] {$a_1$};
+\draw (1,0) node[anchor=south west] {$a_2$};
+\draw (2,0) node[anchor=south west] {$a_3$};
+\draw (3,0) node[anchor=south west] {$a_4$};
+\end{tikzpicture}
+\[
+P(A) = \frac{N(A)}{N(S)} = \frac{3}{4}
+\]
+\begin{align*}
+S &= \left\lbrace a_1,a_2,a_3,a_4
+ \right\rbrace \\
+ A &=  \left\lbrace a_1,a_4 \right\rbrace
+ \end{align*}
+ \begin{align*}
+R &= A_1 \cup (A_2 \cap A_3) \cup A_4 \\
+P(R)&=P(A_1)-P(A_2 \cap A_3)+P(A_4)
+ \end{align*}
+
+\paragraph{Άσκηση 6}
+Για το σπίτι.
+
+\paragraph{Άσκηση 7}
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) circle (3mm) node {$0$};
+\draw (4,0) circle (3mm) node {$1$};
+\draw (0.3,0) -- (3.7,0);
+
+\draw[->] (1,1)--(2,1) node[midway,above] {$S_0=t^2$};
+\draw[->] (3,-1)--(2,-1) node[midway,above] {$S_0=t^3$};
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+\item Από το 0 στο 0.5: \(\Delta t = \sqrt{\frac{1}{2}} \)
+\item Από το 0.5 στο 1: \(\Delta t = 1-\sqrt{\frac{1}{2}} \)
+\item \(\vdots\)
+\end{itemize}
+
+\[ 
+P(A)=\frac{(1-\sqrt{\frac{1}{2}})\cdot\left( \frac{1}{3} \right)^\frac{1}{3}}{2}
+\]
+
+\paragraph{Άσκηση 9}
+Για το σπίτι.
+
+\paragraph{Άσκηση 10}
+%TODO Σχήμα
+
+\begin{align*}
+P(A_1)&=P(A_2)=P(A_3)=P(A_4)=P \\
+P( \Gamma E) &= q \\
+R &= (A_1 \cup A_2) \cap \left( (A_3 \cup (  \Gamma E \cap A_4)  \right)
+\end{align*}
 
 \end{document}
