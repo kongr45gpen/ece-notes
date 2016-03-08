@@ -27,6 +27,9 @@
 \newlist{enumparen}{enumerate}{1}
 \setlist[enumparen]{label=(\arabic*)}
 
+\newlist{enumlatin}{enumerate}{1}
+\setlist[enumlatin]{label=(\alph*)}
+
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
 \makeatletter
@@ -435,7 +438,7 @@ x_n = f_n(t)
 
 %TODO Graph 3
 
-Ο Καφίμπερας είναι πολύ καλός σαν τον καφές ο καφίκμπερας κάφι αδφξ
+ testαδφξ
 
 \subsubsection{}
 \paragraph{Ορ.}
@@ -731,8 +734,242 @@ k=1,\dots,M-1
 \[ \iint_R f(x,y) \dif x \dif y \approx \sum \sum f(x_n, y_k) \left( x_{n+1}-x_n \right) \left( y_{n+1}-y_n \right) \]
 
 
+\subsection{Γενίκευση ορισμού σε μη ορθογώνια χωρία}
+Έστω \(f: T \subset \mathbb R^2 \to \mathbb R\) ΦΡΑΓΜΕΝΗ συνάρτηση πάνω σε \textbf{ΦΡΑΓΜΕΝΟ χωρίο \(T\)} με το \textbf{σύνορο αυτού \(\partial T\)} να είναι σύνολο ΑΜΕΛΕΗΤΟΥ ΕΜΒΑΔΟΥ.
+
+Έστω \(T \subset R\), όπου \(R\) είναι οποιοδήποτε \textbf{ορθογώνιο χωρίο} που καλύπτει το \(T\).
+
+Ορίζω την επέκταση της \(f\) στο ορθογώνιο χωρίο \(R\) ως εξής:
+\[
+g(x,y) = 
+\begin{cases}
+f(x,y),&(x,y) \in T \\
+0,& (x,y) \in R-T
+\end{cases}
+\]
+
+Αν η \(g: R \subset \mathbb R^2 \to \mathbb R\) είναι ολοκληρώσιμη επί του \textbf{ορθογωνίου} \(R\), τότε λέμε ότι η \(f\) είναι ολοκληρώσιμη επί του \(T\) και:
+\[
+\iint_T f(x,y) \dif x \dif y =
+\iint_R g(x,y) \dif x \dif y
+\]
+
+\begin{attnbox}{Θεώρημα 1}
+Έστω \(f:T \in  \mathbb R ^2 \to  \mathbb R \) είναι \boxed{\textbf{συνεχής}} συνάρτηση επί ΦΡΑΓΜΕΝΟΥ χωρίου \(T\) (το σύνορο \(\partial T\) του οποίου είναι σύνορο αμελητέου εμβαδού) \textbf{ΕΚΤΟΣ ΕΝΔΕΧΟΜΕΝΩΣ από ένα σύνολο σημείων αμελητέου εμβαδού}. Τότε η \(f\) είναι ολοκληρώσιμη επί του \(T\).
+
+\paragraph{ΣΗΜΕΙΩΣΗ} Σύνολα αμελητέου εμβαδού:
+\begin{enumparen}
+\item Το πολύ αριθμήσιμο πλήθος σημείων
+\item Τμηματικά λείες καμπύλες πεπερασμένου μήκος (ή το πολύ αριθμήσιμη ένωση τέτοιων)
+\end{enumparen}
 
 
+\end{attnbox}
+
+\begin{infobox}{Αριθμήσιμο σύνολο \(A\)}
+Υπάρχει 1-1 αντιστοιχία του συνόλου φυσικών \(\mathbb N\) με το \(A\).
+\[
+\mathbb N =  \left\lbrace 1,2,3\dots \right\rbrace
+\]
+
+\textit{π.χ}
+\begin{itemize}
+\item Το \([a,b] \subset \mathbb R\) είναι υπεραριθμήσιμο
+\item Το \(\mathbb Z\) είναι αριθμήσιμο
+\item Το \(\mathbb Q\) είναι αριθμήσιμο
+\end{itemize}
+\end{infobox}
+
+\textit{π.χ.}
+Έστω \( T =  \left\lbrace (x,y): x^2+y^2 \leq 1  \right\rbrace\) (μοναδιαίος κυκλικός δίσκος)
+
+\begin{itemize}
+\item \(f:T \to \mathbb{R}: f(x,y)=x^2+x^2y\)
+
+συνεχής στο \(T\), άρα ολοκληρώσιμη
+\item \(f:T\to \mathbb R : f(x,y) = \begin{cases}1,&x=y\\3,&T- \left\lbrace (x,x):|x| \leq 1 \right\rbrace \end{cases}\) %TODO Atreas graph 01
+
+ολοκληρώσιμη διότι είναι συνεχής στο δίσκο \(T\) εκτός από ένα σύνολο σημείων αμελητέου εμβαδού (το σύνολο \( \left\lbrace (x,x): |x|<1 \right\rbrace\))
+
+\item \(f(x,y) = \begin{cases}1 \ & (x,y): x,y \text{ ρητός}
+\\
+0& (x,y): x,y \text{ άρρητος}
+\end{cases},\ (x,y) \in [0,1]^2 = [0,1] \times [0,1]
+\)
+
+δεν είναι ολοκληρώσιμη
+\end{itemize}
+
+\subsection{Ιδιότητες}
+
+Ισχύουν οι γνωστές ιδιότητες του ολοκληρώματος.
+
+Έστω \(f,g: T \in  \mathbb R ^2 \to \mathbb R \) ολοκληρώσιμες σε φραγμένο χωρίο \(T\) (με σύνορο αμελητέου εμβαδού). Τότε:
+\begin{enumparen}
+\item \(af \pm bg\) ολοκλ. επί του \(T\) και
+\[
+\iint_T \big( af \pm bg \big) (x,y) \dif x \dif y
+=
+a\iint_T f(x,y) \dif x \dif y
+\pm
+b\iint_T g(x,y) \dif x \dif y
+\]
+\item \(f\cdot g, \ \frac{f}{g} (g \neq 0),\ |f|\) ολοκλ. επί του \(T\) και
+\[
+\left|
+\iint_T f(x,y) \dif x \dif y
+\right|
+\leq
+\iint_T \left| f(x,y) \right| \dif x \dif y
+\]
+\item Αν \(f(x,y) \leq g(x,y) \  \forall (x,y)\), τότε:
+\[
+\iint_T f(x,y) \dif x \dif y
+\leq
+\iint_T g(x,y) \dif x \dif y
+\]
+\item Αν \(T\) χωρίο αμελητέου εμβαδού, τότε:
+\[
+\iint_T f(x,y) \dif x \dif y = 0
+\]
+\item Αν \(T = T_1 \cup T_2\) και \(T_1 \cap T_2 = \emptyset\) (ή σύνολο αμελητέου εμβαδού), τότε:
+\[
+\iint_T f(x,y) \dif x \dif y = 
+\iint_{T_1} f(x,y) +
+\iint_{T_2} f(x,y)
+\]
+\item Αν \(m \leq f(x,y) \leq M\), τότε:
+\[
+mE(T) \leq \iint_T f(x,y) \dif x \dif y \leq M E(T)
+\]
+όπου \(E(T) = \) εμβαδόν χωρίου \(T\)
+\item
+\textbf{Θεώρημα μέσης τιμής:}
+Αν \(m \leq f(x,y) \leq M\) και \(g(x,y) \geq 0 \ \forall (x,y) \in T\), τότε υπάρχει \(\mu \in [m,M]\):
+\[
+\iint_T f(x,y) g(x,y) \dif x \dif y =
+\mu \iint_T g(x,y) \dif x \dif y
+\]
+
+Αν επιπλέον \(f\) \textbf{συνεχής} επί του \(T\) και το \(T\) \textbf{συνεκτικό}, υπάρχει \((x_0,y_0) \in T\):
+\[
+\iint_T f(x,y) \dif x \dif y = f(x_0,y_0) \iint_T g(x,y) \dif x \dif y
+\]
+\end{enumparen}
+
+\subsection{Υπολογισμός (πρακτικός) Διπλών Ολοκληρωμάτων}
+\subsubsection{Σε Ορθογώνια Χωρία}
+\begin{attnbox}{Θεώρημα 2 (\textlatin{Fubini})}
+Έστω \(f: R \subset  \mathbb R ^2 \to  \mathbb R \) συνεχής επί ορθογωνίου χωρίου \(R =  \left\lbrace (x,y): a \leq x \leq b, \ c \leq y \leq d  \right\rbrace\).
+Τότε και οι συναρτήσεις \(g(x) = \int_c^d f(x,y) \dif y\) και \(h(y) = \int_a^bf(x,y) \dif x\) είναι συνεχείς επί των \([a,b]\) και \([c,d]\) αντίστοιχα, και:
+\[
+\iint_R f(x,y) \dif x \dif y =
+\int_a^b g(x) \dif x =
+\int_c^d h(y) \dif y
+\]
+
+Με άλλα λόγια:
+\begin{equation} \label{eq:fubini}
+\boxed{
+\iint_R f(x,y) \dif x \dif y
+=
+\int_a^b \left(
+\int_c^d f(x,y) \dif y
+\right) \dif x =
+\int_c^d \left(
+\int_a^b f(x,y) \dif x
+\right) \dif y
+}
+\end{equation}
+
+\paragraph{Σημείωση}
+\begin{enumparen}
+\item Ξεκινάω να ολοκληρώνω ως προς όποια μεταβλητή θέλω, ΠΑΝΤΑ ΑΠΟ ΜΕΣΑ ΠΡΟΣ ΤΑ ΕΞΩ.
+Κάθε φορά ολοκληρώνω ως προς μία μεταβλητή, ΚΡΑΤΩΝΤΑΣ τις υπόλοιπες ΣΤΑΘΕΡΕΣ.
+\end{enumparen}
+\end{attnbox}
+
+\paragraph{\textit{π.χ.}}
+
+Ποιο το διπλό ολοκήρωμα της:
+\[
+f(x,y)=x^2+y^2
+\]
+επί του χωρίου \(T =  \left\lbrace (x,y): 0 \leq x \leq 1, \ 2 \leq y \leq 3  \right\rbrace\)?
+
+\[
+I = 
+\underbrace{
+\int_2^3
+\int_0^1
+}_{\mathclap{\text{εξειδίκευση ορίων}}}
+(x^2+y^2) \underbrace{\dif x \dif y}_{\mathclap{\text{τυχαία επιλογή}}}
+=
+\int_2^3 \left. \frac{x^3}{3}+y^2x \right|^1_0 \dif y
+=
+\int_2^3 \left( \frac{1}{3}+y^2 \right) \dif y
+= \frac{1}{3}y + \left. \frac{y^3}{3} \right|_2^3 = \dots
+\]
+
+\subsubsection{Σε μη ορθογώνια χωρία}
+Έστω \(T \subset  \mathbb R ^2\) ΦΡΑΓΜΕΝΟ χωρίο (με σύνορο αμελητέου εμβαδού). Τότε,
+\begin{enumlatin}
+\item Το \(T\) καλείται \textbf{κανονικό ως προς \(\mathbf y\)}, αν \(T\) είναι \textbf{συνεκτικό} και \boxed{\text{κάθε}} ευθεία \(\parallel \mathbf{y'y}\) \textbf{ΕΝΤΟΣ του \(\mathbf T\)} τέμνει το σύνορο του \(T\) \textbf{ακριβώς σε ΔΥΟ ΣΗΜΕΙΑ}.
+%TODO Graph 01
+\item Το \(T\) καλείται \textbf{κανονικό ως προς \(\mathbf x\)}, αν \(T\) είναι \textbf{συνεκτικό} και \boxed{\text{κάθε}} ευθεία \(\parallel \mathbf{x'x}\) \textbf{ΕΝΤΟΣ του \(\mathbf T\)} τέμνει το σύνορο του \(T\) \textbf{ακριβώς σε ΔΥΟ ΣΗΜΕΙΑ}.
+\item Το \(T\) καλείται κανονικό αν είναι κανονικό ως προς \(x\) \boxed{ΚΑΙ} ως προς \(y\).
+\end{enumlatin}
+
+\begin{itemize}
+\item Ένα χωρίο:
+\begin{itemize}
+\item μπορεί να ΜΗΝ είναι ΚΑΝΟΝΙΚΟ
+\item μπορεί να είναι κανονικό ως προς \(y\) αλλά όχι ως προς \(x\), και αντιστρόφως.
+\end{itemize}
+\item Αν \(T\) μη κανονικό, το σπάω σε ΕΝΩΣΗ κανονικών (ως προς \(x\) ή $y$) χωρίων.
+\end{itemize}
+
+\begin{attnbox}{Θεώρημα 3 (\textlatin{Fubini})}
+Έστω \(f: T \subset  \mathbb R ^2 \to  \mathbb R \) συνεχής επί φραγμένου χωρίου \(T\) (με σύνορο αμελητέου εμβαδού).
+\begin{enumerate}
+\item Αν \(T\) είναι κανονικό ως προς \(y\) χωρίο της μορφής:
+\[
+T =  \left\lbrace (x,y):\ a \leq x \leq b, \ g(x) \leq y \leq h(x)  \right\rbrace
+\]
+όπου \(g,h: [a,b] \to  \mathbb R \) συνεχείς συναρτήσεις, τότε:
+\[
+\iint_T f(x,y) \dif x \dif y =
+\int_a^b \left(
+\int_{g(x)}^{h(x)} f(x,y) \dif y
+\right) \dif x
+\]
+\item Αν \(T\) είναι κανονικό ως προς \(x\) χωρίο της μορφής:
+\[
+T =  \left\lbrace (x,y):\ c \leq y \leq d, \ \kappa (x) \leq x \leq \lambda(x)  \right\rbrace
+\]
+όπου \(\kappa,\lambda: [a,b] \to  \mathbb R \) συνεχείς συναρτήσεις, τότε:
+\[
+\iint_T f(x,y) \dif x \dif y =
+\int_c^d \left(
+\int_{\kappa(x)}^{\lambda(x)} f(x,y) \dif x
+\right) \dif y
+\]
+\item Αν \(T\) κανονικό, τότε:
+\begin{align*}
+\iint_T f(x,y)\dif x \dif y
+&=
+\int_a^b \left(
+\int_{g(x)}^{h(x)} f(x,y) \dif y
+\right) \dif x \\
+&=
+\int_c^d \left(
+\int_{\kappa(x)}^{\lambda(x)} f(x,y) \dif x
+\right) \dif y
+\end{align*}
+\end{enumerate}
+\end{attnbox}
+
+%TODO Graph 03
 
 
 

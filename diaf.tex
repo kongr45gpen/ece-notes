@@ -67,7 +67,7 @@
 \(x',x'',x''',x^{(4)},\dots\)
 \paragraph{\textlatin{Newton's}}
 \(\dot{x}, \ddot{x}, \dddot{x}\)
-\paragraph{\textlatin{Newton's}}
+\paragraph{\textlatin{Leibniz'}}
 \(\od{x}{t}, \od[2]{x}{t}, \od[3]{x}{t}\)
 
 \paragraph{}
@@ -180,7 +180,7 @@ x^2=2e^t -1 \implies x = \pm \sqrt{2e^t-1} \implies \boxed{x=\sqrt{2e^t-1}}
 \int_{x_0}^x N(x) \dif x + \int_{t_0}^t M(t) \dif t = 0, \quad x(t_0)=x_0
 \]
 
-\begin{excercise*}{2.4}
+\begin{excercise*}{2.5}
 \[x \cos x \dif x + (1-6t^5) \dif t = 0; \quad t(\pi)=0 \]
 \tcblower
 \(x_0 = \pi,\ t_0 = 0\)
@@ -291,6 +291,344 @@ x^2=t^2 \ln t ^ 2 + 4t^2 \implies
 \boxed{x = - \sqrt{t^2 \ln t^2 +4t^2}}
 \]
 \end{excercise*}
+
+\subsection{Ακριβείς}
+\begin{defn*}{}
+Όταν:
+\[
+\pd{M(t,x)}{x} = \pd{N(t,x)}{t}
+\]
+τότε η εξίσωση λέγεται ακριβής η πλήρης.
+
+Υπάρχει \(dF(t,x) = N(t,x) \dif x + M(t,x) \dif t\)
+με Γενική Λύση \(F(t,x) = c\).
+\end{defn*}{}
+
+
+\begin{excercise*}{2.16}
+\[
+(t + \sin x) \dif t + (t \cos x - 2x) \dif x = 0
+\]
+\tcblower
+
+\begin{align*}
+\underbrace{(t + \sin x) \dif t}_{M(t,x)\dif t} + 
+\underbrace{(t \cos x - 2x) \dif x}_{N(t,x)\dif x} = 0
+\end{align*}
+Δοκιμή:
+\[
+\begin{cases}
+M(t,x)&=t+\sin x\\
+N(t,x)&=t \cos x - 2x
+\end{cases}
+\implies
+\pd{M(t,x)}{x} = \cos x
+= \pd{N(t,x)}{t} = \cos x
+\]
+Άρα η ΔΕ είναι ακριβής, επομένως υπάρχει \(F(t,x)\) τέτοια ώστε:
+\begin{align*}
+&dF = N(t,x) \dif x + M(t,x) \dif t \\
+&\attnboxed{
+dF = \frac{\partial F}{\partial x} \dif x + \frac{\partial F}{\partial t} \dif t
+} \leftarrow \text{ ολικό διαφορικό της } F
+\end{align*}
+\begin{gather*}
+\pd{F(t,x)}{x}=N(t,x), \quad \pd{F(t,x)}{t}=M(t,x)
+\xRightarrow{\text{ολοκλήρωση ως προς }t} \\ \implies
+\cancelto{F(t,x)}{\int \frac{\partial F(t,x)}{\partial t} \dif t} 
+= \int (t+\sin x) \dif t \implies \\ \implies
+\boxed{F(t,x) =
+\frac{1}{2} t^2 + t \sin x + \overbrace{h(x)}^{\mathclap{\text{ολοκληρωτική σταθερά}}}
+\hspace{27pt}
+}
+\end{gather*}
+
+
+Έχουμε:
+\begin{align*}
+&\pd{F(t,x)}{x} = t \cos x + h'(x)\\ \implies&
+t \cos x - 2x = t \cos x + h'(x)\\ \implies&
+h'(x) = -2x \\ \implies&
+\int h'(x) \dif x = \int (-2x) \dif x \\ \implies&
+\boxed{h(x) = -x^2 + c_1}
+\end{align*}
+
+Επομένως:
+\begin{align*}
+F(t,x) &= \frac{1}{2}t^2 + t \sin x - x^2 + c_1 = c
+\xRightarrow{c_2=c-c_1} \\ &\implies
+\boxed{
+\frac{1}{2}t^2+t \sin x - x^2 = c_2
+} \text{ Γενική λύση}
+\end{align*}
+\end{excercise*}
+
+
+\begin{excercise*}{2.17}
+\[
+\od{x}{t} = \frac{2+xe^{tx}}{2x-te^{tx}}
+\]
+\tcblower
+
+\[
+\od{x}{t} = \frac{2+xe^{tx}}{2x-te^{tx}}
+\xRightarrow{\text{διαφορική μορφή}}
+\underbracket{(2+xe^{tx})}_{M(t,x)=2+xe^{tx}} \dif t
++
+\underbracket{(te^{tx}-2x)}_{N(t,x)=te^{tx}-2x} \dif x
+= 0
+\]
+
+Δοκιμή:
+\[
+\pd{M(t,x)}{x}=e^{tx}+xte^{tx}
+= \pd{N(t,x)}{t}=xte^{tx}+e^{tx}
+\]
+συνεπώς είναι ακριβής, οπότε υπάρχει \(F(t,x)\), με \(dF = M(t,x)\dif t + N(t,x) \dif x\), με λύση \(F(t,x) = c\).
+
+\[
+\text{\small Ολικό διαφορικό} \rightarrow
+dF = \frac{\partial F}{\partial x} \dif x + \frac{\partial F}{\partial t} \dif t
+\]
+Άρα:
+\begin{align*}
+\pd{F(t,x)}{x} = N(t,x), \quad
+\pd{F(t,x)}{t} &= M(t,x) = 2+xe^{tx} \xRightarrow{\text{ολοκλήρωση ως προς }t}
+\\ \implies
+\int
+\pd{F(t,x)}{t} \dif t &=
+\int \left( 2+ xe^{tx} \right) \dif t
+\implies \\ \implies
+F(t,x) &= 2t +e ^ {tx} + h(x)
+\end{align*}
+\begin{align*}
+\text{Παραγώγιση ως προς } x \rightarrow
+\pd{F(t,x)}{x} = te^{tx} + h'(x)
+\implies&
+te^{tx}+h'(x)=te^{tx}-2x \implies \\ \implies&
+h'(x) = -2x \implies \\ \implies&
+h(x) = \int (-2x) \dif x \implies \\ \implies&
+h(x) = -x^2+c_1
+\end{align*}
+
+Άρα τελικά:
+\begin{align*}
+&F(t,x) = 2t+e^{tx}-x^2+c_1 \\
+\implies& 2t+e^{tx}-x^2+c_1 =c \\
+\implies& \boxed{2t+e^{tx} -x^2 = c_2, \qquad c_2=c-c_1}
+\end{align*}
+
+
+
+
+
+\end{excercise*}
+
+
+
+\begin{excercise*}{2.19}
+\[
+\left( 2x^2t-2x^3 \right) \dif t +
+\left( 4x^3-6x^2t+2xt^2 \right) \dif x = 0
+\]
+\tcblower
+\[
+\underbrace{\left( 2x^2t-2x^3 \right)}_{M(t,x)=2x^2t-2x^3} \dif t +
+\underbrace{\left( 4x^3-6x^2t+2xt^2 \right)}_{N(t,x)=4x^3-6x^2t+2xt^2} \dif x = 0
+\]
+
+\(
+\pd{M(t,x)}{x}=4xt-6x^2=
+\pd{N(t,x)}{t}=0-6x^2+4xt
+\), ΔΕ ακριβής, οπότε υπάρχει \(F(t,x)\) με \(\dif F(t,x) = M(t,x) \dif t + N(t,x) \dif x\) με λύση \(F(t,x) = c\).
+
+\[
+\dif F(t,x) = \pd{F(t,x)}{t} \dif t + \pd{F(t,x)}{x} \dif x
+\]
+\begin{align*}
+\pd{F(t,x)}{x} = N(t,x),& \quad 
+\pd{F(t,x)}{t} = M(t,x) = 2x^2t-2x^3  &\implies \\ \implies&
+\int \pd{F(t,x)}{t} \dif t 
+=
+\int (2x^2t-2x^3) \dif t
+&\implies \\ \implies&
+F(t,x) = x^2t^2-2x^3t+h(x) &
+\end{align*}
+\begin{align*}
+\pd{F(t,x)}{x}&=2xt^2-6x^2t+h'(x) \implies \\ \implies
+\cancel{2xt^2}-\cancel{6x^2t}+h'(x)&=4x^3-6x^2t+\cancel{2x+2} \implies \\ \implies
+h'(x)&=4x^3 \xRightarrow{\text{ολοκλ.}} h(x)=x^4+c_1
+\end{align*}
+
+Άρα:
+\begin{align*}
+F(t,x) &= x^2t^2-2x^3t+x^4+c_1 \implies \\ \implies
+x^2t^2-2^3t+x^4+c_1 &= c \implies \\ \implies
+x^2t^2-2x^3t+x^4 = c-c_1 \implies \\ \implies
+\begin{cases}
+(x^2-xt)^2&= c_2\\
+c_2 &=c-c_1
+\end{cases}
+&\implies \\
+\xRightarrow{c_3=\pm \sqrt{c_2}} x^2-xt &= c_3 \xRightarrow[\frac{-b \pm \sqrt{b^2-4ac}}{2a}]{ax^2+bx+c=0}
+\\ \implies
+\boxed{x = \frac{t \pm \sqrt{t^2+4c_3}}{2},\qquad c_3 = \pm \sqrt{c_2}}
+\end{align*}
+\end{excercise*}
+
+\begin{excercise*}{2.20}
+\[
+2tx
+\dif t
++ (1+t^2)
+\dif x
+= 0
+; \quad
+x(2) = -5
+\]
+\tcblower
+\[
+\underbrace{2tx}_{\mathclap{M(t,x)}}
+\dif t
++ \underbrace{(1+t^2)}_{N(t,x)}
+\dif x
+= 0
+; \quad
+x(2) = -5
+\]
+
+\begin{equation} \label{eq:e1}
+M(t,x)=2tx,\quad N(t,x)=1+t^2
+\end{equation}
+
+\(F(t,x)\), με \( \dif F(t,x) = \pd{F}{x} \dif x + \pd{F}{t} \dif t \).
+
+\(\dif F(t,x) = N(t,x) \dif x + M(t,x) \dif t\)
+
+\begin{equation} \label{eq:e2}
+\pd{F(t,x)}{x} = N(t,x)
+\end{equation}
+
+\begin{align*}
+\pd{F(t,x)}{t} = M(t,x) = 2tx \implies \\ \implies
+\int \pd{F(t,x)}{t} \dif t 
+= \int (2tx) \dif t \implies
+\end{align*}
+
+\begin{equation} \label{eq:e3}
+\implies F(t,x) = t^2x + h(x)
+\end{equation}
+
+\begin{align*}
+\begin{cases}
+\pd{F(t,x)}{x} = t^2+h'(x) \\
+\eqref{eq:e2},\ \eqref{eq:e1}
+\end{cases}
+\implies \\ \implies
+t^2+h'(x)=1+t^2 \implies h'(x)=1 \implies \\ \implies
+\begin{cases}
+h(x)=x+c_1 \\
+\eqref{eq:e3}
+\end{cases}
+\implies
+\begin{cases}
+F(t,x)=t^2x \\
+(4)
+\end{cases}
+\implies
+t^2+x+c_1
+\implies
+t^2x+x=c_2 (c_2=c-c_1) \implies
+x = \frac{c_2}{t^2+1}
+\implies
+(x(2)=5)
+5 = \frac{c_2}{2^2+1} \implies x = \frac{-25}{t^2+1}
+\end{align*}
+
+\begin{equation} \label{eq:ef}
+\implies F(t,x)=t^2x+x+c_1
+\end{equation}
+\end{excercise*}
+
+
+
+\section{\textlatin{Overview}}
+
+\subsection{Συνήθεις Διαφορικές Εξισώσεις (ΣΔΕ - \textlatin{Ordinary Differential Equations})}
+
+\begin{defn}{}{}
+Εμπλέκουν:
+\begin{itemize}
+\item μία ανεξάρτητη μεταβλητή (π.χ. \(t,\ x\))
+\item μια εξαρτημένη και τις παραγώγους της (π.χ. \(i,y,u\))
+\end{itemize}
+\[
+F(t,x,x',\dots,x^{(n)}) = 0
+\]
+\end{defn}{}{}
+
+\paragraph{Μη συνήθεις}
+είναι οι Μερικές Διαφορικές Εξισσώεις \textlatin{(Partial Differential Equations - PDE)} που εμπλέκουν:
+\begin{itemize}
+\item πολλές ανεξάρτητες μεταβλητές (π.χ. \(x,y,z\))
+\item μία εξαρτημένη μεταβλητή και τις μερικές παραγώγους της
+\end{itemize}
+
+
+
+\subsection{1\textsuperscript{ης} τάξης ΔΕ}
+\begin{defn}{}{}
+όταν
+\[
+x' = \frac{\dif x}{\dif t} = f(t,x)
+\]
+
+\begin{defn}{Τυπικής μορφής}{}
+\[
+f(t,x) = \frac{-M(t,x)}{N(t,x)}
+\]
+
+\paragraph{Διαφορική μορφή}
+\[N(t,x) \dif x + M(t,x) \dif t = 0 \]
+
+\begin{defn}{Χωριζόμενη}{}
+όταν
+\[
+\begin{cases}
+N(t,x) &= N(x) \\
+M(t,x) &= M(t)
+\end{cases}
+\]
+
+τότε
+\[
+N(x) \dif x + M(t) \dif t = 0
+\]
+
+με λύση
+\[
+\int N(x) \dif x + \int M(t) \dif t = c
+\]
+ή
+\[
+\int_{x_0}^x N(x) \dif x + \int_{t_0}^t M(t) \dif = 0
+\]
+\end{defn}
+
+\begin{defn}{Ομογενής - Ομοιογενής}{}
+όταν \(\forall a \in  \mathbb R\)
+\[
+F(at,ax)=f(t,x)
+\]
+
+τότε θέτω \(x = ut\), άρα \(\od{x}{t}=\od{u}{t}t+u\)
+\end{defn}
+
+
+\end{defn}
+\end{defn}
+
+
 
 
 \newpage
