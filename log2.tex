@@ -17,6 +17,7 @@
 \usepackage{float}
 \usepackage{relsize}
 \usepackage[inline]{enumitem}
+\usepackage{cancel}
 
 
 \usetikzlibrary{arrows.meta}
@@ -972,6 +973,105 @@ T =  \left\lbrace (x,y):\ c \leq y \leq d, \ \kappa (x) \leq x \leq \lambda(x)  
 %TODO Graph 03
 
 
+\subsection{Εφαρμογές διπλού ολοκληρώματος}
+\begin{enumparen}
+
+\item
+\textbf{ΟΓΚΟΣ}:
+Έστω \(
+\boxed{f=f(x,y) \geq 0}
+\ \forall(x,y) \in T
+\),
+όπου \(T \in  \mathbb R ^2\) φραγμένο σύνολο με σύνορο αμελητέου εμβαδού. Τότε, αν \(f\) ολοκληρώσιμη επί του \(T\), έχουμε:
+\[
+V = \iint_T f(x,y) \dif x \dif y
+\]
+όπου \(V\) είναι ο όγκος του \boxed{\text{στερεού}} μεταξύ της επιφάνειας \(z=f(x,y)\) του χωρίου \(T\) και της κυλινδρικής επιφάνειας με \textbf{οδηγό καμπύλη} την καμπύλη του συνόρου του χωρίου \(T\) και οι γενέτειρες \( \parallel zz'\).
+
+\item
+Έστω \(\rho = \rho (x,y)\) είναι συνεχής πυκνότητα μάζας/φορτίου επί φραγμένου χωρίου \(T\) με σύνορο αμελητέου εμβαδού.
+
+Τότε \(\iint_T \rho(x,y) \dif x \dif \phi = \) Συνολική μάζα/φορτίο επί του επιπέδου χωρίου \(T\).
+
+\[
+\iint_T \rho(x,y) \dif x \dif y  \approx
+\sum_{k=1}^\mu
+\sum_{n=1}^M \rho (x_k,y_k) \cdot (x_{k+1}-x_k)(\phi_{k+1}-y_k)
+\]
+
+\item
+Αν \(f(x,y)=1)\ \forall (x,y) \in T\), όπου \(T\) φραγμένο χωρίο με σύνορο αμελητέου εμβαδού, τότε:
+\[
+\iint_T 1 \dif x \dif y = \text{Συνολικό εμβαδό του χωρίου }T
+\]
+\end{enumparen}
+
+\subsection{Αλλαγή μεταβλητής στα διπλά ολοκληρώματα}
+
+\begin{attnbox}{Θεώρημα 4}
+Έστω \(\mathbb F:D \subset \mathbb R^2 \to G \subset \mathbb R^2:\)
+\[
+\mathbb F(u,v) = \left( x(u,v),\ y(u,v) \right)
+\]
+είναι διανυσματικό πεδίο, παραγωγίσιμο και αντιστρέψιμο, δηλαδή:
+\[
+\frac{D(x,y)}{D(u,v)}
+=
+\left|
+\begin{matrix}
+x_u & x_v \\
+y_u & y_v
+\end{matrix}
+\right| \neq 0\ \forall (u,v) \in D
+\]
+
+Αν \(f:G \to  \mathbb R \ f=f(x,y)\) συνεχής επί του \(G\), τότε:
+\[
+\iint_G f(x,y) \dif x \dif y
+=
+\iint_D f \left( x(u,v),\ y(u,v) \right)
+\left|
+\frac{ D(x,y)}{ D(u,v)}
+\right|
+\dif u \dif v
+\]
+
+
+\end{attnbox}
+
+\paragraph{Εφαρμογή σε πολικές συντεταγμένες}
+\begin{gather*}
+(x,y) \leftrightarrow (\rho, \theta) \\
+x = \rho \cos \theta \\
+y = \rho \sin \theta
+\end{gather*}
+\subparagraph{Τότε}
+\[
+\frac{D(x,y)}{D(\rho,\theta)}
+\overset{x=\rho \cos \theta}
+{\underset{y=\rho \sin \theta}{=}}
+\left|
+\begin{matrix}
+x_\rho & x_\theta \\
+y_\rho & y_\theta
+\end{matrix}
+\right| = \left|
+\begin{matrix}
+\cos\theta & -\rho\sin\theta \\
+\sin\theta & \rho\sin\theta
+\end{matrix}
+\right|
+= \rho
+\]
+\subparagraph{Δηλαδή}
+\[
+\iint_G f(x,y) \dif x \dif y
+=
+\iint_D f(\rho\cos\theta, \rho\sin\theta) \rho \dif \rho \dif \theta
+\]
+
+Μη γνήσια ολοκληρώματα εκτός ύλης.
+
 
 
 
@@ -1447,4 +1547,280 @@ g &: B \to C \subseteq  \mathbb R
 \end{align*}
 Ανάλογα με το πρόσημο του \((1+\lambda)\), μπορεί να το όριο να είναι \(\pm\) σε πρόσημο, άρα δεν υπάρχει.
 
+\paragraph{}
+\begin{attnbox}{}
+Κανόνα \textlatin{De L' Hospital} δεν μπορώ να χρησιμοποιήσω σε συναρτήσεις πολλών μεταβλητών, παρά μόνο όταν έχω μόνο μία μεταβλητή!
+\end{attnbox}
+
+\begin{align*}
+\lim_{(x,y)\to(0,0)}
+\frac{1-cos \sqrt{x^2+y^2}}{x^2+y^2} &= \\
+&= \lim_{r\to 0^+} \frac{1-\cos r}{r^2} \\
+&= \lim_{r\to 0^+} \frac{(1-\cos r)'}{(r^2)'} \\
+&= \lim_{r\to 0^+} \frac{\sin r}{2r} \\
+&= \lim_{r\to 0^+} \frac{(\sin r)'}{(2r)'} \\
+&= \lim_{r\to 0^+} \frac{\cos r}{2} = \frac{1}{2}
+\end{align*}
+
+\paragraph{}
+\begin{align*}
+\lim_{(x,y)\to (0,0)}
+\left[
+\frac{(2+y^3)\tan (x^3+y^3)}{x^3+y^3} +
+\frac{\tan(x^5y^5)}{\tan(x^5)\tan(y^5)}
+\right]
+&= \\
+&= 
+\lim_{(x,y)\to (0,0)} (2+y^3) \cdot
+\lim_{(x,y)\to (0,0)} \frac{\tan(x^3+y^3)}{x^3+y^3} +
+\lim_{(x,y)\to (0,0)} \frac{\tan(x^5+y^5)}{\tan(x^5) \tan(y^5)}
+\end{align*}
+
+Αν θέσω \(x^3+y^3=u\), έχω:
+\[
+\lim_{(x,y)\to (0,0)} \frac{\tan(x^3+y^3)}{x^3+y^3}
+= \lim_{u\to 0} \frac{\tan u}{u} =
+\lim_{u\to 0} \frac{(\tan u)'}{u'} =
+\lim_{u \to 0} \frac{1}{\cos^2 u} = 1
+\]
+
+\[
+\lim_{(x,y)\to (0,0)} \frac{\tan(x^5+y^5)}{\tan(x^5) \tan(y^5)}
+=
+\lim_{(x,y)\to (0,0)} \frac{\frac{\tan(x^5+y^5)}{x^5y^5}}{\frac{\tan(x^5)}{x^5}\cdot\frac{\tan(y^5)}{y^5}}
+=
+\frac{
+\lim_{v\to 0} \frac{\tan v}{v}
+}{
+\lim_{w\to 0} \frac{\tan w}{w}
+\cdot
+\lim_{z\to 0} \frac{\tan z}{z}
+}
+\quad 
+\left(
+\begin{matrix}
+x^5y^5 &=v\\
+x^5 &=w\\
+y^5 &=z
+\end{matrix}
+\right)
+\]
+
+Άρα \(\lim \bigg( \cdots \bigg) = 3\).
+
+\paragraph{}
+\[
+\lim_{(x,y) \to (0,0)} y^x \quad (y \geq 0)
+\]
+\subparagraph{(1) \(y=0\)}
+\[
+\lim_{(x,y)\to(0,0)}y^x=
+\lim_{x\to 0^+} 0^x = 0
+\]
+\subparagraph{(2) \(y=x\)}
+\begin{gather*}
+\lim_{(x,y)\to(0,0)}y^x=
+\lim_{x\to 0^+} x^x = 0 =
+\lim_{x\to 0^+} e^{\ln x^x} = \\
+\lim_{x\to 0^+} e^{x\ln x} =
+e^{\lim_{x\to 0^+} \ln x^x} =
+e^{\lim_{x\to 0^+} \frac{\ln x}{\frac{1}{x}}} = \\
+e^{\lim_{x\to 0^+} \frac{(\ln x)'}{\left(\frac{1}{x}\right) ' }} =
+e^{\lim_{x\to 0^+} \left( \frac{\frac{1}{x}}{-\frac{1}{x^2}} \right)} =  
+e^{\lim_{x\to 0^+} -x} = \mathbf 1
+\end{gather*}
+
+Επομένως το ζητούμενο όριο δεν υπάρχει.
+
+\paragraph{}
+\[
+\lim_{(x,y) \to(0,0)} \frac{x^2y^2}{x^2y^2+(x-y)^2}
+\]
+
+Θέτοντας \(y=\lambda x\), έχω:
+\begin{align*}
+\lim_{(x,y) \to(0,0)} \frac{x^2y^2}{x^2y^2+(x-y)^2}
+&= \\ &=
+\lim_{x \to 0} \frac{\lambda^2x^4}{\lambda^2x^4+x^2(1-\lambda)^2} \\
+&=
+\lim_{x \to 0} \frac{\lambda^2x^2}{\lambda^2x^2+x^2(1-\lambda)^2}
+\end{align*}
+
+Για \(\lambda=1\), γίνεται \(\lim_{x\to 0} \frac{x^2}{x^2}=1\).
+
+Για \(\lambda=-1\), γίνεται \(\lim_{x\to 0} \frac{x^2}{x^2+4} = 0\).
+
+Παρατηρούμε ότι για δύο διαφορετικές διαδρομές έχουμε διαφορετικό αποτέλεσμα, άρα το όριο δεν υπάρχει.
+
+\paragraph{}
+\begin{align*}
+\lim_{(x,y,z)\to(0,0,0)} \frac{xy^2z^3}{x^2+y^2+z^2}
+&=\\&=
+\lim_{r\to0^+} \frac{r\sin\theta\cos\theta \cdot r^2\sin^2\theta\sin^2\phi \cdot r^3\cos^3\theta}{r^2} \\ &=
+\lim_{r\to0^+} \underbrace{r^4}_{0} \cdot \big( \underbrace{ \cdots }_\text{φ} \big) = 0
+\end{align*}
+
+\paragraph{}
+\begin{align*}
+\lim_{(x,y)\to(0,0)} \frac{x+y+x^2}{x-y}
+&= \\ &=
+\lim_{r\to0^+} \frac{r\cos\phi+r\sin\phi+r^2\cos^2\phi}{r(\cos\phi-\sin\phi)}
+\\ &= \lim
+\frac{\cos\phi+\sin\phi}{\cos\phi-\sin\phi} + r
+\frac{\cos^2\phi}{\cos\phi-\sin\phi}
+\end{align*}
+Επειδή παρατηρώ ότι υπάρχει πιθανότητα απροσδιοριστίας, θα προσπαθήσω να αποδείξω ότι δεν υπάρχει το όριο.
+
+Θέτω \(y = \lambda x\):
+\begin{align*}
+\lim_{x\to0}\frac{x+\lambda x+x^2}{x-\lambda x} =
+\lim_{x\to0}\frac{x(1+\lambda+x)}{x(1-\lambda)} =
+\lim_{x\to0}\frac{1+\lambda+x}{1-\lambda} = \frac{1+\lambda}{1-\lambda}
+\end{align*}
+
+\paragraph{}
+\begin{align*}
+\lim_{(x,y)\to(0,0)} |x|^{|\frac{1}{y}|} &=
+\lim_{(x,y)\to(0,0)} e^{\ln|x|^{|\frac{1}{y}|}} \\ &=
+\lim_{(x,y)\to(0,0)} e^{\frac{1}{y} \ln |x|} \\ &=
+e^{  \lim_{(x,y)\to(0,0)} \frac{\ln|x|}{y}   } \\ &=
+e^{ \frac{\lim_{x\to0} \ln|x|  }{\lim_{y\to0} |y| }} \\ &=
+e^\frac{-\infty}{0^+} \\ &= e^{-\infty} = 0
+\end{align*}
+
+\paragraph{}
+\begin{align*}
+\lim_{(x,y)\to (0,0)} \frac{x+y-1}{\sqrt{x}-\sqrt{1-y}} &= \\ &=
+\lim_{(x,y)\to (0,0)} \frac{
+(x+y-1) \left(   \sqrt{x}+\sqrt{1-y}     \right)
+}{
+\left(
+\sqrt{x}-\sqrt{1-y}
+\right)
+\left(
+\sqrt{x}+\sqrt{1-y}
+\right)
+} \\ &=
+\lim_{(x,y)\to (0,0)}
+\frac{
+(x+y-1)\left(
+\sqrt{x}+\sqrt{1-y}
+\right)
+}{
+(\sqrt{x})^2-(\sqrt{1-y})^2
+} \\ &=
+\lim_{(x,y)\to(0,0)}
+\frac{(x+y-1)(\sqrt{x}+\sqrt{1-y}}{|x|-|1-y|} \\ &=
+\lim_{(x,y)\to(0,0)}
+\frac{(x+y-1)(\sqrt{x}+\sqrt{1-y})}{x-(1-y)} = 0
+\end{align*}
+
+
+\paragraph{}
+\begin{align*}
+ \lim_{(x,y)\to(0,0)} \frac{\sin x + \sin y}{\tan(2x)+\sin y}
+\end{align*}
+
+\subparagraph{(1) \(y=x\)}
+\begin{align*}
+\lim_{x\to0}\frac{\sin x + \sin x}{\tan(2x)+\sin x} =
+\lim_{x\to0}\frac{2\sin x}{\tan (2x) + \sin x} 
+ = \lim_{x\to0}
+ \frac{2\cos x}{\frac{2}{\cos^2(2x)+\cos x}}
+ = \frac{2}{\frac{2}{1}+1} = \frac{2}{3}
+\end{align*}
+\subparagraph{(2) \(y=-x\)}
+\[
+\lim_{x\to0}
+\frac{\sin x-\sin x}{\tan(2x)-\sin x}
+= \lim_{x\to0} \frac{0}{\tan(2x)-\sin x} = 0
+\]
+
+Άρα το όριο δεν υπάρχει.
+
+\paragraph{}
+\begin{align*}
+ \lim_{(x,y)\to(0,0)} \frac{\sqrt{x+y}-\sqrt{x-y}}{x}
+\end{align*}
+Θα βρω το πεδίο ορισμού:
+
+\[
+\begin{cases}
+x+y \geq 0 &\implies y \geq -x \\
+x-y \geq 0 &\implies y \leq x \\
+x \neq 0
+\end{cases}
+\]
+%TODO Zaharis Graph 02
+
+Επειδή το \((0,1)\) είναι απομονωμένο σημείο (δεν είναι σημείο συσσώρευσης), δεν έχει νόημα ο υπολογισμός του ορίου εκεί.
+
+\paragraph{}
+\begin{align*}
+ &\lim_{(x,y)\to(\infty,\infty)}
+ e^{\frac{x+y}{x^2+y^2}}
+ \left[
+ 1+ \sin \left(
+ \frac{3}{|x|+|y|}
+ \right)
+ \right]^{|x|+|y|}
+ = \\ &=
+\lim_{r\to\infty}
+e^{\frac{r\cos\phi+r\sin\phi}{r^2}}
+\left[
+ 1+ \sin \left(
+ \frac{3}{r\left(|\cos\phi|+|\sin\phi|\right)}
+ \right)
+ \right]^{r\left(|\cos\phi|+|\sin\phi|\right)}
+ \\ &=
+\cancelto{1}{\lim_{r\to\infty} e^{ \frac{\cos\phi+\sin\phi}{r}  }}
+\cdot
+\lim_{r\to\infty}
+\left[
+ 1+ \sin \left(
+ \frac{3}{r\left(|\cos\phi|+|\sin\phi|\right)}
+ \right)
+ \right]^{r\left(|\cos\phi|+|\sin\phi|\right)}
+\end{align*}
+
+Θέτω \(t=\frac{1}{r\left(|\cos\phi|+|\sin\phi|\right)}\), άρα το όριο γίνεται:
+\begin{align*}
+& \lim_{t\to0^+}
+\left[
+1+\sin(3t)
+\right]^\frac{1}{t} \\
+&=
+e^{\lim_{t\to0^+} \ln \left[
+1+\sin(3t)
+ \right]^\frac{1}{t}}
+ \\ &=
+e^{\lim_{t\to0^+} \frac{\ln \left[
+1+\sin(3t)\right]}{t}
+ } \\
+ &=
+ e^{
+ \lim{t\to0^+}
+ \frac{3\cdot\cos(3t)}{1+\sin(3t)}
+ }
+\end{align*}
+
+\paragraph{}
+\begin{align*}
+ \lim_{(x,y,z)\to(0,0,0)} \frac{x^2-y^2+2y^3-z}{x^2+y^2+z^2}
+\end{align*}
+Θέτω \(\begin{cases}y=\lambda x\\ z = \mu x\end{cases}\). Το όριο γίνεται:
+\begin{align*}
+& \lim_{x\to0^+}
+\frac{x^2-\lambda^2x^2+2\lambda^3x^3-\mu x}{x^2+\lambda^2+\mu ^2 x^2}
+\\ &=
+\lim_{x\to0^+}
+\frac{x(x-\lambda^2x+2\lambda^3x^2-\mu)}{x^2(1+\lambda^2+\mu^2)} \\ &=
+\lim_{x\to0^+}
+\frac{x(1-\lambda^2)+2\lambda^3x^2-\mu}{x(1+\lambda^2+\mu^2)} = \frac{-\mu}{0} =
+\begin{cases}
+-\infty &= \text{ για } \mu = 1 \\
+\infty &= \text{ για } \mu = -1
+\end{cases}
+\end{align*}
 \end{document}
+
