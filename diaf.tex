@@ -14,6 +14,7 @@
 \usepackage{gfsartemisia}
 \usepackage{mathtools}
 \usepackage[makeroom]{cancel}
+\usepackage{mathrsfs}
 
 
 \usetikzlibrary{arrows.meta}
@@ -1221,5 +1222,266 @@ e^{\frac{in\pi t}{L}} =
 \]
 
 \end{theorem*}
+
+\begin{itemize}
+\item \(\mathfrak F_L\) το σύνολο των συναρτήσεων που ικανοποιούν \textlatin{Dirichlet}
+\item Το \(\mathfrak F_L\) είναι ΔΧ
+\item Το \(  \left\lbrace e^{\frac{in\pi t}{L}} \right\rbrace_{n \mathbb Z}\) είναι μια ορθογώνια βάση του \(\mathfrak{F_L}\)
+\item Το \(  \left\lbrace \cos{\frac{in\pi t}{L}} \right\rbrace_{n =0}^{\infty} \cup \left\lbrace \sin{\frac{in\pi t}{L}} \right\rbrace_{n =1}^\infty\) είναι μια ορθογώνια βάση του \(\mathfrak{F_L}\)
+\item \(\underbrace{f(t)}_{\mathclap{\text{περιοδική, με ημιπερίοδο $L$}}} = \sum_{n=-\infty^\infty} c_n e^\frac{in\pi t}{L}\), με
+\[
+c_n = \frac{1}{2L} \int_{-L}^L f(t)e^\frac{in\pi t}{L} \dif t
+\]
+\end{itemize}
+
+%TODO Kehagias 01 Graph
+\begin{align*}
+\vec{x} = [x_1 x_2 x_3] &= x_1 \vec{e_1} +x_2 \vec{e_2}+x_3 \vec{e_3}
+\\ &=
+\mathrm{Proj}(\vec{x}, \vec{e_1})
++\mathrm{Proj}(\vec{x}, \vec{e_2})
++ \mathrm{Proj}(\vec{x}, \vec{e_3})
+\\ &=
+\sum_{n=1}^3
+\vec{x} \cdot \vec{e_n} \cdot \frac{\vec{e_n}}{\norm{\vec{e_n}}}
+\end{align*}
+
+Άρα:
+\[
+f(t) = \sum_{n=-\infty^\infty} c_n e^\frac{in\pi t}{L}
+= \sum_{n=-\infty^\infty} \mathrm{Proj} \left( f(t), e^\frac{in\pi t}{L} \right)
+\]
+όπου \(\mathrm{Proj} \left( f(t), e^\frac{in\pi t}{L} \right) =
+f(t)\bullet e^\frac{in\pi t}{L} \frac{e^\frac{in\pi t}{L}}{\norm{e^\frac{in\pi t}{L}}}
+\)
+
+\begin{align*}
+f(t) \bullet e^\frac{in\pi t}{L} &= \int_{-L}^L f(t) \cdot \overline{e^\frac{in\pi t}{L}} \dif t 
+\\
+\norm{e^\frac{in\pi t}{L}} &= \int_{-L}^L e^\frac{in\pi t}{L} \cdot e^\frac{-in\pi t}{L} \dif t = 2L
+\end{align*}
+
+\begin{theorem}{\textlatin{Plancherel}}{}
+\[
+\frac{1}{2L} \int_{-L}^L f(t) \overline{g(t)} \dif t =
+\sum_n c_n \overline{r_n}
+\]
+
+Η \(\begin{cases}
+f(t)&= \sum_n c_n e^\frac{in\pi t}{L} \\
+f(t)&= \sum_n r_n e^\frac{in\pi t}{L}
+\end{cases}\)
+\end{theorem}
+
+\paragraph{Απόδειξη}
+\begin{align*}
+\frac{1}{2L} \int_{-L}^L f(t) \overline{g(t)} \dif t &=
+\frac{1}{2L} \int_{-L}^L 
+	\left( \sum_{n=-\infty}^\infty c_n e^\frac{in\pi t}{L}
+	\right)
+	\overline{\left(
+	\sum_{m=-\infty}^\infty c_m e^\frac{im\pi t}{L}
+	\right)}
+	\dif t
+\\ &=
+\frac{1}{2L} \int_{-L}^L \left(
+\sum_{n=-\infty}^\infty \sum_{m=-\infty}^\infty
+c_n e^\frac{in\pi t}{L}
+\overline{r_m} e^\frac{im\pi t}{L} \right) \dif t
+\\ &=
+\frac{1}{2L}
+\sum_{n=-\infty}^\infty
+\sum_{m=-\infty}^\infty
+c_n \bar{r_m}
+\underbrace{\int_{-L}^L
+e^\frac{i(n-m)\pi t}{L} \dif t}_{
+\begin{cases}
+0 \qquad & m \neq n\\
+2L & m = n
+\end{cases}
+}
+\\ &= \frac{1}{2L} 2L \sum_n c_n\bar{r_n}
+\end{align*}
+
+Γενικά:
+\[
+f(t) \leftrightarrow \vec{c} = [ \dots \ c_{-1}\  c_0\  c_1\ c_2\ \dots ]
+\]
+(με την επιφύλαξη ότι σε πεπερασμένο αριθμό σημείων μπορεί να αλλάζει η τιμή της συνάρτησης)
+
+Σύμφωνα με το θεώρημα:
+\begin{align*}
+f(t) &\leftrightarrow \vec{c} \\
+g(t) &\leftrightarrow \vec{r} \\
+ \frac{1}{2L} f\bullet g &= \vec{c} \bullet \vec{r}
+\end{align*}
+
+\begin{theorem}{Πόρισμα (\textlatin{Parseval})}{}
+\[
+\frac{1}{2L} \int_{-L}^L
+\left|
+f(t)
+\right|^2 \dif t
+= \sum_n
+|c_n|^2
+\]
+%TODO Graph 02 Kehagias
+\end{theorem}
+
+\begin{theorem}{}{}
+Αν \(f(t) \in \mathfrak F_L\) και \(f(t) = \sum_n c_n e^\frac{in\pi t}{L}\), τότε:
+\begin{align*}
+\od{f}{t}&=\sum_n c_n \frac{in\pi}{L} e^\frac{in\pi t}{L} \\
+\int f(t)&=\sum_n c_n \frac{L}{in\pi} e^\frac{in\pi t}{L}
+\end{align*}
+
+Τα ίδια για ημίτονα και συνημίτονα
+\end{theorem}
+
+\paragraph{Παράδειγμα}
+Δίνεται η \(f(t)
+= \begin{cases}
+|t| &\qquad t \in [-\pi,\pi] \\
+\text{περιοδική επέκταση} &\qquad t \notin [-\pi,\pi]
+\end{cases}
+\)
+Να βρεθεί η Σειρά (\textlatin{Fourier}) της \(f(t)\).
+\subparagraph{Λύση}
+%TODO Kehagias Graph 03
+Αφού λοιπόν \(g(t)=
+\frac{4}{\pi} \cdot
+\left(
+\sin t + \frac{\sin(3t)}{3} + \frac{\sin(5t)}{5} + \dots
+\right)
+\), τότε:
+\begin{align*}
+f(t) &=
+c - \frac{4}{\pi}
+\left(
+\cos t + \frac{\cos 3t}{3^2}
++ \frac{\cos 5t}{5^2}
+\right)
+\\ f\left(\frac{\pi}{2}\right) &= \frac{\pi}{2} = c
+\end{align*}
+
+Άρα τελικά:
+\[
+f(t) = \frac{\pi}{2} - \frac{4}{\pi}
+\left(
+\cos t + \frac{\cos 3t}{3^2}
++ \frac{\cos 5t}{5^2}
+\right)
+\]
+
+Παρατηρώ ότι η \(f\) έχει ασθενέστερες υψηλές συχνότητες από τη \(g\).
+
+\paragraph{Παράδειγμα}
+Να υπολογιστεί το:
+\[
+S_1 = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} + \cdots
+\]
+
+Είναι \begin{align*}
+g\left( \frac{\pi}{2}\right) &=
+\frac{4}{\pi}\left(
+\sin \frac{\pi}{2}+\frac{\sin\frac{3\pi}{2}}{3}
++ \frac{\sin\frac{5\pi}{2}}{5}
+\right)
+\\ 
+1 = g\left( \frac{\pi}{2}\right) &= \frac{4}{\pi}
+\left(
+1-\frac{1}{3}+\frac{1}{5}-\cdots
+\right) = S_1
+\end{align*}
+
+\paragraph{Παράδειγμα}
+Να υπολογιστεί το:
+\[
+S_1 = 1 + \frac{1}{3^2} + \frac{1}{5^2} + \frac{1}{7^2} + \cdots
+\]
+\subparagraph{Λύση}
+\begin{align*}
+0=f(0)&=\frac{\pi}{2} - \frac{4}{\pi} \cdot\left(
+1+\frac{1}{3^2}+\frac{1}{5^2}+\cdots
+\right)
+\\ \frac{\pi^2}{8} &= 1 + \frac{1}{3^2} + \frac{1}{5^2} + \cdots
+\end{align*}
+
+
+
+
+\section{Κεφάλαιο 9: Μετασχηματισμός Fourier}
+%TODO Kehagias Graph 04
+\begin{theorem*}{}
+Έστω ότι η \(f(t)\) ικανοποιεί τα εξής:
+\begin{enumerate}
+\item Τις συνθήκες \textlatin{Dirichlet} \(\forall L \in  \mathbb R \)
+\item \( \int_{-\infty}^\infty |f(t)| \dif t < \infty\) (δηλ. η \(f(t)\) είναι απολύτως ολοκληρώσιμη)
+\end{enumerate}
+
+Τότε:
+\[
+f(t) = \frac{1}{2\pi}
+\int_{-\infty}^\infty F(\omega) e^{i\omega t} \dif t
+\]
+όπου:
+\[
+F(\omega) = \int_{-\infty}^\infty f(t)e^{-i\omega t} \dif t
+\]
+
+\end{theorem*}
+
+\paragraph{Απόδειξη}
+Δίνεται η \(f(t)\). Διαλέγω τυχόν \(t\) και ορίζω την \(f_T(t) = f(t)\quad \forall t \in \left[ -\frac{T}{2}, \frac{T}{2} \right]\), που έχει σειρά \textlatin{Fourier}:
+\[
+f_T(t) = \sum_{n=-\infty}^\infty c(n) e^\frac{in2\pi t}{T}
+\]
+όπου
+\[
+c(n) = \frac{1}{T} \int_{-\frac{T}{2}}^\frac{T}{2} f(t) e^{-\frac{in2\pi t}{T}} \dif t
+\]
+
+Θέτω \(\delta \omega = \frac{2\pi}{T},\ \omega = n\cdot \delta \omega = \frac{2n\pi}{T}
+\)
+
+\begin{align*}
+f_T(t) &= \sum_{n=-\infty}^\infty
+\left(
+\frac{1}{T} \int_{-\frac{T}{2}}^\frac{T}{2} f(t) e^{-\frac{in2\pi t}{T}} \dif t
+\right) e^\frac{in2\pi t}{T}
+\\ &= \frac{1}{2\pi}
+\sum_{n=-\infty}^\infty
+\left(
+\frac{2\pi}{T}
+\int_{-\frac{T}{2}}^\frac{T}{2}
+f_T(t)e^{-i\omega t} \dif t
+\right) e^\frac{in2\pi t}{T}
+\\ &=
+\frac{1}{2\pi}
+\sum_{n=-\infty}^\infty
+\left(
+\int_{-\frac{T}{2}}^\frac{T}{2}
+f_T(t)e^{-i\omega t} \dif t
+\right)
+e^{i\omega t} \delta \omega
+\\ &=
+\frac{1}{2\pi}
+\int_{-\infty}^\infty
+\underbrace{\left(
+\int_{-\infty}^\infty
+f(t)e^{i\omega t} \dif t
+\right)}^{F(\omega)}
+e^{i\omega t}
+\dif \omega
+\end{align*}
+
+Την \(F(\omega)\) την ονομάζουμε \textbf{\textlatin{Fourier} μετασχηματισμένη} της \(f(t)\), και γράφουμε:
+\[
+\mathscr{F}\bigg( f(t) \bigg) = F(\omega)
+\]
+
+
+
+
 
 \end{document}

@@ -1072,9 +1072,124 @@ y_\rho & y_\theta
 
 Μη γνήσια ολοκληρώματα εκτός ύλης.
 
+\subsection{Ασκήσεις}
+\paragraph{Άσκηση 1}
+
+Υπολογίστε το:
+\[
+\iint_T (x^2y + x \cos y) \dif x \dif y
+\]
+επί του χωρίου:
+\[
+T =  \left\lbrace (x,y):0 \leq x \leq 1, \ -\pi \leq y \leq \pi  \right\rbrace
+\]
+
+\begin{align*}
+I&=
+\overbrace{\int_{-\pi}^\pi
+\overbrace{\int_0^1
+(x^2y+x\cos y)}^{\text{τα }x\text{ με τα }\dif x}
+}^{\text{τα }y\text{ με τα }\dif y}
+\underbrace{\dif x \dif y}_{\mathclap{\text{το επέλεξα τυχαία}}}
+\\ \text{(διαδοχική ολοκλήρωση ΠΑΝΤΑ από μέσα προς τα έξω)} &=
+\int_{\pi}^\pi
+\left.
+\frac{x^3}{3}y
++ \frac{x^2}{2} \cos y
+\right|_0^1
+\dif y
+\\ &=
+\int_{\pi}^\pi
+\left(
+\frac{y}{3} + \frac{\cos y}{2}
+\right)
+\dif y
+\\ &=
+\left.
+\frac{y^2}{6} +
+\frac{\sin y}{2}
+\right|_{-\pi}^\pi
+\\ &= 0
+\end{align*}
 
 
+\paragraph{Άσκηση 2}
+Υπολογίστε το \(\iint_T (x^2+y^2) \dif x\dif y\) επί του κλειστού και φραγμένου χωρίου μεταξύ των καμπύλων \(y=x^2\) και \(x=y^2\).
 
+\subparagraph{(α) Υποτυπώδες σχήμα}
+%TODO Atreas Graph 01
+
+\subparagraph{Σημεία τομής}
+\[
+\begin{cases}
+y&=x^2\\
+x&=y^2
+\end{cases}
+\implies
+\begin{cases}
+y&=y^4\\
+x&=y^2
+\end{cases}
+\implies
+\begin{cases}
+y(1-y^3)&=0\\
+x&=y^4
+\end{cases}
+\implies
+\begin{cases}
+y&=0\\
+x&=0
+\end{cases}
+\text{ή}
+\begin{cases}
+y&=1\\
+x&=1
+\end{cases}
+\]
+
+\subparagraph{(β)}
+Το χωρίο \(T\) είναι κανονικό ως προς $y$. Πράγματι, τυχαία ευθεία \(\epsilon \parallel y'y\) \textbf{εισέρχεται στο \(\mathbf T\) μέσω της \boxed{\text{ΣΥΝΑΡΤΗΣΗΣ \(\mathbf{y=x^2}\)}} και εξέρχεται από το \(\mathbf T\) μέσω της \boxed{\text{ΣΥΝΑΡΤΗΣΗΣ \(\mathbf{y=\sqrt{x}}\)}}}.
+
+Τότε το \(T\) γράφεται ως:
+\[
+T =  \left\lbrace 
+(x,y):
+0 \leq x \leq 1,\
+x^2 \leq y \leq \sqrt{x}
+ \right\rbrace
+\]
+
+\subparagraph{Έτσι:}
+\begin{align*}
+I &=\iint_T (x^2+y^2) \dif x \dif y
+\\ &=
+\int_0^1
+\int_{x^2}^{\sqrt{x}}
+(x^2+y^2)
+\underbrace{
+\dif y \dif x
+}_{\mathclap{\text{αναγκαστικά διότι έχω θεωρήσει ότι το χωρίο κανονικό ως προς $y$}}}
+\\ &=
+\int_0^1
+\left. x^2y + \frac{y^3}{3} \right|_{x^2}^{\sqrt{x}}
+\dif x
+\\ &=
+\int_0^1
+\left( x^\frac{5}{2} 
++ \frac{x^\frac{3}{2}}{3}-x^4 -\frac{x^6}{3} \right)
+\dif x
+\\ &=
+\left.
+\frac{2}{7}x^{\frac{7}{2}}
++ \frac{2}{15} x^\frac{5}{2}
+- \frac{x^5}{5}
+- \frac{x^7}{21}
+\right|_0^1
+\\ &=
+\frac{2}{7} + \frac{2}{15}
+- \frac{1}{5}
+- \frac{1}{21}
+\end{align*}
 
 
 
@@ -1822,5 +1937,189 @@ e^{\lim_{t\to0^+} \frac{\ln \left[
 \infty &= \text{ για } \mu = -1
 \end{cases}
 \end{align*}
+
+
+
+\paragraph{}
+\[
+f(x,y) = \frac{xy}{x^2+y^2}+x^2y \sin \left(\frac{1}{x^2} \right)
+\]
+Όριο, διπλά όρια?
+
+\begin{gather*}
+ \lim_{(x,y)\to (0,0)} f(x,y) = 
+  \lim_{(x,y)\to (0,0)} 
+	\left[
+\frac{xy}{x^2+y^2}
++ x^2y\sin \left( \frac{1}{x^2} \right)
+	\right]
+	=
+	 \lim_{(x,y)\to (0,0)}  \frac{xy}{x^2+y^2}
++ \lim_{(x,y)\to (0,0)} 
+\underbrace{x^2y}_\text{μ} \underbrace{\sin \left( \frac{1}{x^2} \right)}_\text{φ}
+\\
+ \lim_{r\to0^+} \frac{r\cos\theta \ r\sin\theta}{r^2}
+ = \lim_{r\to0^+} \cos\theta \ \sin\theta
+\end{gather*}
+Εναλλακτικός τρόπος:
+\[y=\lambda x,\quad  \lim_{x\to0}  \frac{\lambda x^2}{x^2(1+\lambda^2)} = \frac{\lambda}{1+\lambda^2}\]
+Άρα δεν υπάρχει το όριο.
+
+Για τα διπλά όρια:
+\[
+\lim_{y\to0}
+\left(
+\lim_{x\to0} f(x,y)
+\right)
+=
+\lim_{y\to0} \left( \frac{0\cdot y}{0^2+y^2}+0^2y \sin \left( \frac{1}{0^2} \right) \right) = 0 = \lim_{y\to0}(0)=0
+\]
+
+\[
+\lim_{x\to0}
+\left(
+\lim_{y\to0} f(x,y)
+\right)
+=
+\lim_{y\to0} \left( \frac{x\cdot 0}{x^2+0^2}+x^2\cdot 0 \sin \left( \frac{x}{0^2} \right) \right) = 0 = \lim_{x\to0}(0)=0
+\]
+Παρατηρούμε ότι τα διπλά όρια υπάρχουν και είναι ίσα μεταξύ τους, αλλά το όριο της συνάρτησης δεν υπάρχει.
+
+\paragraph{Άσκηση}
+\[ f(x,y,z) = \frac{x\sin x + y\sin y + z\sin z}{x^2+y^2+z^2} 
+\quad \mathbb R^3 -  \left\lbrace (0,0,0) \right\rbrace
+\]
+Τροποποίηση συνάρτησης ώστε να είναι συνεχής σε όλο το \(\mathbb R^3\), δηλαδή:
+\[
+f(x,y,z) = \begin{cases}
+\frac{\cdots}{\cdots}, \quad &  \mathbb R ^3 -  \left\lbrace (0,0,0) \right\rbrace \\
+??? & (0,0,0)
+\end{cases}
+\]
+
+\begin{align*}
+ & \lim_{\mathclap{(x,y,z)\to (0,0,0)} }
+ \frac{x\sin x + y\sin y + z\sin z}{x^2+y^2+z^2} 
+ =
+  \lim_{(x,y,z)\to (0,0,0)} 
+\left(
+\frac{x^2}{x^2+y^2+z^2} \frac{\sin x}{x}
++\frac{y^2}{x^2+y^2+z^2} \frac{\sin y}{y}
++\frac{z^2}{x^2+y^2+z^2} \frac{\sin z}{z}
+\right)
+\\ &=
+ \lim_{(x,y,z)\to (0,0,0)} \frac{x^2}{x^2+y^2+z^2}
+\cdot \cancelto{1}{\lim_{x\to0} \frac{\sin x}{x}}
+ + \lim_{(x,y,z)\to 0} \frac{y^2}{x^2+y^2+z^2}
+\cdot \cancelto{1}{\lim_{y\to0} \frac{\sin y}{y}}
+ + \lim_{(x,y,z)\to 0} \frac{z^2}{x^2+y^2+z^2}
+\cdot \cancelto{1}{\lim_{z\to0} \frac{\sin z}{z}}
+\\ &=
+ \lim_{(x,y,z)\to (0,0,0)} 
+ \frac{x^2+y^2+z^2}{x^2+y^2+z^2} =1 
+\end{align*}
+
+Άρα τελικά:
+\[
+f(x,y,z) = \begin{cases}
+\frac{\cdots}{\cdots}, \quad &  \mathbb R ^3 -  \left\lbrace (0,0,0) \right\rbrace \\
+1 & (0,0,0)
+\end{cases}
+\]
+
+\paragraph{Άσκηση}
+\[
+f(x,y) = \frac{\sin x - \sin y}{\tan x - \tan y},
+\quad D = \overbrace{\left[
+0, \frac{\pi}{4}
+\right]^2}^{\left[
+0, \frac{\pi}{4}
+\right] \times \left[
+0, \frac{\pi}{4}
+\right]} - \left\lbrace (x,y):\ x=y \right\rbrace
+\]
+
+Τροποποίηση της \(f(x,y)\) ώστε η \(f(x,y)\) να είναι συνεχής στο \(\left[
+0, \frac{\pi}{4}
+\right]^2\)
+
+\begin{gather*}
+\frac{\sin x - \sin y}{\frac{\sin x}{\cos x}-\frac{\sin y}{\cos y}}
+= \frac{\sin x - \sin y}{\frac{\sin x \cos y - \sin y \cos x}{\cos x \cos y}}
+= \frac{\sin x - \sin y}{\sin (x-y)} \cos x \cos y =\\
+= \frac{\cancel{2 \sin \frac{x-y}{2}} \cos \frac{x+y}{2}}{\cancel{2\sin\frac{x-y}{2}} \cos\frac{x-y}{2}}
+\cos x \cos y
+= \frac{\cos\frac{x+y}{2}}{\cos\frac{x-y}{2}}\cos x \cos y
+\end{gather*}
+
+\begin{gather*}
+ \lim_{(x,y)\to (x,x)}  f(x,y)
+ = 
+ \frac{\cos\frac{2x}{2}}{\cos 0} \cos x \cos x = \cos^3x
+\end{gather*}
+
+Άρα τελικά:
+\[
+f(x,y) = \begin{cases}
+\frac{\sin x - \sin y}{\tan x - \tan y},\quad & \left[
+0, \frac{\pi}{4}
+\right]^2 - \left\lbrace (x,y):\ x=y \right\rbrace \\
+\cos^3x,\quad & x=y
+\end{cases}
+\]
+
+\subsection{Κατευθυνόμενη Παράγωγος}
+%TODO Zaharis Graph 01
+%TODO Zaharis Graph 02
+\[
+\pd{F(P_0)}{\vec{a}} = \nabla_{\vec{a}} f(P_0) = \vec{D}_{\vec{a}} f(P_0)
+= \lim_{t\to0} \frac{\overbrace{f(P_0 +t\vec{a})}^{f(P)} - f(P_0)}{t}
+= \lim_{t\to0} \frac{f(\vec{r}_{P_0}+t\vec{a})-f(\vec{r_{P_0}})}{t}
+\]
+
+\[
+\frac{\Delta f}{t} = \tan \phi
+\]
+
+Μερικές παράγωγοι:
+\begin{align*}
+\frac{\partial f(P_0)}{\partial \vec{e_1}} &= \frac{\partial f(P_0)}{\partial x} = \lim_{t\to0} \frac{f(x_0+t,y_0)-f(x_0,y_0)}{t} \\
+\frac{\partial f(P_0)}{\partial \vec{e_2}} &= \frac{\partial f(P_0)}{\partial y} = \lim_{t\to0} \frac{f(x_0,y_0+t)-f(x_0,y_0)}{t} \\
+\end{align*}
+(αντίστοιχα ορίζονται και για περισσότερες διαστάσεις - δε συμπεριλαμβάνεται σε αυτόν τον ορισμό ο άξονας των \(z\), αφού δεν είναι μέρος του πεδίου ορισμού)
+
+\paragraph{Παράδειγμα}
+Έστω \(f(x,y)=\frac{xy}{x^2+y^2}+x^2y\sin\left(\frac{1}{x^2}\right)\).
+
+Τότε:
+\begin{align*}
+\pd{P(x,y)}{x} &= \frac{y(x^2+y^2)-xy\cdot2x}{(x^2+y^2)^2}
++ y \left[
+2x\sin\left(\frac{1}{x^2}\right)
++x^2 \cdot \cos\left( \frac{1}{x^2}\right)\left( -\frac{2}{x^3} \right)
+\right] \\
+\pd{P(x,y)}{y} &=\frac{x(x^2+y^2)-xy\cdot2y}{(x^2+y^2)^2}+x^2\sin \left( \frac{1}{x^2}\right)
+\end{align*}
+
+\paragraph{}
+Για να είναι συνεχής μια συνάρτηση στο σημείο \(P_0\), αρκεί:
+\[
+\begin{cases}
+\exists f_x, f_y\quad \pi_\epsilon (P_0) \\
+f_x,f_y\text{ πεπερασμένες}
+\end{cases}
+\implies\text{ΜΕΡΙΚΩΣ ΠΑΡΑΓΩΓΙΣΙΜΗ}
+\]
+Αν η συνάρτηση είναι μερικώς παραγωγίσιμη, υπάρχει η λύση (\textlatin{Gradient}) συνάρτησης.
+
+\subsubsection{\textlatin{Gradient} συνάρτησης \(f(x_1,\dots,x_n)\)}
+\begin{gather*}
+\mathrm{grad}\,f = \nabla f(x_1,\dots,x_n) =
+\left[
+f_{x_1}(P)\dots f_{x_n}(P)
+\right] \\
+\nabla f = \left[ f_x f_y \right]
+\end{gather*}
+
 \end{document}
 
