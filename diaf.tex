@@ -1196,10 +1196,29 @@ e^{\frac{in\pi t}{L}} = 0
 
 Δηλαδή:
 \[
-e^{\frac{im\pi t}{L}} \cdot
-e^{\frac{in\pi t}{L}} = 0
+\int_{-L}^L e^{\frac{im\pi t}{L}} \cdot
+ e^{\frac{in\pi t}{L}} \dif t =0
 \]
 
+Για να ορίσω το εσωτερικό γινόμενο, θέλω \(
+\|\vec{x}\|^2 = \vec{x} \cdot \vec{x} = \sum_n x_n\bar{x_n} = \sum(x_n)^2
+\)
+
+\[
+f \cdot g = \int_{-L}^L f(t) \overline{g(t)} \dif t
+\]
+
+Άρα
+\[
+e^{\frac{im\pi t}{L}} \cdot
+e^{\frac{in\pi t}{L}} =
+\int_{-L}^L e^{\frac{im\pi t}{L}} e^{\frac{in\pi t}{L}} \dif t =
+\int_{-L}^L e^{\frac{i(m-n)\pi t}{L}} \dif t =
+\begin{cases}
+2L, \quad & m=n \\
+0, \quad & m \neq n
+\end{cases}
+\]
 
 \end{theorem*}
 
