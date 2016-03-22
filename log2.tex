@@ -1191,6 +1191,62 @@ I &=\iint_T (x^2+y^2) \dif x \dif y
 - \frac{1}{21}
 \end{align*}
 
+\paragraph{Άσκηση 3}
+Υπολογίστε τον όγκοτου στερεού μεταξύ της επιφάνειας \(z = f(x,y)=1+xy\), και των επιπέδων \(y=0,\ z=0,\ x+y=1,\ y=x \quad (x,y \geq 0)\).
+
+Γνωρίζω ότι
+\[
+V = \iint_{\underbrace{\boxed{T}}_?} \underbrace{f(x,y)}_{?} \dif x\dif y
+\]
+
+\subparagraph{(Α) Υποτυπώδες σχήμα}
+%TODO Atreas Graph 01
+
+\subparagraph{(Β) Προς ολοκλήρωση χωρίο}
+\[
+V=\iint_T (1+xy) \dif x \dif y
+\]
+Το χωρίο \(T\) είναι κανονικό (δηλ. και ως προς $x$ και ως προς $y$). Θα εργασθώ Επιλέγοντας το χωρίο \(T\) να είναι κανονικό ως προς \(x\).
+
+%TODO Atreas Graph 02
+\textbf{Τότε έχω:}
+\begin{align*}
+V &= \overbrace{\int_0^\frac{1}{2}}^{\mathclap{\text{προβολή του χωρίου $T$ στον άξονα $y'y$}}} \underbrace{\int_{x_\mathrm{min}}^{x_\mathrm{max}} (1+xy) \dif x}_{\mathclap{\text{κανονικό ως προς $x$,\quad μεταβλητά όρια στο εσωτερικό ολοκλήρωμα}}} \dif y \\
+&= \int_0^\frac{1}{2} \int_y^{1-y} (1+xy)\dif x \dif y \\
+&= \int_0^\frac{1}{2} x  + \left. \frac{x^2}{2} y \right|_y^{1-y} \dif y \\
+&= \int_0^\frac{1}{2}(1-y) + \frac{y}{2}(1-y)^2-y-\frac{y^3}{2} \dif y \\
+&= \int_0^\frac{1}{2} \left(
+1-y+\frac{y}{2}-y^2+\frac{y^3}{2}-y-\frac{y^3}{2}
+ \right) \dif y
+ \\ &=
+ \int_0^\frac{1}{2} \left(
+ 1-\frac{3}{2}y-y^2
+ \right) \dif y
+ \\ &= \left.
+ y-\frac{3}{4}y^2-\frac{y^3}{3} \right|_0^\frac{1}{2}
+ \\ &= \frac{1}{2}-\frac{3}{16}-\frac{1}{24}
+ \\ &= \frac{24-9-2}{18} = \frac{13}{48}
+\end{align*}
+
+\begin{attnbox}{Σημείωση}
+Αν θεωρήσουμε το χωρίο $T$ κανονικό ως προς \(y\), τότε θα είχα:
+
+%TODO Atreas Graph 03
+
+\[
+V = \int_0^\frac{1}{2} \int_0^x (1+xy) \dif y \dif x
++ \int_\frac{1}{2}^1 \int_0^{1-x} (1+xy) \dif y \dif x
+\]
+\end{attnbox}
+
+\paragraph{Άσκηση 4}
+Υπολογίστε το διπλό ολοκλήρωμα
+\[
+I = \int_0^3 \int_y^3 e^{x^2} \dif x \dif y
+\]
+
+
+
 
 
 
