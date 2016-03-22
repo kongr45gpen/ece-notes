@@ -908,4 +908,146 @@ P( \Gamma E) &= q \\
 R &= (A_1 \cup A_2) \cap \left( (A_3 \cup (  \Gamma E \cap A_4)  \right)
 \end{align*}
 
+\paragraph{Άσκηση 11}
+%TODO Σχήμα
+\begin{gather*}
+P(A) = \frac{N(A)}{N(S)} = \frac{12}{100} \\
+S =  \left\lbrace 0,1,2,\dots,9 \right\rbrace \\
+P(B) = \frac{N(B)}{N(S)} = \frac{6}{40}
+\end{gather*}
+
+\paragraph{Άσκηση 12}
+\begin{gather*}
+K, \Theta\\
+P(K) = 0.01 \\
+P(\Theta) = 0.02 \\
+P(\Theta | K) = 0.08 \\
+P \left(  (\Theta - K) \middle| (\Theta \cup K) \right) = ?
+\end{gather*}
+
+\begin{align*}
+P \left(  (\Theta - K) \middle| (\Theta \cup K) \right) &=
+\frac{P \left(  (\Theta - K) \cap (\Theta \cup K) \right)}{P(\Theta \cup K)}
+\\
+P(\Theta \cup K) &=
+P(\Theta)+P(K)-P(\Theta \cap K) \\
+&= 0.02+0.01-P(K)P(\Theta | K) \\
+&= 0.02+0.01-0.01 \cdot 0.08 \\
+&= 0.0292 \\
+\text{Άρα }
+P \left(  (\Theta - K) \middle| (\Theta \cup K) \right) &=
+\frac{P(\Theta - K)}{0.0292} \\
+&=
+\frac{\overbrace{P(\Theta)}^{0.02} - \overbrace{P(\Theta \cap K)}^{0.0008}}{0.0292}
+\\
+&\approx 65.75 \%
+\end{align*}
+
+\paragraph{Άσκηση 13}
+%TODO Σχήμα
+\begin{gather*}
+P(A) = \frac{N(A)}{N(S)} = \frac{120}{\mathrm C(25,25)}
+= \frac{120}{\frac{25!}{(25-2)!}}
+\end{gather*}
+ή
+\begin{align*}
+A_1,\ \overline{A_1} \\
+P(A_2) &= \underbrace{P(A_2|A_1)}_\frac{4}{24}
+\underbrace{P(A_1)}_\frac{5}{25}+
+\underbrace{P(A_2|\overline{A_2})}_\frac{5}{25}
+\underbrace{P(\overline{A_1})}_\frac{20}{25}
+\end{align*}
+
+\paragraph{Άσκηση 15}
+\begin{align*}
+P(A)=0.10\\
+P(B)=0.10\\
+P(A\cap B)=0.02
+\end{align*}
+
+\begin{align*}
+P \left(
+(A-B) \cup (B-A)
+\right) &= P(A-B)+P(B-A) \\ &=
+P(A)-P(A \cap B) + P(B) - P (B \cap A)
+\\ &=
+0.20 - 2 (0.02) = 0.16
+\end{align*}
+
+\begin{align*}
+A_0,A_1,A_2
+P(E) &=
+P(E|A_0)P(A_0)+P(E|A_1)P(A_1)+P(E|A_2)P(A_2)
+\\ &=
+0.90\cdot 0.82 + 0.70 \cdot 0.16 + 0.40 \cdot 0.02 \\
+P(A_0) &= 1 - P(A \cup B)
+=
+1 -
+\big(
+\underbrace{
+P(A)+P(B)-P(A \cap B)
+}_{0.18}
+\big) \\
+P(A_2|\bar{E}) &=
+\frac{\overbrace{P(A_2)}^{0.02} \overbrace{P(\bar{E}|A_2)}^{0.60}}{P(\bar{E})}
+\end{align*}
+
+\paragraph{Άσκηση 16}
+\begin{gather*}
+P(A) = 0.08 \\
+P(\overline{A}) = 0.92 \\
+P(\Theta | A) = 0.95 \\
+P(\Theta | \bar{A}) = 0.05 \\
+P(\Theta_1 \cap \Theta_2 | A) = P(\Theta_1|A)P(\Theta_2|A) = 0.95^2 \\
+P(\overline{\Theta_1} \cap \overline{\Theta_2}) = P(A)P(\overline{\Theta_1} \cap \overline{\Theta_2} | A)
++ P (\overline{A}) P (\overline{\Theta_1} \cap \overline{\Theta_2}|\overline{A})
+= 0.08 \cdot 0.95^2 + 0.92 \left( 0.05^2 \right) \\
+P(\overline{A}| \overline{\Theta_1} \cap \overline{\Theta_2})
+= P(\overline{A})P\left((\overline{\Theta_1} \cap \overline{\Theta_2})|A\right)
+\end{gather*}
+
+\paragraph{Άσκηση 17}
+\begin{gather*}
+P(A) = 0.60 \\
+P(M) = 0.80 \\
+P(M|A) = ?
+\end{gather*}
+
+\begin{align*}
+P(M|A) &= \frac{P(M \cap A)}{P(A)}
+\\ &= \frac{;}{0.60}
+\\
+\underbrace{(M \cup A)}_{\leq 1} &=
+\underbrace{P(M)}_{0.80}
++\underbrace{P(M)}_{0.60}
+-\underbrace{P(M\cap A)}_{\geq 0.40}
+\\ P(M|A) &= \frac{\geq 0.40}{0.60}
+\end{align*}
+
+\paragraph{Άσκηση 19}
+%TODO Graph
+\begin{align*}
+P(A) =
+\underbrace{P(A|A_1)}_{\frac{1}{4}+\frac{1}{8}=\frac{3}{8}}
+\underbrace{P(A_1)}_\frac{1}{4}
++\cdots
++\underbrace{P(A|A_4)}
+\underbrace{P(A_4)}
+\end{align*}
+
+\paragraph{Άσκηση 20}
+%TODO Graph
+\begin{align*}
+P(A) &= \frac{A}{\pi N \lambda^2} \\
+P(\overline{A}) &= 1 -\frac{A}{\pi N \lambda^2} \\
+P(\overline{A_1}\cap\overline{A_2}\cap\overline{A_3}\cap\cdots\cap\overline{A_N}) &=
+\left(
+1- \frac{A}{\pi N \lambda^2}
+\right)^N \\
+\lim_{N\to \infty} P &= e^{-\frac{A}{\pi \lambda^2}}
+\end{align*}
+
+\paragraph{Οι υπόλοιπες ασκήσεις}
+για το σπίτι.
+
 \end{document}
