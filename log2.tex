@@ -1245,6 +1245,204 @@ V = \int_0^\frac{1}{2} \int_0^x (1+xy) \dif y \dif x
 I = \int_0^3 \int_y^3 e^{x^2} \dif x \dif y
 \]
 
+\subparagraph{(Α)}
+Σην άσκηση, όπως είναι γραμμένο το προς ολοκλήρωση χωρίο, έχει θεωρηθεί κανονικό \textbf{ως προς $\mathbf x$}.
+
+\subparagraph{(Β) Ποιό είναι το χωρίο? Σχεδίαση (υποτυπώδης)}
+%TODO Atreas Graph 04
+Το προς ολοκλήρωση χωρίο είναι το γραμμοσκιασμένο στο σχήμα
+
+\subparagraph{(Γ)}
+Θεωρώ το χωρίο αυτό κανονικό ως προς \(y\) (το οποίο ισχύει) και έχω:
+\begin{align*}
+Ι &= \int_0^3 \int_0^x e^{x^2} \dif y \dif x
+\\ &=
+\int_0^3 \left. ye^{x^2} \right|_0^x \dif x
+\\ &=
+\int_0^x xe^{x^2} \dif x
+\\ &= \left.
+\frac{1}{2}e^{x^2} \right|_0^3
+\\ &= \frac{1}{2}\left(
+e^2-1
+\right)
+\end{align*}
+
+\paragraph{Άσκηση 5}
+Μετασχηματίστε τα χωρία
+\begin{enumparen}
+\item \(A =  \left\lbrace (x,y): 1 \leq x^2+y^2 \leq 4 \right\rbrace\)
+\item \(B =  \left\lbrace (x,y): 1 \leq x^2+y^2 \leq 18x \right\rbrace\)
+\end{enumparen}
+σε πολικές συντεταγμένες.
+
+\begin{enumparen}
+\item
+%TODO Atreas Graph 05
+\[
+A' =  \left\lbrace  (\rho,\theta): 1 \leq \rho \leq 2,\ 0 \leq \theta \leq 2\pi\right\rbrace
+\]
+\item
+\[
+\begin{cases}
+x^2+y^2 =1 \qquad & \text{(κύκλος κέντρου $(0,0)$ ακτ. 1} \\
+x^2+y^2 =18x \qquad & \text{(κύκλος κέντρου $(9,0)$ ακτ. 9} 
+\end{cases}
+\]
+\[
+x^2-18x+y^2=0 \implies
+x^2-2\cdot 9 x +9^2-9^2+y^2=0
+\implies (x-9)^2+y^2=9^2
+\]
+
+Περιγράφω τις συνοριακές καμπύλες
+\(
+\begin{cases}
+x^2+y^2 &=11 \\
+x^2+y^2 &=18x  
+\end{cases}
+\)
+σε πολικές συντεταγμένες (\(x=\rho\cos\theta,\ y=\rho\sin\theta\))
+\begin{itemize}
+\item \(\rho^2=1 \implies \boxed{\rho=1}\)
+\item \(\rho^2=18\rho\cos\theta \implies \boxed{\rho =18\cos\theta}\)
+\end{itemize}
+
+Λύνω το σύστημα \(
+\begin{cases}
+\rho &=1 \\
+\rho &= 18\cos\theta
+\end{cases}
+\) (μου δίνει τα κοινά σημεία τομής των δύο κύκλων)
+\[
+18\cos\theta=1\implies\cos\theta=\frac{1}{18}
+\implies \theta = \arccos\left( \frac{1}{18}\right)
+\]
+
+\[
+A' =  \left\lbrace
+(\rho,\theta): 1 \leq \rho \leq 18\cos\theta,\
+-\arccos\left( \frac{1}{18}\right) \leq \theta \leq \arccos\left( \frac{1}{18}\right)
+ \right\rbrace
+\]
+\end{enumparen}
+
+\paragraph{Άσκηση 6}
+Υπολογίστε το \(\iint_t (x^2+y^2)\dif x \dif y\) επί του δίσκου \(T =  \left\lbrace (x,y): x^2+y^2 \leq 1  \right\rbrace\)
+
+Με μετασχηματισμό σε πολικές συντεταγμένες \textbf{έχουμε}:
+\begin{align*}
+I &= \iint_T (x^2+y^2)\dif x \dif y \\ &=
+\int_0^{2\pi} \int_0^1 \rho^2 \cdot \rho\dif\rho\dif\theta \\
+&=
+2\pi \cdot \left. \frac{\rho^4}{4} \right|_0^1 \\
+&= \frac{\pi}{2}
+\end{align*}
+
+Αν δεν χρησιμοποιούσα πολικές συντεταγμένες:
+\begin{align*}
+I&=\int_{-1}^1 \int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} (x^2+y^2) \dif y \dif x
+\\ &=
+\int_{-1}^1x^2y+\left. \frac{y^3}{3} \right|_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} \dif x
+\\ &=
+2 \int_{-1}^1 x^2\sqrt{1-x^2} + \frac{\left(\sqrt{1-x^2}\right)^3}{3}
+\\ &=^{x=\sin x}
+\int_{-\frac{\pi}{2}}^\frac{\pi}{2} \dif x
+\left(
+\sin^2 y \cdot \cos y + \frac{\cos y}{3}
+\right)^3 \cos y \dif y
+\\ &=^{\cos 2y = 2 \cos^2 y -1}_{1-2 \cos^2 y}  \dots
+\end{align*}
+
+
+\paragraph{Άσκηση 7}
+Υπολογίστε το \(\iint_T \sqrt{R^2-x^2-y^2}\dif x \dif y\) επί του χωρίου
+\(T =  \left\lbrace (x,y): x^2+y^2\leq kx \right\rbrace\) \( (R > 0 )\)
+
+\subparagraph{(Α) Σχήμα}
+Έχουμε \(x^2+y^2 \leq Rx \implies x^2-Rx+y^2\leq0\implies
+\underbrace{x^2-2\cdot\frac{R}{2}\cdot x + \left(\frac{R}{2}\right)^2}
+_{\left(x-\frac{R}{2}\right)^2+y^2 \leq \frac{R^2}{4}}
+-\left(\frac{R}{2}\right)^2+y^2\leq0\), κυκλικός δίσκος κέντρου \(
+\left(
+\frac{R}{2},0
+\right)
+\) και ακτίνας \(\frac{R}{2}\).
+
+Θα πρέπει να μετασχηματισθεί σε πολικές συντεταγμένες
+\[
+A= \left\lbrace 
+(\rho,\theta): -\frac{\pi}{2} \leq \theta \leq \frac{\pi}{2},\
+0 \leq \rho \leq R\cos\theta
+ \right\rbrace
+\]
+
+Τότε:
+\begin{align*}
+I &= \int_{-\frac{\pi}{2}}^\frac{\pi}{2}
+\int_0^{R\cos\theta}
+\sqrt{R^2-\rho^2} \cdot \overbrace{\rho \dif \rho \dif \theta}^{\mathrlap{\text{κατ' ευθείαν μπορώ να κάνω την αλλαγή}}}
+\\ &=
+-\frac{1}{2}
+\int_{-\frac{\pi}{2}}^\frac{\pi}{2}
+\int_0^{R\cos\theta}
+(R^2-\rho^2)^\frac{1}{2}
+\dif(R^2-\rho^2) \dif \theta
+\\ &=
+-\frac{1}{2}\cdot\frac{2}{3}
+\int_{-\frac{\pi}{2}}^\frac{\pi}{2}
+\left.
+\left(
+R^2-\rho^2
+\right)^{\frac{3}{2}}
+\right|_0^{R\cos\theta} \dif\theta
+\\ &=
+-\frac{R^3}{3}
+\int_{-\frac{\pi}{2}}^\frac{\pi}{2}
+|\sin^3\theta|
+\\ &=
+\frac{R^3\pi}{3}
+-\frac{2R^2}{3}
+\int_0^\frac{\pi}{2}
+\sin^3\theta\dif\theta
+\\ &=
+\frac{\pi R^3}{3}
++\frac{2R^3}{3}
+\int_0^\frac{\pi}{2}
+\sin^2\theta \dif (\cos\theta)
+\\ &=
+\frac{2R^3}{3}
+\int_0^\frac{\pi}{2}
+\left(
+1-\cos^2\theta
+\right) \dif \cos\theta + \frac{\pi R^3}{3}
+\\ &=
+\frac{2R^3}{3}
+\left.
+\left(
+\cos\theta-\frac{\cos^3\theta}{3}
+\right)
+\right|_0^\frac{\pi}{2}
++ \frac{\pi R^3}{3}
+\\ &= \frac{\pi R^3}{3} - \frac{4R^3}{9}
+\end{align*}
+
+
+\begin{attnbox}{}
+\[
+\int_a^b f\left(g(x)\right)
+\underbrace{g'(x)\dif x}_{\dif g(x)}
+\]
+\end{attnbox}
+
+
+
+
+
+
+
+
+
+
 
 
 
