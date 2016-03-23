@@ -1437,6 +1437,103 @@ R^2-\rho^2
 
 
 
+\paragraph{Άσκηση}
+\begin{attnbox}{SOS!}
+\end{attnbox}
+
+Υπολογίστε τον όγκο του φραγμένου στερεού μεταξύ των επιφανειών \(\overbrace{z=3x^2}^{\mathclap{\text{κυλινδρική επιφάνεια γιατί λείπει το $y$}}}\) και \(\underbrace{z=4-x^2-y^2}_{\mathclap{\text{παραβολοειδές}}}\)
+
+\subparagraph{(Α) Υποτυπώδες σχήμα}
+%TODO Atreas 01
+\subparagraph{(Β) Χωρίο ολοκλήρωσης}
+Η \textbf{προβολή} της τομής των δύο επιφανειών είναι:
+\[
+\begin{cases}
+z&=3x^2\\z&=4-x^2-y^2
+\end{cases}
+\implies
+3x^4-x^2-y^2\implies 4x^2+y^2=4 \implies x^2+\frac{y^2}{4}=1 \text{ (έλλειψη)}
+\]
+
+Άρα ολοκληρώνω εντός του χωρίου \(T\)
+
+\subparagraph{(Γ) Τι ολοκληρώνω?}
+\begin{align*}
+V &= \iint_T \big(z_\mathrm{max} - z_\mathrm{min}\big)(x,y)\dif x \dif y\\
+&= \iint_T (4-x^2-y^2)-3x^2 \dif x \dif y
+\end{align*}
+
+\subparagraph{(Δ) Υπολογισμός}
+\[
+V = \iint_T (4-4x^2-y^2)\dif x \dif y
+\]
+
+Θα χρησιμοποιήσω το μετασχηματισμό:
+\[
+\begin{cases}
+x&=\rho\cos\theta\\
+y&=2\rho\sin\theta
+\end{cases}
+\]
+
+
+\begin{align*}
+\left| \frac{D(x,y)}{D(\rho,\theta)} \right| =
+\left|
+\begin{matrix}
+x_\rho&x_\theta\\
+y_\rho&y_\theta
+\end{matrix}
+\right| = \left|
+\begin{matrix}
+\cos\theta&-\rho\sin\theta\\
+2\cos\theta&2\rho\sin\theta
+\end{matrix}
+\right| = 2\rho
+\end{align*}
+και
+\begin{align*}
+x^2+\frac{y^2}{4}=1 \implies^{x=\rho\cos\theta}_{y=2\rho\sin\theta}
+\rho^2=1 \implies \boxed{\rho=1}
+\end{align*}
+άρα το χωρίο \(T\) μετασχηματίζεται στο:
+\[
+T' =  \left\lbrace 
+(\rho,\theta):\ 0\leq\rho\leq1,\ 0\leq\theta\leq2\pi
+ \right\rbrace
+\]
+\textbf{άρα:}
+\begin{align*}
+V&=\iint_T \left( 4-4x^2-y^2\right)\dif x\dif y\\
+&= \iint_{T'} \left( 4-4\rho^2\cos^2\theta-4\rho^2\sin^2\theta\right)
+\mathbf{2\rho}\dif\rho\dif\theta\\
+&=
+8\int_0^{2\pi} \int_0^1 \left(1-\rho^2\right)\rho\dif\rho\dif\theta \\
+&= 8\cdot2\pi\cdot \int_0^1 \left(\rho-\rho^3\right)\dif\rho = 4\pi
+\end{align*}
+
+\paragraph{Άσκηση}
+Υπολογίστε το εμβαδόν μεταξύ των καμπύλων \(\rho=a\sin\theta,\ \rho=a\left(1-\cos\theta\right),\quad a>0\) στο ΑΝΩ ημιεπίπεδο.
+
+\subparagraph{(Α)}
+\[
+E = \iint_T 1 \dif x \dif y = \iint_{T'} \rho\dif\rho\dif\theta
+\]
+Εννοείται η άσκηση μπορεί να λυθεί και με τον τύπο του εμβαδού του Λογισμού \textlatin{I}.
+%TODO Atreas Graph 03
+
+\textbf{Άρα:}
+\begin{itemize}
+\item \(a\sin\theta \geq a(1-\cos\theta)\ \forall \theta \in [0,\frac{\pi}{2}]\)
+\item \(a\sin\theta\leq a(1-\cos\theta)\ \forall \theta \in [\frac{\pi}{2},\pi]\)
+\end{itemize}
+
+\begin{align*}
+E=&\int_0^\frac{\pi}{2}\int^{a\sin\theta}_{a(1-\cos\theta)}\rho\dif\rho\dif\theta +
+\\
++&\int_\frac{\pi}{2}^\pi\int_{a\sin\theta}^{a(1-\cos\theta)}\rho\dif\rho\dif\theta
+\end{align*}
+
 
 
 
@@ -2374,6 +2471,305 @@ f_{x_1}(P)\dots f_{x_n}(P)
 \right] \\
 \nabla f = \left[ f_x f_y \right]
 \end{gather*}
+
+\subsubsection{}
+\[
+\nabla f(P_0) =
+\left(
+f_{x_1}(P_0),f_{x_2}(P_0),\dots,f_{x_n}(P_0)
+\right)
+\]
+
+Η ύπαρξη του \(\nabla f(P_0)\) προϋποθέτει:
+\begin{enumerate}
+\item \(\exists f_{x_i}(P_0)\quad i=1,\dots,n\)
+\item \(f_{x_i}(P_0) \rightarrow \text{ πεπερασμένη}\)
+\end{enumerate}
+
+\paragraph{Πότε η \(f\) είναι συνεχής στο \(P_0\)?}
+%TODO Zaharis Graph 01
+
+\paragraph{Πότε η \(f\) είναι παραγωγίσιμη (διαφορίσιμη) στο \(P_0\)?}
+\begin{itemize}
+\item \(\exists \ f_{x_i}\)
+\item \(f_{x_i}\) συνεχείς
+\end{itemize}
+
+\subsection{}
+\[
+f'(x_0) = \lim_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}
+\implies
+\lim_{x\to x_0} \left|
+\frac{f(x)-f(x_0)-f'(x_0)(x-x_0)}{x-x_0}
+\right| = 0
+\]
+
+%TODO Zaharis Graph 02
+\[
+\lim_{P\to P_0}
+\frac{
+\Big|
+f(P)-f(P_0)-f'(P_0)(\overbrace{P-P_0}^{\vec{r_P}-\vec{r_{P_0}}})
+\Big|
+}{|\overrightarrow{PP_0}|}
+\]
+
+Τα διανύσματα γνωρίζουμε ότι γράφονται ως πίνακες μίας διάστασης:
+\[
+\vec{r_P}-\vec{r_{P_0}} =
+\begin{bmatrix}
+x_{1P}-x_{1P_0}\\
+x_{2P}-x_{2P_0}\\
+\vdots\\
+x_{nP}-x_{nP_0}
+\end{bmatrix}
+\]
+
+\[
+f'(x_0)=\begin{bmatrix}
+b_1&b_2&\cdots&b_n
+\end{bmatrix}
+\]
+
+\begin{align*}
+\lim_{t\to0}
+\frac{
+\left|
+f(P_0+t\vec{a})-f(P_0)-f'(P_0)t\vec{a}
+\right|
+}{|t||\vec{a}|} = 0 &\implies \\
+\lim_{t\to0}
+\left|
+\frac{f(P_0+t\vec{a})-f(P_0)-f'(P_0)t\vec{a}}{t}
+\right| = 0 &\implies \\
+\left|
+\lim_{t\to0}
+\frac{f(P_0+t\vec{a})}{t}
+- f'(P_0)\vec{a}
+\right| = 0 &\implies \\
+\frac{\partial f(P_0)}{\partial \vec{a}} - f'(P_0)\vec{a} = 0 &\implies\\
+\frac{\partial f(P_0)}{\partial \vec{a}} = f'(P_0)\cdot \vec{a}
+\end{align*}
+
+\paragraph{Συσχέτιση με \textlatin{Gradient}}
+\begin{align*}
+\pd{f(P_0)}{\vec{e_i}} = f'(P_0)\vec{e_1} &\implies \\
+\pd{f(P_0)}{\vec{e_i}} = 
+\begin{bmatrix}
+b_1&\cdots&b_i&\cdots&b_n
+\end{bmatrix}
+\begin{bmatrix}
+0\\ \vdots\\ 1  \\ \vdots \\ 0
+\end{bmatrix} \rightarrow \text{ 1 μόνο γραμμή}
+ &\implies \\
+\boxed{\pd{f(P_0)}{x_1}=b_i}
+\end{align*}
+
+\[
+f'(P_0) = \begin{bmatrix}
+b_1&b_2&\cdots&b_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+f_{x_1}(P_0)
+&f_{x_2}(P_0)
+&\cdots
+&f_{x_n}(P_0)
+\end{bmatrix}
+= \mathbf{\nabla f(P_0)}
+\]
+
+Βέβαια η \(f'(P_0)\) ορίζεται μόνο αν οι επιμέρους παράγωγοι είναι συνεχείς!
+
+\paragraph{Φυσική σημασία}
+\begin{align*}
+\left|
+\pd{f(P_0)}{\vec{a}} 
+\right|
+= \left|
+f'(P_0)\vec{a}
+\right|
+\implies
+\left|
+\pd{f(P_0)}{\vec{a}} 
+\right|
+= \left|
+\nabla f(P_0)\cdot\vec{a}
+\right|
+\leq
+\left|
+\nabla f(P_0)
+\right|
+\cdot
+\cancelto{1}{|\vec{a}|}
+\implies \boxed{
+\left|
+\pd{f(P_0)}{\vec{a}}
+\right|
+\leq
+\left|
+\nabla f(P_0)
+\right|}
+\end{align*}
+
+Άρα το \textlatin{gradient} προσδιορίζει το μέγιστο ρυθμό μεταβολής της συνάρτησης.
+
+Το διάνυσμα της κατεύθυνσης όπου μεγιστοποιείται ο ρυθμός μεταβολής είναι το:
+\[
+\vec{a} = \frac{\nabla f(P_0)}{\left| \nabla f(P_0) \right|}
+\]
+
+\subsection{Θεώρημα Μέσης Τιμής}
+\[
+f:\underbrace{E}_{\mathclap{\text{κυρτό σύνολο}}} \subseteq  \mathbb R ^n \to R
+\]
+
+%TODO Zaharis Graph 03
+Επάνω στην ευθεία που ενώνει τα \(P_0\) και \(P_1\), υπάρχει σημείο \(P^*\) τέτοιο ώστε:
+\[
+f(P_1)-f(P_0) = f'(P^*)\big( P_1-P_0\big)
+\]
+
+\subsubsection{Μερικές παράγωγοι ανώτερης τάξης}
+\[
+\frac{\partial^m f(P)}{\partial x_{km} \dots \partial x_{k2} \partial x_{k1}}
+= f_{x_{k1}x_{k2}\dots x_{km}}(P) =
+\frac{\partial}{\partial x_{km}}
+\left(
+\cdots
+\left(
+\frac{\partial}{\partial x_{k2}}
+\left(
+\frac{\partial f(P)}{\partial x_{k1}}
+\right)
+\right)
+\right)
+\]
+
+\paragraph{π.χ.}
+\[
+f=f(x,y,z)
+\]
+\begin{gather*}
+\pd{f}{x},\pd{f}{y},\pd{f}{z}\\
+\frac{\partial^2 f}{\partial x \partial y},\
+\frac{\partial^2 f}{\partial y \partial x},\
+\frac{\partial^2 f}{\partial x \partial x},\
+\frac{\partial^2 f}{\partial x \partial z},\
+\frac{\partial^2 f}{\partial z \partial x},\
+\frac{\partial^2 f}{\partial x \partial x}=\pd[2]{f}{x},\
+\frac{\partial^2 f}{\partial y \partial y}=\pd[2]{f}{y},\
+\end{gather*}
+
+Η συνέχεια των μερικών παραγώγων μέχρι κάποια τάξη, επιτρέπει την αντιμετάθεση των παραγώγων.
+
+Για παράδειγμα, αν η \(f\) έχει συνεχείς μερικές παραγώγους μέχρι και 2ης τάξης, ισχύει:
+\begin{gather*}
+\frac{\partial^2f}{\partial x\partial y} =
+\frac{\partial^2f}{\partial y\partial x}\\
+\frac{\partial^3f}{\partial x\partial y\partial z} \neq
+\frac{\partial^3f}{\partial y\partial z\partial x}
+\end{gather*}
+
+Επίσης συμβολίζω:
+\begin{gather*}
+\frac{\partial f}{\partial x} = f_x\\
+\frac{\partial^3 f(P)}{\partial x \partial y \partial z} = f_{zyx}(P)\\
+\frac{\partial^3 f(P)}{\partial x^2 \partial y} = f_{yx^2}(P)
+\end{gather*}
+(προσοχή στην αλλαγή φοράς των \(x,\ y,\ z\)!)
+
+Να σημειωθεί ότι η χρήση των \(\partial\) και \(f_{\dots}\) είναι καθαρά θέμα συμβολισμού.
+
+\paragraph{Αρμονική συνάρτηση}
+\(
+f=f(_1,\dots,x_n)
+\)
+
+\[
+f_{x_1^2}(P)+f_{x_2^2}(P)+\dots+f_{x_n^2}(P) = 0
+\iff
+\pd[2]{f(P)}{x_1}+\pd[2]{f(P)}{x_2}+\dots+\pd[2]{f(P)}{x_n}= 0
+\]
+και τα μέγιστα \& ελάχιστα της συνάρτησης λαμβάνονται πάνω στο όριο του πεδίου ορισμού της.
+
+Ονομάζω το \(
+\pd[2]{}{x_1}+\pd[2]{}{x_2}+\dots+\pd[2]{}{x_n}
+\) τελεστή \textlatin{Laplace} (Λαπλασιανή), και συμβολίζω:
+
+\[
+\nabla^2 = \pd[2]{}{x_1}+\pd[2]{}{x_2}+\dots+\pd[2]{}{x_n} \rightarrow
+\text{ Τελεστής \textlatin{Laplace}}
+\]
+
+Άρα ο επάνω ορισμός γίνεται:
+\[
+\iff \boxed{\nabla^2 f(P)} = 0
+\]
+
+\paragraph{Διαφορικό}
+%TODO Zaharis Graph 04
+\begin{align*}
+\overbrace{\dif f(P_0)}^{\mathclap{\text{διαφορικό 1\textsuperscript{ης} τάξης ή ολικό διαφορικό}}} &= \pd{f(P_0)}{x}\dif x + \pd{f(P_0)}{y} \dif y
+\quad (+\dots) \\
+&=
+\begin{bmatrix}
+f_x(P_0)&f_y(P_0)
+\end{bmatrix}
+\begin{bmatrix}
+\dif x\\ \dif y
+\end{bmatrix}
+= \nabla f(P_0) \dif P
+= \nabla f(P_0) \dif \vec{r}
+\end{align*}
+
+\subparagraph{Διαφορικό 2\textsuperscript{ης} τάξης}
+\begin{align*}
+\dif^2 f  = \dif (\dif f) &= \dif
+\left(
+f_x \dif x + f_y \dif y
+\right) \\
+&= \pd{}{x} (f_x \dif x + f_y \dif y) \dif x
++ \pd{}{y} (f_x \dif x + f_y \dif y) \dif y
+\\ &=
+\left(
+f_{x^2} \dif x + f_x \pd{\dif x}{x} + f_{yx} \dif y + f_y \cancel{\pd{\dif y}{x}}
+\right) \dif x
++
+\left(
+f_{xy} \dif x + f_x \cancel{\pd{\dif x}{y}} + f_{y^2} \dif y + f_y \pd{\dif y}{y}
+\right) \dif y
+\\ &=
+\underbrace{f_{x^2} (\dif x)^2}
++ f_x \dif^2 x
++ \underbrace{f_{yx} \dif y \dif x
++ f_{xy} \dif x \dif y}
++ \underbrace{f_{y^2} (\dif y)^2}
++ f_y \dif^2 y
+%TODO
+\\ & \overset{\mathclap{\text{εφόσον υπάρει συνέχεια παραγώγων}}}{=}
+f_{x^2}(\dif x)^2
++2f_{xy} \dif x \dif y +
+f_{y^2} (\dif y)^2
++ f_x \dif^2 x + f_y \dif^2 y
+\end{align*}
+
+Αν \(\dif x = \) σταθ. και \(\dif y = \) σταθ. τότε \(\dif^2 x =\dif^2 y = 0\).
+
+\[
+\dif^2 f = (f_x\dif x+f_y\dif y)^{(2)}
+\]
+
+Ομοίως
+\[
+\dif^3 f = (f_x\dif x+f_y\dif y)^{(3)} = f_{x^3} (\dif x)^3+3f_{x^2y}(\dif x)^2\dif y + 3 f_{xy} = \dif x (\dif y)^2 + f_{y^3} (\dif y)^3
+\]
+
+
+
+
+
+
 
 \end{document}
 

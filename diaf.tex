@@ -1786,8 +1786,189 @@ e^{i\omega t}
 \mathscr{F}\bigg( f(t) \bigg) = F(\omega)
 \]
 
-\section{}
+\begin{tcolorbox}
+\[
+F(\omega) = \mathscr{F} f(t)
+\quad
+f(t) = \mathscr{F}^{-1} \left( F(\omega) \right)
+\]
+\end{tcolorbox}
+
+\paragraph{Παρ.}
+\[
+f(t)=
+\begin{cases}
+1 \quad |t|<a\\
+0 \quad |t|\geq a
+\end{cases}
+\]
+
+\begin{align*}
+F(\omega) = \int_{-\infty}^\infty f(t)e^{-i\omega t} \dif t
+&= \int_{-a}^a 1 e^{-i \omega t} \dif t = -\frac{1}{i \omega } e^{-i \omega t} \dif t
+\\
+&=
+\frac{2}{\omega}
+\left(
+\frac{-e^{-i \omega a}}{2i}
+\right)
+\\ &= 2 \frac{\sin( \omega a)}{\omega}
+\end{align*}
+
+\paragraph{Παρ.}
+\[
+f(t)=e^{-|t|}
+\]
+
+\begin{align*}
+F( \omega )&=\int_{- \infty }^ \infty e^{-|t|} e^{-i \omega t} \dif t
+\\ &=
+\int_{- \infty }^0 e^t e^{-i \omega t} \dif t
++ \int_0^ \infty e^{-t}e^{-i \omega t} \dif t
+\end{align*}
+
+\begin{align*}
+\int_0^ \infty e^{-t}e^{-i \omega t} \dif t &=
+-\left. \frac{1}{1+i\omega} \right|_{t=0}^\infty
+\\
+&= -\frac{1}{1+i\omega} \left(
+e^{-(1+i \omega )\cdot\infty}-e^{-(1+i \omega )\cdot0}
+\right)
+\\ &=
+-\frac{1}{1+i\omega}
+\Bigg(
+0-1
+\Bigg)
+\\ &= \frac{1}{1+i\omega}
+\end{align*}
 
 
+Άρα:
+\begin{align*}
+\int_{- \infty }^0 e^t e^{-i \omega t} \dif t
++ \int_0^ \infty e^{-t}e^{-i \omega t} \dif t
+&= \frac{1}{1-i \omega }+\frac{1}{1+i \omega }\\
+&=
+\boxed{
+\frac{2}{1+\omega^2} = \mathscr{F} \left(
+e^{-|t|}
+\right)
+}
+\end{align*}
+
+\begin{tcolorbox}
+Ο Μ/Σ \textlatin{Fourier} εφαρμόζεται μόνο σε απόλυτα ολοκληρώσιμες \(f(t)\). Δηλαδή υποθέτω ότι \[
+\int_{- \infty }^ \infty 
+\left|
+f(t)
+\right|
+\dif t = M <  \infty 
+\]
+
+Αυτό το κάνω, διότι \(\int_{- \infty }^ \infty |f(t)| \dif t < M < \infty\) είναι ικανή συνθήκη για να υπάρχει το \(\int_{- \infty }^ \infty f(t)e^{-i\omega t}\).
+
+Έχει μία σημαντική συνέπεια:
+\[
+\lim_{t\to\pm\infty} f(t) = 0
+\]
+
+Για παράδειγμα, οι \(\mathscr{F}(e^t)\) και \(\mathscr{F}(e^{-t})\) δεν υπάρχουν, ενώ ο \(\mathscr{F}(e^{-|t|})\) υπάρχει διότι η \(e^{-|t|}\) είναι απόλυτα ολοκληρώσιμη.
+
+Επίσης \( \int_{-\infty}^ \infty |F(\omega)| \dif \omega = M' < \infty \)
+\end{tcolorbox}
+
+\begin{theorem}{}{}
+\[
+\mathscr{F}(\kappa f + \lambda g) = \kappa \mathscr{F}(f)+\lambda \mathscr{F}(g)
+\]
+\tcblower
+\paragraph{Παρ.}
+\[
+ \mathscr{F} (3\cdot \mathrm{square} + 5\cdot e^{-|t|}) = 6 \frac{\sin(\omega)}{\omega}+\frac{10}{1+\omega^2}
+\]
+\end{theorem}
+Η απόδειξη είναι εύκολη και αφήνεται για τον αναγνώστη.
+
+\begin{attnbox}{}
+Το \textlatin{Wolfram} επιστρέφει τους Μ/Σ \textlatin{Fourier} με διαφορετικό παράγοντα, για λόγους συμμετρίας! (\(\frac{1}{\sqrt{2\pi}}\) έναντι \(\frac{1}{2\pi}\)). Στις σημειώσεις τηρείται η ιστορική σύμβαση που ακολουθείται και από προγράμματα όπως, π.χ. \textlatin{Matlab}.
+\end{attnbox}
+
+\begin{theorem}{}{}
+Έστω \(F( \omega )= \mathscr{F} \left( f(t) \right)\), τότε:
+\[
+ \mathscr{F} \left( F(t) \right) = 2\pi f(-\omega)
+\]
+
+Δηλαδή:
+\[
+ \mathscr{F} \left(  \mathscr{F} \left( f(t) \right) \right) = 2\pi f(-t)
+\]
+\end{theorem}
+\paragraph{Απόδ.}
+\begin{align*}
+ \mathscr{F} \left( f(t) \right) = F(\omega) = \int_{-\infty}^\infty f(t)e^{-i\omega t} \dif t \\
+ \mathscr{F}^{-1} \left( F(\omega)) \right) = f(t) = \frac{1}{2\pi}\int_{-\infty}^\infty F(\omega)e^{i\omega t} \dif \omega \\
+ 2\pi f(-t) = \int_{-\infty}^ \infty F(\omega) e^{-i\omega t} \dif \omega
+ \\
+= \int_{-\infty}^ \infty F(\tau)e^{-i\tau w} \dif \tau = 2\pi f(-w) \\
+=  \mathscr{F} \left( F(\tau) \right) =2\pi f(-w)
+\end{align*}
+
+\paragraph{Παρ.}
+\[
+ \mathscr{F} \left(
+ \frac{1}{1+t^2}
+ \right)
+\]
+\subparagraph{Λύση}
+\[
+\dots = \int_{-\infty}^\infty \dots
+\]
+ή
+
+Παρατηρώ ότι \( \mathscr{F} (\frac{1}{2}e^{-|t|}) = \frac{1}{1+\omega^2} = F(\omega) = F(-\omega)\)
+
+Άρα \(F(t) = \frac{1}{1+t^2}\)
+\[
+ \mathscr{F}  \left(
+ \frac{1}{1+t^2}
+ \right) =  \mathscr{F} \left( F(t) \right) = 2\pi f(-\omega) = \pi e^{-|\omega|}
+\]
+
+\begin{theorem}{}{}
+\[
+ \mathscr{F} \left( f(at) \right) = \frac{1}{a} F \left(\frac{\omega}{a} \right)
+\]
+\end{theorem}
+\paragraph{Απόδ.}
+\begin{align*}
+ \mathscr{F} \left( f(at) \right)&=\int_{-\infty}^\infty f(at) e^{-i  \omega t} \dif t
+ \\ &=
+ \int_{-\infty}^\infty f(at)e^{-i\frac{\omega}{a}at} \dif t
+ \\ &=
+\frac{1}{a}  \int_{-\infty}^\infty f(at)e^{-i\frac{\omega}{a}at} \dif (at)
+=
+\frac{1}{a} \int_{-\infty}^\infty f(\kappa) e^{-i\frac{\omega}{a}\kappa} \dif \kappa
+= \frac{1}{a}	F\left( \frac{\omega}{a}\right)
+\end{align*}
+
+\paragraph{Παρ.}
+\[
+ \mathscr{F} \left( \frac{1}{4+9t^2} \right)
+ = \frac{1}{4} \mathscr{F} \left( \frac{1}{1+\frac{9}{4}t^2} \right) 
+ = \frac{1}{4}  \mathscr{F} \left( \frac{1}{1+\left(\frac{3}{2}t\right)^2} \right)
+\]
+
+Για \(f(t) = \frac{1}{1+t^2}, \quad F(\omega) = \pi e^{-|\omega|}\),
+\[
+f(\frac{3}{2}t = \frac{1}{1+\frac{9}{4}t^2} \rightarrow
+\frac{1}{a} F\left(\frac{\omega}{a}\right) = \frac{2\pi}{3} e^{-\left|\frac{3\omega}{2}\right|}
+\]
+
+Άρα ο ζητούμενος μετασχηματισμός είναι \(
+\frac{1}{4} \frac{2\pi}{3} e^{-\left|\frac{3\omega}{2}\right|}
+\)
+
+%TODO Kehagias 01
 
 \end{document}
