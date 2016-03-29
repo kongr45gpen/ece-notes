@@ -1535,6 +1535,221 @@ E=&\int_0^\frac{\pi}{2}\int^{a\sin\theta}_{a(1-\cos\theta)}\rho\dif\rho\dif\thet
 \end{align*}
 
 
+\paragraph{Άσκηση}
+Υπολογίστε το \(\iint_D e^{\frac{x-y}{x+y}} \dif x \dif y\) επί του χωρίου του σχήματος:
+%TODO Atreas Graph 01
+
+Θα εφαρμόσουμε αλλαγή μεταβλητών:
+\[
+\begin{cases}
+u&=x-y\\v&=x+y
+\end{cases}
+\implies
+\begin{cases}
+x&=\frac{u+v}{2}\\
+y&=\frac{-u+v}{2}
+\end{cases}
+\]
+άρα
+\[
+\frac{D(x,y)}{D(u,v)} = \left|
+\begin{matrix}
+x_u&x_v\\y_u&y_v
+\end{matrix}
+\right|=\left|
+\begin{matrix}
+\frac{1}{2}&\frac{1}{2}\\-\frac{1}{2}&\frac{1}{2}
+\end{matrix}
+\right|=\frac{1}{4}+\frac{1}{4}=\frac{1}{2}
+\]
+
+\textbf{Άρα:}
+\[
+\iint_D e^{\frac{x-y}{x+y}}\dif x \dif y = \iint_\mathbf{D'}e^\frac{u}{v} \cdot \left|
+\frac{D(x,y)}{D(u,v)}\right|\dif u \dif v = \iint_{D'} e^\frac{u}{v}\left|\frac{1}{2}\right| \dif u \dif v
+= \frac{1}{2} \iint_{D'} e^\frac{u}{v} \dif u \dif v
+\]
+
+\subparagraph{Σχεδίαση χωρίου $D'$}
+\begin{itemize}
+\item \(x+y=1 \implies^{x=\frac{u+v}{2}}_{x=\frac{u+v}{2}} \frac{u+v}{2}+ \frac{-u+v}{2} = 1 \implies \boxed{v=1}\)\\
+\item \(x+y=2 \implies \frac{u+v}{2}+ \frac{-u+v}{2} = 2 \implies \boxed{v=2}\)\\
+\item \(x=0 \implies \frac{u+v}{2} = 0 \implies \boxed{v=-u}\)
+\item \(y=0 \implies \frac{-u+v}{2} = 0 \implies \boxed{v=u}\)
+\end{itemize}
+
+\subparagraph{Τελικά}
+\begin{align*}
+I &= \int_1^2\int_{-v}^v e^\frac{u}{v} \dif u \dif v \\
+&= \frac{1}{2} \int_1^2 \left.ve^\frac{u}{v}\right|_{-v}^v \dif v \\
+&= \frac{1}{2} \int_1^2 v(e-e^{-1})\dif v \\
+&= \frac{1}{4} \left. v^2 \right|_1^2 \cdot \left( e-\frac{1}{e} \right) = \frac{3}{4} \left(
+e- \frac{1}{e}
+\right)
+\end{align*}
+
+%TODO Atreas 03
+%TODO Atreas 04
+
+
+
+\section{Τριπλά Ολοκληρώματα}
+Έστω \(f: R \subset  \mathbb R ^3 \to  \mathbb R \) \textbf{φραγμένη} συνάρτηση επί ορθογωνίου \textbf{παραλληλεπιπέδου}
+\[
+R =  \left\lbrace (x,y,z): a_1\leq x\leq b_1,\ a_2\leq y\leq b_2,\ a_3\leq z\leq b_3  \right\rbrace
+\]
+και \(\Delta = (\Delta_x,\Delta_y,\Delta_z)\), όπου \begin{align*}
+\Delta_x &=  \left\lbrace a_1=x_0 < x_1 < \dots < x_N = b_1  \right\rbrace \\
+\Delta_y &=  \left\lbrace a_2=y_0 < y_1 < \dots < y_N = b_2  \right\rbrace \\
+\Delta_z &=  \left\lbrace a_3=z_0 < z_1 < \dots < z_N = b_3  \right\rbrace \\
+\end{align*}
+διαμέριση του \(R\) σε $Ν\cdot M \cdot K\) "στοιχειώδη" ορθογώνια παραλληλεπίπεδα \(\Omega_{n,m,k}\) όγκου
+\[
+V_{n,m,k} = (x_{n+1}-x_n)(y_{n+1}-y_n)(z_{n+1}-z_n)
+\qquad
+\begin{cases}
+n&=0,\dots,N-1\\
+m&=0,\dots,M-1\\
+k&=0,\dots,K-1
+\end{cases}
+\]
+
+Έστω \((\widetilde{x_n},\widetilde{y_m},\widetilde{z_k})\) είναι τυχαίο σημείο στο ορθογ. παρ/δο \(\Omega_{n,m,k}\) και ορίζω την \(f(\widetilde{x_n},\widetilde{y_m},\widetilde{z_k})\ \forall_{n,m,k}\).
+
+Θεωρώ το άθροισμα:
+\[
+S(f,\Delta) = \sum_{n=0}^{N-1} \sum_{m=0}^{M-1} \sum_{k=0}^{K-1} f(\widetilde{x_n},\widetilde{y_m},\widetilde{z_k}) V_{n,m,k}
+\]
+
+Έστω \(|\Delta| = \max \left\lbrace \delta_{n,m,k}:\ n=0,\dots,N-1,\ m=0,\dots,M-1,\ k=0,\dots,K-1 \right\rbrace\) είναι το πλάτος της έδιαμρισης $\Delta$, όπου:
+\[
+\delta_{n,m,k} = \max  \left\lbrace |\rho\rho'|:\ \forall \rho,\rho; \in \Omega_{n,m,k} \right\rbrace
+\]
+
+Αν \(\lim\limits_{|\Delta|\to0} S(f,\Delta) = \lambda \in \mathbb R\), ανεξάρτητα της διαμέρισης $\Delta$ και της επιλογής των σημείων \((\widetilde{x_n},\widetilde{y_m},\widetilde{z_k}) \in \Omega_{n,m,k}\), τότε λέμε ότι υπάρχει το τριπλό ολοκλήρωμα της \(f\) επί του παραλ/δου \(R\) και γράφουμε:
+
+\[
+\iiint_R f(x,y,z) \dif x \dif y \dif z = \lambda \in \mathbb{R}
+\]
+
+\paragraph{}
+
+Ο ορισμός γενικεύεται και για κλειστά και φραγμένα στερεά του \( \mathbb R ^3\) ως εξής:
+
+Έστω \(S \subset  \mathbb R ^3 \) κλειστό και φραγμένο στερεό με σύνορο αμελητέου όγκου (π.χ. το σύνορό του αποτελείται από ένωση επιφανειών \(z=f(x,y)\)). Έστω
+\[
+S \subset \Omega
+\]
+όπου \(\Omega\) ορθογ. παρ/δο που καλύπτει το \(S\).
+
+Αν $f:S \subset \mathbb R^3 \to  \mathbb R $, ορίζω την επέκτασή της στο \(\Omega\) ως εξής:
+\[
+g(x,y,z) = \begin{cases}
+f(x,y,z),\quad&(x,y,z)\in S\\
+0,\quad&(x,y,z)\in \Omega-S
+\end{cases}
+\]
+
+Αν η \(g:\Omega \subset  \mathbb R ^3\to \mathbb R \) είναι ολοκληρώσιμη επί του \(\Omega\), τότε ορίζουμε:
+\[
+\iiint_S f(x,y,z)\dif x\dif y\dif z=
+\iiint_\Omega g(x,y,z)\dif x\dif y \dif z
+\]
+και αποδεικνύεται ότι ο ορισμός αυτός \textbf{ΔΕΝ} εξαρτάται απ' την επιλογή του \(\Omega \supset S\).
+
+\begin{attnbox}{Θεώρημα}
+Έστω \(f:S\in  \mathbb R ^3\to  \mathbb R \) (όπου $S$ κλειστό και φραγμένο στερεό με σύνορο αμελητέου όγκου) \textbf{ΣΥΝΕΧΗΣ} στο \(S\), \textbf{εκτός ενδεχομένως} από ένα σύνολο σημείων αμελητέου όγκου.
+
+Τότε η \(f\) ολοκληρώσιμη επί του \(S\).
+\end{attnbox}
+
+\subsection{Ιδιότητες}
+Όπως στα διπλά.
+
+\subsection{Υπολογισμός τριπλών ολοκληρωμάτων}
+\paragraph{\boxed{\mathrm A} Σε ορθογώνια παραλ/δα}
+\subparagraph{Θ (\textlatin{Fubini})} Έστω \(f:R \subset  \mathbb R ^3\to  \mathbb R \) \textbf{ΣΥΝΕΧΗΣ} επί ορθογ. παρ/δου
+\[
+R =  \left\lbrace (x,y,z): a_1\leq x\leq b_1,\ a_2\leq y\leq b_2,\ a_3\leq z\leq b_3  \right\rbrace
+\]
+
+Έστω \begin{align*}
+D_{xy} &= [a_1,b_1]\times[a_2,b_2]\\
+D_{yz} &= [a_2,b_2]\times[a_3,b_3]\\
+D_{xz} &= [a_1,b_1]\times[a_3,b_3]
+\end{align*}
+είναι οι ορθογώνιες προβολές του παρ/δου \(R\) στα επίπεδα \(xy,\ yz\) και \(xz\) αντιστοίχως.
+
+Τότε οι συναρτήσεις
+\begin{align*}
+g(x,y)&=\int_{a_3}^{b_3}f(x,y,z)\dif z,\\
+g(y,z)&=\int_{a_1}^{b_1}f(x,y,z)\dif x,\\
+g(x,z)&=\int_{a_2}^{b_2}f(x,y,z)\dif y
+\end{align*}
+είναι \textbf{συνεχείς} επί των προβολών \(D_{xy},D_{yz},D_{xz}\) αντιστοίχως και
+\begin{align*}
+\iiint_R f(x,y,z)\dif x \dif y \dif z & =
+\iint_{D_{xy}} \left(
+\int_{a_3}^{b_3} f(x,y,z) \dif z
+\right) \dif x \dif y  \qquad
+\begin{cases}
+\int_{a_1}^{b_1}\int_{a_2}^{b_2}\int_{a_3}^{b_3} \cdots \dif z \dif y \dif x\\
+\int_{a_2}^{b_2}\int_{a_1}^{b_1}\int_{a_3}^{b_3} \cdots \dif z \dif x \dif y
+\end{cases}
+\\
+& =
+\iint_{D_{yz}} \left(
+\int_{a_1}^{b_1} f(x,y,z) \dif x
+\right) \dif y \dif z \qquad \begin{cases}
+\int_{a_2}^{b_2}\int_{a_3}^{b_3}\int_{a_1}^{b_1} \cdots \dif x \dif z \dif y\\
+\int_{a_2}^{b_3}\int_{a_2}^{b_2}\int_{a_1}^{b_1} \cdots \dif x \dif y \dif z
+\end{cases}\\
+& =
+\iint_{D_{xz}} \left(
+\int_{a_2}^{b_2} f(x,y,z) \dif z
+\right) \dif x \dif y \qquad
+\begin{cases}
+\int_{a_1}^{b_1}\int_{a_3}^{b_3}\int_{a_2}^{b_2} \cdots \dif y \dif z \dif x\\
+\int_{a_3}^{b_3}\int_{a_1}^{b_1}\int_{a_2}^{b_2} \cdots \dif y \dif x \dif z
+\end{cases}
+\end{align*}
+
+\subparagraph{π.χ.}
+Υπολογίστε το \(\iint_S xyz \dif x \dif z \dif y\) επί του στερεού \(S= \left\lbrace (x,y,z): -1 \leq y \leq 1,\ 0\leq x \leq 2,\ -4 \leq z \leq 7  \right\rbrace\).
+
+\begin{align*}
+I &= \underbrace{\int_{-4}^7 \underbrace{\int_0^2 \underbrace{\int_{-1}^1 x y z \dif y} \dif x} \dif z}\\
+&= \int_{-4}^7 \int_0^2 \left. xz \frac{y^2}{2}\right|_{-1}^1 \dif y \dif z\\
+&= \int_{-4}^7 \int_0^2 \left( \frac{xz}{2} - \frac{xz}{2}\right) \dif y \dif z\\
+&= 0
+\end{align*}
+
+\paragraph{\boxed{\mathrm B} Σε κλειστά και φραγμένα χωρία}
+\begin{itemize}
+\item 'Εστω \(S \in  \mathbb R ^3\) κλειστό και φραγμένο στερεό με σύνορο αμελητέου όγκου. Θα λέμε ότι το \(S\) είναι κανονικό ως προς \(z\) αν το \(S\) είναι συνεκτικό και ΚΑΘΕ ευθεία \(\parallel z'z\) που διέρεται και από το εσωτερικό του στερεού \(S\) τέμνει το σύνορο του \(S\) \textbf{ακριβώς} σε δύο σημεία ΚΑΙ η προβολή του \(S\) στο \(Oxy\) επίπεδο είναι χωρίο κανονικό ως προς \(x\) \textbf{ή} ως προς \(y\).
+\end{itemize}
+
+%TODO Atreas Graph 05
+
+
+\(S\) κανονικό ως προς \(z\):
+\[
+S =  \left\lbrace (x,y,z): (x,y) \in D_{xy},\ f(x,y)\leq z \leq g(x,y)  \right\rbrace
+\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

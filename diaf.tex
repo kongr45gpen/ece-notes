@@ -538,6 +538,7 @@ F(t,x)=t^2x \\
 \end{cases}
 \implies
 t^2+x+c_1
+\\
 \implies
 t^2x+x=c_2 (c_2=c-c_1) \implies
 x = \frac{c_2}{t^2+1}
@@ -632,26 +633,181 @@ F(at,ax)=f(t,x)
 
 \section{}
 
-\begin{defn*}{}
-\begin{gather*}
- \left\lbrace x_1(t),\ x_2(t), \dots,\ x_n(t) \right\rbrace\\
- c_1x_1(t)+c_2x_2(t)+\dots+c_nx_n(t)\equiv 0\\
- \text{ΓΕ }c_1,c_2,\dots,c_n \text{ όχι όλοι μηδενικοί}
-\end{gather*}
-\end{defn*}
-
-\begin{theorem}{ΠΡΑΤ (αρχικής τιμής)}{}
-\[
-\text{μία μοναδική λύση }x_p(t) \mathbf L(x)=\phi(t)
-\]
-\begin{gather*}
-W \neq 0 \rightarrow \text{ΓΑ}\\
-W= 0 \text{ και όλες λύσεις } \rightarrow \text{ΓΕ}\\
-W=0 \text{ και ΓΑ } \rightarrow \text{όχι όλες λύσεις}
-\end{gather*}
-\end{theorem}
 
 %TODO
+
+
+\subsection{ΔΕ 1\textsuperscript{ης} τάξης}
+ΤΜ (Τυπική μορφή): \(x' = \od{x}{t} = f(t,x)\)
+
+\boxed{
+\text{ΔΜ (Διαφορική μορφή): } N(t,x)\dif x + M(t,x) \dif t = 0
+}
+
+Ακριβής: \(
+\pd{M(t,x)}{x}=\pd{N(t,x)}{t} \rightarrow \dif F(t,x)
+\)
+
+\begin{gather*}
+\dif F(t,x) = N(t,x) \dif x + M(t,x) \dif t
+\\ F(t,x)=c
+\end{gather*}
+
+\begin{gather*}
+\underbrace{G(t,x)}_{\mathclap{\text{Μπορεί να υπάρχει τέτοια συνάρτηση}}} \cdot
+\left(
+N(t,x)\dif x + M(t,x) \dif t
+\right) = 0
+\end{gather*}
+\begin{exercise*}{2.23 Ολοκληρωτικός παράγοντας, επίλυση μέσω ελέγχου}
+\begin{gather*}
+x\dif t - t\dif x = 0\\
+M(t,x)=x,\ N(t,x)=t\\
+\pd{M(t,x)}{x}=1,\ \od{N(t,x)}{t} = -1 \text{ δεν είναι ακριβής.} \\
+\overbrace{G(t,x)}^{\mathclap{\text{υποφήφιος}}} = -\frac{1}{t^2} \\
+-\frac{1}{t^2} (x\dif t - t\dif x) = 0 \implies
+-\frac{x}{t^2} \dif t + \frac{\frac{1}{t}}{t^2} \dif x = 0 \\
+M(t,x) = - \frac{x}{t^2}m\ N(t,x) = \frac{1}{t}\\
+\pd{M(t,x)}{x}=-\frac{1}{t^2}=\overbrace{\pd{N(t,x)}{t}}^{\mathclap{\text{ακριβής}}}
+=-\frac{1}{t^2}
+\end{gather*}
+
+\[\text{Αν }\boxed{\frac{1}{N} \left( \pd{M}{x} - \pd{N}{t} \right) \equiv g(t) \implies G = e^{\int g(t) \dif t}}\].
+
+Με διαφορά μερικών παραγώγων:
+\[
+\boxed{\text{Αν }
+\frac{1}{N} \left( \pd{M}{x} - \pd{N}{t} \right) = h(x) \implies 
+G = e^{\int g(t) \dif x}
+}
+\]
+\end{exercise*} 
+
+\begin{exercise*}{2.25}
+\[
+x^2\dif t + tx\dif x = 0,\
+M(t,x)=x^2,\
+N(t,x) = tx
+\]
+\tcblower
+\begin{gather*}
+\pd{M(t,x)}{x}=2x\neq \pd{N(t,x)}{t}=x \text{ όχι ακριβής} \\
+\frac{1}{M} \left(
+\pd{M}{x}-\pd{N}{t} \right) = \frac{1}{x^2}(2x-x)=\frac{1}{x} = h(x)\\
+G(t,x)=e^{-\int h(x)\dif x} = e^{-\int \frac{1}{x} \dif x} = e^{-\ln x} = \frac{1}{x}
+\end{gather*}
+\begin{gather*}
+\frac{1}{x}(x^2\dif t + tx\dif x) = 0 \implies x\dif t + t\dif x = 0\\
+\pd{M}{x}=1=\pd{N}{t}=1 \text{ ακριβής}
+\end{gather*}
+\subparagraph{Μορφή των όρων $N$,$M$}
+αν \(M=xf(tx)\) \textbf{και} \(N=tg(tx)\), τότε:
+\[
+G(t,x) = \frac{1}{tM-xN}
+\]
+\end{exercise*}
+
+\begin{exercise*}{2.26}
+\[
+x'=\frac{tx^2-x}{t}
+\]
+\tcblower
+\begin{gather*}
+\implies \od{x}{t}=\frac{tx^2-x}{t} \implies
+t\dif x-(tx^2-x)\dif t = 0 \implies
+x(1-tx)\dif t)+t\dif x = 0\\
+M(t,x)=x\cdot (1-tx) \implies \pd{M(t,x)}{x}=1-2tx \neq \pd{N(t,x)}{t} = 1 \text{ όχι ακριβής}
+\end{gather*}
+αλλά:\(M=xf(t)\) \textbf{και} \(N=tg(tx)\).
+
+Επομένως:
+\[
+G(t,x)=\frac{1}{tM-xN}=\frac{1}{tx(1-tx)-xt}=\frac{1}{-t^2x^2}=-\frac{1}{(tx)^2}
+\]
+
+Είναι:
+\begin{align*}
+-\frac{1}{(tx)^2}
+\left(
+x(1-tx)\dif t + t\dif x
+\right) = 0 \implies \\
+\frac{tx-1}{t^2x}\dif t - \frac{1}{tx^2}\dif x = 0
+\end{align*}
+και συνεχίζω με τη μέθοδο της ακριβούς.
+\end{exercise*}
+
+
+
+
+
+\section{Θεωρία των Λύσεων}
+
+Μορφή ΔΕ $n$\textsuperscript{ης} τάξης:
+\[
+b_n(t)\cdot x^{(n)} + b_{n-1}(t)\cdot x^{(n-1)} + \dots + b_2(t)x'' + b_1(t)x' + b_0(t)x = g(t)
+\]
+όπου: \(g(t), b_j(t) \quad (j=1,2,\dots,n)\) εξαρτώνται αποκλειστικά από το $t$.
+
+Αν \(g(t)\equiv 0\), τότε η ΔΕ είναι ομογενής (ΟΜ - \textlatin{homogenous}).
+
+Αν \(g(t) \neq 0\), τότε η ΔΕ είναι μη ομογενής (ΜΟ - \textlatin{non-homogenous}.
+
+Όταν όλοι οι συντελεστές \(b_j(t)\) είναι σταθερές, τότε ΔΕΣΣ (σταθερών συντελεστών).
+
+Όταν ένας τουλάχιστον \(b_j(t)\) δεν είναι σταθερά, ΔΕΜΣ (μεταβλητών συντελεστών).
+
+\begin{theorem}{}{}
+ΔΕ $n$ τάξης με $n$ ΑΣ (αρχικές συνθήκες):
+\[ x(t_0) = c_0, x'(t_0) = c_1, x''(t_0)=c_2,\dots,\ x^{(n-1)}(t_0)=c_{n-1}\]
+ΔΕ \(b_n(t)x^{(n)}+b_{n-1}(t)x^{(n-1)}+\dots+b_2(t)x''+b_1(t)x'+b_o(t)x=g(t)\)
+
+Αν \(g(t)\) και \(b_i\) συνεχείς σε διάστημα $\phi$ που περιλαμβάνει το \(t_0\) και \(b_n(t) \neq 0\) στο \(\phi\), τότε το πρόβλημα εχει μία μοναδική λύση (ορισμένη στο \(\phi\).
+\end{theorem}
+
+\begin{defn}{}{}
+Το σύνολο \( \left\lbrace x_1(t),x_2(t),\dots,x_n(t)  \right\rbrace \) είναι ΓΕ (γραμμικά εξαρτημένο) για ένα διάστημα $\Delta$ ότανν υπάρχουν συντελεστές όχι όλοι μηδενικοί τέτοιοι ώστε:
+\[
+	c_1x_1(t)+c_2x_2(t)+\dots+c_nx_n(t) \equiv 0 \quad \Delta
+\]
+\end{defn}
+
+\begin{theorem}{}{}
+Έστω η ομογενής $n$-οστής τάξης γραμμική διαφορική εξίσωση \(\mathbf{L}(x) = 0\).
+
+Αν \(x_1(t),\ x_2(t),\dots,\ x_n(t)\) είναι λύσεις, τότε και ο γραμμικός τους συνδυασμός είναι γενική λύση της ομογενούς:
+\[
+x(t) = c_1x_1(t)+c_2x_2(t)+\dots+c_nx_n(t) \quad\text{ΓΛ (Γενική Λύση)}
+\]
+\end{theorem}
+
+\begin{theorem}{Βροσκιανή}{}
+\[\text{Ορίζουσα } W(x_1,x_2,\dots,x_n)\]
+\[\begin{cases}
+W \neq 0 \text{ έστω σε ένα σημείο } \in \Delta &\rightarrow \text{ΓΑ (Γραμμικά Ανεξάρτητες)} \\
+W \equiv 0 \textbf{ και } \text{κάθε συνάρτηση είναι λύση της ίδιας ΔΕ} &\rightarrow \text{ΓΕ (Γραμμικά Εξαρτημένες)}
+\end{cases}
+\]
+\end{theorem}
+
+\begin{theorem}{}{}
+\[
+\overbrace{\mathbf{L}(x)}^{\mathclap{\text{Ομογενής ΔΕ}}} = \phi(t)
+\]
+
+Έστω \(
+\begin{cases}
+x_n(t) & \text{ΓΛ της ΟΜ (Ομογενούς)} \\
+x_p(t) & \text{ΕΛ της ΜΟ (Μη ομογενούς)}
+\end{cases}
+\).
+
+Τότε είναι ΓΛ ΜΟ (Γενική Λύση Μη Ομογενούς) η:
+\[
+x(t) = x_n(t)+x_p(t)
+\]
+\end{theorem}
+
+
 
 
 \begin{exercise*}{3.2}
@@ -662,9 +818,13 @@ W=0 \text{ και ΓΑ } \rightarrow \text{όχι όλες λύσεις}
 \tcblower
 \begin{align*}
 W(1-t,\ 1+t,\ 1-3t) &=
-|  1-t	1+t 1-3t |
-|  \od{(1-t)}{t}   \od{(1+t)}{t} \od{(1-3t)}{t} |
-| \od[2]{(1-t)}{t}  \od[2]{(1+t)}{t} \od[2]{(1-3t)}{t} |
+\left|
+\begin{matrix}
+  1-t &	1+t &1-3t\\ 
+ \od{(1-t)}{t}  & \od{(1+t)}{t}  & \od{(1-3t)}{t} \\
+ \od[2]{(1-t)}{t} & \od[2]{(1+t)}{t} & \od[2]{(1-3t)}{t}
+\end{matrix}
+\right|
 \\
 &= \left|
 \begin{matrix}
@@ -680,7 +840,7 @@ c_1(1-t)+c_2(1+t)+c_3(1-3t)=0\\
 \[
 \begin{cases}
 -c_1+c_2-3c_3 &= 0\\
-c_1+c_2+c_3 &=-
+c_1+c_2+c_3 &=0
 \end{cases}
 \implies
 \begin{cases}
@@ -698,6 +858,7 @@ c_3&=1\\c_1&=-2\\c_2&=1
 
 
 \begin{exercise*}{3.3}
+Βρείτε την Βροσκιανή:
 \[
  \left\lbrace t,\ t^2,\ t^3 \right\rbrace
 \]
@@ -718,7 +879,7 @@ t&t^2&t^3\\
 \right|=2t^3
 \end{align*}
 \[
-(-\infty,\infty),\ t=3,\ W=54\cdot t \cdot 0
+(-\infty,\infty),\ t=3,\ W=54 \neq 0 \implies \text{ΓΑ, θαυμάσια!}
 \]
 \end{exercise*}
 
@@ -788,6 +949,8 @@ x(t)=c_1e^t+c_2te^t+\frac{1}{4}e^{3t}
 
 \end{exercise*}
 
+
+\section{}
 \subsection{ΓΡ/ΔΕ/1\textsuperscript{ης}}
 \begin{itemize}
 \item \(
@@ -819,6 +982,12 @@ q(t)\dif t + c
 x(t)=e^{-at} \left( \frac{b}{a} e^{at}+c\right) = \frac{b}{a}+ce^{-at}
 \]
 \end{itemize}
+
+\subsubsection{\textlatin{Bernoulli}}
+\[
+\od{x}{t}+p(t)x = q(t)x^n,\quad\text{με } n\neq1,0
+\]
+Αντικατάσταση μεταβλητών: \(u=x^{1-n}\rightarrow x,\ x'\)
 
 \begin{exercise*}{4.1}
 ΓΡ/ΔΕ/1\textsuperscript{ης}
@@ -933,6 +1102,28 @@ x^{-2}(z'-\frac{2}{x}z)=\frac{2}{3}x^4x^{-2}\implies\dots\implies z(x)=cx^2+g^2x
 \end{gather*}
 \end{exercise*}
 
+\begin{exercise*}{4.10}
+\[
+y'+xy=xy^2
+\]
+\tcblower
+\textlatin{Bernoulli}
+
+\begin{align*}
+u=y^{1-n}=y^{1-2}=y^-1 \implies \\
+u=\frac{1}{y} \implies y=\frac{1}{u} \text{ και } y' = -\frac{1}{u^2}\od{u}{x}=-\frac{1}{u^2}u' \\
+-\frac{1}{u^2}\od{u}{x}+x\frac{1}{u}=x\left(\frac{1}{u}\right)^2\implies u'-xu=-x\\
+G(x)=e^{\int (-x)\dif x}=e^{-\frac{x^2}{2}},\
+e^{-\frac{x^2}{2}}u'-e^{-\frac{x^2}{2}}xu=e^{-\frac{x^2}{2}}x \implies \\
+\boxed{
+\od{}{x}\left(ue^{-\frac{x^2}{2}}\right) =-xe^{-\frac{x^2}{2}}
+}\\
+\int \od{}{x} \left(ue^{-\frac{x^2}{2}}\right) \dif x = 
+\int \left(-xe^{-\frac{x^2}{2}}\right) \dif x \implies \\
+ue^{-\frac{x^2}{2}} + c \implies \boxed{u=ce^{\frac{x^2}{2}}+1} \text{ ΓΛ}
+\frac{1}{y}=ce^{\frac{x^2}{2}}+1 \implies \boxed{y(x)=\frac{1}{ce^\frac{x^2}{2}+1}}
+\end{align*}
+\end{exercise*}
 
 
 
@@ -1276,7 +1467,7 @@ Tότε: \[\int_{-L}^L f(t) \dif t = \int_{-L}^L f(t) \cdots t
 a_0 = \frac{1}{L} \int_{-L}^L f(t) \dif t
 \]
 
-\subparagraph{Συνέχεια αόδειξης}
+\subparagraph{Συνέχεια απόδειξης}
 Υποθέτω ότι υπάρχει \textbf{κάποια} σειρά της μορφής *, θα δείξω ότι οι συντελεστές δίνονται από τους τύπους **.
 ίό
 Παρνω τυχόν \(m \in \mathbb N\) και εξετάζω το
