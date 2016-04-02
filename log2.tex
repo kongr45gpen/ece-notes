@@ -1737,7 +1737,117 @@ I &= \underbrace{\int_{-4}^7 \underbrace{\int_0^2 \underbrace{\int_{-1}^1 x y z 
 S =  \left\lbrace (x,y,z): (x,y) \in D_{xy},\ f(x,y)\leq z \leq g(x,y)  \right\rbrace
 \]
 
+\begin{attnbox}{Θεώρημα (\textlatin{Fubini})}
+\setcounter{equation}{0}
+\(f: S \subset  \mathbb R ^3 \to  \mathbb R \) συνεχής συνάρτηση επί στερεού \(S\) με σύνορο αμελητέου όγκου και \(D_{xy},D_{xz},D_{yz}\) είναι οι ορθογώνιες προβολές του στερεού \(S\) πάνω στα επίπεδα \(Oxy,Oxz\) και \(Oyz\) αντίστοιχα.
+\begin{itemize}
+\item Αν \(S\) είναι κανονικό ως προς \(z\) στερεό της μορφής
+\[
+S =  \left\lbrace (x,y,z): (x,y) \in D_{xy},\ A(x,y) \leq z \leq B(x,y) \right\rbrace
+\]
+τότε
+\begin{equation}
+\iiint_S f(x,y,z) \dif x \dif y\dif z = \iint_{D_{xy}} \left(
+\int_{A(x,y)}^{B(x,y)} f(x,y,z)\dif z
+\right) \dif x \dif y
+\end{equation}
+\item Αν \(S\) είναι κανονικό ως προς \(\mathbf{y}\) στερεό της μορφής
+\[
+S =  \left\lbrace (x,y,z): (x,z) \in D_{yz}, \Gamma (x,z) \leq y \leq \Delta (x,z)
+ \right\rbrace
+\]
+τότε
+\begin{equation}
+\iiint_S f(x,y,z)\dif x \dif y \dif z =
+\iint_{D_{xz}} \left(
+\int_{\Gamma(x,z)}^{\Delta(x,z)} f(x,y,z) \dif y
+\right) \dif x \dif z
+\end{equation}
+\item Αν \(S\) κανονικό ως προς \(x\) στερεό της μορφής
+\[
+S =  \left\lbrace (x,y,z): (y,z) \in D_{yz},\ K(y,z)\leq x \leq \Lambda (y,z) \right\rbrace
+\]
+τότε
+\begin{equation}
+\iiint_S f(x,y,z)\dif x \dif y \dif z = 
+\iint_{D_{yz}} \left(
+\int_{K(y,z)}^{\Lambda(y,z)}f(x,y,z) \dif x
+\right) \dif y \dif z
+\end{equation}
+\item Αν \(S\) κανονικό, τότε:
+\[
+\iint_S f(x,y,z)\dif x \dif y \dif z = (1) = (2) = (3)
+\]
+\end{itemize}
+\end{attnbox}
 
+\subsection{Εφαρμογές τριπλού ολοκληρώματος}
+\paragraph{1}
+Αν \(w=f(x,y,z)=1\ \forall(x,y,z)\in S\) όπου \(S\) κλειστό και φραγμένο στερεό, τότε
+\[
+\iiint_S 1 \dif x \dif y \dif z = \text{όγκος του στερεού } S
+\]
+
+\paragraph{2}
+Αν \(\rho =r\rho(x,y,z)\) συνεχής πυκνότητα μάζας/φορτίου επί στερεού \(S\) κλειστού και φραγμένου, τότε
+\[
+\iiint_S \rho(x,y,z) \dif x \dif y \dif z = \text{συνολική μάζα/φορτίο επί του στερεού }S
+\]
+
+\paragraph{3}
+Αν \(w=f(x,y,z) \geq 0\ \forall (x,y,z)\in S\) όπου \(w\) είναι μια υπερ-επιφάνεια, τότε το \(\iiint_S f(x,y,z)\dif x \dif y\dif z = \) υπερ-όγκος του υπερ-στερεού που περικλείεται από την \(w\) και το \(Oxyz\)-χώρο.
+
+\subsection{Αλλαγή μεταβλητής}
+Ακριβώς όπως στα διπλά ολοκληρώματα.
+
+Ενδιαφέρομαι κυρίως για τις ακόλουθες περιπτώσεις:
+\paragraph{(Α) Κυλινδρικές συντεταγμένες}
+%TODO Atreas Graph 01
+
+\begin{gather*}
+(x,y,z) \leftrightarrow_\text{κυλινδρ.} (\rho,\theta,z)
+\\
+\begin{cases}
+x&=\rho\cos\theta\\
+y&=\rho\sin\theta\\
+z&=z
+\end{cases}
+\text{ή}
+\begin{cases}
+\rho&=\sqrt{x^2+y^2}\\
+\tan\theta&=\frac{y}{x}\ (x\neq0)\\
+z&=z
+\end{cases}
+\\
+\frac{D(x,y,z)}{D(\rho,\theta,z)}=
+\left|
+\begin{matrix}
+x_\rho & x_\theta & x_z\\
+y_\rho & y_\theta & y_z\\
+z_\rho & z_\theta & z_z\\
+\end{matrix}
+\right|
+=
+\left|
+\begin{matrix}
+\cos\theta&-\rho\sin\theta&0\\
+\sin\theta&\rho\cos\theta&0\\
+0&0&1\\
+\end{matrix}
+\right|
+= \left|
+\begin{matrix}
+\cos\theta & -\rho\sin\theta\\
+\sin]theta & \rho\cos\theta
+\end{matrix}
+\right| = \rho
+\\
+\dif x \dif y \dif z \leftrightarrow
+\boxed{
+\rho\dif\rho\dif\theta\dif z
+}
+\end{gather*}
+%TODO Atreas Graph 02
 
 
 
@@ -2980,9 +3090,175 @@ f_{y^2} (\dif y)^2
 \dif^3 f = (f_x\dif x+f_y\dif y)^{(3)} = f_{x^3} (\dif x)^3+3f_{x^2y}(\dif x)^2\dif y + 3 f_{xy} = \dif x (\dif y)^2 + f_{y^3} (\dif y)^3
 \]
 
+\subsubsection{Κριτήριο ύπαρξης ολικού διαφορικού}
+\[
+P(x,y) \dif x + Q(x,y) \dif y \qquad P,Q\to\text{συνεχείς μερικές παραγώγους 1\textsuperscript{ης} τάξης}
+\]
 
+\begin{align*}
+f=f(x,y)\qquad \dif f &= P(x,y)\dif x + Q(x,y)\dif y & f_x(x,y) = P(x,y) \implies^{\pd{}{y}} f_{xy}=P_y
+\\ \dif f &= f_x(x,y)\dif x + f_y(x,y)\dif y		 & f_y(x,y) = Q(x,y) \implies^{\pd{}{x}} f_{yx} = Q_x
+\\
+\implies \boxed{P_y=Q_x}
+\end{align*}
 
+\begin{align*}
+\int_{A_0}^A \dif f=
+\int_{(x_0,y_0)}^{(x,y)} \left[ P(x,y)\dif x + Q(x,y)\dif y \right]
+\implies \\
+f(A)-f(A_0) = 
+\int_{(x_0,y_0)}^{(x,y_0)}\left[
+P(x,y)\dif x +\cancel{Q(x,y)\dif y}
+\right] + \int_{(x,y_0)}^{(x,y)}\left[
+\cancel{P(x,y)\dif x} +Q(x,y)\dif y
+\right]\implies \\ \boxed{\qquad \qquad
+f(A)=f(A_0) + \underbrace{\int_{x_0}^x P(t,y_0) \dif t + \int_{y_0}^y Q(x,t)\dif t}_{\mathclap{\attnboxed{\text{προσοχή στα ορίσματα! γίνονται συχνά λάθη!}}}}
+\qquad \qquad
+}
+\end{align*}
 
+\paragraph{}
+\(\vec F = (P,Q)\)
+\[
+\underbrace{df}_{\mathclap{\text{βαθμωτό ή αριθμητικό δυναμικό του πεδίου $\vec F$}}}
+= \vec F \dif \vec r = (P,Q)\cdot (\dif x,\dif y) = P\dif x + Q\dif y
+\]
+
+\paragraph{Σε 3 διαστάσεις}
+\[
+P(x,y,z)\dif x + Q(x,y,z) \dif y + R(x,y,z)\dif z
+\]
+\(
+f=f(x,y,z)
+\)
+
+\[
+\begin{cases}
+\dif f &= P(x,y,z)\dif x + Q(x,y,z)\dif y + R(x,y,z)\dif z\\
+\dif f &= f_x(x,y,z)\dif x + f_y(x,y,z)\dif y + f_z(x,y,z)\dif z
+\end{cases}
+\implies
+\begin{cases}
+f_x&=P\\
+f_y&=Q\\
+f_z&=R
+\end{cases}
+\implies
+\begin{cases}
+\begin{cases}
+f_{xy}&=P_y\\
+f_{yx}&=Q_x
+\end{cases}
+&\implies P_y=Q_x\\
+\begin{cases}
+f_{yz}&=Q_z\\
+f_{zy}&=R_y
+\end{cases}
+&\implies Q_z=R_y\\
+\begin{cases}
+f_{xz}&=P_z\\
+f_{zx}&=R_x
+\end{cases}
+&\implies P_z=R_x
+\end{cases}
+\]
+
+\begin{align*}
+\begin{cases}
+\dif f& = P\dif x  + Q\dif y + R\dif z = (P,Q,R)\cdot (\dif x,\dif y,\dif z)  = \vec F\cdot \dif \vec r \\
+\dif f &= f_x\dif x +f_y\dif y +f_z\dif z = (f_x,f_y,f_z)(\dif x,\dif y,\dif z) = \nabla f \dif \vec r
+\end{cases}
+&\implies
+\vec F = \nabla f \\&
+\implies \nabla \times \vec F = \nabla \times \nabla f \\ &\implies \boxed{
+\nabla \times \vec F = 0
+}
+\end{align*}
+
+\(\vec F = (P,Q,R)\)
+\begin{align*}
+\nabla \times \vec F &= \left|
+\begin{matrix}
+\overrightarrow{e_1}&\overrightarrow{e_2}&\overrightarrow{e_3}\\
+\pd{}{x}&\pd{}{y}&\pd{}{z}\\
+P&Q&R
+\end{matrix}
+\right|
+=
+\overrightarrow{e_1}\left(
+\pd{R}{y}-\pd{Q}{z}
+\right)
+-
+\overrightarrow{e_2}\left(
+\pd{R}{x}-\pd{P}{z}
+\right)
++
+\overrightarrow{e_3}\left(
+\pd{Q}{x}-\pd{P}{y}
+\right)\\
+\nabla \times \vec F &= \vec e_1 (R_y-Q_z) - \vec e_2 (R_x-P_z) + \vec e_3 (Q_x-P_y) = 0 \implies
+\begin{cases}
+R_y&=Q_z\\
+R_x&=P_z\\
+Q_z&=P_y
+\end{cases}
+\end{align*}
+
+\subparagraph{Αστρόβιλο πεδίο}
+\begin{enumparen}
+\item \(\vec F = \nabla f\)
+\item \(\nabla \times \vec F = 0\)
+\item \( \int_{A_0}^A \vec F\dif\vec r = f(A)-f(A_0)\)
+\end{enumparen}
+
+\[
+\int_{A_0}^A \vec F \dif r = \int_{A_0}^A \nabla f \dif \vec r = \int_{A_0}^A \dif f = f(A)-f(A_0)
+\]
+
+Ένα αστρόβιλο πεδίο είναι και συντηρητικό όταν ο χώρος είναι απλά συνεκτικός.
+
+\paragraph{}
+%TODO Zaharis Graph 02
+\begin{align*}
+f(A)-f(A_0)=
+\int_{A_0}^A \vec F \dif r \implies \\ f(A)=f(A_0)+\int_{A_0}^B (\cancel{P\dif x+Q\dif y} + R\dif z) +
+\int_B^\Gamma (\cancel{P\dif x}+Q\dif y +\cancel{P\dif z}) + \int_\Gamma^A (P\dif x + \cancel{Q\dif y+R\dif z})
+\implies \\
+f(A)=f(A_0)+\int_{z_0}^z R(x_0,y_0,t)\dif t + \int_{y_0}^y Q(x_0,t,z)\dif t +\int_{x_0}^x P(t,y,z)\dif t
+\end{align*}
+
+\paragraph{Άσκηση}
+\[
+\underbrace{(3x^2+6xy^2)}_{P(x,y)=f_x}\dif x + \underbrace{(6x^2+4y^3)}_{Q(x,y)=f_y}\dif y
+\]
+Να δειχθεί ότι η έκφραση αυτή αποτελεί ολικό διαφορικό μιας συνάρτησης \(f(x,y)\), και να βρεθεί η μορφή της συναρτησης αυτής.
+\begin{align*}
+\begin{cases}
+P=3x^2+6xy^2 &\implies P_y = 12xy\\
+Q=6x^2y+4y^3 &\implies Q_x=12xy
+\end{cases}
+\implies P_y=Q_x
+\end{align*}
+
+\begin{align*}
+f_x=3x^2+6xy^2&\implies\pd{f}{x}=3x^2+6xy^2\\ &\implies\dif f = (3x^2+6xy^2)\dif x \\ & \implies
+f(x,y)=\int(3x^2+6xy^2)\dif x + g(y)
+\\ & \implies f(x,y) = x^2+3x^2y^2+g(y) (1)
+\end{align*}
+
+\begin{align*}
+f_y=6x^2y+4y^2&\implies\pd{f}{y}=6x^2y+4y^3\\ &\implies
+6x^2y+\pd{g(y)}{y}=6x^2y+4y^3 \\ &\implies
+g(y)=\int 4y^3\dif y + c \\ &\implies
+g(y)=y^4+c (2)
+\end{align*}
+
+\[
+(1) \text{ κ } (2) \implies \boxed{
+f(x,y)=x^3+3x^2y^2+y^4+\cancel{c}
+}
+\]
+Αν θεωρήσουμε ότι \(x=y=0 \implies \boxed{c=0}\)
 
 
 

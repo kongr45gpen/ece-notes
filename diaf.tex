@@ -2162,4 +2162,258 @@ f(\frac{3}{2}t = \frac{1}{1+\frac{9}{4}t^2} \rightarrow
 
 %TODO Kehagias 01
 
+\begin{theorem*}{}
+Έστω \(F(\Omega) = \mathscr{F}(f(t))\). Τότε
+\begin{enumerate}
+\item \(\mathscr{F}\left(\od{f}{t}\right) = i\omega F(\omega)\)
+\item \(\mathscr{F}\left(\int f(t)\dif t\right) = \frac{1}{i\omega}F( \omega )\)
+\item \(\mathscr{F}\left(-itf(t)\right) = \od{F}{\omega}\)
+\end{enumerate}
+\end{theorem*}
+\paragraph{Απόδ.}
+\begin{align*}
+\mathscr{F}\left(\od{f}{t}\right) &= \int_{-\infty}^\infty \od{f}{t}e^{-i\omega t} \dif t
+\\ &=
+\int_{-\infty}^\infty e^{-i\omega t} \dif t
+\\ &=
+\left. f(t)e^{-i\omega t} \right|_{-\infty}^\infty
+- \int_{-\infty}^\infty f(t) \dif(e^{-i\omega t})
+\\ &=
+f(\infty)e^{-i\omega\infty} - f(-\infty)e^{i\omega\infty} - \int (-i\omega)f(t)e^{-i\omega t}\dif t
+\\ &= 0 - 0 + i\omega \int_{-\infty}^\infty f(t)e^{-i\omega t} \dif t \\
+&= i\omega F(\omega) = \mathscr{F}\left(\od{f}{t}\right)
+\end{align*}
+
+Θέτω \(g(t)=\int f(t)\dif t\), οπότε \(\od{g}{t}=f(t)\).
+\begin{align*}
+\mathscr{F}(f) = \mathscr{F}\left(\od{g}{t}\right) = i\omega G(\omega) \implies
+\mathscr{F}\left(\int g(t) \dif t\right) = G(\omega)=\frac{1}{i\omega}F(\omega)
+\end{align*}
+
+Το (3) δείχνεται όπως το (1).
+
+\paragraph{}
+
+\begin{defn*}{Βηματική συνάρτηση του \textlatin{Heaviside}}
+\[
+h(t) = \begin{cases}
+1 \quad& t > 0\\
+0 \quad& t \leq 0
+\end{cases}
+\]
+\end{defn*}{}
+\[
+H(\omega)=\mathscr{F}\left(h(t)\right)
+= \int_{-\infty}^\infty h(t)e^{-i\omega t} \dif t
+= \int_{0}^\infty e^{-i\omega t} \dif t = \left. -\frac{1}{i\omega}e^{-i\omega t}\right|_{t=0}^\infty
+= \boxed{
+\frac{1}{i\omega}=\mathscr{F}\left(h(t)\right)
+}
+\]
+
+\paragraph{Παρ.}
+
+\[
+\od{y}{t}+2y = e^{-t}h(t)
+\]
+\subparagraph{Λύση}
+\[
+i\omega Y(\omega)+2Y(\omega)=\frac{1}{i\omega} (???)
+\]
+
+Είναι \(\mathscr{F}\left(f(t)e^{i\omega t}\right) = F(\omega-\omega_0\).
+
+Θέτω \(f(t)=h(t)\), \(e^{i\omega t}=e^{-t}\). Δηλαδή \(\omega_0=\frac{1}{i}=i\), οπότε \(\mathscr{F}(e^{-t}h(t)) = \frac{1}{1+i\omega}\).
+
+Άρα
+\begin{align*}
+i\omega Y(\omega)+2Y(\omega)=\frac{1}{i\omega+1} &\implies
+Y(\omega) = \frac{1}{(i\omega+1)(i\omega+2)} \\ &\implies
+Y(\omega) = \frac{1}{1+i\omega}-\frac{1}{2+i\omega}
+\\ &\implies
+\mathscr{F}^{-1}\left(Y(\omega)\right)=\mathscr{F}^{-1}\left(\frac{1}{1+i\omega}\right)
+- \mathscr{F}^{-1}\left(\frac{1}{2+i\omega}\right)
+\\ &\implies 
+\boxed{
+y(t)=e^{-t}h(t)-e^{-2t}h(t)
+}
+\end{align*}
+είναι η λύση της δοθείσας εξίσωσης. Πού πήγε η σταθερά; Ποιες είναι οι αρχικές συνθήκες;
+
+Αν πήγαινα να την λύση αλλιώς:
+\begin{gather*}
+\od{y}{t}+2y=f(t)
+\end{gather*}
+
+Ομογενής \(\od{y}{t} +2y=0\), γενική λύση \(y_h(t)=ce^{-2t}\).
+
+Ειδική λύση της μη ομογενούς \(y_p(t)\).
+
+Γενική λύση της μη ομογενούς: \(\boxed{y(t)=ce^{-2t}+y_p(t)}\). Ποια είναι η τιμή της \(c\);
+
+Είναι \(c=0\) διότι ζητώ λύση η οποία έχει μετασχηματισμό Fourier. Άρα πρέπει \(
+\lim_{t\to -\infty} y(t)=\lim_{t\to -\infty} \left( ce^{-2t}+y_p(t) \right) = 0
+\), άρα \(c=0\).
+
+Δηλαδή κρυβόταν από την εκφώνηση του προβλήματος ότι \(\lim_{t\to \pm\infty} y(t)=0\).
+
+\paragraph{Παρ.}
+Υπολογίστε \(
+\mathscr{F}\left(
+\frac{t}{(t^2+1)^2}
+\right)
+\)
+\subparagraph{Λύση}
+\(f(t) = \frac{1}{t^2+1}\), τότε \(\od{f}{t} = \frac{-2t}{(t^2+1)^2}\).
+
+\begin{align*}
+\mathscr{F}\left(
+\frac{t}{(t^2+1)^2}
+\right) = -\frac{1}{2} \mathscr{F}\left(
+\frac{-2t}{(t^2+1)^2}
+\right) = -\frac{1}{2} \mathscr{F}\left(
+\od{f}{t}\right) = -\frac{1}{2}i\omega\mathscr{F}(f)=-\frac{1}{2}i\omega\pi e^{-|\omega|}
+\end{align*}
+
+\paragraph{Παρ.}
+Να υπολογιστεί ο \(\mathscr{F}\left(\frac{t}{1+t^2}\right)\).
+
+\subparagraph{Λύση}
+Θέτω \(f(t)=\frac{1}{1+t^2} \implies F(\omega)=\pi e^{-|\omega|}\).
+
+Οπότε \(\mathscr{F}\left(\frac{t}{1+t^2}\right) = \frac{1}{-i} \mathscr{F}\left(-it\cdot f(t)\right) = i \od{F}{\omega}\).
+
+\subparagraph{Προσοχή}
+\begin{align*}
+G(\omega) = i\od{F}{\omega} = \pi i \od{}{\omega} (e^{-|\omega|}) = \begin{cases}
+\pi i e^\omega &\quad \omega<0\\
+\text{ΚΕΦ. 11} &\quad \omega=0\\
+-\pi i \cdot e^{-|\omega|} &\quad \omega<0
+\end{cases}
+\end{align*}
+
+\begin{theorem*}{\textlatin{Plancherel/Parseval}}
+\paragraph{\textlatin{Plancherel}}
+\[
+\boxed{
+f\bullet g = \frac{1}{2\pi}F\bullet G
+}
+\]
+δηλαδή
+\[
+\int_{-\infty}^\infty f(t)\overline{g(t)}\dif t
+= \frac{1}{2\pi}
+\int_{-\infty}^\infty \frac{1}{2\pi} F(\omega)\overline{G(\omega)}\dif \omega
+\]
+\paragraph{\textlatin{Parseval}}
+\[
+\int_{-\infty}^\infty \left|f(t)\right|^2 \dif t
+= \frac{1}{2\pi}
+\int_{-\infty}^\infty \left| F(\omega) \right|^2 \dif \omega
+\]
+\end{theorem*}
+Η απόδειξη είναι εύκολη και υπάρχει στις σημειώσεις.
+
+\subsubsection*{Συνέλιξη}
+\begin{defn*}{Σπουδαίος Ορισμός}
+Η \textbf{συνέλιξη} των \(f(t),\ g(t)\) συμβολίζεται \(f * g\) και ορίζεται:
+\[
+\boxed{
+\big(f * g\big)(t) = 
+\int_{-\infty}^\infty
+f(\tau)g(t-\tau)\dif\tau
+}
+\]
+\end{defn*}
+
+\paragraph{Παράδειγμα}
+\begin{align*}
+g(t) &= \begin{cases}
+1, &\quad |t|<1\\
+0, &\quad |t|\geq1
+\end{cases}
+\end{align*}
+
+%TODO Kehagias Graph 02
+\paragraph{Περίπτωση \(t<-2\)} Τότε \begin{align*}
+(g*g)(t) &= \int_{-\infty}^\infty g(\tau)g(t-\tau)\dif t
+\\ &= \int_{-\infty}^{-2} \cancel{g(\tau)}g(t-\tau)\dif\tau
++ \int_{-2}^{-1} \cancel{g(\tau)}g(t-\tau)\dif t
++ \int_{-1}^\infty g(\tau)\cancel{g(t-\tau)}\dif\tau=0
+\end{align*}
+
+Μετά από πράξεις θα δούμε ότι
+\[
+(g*g)(t)=\begin{cases}
+0 &\qquad t<-2\\
+2-t &\qquad -2<t<0\\
+2+t &\qquad 0\leq t < 2\\
+0 &\qquad 2<t
+\end{cases}
+\]
+
+\begin{theorem*}{}
+\[
+\mathscr{F}(f*g)=
+\mathscr{F}(f)
+*
+\mathscr{F}(g)
+\]
+\end{theorem*}
+\paragraph{Απόδειξη}
+\begin{align*}
+\mathscr{F}(f*g) &= \int_{-\infty}^\infty (f*g)(t)e^{-i\omega t}\dif t
+\\ 
+&=
+\int_{-\infty}^\infty
+\left(
+\int_{-\infty}^\infty f(\tau)g(t-\tau)\dif \tau\right)e^{-i\omega t}\dif t
+\\ &=
+\int_{-\infty}^\infty f(t) \left( \int_{-\infty}^\infty
+g(t-\tau)e^{-i\omega t}
+\dif t \right)
+\dif\tau
+\\ &=
+\int_{-\infty}^\infty f(\tau)
+\left(
+\int_{-\infty}^\infty g(t-\tau)e^{-i\omega(t-\tau)}\dif(t-\tau)
+\right)
+e^{-i\omega\tau}\dif\tau
+\\ &=
+\int_{-\infty}^\infty f(t) G(\omega) e^{-i\omega\tau}\dif\tau
+\\ &=
+G(\omega) \int_{-\infty}^\infty f(t) e^{-i\omega\tau}\dif \tau
+\\ &= G(\omega)F(\omega)
+\end{align*}
+
+\begin{theorem*}{Πόρισμα}
+\begin{gather*}
+f*g=g*f\\
+f*(g+h)=f*g+f*h\\
+(f*g)*h=f*(g*h)
+\end{gather*}
+\end{theorem*}
+\paragraph{Απόδ.}
+\[
+\mathscr{F}(f*g)=F(\omega)G(\omega)=G(\omega)F(\omega)=\mathscr{F}(g*f)
+\]
+ομοίως και τα υπόλοιπα.
+
+\paragraph{Παρ.}
+Να βρεθεί ο \(\mathscr{F}(\pi*\pi)\).
+\subparagraph{Λύση}
+\begin{align*}
+\mathscr{F}(\pi(t)) &= \frac{2\sin(\omega)}{\omega} \\
+\mathscr{F}(\lambda(2t)) = \mathscr{F}(\mathrm\pi(t) * \mathrm\pi(t)) &= \frac{2\sin(\omega)}{\omega} \frac{2\sin(\omega)}{\omega} = \frac{4\sin^2\omega}{\omega^2}
+\end{align*}
+
+%TODO Kehagias Graph 03
+
+\paragraph{}
+Τι να κάνω όταν η \(f(t)\) δεν είναι απολύτως ολοκληρώσιμη?
+
+Θα δουλέψω με την \(g(t) = e^{-\sigma t}f(t)\) και θα περιοριστώ στο \(t\geq0\).
+
+Τότε η \(g(t)\) θα είναι (για αρκετά μεγάλο \(\sigma\)) απολύτως ολοκληρώσιμη, και μπορώ να πάρω \(\mathscr{F}\left(g(t)\right) = \int_0^\infty e^{-\sigma t}f(t)e^{-i\omega t} \dif t = \int_0^\infty e^{-i(\sigma+i\omega)} =^{\text{Θέτοντας } s=\sigma+i\omega} \int_0^\infty f(t)e^{-st}\dif t = \mathscr{L}\left(f(t)\right)\).
+
 \end{document}
