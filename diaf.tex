@@ -635,6 +635,7 @@ F(at,ax)=f(t,x)
 
 
 %TODO
+Το τοστ είναι η καλύτερη τροφή
 
 
 \subsection{ΔΕ 1\textsuperscript{ης} τάξης}
@@ -761,8 +762,27 @@ b_n(t)\cdot x^{(n)} + b_{n-1}(t)\cdot x^{(n-1)} + \dots + b_2(t)x'' + b_1(t)x' +
 \[ x(t_0) = c_0, x'(t_0) = c_1, x''(t_0)=c_2,\dots,\ x^{(n-1)}(t_0)=c_{n-1}\]
 ΔΕ \(b_n(t)x^{(n)}+b_{n-1}(t)x^{(n-1)}+\dots+b_2(t)x''+b_1(t)x'+b_o(t)x=g(t)\)
 
-Αν \(g(t)\) και \(b_i\) συνεχείς σε διάστημα $\phi$ που περιλαμβάνει το \(t_0\) και \(b_n(t) \neq 0\) στο \(\phi\), τότε το πρόβλημα εχει μία μοναδική λύση (ορισμένη στο \(\phi\).
+Αν \(g(t)\) και \(b_i\) συνεχείς σε διάστημα $\phi$ που περιλαμβάνει το \(t_0\) και \(b_n(t) \neq 0\) στο \(\phi\), τότε το πρόβλημα εχει μία μοναδική λύση (ορισμένη στο \(\phi\)).
 \end{theorem}
+
+Διαιρώ με \(b_n(t)\) και έχω:
+\[
+x^{(n)}+a_{n-1}(t)\cdot x^{(n-1)}+\dots+a_2(t)x''+a_1(t)x'+a_0(t)x=\phi(t)
+\]
+
+\begin{align*}
+a'_j(t) &= \frac{b_j(t)}{b_n(t)} \quad (j=1,2,\dots,n-1) \\
+\phi(t) &= \frac{g(t)}{b_n(t)}
+\end{align*}
+
+\paragraph{Διαφορικός τελεστής \(\mathbf L(x)\)}
+\begin{align*}
+\mathbf L(x) &\equiv x^{(n)} +a_{n-1}(t)x^{(n-1)}+\dots+a_2(t)\cdot x''+a_1(t)\cdot x' + a_0(t)\cdot x
+ \\
+\mathbf L(x) &= \phi(t) \quad \text{ΜΟ ΓΡ ΔΕ $n$\textsuperscript{ης} τάξης}\\
+\mathbf{L}(x) &=0 \quad \text{ΟΜ}
+\end{align*}
+
 
 \begin{defn}{}{}
 Το σύνολο \( \left\lbrace x_1(t),x_2(t),\dots,x_n(t)  \right\rbrace \) είναι ΓΕ (γραμμικά εξαρτημένο) για ένα διάστημα $\Delta$ ότανν υπάρχουν συντελεστές όχι όλοι μηδενικοί τέτοιοι ώστε:
@@ -1124,6 +1144,306 @@ ue^{-\frac{x^2}{2}} + c \implies \boxed{u=ce^{\frac{x^2}{2}}+1} \text{ ΓΛ}
 \frac{1}{y}=ce^{\frac{x^2}{2}}+1 \implies \boxed{y(x)=\frac{1}{ce^\frac{x^2}{2}+1}}
 \end{align*}
 \end{exercise*}
+
+
+\begin{exercise*}{4.11}
+\[
+y' - \frac{3}{x}y = x^4y^\frac{1}{3}
+\]
+\tcblower
+\begin{gather*}
+n=\frac{1}{3},\ u=y^{1-n}=y^{1-\frac{1}{3}}=y^\frac{2}{3}\implies y =u^\frac{3}{2}
+\\
+\implies y'=\frac{3}{2}u^\frac{1}{2}u'
+\\
+\intertext{Άρα η διαφορική εξίσωση γίνεται}
+\frac{3}{2}u^\frac{1}{2}u'-\frac{3}{x}u^\frac{3}{2}=x^4\left(u^\frac{3}{2}\right)^\frac{1}{3} \implies
+\\
+\frac{3}{2}u'u-\frac{3}{x}u^2=x^4u\implies\\
+\frac{3}{2}u'-\frac{3}{x}u=x^4\implies\\
+u'-\frac{2}{x} u =\frac{2}{3}x^4 \\
+\od{u}{t}+p(t)u=q(t)\\
+G(x)=e^{\int\left(-\frac{2}{x}\right)\dif x}=e^{-2\ln|x|}=-\frac{1}{x^2}\\
+\left(\frac{1}{x^2}\right)u'+\left(\frac{1}{x^2}\right)\left(-\frac{2}{x}\right)u=\frac{1}{x^2}\frac{2}{3}x^4 \implies\\
+\od{}{x}(x^{-2}u)=\frac{2}{3}x^2 \xRightarrow{\text{ολοκλ.}}\\
+\int \od{}{x}(x^{-2}u)\dif x = \int\frac{2}{3}x^2\dif x \implies x^{-2}u=\frac{2}{9}x^3+c \implies \\
+\boxed{
+u(x)=cx^2+\frac{2}{9}x^5 } \implies \\
+y^\frac{2}{3}=cx^2+\frac{2}{9}x^5\implies \\
+\boxed{
+y = \pm \left(
+cx^2+\frac{2}{9}x^5
+\right)^\frac{3}{2}
+}
+\end{gather*}
+\end{exercise*}
+
+\subsection{ΟΜ/ΓΡ/ΔΕ/2,$n$\textsuperscript{ης}/ΣΣ}
+Ομογενείς Γραμμικές Διαφορικές Εξισώσεις 2\textsuperscript{ης} και $n$\textsuperscript{ης} τάξης με Σταθερούς Συντελεστές
+
+\subsubsection{2\textsuperscript{ης} τάξης}
+\[
+\od[2]{x}{t}+a_1\od{x}{t}+a_0x=0
+\]
+
+\paragraph{Χαρακτηριστική εξίσωση \emph{ΧΕ}}
+\[
+\lambda^2+a_1\lambda+a_0 = 0 \xRightarrow{\text{παραγοντοποιείται}}\left(\lambda-\lambda_1\right)\left(\lambda-\lambda_2\right)=0
+\]
+
+\paragraph{(1) \(\lambda_1 \neq \lambda_2\)}
+\[
+\text{ΓΛ} \quad \boxed{ x(t)=c_1e^{\lambda_1t}+c_2e^{\lambda_2t}}
+\]
+
+
+\paragraph{(2) \(\lambda_1 = a+ib\) και \(\lambda_2=a-ib\)}
+\begin{align*}
+\text{ΓΛ} \quad x(t)&=c_1e^{(a+ib)t}+c_2e^{(a-ib)t} \\
+\Aboxed{x(t) &= \kappa_1 e^{at}\cos bt + \kappa_2 e^{at} \sin bt}\\
+&\left.\begin{array}{r l}
+\kappa_1&=c_1+c_2\\
+\kappa_2&=i(c_1-c_2)
+\end{array}
+\middle|\left(
+\begin{array}{l}
+\text{λύσεις στο }\mathbb R
+\\
+k_1,k_2 \in   \mathbb R \\
+c_1,c_2 \rightarrow \text{συζυγείς}
+\end{array}
+\right)\right.
+\end{align*}
+
+\paragraph{(3) \(\lambda_1=\lambda_2\) διπλή}
+\[
+\text{ΓΛ}\quad \boxed{ x(t)=c_1e^{\lambda_1t}+c_2te^{\lambda_1t}}
+\]
+
+\subsubsection{$n$\textsuperscript{ης} τάξης}
+\[
+\od[n]{x}{t}+a_{n-1}\od[n-1]{x}{t}
++\dots+
+a_1\od{x}{t}+a_0x=0
+\]
+
+\paragraph{Χαρακτηριστική εξίσωση}
+\[
+\lambda^n+a_{n-1}\lambda^{n-1}+\dots+a_1\lambda+a_0=0
+\]
+με λύσεις \(\lambda_1,\lambda_2,\dots,\lambda_n\)
+
+\paragraph{(1) Λύσεις \( \in \mathbb R\) διακριτές}
+
+\[
+\boxed{
+x(t)=c_1e^{\lambda_1t}+c_2e^{\lambda_2t}+\dots+c_ne^{\lambda_nt}
+}
+\]
+
+\paragraph{(2) Μερικές \( \mathbb R \) διακριτές, μερικές \( \mathbb C\) συζυγείς}
+Ομοίως.
+
+\paragraph{(3) \(\lambda_\kappa \) πολλαπλότητας $p$}
+Δηλαδή \(\left(\lambda-\lambda_\kappa\right)^p\) παράγοντας της ΧΕ αλλά όχι \(n(\lambda-\lambda_\kappa)^{p+1}\).
+
+\(p\) ΓΑ λύσεις
+\[
+e^{\lambda_\kappa t},\ te^{\lambda_\kappa t},\ t^2e^{\lambda_\kappa t},\ \dots,\ 
+t^{p-1}e^{\lambda_\kappa t}
+\]
+
+
+\begin{exercise*}{5.1}
+\[
+y''-y'-2y=0
+\]
+\tcblower
+\[
+\lambda^2-\lambda-2=0 \implies
+(\lambda+1)(\lambda-2)=0 \implies 
+\lambda_1=-1,\ \lambda_2=2
+\]
+
+Άρα:
+\begin{align*}
+\boxed{y(t)=c_1e^{-t}+c_2e^{2t}}
+\end{align*}
+
+
+\end{exercise*}
+
+\begin{exercise*}{5.4}
+\[
+\ddot y +10\dot y+21y=0
+\]
+\tcblower
+ΧΕ \(\lambda^2+10\lambda+21=0 \implies (\lambda+3)(\lambda+7) \implies 
+\boxed{
+c_1e^{-3t}+c_2e^{-7t}
+}
+\)
+\end{exercise*}
+
+\begin{exercise*}{5.11}
+\[
+y''-8y'+16y=0
+\]
+\tcblower
+ΧΕ \(
+\lambda^2-8\lambda+16=0 \implies (\lambda-4)^2=0 \implies \lambda_\kappa=4
+\) διπλή
+
+\[
+\boxed{
+y(x)=c_1e^{4x}+c_2xe^{4x}
+}
+\]
+\end{exercise*}
+
+\begin{exercise*}{5.5}
+\[RLC,\ \text{σειρά},\ R=10\Omega,\ C=10^{-2} \mathrm F,\ L = \frac{1}{2}H,\ v = 12V\]
+Αρχικά κανένα ρεύμα, κανένα φορτίο, τάση εφαρμόζεται για $t=0$.
+
+Να βρεθεί \(i\) για $t$ μετά το $0$.
+
+\tcblower
+
+\begin{circuitikz} \draw
+(0,0) to[european voltage source=$v$] (0,2)
+      to[R=$R$] (2,2) 
+      to[L=$L$] (4,2)
+      to[C=$C$] (6,2) -- (6,0) -- (0,0);
+\end{circuitikz}
+
+\begin{align*}
+\begin{cases}
+Ri+L\od{i}{t}+\frac{1}{C}q-v=0\\
+i=\od{q}{t}
+\end{cases}\xRightarrow[t]{\text{διαφ.}}&
+R\od{i}{t}+L\od[2]{i}{t}+\frac{1}{C}i=\od{v}{t}\\
+\implies &
+\od[2]{i}{t}+\frac{R}{L}\od{i}{t}+\frac{1}{LC}i=\frac{1}{L}\od{u}{t}\\
+\implies &
+\od[2]{i}{t}+\frac{10}{ ^1/_2}\od{i}{t}+\frac{1}{ ^1/_2\left(10^{-2}\right)}i = 
+\frac{1}{ ^1/_2}\cancelto{0}{\od{}{t}\big(12\big)}
+\\ \implies &
+\od[2]{i}{t}+20\od{i}{t}+200i = 0
+\\ \text{ΧΕ } \implies &  \lambda^2+20\lambda+200=0 \quad
+\lambda_{1,2} = \frac{-20\pm\sqrt{20^2-4(200)}}{2}
+\\ \implies &
+\lambda_1=-10+10j,\ \lambda_2=-10-10j
+\\ \text{ΓΛ } \rightarrow &
+\boxed{
+i(t)=c_1e^{(-10+10j)t}+c_2e^{(-10-10j)t}
+}
+\\ \implies &
+i(t) = e^{-10t}\left(
+\kappa_1\cos10t+\kappa_2\sin10t
+\right)
+\end{align*}
+
+ΑΣ \(\boxed{i(0)=0},\ q(0)=0\). Ψάχνω \(\left.\od{i}{t}\right|_{t=0}\).
+
+\begin{align*}
+Ri+L\od{i}{t}+\frac{1}{C}q-v=0
+\\
+R(0)+L\left.\od{i}{t}\right|_{t=0}+\frac{1}{C}(0)-12 = 0 \implies \\
+\left.\od{i}{t}\right|_{t=0}=\frac{1}{L}v-\frac{1}{LC}\cancelto{0}{q}-\frac{R}{L}\cancelto{0}{i} = \\
+=\frac{1}{ ^1/_2}12=24\implies\boxed{
+\left.\od{i}{t}\right|_{t=0}=24
+}
+\end{align*}
+
+\begin{align*}
+\od{i(t)}{t}&=-10e^{-10t}\left(
+\kappa_1\cos10t+\kappa_2\sin10t
+\right)+
+e^{-10t}\left(
+-10\kappa_1\sin10t+10\kappa_2\cos10t
+\right)\\
+\cancelto{0}{i(0)}&=\cancelto{1}{e^{\cancelto{0}{-10(0)}}}\left(
+\kappa_1 \cancelto{1}{\cos10(0)} + \kappa_2 \cancelto{1}{\sin10(0)}
+\right) \implies \boxed{
+\kappa_1=0
+}\\
+\cancelto{24}{\left.\od{i}{t}\right|_{t=0}} =
+-10e^{-10(0)}\left(
+(0)\cos10(0)+\kappa_2\sin10(0)
+\right)+e^{-10(0)}\left(-10(0)\cos10(0)+10\kappa_2\cos10(0)\right)
+\implies \boxed{\kappa_2=\frac{12}{5}}
+\end{align*}
+
+Άρα:
+\[
+\boxed{
+\text{ΕΛ} \quad
+\begin{array}{l}
+i(t) = e^{-10t} \frac{12}{5}\sin10t\\
+\qquad t>0
+\end{array}
+}
+\]
+
+\end{exercise*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2416,4 +2736,282 @@ f*(g+h)=f*g+f*h\\
 
 Τότε η \(g(t)\) θα είναι (για αρκετά μεγάλο \(\sigma\)) απολύτως ολοκληρώσιμη, και μπορώ να πάρω \(\mathscr{F}\left(g(t)\right) = \int_0^\infty e^{-\sigma t}f(t)e^{-i\omega t} \dif t = \int_0^\infty e^{-i(\sigma+i\omega)} =^{\text{Θέτοντας } s=\sigma+i\omega} \int_0^\infty f(t)e^{-st}\dif t = \mathscr{L}\left(f(t)\right)\).
 
+
+\section{Κεφαλαιο 10: Μετασχηματισμος Laplace}
+\begin{itemize}
+\item Για να υπαρχει \(\mathscr{F}\left(x(t)\right)\) πρεπει η \(x(t)\) να ειναι απολυτως ολοκληρωσιμη. 
+\item Αν η $x(t)$ δεν ειναι απολυτως ολοκληρωσιμη, ισως ειναι η $y(t)=x(t)h(t)e^{-\sigma t}\).
+\item Οποτε δουλευω με την \(\mathscr{F}\left(y(t)\right)=\mathscr{F}\left(
+x(t)h(t)e^{-\sigma t}
+\right) 
+= \int_0^\infty x(t) e^{-\sigma t} e^{i\omega t} \dif t
+\) (όπου $s=\sigma+i\omega$) \(= \int_0^\infty x(t)e^{-st}\dif t = \mathscr{L}\left(x(t)\right)\).
+
+\item Κατ' αυτόν τον τρόπο μπορώ να διαχειριστώ  $x(t)$ που είναι χρήσιμες αλλά όχι απολ. ολοκλ. (π.χ. $x(t)=1$ ή $e^t\cdots$).
+
+\item Όμως πετάω όλη την πληροφορία για $t<0$.
+\end{itemize}
+
+\begin{defn*}{}
+Η $f(t)$ λέγεται \textbf{τμηματικά συνεχής} στο $[t_1,t_2]$ ανν:
+\begin{itemize}
+\item μπορώ να διαμερίσω το $[t_1,t_2]$:
+\[
+[t_1,t_2]=[\tau_0,\tau_1]\cup[\tau_1,\tau_2]\cup\cdots\cup[\tau_{N-1},\tau_N]
+\]
+\item και η $f(t)$ συνεχής σε κάθε $(\tau_{n-1},\tau_n)$ $(n=1,\dots,N)$
+\item και \(\forall n: \begin{matrix}
+\lim_{t\to\tau_n^-}f(t)\\
+\lim_{t\to\tau_n^+}f(t)
+\end{matrix})
+\) υπάρχουν (εκτός ίσως των ακραίων 2)
+\end{itemize}
+\end{defn*}
+
+\begin{defn*}{}
+Η \(f(t)\) λέγεται \textbf{εκθετικής τάξης γ} στο $[t_1,t_2]$ ανν \(\exists M,\gamma\) τ.ώ:
+\[
+\forall t \in [t_1,t_2]:\ \left|f(t)\right|<M\cdot e^{\gamma t}
+\]
+\end{defn*}
+
+\begin{defn*}{}
+Έστω $f(t)$ τ.ώ:
+\begin{enumerate}
+\item \(\forall T<\infty: \) η $f(t)$ τμ. συν. στο \([0,T]\)
+\item Η $f(t)$ είναι εκθ. τάξης $\gamma$ στο \([0.\infty)\).
+\end{enumerate}
+
+Τότε ορίζω τον Μ/Σ \textlatin{Laplace} της $f(t)$ ως εξής:
+\[
+\mathscr{L}\left(f(t)\right) = F(s)=\int_{0^-}^\infty f(t)e^{-st}\dif t
+\]
+\end{defn*}
+
+\paragraph{Παρ.}
+Να βρεθεί ο $\mathscr{L}(e^t)$
+\subparagraph{Λύση}
+\begin{align*}
+&\int_0^\infty e^te^{-st}\dif t\\
+=&\int_0^\infty e^{(-s-1)t} \dif t\\
+=& \left. \frac{e^{-(s-1)t}}{s-1}\right|_{t=0}^\infty\\
+=&-\frac{e^{-(s-1)\cdot\infty}}{s_1}+-\frac{e^{-(s-1)\cdot0}}{s_1}\\
+=&\frac{1}{s-1}=\mathscr{L}(e^t)
+\end{align*}
+
+\paragraph{Παρ.}
+\(
+\mathscr{L}(e^{at}) = \frac{1}{s-a}
+\)
+
+\paragraph{Παρ.}
+\(
+\mathscr{L}(1) = \mathscr{L}(e^{at})=\frac{1}{s}
+\)
+
+\paragraph{Παρ.}
+\(
+\mathscr{L}\left(h(t)\right) = \frac{1}{s}
+\)
+
+\paragraph{Παρ.}
+\begin{align*}
+\mathscr{L}(t)=&\int_0^\infty te^{-st}\dif t
+\\=&
+\int_0^\infty -\frac{1}{s} (e^{-st})\cdot t \dif t
+\\=&
+\left.\left( -\frac{t}{s}e^{-st}\right)\right|_0^\infty + \frac{1}{s}\int_0^\infty e^{-st}\dif t
+\\=&
+0+\left. + \frac{1}{s}\cdot\left(-\frac{1}{s}\right) e^{-st}\right|_0^\infty = \frac{1}{s^2}=\mathscr{L}(t)
+\end{align*}
+
+\paragraph{Παρ.}
+\(
+\mathscr{L}(t^n) = \frac{n!}{s^{n+1}}
+\)
+
+\begin{theorem*}{}
+\[
+\mathscr{L}\left(
+\od{x}{t}
+\right)
+= s\cdot X(s)-X(0)
+\]
+\end{theorem*}
+\paragraph{Απόδειξη}
+\begin{align*}
+\mathscr{L}\left(
+\od{x}{t}
+\right) =& \int_0^\infty\od{x}{t} e^{-st}\dif t
+\\ =&
+\left.x(t)e^{-st}\right|_{t=0}^\infty - \int_0^\infty x(t)(-s)e^{-st} \dif t
+\\=&
+-x(0)+s\int_0^\infty x(t)e^{-st}\dif t = -x(0)+s\cdot x(s)
+\end{align*}
+
+\paragraph{Να λυθεί με Μ/Σ \textlatin{Laplace}}
+\[
+\od{x}{t}+x=1,\quad x(0)=-2
+\]
+\subparagraph{Λύση}
+\begin{align*}
+&\mathscr{L}(\cdots\cdots) \\
+\implies&
+x\cdot X-\cancelto{2}{x(0)}+X=\frac{1}{S}
+\\ \implies &
+sX+2+X=\frac{1}{s}
+\\ \implies &
+(s+1)\cdot X=\frac{1}{s}-2
+\\ \implies &
+X=\frac{1-2s}{(s+1)s}=\frac{A}{s+1}+\frac{B}{s}=\frac{(A+B)\cdot S +B}{(s+1)\cdot s}
+\implies \begin{cases}
+A+B&=-2\\
+B&=1
+\end{cases}\implies A=-3
+\\ \implies &
+X(s) = -\frac{3}{s+1}+\frac{1}{2}
+\\ \implies &
+x(t)=\mathscr{L}^{-1}\left(
+-\frac{3}{-s+1}
+\right)+\mathscr{L}^{-1}\left(
+\frac{1}{s}
+\right)
+\\ &=
+\boxed{
+X(t)=1-3e^{-t}
+}
+\end{align*}
+
+\paragraph{Παρ.}
+Να λυθεί...
+\[
+\od[2]{x}{t}+7\od{x}{t}+10x=2t+1\quad ,x(0)=1,\ x(0)=-1
+\]
+\subparagraph{Λύση}
+\begin{align*}
+\mathscr{L}\left(
+\od[2]{x}{t}
+\right)=s^2X-sx(0)-x'(0)
+\end{align*}
+
+Έστω \(\mathscr{L}\left(\frac{\dif x}{\dif t}\right)=P(s)\), \(\od{x}{t}=p(t)\).
+\subparagraph{Απόδ.}
+\begin{align*}
+\mathscr{L}
+\left(
+\od{}{t}\left(\od{x}{t}\right)
+\right)
+= \mathscr{L}
+\left(
+\od{p}{t}\right)=& sP-p(0)
+\\=&
+s\cdot\left(sX-x(0)\right)-x(0)\\=&
+s^2X-sx(0)-x'(0)
+\end{align*}
+
+\subparagraph{}
+\begin{align*}
+&s^2X-s\cdot1 -(-1)+7\cdot (sX-1)+10x=\frac{2}{5^2}+\frac{1}{5}
+\\
+\implies&
+(s^2+7s+10)\cdot X-s+1-7=\frac{2}{s^2}+\frac{1}{s}
+\\
+\implies&
+(s^2+7x+10)X=\frac{2}{s^2}+\frac{1}{s}+s+6
+\\
+\implies
+&
+\cdots = \frac{2+s+s^3+6s^2}{s^2}
+\\
+\implies &
+X=\frac{s^3+6s^2+s+2}{s^2\cdot\underbrace{(s^2+7s+10)}_{\mathclap{\text{ΧΑΡ. ΕΞ.}}}}=
+\frac{-^1/_{25}}{s}+\frac{ ^1/_5 }{s^2} + \underbrace{\boxed{
+\frac{ ^4/_3}{s+2}+\frac{ ^{-22}/_{75}}{s+5}
+}}_{\mathclap{\text{Λύση Ομογενούς}}} \\ \implies&
+x(t)=-\frac{1}{25}+\frac{t}{5}+\frac{4}{3}e^{-2t}-\frac{22}{75}e^{-5t}
+\end{align*}
+
+
+\paragraph{}
+\begin{align*}
+\mathscr L(\sin at)  =& \mathscr{L}
+\left(
+\frac{e^{iat}-e^{-iat}}{2i}
+\right)
+\\=&
+\frac{1}{2i}\cdot\left(
+\frac{1}{s-ia}-\frac{1}{s+ia}
+\right)
+\\=&\frac{a}{s^2+a^2} = \mathscr{L}(\sin at)
+\\&\frac{s}{s^2+a^2}=\mathscr{L}(\cos at)
+\\&\frac{s}{s^2-a^2}=\mathscr{L}(\cosh at)
+\\&\frac{a}{s^2-a^2}=\mathscr{L}(\sinh at)
+\end{align*}
+
+\begin{theorem*}{}
+\begin{align*}
+&\mathscr{L}\left(
+k_1x_1(t)+k_2x_2(t)
+\right)\\
+=&k_1X_1(s)+k_2X_2(s)
+\end{align*}
+\end{theorem*}
+\paragraph{Απόδ.}
+\textlatin{blah blah...}
+
+\begin{theorem*}{}
+\[
+\mathscr{L}\left(
+f(t)e^{at}
+\right) = F(s-a)
+\]
+\end{theorem*}
+\paragraph{Απόδ.}
+\begin{align*}
+&\int_0^\infty f(t)e^{at}e^{-st}\dif t
+\\=&
+\int_0^\infty f(t)e^{-(s-a)t} \dif t
+\\=&
+F(s-a)
+\end{align*}
+
+\begin{theorem*}{}
+\[
+\mathscr{L}\left(
+f(t-t_0)h(t-t_0)
+\right)=e^{-st_0}F(s) \quad \forall t_0 \geq 0
+\]
+\end{theorem*}
+\paragraph{Απόδ.}
+\begin{align*}
+\mathscr{L}\left(
+f(t-t_0)h(t-t_0)\right) =&
+\int_0^\infty f(t-t_0)e^{-st} \dif t
+\\=&
+\int_{t_0}^\infty f(t-t_0)e^{-st} \dif(t)
+\\=&
+\int_{t_0}^\infty f(t-t_0)e^{-s(t-t_0)}\cdot e^{st_0}\dif t
+\\=&
+e^{-st_0} \int_0^\infty f(\tau) e^{-s\tau} \dif \tau 
+\\=&
+e^{-st_0} F(s) = \mathscr{L}\left(f(t)\right)
+\end{align*}
+
+
+\begin{gather*}
+\mathscr{L}^{-1} \left(
+\frac{e^{-s}}{s}\right)=h(t-1)\\
+\mathscr{L}^{-1}\left(\frac{1}{s}\right) = h(t)\\
+\mathscr{L}\left(
+h(t)
+\right) = \frac{1}{s}\qquad
+\mathscr{L}\left(
+h(t-1)
+\right)=\frac{e^{-s}}{s}\\
+\mathscr{L}\left(
+\frac{1}{s^2+4s+5}
+\right) = \mathscr{L}\left(
+\frac{1}{(s+2)^2+1}
+\right)=\sin t \cdot e^{-2t}
+\end{gather*}
 \end{document}
