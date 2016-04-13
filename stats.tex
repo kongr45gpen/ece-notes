@@ -37,7 +37,6 @@
 \author{Καναβούρας Κωνσταντίνος \\ \textlatin{\url{http://users.auth.gr/konkanant}}}
 
 
-
 \begin{document}
 
 \maketitle
@@ -1606,6 +1605,235 @@ E(X)=\cancelto{0}{0\cdot\frac{2}{3}}+\int_0^{0.5}x\left(\frac{2}{3}\right)\dif x
 
 \paragraph{Άσκηση 13}
 Για το σπίτι
+
+\subsection{Χρήσιμες Κατανομές}
+\begin{gather*}
+X,\ f(x),\ F(x),\ E(x)\\
+P(X \leq x) = \int_{-\infty}^x f(u) \dif u
+\end{gather*}
+%TODO Zioutas Graph 01
+\begin{enumerate}
+\item \textlatin{Bernoulli}
+\item Διωνυμική
+\item Γεωμετρική
+\item \textlatin{Pascal}
+\item \textlatin{Poisson}
+\end{enumerate}
+
+\subsubsection{\textlatin{Bernoulli}}
+\begin{align*}
+S &=  \left\lbrace \overbrace{A}^{\text{"επιτυχές γεγονός"}}, \bar{A}  \right\rbrace\\
+X &=  \left\lbrace 1, 0 \right\rbrace\\
+P(A) &= p\\
+P(\bar{A}) &= 1-p\\
+f(x_i): P(X=1)&=p\\
+P(X=0)&=1-p\\
+E(X)&=1 \cdot p + 0\, (1-p) = p\\
+\mathrm{Var}[X] &= \mathrm E(X^2)-p^2 = p \cdot (1-p)
+\end{align*}
+
+
+\subsubsection{Διωνυμική}
+\begin{align*}
+X =&  \left\lbrace 
+\begin{matrix}
+\text{αριθμός εμφάνισης $A$}\\
+\text{σε $n$ δοκιμές}
+\end{matrix}
+ \right\rbrace\\
+ X=&  \left\lbrace 0,1,2,\dots,n \right\rbrace\\
+ P\big(X=x\big)=&\binom{n}{x}\; p^x(1-p)^{n-x}\\
+ \sum_{x=0}^n \binom{n}{x}p^x(1-p)^{n-x} =& \left(p+(1-p)\right)^n=1
+\end{align*}
+\begin{align*}
+\mathrm E(X)=&\sum_{x=0}^n x \binom{n}{x}p^x(1-p)^{n-x}
+\\ =& \cdots \\ =&\; np
+\end{align*}
+
+\paragraph{Παράδειγμα}
+Ρίχνουμε ένα ζάρι $n=20$ φορές. Ποια είναι η πιθανότητα να έχουμε 5 άσσους?
+\begin{align*}
+P(A) &= \frac{1}{6}\\
+X &=  \left\lbrace 0,1,2,\dots,20 \right\rbrace\\
+P(X=S) =& \binom{20}{5} \left( \frac{1}{6}\right)^5 \left(\frac{5}{6}\right)^{15}
+\end{align*}
+
+\paragraph{}
+\begin{gather*}
+n=100 \text{ στήλες}\\
+p = 0.01 \text{ ελαττωματική}\\
+P(X \leq 4) = \sum_{x=0}^4 \binom{100}{x} 0.01^x (1-0.01)^{100-x} \\
+X=  \left\lbrace 0,1,2,\dots,100 \right\rbrace
+\end{gather*}
+
+\subsubsection{Γεωμετρική}
+\begin{align*}
+X &=  \left\lbrace 
+\begin{matrix}
+\text{αριθμός δοκιμών}\\
+\text{μέχρι εμφάνισης του $A$}\\
+\text{για πρώτη φορά}
+\end{matrix}
+ \right\rbrace\\
+X &=  \left\lbrace 1,2,3,4,\dots \right\rbrace\\
+P(X=x) &= P(\underbrace{\bar{A}\bar{A}\bar{A}\cdots \bar{A}\bar{A}}_{\mathclap{x-1 \text{ φορές } \bar{A}}} A)
+\\ &= (1-p)^{x-1}p \\
+\sum_{x=1}^\infty (1-p)^{x-1}p=1\\
+\text{Περίοδος επαναφοράς} \mathrm E(X) &=
+\frac{1}{p}
+\end{align*}
+
+\paragraph{Παράδειγμα}
+\begin{align*}
+E(X)&=2.5=\frac{1}{p}\implies p - 0.4\\
+P(X=1)&=(1-p)^{x-1}p\\&=\frac{1}{3}p\\
+P(X<3)=1-P(X\leq3),\quad P(X\leq3)&=\sum_{x=1}^3 (1-p)^{x-1}p
+\end{align*}
+
+\subsubsection{\textlatin{Pascal}}
+\begin{align*}
+X_r&=  \left\lbrace 
+\begin{matrix}
+\text{αριθμός δοκιμών}\\
+\text{μέχρι $r$ εμφανίσεις του $A$}
+\end{matrix}
+ \right\rbrace\\
+X_r&= \left\lbrace r,\ r+1,\ \dots \right\rbrace\\
+P(X_r=x) =& \binom{x-1}{r-1}(1-p)^{(x-1)-(r-1)}p^r
+\end{align*}
+
+\paragraph{Παράδειγμα}
+\begin{gather*}
+p = 0.00005 \text{ πιθανότητα να χαλάσει ο υπολογιστής}\\
+\text{6 ωρών}\\
+X_3= \left\lbrace 
+3,4,5,6,7,8,\dots
+ \right\rbrace\\
+ P(X_3>6) = 1-P(X_3 \leq 6)
+ \\
+ ω = toast
+\end{gather*}
+
+\paragraph{}
+%TODO Zioutas Graph 02
+\begin{gather*}
+\Big(X_{51}=101\Big)=\cdots
+\end{gather*}
+
+
+\subsubsection{\textlatin{Poisson}}
+\begin{align*}
+X_t= \left\lbrace 
+\begin{matrix}
+\text{αριθμός εμφάνισης $A$}\\
+\text{σε διάστημα $t$}
+\end{matrix}
+ \right\rbrace
+\end{align*}
+\begin{enumerate}
+\item \(\Delta t\)
+\item \(P(X_{\Delta t}=1)=\Delta t \cdot \lambda\)
+\item \(t_1,\ t_2\)
+\end{enumerate}
+
+\begin{gather*}
+P(X_t=t) = e^{-\lambda t} \frac{(\lambda t)^x}{x!}\\
+E(X_t) = \sum_{x=0}^\infty x e^{-\lambda t} \frac{(\lambda t)^x}{x!} = \dots = \lambda t\\
+E(X_1)=\lambda\\
+\sigma^2_{x_t} =\lambda t
+\end{gather*}
+
+\paragraph{Παράδειγμα}
+\begin{gather*}
+\lambda = \frac{16}{80} \text{ σεισμοί/χρόνο}\\
+X_{t=10}= \left\lbrace 0,1,2,\dots \right\rbrace\\
+P(X_{t=10} \geq 1) = 1- P(X_{t=10}=0)\\
+P(X_{t=10} = 4) = e^{-\lambda t} \frac{(\lambda t)^4}{4!}=1-e^{-\frac{16}{80}(10)}\frac{2^0}{0!}=1-e^{-2}\\
+E(X_{t=20})=\frac{16}{80}20=4
+\end{gather*}
+
+
+\paragraph{Απόδειξη}
+\begin{align*}
+\Delta t \text{ μικρό}\\
+P(A) = P = \lambda \Delta t \to 0\\
+n=\frac{t}{\Delta t} \to \infty
+\end{align*}
+
+\begin{align*}
+P(X_t=x) &= \binom{n}{x} p^x (1-p)^{n-x}\\
+&= \frac{n!}{(n-x)!\; x} \left( \frac{t}{n} \right)^x \left(1-\frac{\lambda t}{n}\right)^n (1-p)^{-x}\\
+&= \frac{1}{x!} \left( \frac{t\lambda}{n}\right)^x e^{-\lambda t}\\
+E(X_t)&=n\lambda \Delta t
+\\ &= n\lambda \frac{t}{n}
+\end{align*}
+
+\paragraph{Άσκηση 3}
+\[
+\begin{array}{cc}
+n=5
+\qquad&\qquad
+n=20
+\\p=0.80&p=0.20\\X= \left\lbrace 0,1,2,3,4,5 \right\rbrace
+& X= \left\lbrace 0,1,2,\dots,20 \right\rbrace\\
+P(X=4) = \binom{5}{4} p^4(1-p)^{5-4} = 40.96\%
+\qquad& P(X>4) = 1-P(X\leq4) = 1-\sum_{x=0}^4 \binom{20}{x} p^x(1-p)^{20-x}
+\end{array}
+\]
+
+\paragraph{Άσκηση 4}
+%TODO Zioutas Graph 03
+\begin{align*}
+p&=\frac{12}{60}=0.20\\
+X&= \left\lbrace 0,1,2,\dots,10 \right\rbrace\\
+n&=10\\
+P(X\leq \kappa) &= 0.90\\
+\sum_{x=0}^\kappa \binom{10}{x} p^x(1-p)^{10-x} &=0.90
+\end{align*}
+
+Προκύπτει με μέθοδο δοκιμής και λάθους ότι για $\kappa=4$ η πιθανότητα ξεπερνάει το 0.90.
+
+\paragraph{Άσκηση 8}
+\begin{align*}
+\lambda &= ^{100}/_\text{λεπτό}\\
+X_t &=  \left\lbrace 0,1,2,\dots \right\rbrace\\
+P(X_{t=1}=100) &= e^{-100} \frac{100^{100}}{100!}\\
+P\left(X_{t=\frac{1}{60}}=10\right) &= e^{-100\left(\frac{1}{60}\right)} \frac{\left(100\frac{1}{60}\right)}{10!}
+\end{align*}
+
+\paragraph{Άσκηση 7}
+\begin{align*}
+n & \qquad \text{Διωνυμική} X= \left\lbrace 0,1,2,\dots,n \right\rbrace\\
+P(\kappa = 0) &= \frac{5}{12}\\
+P(\kappa = 1) &= \frac{1}{3}\\
+P(\kappa = 2) &= \frac{1}{4}\\
+ \hline & 1\\
+ P(X=0) &= \binom{n}{0}p^0(1-p)^{n-0}\\
+ P(X=1) &= \binom{n}{1}p^1(1-p)^{n-1}\\
+ P(X=2) &= \binom{n}{2}p^2(1-p)^{n-2}\\
+ P(E) &= 
+ P\left(E\middle| \left\lbrace \kappa=0  \right\rbrace\right)P(\kappa=0)
+ +P\left(E\middle| \left\lbrace \kappa=1  \right\rbrace\right)P(\kappa=1)
+ +P\left(E\middle| \left\lbrace \kappa=2  \right\rbrace\right)P(\kappa=2)
+ \\ &=
+ P(X=0)\frac{5}{12}+P(X=1)\frac{1}{3}+P(X=2)\frac{1}{4}
+ \\ &= \dots
+\end{align*}
+
+\paragraph{Άσκηση 9}
+\begin{align*}
+P(X_t=0) &= e^{-\lambda t} \frac{(\lambda t)^0}{0!} = 0.90 \implies \dots
+\end{align*}
+
+\paragraph{Άσκηση 15}
+\begin{align*}
+p &= 0.05\\
+n &= 52\\
+\text{Αριθμός αυτών που θα ακυρώσουν } X &=  \left\lbrace 0,1,2,\dots,52 \right\rbrace\\
+P(X\geq2) &= 1 - P(X\leq1) = 1-\binom{52}{0}p^0(1-p)^{52-0}-\binom{52}{1}p^1(1-p)^{52-1}\\
+\boxed{1-p^*} \quad Y= \left\lbrace 1,2,\dots \right\rbrace \\ \mathrm{E}(y)=\frac{1}{1-p^*}=\boxed{10} \implies \boxed{p*} = p(X \geq k) = \dots
+\end{align*}
+
 
 
 \end{document}

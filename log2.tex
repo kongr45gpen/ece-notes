@@ -2287,6 +2287,348 @@ abc\cdot 2\pi \cdot \int_0^\pi \sin\phi \dif\phi \int_0^1 r^2\dif r = \boxed{\fr
 \end{align*}
 
 
+\section{Διανυσματικά Πεδία, Διαφορικοί τελεστές}
+\subsection{Διανυσματικές συναρτήσεις πολλών μεταβλητών}
+
+\paragraph{Ορ.}
+Έστω $n,m>1$. Κάθε απεικόνιση \(\mathbf F\) ή \(\vec{F}:\ A \subseteq \mathbb{R}^n \to \mathbb R^m: \)
+\[
+\mathbb F(x_1,\dots,x_n)=\left( f_1(x_1,\dots,x_n),\ \dots,\ f_m(x_1,\dots,x_n)\right) 
+\]
+καλείται διανυσματική συνάρτηση πολλών μεταβλητών.
+
+Στην παραπάνω οι \(f_1,\dots,f_m: A \subseteq \mathbb R^n \to \mathbb R\) είναι \textbf{πραγματικές} συναρτήσεις πολλών μεταβλητών που καλούται \textbf{συνιστώσες} ή \textbf{συντεταγμένες} συναρτήσεις του πεδίου \(\mathbb F \) (ως προς καρτεσιανό πάντα σύστημα συντ/νων).
+
+\paragraph{Πεδίο ορισμού} είναι η συναλήθευση των πεδίων ορισμού των συνιστωσών συναρτήσεων \(f_1,\dots,f_m\)
+
+\paragraph{π.χ}
+\[
+\underbrace{\mathbf F(x,y,z) }_{\mathbb R^3} = \underbrace{(x,y)}_{\mathbb R^2} \quad \text{προβολή του $P=(x,y,z)$ στο $Oxy$ επίπεδο}
+\]
+
+\paragraph{π.χ}
+\[
+\underbrace{\mathbf F(x,y)}_{\mathclap{\text{2 ανεξάρτητες μεταβλητές}}} = \underbrace{(x+2y,\ x-y,\ x+3y)}_{\mathclap{\text{Διάνυσμα με 3 συν/νες}}} = (x,x,x)+(2y,-y,3y)=
+\underbrace{x(1,1,1)+y(2,-1,3)}_{\mathclap{
+	\begin{matrix}
+	\text{παραμετρική παράσταση}\\
+	\text{επιπέδου που διέρχεται}\\
+	\text{από το $(1,-2,3)$ και}\\
+	\text{παράγεται από τα γραμμ.}\\
+	\text{ανεξ. διαν. $(1,1,1)$ κ $(2,-1,3)$}
+	\end{matrix}
+}
+	}
+\]
+
+\begin{itemize}
+\item \(\mathbf{F}(x,y,z) = \left( x,y,z,\sqrt{1-x^2-y^2-z^2} \right)\)
+
+Πρέπει: \(x^2+y^2+z^2 \leq 1\)
+
+\[
+\mathbf F: \text{μοναδιαία σφαιρική μπάλα του } \mathbb{R}^3 \to \mathbb R^4
+\]
+
+Γεωμετρικά είναι το τμήμα της υπερσφαίρας
+\[
+x^2+y^2+z^2+w^2=1,\ \text{για } w \geq 0
+\]
+\item 
+\(\mathbf F(x,y) = \left( x,y,\sqrt{x^2+y^2} \right) \)
+\[
+z= \sqrt{x^2+y^2} \text{ (το τμήμα κώνου $z^2=x^2+y^2$ για $z \geq 0$)}
+\]
+\subparagraph{Γενικότερα} Κάθε διαν. συνάρτηση της μορφής \(\mathbf F(x_1,\dots,x_n)=
+\left(
+x_1,\dots,x_n,f(x_1,\dots,x_n)
+\right)
+ \), παριστάνει μία υπερ-επιφάνεια στο \(\mathbb R\).
+\end{itemize}
+
+Έστω \(
+\mathbf F(x_1,\dots,x_n) = \left( 
+f_1(x_1,\dots,x_n),\dots,f_m(x_1,\dots,x_n)
+\right)
+\) διανυσματική συνάρτηση, $P_0$ \textbf{σ.σ.} του πεδίου ορισμού της $\mathbf{F}$ και $\vec{\lambda} = (\lambda_1,\dots,\lambda_m)$. Τότε:
+
+\begin{gather*}
+\lim_{P\to P_0} \mathbf F(P) = \vec \lambda \iff\begin{cases}
+\lim_{P\to P_0} f_1(x_1,\dots,x_n) &= \lambda_1 \\
+\qquad \vdots \\
+\lim_{P\to P_0} f_m(x_1,\dots,x_n) &= \lambda_m
+\end{cases}
+\\
+\mathbf F \text{ συνεχής στο } P_0 \iff f_1,\dots,f_m \text{ είναι συνεχείς στο } P_0
+\end{gather*}
+
+Έστω ότι υπάρχουν οι μερικές παράγωγοι των συνιστωσών συναρτήσεων:
+\[
+\pd{f_i(P)}{x_j}, \quad\begin{matrix}
+i=1,\dots,m\\ j=1,\dots,n
+\end{matrix}
+\]
+και είναι συνεχείς σε μια περιοχή σημείου $P$, για κάθε $P$ στο πεδίο ορισμού.
+
+Ορίζουμε τη μερική παράγωγο:\[
+\pd{\mathbf F(P)}{x_j} = 
+\left(
+\pd{f_1(P)}{x_j},\dots,\pd{f_m(P)}{x_j}
+\right)
+\]
+
+Η $\mathbf F$ είναι διαφορίσιμη στο $P$ και ο $m \times n$ \textbf{ΙΑΚΩΒΙΑΝΟΣ} πίνακας \(J_{\mathbf F}=
+\left[
+\begin{matrix}
+\pd{f_1(P)}{x_1} & \cdots & \pd{f_1(P)}{x_n}\\
+\vdots & \ddots & \vdots \\
+\pd{f_m(P)}{x_1} & \cdots & \pd{f_m(P)}{x_n}
+\end{matrix}
+\right]
+= \left[
+\begin{matrix}
+\nabla f_1\\
+\nabla f_2\\
+\vdots \\
+\nabla f_m
+\end{matrix}
+\right]
+\)
+καλείται \textbf{παράγωγος} της \(\mathbf F \) στο $P$, συμβολικά και $\mathbf F'(P)$ ή $\mathrm D \mathbf F(P)$. Για σημεία $Q$ "κοντά" στο $P$ ισχύει:
+\[
+\mathbf F(Q) - \mathbf F(P) \approx \underbrace{\mathbf F'(P) \cdot (Q-P)}_{\mathclap{
+		\dif \mathbf F_P(Q) \rightarrow \text{ διαφορικό του $\mathbf F$ στο $\mathbb R$}
+		}}
+\]
+
+\paragraph{π.χ} \(
+\mathbf F(x,y) = \big(
+x+2y^2,\ x-3y,\ 2x^2+y+1
+\big)
+\)
+
+\[
+\mathbf F'(x,y)= \left[
+\begin{matrix}
+1&4y\\ 1 & -3 \\ 4x & 1
+\end{matrix}
+\right]_{3 \times 2}
+\]
+
+\subsection{Διανυσματικά πεδία}
+\paragraph{Ορ.}
+Κάθε διανυσματική συνάρτηση πολλών μεαβλητών της μορφής:
+\[
+\mathbf F \text{ ή } \vec F: A\subseteq \mathbb R^n \to \mathbb R^n
+\]
+καλείται διανυσματικό πεδίο.
+
+\paragraph{Ερμηνεία} Σε ΚΑΘΕ ΣΗΜΕΙΟ του χώρου $\mathbb R^b$ ασκείται μια ΔΥΝΑΜΗ με τύπο $
+\mathbf F(P)
+$
+
+\subsubsection{Παραδείγματα}
+\paragraph{Α. Γραμμικά πεδία}
+Αν $A_{n \times n}$ είναι πίνακας πραγματικός, τότε:
+\[
+\mathbf{F} : \mathbb R^n \to R^n: \mathbf F(x_1,\dots,x_n) = A_{n \times n} \cdot \left[
+\begin{matrix}
+x_1 \\ \vdots \\ x_n
+\end{matrix}
+\right]_{n\times 1}
+\]
+\subparagraph{π.χ} \(
+\mathbf F(x,y)=(x+y,\ 2x-3y)
+\). Είναι γραμμικό?
+
+ΝΑΙ, διότι:
+\[
+\mathbf F(x,y) = \left(
+\begin{matrix}
+1&1\\2&-3
+\end{matrix} \right) \cdot \left( \begin{matrix}
+x\\y
+\end{matrix}
+\right)
+\]
+
+
+\begin{itemize}
+\item \(\mathbf F(x,y,z) = (2x+y+z+1,\ 3x-y-z,\ -x+2y+4) \). Είναι γραμμικό?
+
+ΟΧΙ, διότι γράφεται ως:
+\[
+\mathbf F(x,y,z) = \left(
+\begin{matrix}
+2&1&1 \\ 3 & -1 & -1 \\
+-1 & 2 & 0
+\end{matrix}
+\right) \cdot \left(
+\begin{matrix}
+x\\y\\z
+\end{matrix}
+\right) + \left(
+\begin{matrix}
+1 \\ 0 \\ 4
+\end{matrix}
+\right)
+\]
+
+Γίνεται όμως γραμμικό αν μετατεθεί κατά $(1,0,4)$. Τέτοια πεδία λέγονται \textbf{αφφινικά}.
+\end{itemize}
+
+\paragraph{Β. Πεδία κλίσεων}
+\begin{itemize}
+\item Έστω $f: A \subseteq \mathbb R^n \to \mathbb R$ διαφορίσιμο βαθμωτό πεδίο (ή αριθμητικό πεδίο, ή πραγματική συνάρτηση $n$-μεταβλητών).
+
+Τότε το πεδίο
+\begin{align*}
+\mathbf F: A \subseteq \mathbb R^n \to \mathbb R^n:\ \mathbf F(P) &= \nabla f(P) \\
+\text{ή } \mathbf F(x_1,\dots,x_n) &= \left(
+\pd{f(x_1,\dots,x_n)}{x_1},\dots,\pd{f(x_1,\dots,x_n)}{x_n}
+\right)
+\end{align*}
+καλείται πεδίο κλίσεων της $f$.
+
+H $f$ καλείται (βαθμωτό) ΔΥΝΑΜΙΚΟ του πεδίου $\mathbf F$.
+
+\subparagraph{π.χ.}
+Έστω $\vec r = (x_1,\dots,x_n)$ και $r = |\vec r | = \sqrt{x_1^2 + \dots + x_n^2}$.
+
+Ορίζω συνάρτηση \textbf{ΔΥΝΑΜΙΚΟΥ}
+\[
+f(\vec r) = \frac{c}{r} \qquad \Big(\;  c \text{ σταθερά} \; \Big)
+\]
+
+\textbf{Ορίζω}
+\begin{align*}
+\mathbf E &= -\nabla f = - \nabla \left( \frac{c}{r}\right) \\
+&= -c \nabla \left(\frac{1}{r}\right) = -c \frac{-\nabla r}{r^2} = c \frac{\nabla r}{r^2}\\
+\nabla r &= \nabla \left(
+\sqrt{x_1^2+\dots+x_n^2}
+\right) = \nabla \left(
+(x_1^2+\dots+x_n^2)^{\frac{1}{2}}
+\right) \\
+&= \left(
+\left[
+(x_1^2+\dots+x_n^2)^\frac{1}{2}
+\right]_{x_1},\ \dots,\ \left[
+(x_1^2+\dots+x_n^2)^\frac{1}{2}
+\right]_{x_n}
+\right) \\
+&= \left(
+\frac{x_1}{\sqrt{x_1^2+\dots+x_n^2}},
+\frac{x_2}{\sqrt{x_1^2+\dots+x_n^2}},
+\dots,
+\frac{x_n}{\sqrt{x_1^2+\dots+x_n^2}}
+\right) \\ &=
+\frac{1}{\sqrt{x_1^2+\dots+x_n^2}} \big(
+x_1,x_2,\dots,x_n
+\big) = \frac{\vec r}{r}
+\intertext{Άρα}
+\Aboxed{
+	\mathbf E &= \frac{c}{r^2} \cdot \frac{\vec r}{r}
+	}
+\end{align*}
+
+Αν $q$ ακίνητο σημειακό φορτίο (μαζί με το πρόσημό του) στην αρχή των αξόνων, τότε:
+\[
+\mathbf E_q = q\mathbf E
+\]
+είναι η ένταση του ηλεκτρικού πεδίου που παράγει το φορτίο $q$.
+
+%TODO Atreas Graph 01
+\begin{align*}
+\mathbf F &= \mathbf Q \cdot \mathbf E_q \\
+&= \frac{c\cdot q \cdot Q}{r^2} \cdot \frac{\vec r}{r}
+\end{align*}
+
+(Για $c=k=\frac{1}{4\pi \varepsilon_0}$ σταθερά \textlatin{Coulomb}), τότε \(
+\mathbf F
+\) δύναμη \textlatin{Coulomb}.
+\end{itemize}
+
+\paragraph{Γ. Κεντρικά διανυσματικά πεδία}
+Έστω $f: \mathbb{R} \to \mathbb{R}$ πραγματική συνάρτηση.
+
+\(\vec r = (x_1,\dots,x_n)\) το διάνυσμα θέσης σημείου $P \in \mathbb R^n$ και $r=|\vec r|$. Τότε το πεδίο $\mathbf F: A \subseteq \mathbb R^n - \left\lbrace (0,\dots,0) \right\rbrace \to \mathbb R^n:$
+\[
+\boxed{
+	\mathbf F(\vec r) = f(r) \cdot \frac{\vec r}{r}
+	}
+\] καλείται κεντρικό πεδίο διότι \textbf{ο ΦΟΡΕΑΣ} των εικόνων $\mathbb F(\vec r)$ ΤΑΥΤΙΖΕΤΑΙ με το \textbf{ΦΟΡΕΑ} του διανύσματος θέσης $\vec r$.
+
+\[
+\left.
+\begin{matrix}
+\text{το πεδίο \textlatin{Coulomb}}\\
+\text{το βαρυτικό πεδίο}
+\end{matrix}
+\right\rbrace \text{ΕΙΝΑΙ ΚΕΝΤΡΙΚΑ ΠΕΔΙΑ}
+\]
+
+\subsubsection{Παράσταση πεδίων}
+\paragraph{Α} Με χρήση Η/Υ
+
+\paragraph{Β}
+Διακριτοποιώ και σε κάθε σημείο $P$, ζωγραφίζω το διάνυσμα $\mathbf F(P)$ με αφετηρία το $P$.
+\subparagraph{π.χ} \(\mathbf F(x,y) = (-y,\ x) \)
+\[
+\begin{cases}
+\mathbf F(1,0) &= (-0,1) = (0,1) \\
+\mathbf F(0,1) &= (-1,0) \\
+\mathbf F(-1,0) &= (-0,-1) = (0,-1) \\
+\mathbf F(0,-1) &= (1,0)
+\end{cases}
+\]
+
+\paragraph{Γ (Με χρήση διανυσματικών γραμμών)}
+
+\subparagraph{Παραδοχή}
+Σε κάθε σημείο $P$, οι τιμές του πεδίου $\mathbf F(P)$ είναι ταχύτητες κατά την κίνηση κάποιου υλικού σημείου στο χώρο. Οι τροχιές (δηλαδή οι καμπύλες) κίνησης καλούνται \textbf{διανυσματικές} γραμμές του πεδίου.
+
+\textbf{Δηλ.} αν $\mathbf r$ είναι καμπύλη κίνησης, τότε:
+\begin{align*}
+\mathbf{v} &= \mathbf{F}(\mathbf r)
+\\ \implies
+\mathbf{r}'(t) &= \mathbf{F} \left(
+\mathbf r(t)
+\right) \quad t \in [a,b]
+\end{align*}
+
+π.χ Έστω $F(x,y) = (-y,x)$.
+
+\textbf{Έστω} $\mathbf{r}(t) = \Big(x(t), t(t) \Big)$
+
+\textbf{Τότε λόγω (1) έχω:}
+\begin{align*}
+\mathbf{r}'(t) &= \mathbf{F}\left(
+\mathbf r(t)
+\right) \implies
+\left(
+x'(t),y'(t) \right) = \left(
+-y(t),x(t)
+\right) \\
+&\implies \begin{cases}
+x' &= -y\\
+y' &= x
+\end{cases}
+\implies \frac{y'}{x'} = -\frac{x}{y} \implies xx'+yy' = 0
+\\ &\implies \boxed{x^2+y^2=c^2} \text{ ($c \in \mathbb{R}$ αυθαίρετη σταθερά)}
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
