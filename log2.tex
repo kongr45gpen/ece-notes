@@ -2617,7 +2617,618 @@ y' &= x
 \\ &\implies \boxed{x^2+y^2=c^2} \text{ ($c \in \mathbb{R}$ αυθαίρετη σταθερά)}
 \end{align*}
 
+\subsection{Διαφορικοί τελεστές}
+Έστω :
 
+\begin{itemize}
+\item \(
+V_n(E) = \left\lbrace f: E \subseteq \mathbb R ^n \to \mathbb R \right\rbrace
+\) ο χώρος όλων των \textbf{διαφορίσιμων} πραγματικών συναρτήσεων πολλών μεταβλητών (ή βαθμωτών ή αριθμητικών πεδίων)
+
+\item \(
+\mathbf{V}_{n,m}^{(E)} = \left\lbrace \mathbf F: E \subseteq \mathbb R ^{n} \to \mathbb R ^{m} \right\rbrace
+\) ο χώρος των ΔΙΑΦΟΡΙΣΙΜΩΝ διανυσμ. συναρτήσεων πολλώ μεταβλητών και
+\item 
+\(
+\mathbf V_n(E) = \left\lbrace \mathbf F: E \subseteq \mathbb R ^{(n)} \to \mathbb R ^\mathbf{n} \right\rbrace
+\) ο χώρος όλων των \textbf{ΔΙΑΦΟΡΙΣΙΜΩΝ διανυσμ. πεδίων}
+\end{itemize}
+
+\subsubsection{Διαφορικός τελεστής κλίσης}
+\textbf{Συμβολίζω:}
+\[
+\nabla := \left(
+\pd{}{x_1}, \pd{}{x_2}, \dots, \pd{}{x_n}
+\right)
+\]
+τον \textbf{τελεστή} κλίσης που δρα ως εξής:
+\begin{itemize}
+\item
+
+\begin{gather*}
+\nabla: \underbrace{V_n(E)}_{\mathclap{\text{αριθμ. πεδίο διαφορ.}}} \to \underbrace{\mathbf V_n(E)}_{\mathclap{\text{διανυσμ. πεδίο διαφορ.}}}:\\
+\nabla f = \left(
+\pd{}{x_1}, \dots, \pd{f}{x_n}
+\right), \quad E \subseteq \mathbb R ^n
+\end{gather*}
+
+\item
+\begin{gather*}
+\nabla: \underbrace{\mathbf V_n(E)}_{\mathclap{\text{διαν. πεδίο διαφορ.}}}
+\to
+\underbrace{\mathbf V_{n,n^2}(E)}_{\mathclap{\text{διανυσμ. συνάρτ. διαφορ. $E \subseteq \mathbb R ^n \to \mathbb R ^{n^2}$}}} \\
+:
+\\
+\nabla \mathbf F = \left(
+\pd{}{x_1},\dots,\pd{}{x_n}
+\right)\mathbf F = \left(
+\pd{\mathbf F}{x_1},\dots,\pd{\mathbf F}{x_n}
+\right)
+\end{gather*}
+
+\subsubsection{Απόκλιση διανυσμ. πεδίου}
+Έστω \(\mathbf F: E \subseteq \mathbb R ^n \to \mathbb R ^n \):
+
+\(
+\forall P=(x_1,\dots,x_n) \in E
+\) έχουμε:
+\[
+\mathbf F(P) = \left(
+f_1(P),\dots,f_n(P)
+\right)
+\] όπου $f_1,\dots,f_n$ είναι διαφορίσιμα αριθμητικά πεδία.
+\end{itemize}
+
+\paragraph{Ορ.}
+Καλούμε ΑΠΟΚΛΙΣΗ του πεδίου $\mathbf F$ στο σημείο P, συμβολικά $
+\mathrm{div} \mathbf{F}(P)$ να είναι ο \textbf{ΑΡΙΘΜΟΣ}:
+\[
+\mathrm{div} \mathbf F(P) = \pd{f_1(P)}{x_1}+\pd{f_2(P)}{x_2}+\dots+\pd{f_n(P)}{x_n}
+\]
+
+Παρατηρώ ($\bullet$ εσωτερικό γινόμενο) ότι:
+\begin{align*}
+\mathrm{div}\; \mathbf{F}(P) &= \nabla \bullet \mathbf{F}(P)  =
+\\ &=
+\left(
+\pd{}{x_1},\dots,\pd{}{x_n}
+\right) \bullet
+\left(
+f_1(P),\dots,f_n(P)
+\right) \\
+&=
+\pd{f_1(P)}{x_1} + \dots + \pd{f(P)}{x_n}
+\end{align*}
+
+Στο εξής θα χρησιμοποιούμε το συμβολισμό:
+\[
+\mathrm{div} \, :\overset{\text{συμβολισμός}}{=} \nabla \bullet
+\]
+
+Έτσι η \textbf{απόκλιση} μπορεί να θεωρηθεί ως ένας \textbf{διαφορικός τελεστής που δρα ως εξής}:
+
+\[
+\nabla \bullet
+ :
+ \underbrace{\mathbf V_n(E)}_{\mathclap{\text{διαφορίσιμο διαν. πεδίο}}}
+ \to
+ \underbrace{V_n(E)}_{\mathclap{\text{διαφορίσιμο βαθμωτό πεδίο}}}
+ \]
+ 
+ \paragraph{π.χ}
+ \(
+ \mathbf F(x,y) = (x+2y^2,\ -x^2+y^2)
+ \)
+ 
+ \[
+ \nabla \bullet \mathbf F(x,y) = \pd{(x+2y^2)}{x}+\pd{(-x^2+y^2)}{y} = \boxed{1+2y}
+ \]
+
+\paragraph{}
+
+Η απόκλιση είναι ΓΡΑΜΜΙΚΟΣ τελεστής, δηλαδή:
+\[
+\nabla \bullet \big(
+a\mathbf F +b \mathbf G
+\big) = a\nabla\bullet\mathbf F + b\nabla\bullet\mathbf G
+\]
+και επίσης ισχύει:
+
+Αν \(
+f: E \subseteq \mathbb R ^n \to \mathbb R
+\) διαφορίσιμο αριθμητικό πεδίο και \(\mathbf F: E \subseteq \mathbb R^n \to \mathbb R^n\) διαφορίσιμο διαν. πεδίο, τότε:
+\[
+\nabla \bullet (f\mathbf F) = \nabla f\bullet \mathbf F + f \nabla \bullet \mathbf F
+\]
+
+\paragraph{Ορ.}
+Ένα διανυσμ. πεδίο \(\mathbf F: E \subseteq \mathbb R^n\) με $\nabla \bullet \mathbf F = 0 \quad \forall P \in E$ καλείται \textbf{ασυμπίεστο} ή \textbf{σωληνοειδές}
+\subsubsection{Περιστροφή διανυσμ. πεδίου στον $\mathbb R ^2$ και $\mathbb R ^3$}
+Έστω \(\mathbb{F}:E \subseteq \mathbb R ^{\mathbb 3} \to R^{\mathbb 3} \).
+
+\(\mathbf F(x,y,z) = \left(
+f_1(x,y,z),\ f_2(x,y,z),\ f_3(x,y,z)
+\right)  \) διαφορίσιμο διαν. πεδίο επί του \(E\).
+
+\paragraph{Ορ.}
+Καλούμε περιστροφή του πεδίου \(\mathbf F \) στο σημείο \(P=(x,y,z) \in E\) να είναι το \underline{διάνυσμα}:
+\[
+\mathrm{rot}\; \mathbf{F}(P) = \left|
+\begin{matrix}
+\vec i & \vec j & \vec k\\
+\pd{}{x} & \pd{}{y} & \pd{}{z} \\
+f_1(P) & f_2(P) & f_3(P)
+\end{matrix}
+\right| = \left(
+\pd{f_3(P)}{}-\pd{f_2(P)}{z},\ \pd{f_1}{z}-\pd{f_3}{x},\ \pd{f_2}{x}-\pd{f_1}{y}
+\right)
+\]
+
+Παρατηρούμε ότι:
+\[
+\mathrm{rot}\; := \nabla x
+\]
+και αυτό το συμβολισμό θα χρησιμοποιούμε στο εξής.
+
+Έτσι η περιστροφή \( \nabla f \) είναι ένας τελεστής:
+\[
+\nabla x: \underbrace{\mathbf V_B(E)}_{\mathclap{\text{χώρος διαν. πεδίων}}}
+\to \underbrace{\mathbf V_b(E)}_{\mathclap{\text{χώρος διαν. πεδίων}}}
+\quad \mathbf G = \nabla \times \mathbf F
+\]
+
+\begin{itemize}
+\item Η περιστροφή είναι γραμμικός τελεστής:
+\[
+\nabla \times (a\mathbf F + b \mathbf G) = a \nabla \times \mathbf F + b \nabla \times \mathbf G
+\]
+\item Αν \( f:E \subseteq \mathbb R ^n \to \mathbb R  \) διαφορίσιμο αριθμητικό πεδίο, τότε:
+\[
+\nabla times (f\mathbf F) = \nabla f \times \mathbf F + f \nabla \times \mathbf F
+\]
+\end{itemize}
+
+\paragraph{Ορ.}
+Αν \[
+\nabla \times \mathbf F(P) = 0 \quad \forall P \in E
+\]
+τότε το πεδίο \( \mathbf F \) καλείται \textbf{ΑΣΤΡΟΒΙΛΟ}
+
+\paragraph{Ορ.}
+Αν \( \mathbf{F}(x,y)= \left(
+P(x,y),\ Q(x,y)
+\right) \) διαφορίσιμο πεδίο επί συνόλου \( E\subseteq \mathbb R \).
+
+Τότε ορίζουμε:
+\[
+\nabla \times \mathbf F(x,y) = \pd{Q(x,y)}{x} - \pd{P(x,y)}{y}
+\]
+
+\paragraph{Ιδιότητες}
+\begin{enumparen}
+\item Κάθε πεδίο κλίσεων είναι
+\[
+\text{ΑΣΤΡΟΒΙΛΟ}
+\]
+
+Με άλλα λόγια, αν \( f:E \subseteq \mathbb R ^3 \to \mathbb R  \) αριθμητικό πεδίο
+με συνεχείς μερικές παραγώγους 2\textsuperscript{ης} τάξης, τότε:
+\[
+\nabla \times (\nabla f) = \vec 0
+\]
+
+\subparagraph{Απόδ.}
+Έστω \( f \) όπως παραπάνω, και \(P=(x,y,z)\in E \)
+\begin{gather*}
+\nabla f = \left( f_x,f_y,f_z \right) \\
+\nabla \times (\nabla f) = \left| \begin{matrix}
+\vec i & \vec j & \vec k\\
+\pd{}{x} & \pd{}{y} & \pd{}{z}\\
+f_x & f_y & f_z
+\end{matrix}\right|  = \left(
+f_{zy} - f_{yz},\ f_{xz} - f_{zx},\ f_{yx}-f_{xy}
+\right) = (0,0,0) \quad \forall P \in E
+\end{gather*}
+
+\item Έστω \( f: E \subseteq \mathbb R ^n \) αριθμ. πεδίο, και \( P=(x_1,\dots,x_n) \in E \) \\
+και υπάρχουν όλες οι μερικές παράγωγοι 2\textsuperscript{ης} τάξης του \(f\).
+
+Τότε ορίζουμε:
+\begin{align*}
+\nabla \cdot (\nabla f) = \nabla \cdot \nabla f &= \left(
+\pd{}{x_1},\dots,\pd{}{x_n}
+\right) \bullet \left(
+f_{x_1},\dots,f_{x_n}
+\right) \\
+&=
+\pd{f_{x_1}}{x_1} + \pd{f_{x_2}}{x_2} + \dots + \pd{f_{x_n}}{x_n} \\
+&=
+f_{x_1^2}+f_{x_2^2}+\dots+f_{x_n^2}
+\end{align*}
+
+Συμβολίζουμε τον τελεστή
+\[
+\nabla^2 := \nabla \cdot \nabla
+\]
+και τον καλούμε τελεστή \textlatin{Laplace} ή Λαπλασιανή. Ισχύει δε:
+\[
+\nabla^2 : \underbrace{V_n(E)}_{\mathclap{\text{αριθμ. πεδίο}}}
+\to \underbrace{V_n(E)}_{\mathclap{\text{αριθμ. πεδίο}}}:\quad
+\nabla^2 f = \pd[2]{f}{x_1}+\pd[2]{f}{x_2}+\dots+\pd[2]{f}{x_n}
+\]
+
+\item Τα κεντρικά διανυσματικά πεδία είναι \textbf{αστρόβιλα}.
+(βλέπε άσκ. παρακαλώ)
+
+\item Έστω \( \mathbf F(x,y,z) = \left(
+P(x,y,z),\ G(x,y,z),\ R(x,y,z)
+\right) \) διαφορίσιμο πεδίο. Τότε
+\[
+\mathbf F' = J_{\mathbf F} = \left[
+\begin{matrix}
+P_x & P_y & P_z \\
+Q_x & Q_y & Q_z \\
+R_x & R_y & R_z
+\end{matrix}
+\right]
+\]
+
+\begin{align*}
+\text{Ίχνος}\; J_{\mathbb F} :&= \text{άθροισμα όλων των στοιχείων της κύριας διαγωνίου του } J_\mathbf{F} \\
+&= P_x+Q_y+R_z = \nabla \cdot \mathbb F
+\end{align*}
+
+Αν \( \mathbf F \) ασυμπίεστο \(\iff \) Ίχνος του \(J_{\mathbf F}\) ισούται με μηδέν.
+
+
+\begin{itemize}
+\item Επίσης:
+\(\mathbf F \) αστρόβιλο \(\iff J_{\mathbf F}\)  ένας συμμετρικός πίνακας
+\end{itemize}
+
+\item 
+Έστω \(\mathbf F: E \subseteq \mathbb R ^3 \to \mathbb R ^3 \) διαν. πεδίο με συνεχείς μερικές παραγώγους 2\textsuperscript{ης} τάξης. Τότε: \[
+\nabla \cdot (\nabla \times \mathbf F ) =0
+\]
+
+Έστω \(\mathbf F=(P,Q,R) \). Τότε:
+\[
+\nabla \times \mathbf F = (R_y-Q_z,\ P_z-R_x,\ Q_x-P_y)
+\]
+\textbf{Άρα:}
+\begin{align*}
+\nabla \cdot (\nabla \times \mathbf F) &= \left(
+\pd{}{x},\pd{}{y},\pd{}{z}
+\right) \cdot (R_y-Q_z,P_z-R_x,Q_x-P_y)
+\\ &= R_{yx} - Q_{zx} +R_{zy} - R_{xy} + Q_{xz} -P_{yz} = 0
+\end{align*}
+
+\item Έστω \(\mathbf F: E \subseteq \mathbb R ^3 \to \mathbb R ^3 \) διαν. πεδίο με συνεχείς μερικές παραγώγους επί ΚΥΡΤΟΥ χωρίου \(E\), και επιπλέον υποθέτουμε ότι το \(\mathbf F \) Είναι ΑΣΥΜΠΙΕΣΤΟ στο \(E\).
+
+Τότε υπάρχει διαφορίσιμο διαν. πεδίο \(\mathbf G \) έτσι ώστε:
+\[
+\mathbf F = \nabla \times \mathbf G
+\]
+
+Το \(\mathbf G  \) καλείται ΔΙΑΝΥΣΜΑΤΙΚΟ ΔΥΝΑΜΙΚΟ του \(\mathbf F \).
+
+Ένας τύπος για το \( \mathbf G \) είναι:
+\[
+\mathbf G = - \vec r \times \int_0^1 \mathbf F(t\vec r)\dif\vec r
+\]
+(\( \vec r \) διάνυσμα θέσης) αλλά δεν είναι μοναδικός. Πράγματι, και το πεδίο:
+\[
+\mathbf G + \nabla \cdot \mathbf F \quad 
+\text{($f:E \subseteq \mathbb R ^n \to \mathbb R $ οποιοδήποτε διαφορίσιμο πεδίο)}
+\]
+είναι επίσης διανυσματικό δυναμικό του \(\mathbf F \) διότι \( \nabla \times (\mathbf G + \nabla f) = \nabla \times \mathbf G + \cancelto{0}{\nabla \times (\nabla f)} = \nabla \times \mathbf G = \mathbf F \)
+
+\textbf{Ισχύει και το αντίστροφο.}
+
+\begin{align*}
+\text{Αστρόβιλο πεδίο } &\xrightarrow[\text{συνθήκη}]{+} \text{έχει βαθμωτό δυναμικό}, 
+\exists f: E \mathbb R ^n \to \mathbb R \quad \mathbf F = \nabla f\\
+\text{Ασυμπ. πεδίο } &\rightarrow \text{έχει διαν. δυναμ.}, \exists \mathbf G:\ \mathbf F:\nabla \times \mathbf G
+\end{align*}
+
+\item Αν \( \mathbf F: e \subseteq \mathbb R ^3 \to \mathbb R ^3 \) διαν. πεδίο με συνεχείς μερικές παραγ. επί κυρτού χωρίου \( E \), τότε υπάρχει διαφορίσιμο αριθμ. πεδίο \(f: E \subseteq \mathbb R ^3 \to \mathbb R  \) και διαφορ. διαν. πεδίο \(\mathbf G: E \subseteq \mathbb R ^3 \to \mathbb R ^3 \):
+\[
+\mathbf F = \underbrace{\nabla f}_{\mathclap{\text{αστρόβιλο}}} + \underbrace{\nabla \times \mathbf G}_{\mathclap{\text{ασυμπίεστο}}}
+\]
+
+\end{enumparen}
+
+\subsection{Ασκήσεις}
+\paragraph{Άσκ.}
+Έστω \( f: \mathbb R \to \mathbb R  \) είναι παραγωγίσιμη συνάρτηση και \(
+u: \mathbb R ^3 \to \mathbb R :\ u=u(x,y,z)
+\) έχει συνεχείς μερικές παραγώγους.\\
+ΝΔΟ το πεδίο \(\nabla u \times \nabla f(u) \) είναι αστρόβιλο.
+
+\subparagraph{}
+\begin{align*}
+\nabla u &= (u_x,u_y,u_z)\\
+\nabla f(u) &= f'(u) \cdot \nabla u \text{(παραγώγιση σύνθετης συνάρτησης)}
+\end{align*}
+άρα:
+\begin{align*}
+\nabla u \times \nabla f(u) &= \nabla u \times f'(u) \cdot \nabla u \\
+&= \left|
+\begin{matrix}
+\vec i & \vec j & \vec k \\
+u_x & u_y & u_z \\
+f'(u)u_x & f'(u)u_y & f'(u)u_z
+\end{matrix}
+\right| &= f'(u) \cdot \
+\left|
+\begin{matrix}
+\vec i & \vec j & \vec k \\
+u_x & u_y & u_z \\
+u_x & u_y & u_z
+\end{matrix}
+\right| = \vec 0.
+\end{align*}
+
+\paragraph{Άσκ.}
+Έστω \(\vec r = (x,y,z),\ r = |\vec r|=\sqrt{x^2+y^2+z^2}\)
+
+\( f:\mathbb R ^+ \to \mathbb R  \) παραγωγίσιμη συνάρτηση και
+
+\( \mathbf F(x,y,z) := \mathbf F(\vec r) = \frac{f(r)}{r} \cdot \vec r \)
+διανυσμ. πεδίο επί του \( \mathbb R ^3 - \left\lbrace (0,0,0) \right\rbrace \)
+
+\begin{itemize}
+\item ΝΔΟ \(
+\nabla \cdot \mathbf F = \frac{rf'(r)+2f(r)}{r}
+\).
+
+Για ποιες \(f\) το πεδίο \( \mathbf F \) είναι ασυμπίεστο στο \( \mathbb R ^3-\left\lbrace (0,0,0) \right\rbrace \)
+
+\item ΝΔΟ \( \mathbf F \) αστρόβιλο στον \( \mathbf \mathbb R ^3 - \left\lbrace (0,0,0) \right\rbrace \)
+
+\subparagraph{}
+Από τύπο θεωρίας έχω:
+\begin{align}
+\nabla \cdot \left(
+\frac{f(r)}{r}\cdot \vec r
+\right) = \nabla \left(
+\frac{f(r)}{r} \cdot \vec r + \frac{f(r)}{r} \nabla \vec r
+\right)
+\end{align}
+
+\begin{itemize}
+\item \begin{align*}
+\nabla \cdot \vec r &= \left(\pd{}{x}.\pd{}{y},\pd{}{z} \right) \cdot (x,y,z) \\
+&= \pd{x}{x} + \pd{y}{y} + \pd{z}{z} = 3.
+\end{align*}
+
+\item \begin{align*}
+\nabla \left(
+\frac{f(r)}{r}\right) &\overset{\text{παραγ. πηλίκου}}{=} \frac{\nabla f(r) \cdot r - f(r) \nabla r}{r^2} \\
+&= \frac{r \cdot f'(r) \cdot \nabla r - f(r) \nabla r }{r^2} = \frac{rf'(r)-f(r)}{r^2}\nabla r
+\end{align*}
+
+\item \begin{align*}
+\nabla r &= \nabla \left(
+(x^2+y^2+z^2)^\frac{1}{2}
+\right) \\ &= \left(
+(x^2+y^2+z^2)_x^\frac{1}{2},(x^2+y^2+z^2)_y^\frac{1}{2},(x^2+y^2+z^2)_z^\frac{1}{2}
+\right) \\
+&= \left(
+\frac{x}{\sqrt{x^2+y^2+z^2}}+\frac{y}{\sqrt{x^2+y^2+z^2}}+\frac{z}{\sqrt{x^2+y^2+z^2}}
+\right) \\ &=
+\frac{\vec r}{r}.
+\end{align*}
+
+\end{itemize}
+\textbf{Άρα:}
+\[
+\boxed{
+	\nabla \left(
+	\frac{f(r)}{r} = \frac{rf'(r)-f(r)}{r^2} \cdot \frac{\vec r}{r}
+	\right)
+	}
+\]
+
+Αντικαθιστώ στην (1) και έχω:
+\begin{align*}
+\nabla \cdot \mathbf F &= \frac{rf'(r)-f(r)}{r^3} \cdot \vec r \cdot \vec r + \frac{f(r)}{r}\cdot 3 \\
+&= \frac{rf'(r)-f(r)}{r^3} \cdot r^2 + 3 \frac{f(r)}{r} \\
+&= \frac{rf'(r)+2f(r)}{r}
+\end{align*}
+
+\begin{align*}
+\nabla \cdot \mathbf F &= 0 \implies  \\
+rf'(r) + 2f(r) &= 0 \implies \\
+f'(r) + \frac{2}{r}f(r)&= 0
+\end{align*}
+(ομογενής συνήθης γραμμική δ.ε.)
+
+\textbf{Άρα:}
+\[
+f(r) = ce^{-\int \frac{2}{r}\dif r} =ce^{-2\ln x} = \frac{c}{r^2}
+\]
+
+\begin{itemize}
+\item Από θεωρία έχουμε:
+\begin{align}
+\nabla \times \left(
+\frac{f(r)}{r}\cdot \vec r
+\right) &= \nabla \left(
+\frac{f(r)}{r}\times \vec r + \frac{f(r)}{r}\nabla \times \vec r
+\right) 
+\nonumber
+\\ &=
+\frac{rf'(r)-f(r)}{r^2} \cdot \frac{\vec r}{r} \times \vec r + \frac{f(r)}{r} \nabla \times \vec r
+\end{align}
+
+\item \[
+\nabla \times \vec r = \left|
+\begin{matrix}
+\vec i & \vec j & \vec k\\
+\pd{}{x} & \pd{}{y} &\pd{}{z} \\
+x&y&z
+\end{matrix}
+\right| = (0,0,0) = \vec 0,
+\]
+άρα αντικαθιστώ στη (2).
+
+Έουμε ότι \(\nabla \times \mathbb F = 0 \) επειδή \( \vec r \times \vec r = \vec 0 \) και \( \nabla \times \vec r = \vec 0 \quad \forall P \in \mathbb R ^3-\left\lbrace (0,0,0) \right\rbrace \)
+
+\paragraph{Άσκ.}
+Έστω \( \mathbf F(x,y,z) = \left(P(x,y,z),Q(x,y,z),R(x,y,z)  \right) \) διαν. πεδίου του οποίου οι συνιστώσες \( P,Q,R \) έχουν μερικές παραγώγους 2\textsuperscript{ης} τάξης. \\
+ΝΔΟ:
+
+\[
+\nabla^2 \mathbf F = \left(
+\nabla^2 P,\ \nabla^2 Q,\ \nabla^2 R
+\right)
+\]
+
+\subparagraph{}
+\begin{align*}
+\nabla^2 \mathbf F &\overset{\text{εξ' ορισμού}}{=} \nabla \bullet \nabla \mathbf F
+\\ &= \left( \pd{}{x},\pd{}{y},\pd{}{z} \right) \cdot \big( \mathbf F_x,\ \mathbf F_y,\ \mathbf F_z \big) \\ &= \pd{\mathbf F_x}{x} + \pd{\mathbf F_y}{y} + \pd{\mathbf F_z}{z}
+\\ &= \pd{}{x}(P_x,Q_x,R_x) + \pd{}{x}(P_y,Q_y,R_y) + \pd{}{z}(P_z,Q_z,R_z) \\
+&= (P_{xx},Q_{xx},R_{xx})+(P_{yy},Q_{yy},R_{yy})+(P_{zz},Q_{zz},R_{zz})\\
+&= (
+P_{xx} + P_{yy}+P_{zz},\ Q_{xx} + Q_{yy}+Q_{zz},\ R_{xx} + R_{yy}+R_{zz}
+)
+\\ &= \left(
+\nabla^2 P, \nabla^2 Q,\nabla^2 R
+\right)
+\end{align*}
+\end{itemize}
+
+\end{itemize}
+
+\paragraph{Άσκ.}
+Έστω \( u:\mathbb R ^3\to \mathbb R : u = u(x,y,z) \) έχει συνεχείς μερικές παραγώγους 2\textsuperscript{ης} τάξης. ΝΔΟ
+\begin{itemize}
+\item \( \nabla \cdot (u\nabla u) = |\nabla u|^2 + u \nabla^2 u \)
+\item Το πεδίο \( u\nabla u \) είναι αστρόβιλο στον \( \mathbb R ^3 \).
+\end{itemize}
+
+\subparagraph{}
+\begin{itemize}
+\item \( \nabla u = (u_x,u_y,u_z) \), άρα
+\begin{align*}
+u\nabla u &= u(u_x,u_y,u_z) \\
+&= (uu_x,uu_y,uu_z)
+\end{align*}
+
+\( \nabla \cdot (u\nabla u) = \left( \pd{}{x},\pd{}{y},\pd{}{z} \right)  \cdot (uu_x,uu_y,uu_z)  = \pd{(uux)}{x} + \pd{uu_y}{y} + \pd{uu_z}{z}
+= (u_xu_x+uu_{xx})+(u_yu_y+uu_{yy})+(u_zu_z+uu_{zz}) = (u_x^2+u_y^2+u_z^2)+u \underbrace{(u_{xx}+u_{yy}+u_{zz})}_{\mathclap{\text{Λαπλασιανή της $u$}}}
+= |\nabla u|^2 + u\nabla^2 u
+\)
+\item Αρκεί ΝΔΟ \( \nabla \times (u \nabla u) = \vec 0 \) παντού στο \( \mathbb R  \).
+\begin{itemize}
+\item Είτε μέσω ορισμού: \[
+\nabla \times (u\nabla u) = \left|
+\begin{matrix}
+\vec i & \vec j & \vec k\\
+\pd{}{x} & \pd{}{y} & \pd{}{z} \\
+uu_x&uu_y&uu_z
+\end{matrix}
+\right| = \dots = (0,0,0) = \vec 0
+\]
+\item Είτε με χρήση της ιδιότητας: \(
+\boxed{\nabla \times(f \mathbf F) = \nabla f \times \mathbf F + f\nabla \times \mathbf F}\quad f=u, \quad \mathbf F = \nabla u
+\)
+\[
+\nabla \times (u\nabla u) = \cancelto{\vec 0}{\nabla u \times \nabla u} + \cancelto{0}{u\nabla x (\nabla u)} = \vec 0
+\]
+\end{itemize}
+\end{itemize}
+
+\section{Επικαμπύλια ολοληρώματα}
+%TODO
+
+\paragraph{Θ1}
+Έστω \( \mathbf F: D \subseteq \mathbb R ^n \to \mathbb R ^n \) συνεχές διανυσμ. πεδίο σε \textbf{τόπο} \( D \), τότε:
+\[
+\mathbf F \text{ συντηρητικό στο } D \iff \underbrace{\oint_\gamma \mathbf F \cdot \dif \mathbf r = 0}_{\mathclap{\text{για κάθε \textbf{κλειστή}, λεία καμπύλη εντός του} D}}
+\]
+
+\textbf{Σημ.}: Στο εξής, αν \( \gamma  \) είναι κλειστή και λεία καμπύλη, γράφουμε \( 
+\oint_\gamma \mathbf F \cdot \dif \mathbf r \left(
+\text{αντί } \int_\gamma \mathbf F \cdot \dif \mathbf r
+\right)
+ \)
+ \subparagraph{Απόδ.}
+ %TODO Atreas Graph 01
+ 
+ Έστω \( A,B \in D \) \textbf{ΤΥΧΑΙΑ} σημεία και έστω \(\gamma_1, \gamma_2\) \textbf{τυχαίες} καμπύλες με αρχή \( A \) κ πέρας \( B \) κ ίχνη όπως στο σχήμα.
+ 
+ Παρατηρούμε ότι \( \gamma = \gamma_1-\gamma_2 \) είναι κλειστή καμπύλη:
+ \begin{align*}
+ \oint_\gamma \mathbf F \cdot \dif \mathbf r&=
+ \oint_{\gamma_1-\gamma_2} \mathbf F \cdot \dif\mathbf r
+ =\oint_{\gamma_1}\mathbf F \cdot \dif \mathbf r_{\gamma_1}+
+ \oint_{\gamma_2}\mathbf F \cdot \dif \mathbf r_{\gamma_2} \\
+ &= \int_{\gamma_1} \mathbf F \cdot \dif \mathbf r_{\gamma_1}
+ - \int_{\gamma_2} \mathbf F \cdot \dif \mathbf r_{\gamma_2}
+ \end{align*}
+ 
+ Άρα:
+ \begin{align} \label{eq:oint1p} \boxed{
+ \oint_\gamma \mathbf F \cdot \dif \mathbf r = \int_{\gamma_1} \mathbf F \cdot \dif \mathbf r_{\gamma_1}
+ - \int_{\gamma_2} \mathbf F \cdot \dif \mathbf r_{\gamma_2}
+}
+ \end{align}
+ 
+ Διότι αν \( \mathbf F \) συντηρ. \( \xRightarrow{\text{ορ.}} \int_{\gamma'} \mathbf F \cdot \dif \mathbf r \) ανεξάρτητο του δρόμου \( \implies \text{δεξι μελος } \eqref{eq:oint1p} = 0 \xRightarrow{\eqref{eq:oint1p}} \oint_\gamma \mathbf F \cdot \dif \mathbf r = 0 \).
+ 
+ Αντίστροφα: Αν \( \oint_\gamma \mathbf F \cdot \dif \mathbf r = 0 \implies \text{δεξί μέλος \eqref{eq:oint1p} ισούται με μηδέν } \implies \int \mathbf F \cdot \dif \mathbf r \text{ ανεξάρτητο δρόμου} \implies \mathbf F \) συντηρητικό.
+ 
+\paragraph{Θ2.}
+Έστω \( \mathbf F:D \subseteq \mathbb R ^n\to\mathbb R ^n \) συνεχές διαν. πεδίο επί \textbf{τόπου \( D \)}. Τότε:
+\[
+\mathbf F \text{ συντηρητικό στο } D \iff
+\mathbf{F} \text{ είναι πεδίο κλίσεων στο $D$, δηλ. } \mathbf{F} = \nabla f \text{για κάποια } f:D \subseteq \mathbb R ^n \to \mathbb R \text{ με συνεχείς μερ. παραγ. στο } D
+\]
+\subparagraph{Απόδ.}
+``\( \Leftarrow \)'' Έστω \( \mathbf F \) πεδίο κλίσεων, δηλ. \( \mathbf F = \nabla f \).
+
+\textbf{Τότε} αν \( \gamma \) οποιαδήποτε καμπύλη με παραμετροποίηση \( \mathbf r \), λεία και κλειστή έχουμε:
+\begin{align*}
+\oint_\gamma\mathbf F \cdot \dif \mathbf r = \oint \nabla f \cdot \dif \mathbf r \overset{\text{ορισμός}}{=} \\
+\int_a^b \nabla f \left(\mathbf r(t)\right) \cdot \mathbf r'(t)\dif t = \\
+\int_a^b (f \circ \mathbf r)'(t) \dif t = \\
+= f\left(\mathbf r(b) \right) - \mathbf{f} \left(\mathbf r(a) \right) = 0
+\end{align*},
+διότι η \( \gamma \) κλειστή καμπύλη, άρα \( \mathbf r(a) = \mathbf r(b) \). 
+Άρα από Θ1 το \( \mathbf F \) συντηρητικό πεδίο.
+
+\subparagraph{Σημείωση:} 
+Η συνάρτηση βαθμωτού δυναμικού συντηρητικού πεδίου \( \mathbf F \) βρίσκεται ως εξής:
+\[ \boxed{
+f(P) - f(A) = \int_A^P \mathbf F \cdot \dif \mathbf r
+}
+\]
+όπου \(  A \in D \) σημείο του \( \mathbf D \) που εσείς επιλέγετε,\\
+\( (x_1,\dots,x_n) = P \) \textbf{τυχαίο σημείο του } \( D  \) και:
+\[
+\int_A^P \mathbf F \cdot \dif \mathbf r \text{ συμβολισμός που δηλώνει ότι το επικαμπύλιο ολοκλ. είναι ανεξάρτητο του δρόμου}
+\]
+
+\paragraph{Τελικά}
+\(
+\mathbf F
+\) συντηρητικό σε τόπο \( D \iff \oint_\gamma \mathbf F \cdot \dif \mathbf r = 0 \) για κάθε κλειστή λεία καμπύλη εντός του \( D \)
+\[
+\iff \mathbf F = \nabla f
+\]
+
+\paragraph{\( ^*_* \)Π\( ^*_* \)}
+Αν \( D \) είναι \textbf{ΑΠΛΑ ΣΥΝΕΚΤΙΚΟΣ ΤΟΠΟΣ} του \( \mathbb R ^n \) και \( \mathbf F:D \subseteq \mathbf R^n \to \mathbf R^n \) έχει συνεχείς μερικές παραγώγους στο \( \mathbf D \), τότε:
+\[
+\mathbf F \text{ συντηρητικό στο } D \iff \mathbf F \text{ αστρόβιλο στο } D
+\]
+
+\begin{itemize}
+\item Αν \( D \) \textbf{ΔΕΝ} είναι \textbf{απλά} συνεκτικό, τότε \textbf{ΔΕΝ} συνεπάγεται κατά ανάγκη ότι ατρόφιβο πεδίο είναι συντηρητικό. Μπορεί ΝΑΙ, μπορεί ΟΧΙ.
+\end{itemize}
 
 
 
@@ -4367,7 +4978,637 @@ y^2z_{x^2}-2xyz_{xy}+x^2z_{y^2}=y^2(2f_v+4x^2f_{v^2})-2x6\cdot 4xy f_{v^2}+x^2(2
 2y^2f_v+4x^2y^2f_{v^2}-8x^2y^2f_{v^2}+2x^2f_v+4x^2y^2f_{v^2}=x(2xf_v)+y(2yf_v)=xz_x+yz_y
 \end{gather*}
 
+\paragraph{Άσκηση}
+Δίνεται συνάρτηση $z=z(u,v)$ όπου $u=e^x\cos y$ κ $v=e^x\sin y$.
 
+Αν η $z$ έχει συνεχείς μερικές παραγώγους 2\textsuperscript{ης} να δειχθεί ότι:
+\begin{enumparen}
+\item \(z_x^2+z_y^2 = (u^2+v^2)(z_u^2+z_v^2)\)
+\item \(z_{x^2}+z_{y^2} = (u^2+v^2)(z_{u^2}+z_{v^2})\)
+\end{enumparen}
+
+\begin{infobox}{}
+\begin{gather*}
+z=z(u,v) \implies \dif z =z_u \dif u + z_v \dif v \implies \\
+\left.
+\begin{matrix}
+u = g(x,y)\\
+v=h(x,y)
+\end{matrix}
+\middle|
+\begin{matrix}
+\dif z = z_u(u_x\dif x)+z_v(v_x\dif x + v_y\dif y)\\
+\dif z = z_x\dif x + z_y \dif y
+\end{matrix}
+\right\rbrace \implies \\
+\begin{cases}
+z_x &= z_uu_x+z_vv_x \\
+z_y &= z_uu_y+z_vv_y
+\end{cases}
+\end{gather*}
+\end{infobox}
+
+\[
+u=e^x\cos y \implies \begin{cases}
+u_x &= e^x\cos y = u\\
+u_y &= -e^x\sin y = -v
+\end{cases}
+\qquad
+v=e^x\sin y \implies \begin{cases}
+v_x &=e^x\sin y =v\\
+v_y &=e^x\cos y = u
+\end{cases}
+\]
+
+\begin{align*}
+(1) \xRightarrow{(3),(5)} & z_x=z_u u + z_v v (7) \\
+(2) \xRightarrow{(4),(6)} & z_y=z_u v + z_v u (8) \\
+\end{align*}
+
+\subparagraph{(1)}
+\begin{align*}
+z_x^2 + z_y^2 &= (z_u u + z_v v)^2+(-z_u v + z_v u)^2 =
+\\ &=
+z_u^2u^2+z_v^2v^2+euvz_uz_v+z_u^2v^2+z_v^2u^2-2uvz_uz_v \\
+&=
+z_u^2(u^2+v^2)+z_v^2(u^2+v^2) = (u^2+v^2)(z_u^2+z_v^2)
+\end{align*}
+
+\subparagraph{}
+\begin{align}
+z_{x^2} & =(z_x)_x = (z_uu+z_vv)_u u_x+(z_uu+z_vv)_vv_x \nonumber \\
+&=
+(z_{u^2}u+z_u+z_{vu}v)u+(z_{uv}u+z_{v^2}v+z_v)v\\
+z_{y^2} &= (z_y)_y = (-z_uv +z_vu)_uu_y+(-z_uv+z_vu)_vu_y \nonumber \\
+&= (-z_{u^2}v+z_{vu}u+z_v)(-v)+(-z_{uv}v-z_u+z_{v^2}u)u \\
+z_{x^2}+z_{y^2} &= u(z_{u^2}u+z_u+z_{uv}v-z_{uv}v-z_u+z_{v^2}u)
++ v(z_{uv}u+z_{v^2}v+z_v+z_{u^2}v-z_{uv}u-z_v) \nonumber \\
+&= u^2(z_{u^2}+z_{v^2})+v^2(z_{u^2}+z_{v^2}) \nonumber \\
+&= (u^2+v^2)(z_{u^2}+z_{v^2})
+\end{align}
+
+\paragraph{Άσκηση}
+\(
+f(x,y)=x^2-3xy+y^2
+\)
+
+Να βρεθεί ο ρυθμός μεταβολής στο \(P_0 = (1,2) \) κατά τη μετακίνηση στο \(P_1=(3,4)\).
+\begin{tikzpicture}
+\draw[->,thick] (-4,0) -- (6,0);
+\draw[->,thick] (0,-4) -- (0,6);
+
+%\fill (1,2) circle{3pt} node[above] {$P_0$};
+%\fill (3,24 circle{3pt} node[above] {$P_1$};
+%TODO Velaki από P_0\to P_1
+\end{tikzpicture}
+
+\[
+\pd{f(x_0,y_0)}{\vec a} = \nabla f(x_0,y_0)\vec a = -3\frac{1}{\sqrt{2}}+1 \frac{1}{\sqrt{2}} = \sqrt{2}
+\]
+
+\begin{align*}
+\nabla f(x_0,y_0) &= \left(
+f_x(1,2),f_y(1,2)
+\right) = \left(
+(3x^2-3_y)_{P_0}, (-3x+2y)_{P_0}
+\right)
+\\ &=
+(3 \cdot1^2 - 3 \cdot 2, -3 \cdot 1 + 2 \cdot 2) = (-3,1)
+\end{align*}
+
+\[
+\vec a = \frac{\overrightarrow{P_0P_1}}{|\overrightarrow{P_0P_1}|} = \frac{(3-1,\ 4-2)}{\sqrt{(3-1)^2+(4-2)^2}} = \frac{(2,2)}{2\sqrt{2}} = \left(
+\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}
+\right)
+\]
+
+\paragraph{Άσκηση}
+\(f(x,y )\) έχει συνεχείς μερικές παραγώγους 3\textsuperscript{ης} τάξης. \newline
+Αν \(\underbrace{f(x,y)}_{\mathclap{\pd[2]{f(x,y)}{x} + \pd[2]{f(x,y)}{y}=0 }}\) αρμονική ΝΔΟ \(f_x(x,y)\) είναι επίσης αρμονική.
+	
+	\begin{gather*}
+	\pd[2]{f_x(x,y)}{x}+\pd[2]{f_x(x,y)}{y}=%
+%
+	\pd[2]{}{x_2} \left[
+	\pd{f(x,y)}{x}
+	\right] + \pd[2]{}{y} \left[
+	\pd{f(x,y)}{x}
+	\right] =
+	\pd[3]{f(x,y)}{x}+\frac{\partial^3f(x,y)}{\partial y^2 \partial x} \\
+	= \pd{}{x} \left[
+	\pd[2]{f(x,y)}{x}
+	\right] + \pd{}{x} \left[
+	\pd[2]{f(x,y)}{y}
+	\right]=
+	\pd{}{x} \left[
+	\pd[2]{f(x,y)}{x} + \pd[2]{f(x,y)}{y}
+	\right] = \pd{0}{x} = 0
+	\end{gather*}
+
+\paragraph{Άσκηση}
+Δίνεται συνάρτηση \(f(x,y)= \begin{cases}
+\frac{xy}{\sqrt{x^2+y^2}} \quad & , (x,y) \neq (0,0)\\
+0 \quad & , (x,y) = (0,0)
+\end{cases}\)
+\begin{enumparen}
+\item Να υπολογιστούν οι \(f_x\) κ' \(f_y\ \forall (x,y) \in \mathbb R ^2\)
+\item Είναι η \(f(x,y)\) συνεχής στο \(\mathbb{R}^2\)?
+\item Είναι η \(f(x,y)\) διαφορίσιμη στο \((0,0)\)?
+\end{enumparen}
+
+\subparagraph{(1)}
+Για \((x,y) \neq (0,0): f_x(x,y)=\frac{y\sqrt{x^2+y^2}-xy\frac{2x}{2\sqrt{x^2+y^2}}}{x^2+y^2}
+=\frac{y(x^2+y^2)-x^2y}{\sqrt{x^2+y^2}(x^2+y^2)}=\frac{y^3}{(x^2+y^2)^\frac{3}{2}}
+ \)
+ 
+ Ομοίως θα προκύψει ότι \(
+ f_y(x,y) = \frac{x^3}{(x^2+y^2)^{ ^3/_2}}
+ \)
+ 
+Για \((x,y)=(0,0) \):
+\begin{align*}
+f_x(x_0,y_0) &= \lim_{h\to0} \frac{f(x_0+h,y_0)-f(x_0,y_0)}{h} \implies \\
+f_x(0,0) &= \lim_{h\to0} \frac{f(h,0)-\cancelto{0}{f(0,0)}}{h} \implies \\
+f_x(0,0) &= \lim_{h\to0} \frac{\frac{h\cdot 0}{\sqrt{h^2+0^2}}}{h} = \lim_{h\to0}\frac{\cancel{h}\cdot 0}{\cancel{h} \sqrt{h^2+0}} \\
+f_y(x_0,y_0) &= \lim_{h\to0}\frac{f(x_0,y_0+h)-\cancelto{0}{f(x_0,y_0)}}{h} \\
+&= \lim_{h\to0}\frac{f(0,h)}{h} = \lim_{h\to0}\frac{\frac{0\cdot h}{\sqrt{0^2+h^2}}}{h} \\
+&= \lim_{h\to0} \frac{0 \cdot \cancel{h}}{\cancel{h}\cdot \sqrt{0^2+h^2}}
+\end{align*}
+
+\subparagraph{(2α)}
+\begin{align*}
+f_x&=\frac{y^3}{(x^2+y^2)^\frac{3}{2}} = \frac{\cancel{r^3}\sin^3\phi}{\cancel{r^3}} \to \text{ πεπερασμένο}
+\\
+f_y&=\frac{x^3}{(x^2+y^2)^\frac{3}{2}} = \frac{\cancel{r^3}\cos^3\phi}{\cancel{r^3}} \to \text{ πεπερασμένο}
+\end{align*}
+Άρα σ/ς
+
+\subparagraph{(2β)}
+Θα ελεγθεί η συνέχεια στο \((0,0)\):
+\[\lim_{(x,y)\to(0,0)} f(x,y) = \cancelto{0}{f(0,0)}\]
+
+\begin{align*}
+\lim_{(x,y)\to(0,0)}f(x,y) = \lim_{(x,y)\to(0,0)}
+\frac{xy}{\sqrt{x^2+y^2}} = \lim_{r\to0^+} \frac{r^{\cancel{2}}\cos\phi\sin\phi}{\cancel{r}} = 0
+\end{align*}
+
+\subparagraph{(3α)}
+\[
+\lim_{(x,y)\to(0,0)}f_x(x,y)=f_x(0,0) = \lim_{(x,y)\to(0,0)}\frac{y^3}{(x^2+y^2)^{\frac{3}{2}}} = \lim_{r\to0^+}\frac{\cancel{r^3}\sin^3\phi}{\cancel{r^3}}
+\]
+
+\subparagraph{(3β)}
+\[
+\lim_{P\to P_0} \frac{\left|f(P)-f(P_0)-f'(P_0)(P-P_0)\right|}{|\overrightarrow{P_0P_1}|}
+\]
+
+\begin{align*}
+\lim_{(x,y)\to(0,0)}
+\frac{\left|f(x,y)-f(0,0)-\left(\cancelto{0}{ f_x(0,0), f_y(0,0)}\right)\cdot(x,y)\right|}{\sqrt{x^2+y^2}} &= \lim_{(x,y)\to(0,0)} \frac{\left| f(x,y) \right|}{\sqrt{x^2+y^2}} \\
+&= \lim_{(x,y)\to(0,0)} \frac{\frac{|xy|}{\sqrt{x^2+y^2}}}{\sqrt{x^2+y^2}} \\
+&= \lim_{(x,y)\to(0,0)} \frac{|xy|}{x^2+y^2} \\
+&= \sin^3\phi
+\end{align*}
+
+\subsection{Πεπλεγμένη συνάρτηση}
+\[
+\Phi(x_1,x_2,\dots,x_n,y) = 0 \qquad \text{π.χ } x\cos y+ye^2+x^2y\cos z = 0 
+\]
+Μπορεί η \( \Phi \) να λυθεί μονοσήμαντα ως προς \( y \)?
+
+Αν \( \exists P_0=(x_{01}.\dots,x_{0n},y_0) \) κ \( \pi_\varepsilon (P_0) \)
+\begin{enumparen}
+\item \( \Phi_{x_i} \quad (i=1,\dots,n),\ \Phi_y \) συνεχείς
+\item \( \Phi(P_0) = 0 \)
+\item \( \Phi_y(P_0) = \pd{\Phi(P_0)}{y} \neq 0  \)
+\end{enumparen}
+
+Τότε:
+\begin{enumparen}
+\item \(y = f(x_1,\dots,x_n)\)
+\item \( y_{x_i}=-\pd{\Phi_{x_i}}{\Phi_y} \)
+\end{enumparen}
+
+%TODO Zaharis Graph 01
+
+π.χ \( z_x = \pd{z}{x} = - \frac{\Phi_x}{\Phi_z} \)
+\paragraph{Απόδ. (2)}
+\begin{align*}
+\Phi(x_1,\dots,x_n,y) = 0 &\implies \dif \Phi = \Phi_{x_1}\dif x_1 + \dots + 
+\Phi_{x_n}\dif x_n + \Phi_y \dif y = 0\\
+&\implies \Phi_{x_1}\dif x_1 + \dots + \Phi_{x_n} \dif x_n + \Phi_y(y_{x_1} \dif x_1+\dots+y_{x_n}\dif x_n) \\
+&\implies (\Phi_{x_1}+\Phi_y y_{x_1}) \dif x_1 + \dots + (\Phi_{x_n}+\Phi_y y_{x_n}) \dif x_n = 0 \\
+&\implies
+\Phi_{x_i}+\Phi_y y_{x_i} = 0 \implies y_{x_i} = - \frac{\Phi_{x_i}}{\Phi_y}
+\end{align*}
+
+\paragraph{}
+
+\[
+\Phi(x,y,z) = 0 \implies z = f(x,y)
+\]
+%TODO Zaharis Graph 02
+
+\begin{align*}
+\dif \Phi &= \Phi_x(P_0)\dif x + \Phi_y(P_0)\dif y + \Phi_z(P_0) \dif z
+\\ &= \nabla \Phi (P_0) \bullet \dif \vec r = 0 \implies \\
+& \implies \boxed{ \nabla \Phi(P_0) \perp \dif \vec r }
+\end{align*}
+
+\paragraph{Συνέπειες}
+%TODO Zaharis Graph 03
+\begin{align*}
+\nabla \Phi(P_0) \cdot \overrightarrow{P_0P} = 0 \implies \\
+\left(
+\Phi_x(P_0),\Phi_y(P_0),\Phi_z(P_0)
+\right) \cdot (x-x_0,y-y_0,z-z_0) = 0 \implies \\
+\Phi_x(P_0)(x-x_0) + \Phi_y(P_0)(y-y_0) + \Phi_z(P_0)(z-z_0) = 0
+\end{align*}
+\subparagraph{}
+%TODO Zaharis Graph 04
+
+\( \lambda \in \mathbb R  \)
+
+\begin{align*}
+\overrightarrow{OP} = \overrightarrow{OP_0} + \lambda\, \nabla \Phi(P_0) \implies \\
+(x-x_0,\ y-y_0,\ z-z_0) = \lambda \left(
+\Phi_x(P_0), \Phi_y(P_0),\Phi_z(P_0)
+\right) \implies \\
+\implies \underbrace{\begin{cases}
+x &= x_0 + \lambda \Phi_x(P_0)\\
+y &= y_0 + \lambda \Phi_y(P_0)\\
+z &= z_0 + \lambda \Phi_z(P_0)
+\end{cases}}_{\mathclap{\text{παραμετρικές εξισώσεις}}} \implies
+\lambda = 
+\underbrace{
+	\boxed{
+		\frac{x-x_0}{\Phi_x(P_0)} +
+		\frac{y-y_0}{\Phi_y(P_0)} +
+		\frac{z-z_0}{\Phi_z(P_0)}
+		}
+	}_{\mathclap{\text{Αλγεβρικές εξισώσεις}}}
+\end{align*}
+
+\subparagraph{}
+\begin{align*}
+&\overrightarrow{OP} = \overrightarrow{OP_0} + \overrightarrow{P_0P} \implies \overrightarrow{OP} = \overbracket{OP_0} + \lambda \vec b \\
+&\implies (x-x_0,\ y-y_0,\ z-z_0) = \lambda \cdot \left|
+\begin{matrix}
+\overrightarrow{e_1} & \overrightarrow{e_2} & \overrightarrow{e_3} \\
+\Phi_x(P_0) & \Phi_y(P_0) & \Phi_z(P_0) \\
+H_x(P_0) & H_y(P_0)&H_z(P_0)
+\end{matrix}
+\right|
+\\
+&\implies
+(x-x_0,y-y_0,z-z_0) = \lambda \left[
+\begin{array}{rl}
+&\overrightarrow{e_1} \left(\Phi_y(P_0)H_z(P_0)-\Phi_z(P_0)H_y(P_0) \right) \\
+- & \overrightarrow{e_2} \left(\Phi_x(P_0)H_z(P_0)- \Phi_z(P_0)H_x(P_0) \right) \\
++ & \overrightarrow{e_3} \left( \Phi_x(P_0)H_y(P_0)-\Phi_y(P_0)H_x(P_0) \right)
+\end{array}
+\right]
+\\ &\implies
+\lambda = \frac{x-x_0}{\Phi_y(P_0)H_z(P_0)-\Phi_z(P_0)H_y(P_0)} + \frac{y-y_0}{\Phi_x(P_0)H_z(P_0)- \Phi_z(P_0)H_x(P_0)} + \frac{z-z_0}{ \Phi_x(P_0)H_y(P_0)-\Phi_y(P_0)H_x(P_0)}
+\end{align*}
+
+\paragraph{Άσκηση}
+\[
+x\cos y+y\cos z +z\cos x - 1=0
+\]
+
+Να εξεταστεί εάν \( y=f(x,z) \to \) λύνεται μονοσήμαντα σε περιοχή του σημείου \( P_1=(0,0) \).
+
+Να υπολογιστούν οι \( f_x(0,0),\ f_z(0,0) \).
+
+\subparagraph{}
+\begin{enumparen}
+\item \( \Phi_x = \cos y -z\sin x\)\\
+\(\Phi_y = -x\sin y + \cos z \)\\
+\( \Phi_z = -y\sin z + \cos x \)
+\item \(\Phi(P_0)=0 \)
+
+\(P_0 = (x_0,y_0,z_0) = (0,y_0,0) \)
+
+\(\Phi(P_0) = \cancel{0\cos y_0} + y_0 \cancelto{1}{\cos 0} + \cancel{0\cos0} -1 =0 \implies y_0 = 1 \)
+\item \( \Phi_y(P_0) \neq0 \implies -x_0\sin y_0 + \cos z_0 = 1 \neq 0 \)
+\end{enumparen}
+
+Τελικά γίνεται \boxed{y=f(x,z)}.
+
+\begin{align*}
+f_x &= y_x = \pd{y}{x} = - \frac{\Phi_x}{\Phi_y} = -\frac{\cos y_0 - z_0\sin x_0}{-x_0\sin y_0+\cos z_0} = - \cos 1
+\\
+f_z &= y_z = \pd{y}{z} = - \frac{\Phi_z}{\Phi_y} = - \frac{-y_0\sin z_0 + \cos x_0}{-x_0 \sin y_0 +\cos z_0} = -1
+\end{align*}
+
+\paragraph{Άσκηση}
+\[
+\Phi(x,y,z) = e^z+x^2y+z+5= 0
+\]
+
+Θεωρείται ότι από την \( \Phi(x,y,z) \) προκύπτει η \( z=f(x,y) \).
+
+\( z_{xy} = ? \)
+
+\subparagraph{}
+
+\[
+\begin{array}{l|l}
+\Phi_x = 2xy    & z_x = -\frac{\Phi_x}{\Phi_z} = - 2\frac{2xy}{e^z+1} 
+\\
+\Phi_y = x^2    & z_y = -\frac{\Phi_y}{\Phi_z} = -\frac{x^2}{e^z+1} \\
+\Phi_z = e^z+1 &
+\end{array}
+\]
+
+\begin{align*}
+z_{xy}&=(z_x)_y = - \left(
+\frac{2xy}{e^z+1}
+\right)_y = -\frac{2x(e^z+1)-2xy\cdot \  \attnboxed{ z_y}}{(e^z+1)^2}
+\\ &=
+-\frac{2x(e^z+1)+2xye^z\frac{x^2}{e^z+1}}{(e^z+1)^2} \\
+&=
+\frac{-2x(e^z+1)^2-2x^3ye^z}{(e^z+1)^3}
+\end{align*}
+
+\paragraph{Άσκηση}
+Αν \( z=uv \) όπου \( u=u(x,y) \) κ \( v=v(x,y) \) \\
+\( u^2+v^2-x-y=0 \) και \( u^2-v^2+3x+y=0 \) \\
+να υπολογιστούν οι \( z_x \) και \( z_y \).
+
+SOS
+
+\subparagraph{1) Κατασκευάζω τις πεπλεγμένες συναρτήσεις}
+\begin{align*}
+\Phi_1(x,y,u,v) &= u^2+v^2-x-y=0 \\
+\Phi_2(x,y,u,v) &= u^2-v^2+3x+y = 0
+\end{align*}
+
+\subparagraph{2)}
+\begin{align*}
+\dif \Phi_1 = {\Phi_1}_x\dif x +{\Phi_1}_y\dif y +{\Phi_1}_u\dif u + {\Phi_1}_v\dif v = 0
+\implies \\
+\dif \Phi_1 = {\Phi_1}_x\dif x +{\Phi_1}_y\dif y +{\Phi_1}_u(u_x\dif x + u_y\dif y)
++ {\Phi_1}_v(v_x\dif x+v_y\dif y) = 0 \implies \\
+\dif \Phi_1 = \left(
+\Phi_{1x}+\Phi_p{1u}u_x+\Phi_{1v}v_x
+\right) \dif x + \left(
+\Phi_{1y}+\Phi_{1u}u_y+\Phi_{1v}v_y
+\right) \dif y \implies \\
+\begin{cases}
+\Phi_{1u}u_x+\Phi_{1v}v_x&=-\Phi_{1x} \\
+\Phi_{1u}u_y+\Phi_{1v}v_y&=-\Phi_{1y} 
+\end{cases}
+\end{align*}
+
+\subparagraph{3)}
+Με όμοιο τρόπο καταλήγουμε στο:
+\[
+\begin{cases}
+\Phi_{2u}u_x+\Phi_{2v}v_x&=-\Phi_{2x} \\
+\Phi_{2u}u_y+\Phi_{2v}v_y&=-\Phi_{2y} 
+\end{cases}
+\]
+
+\subparagraph{4) Λύση Α συστήματος}
+\begin{align*}
+u_x&=\frac{\left|
+	\begin{matrix}
+	-\Phi_{1x} & \Phi_{1v} \\
+	-\Phi_{2x} & \Phi_{2v}
+	\end{matrix}
+	\right|
+	}{\left|\begin{matrix}
+	\Phi_{1u} & \Phi_{1v} \\
+	\Phi_{2u} & \Phi_{2v}
+	\end{matrix}
+	\right|}
+=  \frac{\left|
+	\begin{matrix}
+	-1&2v\\-3&-2v
+	\end{matrix}
+	\right|
+}{\left|\begin{matrix}
+2u&2v\\2u&-2v
+\end{matrix}
+\right|} = -\frac{1}{2u}
+\\
+v_x &= \frac{\left|
+	\begin{matrix}
+	\Phi_{1u} &-\Phi_{1x} \\
+	\Phi_{2u} &-\Phi_{2x}
+	\end{matrix}
+	\right|
+}{\left|\begin{matrix}
+\Phi_{1u} & \Phi_{1v} \\
+\Phi_{2u} & \Phi_{2v}
+\end{matrix}
+\right|}
+=  \frac{\left|
+	\begin{matrix}
+	2u&1\\2u&-3
+	\end{matrix}
+	\right|
+}{\left|\begin{matrix}
+2u&2v\\2u&-2v
+\end{matrix}
+\right|} = -\frac{1}{2u}
+\end{align*}
+
+\subparagraph{Λύση Β-συστήματος}
+\begin{align*}
+u_y&=\frac{\left|
+	\begin{matrix}
+	-\Phi_{1y} & \Phi_{1v} \\
+	-\Phi_{2y} & \Phi_{2v}
+	\end{matrix}
+	\right|
+}{\left|\begin{matrix}
+\Phi_{1u} & \Phi_{1v} \\
+\Phi_{2u} & \Phi_{2v}
+\end{matrix}
+\right|}
+ = 0
+\\
+v_y &= \frac{\left|
+	\begin{matrix}
+	\Phi_{1u} &-\Phi_{1y} \\
+	\Phi_{2u} &-\Phi_{2y}
+	\end{matrix}
+	\right|
+}{\left|\begin{matrix}
+\Phi_{1u} & \Phi_{1v} \\
+\Phi_{2u} & \Phi_{2v}
+\end{matrix}
+\right|} = \frac{1}{2v}
+\end{align*}
+
+Για να λύσω την άσκηση, μπορώ να σκεφτώ ότι \( z_x=\pd{z}{x} = \pd{uv}{x} = u\pd{v}{x}+v\pd{u}{x} \), ή:
+\begin{align*}
+\dif z &= z_u\dif u + z_v\dif v \implies \\
+\dif z &= z_u(u_x\dif x+u_y\dif y)+z_v(v_x\dif x+v_y\dif y) \implies \\
+\dif z &= (z_uu_x+z_vv_x)\dif x+(z_uu_y+z_vv_y)\dif y \implies \\
+\dif z &= z_x\dif x + z_y\dif y
+\end{align*}
+
+\begin{align*}
+z_x &= z_uu_x+z_vv_x = \\
+    &= v \left(-\frac{1}{2u} \right)+u\frac{1}{v}=\frac{u}{v}-\frac{v}{2u}
+    \\
+z_y &= z_uu_y+z_vv_y = \\
+&= v \cdot 0 +u\frac{1}{2v}=\frac{u}{2v}
+\end{align*}
+
+\paragraph{Άσκηση}
+Επιφάνεια \( z=x^2+4y^2-2 \).\\
+Ζητείται η εξίσωση του εφαπτ. επιπέδου στην επιφάνεια παράλληλου στο επίπεδο \( 2x+y-z=4 \).\\
+Επίσης ζητείται το σημείο τομής \( P_0 = (x_0,y_0,z_0) \).
+
+\subparagraph{}
+Πεπλεγμένη μορφή \( \Phi(x,y,z)=x^2+4y^2-z-2=0 \).\\
+Εξ. εφαπτόμενου επιπέδου:
+\begin{align*}
+ & \Phi_x(P_0)(x-x_0)+\Phi_y(P_0)(y-y_0)+\Phi_z(P_0)(z-z_0) =0  \\
+\implies & 2x_0(x-x_0) + 8y_0(y-y_0)-(z-z_0) = 0. (1)
+\end{align*}
+Παρατηρώ ότι: \[
+\frac{2x_0}{2} = \frac{8y_0}{1} = \frac{-1}{-1} \implies \begin{cases}
+x_0 &=1 \\ y_0 &= \frac{1}{8}
+\end{cases}
+\]
+\[
+z_0=x_0^2+4y_0^2-2 \implies z_0 = -\frac{15}{16}
+\]
+\begin{align*}
+(1) \implies & 2(x-1)+\left( y-\frac{1}{8} \right) - \left(z+\frac{15}{16} \right) =0 \\
+\implies & 2x+y-z=\frac{49}{16}
+\end{align*}
+
+\paragraph{Άσκηση}
+Επιφάνεια \( x^2+y^2=4z^2 \)\\
+Ζητείται η εξίσωση του εφαπτόμενου επιπέδου κ της κάθετης ευθείας στην επιφάνεια στο σημείο \( P_0=(6,-8,5) \) αυτής.
+
+\[
+\Phi(x,y,z)=x^2+y^2-4z^2=0
+\]
+
+Εξίσ. εφαπτ. επιπ.: \begin{align*}
+\Phi_x(P_0)(x-x_0)+
+\Phi_y(P_0)(y-y_0)+
+\Phi_z(P_0)(z-z_0) = 0
+\\
+\implies 2x_0(x-x_0)+2y_0(y-y_0)-8z_0(z-z_0) = 0 \implies \\
+\implies 12(x-6)-16(y+8)-40(z-5)=0 \implies \\
+\implies 3(x-6) -4(y+8) -10(z-5)=0 \implies \boxed{3x-4y-10z=0}
+\end{align*}
+
+Εξ. κάθ. ευθείας: \begin{align*}
+\frac{x-x_0}{\Phi_x(P_0)}
+=\frac{y-y_0}{\Phi_y(P_0)}
+=\frac{z-z_0}{\Phi_z(P_0)} \implies \\
+\frac{x-6}{3} = \frac{y+8}{-4} = \frac{z-5}{10}
+\end{align*}
+
+\paragraph{Άσκηση}
+%TODO Zaharis 01
+Να βρεθεί η εξ. της ευθείας που εφάπτεται στην καμπύλη
+\(
+\begin{cases}
+x^2+y^2+z^2 &=14 \\x+y+z &=6
+\end{cases}
+\) στο σημείο \( P_0=(1,2,3) \)
+
+όπου \( f(x,y,z)=x^2+y^2+z^2-14 = 0 \)\\
+και \( g(x,y,z)=x+y+z-6=0 \)
+
+\begin{align*}
+& \overrightarrow{OP} = \overrightarrow{OP_0} +\lambda \nabla f (P_0) \times \nabla g(P_0) \\
+\implies & \overrightarrow{OP} - \overrightarrow{OP_0} = \lambda \nabla f(P_0) \times \nabla g(P_0) \implies \\
+\implies & (x-x_0,y-y_0,z-z_0) = \lambda \left|
+\begin{matrix}
+\vec{e_1} & \vec{e_2} & \vec{e_3} \\
+f_x(P_0) & f_y(P_0) & f_z(P_0) \\
+g_x(P_0) & g_y(P_0) & g_z(P_0)
+\end{matrix}
+\right| \implies (x-1,\ y-2,\ z-3 ) = \lambda \left|
+\begin{matrix}
+\vec{e_1} & \vec{e_2} & \vec{e_3} \\ 2&4&6\\1&1&1
+\end{matrix}
+\right| \\
+\implies & \begin{cases}
+x-1 &= \lambda \cdot (-2) \\
+y-2 &= \lambda \cdot 4 \\
+z-3 &= \lambda \cdot (-2)
+\end{cases}
+\\ \implies & \boxed{
+	\frac{x-1}{-2} = \frac{y-2}{4} = \frac{z-3}{-2}
+}
+\end{align*}
+
+\paragraph{}
+\[
+f(P) = \sum_{k=0}^\infty \frac{\dif^k f_{P_0}(P)}{k!} = \underbrace{\frac{d^0 f_{P_0}}{0!}}_{\mathclap{f(P_0)}} + \frac{\dif^1 f_{P_0}(P)}{1!} + \frac{\dif^2 f_{P_0}(P)}{2!} + \frac{\dif^3 f_{P_0}(P)}{3!} + \dots
+\]
+
+\[
+\dif^k f_{P_0}(P) = \left[
+f_{x_1}(P_0)(x_1-x_{10})+\dots+f_{x_n}(P_0)(x_n-x_{n0})
+\right]^{(k)}
+\]
+
+\paragraph{Άσκηση}
+Να αναλυθεί η συνάρτηση \( f(x,y)=\frac{1}{xy} \) γύρω από το σημείο \( P_0=(1,1) \) σε σειρά \textlatin{Taylor} χρησιμοποιώντας όρους μέχρι 3\textsuperscript{ης} τάξης.
+
+\begin{gather*}
+f(x,y) = f(x_0,y_0) + \dif f_{P_0}(P) + \frac{1}{2}\dif^2 f_{P_0}(P) + \frac{1}{6} \dif^3 f_{P_0}(P) \\
+f(x_0,y_0) = 1 \\ \left.
+\begin{array}{l}
+\dif f_{P_0}(P)=f_x(P_0)(x-x_0)+f_y(P_0)(y-y_0) \\
+f=\frac{1}{xy} \implies \begin{cases}
+f_x = -\frac{1}{x^2y} \\ f_y = -\frac{1}{xy^2}
+\end{cases}
+\end{array} \right\rbrace \implies
+\dif f_{P_0}(P)= \left(-\frac{1}{x^2y} \right)_{P_0}(x-1) + \left(
+-\frac{1}{xy^2}_{P_0}(y-1)
+\right) \implies \\
+\implies \dif f_{P_0}(P) = -(x-1)-(y-1) = 2-x-y\\
+\dif^2f_{P_0}(P) = \left[
+f_x(P_0)(x-x_0)+f_y(P_0)(y-y_0)
+\right]^{(2)} =
+f_{x^2}(P_0)(x-x_0)^2+2f_{xy}(P_0)(x-x_0)(y-y_0)+f_{y^2}(P_0)(y-y_0) \\
+f_{x^2} = (f_x)_x = \left(-\frac{1}{x^2y} \right)_x = \frac{2}{x^3y} \\
+f_{xy} = (f_x)_y = \left(-\frac{1}{x^2y} \right)_y = \frac{1}{x^2y^2} \\
+f_{y^2} = (f_y)_y = \left(-\frac{1}{xy^2} \right)_y = \frac{2}{xy^3} \\
+\implies \dif^2 f_{P_0}(P) = \left(
+\frac{2}{x^3y}_{P_0}\right)(x-x_0)^2+2\left(
+\frac{1}{x^2y^2}\right)_{P_0}(x-x_0)(y-y_0)+\left(
+\frac{2}{xy^3}
+\right)_{P_0}(y-y_0)^2 \\
+\implies \dif^2 f_{P_0}(P) = 2(x-1)^2+2(x-1)(y-1)+2(y-1)^2
+\end{gather*}
+\begin{align*}
+\dif^3 f_{P_0}(P) &= \left[
+f_x(P_0)(x-x_0)+f_y(P_0)(y-y_0)
+\right]^{(3)} = \\
+&= f_{x^3}(P_0)(x-x_0)^3+3f_{x^2y}(P_0)(x-x_0)^2(y-y_0)+3f_{xy^2}(P_0)(x-x_0)(y-y_0)^2 + f_{y^3}(P_0)(y-y_0)^3
+\end{align*}
+\begin{align*}
+f_{x^3} &= (f_{x^2})_x = -\frac{6}{x^4y}\\
+f_{x^2y} &= (f_{x^2})_y = -\frac{2}{x^3y^2}\\
+f_{xy^2} &= (f_{xy})_y = -\frac{2}{x^2y^3}\\
+f_{y^3} &= (f_{y^2})_y = -\frac{6}{xy^4}
+\end{align*}
+\begin{align*}
+\dif^3 f_{P_0}(P) &= -6(x-1)^3+3\cdot(-2)(x-1)^2(y-1) + 3\cdot(-2)(x-1)(y-1)^2-6(y-1)^3\\
+\dif^2 f_{P_0}(P) &= 2(x-1)^2+2(x-1)(y-1)+2(y-1)^2 \\
+\dif f_{P_0}(P)   &= 2-x-y \\
+f(P_0) &= 1
+\end{align*}
+
+Άρα:
+\[
+f(x,y) = 1+2-x-y+(x-1)^2+(x-1)(y-1)+(y-1)^2-(x-1)^3-(x-1)^2(y-1)-(x-1)(y-1)^2-(y-1)^3
+\]
 
 \end{document}
-

@@ -19,6 +19,18 @@
 
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
+\newenvironment{dedication}
+{\clearpage           % we want a new page
+	\thispagestyle{empty}% no header and footer
+	\vspace*{\stretch{1}}% some space at the top 
+	\itshape             % the text is in italics
+	\raggedleft          % flush to the right margin
+}
+{\par % end the paragraph
+	\vspace{\stretch{3}} % space at bottom is three times that at the top
+	\clearpage           % finish off the page
+}
+
 \makeatletter
 %\newcommand{\attnboxed}[1]{\textcolor{red}{\fbox{\normalcolor\m@th$\displaystyle#1$}}}
 \makeatother
@@ -40,6 +52,10 @@
 \begin{document}
 
 \maketitle
+
+\begin{dedication}
+	Αφιερωμένο στο πράσινο τοστ
+\end{dedication}
 
 %\tableofcontents
 
@@ -1834,6 +1850,158 @@ P(X\geq2) &= 1 - P(X\leq1) = 1-\binom{52}{0}p^0(1-p)^{52-0}-\binom{52}{1}p^1(1-p
 \boxed{1-p^*} \quad Y= \left\lbrace 1,2,\dots \right\rbrace \\ \mathrm{E}(y)=\frac{1}{1-p^*}=\boxed{10} \implies \boxed{p*} = p(X \geq k) = \dots
 \end{align*}
 
+\subsection{Συνεχής \(X\)}
+\begin{enumerate}
+	\item Ομοιόμορφη
+	\item Εκθετική
+	\item Κανονική
+\end{enumerate}
 
+\subsubsection{Ομοιόμορφη}
+%TODO Zioutas Graph 01
+\begin{align*}
+c &= \frac{1}{\beta-a} \\
+F(x) &= P(X \leq x) \\
+&= \frac{x-a}{\beta-a} \\
+\mathrm E(x) &= \frac{a+\beta}{2} \\
+\sigma^2_x = \frac{(\beta-a)^2}{12}
+\end{align*}
+
+\[
+X \sim U[0,1]
+\]
+
+\paragraph{title}
+%TODO Zioutas Graph 02
+
+\begin{align*}
+F_y(y) &= 1-e^{-y\lambda }\\
+x_1 &= 1-e^{-y_2\lambda } \\
+e^{-y_1\lambda }&=-x_1+1\\
+y_1\lambda &= \ln (1-x_1) \implies y_1 = \frac{1}{\lambda} \ln (1-x_1)
+\end{align*}
+
+
+
+\subsubsection{Εκθετική}
+%TODO Zioutas Graph 03
+\[
+T = \left\lbrace
+\text{χρόνος ανάμεσα σε διαδοχικά \(A\)}
+\right\rbrace
+\]
+\begin{gather*}
+X_t = \left\lbrace 0,1,2,\dots \right\rbrace\\
+P(X_t=x) = e^{-\lambda t} \frac{(\lambda t)^x}{x!} \\
+E(X_t)=\lambda t\\
+f_T(t) = \od{F_T(t)}{t}
+\end{gather*}
+\begin{align*}
+F_T(t) &= P(T \leq t) =
+\\ &=
+1-P(T>t)
+\\ &=
+1-e^{-\lambda t}\cancelto{0}{\frac{(\lambda t)^0}{0!}}
+\end{align*}
+\begin{align*}
+F_T(t) &= 1-e^{-\lambda t} \implies \\
+\implies f_T(t) &= \lambda e^{-\lambda}t\\
+\mathrm E(T) &= \frac{1}{\lambda }\\
+\mathrm{Var}(T) &= \frac{1}{\lambda ^2}
+\end{align*}
+
+\paragraph{Παράδειγμα}
+\begin{align*}
+\lambda &= \frac{16}{125} = 0.128 \text{ σεισμοί/χρόνο} \\
+P(X \leq 2) &= 1-e^{-\lambda (2)} \\
+&= 1-e^{-0.128 (2)} \\
+&\approx 22.6\%
+\end{align*}
+\begin{gather*}
+Y_{t=2} = \left\lbrace 0,1,2,\dots \right\rbrace\\
+\text{\textlatin{Poisson}} \\
+P(Y_{t=2} \geq 1) = 1 - P(Y_{t=2} = -) = 1 - e^{-\lambda (t)} \cancelto{0}{\frac{\lambda (t)}{0!}}
+\end{gather*}
+
+Περίοδος επαναφοράς σεισμού: \(\frac{1}{\lambda } \approx 8 \text{ χρόνια}\)
+
+\paragraph{Έλλειψη μνήμης}
+\begin{align*}
+P(X > t_1 + t_2 | X > t_1) &= \frac{P(X>t_1+t_2)}{P(X>t_1)}
+\\ &= \frac{e^{-(t_1+t_2)\lambda }}{e^{-t_1 \lambda }} \\
+&= e^{-t_2\lambda } = P(X> t_2)
+\end{align*}
+
+\subsubsection{Κανονική \textlatin{Gauss}}
+\[
+X \sim N(\mu, \sigma^2)
+\]
+
+\begin{align*}
+f(x) &= \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{1}{2} \left(\frac{x-\mu}{\sigma} \right)^2 }\\
+\mathrm E(X) &= \int_{-\infty}^\infty f(x) x \dif x = \dots = \mu\\
+\mathrm{Var}(X) &= \sigma_x^2 = \dots = \sigma^2 \\
+\int_{-\infty}^\infty f(x) \dif x &= 1 \\
+F(x) = P(X \leq x) = \int_{-\infty}^x f(u) \dif u
+\end{align*}
+
+\paragraph{Τυποποίηση} \begin{align*}
+\left. \begin{array}{rl}
+Z &= \frac{X-\mu_x}{\sigma_x} \\
+\mathrm E(Z) &= 0 \\
+\mathrm{Var}(Z) &= 1
+\end{array} \right\rbrace \implies \underbrace{Z \sim N(0,1^2)}_{\text{Τυπική κανονική κατανομή}}
+\end{align*}
+
+\paragraph{Τυπική Κανονική Κατανομή}
+\[
+F_z(z) = P(Z \leq z) = \Phi(z)
+\]
+\[
+P(Z \leq -z) = 1 - \Phi(z)
+\]
+
+\begin{align*}
+P(X \leq x) &= P \left(
+\frac{X-\mu_x}{\sigma_x} \leq \frac{x-\mu_x}{\sigma_x}
+\right)  \\
+&= P(Z \leq z) \\ &= \Phi(z)
+\end{align*}
+
+\paragraph{Παράδειγμα}
+\[
+X \sim \mathrm N(\mu = 100, \ \sigma^2=25)
+\]
+\begin{align*}
+P(X \leq 110) &= \Phi \left(
+\frac{110-100}{5}
+\right) = \Phi(2) = 0.9772 \\
+P(X \leq 95) &= \Phi\left(
+\frac{95-100}{5}
+\right) = \Phi(-1) = 1-\Phi(1) = 1-0.84\\
+P(X \leq x) &= 0.90 \implies \Phi(\overbrace{\frac{x-100}{5}}^{z}) = 0.90 \\
+& z = 1.28 \implies \frac{x-100}{5}=1.28
+\end{align*}
+
+
+\paragraph{}
+\(n= 100\) στύλοι \\
+\(P = 0.05\) \\
+\begin{align*}
+P(X=20) &= \binom{n}{x} P^x (1-P)^{n-x} \\
+&= \binom{1000}{20}0.05^{20} 0.95^{980} \\
+\mathrm E &= nP = 5 \\
+\mathrm{Var}(X) &= np(1-p) = 50(0,95)=49
+\end{align*}
+\begin{align*}
+X &\sim N(\mu_x=np,\ \sigma_x^2) \\
+X &\sim N(\mu_x = 50, \sigma_x^2 = 49) \\
+P(X \leq 20) &=\Phi \left(
+\frac{20-50}{7}
+\right) \\
+&= \Phi \left(
+\frac{-30}{7}
+\right) = \Phi(-4)
+\end{align*}
 
 \end{document}
