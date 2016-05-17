@@ -3223,15 +3223,61 @@ f(P) - f(A) = \int_A^P \mathbf F \cdot \dif \mathbf r
 \paragraph{\( ^*_* \)Π\( ^*_* \)}
 Αν \( D \) είναι \textbf{ΑΠΛΑ ΣΥΝΕΚΤΙΚΟΣ ΤΟΠΟΣ} του \( \mathbb R ^n \) και \( \mathbf F:D \subseteq \mathbf R^n \to \mathbf R^n \) έχει συνεχείς μερικές παραγώγους στο \( \mathbf D \), τότε:
 \[
-\mathbf F \text{ συντηρητικό στο } D \iff \mathbf F \text{ αστρόβιλο στο } D
+\mathbb F \text{ συντηρητικό στο } D \iff \mathbf F \text{ αστρόβιλο στο } D
 \]
 
 \begin{itemize}
 \item Αν \( D \) \textbf{ΔΕΝ} είναι \textbf{απλά} συνεκτικό, τότε \textbf{ΔΕΝ} συνεπάγεται κατά ανάγκη ότι ατρόφιβο πεδίο είναι συντηρητικό. Μπορεί ΝΑΙ, μπορεί ΟΧΙ.
 \end{itemize}
 
+\subsection{Θεώρημα Green \emph{στο επίπεδο}}
+Έστω \( \gamma \) είναι απλή, \textbf{κλειστή} και τμηματικά λεία καμπύλη στο \( \mathbb R^2 \). Τότε αυτή χωρίζει το \(\mathbb R^2 \) σε δύο χωρία, που καλούμε \textbf{εσωτερικά της \( \gamma \)}, και ένα μη φραγμένο \textbf{χωρίο που καλούμε εξωτερικό της \( \gamma \)}.
 
+Επίσης μια τέτοια (\textbf{κλειστή}) καμπύλη λέμε ότι είναι ΘΕΤΙΚΑ ΠΡΟΣΑΝΑΤΟΛΙΣΜΕΝΗ Ανν η φορά διγραφής της είναι η \textbf{αντιωρολογιακή}.
 
+%TODO Atreas Graph 01
+\paragraph{Θ (Green)}
+Έστω \( \gamma \) είναι μια απλή, \textbf{ΚΛΕΙΣΤΗ}, τμημ. λεία και ΘΕΤΙΚΑ \textbf{ΠΡΟΣΑΝΑΤΟΛΙΣΜΕΝΗ} καμπύλη και
+\[
+\mathbb F(x,y)= \left(P(x,y),\ Q(x,y) \right)
+\]
+διανυσματικό πεδίο με ΣΥΝΕΧΕΙΣ ΜΕΡΙΚΕΣ παραγώγους \textbf{ΠΑΝΩ κ στο ΕΣΩΤΕΡΙΚΟ της \( \gamma \)}.
+
+Αν συμβολίσουμε \( \boxed{ \gamma := \partial D } \) (δηλ. η \( \gamma \) είναι το σύνορο του εσωτερικού \( D \) της \( \gamma \)), τότε:
+\[
+\boxed{\oint_{\partial D} = \iint_D(Q_x-P_y)\dif x\dif y}
+\], ή ισοδύναμα:
+\[
+\boxed{
+	\underbrace{\oint_{\partial D}\mathbf F \cdot \dif \mathbf r}_{\text{Το έργο του πεδίου $\mathbf F$ κατά μήκος του συνόρου $\partial D$}}
+	\underbrace{=}_{\text{ισούται με}} 
+	\underbrace{\iint_D \nabla \times \mathbf F(x,y) \dif x\dif y}_{\text{τη συνολική περιστροφή του πεδίου $\mathbf F$ στο εσωτερικό $D$}}
+	}
+\]
+
+Υπό τις προϋποθέσεις του Θ. \textlatin{Green}, αν ισχύει:
+\[
+\nabla \times \mathbf F(x,y) = \vec{0}
+\]
+πάνω κ στο εσωτερικό της συνοριακής καμπύλης \( \partial D \), τότε
+\[
+\oint_{\partial D} \mathbf F \cdot \dif \mathbf r
+\]
+
+\paragraph{ΠΡΟΣΟΧΗ!!!}
+Αν το πεδίο \( \mathbf F \) \textbf{ΔΕΝ} έχει συνεχείς μερικές παραγώγους πάνω κ στο εσωτερικό της \( \partial D \), τότε το παραπάνω θεώρημα ΔΕΝ ισχύει, αλλά έχουμε το ακόλουθο:
+\paragraph{Θ (Παραμόρφωσης δρόμου)}
+Έστω \( \gamma_1,\gamma_2 \) είναι απλές, κλειστές, τμημ. λείες και ΘΕΤΙΚΑ προσανατολισμένες καμπύλες, έτσι ώστε:
+
+\(\boxed{\text{π.χ η $\gamma_2$ να βρίσκεται στο εσωτερικό της $\gamma_2$}}\)
+
+Αν \( \mathbf F(x,y) = \left(P(x,y),\ Q(x,y)\right) \) έχει ΣΥΝΕΧΕΙΣ ΜΕΡΙΚΕΣ ΠΑΡΑΓΩΓΟΥΣ πάνω σε \textbf{ΦΡΑΓΜΕΝΟ} χωρίο \( R \) με σύνορο
+\[
+\partial R = \gamma_1 \cup \gamma_2,
+\]
+τότε: \[
+\oint_{\gamma_1} \mathbf F \cdot \dif \mathbf r_{\gamma_1} = \oint_{\gamma_2} \mathbf F \cdot \dif \mathbf r_{\gamma_2} + \iint_R(Q_x-P_y)\dif x\dif y
+\]
 
 
 

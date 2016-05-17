@@ -2191,6 +2191,29 @@ u'_1,u'_2
 	Εφ' όσον \( s^2+2s+2 =(s+1)^2+1 \implies Y(s) = \frac{2}{s^2\left((s+1)^2+1\right)}
 	+\frac{2s-3}{(s+1)^2+1}
 	\)
+	
+	\[
+	\frac{2s-3}{(s+1)^2+1} = \frac{2(s+1)-5}{(s+1)^2+1}=2\frac{s+1}{(s+1)^2+1}-5\frac{1}{(s+1)^2+1}
+	\xleftrightarrow{\mathscr L^{-1}}2e^{-t}\cos t-5e^{-t}\sin t
+	\]
+	
+	\[
+	\frac{2}{s^2\left((s+1)^2+1\right)} = \frac{A}{s} + \frac{B}{s^2} + \frac{Cs+D}{(s+1)^2+1}
+	\]
+	όπου \( (As+B)\left((s+1)^2+1\right) + s^2\left(C(s+1)+D\right) =2 \) \\
+	\( \implies (A+C)s^3+(2A+B+C+D)s^2 + 2(A+B)s+2B = 2 \) \\
+	\( \implies \begin{cases}
+	2B&= 2 \quad s = 0\\
+	-A+B+D &= 2 \quad s = -1 \\
+	A+C &= 0 \quad \text{εξ. συντ. } s^3 \\
+	2A+B+C+D &=0 \quad \text{εξ. συντ. } s^2
+	\end{cases} \)
+	
+	Λύνοντας \( 
+	\begin{cases}
+	A &= -1 \\ B &= 1 \\ C &= 1 \\ D &= 0
+	\end{cases}
+	 \). Συνεπώς \( \frac{2}{s^2\left((s+1)^2+1\right)} = \frac{1}{s}+\frac{1}{s^2}+ \frac{s}{(s+1)^2+1} \)
 \end{exercise*}
 
 
