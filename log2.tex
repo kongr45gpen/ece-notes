@@ -3269,7 +3269,7 @@ f(P) - f(A) = \int_A^P \mathbf F \cdot \dif \mathbf r
 \paragraph{Θ (Παραμόρφωσης δρόμου)}
 Έστω \( \gamma_1,\gamma_2 \) είναι απλές, κλειστές, τμημ. λείες και ΘΕΤΙΚΑ προσανατολισμένες καμπύλες, έτσι ώστε:
 
-\(\boxed{\text{π.χ η $\gamma_2$ να βρίσκεται στο εσωτερικό της $\gamma_2$}}\)
+\(\boxed{\text{π.χ η $\gamma_2$ να βρίσκεται στο εσωτερικό της $\gamma_1$}}\)
 
 Αν \( \mathbf F(x,y) = \left(P(x,y),\ Q(x,y)\right) \) έχει ΣΥΝΕΧΕΙΣ ΜΕΡΙΚΕΣ ΠΑΡΑΓΩΓΟΥΣ πάνω σε \textbf{ΦΡΑΓΜΕΝΟ} χωρίο \( R \) με σύνορο
 \[
@@ -3279,13 +3279,206 @@ f(P) - f(A) = \int_A^P \mathbf F \cdot \dif \mathbf r
 \oint_{\gamma_1} \mathbf F \cdot \dif \mathbf r_{\gamma_1} = \oint_{\gamma_2} \mathbf F \cdot \dif \mathbf r_{\gamma_2} + \iint_R(Q_x-P_y)\dif x\dif y
 \]
 
+Γενικεύοντας το Θ. παραμόρφωσης δρόμων για περισσότερες καμπύλες, προκύπτει το:
+\paragraph{Γενικευμένο Θ. \textlatin{Green}}
+%TODO Atreas Graph 03
+\[
+\oint_\varGamma \mathbf F \cdot \dif \mathbf r_\varGamma = 
+\sum_{j=1}^n
+\oint_{\gamma_j} \mathbf F \cdot \dif \mathbf r_{\gamma_j} + \iint R (Q_x-P_y)\dif x\dif y,
+\] όπου:
+\begin{itemize}
+\item \( \varGamma,\gamma_1,\dots,\gamma_n \) απλές, κλειστές, τμ. λείες θετικά προσαν.
+\item \( \gamma_1,\dots,\gamma_n \) στο εσωτερικό της \( \varGamma \)
+\item κάθε \( \gamma_i \) στο εξωτερικό κάθε άλλης καμπύλης \( \gamma_\mu \),\quad \( \forall \mu=1,\dots,i-1,i+1,\dots,n \)
+\item \( \mathbf F=(P,Q) \) έχει συνεχείς μερ. παραγ. επί του γραμμοσκιασμένου χωρίου \( R \)
+\end{itemize}
+
+\subparagraph{Εφαρμογή:}
+Ξέρουμε ότι \[
+\mathrm E(D) = \iint_d 1 \dif x \dif y
+\]
+
+Έστω \( \mathbf F=(P,Q) \) έ.ώ:
+\[ Q_x-P_y=1 \]
+\textbf{π.χ} \( \mathbf F = (0,x) \) \\
+ή \( \mathbf F = (-y,0) \),
+
+τότε από Θ. \textlatin{Green} έχω:
+\begin{align*}
+\oint_{\partial D} \mathbf F \cdot \dif \mathbf r &= \iint_D (Q_x-P_y)\dif x\dif y
+\\ &= \iint_D 1\dif x\dif y
+\\ &= \mathrm E(D)
+\end{align*}
+
+\subsection*{}
+Το Θ. Απόκλισης \boxed{\text{στο επίπεδο} \mathbb R ^2} ΕΚΤΟΣ ΥΛΗΣ
+
+Παρασκευή 3-5μμ μάθημα με Ατρέα.
+
+\subsection*{}
+Υπολογίστε τη μάζα καλώδίου πυνκότητας \( \rho(x,y,z)=x^2+y^2+z^2 \), που απλώνεται κατά μήκος της τεθλασμένης γραμμής \( P_0 \to P_1 \to P_2 \) με \( P_0=(1,1,1),\ P_1=(2,2,0),\ P_2=(2,2,2) \)
+
+Έχουμε:
+
+\begin{align*}
+M &\overset{\text{συμβ.}}{=} \underbrace{\int_\varGamma \rho \dif s}_{\mathclap{\text{επικαμπύλιο 1ου είδους}}} 
+\\ &= \int_{\gamma_1+\gamma_2}\rho\dif s
+\\ &= \int_{\gamma_1}\rho\dif s + \int_{\gamma_2}\rho\dif s,
+\end{align*} 
+όπου \( \gamma_1 := \overrightarrow{P_0P_1}, \ \gamma_2 := \overrightarrow{P_1P_2} \)
+
+Γενικά, θυμάμαι ότι \begin{align*}
+\int_\varGamma \rho \dif s = \int_a^b \rho\left(\mathbf r(t) \right)\left|\mathbf r'(t)\right| \dif t
+\end{align*}
+όπου \( \mathbf r = \mathbf r(t) \) η παραμετροποίηση της καμπύλης \( \varGamma \).
+
+\begin{itemize}
+\item Για το \( \int_{\gamma_1} \rho\dif s := \int_{\overrightarrow{P_0P_1}} \rho\dif s \)
+\item Μια παραμετροποίση του \( \overrightarrow{P_0P_1} \) είναι η
+\begin{align*}
+\mathbf r_1(t) &= (\text{αρχή}) + t(\text{πέρας} - \text{αρχή}) \quad \forall t\int[0,1]
+\\ \mathbf r_1(t) &= \overrightarrow{OP_0} + t (\overrightarrow{OP_1} - \overrightarrow{OP_0})
+\\ &= (1,1,1) + t \left((2,2,0)-(1,1,1)\right) \\
+  \Aboxed{
+	\mathbf r_1(t) &= (1+t,1+t,1-t) \quad \forall t \in [0,1]
+	}
+\end{align*}
+\item \( \mathbf r_1'(t) = (1,1,-1) \)
+\item \( \left|\mathbf r_1'(t)\right| = \sqrt{1^2+1^2+(-1)^2} = \sqrt{3} \)
+\item Χρειάζομαι το \( \rho\left(\mathbf{r}_1(t)\right) \), δηλ.:
+\[
+\rho\left(\mathbf{r}_1(t)\right) = (1+t)^2+(1+t)^2+(1-t)^2
+\implies \dots \implies \int_{\gamma_1} = \dots
+\]
+\item Ομοίως για \( \gamma_2 \)
+\end{itemize}
+
+\paragraph{Άσκ.}
+Υπολογίστε το έργο του πεδίου
+\[
+\mathbf F(x,y) = \left(x^2-y,\ x+y^2 \right)
+\]
+επί του τμήματος της παραβολής \( y=x^2+1 \) με αρχή το σημείο \( A=(0,1) \) κ πέρας το σημείο \( B=(3,10) \)
+
+Στο πρόχειρο βλέπω:
+\[
+\int_\gamma \mathbf F \bullet \dif \mathbf r
+= \int \mathbf F\left(\mathbf{r}(t)\right) \cdot \mathbf r'(t)\dif t
+\]
+
+Έχω επικαμπύλιο 2\textsuperscript{ου} είδους
+\[
+W = \int_\gamma \mathbf F \cdot \dif \mathbf r
+\]
+Θα παραμετροποιήσουμε την καμπύλη \( \gamma \) του τμήματος παραβολής
+\[
+\mathbf r(t) = \left(t,\ t^2+1\right), \quad t \in [0,3]
+\]
+\[
+\mathbf r'(t) = (1,2t)
+\]
+
+Έτσι από τύπο έχω:
+\begin{align*}
+W &= \int_0^3 \mathbf F \left(\mathbf{r}(t)\right) \cdot \mathbf r'(t) \dif t
+\\ &= \int_0^3 \left(
+t^2-(t^2+1),\ t+(t^2+1)^2
+\right) \underbrace{\cdot}_{\mathclap{\text{εσωτερικό γινόμενο!!!}}} (1,2t) \dif t 
+\\ &= 
+\int_0^3 \left[
+-1+2t\left(t+(t^2+1)^2\right)
+\right] \dif t
+\\ &= \cdots
+\end{align*}
+
+\paragraph{Άσκ.}
+Δίνεται το πεδίο \( \mathbf{F}(x,y,z) = (x^2,y^2,z^2) \)
+\begin{enumparen}
+\item Είναι το \( \mathbf{F} \) συντηρητικό στο πεδίο ορισμού του?
+\item Αν ναι, βρείτε τη συνάρτηση βαθμωτού δυναμικού του \( f \), αν \( f(0,0,0)=0 \)
+\item Ποιές οι ισοδυναμικές επιφάνειες του \( \mathbf F \)?
+\end{enumparen}
+
+\begin{enumparen}
+\item Π.Ο. του \( \mathbb F \) είναι το \( \mathbb R ^3 \) (διότι οι συνιστώσες συναρτήσεις είναι πολυώνυμα).
+
+Άρα το πεδίο ορισμού είναι ΑΠΛΑ ΣΥΝΕΚΤΙΚΟ αφού είναι το \( \mathbb R^3 \)
+
+\[
+\boxed{
+\begin{array}{r}
+\mathbf F	\text{ έχει συνεχείς μερικές παραγ.} \\
+	\text{σε ΑΠΛΑ συνεκτικό σύνολο}
+	\end{array}
+	 +
+\mathbf F \text{ αστρόβιλο στο } D \implies
+\mathbf F \text{ συντηρητικό στο } D
+}
+\]
+
+Έτσι \( \nabla \times \mathbf F = \left|
+\begin{matrix}
+\vec i & \vec j & \vec k \\
+\pd{}{x} & \pd{}{y} & \pd{}{z} \\
+x^2 & y^2 & z^2
+\end{matrix} 
+\right| = (0,0,0) = \vec 0 \quad \forall (x,y,z) \in \mathbb R^3 \implies \mathbf F \) αστρόβιλο σε απλά συνεκτικό σύνολο, το \( \mathbb{R}^3 \xRightarrow{\text{θεωρία}} \mathbf F \) συντηρητικό στο \( \mathbb R ^3 \)
+
+\item
+Αφού \( \mathbf F \) συντηρ. \( \xRightarrow{θ.} \mathbf F \) πεδίο κλίσεων στο \( \mathbb R^3 \), δηλ. \( \mathbf F = \nabla f \).
+
+Έτσι:
+\[
+f(P) - f(A) = \int_A^P \mathbf F \cdot \dif \mathbf r \quad \text{(τύπος)}
+\]
+όπου \( A \) σημείο δικής σας επιλογής και \( P=(x,y,z) \) τυχαίο σημείο του \( \mathbb R ^3 \).
+
+Για \( A=(0,0,0),\ P=(x,y,z) \), έχω:
+\begin{align*}
+f(x,y,z) - \cancelto{0}{f(0,0,0)} &= \int_0^P \mathbf F \cdot \dif \mathbf r \implies \\
+\implies f(x,y,z) &= \int_O^P \mathbf F \cdot \dif \mathbf r,\quad O=(0,0,0)
+\end{align*}
+
+Εφόσον \( \mathbf F \) συντηρητικό στο \( \mathbb R^3 \), το \( \int_\gamma \mathbf F \cdot \dif r \) είναι ανεξάρτητο του δρόμου, άρα μπορώ να επιλέξω όποιον τύπο καμπύλης εγώ επιθυμώ, αρκεί να έχει αρχή την \(\mathrm O(0,0,0) \) και πέρας \( P=(x,y,z) \). Επιλέγω να εργασθώ στο ευθ. τμήμα \( \overrightarrow{OP} \). Έχω:
+
+\begin{align*}
+\mathbf r(t) &= \text{αρχή} + t(\text{πέρας} - \text{αρχή}) \\
+&= (0,0,0) + t\left((x,y,z)-(0,0,0)\right) \quad \forall t\in [0,1] \\
+\implies \Aboxed{\mathbf r(t) &= (tx,ty,tz) \quad \forall t\in [0,1]} \\
+\mathbf r'(t) &= (x,y,z)\quad \forall t \in [0,1],\ \text{οπότε} \\
+\mathbf{F} \left(\mathbf{r}(t)\right) &= \left((tx)^2,(ty)^2,(tz)^2\right).\ \\
+\intertext{Έτσι}
+f(x,y,z) &= \int_0^1 \mathbf{F}\left(\mathbf{r}(t)\right) \cdot \mathbf{r}'(t)\dif t \\
+&+ \int_0^1 \left(t^2x^2,t^2y^2,t^2,z^2\right) \underbrace{\cdot}_{\mathclap{\text{εσ. γιν}}}(x,y,z) \dif t \\
+&= \int_0^1 (t^2x^2,t^2y^2,t^2z^2)\dif t\\
+&= (x^2+y^2+z^2)\int_0^1 t^2\dif t\\
+\implies f(x,y,z) &= \frac{x^3+y^3+z^3}{3}
+\end{align*}
+\item
+Για να βρω τις ισοδυναμικές επιφάνειες, \\
+Θέτω:
+\begin{align*}
+f(x,y,z) &= c,\quad c \in \mathbb R \\
+\frac{x^3+y^3+z^3}{3} &= c \\
+\implies x^3+y^3+z^3 &= c' \quad (c'=3c) %TODO plot?
+\end{align*}
+\end{enumparen}
 
 
-
-
-
-
-
+\paragraph{Άσκ.}
+Υπολογίστε το έργο του πεδίου \( \mathbf F(x,y) = (x^2,xy) \) επί του τριγώνου με πλευρές \( y=1+x,\ y=1-x,\ y=0 \)
+%TODO Atreas Graph 05
+Εφόσον έχω καμπύλη απλή, κλειστή, τμ. λεία, ΘΕΤΙΚΑ προσανατολισμένη, χρησιμοποιώ Θ. \textlatin{Green} (αν και μπορώ και με ορισμό)
+\begin{align*}
+W = \int_{\partial D} \mathbf F \cdot \dif \mathbf r &= \iint_D (Q_x-P_y)\dif x\dif y
+\\ &=\iint_D y\dif x \dif y = 
+\\ &= \int_0^1 \int_{y-1}^{1-y} y\dif x\dif y
+\\ &= \int_0^1 \left. xy\right|_{y-1}^{-y+1} \dif y
+\\ &= \int_0^1 \left(y(1-y)-y(y-1)\right)\dif y
+\\ &= 2\int_0^1(y-y^2)\dif y
+\\ &= \left. y^2 - \frac{2y^3}{3} \right|_0^1 = 1-\frac{2}{3} = \frac{1}{3}
+\end{align*}
 
 
 
