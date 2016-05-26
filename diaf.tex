@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper,titlepage,draft]{article}
+\documentclass[11pt,a4paper,titlepage,final]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[greek]{babel}
 \usepackage{amsmath}
@@ -15,11 +15,15 @@
 \usepackage{mathtools}
 \usepackage[makeroom]{cancel}
 \usepackage{mathrsfs}
-
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{floatrow}
 
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{patterns}
 \usetikzlibrary{decorations.pathmorphing,patterns}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{backgrounds}
 
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
@@ -53,7 +57,7 @@
 
 \maketitle
 
-%\tableofcontents
+\tableofcontents
 
 \newpage
 
@@ -2213,9 +2217,545 @@ u'_1,u'_2
 	\begin{cases}
 	A &= -1 \\ B &= 1 \\ C &= 1 \\ D &= 0
 	\end{cases}
-	 \). Συνεπώς \( \frac{2}{s^2\left((s+1)^2+1\right)} = \frac{1}{s}+\frac{1}{s^2}+ \frac{s}{(s+1)^2+1} \)
+	 \). Συνεπώς \( \frac{2}{s^2\left((s+1)^2+1\right)} = \frac{1}{s}+\frac{1}{s^2}+ \frac{s+}{(s+1)^2+1} 
+	 \leftrightarrow -1+t+e^{-t}\cos t
+	 \)
 \end{exercise*}
 
+
+\begin{exercise*}{12.10}
+	\[
+	y''-4y'+5y = e^{-t\left(\cos t +3\sin t \right)}
+	\]
+	\( y(0) = 0,\ y'(0) = 4 \)
+	\tcblower
+	\( 
+	\left[s^2Y(s)-4s\right]+4\left[sY(s)-0\right] = \frac{s+1}{(s+1)^2+1}+\frac{3}{(s+1)^2+1} \implies
+	 \)
+	 
+	 \begin{tcolorbox}{}
+	 \( \mathscr L\left\lbrace \od[n]{y}{x} \right\rbrace 
+	 = s^nY(s)-s^{n-1}y(0)-s^{n-2}y'(0)-\dots - sy^{(n-2)}-y^{(n-1)}(0)
+	 \)
+	 \end{tcolorbox}
+	 
+	 \( 
+	 \implies \underbrace{(s^2+4s+5)}_{\mathclap{=(s+2)^2+1 }}Y(s)=\frac{s+4}{(s+1)^2+1}+4 \implies
+	  \)
+	  
+	\( 
+	Y(s) = \frac{s+4}{\left((s+1)^2+1\right)\left((s+2)^2+1\right)}
+	+\underbrace{\frac{4}{(s+2)^2+1}}_{\mathclap{4e^{-2t}\sin t}}
+	\implies 
+	 \)
+	 
+	 \(  \frac{s+4}{\left( (s+1)^2+1 \right)\left( (s+1)^2+1 \right)}
+	 = \frac{A(s+1)+B}{(s+1)^2+1}+\frac{C(s+2)+D}{(s+2)^2+1} \implies
+	  \)
+	  
+\( 
+\implies
+	\left(
+	A(s+1)+B
+	\right)\left((s+2)^2+1\right)+\left(C(s+2)+D\right)\left((s+1)^2+1\right) = 4+s
+\implies
+	\begin{cases}
+	5A+5B+4C+2D &= 4, \quad \text{για } s=0 \\
+	2B+C+D &= 3, \quad \text{για } s=-1\\
+	-A+B+2D&=2, \quad \text{για } s=-2\\
+	A+C&=0 \quad \text{εξ. συντ του } s^3
+	\end{cases} \implies \begin{cases}
+	A &= -1\\B&=1\\C&=1\\D&=0
+	\end{cases}
+\) 
+
+Άρα \(\cdots =  \frac{-(s+1)+1}{(s+1)^2+1} + \frac{s+2}{(s+2)^2+1} =e^{-t}(-\cos t + \sin t) + e^{-2t}\cos t  \)
+
+Άρα \( \boxed{y(t) = e^{-t}(-\cos t + \sin t)+e^{-2t}(\cos t + 4\sin t)} \)
+	\end{exercise*}
+	
+	\begin{exercise*}{12.11}
+		\[
+		4y''+4y'+y=3\sin t + \cos t
+		\]
+		\( y(0) = 2,\ y'(0)=-1 \)
+	\tcblower
+	\begin{gather*}
+	4\left[s^2Y(s)-2s+1\right] + 4\left[sY(s)-2\right]+Y(s)=\frac{3}{s^2+1}+\frac{s}{s^2+1} \\
+	\implies \underbrace{(4s^2+4s+1)}_{\mathclap{4\left(s+\frac{1}{2}\right)^2}}Y(s) = \frac{3+s}{s^2_1}+4(-1+2s)+8=\frac{3+s}{s^2+1}+8s+4
+	\\ \implies
+	Y(s) = \frac{3+s}{4\left(s+^1/_2\right)(s^2+1)} + \frac{2}{s+^1/_2}
+	\\ \frac{3+s}{4\left(s+^1/_2\right)(s^2+1)} 
+	= \frac{A}{s+^1/_2}+ \frac{B}{\left(s+^1/_2\right)^2}+\frac{Cs+D}{s^2+1} \\
+	\implies \left(A(s+^1/_2)+B\right)+\left(s^2+1\right)+(Cs+D)\left(s+\frac{1}{2}\right)^2=\frac{3+s}{4} \\ \implies
+	\begin{cases}
+	\text{για } s = - \frac{1}{2} \rightarrow 10B &= 5 \\
+	\text{για } s = 0 \rightarrow 2A +4B + D &= 3 \\
+	\text{για } s = 1 \rightarrow 12A+8B+9C+9D &=4 \\
+	\text{εξ. αντ. συντ. } s^3 \rightarrow A+C &= 0
+	\end{cases} \implies \begin{cases}
+	A &= ^3/_5 \\
+	B &= ^1/_2 \\
+	C &= -^3/_5 \\
+	D &= -^1/_5
+	\end{cases} \\
+	\implies \frac{3+s}{4\left(s+^1/_2\right)^2(s^2+1)} = \frac{3}{5} \frac{1}{s+^1/_2}+\frac{1}{2}\frac{1}{\left(s+^1/_2\right)^2}-\frac{1}{5}\frac{3s+1}{s^2+1} \leftrightarrow \frac{3}{5}e^{-\frac{t}{2}}+\frac{1}{2}te^{-\frac{t}{2}}-\frac{1}{5}\cdot (3\cos t +\sin t)\\
+	\frac{2}{1+ ^1/_2} \leftrightarrow 2e^{-\frac{t}{2}} \implies
+	\boxed{y(t) = \frac{e^{- ^t/_2}}{10}}\left(5t+26\right)-\frac{1}{5}(3\cos t+\sin t)
+	\end{gather*}
+	\end{exercise*}
+
+\section{Συστήματα Διαφορικών Εξισώσεων}
+
+\begin{exercise*}{12.12} \[
+	\begin{cases}
+		u'+u-v &=0 \\
+		u'-u+v &= 2	
+	\end{cases}
+	\]
+	\begin{align*}
+	u(0) &= 1 \\
+	v(0) &= 2
+	\end{align*}
+	\tcblower
+	\begin{align*}
+	\mathscr L\left\lbrace u(x) \right\rbrace &= U(s) \\
+	\mathscr L\left\lbrace v(x) \right\rbrace &= V(s)
+	\end{align*}
+	\begin{align*}
+&	\begin{cases}
+	\left[sU(s)-1\right]+U(s)-V(s) &=0 \\
+	\left[sV(s)-2\right]-U(s)+V(s) &= \frac{2}{s}
+	\end{cases} \\ \implies& \begin{cases}
+	(s+1)U(s) - V(s) &= 1 \\
+	-U(s) + (s+1)V(s) &= \frac{2(s+1)}{s}
+	\end{cases} \\ \implies &
+	\begin{cases}
+	U(s) &= \frac{s+1}{s^2} \\ V(s) &= \frac{2s+1}{s^2}
+	\end{cases} \\ \implies&
+	\begin{cases}
+	\mathscr L^{-1} \left\lbrace U(s) \right\rbrace = \mathscr L^{-1} \left\lbrace \frac{s+1}{s^2} \right\rbrace = \mathscr L^{-1} \left\lbrace \frac{1}{s} +\frac{1}{s^2}\right\rbrace \implies u(x) &= 1+x \\
+	\mathscr L^{-1}\left\lbrace V(s) \right\rbrace =  \mathscr L ^{-1}\left\lbrace \frac{2s+1}{s^2} \right\rbrace =  \mathscr L ^{-1}\left\lbrace \frac{2}{s} + \frac{1}{s^2} \right\rbrace \implies v(x) &= 2+x
+	\end{cases}
+	\end{align*}
+	\end{exercise*}
+
+\begin{exercise*}{12.13}
+	\[
+	y'+z=x,\ z'+4y=0,\ y(0)=1,\ z(0)=-1
+	\]
+	\tcblower
+	\begin{align*}
+	 &\mathscr L \left\lbrace y(x) \right\rbrace = Y(s),\  \mathscr L \left\lbrace z(x) \right\rbrace = Z(s) \\
+	 \implies &
+	 \begin{cases}
+	 \left[sY(s)-1\right]+Z(s) &= \frac{1}{s^2} \\
+	 \left[sZ(s)+1\right]+4Y(s) &=0
+	 \end{cases}
+	 \\ \implies &
+	 \begin{cases}
+	 sY(s) + Z(s) &= \frac{s^2+1}{s^2} \\
+	 4Y(s) + sZ(s) &= -1
+	 \end{cases}
+	 \\ \implies &
+	 \begin{cases}
+	 Y(s) &= \frac{s^2+s+1}{s(s^2-4)} \\
+	 Z(s) &= -\frac{s^3+4s^2+4}{s^2(s^2+4)}
+	 \end{cases}
+	\end{align*}
+	
+	\begin{align*}
+	\frac{s^2+s+1}{s(s^2-4)} = \frac{s^2+s+1}{s(s+2)(s-2)} = \frac{A}{s} + \frac{B}{s+2} + \frac{C}{s-2} \\
+	\implies s^2+s+1 = (A+B+C)s^2+2(C-B)s-4A \\
+	\implies \begin{cases}
+	A+B+C &= 1 \\
+	2(C-B) &= 1 \\
+	-4A &= 1
+	\end{cases} \\
+	\implies \begin{cases}
+	A &= - \frac{1}{4} \\
+	B &= \frac{3}{8} \\
+	C &= \frac{7}{8}
+	\end{cases} \\
+	Y(s) = \frac{- ^1/_4}{s}+\frac{^3/_8}{s+2}+\frac{^7/_8}{s-2} \leftrightarrow \boxed{y(x) = -\frac{1}{4}+\frac{3}{8}e^{2x}+\frac{7}{8}e^{2x}}
+	\end{align*}
+	
+	Από την 1\textsuperscript{η} σχέση,
+	\[
+	\boxed{z = x+\frac{3}{4}e^{-2x}-\frac{7}{4}e^{2x}}
+	\]
+\end{exercise*}
+
+\begin{exercise*}{12.14}\[
+	\left.
+	\begin{cases}
+		w'+y &= \sin x \\
+		y'-z &= e^x \\
+		z'+w+y &= 1
+	\end{cases}
+	\middle|
+	\begin{array}{l}
+	w(0)=0\\y(0)=1\\z(0)=1
+	\end{array}
+	\right.
+	\]
+	\tcblower
+	\begin{align*}
+	&\begin{cases}
+		\left[sW(s)-0\right]+Y(s) &= \frac{1}{s^2+1} \\
+		\left[sY(s)-1\right]-Z(s) &= \frac{1}{s-1} \\
+		\left[sZ(s)-1\right]+W(s)+Y(s) &= \frac{1}{s}
+	\end{cases}
+	\\ &\implies
+	\begin{cases}
+	sW(s)+Y(s)&= \frac{1}{s^2+1} \\
+	sY(s)-Z(s) &= \frac{s}{s+1} \\
+	W(s)+Y(s)+sZ(s) &= \frac{s+1}{s}
+	\end{cases} \\ &\implies \begin{cases}
+	W(s) &= \frac{-1}{s(s-1)} \\
+	Y(s) &= \frac{s^2+s}{(s-1)(s^2+1)} \\
+	Z(s) &= \frac{s}{s^2+1}
+	\end{cases}
+	\\ &\implies
+	\begin{cases}
+	w(x) &= 1-e^x \\
+	y(x) &= e^x-\sin x\\
+	z(x) &= \cos x
+	\end{cases}
+	\end{align*}
+\end{exercise*}
+
+
+\begin{exercise*}{12.15}
+	\begin{align*}
+	y''+z+y &= 0 \\ 
+	z'+y' &= 0
+	\end{align*}
+	\begin{align*}
+	y(0) &= 0 \\ y'(0) &= 0 \\ z(0)&=1
+	\end{align*}
+	\tcblower
+	\begin{align*}
+	\implies& \begin{cases}
+	\left[s^2Y(s)-(0)s-(0)\right] + Z(s) + Y(s) &= 0 \\
+	\left[sZ(s)-1\right]+\left[sY(s)-0\right] &= 0
+	\end{cases}
+	\\ \implies & \begin{cases}
+	(s^2+1)Y(s)+Z(s) &= 0\\
+	Y(s) + Z(s) &= \frac{1}{s}
+	\end{cases}
+	\\ \implies & \begin{cases}
+	Y(s) &= -\frac{1}{s^3} \\
+	Z(s) &= \frac{1}{s} + \frac{1}{s^3}
+	\end{cases} \\ \implies & \begin{cases}
+	y(x) &= -\frac{1}{2}x^2 \\
+	z(x) &= 1 + \frac{1}{2}x^2
+	\end{cases}
+	\end{align*}
+\end{exercise*}
+
+\begin{exercise*}{12.16}
+	\[
+	\begin{cases}
+	z''+y'&=\cos x \\
+	y''-z&=\sin x
+	\end{cases}
+	\]
+	\begin{align*}
+	z(0) &= -1\\
+	z'(0) &= -1 \\
+	y(0) &= 1 \\
+	y'(0) &= 0
+	\end{align*}
+	\tcblower
+	\begin{align*}
+	& \begin{cases}
+	\left[s^2Z(s)+s+1\right]+\left[sY(s-1)\right] &= \frac{s}{s^2+1} \\
+	\left[s^2Y(s)-s-0\right]-Z(s) &= \frac{1}{s^2+1}
+	\end{cases} \\ &\implies 
+	\begin{cases}
+	s^2Z(s)+sY(s) &= -\frac{s^3}{s^2+1} \\
+	-Z(s)+s^2Y(s) &= \frac{s^3+s+1}{s^2-1}
+	\end{cases} \\
+	& \implies \begin{cases}
+	Z(s) &= -\frac{s+1}{s^2+1} \\
+	Y(s) &= \frac{s}{s^2+1}
+	\end{cases} \\
+	& \implies \begin{cases}
+	z(x) &= -\cos x-\sin x \\
+	y(x) &= \cos x
+	\end{cases}
+	\end{align*}
+\end{exercise*}
+
+\begin{exercise*}{12.17}
+	\[
+	\begin{cases}
+	w''-y+2z &= 3e^{-x} \\
+	-2w'+2y'+z &= 0 \\
+	2w'-2y+z'+2z'' &= 0 
+	\end{cases}
+	\]
+	\begin{align*}
+	w(0)=1 \quad & y(0) = 2 \\
+	w'(0)=1 \quad & z(0) = 2 \\
+	& z'(0) = -2
+	\end{align*}
+	\tcblower
+	\begin{align*}
+	& \begin{cases}
+	\left[s^2W(s)-s-1\right]-Y(s)+2Z(s) &= \frac{3}{s+1} \\
+	-2\left[sW(s)-1\right]+2\left[sY(s)-2\right]+Z(s) &= 0 \\
+	2\left[sW(s)-1\right]-2Y(s) + \left[sZs-2\right]+2\left[s^2Z(s)-2s+2\right] &= 0
+	\end{cases} \\ \implies &
+	\begin{cases}
+	s^2W(s) - Y(s)+2Z(s) &= \frac{s^2+2s+4}{s+1} \\
+	-2sW(s)+2sY(s)+Z(s) &= 2 \\
+	2sW(s)-2Y(s)+(2s^2+s)Z(s) &= 4s
+	\end{cases} \\ \implies &
+	\begin{cases}
+	W(s) &= \frac{1}{s-1} \leftrightarrow e^x =w(x) \\
+	Y(s) &= \frac{2s}{(s-1)(s+1)} = \frac{1}{s-1}+\frac{1}{s+1} \leftrightarrow e^x+e^{-x}=y(x) \\
+	Z(s) &= \frac{2}{s+1} \leftrightarrow 2e^{-x}=z(x)
+	\end{cases}
+	\end{align*}
+\end{exercise*}
+
+\section{Επίλυση ΓΡ ΔΕ με γενικευμένες/ασυνεχείς συναρτήσεις ως πηγές}
+\paragraph{Βηματική συνάρτηση \( u \)}
+\[
+u(t)= \begin{cases}
+0 \quad t<0 \\
+1 \quad t \geq0
+\end{cases}
+\]
+%TODO plot
+
+
+\paragraph{Μετατοπισμένη βηματική συνάρτηση}
+\[
+u(t-c)=u_c(t)
+\]
+\[
+u_c(t) = \begin{cases}
+0 \quad t < c \\
+1 \quad t \geq c
+\end{cases}
+\]
+%TODO plot
+
+\paragraph{Συνάρτηση τινάγματος ή πάγκου \textlatin{(bench)}}
+\begin{align*}
+b(t) &= u(t-a)-u(t-b)\\
+b(t) &= \begin{cases}
+0 \quad t <a \\
+1 \quad a \leq t \leq b \\
+0 \quad b \leq t
+\end{cases}
+\end{align*}
+%TODO Plot
+
+\begin{align*}
+u(t-c) & \leftrightarrow e^{-cs}\frac{1}{s}\\
+u(t-c)f(t-c) &\leftrightarrow e^{-cs}F(s) \\
+e^{ct}f(t) &\leftrightarrow F(s-c)
+\end{align*}
+
+\begin{exercise*}{13.1}
+	\[
+	y'+2y=u(t-4)
+	\]
+	\( y(0)=3 \)
+	\tcblower
+	\( [sY(s)-3]+2Y(s) = e^{-4s}\frac{1}{s} \)
+	\( \implies Y(s) = e^{-4s}\frac{1}{s(s+2)}+\frac{3}{s+2} \)
+	
+	\begin{align*}
+	\frac{3}{s+2} &\leftrightarrow 3e^{-2t}\\
+	\frac{1}{s(s+2)} = \frac{A}{s} + \frac{B}{s+2} = \frac{A(s+2)+Bs}{s(s+2)} = \frac{A(+b)s+(2A)}{s(s+2)} \\
+	\implies \begin{cases}
+	A+B&=0\\2A&=1
+	\end{cases} \implies \begin{cases}
+A &= ^1/_2 \\ B&= - ^1/_2
+	\end{cases} \\
+	\frac{1}{s(s+2)} = \frac{1}{2} \left[\frac{1}{s}-\frac{1}{s+2}\right]
+	\\ \implies e^{-4s}\frac{1}{s(s+2)} = \frac{1}{2} \left(
+	e^{-4s}\frac{1}{s}-e^{-4s}\frac{1}{s}-e^{-4s}\frac{1}{s+2}
+	\right) &\leftrightarrow \frac{1}{2}\left(u(t-4)-u(t-4)e^{-2(t-4)}\right) 
+	\\
+	\implies \boxed{
+		y(t) = \frac{1}{2}u(t-4)\left(1-e^{-2(t-4)}\right)+3e^{-2t}
+	}
+\end{align*}
+\end{exercise*}
+
+\begin{exercise*}{13.2}
+	\( y''+y'+\frac{5}{4}y=b(t) \)
+	\( y(0)=0,\ y'(0)=0 \)
+	\( b(t) = \begin{cases}
+	1 \quad	 0 \leq t \leq \pi \\ 0 \quad t \geq \pi
+	\end{cases} \)
+	\tcblower
+	%TODO graph b, heaviside, (heaviside_\pi), αφαίρεση της heaviside-(heaviside_\pi)
+	\begin{gather*}
+	b(t) = u(t) - u(t-\pi) \implies \mathscr L \left\lbrace b(t) \right\rbrace = \mathscr L \left\lbrace u(t) \right\rbrace - \mathscr L \left\lbrace u(t-\pi) \right\rbrace \\
+	\implies B(s) = \frac{1}{s} - e^{-\pi s}\frac{1}{s}\\
+	\mathscr \rightarrow \left[s^2Y(s)-(0)s-(0)\right]+\left[sY(s)-(0)\right] + \frac{5}{4}Y(s) = \frac{1}{s}-e^{-\pi s} \frac{1}{s} \\
+	\implies Y(s) = \left(1-e^{-\pi s}\right) \frac{1}{s(s^2+s+^5/_4)}\\
+H(s) = \frac{1}{s(s^2+s+^5/_4)} = \frac{A}{s}+\frac{Bs+C}{s^2+s+^5/_4} \\
+\implies \begin{cases}
+A = \frac{4}{5},\ B= -\frac{4}{5},\ C = -\frac{4}{5}
+\end{cases}\\
+\implies H(s) = \frac{4}{5} \left(
+\frac{1}{s}-\frac{s+1}{s^2+s+^5/_4}\right) \\
+s^2+s+^5/_4 = \left[s^2+2\left(\frac{1}{2}\right)s+\frac{1}{4}\right]-\frac{1}{4}+\frac{5}{4} = \left(s+\frac{1}{2}\right)^2+1 \\
+s+1 = s +\frac{1}{2}+\frac{1}{2} = \left(s+\frac{1}{2}\right) + \frac{1}{2}\\
+\implies H(s) = \frac{4}{5} \left[
+\frac{1}{s}-\frac{s+^1/_2}{\left(s+^1/_2\right)^2+1}-\frac{1}{2}\frac{1}{\left(s+^1/_2\right)^2} \right] \\
+\implies Y(s) = \left(1-e^{-\pi s}\right)H(s) \implies Y(s) = H(s) - e^{-\pi s} H(s) \\
+\mathscr L^{-1} \left\lbrace H(s) \right\rbrace = \frac{4}{5} \left(
+1-e^{-^t/_2}\cos t - \frac{1}{2}e^{-^t/_2}\sin t
+\right) = h(t) \\
+\mathscr L^{-1} \left\lbrace  e^{-\pi s}H(s)\right\rbrace  = \mathrm u(t-\pi)h(t-\pi) = \mathrm u_\pi(t)h(t-\pi)
+\\ y(t) = h(t)-\mathrm u(t-\pi)h(t-\pi)
+	\end{gather*}
+\end{exercise*}
+
+\begin{exercise*}{13.3}
+	\( y''+y'+\frac{5}{4}y=g(t) \)
+	\( y(0) = 0,\ y'(0) = 0 \)
+	
+	\( g(t) = \begin{cases}
+	\sin (t) \quad& 0 \leq t < \pi \\
+	0 & t \geq \pi
+	\end{cases} \)
+	
+	\tcblower
+	
+	%TODO Plot sin, u(t)-u(t-3), and their multiplication
+	\begin{gather*}
+	g(t) = \left[u(t)-u(t-\pi)\right]\sin t \\
+	\implies g(t) = u(t)\sin t +u(t-\pi)\sin(t-\pi)\\
+	\leftrightarrow \frac{1}{s^2+1}+e^{-\pi s}\frac{1}{s^2+1}
+	\\
+	Y(s) \overset{\text{13.2}}{=}\left(1+e^{-\pi s}\right)\frac{1}{(s^2+s+^5/_4)\left(s^2+1\right)}
+	\\
+	H(s) = \frac{1}{(s^2+s+^5/_4)\left(s^2+1\right)} = \frac{As+B}{s^2+s+^5/_4} + \frac{Cs+D}{s^2+1}
+	\\
+	\implies \begin{cases}
+	A &= \frac{16}{17} \\
+	B &= \frac{12}{17} \\
+	C &= - \frac{16}{17} \\
+	D &= \frac{4}{17}
+	\end{cases} \implies H(s) = \frac{4}{17} \left[
+	\frac{4s+3}{s^2+s+^5/_4}+ \frac{-4s+}{s^2+1}
+	\right]
+	\\
+	s^2+s+^5/_4 = \left(s+\frac{1}{2}\right)^2 + 1 \\
+	4s+3 = 4\left(s+\frac{1}{2}-\frac{1}{2}\right)+3 = 4\left(s+\frac{1}{2}\right)+1
+	\\
+	H(s) = \frac{4}{17} \left[
+	4+\frac{s+^1/_2}{\left(s+^1/_2\right)^2+1}+\frac{1}{\left(s+\frac{1}{2}\right)^2+1}-4\frac{s}{s^2+1}+\frac{1}{s^2+1}
+	\right] \leftrightarrow \\
+	\leftrightarrow \frac{4}{17} \left[
+	4e^{-\frac{t}{2}}\cos t + e^{-\frac{t}{2}}\sin t - 4\cos t +\sin t =h(t)
+	\right] \\
+	Y(s) = 
+	\left(1+e^{-\pi s}\right)H(s) = H(s) + e^{-\pi s}H(s) \leftrightarrow h(t) + \mathrm u(t-\pi)h(t-\pi)
+	\end{gather*}
+\end{exercise*}
+
+\subsection{Συνάρτηση δέλτα - \textlatin{Dirac}}
+\begin{align*}
+\mathrm{\delta}(t) =& \lim_{n\to \infty}\mathrm \delta_n(t),\ t \in \mathbb R, & \delta_n(t) = n \left[
+\mathrm u(t) - u\left(t-\frac{1}{n}\right)
+\right] \\
+&
+\left\lbrace \mathrm \delta_n \right\rbrace_{n=1}^\infty
+& \mathrm{\delta}_n(t) = \begin{cases}
+0 \quad& t\leq0 \\ n \quad& 0 \leq t < \frac{1}{n} \\ 0 \quad& t \geq \frac{1}{n}
+\end{cases} \\ & & \mathrm \delta(t) = \begin{cases}
+0 \quad& \text{για } t \neq 0\\
+\infty \quad& \text{για } t = 0
+\end{cases}
+\end{align*}
+
+\subsubsection{Συνάρτηση κρουστικής απόκρισης}
+στο \( c \geq 0 \) \( \boxed{\mathbf L(y) = y''+a_1y'+a_0y_0} \)
+
+με \( \mathbf L(y_\delta) = \delta (t-c) \)
+
+\( \delta(t-c) \leftrightarrow e^{-cs} \quad c \geq 0 \)
+
+\begin{exercise*}{13.4}
+	Να βρεθεί η συνάρτηση της κρουστικής απόκρισης του τελεστή \( \mathbf L \)
+	\[
+	\mathbf L (y) = y''+2y'+2y
+	\]
+	\( t=0 \)
+		\tcblower
+	
+	\( y_\delta(0) = 0,\ y_\delta'(0) = 0 \)
+
+	
+	\begin{gather*}
+	\xrightarrow{\mathscr L}
+	\left[
+	s^2Y_\delta(s) - (0)s-(0)
+	\right] + 2 \left[sY_\delta(s)-(0) \right] +2Y_\delta(s) = 1
+	\\ \implies Y_\delta(s) = \frac{1}{s^2+2s+2} = \frac{1}{(s+1)^2+1} \implies \boxed{y_\delta(t) = e^{-t}\sin t}
+	\end{gather*}
+\end{exercise*}
+
+\begin{exercise*}{13.5}
+	\( t = c\geq0 \)
+
+
+	\[
+	L(y) = y''+2y'+2y
+	\]
+	
+	\begin{gather*}
+	y_\delta \ \text{Α.Τ.} y''_\delta + 2y_\delta' + 2y_\delta = \delta(t-c)
+	\\ y_\delta(0) = 0, y_\delta'(0) = 0, c \geq 0 \\
+	\xrightarrow{\mathscr L}
+	s^2Y_\delta(s)+2sY_\delta(s)+2Y_\delta(s) = e^{-cs}
+	\\ \implies Y_\delta(s) = \frac{e^{-cs}}{s^2+2s+2} = \frac{e^{-cs}}{(s+1)+1}
+	\\ \implies \boxed{
+		y_\delta(t) = \mathrm u(t-c)e^{-(t-c)}\sin (t-c)
+		}
+	\end{gather*}
+\end{exercise*}
+
+
+\begin{exercise*}{13.6}
+	\[
+	y''-y=-20\delta(t-3), \quad y(0) = 1,\ y'(0) = 0
+	\]
+	\tcblower
+	\begin{gather*}
+	\left[s^2Y(s)-s-0\right]-Y(s)=-20e^{-3s} \\
+	\implies Y(s) = \frac{s}{s^2-1}-20e^{-3s}\frac{1}{s^2-1} \leftrightarrow \\
+	\leftrightarrow \cosh(t)-20\mathrm u(t-3)\sinh(t-3)
+	\end{gather*}
+\end{exercise*}
+
+\begin{exercise*}{13.7}
+	\[
+	y''+4y = \delta(t-\pi)-\delta(t-2\pi); \quad y(0) = 0,\ y'(0)=0
+	\]
+	\tcblower
+	\begin{gather*}
+	\left[s^2Y(s)\right]+4Y(s) = e^{-\pi s}-e^{-2\pi s}
+	 \\
+	 \implies Y(s) = \frac{e^{-\pi s}}{s^2+4} - \frac{e^{-2\pi s}}{s^2+4} = \frac{e^{-\pi s}}{2}\frac{2}{s^2+4}-\frac{e^{-2\pi s}}{2}\frac{2}{s^2+4}\\
+	 \leftrightarrow \frac{1}{2}\mathrm u(t-\pi) \sin \left[2(t-\pi)\right]-\frac{1}{2}\mathrm u(t-2\pi)\sin\left[2(t-2\pi)\right]=y(t)
+ \\
+ y(t) = \frac{1}{2} \left[
+ \mathrm u(t-\pi)-\mathrm u(t-2\pi)
+ \right] \sin 2t
+ 	\end{gather*}
+\end{exercise*}
 
 
 
@@ -4359,6 +4899,381 @@ y(t)=f(t-5)-f(t-6)
 \end{align*}
 \end{exercise*}
 
+\section{Μη γραμμικές ΔΕ}
+\( P(t) \) ο πληθυσμός σε χρόνο \( t \)
 
+Η εξίσωση εξέλιξης του πληθ.
+\[
+\begin{cases}
+\od{P}{t} = r(M-P)P \\
+P(0) = P_0
+\end{cases}
+\]
+
+\begin{wrapfigure}[3]{R}{0.5\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[ 
+height=6cm,
+width=\textwidth,
+xlabel=$t$,
+ylabel={$P$},
+axis lines=left,
+xtick=\empty,
+ymin=0
+] 
+\addplot[blue,samples=100,thick,domain=0:10] {2000*10000/(2000+(10000-2000)*e^(-x)}; 
+\end{axis}
+\end{tikzpicture}
+\end{wrapfigure}
+\leavevmode
+\begin{align*}
+\frac{\dif P}{r\cdot(M-P)\cdot P} =\dif t \implies \\
+\int \left( \frac{1}{rMP} - \frac{1}{rM(M-P)}\right) \dif P = \dif t \implies \\
+\frac{1}{rM}\ln P - \frac{1}{rM} \ln(M-P) = rMt+c \implies \\
+\ln P - \ln(M-P) = rMt + c \implies \\
+\ln \frac{P}{M-P} = rMT+c' \implies \\
+\frac{P}{M-P} = ce^{rMt} \xRightarrow{c=\frac{P_0}{M-P_0}} \\
+\boxed{P(t) = \frac{P_0M}{P_0+(M-P)e^{-rMt}}}
+\end{align*}
+
+
+
+Έχω δύο \textbf{σημεία ισορροπίας}, δηλ. τιμές του \( P \) τ.ώ \( \od{P}{t}=0 \).
+Αυτά είναι το \( P=M,\ P=0 \).
+
+\[
+\od[2]{P}{t} = \cdots = r(M-2P)\od{P}{t}
+\]
+
+\begin{figure}\CenterFloatBoxes
+\begin{floatrow}
+\ffigbox[\FBwidth]{
+\parbox{0.3\textwidth}{
+	\[
+	P \quad -\infty \quad\ \quad 0 \quad M/2 \qquad M \quad\ +\infty
+	\]
+	\[
+	\begin{array}{r|c|c|c|c}
+	P & \searrow \cap  & \nearrow \cup  & \nearrow \cap  & \searrow \cap \\ \hline
+	\od{P}{T} & - & + & + & -  \\ \hline
+	\od[2]{P}{T} & - & + & - & +
+	\end{array}
+	\]
+}}{}
+\ffigbox[\FBwidth]{
+\begin{tikzpicture}
+\begin{axis}[ 
+height=6cm,
+width=0.5\textwidth,
+xlabel=$t$,
+ylabel={$P$},
+axis lines=middle,
+xtick=\empty,
+ymax=13000
+] 
+\addplot[gray,dashed,samples=50,domain=0:10] {10000};
+\addplot[blue,samples=100,thick,domain=0:10] {2000*10000/(2000+(10000-2000)*e^(-x))};
+\addplot[blue,samples=100,thick,domain=0:10] {12000*10000/(12000+(10000-12000)*e^(-x))};
+\addplot[red,samples=100,thick,domain=0:10] {(-2000)*10000/(-2000+(10000+2000)*e^(-1/12*x))}; 
+\end{axis}
+\end{tikzpicture}
+}{}
+\end{floatrow}
+\end{figure}
+
+\paragraph{}
+
+\begin{tcolorbox}{}
+
+\[
+\boxed{\od{x}{t}=f(x)} \to \text{ 1\textsuperscript{ης} τάξης, χρονικά αμετάβλητη}
+\]
+Σκοπός είναι να βρω την ποιοτική της συμπεριφορά με γραφική ανάλυση.
+\end{tcolorbox}
+
+\paragraph{Παρ.}
+Να σχεδιαστούν οι λύσεις της ΔΕ \( \od{y}{t} = (y+1)(y-2) \) \quad (\(*\))
+
+% {y[t] == (2 - 2 E^(3 t) + a (2 + E^(3 t)))/(1 + a + 2 E^(3 t) - a E^(3 t))}
+\begin{figure}[h]\CenterFloatBoxes
+\begin{floatrow}
+\ffigbox[\FBwidth]{
+	\parbox{0.4\textwidth}{
+		\[
+		y \quad\ -\infty \quad \quad -1 \quad 1/2 \qquad 2 \quad\ +\infty
+		\]
+		\[
+		\begin{array}{r|c|c|c|c}
+		y'(t) & + & - & - & + \\ \hline
+		y''(t) & - & + & - & +  \\ \hline
+		y(t) & \nearrow \cap & \searrow \cup & \searrow \cap & \nearrow \cup
+		\end{array}
+		\]
+	}}{}
+	\qquad
+	\ffigbox[\FBwidth]{
+		\begin{tikzpicture}
+		\begin{axis}[ 
+		height=6cm,
+		width=0.5\textwidth,
+		xlabel=$t$,
+		ylabel={$P$},
+		axis lines=middle,
+		xtick=\empty%,
+		%ymax=13000
+		] 
+		%\addplot[gray,dashed,samples=50,domain=0:10] {10000};
+		\addplot[blue,samples=100,thick,domain=-1:0.5] {
+			(2-2*e^(3*x) + 9/4 * (2+e^(3*x)) )/(1+ 9/4 + 2 *e^(3*x)-9/4*e^(3*x))
+		};
+		\addplot[blue,samples=100,thick,domain=-1:2] {
+			(2-2*e^(3*x) + 1.2 * (2+e^(3*x)) )/(1+ 1.2 + 2 *e^(3*x)-1.2*e^(3*x))
+		};
+		\addplot[blue,samples=100,thick,domain=-1:2] {
+			(2-2*e^(3*x) + -1/2 * (2+e^(3*x)) )/(1-1/2 + 2 *e^(3*x)+1/2*e^(3*x))
+		};
+		\addplot[blue,samples=100,thick,domain=-0.5:2] {
+			(2-2*e^(3*x) + -2.5/2 * (2+e^(3*x)) )/(1-2.5/2 + 2 *e^(3*x)+2.5/2*e^(3*x))
+		};
+		\end{axis}
+		\end{tikzpicture}
+	}{}
+	\end{floatrow}
+	\end{figure}
+
+Βλέπω ότι η (\(*\)) έχει 2 σημεία ισορροπίας. \\
+Το \( y_1=-1 \) είναι \underline{ευσταθές} \\
+Το \( y_2=2 \) είναι \underline{ασταθές}.
+
+\paragraph{}
+
+Η συνάρτηση \( \od{y}{t} = \sin y \) έχει πλάκα.
+
+\subsection{}
+\begin{tcolorbox}{Συστήματα}
+\begin{align*}
+\od{x}{t} &= f(x,y) \\
+\od{y}{t} &= g(x,y)
+\end{align*}
+\end{tcolorbox}
+
+\paragraph{π.χ.}
+\begin{align*}
+\od{x}{t} &= -y \\
+\od{y}{t} &= x
+\end{align*}
+
+\begin{align*}
+\frac{\dif x}{-y} = \dif t = \frac{\dif y }{x} \implies \\
+x\dif x = -y\dif y \implies \\
+x\dif x = y\dif y \implies \\
+\frac{1}{2} \dif(x^2+y^2) = \dif c \implies \\
+x^2+y^2=2c
+\end{align*}
+
+Σημεία ισορροπίας
+\[
+\left. \begin{array}{l}
+\od{x}{t} = -y = 0 \\
+\od{y}{t}=x=0
+\end{array} \right| \implies (x_0,y_0) = (0,0)
+\]
+
+\begin{figure}[h]
+\begin{tikzpicture}[scale=0.6]
+\draw[->] (-5,0) -- (5,0) node[anchor=east,above] {$x$};
+\draw[->] (0,-5) -- (0,5) node[anchor=west] {$y$};
+\draw (0,0) circle (3);
+\draw (0,0) circle (2.2);
+\draw (0,0) circle (0.8);
+\draw[
+decoration={markings,mark=at position 1 with {\arrow[ultra thick]{>}}},
+postaction={decorate}
+]
+(70:2.2) -- (71:2.2); 
+\draw[
+decoration={markings,mark=at position 1 with {\arrow[ultra thick]{>}}},
+postaction={decorate}
+]
+(130:2.2) -- (131:2.2); 
+\draw[
+decoration={markings,mark=at position 1 with {\arrow[ultra thick]{>}}},
+postaction={decorate}
+]
+(240:2.2) -- (241:2.2); 
+\draw[
+decoration={markings,mark=at position 1 with {\arrow[ultra thick]{>}}},
+postaction={decorate}
+]
+(-60:2.2) -- (-59:2.2); 
+\filldraw[black] (0,0) circle (3pt);
+\end{tikzpicture}
+\end{figure}
+
+\paragraph{Παρ.}
+\begin{align*}
+\od{x}{t} &= -x+y \\
+\od{y}{t} &= -x-y
+\end{align*}
+\subparagraph{Σημεία ισορροπίας}
+\[
+\left. \begin{array}{l}
+-x+y=0 \\
+-x-y=0
+\end{array} \right| \implies (x_0,y_0) = (0,0)
+\]
+
+\begin{align*}
+\od{x}{y} = \frac{x-y}{x+y} \implies \cdots \implies \begin{cases}
+x(t) &=e^{-t}\sin t \\
+y(t) &= e^{-t} \cos t
+\end{cases} \implies x^2+y^2=e^{-2t}
+\end{align*}
+
+\begin{figure}[h]
+\begin{tikzpicture}[scale=0.4]
+\draw[->] (-5,0) -- (5,0) node[anchor=east,above] {$x$};
+\draw[->] (0,-5) -- (0,5) node[anchor=west] {$y$};
+\draw [thick, color=blue, domain=0:25*pi, samples=300, smooth]
+plot (xy polar cs:angle=\x r, radius={4*e^(-1/535*(\x r))});
+\filldraw[black] (0,0) circle (3pt);
+\end{tikzpicture}
+Οι διάφορες λύσεις του συστήματος δε θα τέμνονται ποτέ! Γιατί?
+\end{figure}
+
+
+\paragraph{Παρ.}
+\begin{align*}
+\left. \begin{array}{ll}
+\od{x}{t} &= xy \\
+\pd{y}{t} &= x^2
+\end{array} \right| &\implies \od{y}{x} = \frac{x}{y}
+\\ &\implies x\dif x-y\dif y = 0
+\\ &\implies x^2-y^2 =c
+\end{align*}
+
+Σημεία ισορροπίας
+\begin{align*}
+\left.
+\begin{array}{ll}
+xy &=0 \\ x^2 & = 0
+\end{array} \right| \implies \text{ λύσεις } (0,A)
+\end{align*}
+
+Ευσταθή σημεία ισορροπίας είναι τα \( (x,y)=(0,A) \) με \( A \leq 0 \)
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-5,0) -- (5,0) node[anchor=east,above] {$x$};
+\draw[->] (0,-5) -- (0,5) node[anchor=west] {$y$};
+\draw [thick, color=blue, domain=-3:3,variable=\y, samples=200, smooth]
+plot ({
+	sqrt(\y*\y + 1)
+},{\y});
+\draw [thick, color=blue, domain=-3:3,variable=\y, samples=200, smooth]
+plot ({
+	-sqrt(\y*\y + 1)
+},{\y});
+\draw [thick, color=blue, domain=-3.5:3.5, samples=200, smooth]
+plot ({\x},{
+	sqrt(\x*\x + 1)
+});
+\draw [thick, color=blue, domain=-3.5:3.5, samples=200, smooth]
+plot ({\x},{
+	-sqrt(\x*\x + 1)
+});
+
+
+\draw [thick, opacity=0.3, color=blue, domain=-3:3,variable=\y, samples=200, smooth]
+plot ({
+	sqrt(\y*\y + 9)
+},{\y});
+\draw [thick, opacity=0.3, color=blue, domain=-3:3,variable=\y, samples=200, smooth]
+plot ({
+	-sqrt(\y*\y + 9)
+},{\y});
+\draw [thick, opacity=0.3, color=blue, domain=-3.5:3.5, samples=200, smooth]
+plot ({\x},{
+	sqrt(\x*\x + 9)
+});
+\draw [thick, opacity=0.3, color=blue, domain=-3.5:3.5, samples=200, smooth
+]
+plot ({\x},{
+	-sqrt(\x*\x + 9)
+});
+
+\draw[thin, cyan, opacity=0.3] (-5,-5) -- (5,5);
+\draw[thin, cyan, opacity=0.3] (5,-5) -- (-5,5);
+
+
+
+\def\r{9}
+\def\op{0.5}
+\def\off{-0.1}
+\foreach \x in {1,...,3}
+\draw[
+decoration={markings,mark=at position 1 with {\arrow[thick]{>}}},postaction={decorate},opacity=\op
+](\x,{-sqrt(\x*\x+\r)}) -- (\x+\off,{-sqrt((\x+\off)*(\x+\off)+\r)}); 
+
+\def\r{1}
+\def\op{1}
+\def\off{-0.1}
+\foreach \x in {1,...,3}
+\draw[
+decoration={markings,mark=at position 1 with {\arrow[thick]{>}}},postaction={decorate},opacity=\op
+](\x,{-sqrt(\x*\x+\r)}) -- (\x+\off,{-sqrt((\x+\off)*(\x+\off)+\r)}); 
+
+\def\r{9}
+\def\op{0.5}
+\def\off{0.1}
+\foreach \x in {1,...,3}
+\draw[
+decoration={markings,mark=at position 1 with {\arrow[thick]{>}}},postaction={decorate},opacity=\op
+](\x,{sqrt(\x*\x+\r)}) -- (\x+\off,{sqrt((\x+\off)*(\x+\off)+\r)}); 
+
+\def\r{1}
+\def\op{1}
+\def\off{0.1}
+\foreach \x in {1,...,3}
+\draw[
+decoration={markings,mark=at position 1 with {\arrow[thick]{>}}},postaction={decorate},opacity=\op
+](\x,{sqrt(\x*\x+\r)}) -- (\x+\off,{sqrt((\x+\off)*(\x+\off)+\r)}); 
+
+\def\r{9}
+\def\op{0.5}
+\def\off{0.1}
+\foreach \x in {1,...,3}
+\draw[
+decoration={markings,mark=at position 1 with {\arrow[thick]{>}}},postaction={decorate},opacity=\op
+](-\x,{sqrt(\x*\x+\r)}) -- (-\x-\off,{sqrt((\x+\off)*(\x+\off)+\r)}); 
+
+\def\r{1}
+\def\op{1}
+\def\off{0.1}
+\foreach \x in {1,...,3}
+\draw[
+decoration={markings,mark=at position 1 with {\arrow[thick]{>}}},postaction={decorate},opacity=\op
+](-\x,{sqrt(\x*\x+\r)}) -- (-\x-\off,{sqrt((\x+\off)*(\x+\off)+\r)}); 
+
+\def\r{9}
+\def\op{0.5}
+\def\off{-0.1}
+\foreach \x in {1,...,3}
+\draw[
+decoration={markings,mark=at position 1 with {\arrow[thick]{>}}},postaction={decorate},opacity=\op
+](-\x,{-sqrt(\x*\x+\r)}) -- (-\x-\off,{-sqrt((\x+\off)*(\x+\off)+\r)}); 
+
+\def\r{1}
+\def\op{1}
+\def\off{-0.1}
+\foreach \x in {1,...,3}
+\draw[
+decoration={markings,mark=at position 1 with {\arrow[thick]{>}}},postaction={decorate},opacity=\op
+](-\x,{-sqrt(\x*\x+\r)}) -- (-\x-\off,{-sqrt((\x+\off)*(\x+\off)+\r)}); 
+
+\end{tikzpicture}
+\end{figure}
 
 \end{document}
