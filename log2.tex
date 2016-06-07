@@ -1,6 +1,4 @@
 \documentclass[11pt,a4paper,titlepage,draft]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[greek]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -19,6 +17,26 @@
 \usepackage[inline]{enumitem}
 \usepackage{cancel}
 \usepackage{esint}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{extarrows}
+
+\usepackage[no-math]{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+%\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
+%\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
+\usepackage{polyglossia}
+\newfontfamily\greekfont[Script=Greek]{Times New Roman}
+\newfontfamily\greekfontsf[Script=Greek]{Arial}
+\newfontfamily\greekfonttt[Script=Greek]{Latin Modern Mono}
+%\usepackage[greek]{babel}
+\setdefaultlanguage{greek}
+\setotherlanguage{english}
+\newcommand{\textlatin}[1]{#1}
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[greek]{babel}
 
 
 \usetikzlibrary{arrows.meta}
@@ -397,12 +415,12 @@ x_n = f_n(t)
 \mathbf r'_\gamma \cdot \mathbf r_\gamma = 0 \iff \\
 \mathbf r_\gamma \bot \mathbf r'_\gamma
 \end{align*}
-%TODO Graph 1
 \end{proof}
 
 \vspace{-20pt}
 
 \begin{center}
+	\(\mathbb R^2 \)
 \begin{tikzpicture}[scale=0.7]
 \draw[gray, thick] (-2.5,-2.5) -- (2.5,2.5);
 \node[above right, rotate=45] at (-2.5,-2.5) {\(+\infty\)};
@@ -410,7 +428,6 @@ x_n = f_n(t)
 
 \filldraw[black] (0.5,0.5) circle (2pt) node[anchor=west] {\(t_0\)};
 
-%TODO Right angle symbol
 
 \def\away{7}
 
@@ -426,19 +443,97 @@ x_n = f_n(t)
 
 
 \end{tikzpicture}
+\( \left|\mathbf r_\gamma(t)\right| = c \ \forall t \) σημαίνει κύκλος
 \end{center}
+
+\begin{center}
+	\(\mathbb R^3 \)
+		\begin{tikzpicture}[scale=0.7]
+		\draw[-{>[scale=2.5,width=3]}, gray] (0.5,0.5) to [bend left=90] (6,4);
+		\draw[gray, thick] (-2.5,-2.5) -- (2.5,2.5);
+		\node[above right, rotate=45] at (-2.5,-2.5) {\(+\infty\)};
+		\node[above left, rotate=45] at (2.5,2.5) {\(-\infty\)};
+		
+		\filldraw[black] (0.5,0.5) circle (2pt) node[anchor=west] {\(t_0\)};
+		\begin{scope}[shift={(7,0)},scale=2]
+		\draw[dashed] (-1,0) arc (180:360:1cm and 0.5cm);
+		\draw[dashed] (-1,0) arc (180:0:1cm and 0.5cm);
+		\draw[dashed] (0,1) arc (90:270:0.5cm and 1cm);
+		\draw[dashed] (0,1) arc (90:-90:0.5cm and 1cm);
+		\draw (0,0) circle (1cm);
+		%\shade[ball color=blue!10!white,opacity=0.20] (0,0) circle (1cm);
+		
+		\draw[->] (0,0) -- (0,1.5) node[above right] {$z$};
+		\draw[->] (0,0) -- (1.5,0) node[above right] {$y$};
+		\draw[->] (0,0) -- (-1,-1) node[below right] {$x$};
+		\end{scope}
+		
+		
+		\end{tikzpicture}
+	\( \left|\mathbf r_\gamma(t)\right| = c \ \forall t \) σημαίνει καμπύλη πάνω στη σφαίρα κέντρου \( O(0,0) \) και ακτίνας \(c\)
+\end{center}
+
+
+
 \end{infobox}
 
 \subsection{Διαφορικό καμπύλης}
 Ορίζω \(\dif   \mathbf r _ \gamma (t) = \mathbf r '_ \gamma (t) \dif t\), \textbf{διάνυσμα} πάνω στην εφαπτόμενη καμπύλη στο σημείο \(t\) και φορά που καθορίζεται από το πρόσημο του \(\dif t\).
 
-%TODO Graph 2
+\begin{center}
+
+\begin{tikzpicture}[scale=1]
+\draw[-{>[scale=2.5,width=3]}, gray] (0.5,0.5) to [bend left=90] (6,4);
+\draw[gray, thick] (-2.5,-2.5) -- (2.5,2.5);
+\node[above right, rotate=45] at (-2.5,-2.5) {\(+\infty\)};
+\node[above left, rotate=45] at (2.5,2.5) {\(-\infty\)};
+
+\filldraw[black] (0.5,0.5) circle (2pt) node[anchor=west] {\(t\)};
+\filldraw[black] (-0.5,-0.5) circle (2pt) node[anchor=west] {\(t+\mathrm d\, t\)};	
+\begin{scope}[shift={(6,-2)},scale=1.5]
+\draw[->] (0,-0.5) -- (0,3) node[above right] {$y$};
+\draw[->] (-0.5,0) -- (3,0) node[above right] {$x$};
+
+\draw[very thick,blue] plot [smooth] coordinates {
+	(2.4,2.5) (1, 2.1) (0.5,2.5)
+};		
+
+\draw[->] (0,0) -- (2.4,2.5) node[below,midway,sloped] {$\mathbf r_\gamma(t)$} ;
+\draw[->] (0,0) -- (0.5,2.5) node[below,midway,sloped] {$\mathbf r_\gamma(t+\mathrm d\, t)$} ;
+\draw[->,gray] (2.4,2.5) -- (1.5,841/250) node[above] {$\mathrm d\, \mathbf r_\gamma(t) = \mathbf r'_\gamma(t)\mathrm d\, t$};
+\draw[->] (2.2,2.5) -- (0.7,2.5) node[above,midway,sloped] {$\mathbf r_\gamma(t+\mathrm d\, t) - \mathbf r_\gamma(t)$};
+
+\draw (2.8,1.2) node {$\big(\mathrm d\, t > 0\big)$};
+
+\end{scope}
+\end{tikzpicture}
+\end{center}
 
 Για \(\dif t \to 0\), δηλ. κοντά στο \(t\) ισχύει:
 \[ \mathbf r _\gamma (t+dt) - \mathbf r _\gamma (t) \approx d\mathbf r_\gamma (t) \]
 
 
-%TODO Graph 3
+\begin{center}
+	\begin{tikzpicture}[scale=3]
+	
+	
+	\draw[very thick,blue!80] plot [smooth,tension=1.2] coordinates {
+		(0,0) (0.2,0.5) (0.5,0.7) (1,1) (2,1) (2.3,1.1) (2.6,1) (3,1.05) (3.5,0.8)
+	};		
+	
+	\draw (0,0) -- (0.2,0.5) -- (0.5,0.7) -- (1,1) -- (2,1) -- (2.3,1.1) -- (2.6,1) -- (3,1.05) -- (3.5,0.8);
+	\filldraw[black] (0,0) circle(0.4pt);
+	\filldraw[black] (0.2,0.5) circle(0.4pt);
+	\filldraw[black] (0.5,0.7) circle(0.4pt);
+	\filldraw[black] (1,1) circle(0.4pt);
+	\filldraw[black] (2,1) circle(0.4pt);
+	\filldraw[black] (2.3,1.1) circle(0.4pt);
+	\filldraw[black] (2.6,1) circle(0.4pt);
+	\filldraw[black] (3,1.05) circle(0.4pt);
+	\filldraw[black] (3.5,0.8) circle(0.4pt);
+	
+	\end{tikzpicture}
+\end{center}
 
 \subsubsection{}
 \paragraph{Ορ.}
@@ -507,13 +602,13 @@ x_n = f_n(t)
 \end{proof}
 
 \paragraph{Άσκ. 2}
-Αν \( \mathbf r_\gamma(t) = t \mathbf i+2 \mathbf j + (t^2-3) \mathbf \kappa\), υπολογίστε την εξίσωση της εφαπτόμενης ευθείας της καμπύλης στο σημείο \((2,2,1)\).
+Αν \( \mathbf r_\gamma(t) = t \mathbf i+2 \mathbf j + (t^2-3) \boldsymbol{\kappa}\), υπολογίστε την εξίσωση της εφαπτόμενης ευθείας της καμπύλης στο σημείο \((2,2,1)\).
 \begin{proof}[Απάντηση]
 \[
 \begin{cases}
 \mathbf i &= (1,0,0) \\
 \mathbf j &= (0,1,0) \\
-\mathbf \kappa &= (0,0,1) \\
+\boldsymbol{\kappa} &= (0,0,1) \\
 \end{cases}
 \]
 \[ \mathbf r_\gamma(t) = \left( t,2,t^2-3 \right) \]
@@ -590,7 +685,27 @@ c_3&=3
 
 \begin{enumerate}
 \item Η καμπύλη προκύπτει ως τομή "άπειρου" κυλίνδρου \(x^2+z^2=a^2\) και επιπέδου \(2x+3y+z=1\).
-%TODO Graph 4p
+
+\paragraph{Ενδεικτικό σχήμα}
+Έστω π.χ. ότι αυτή η καμπύλη είναι η τομή κυλίνδρου και επιπέδου.\\
+\begin{center}
+		\begin{tikzpicture}[scale=1.5]
+		
+		\draw[-{>[scale=2.5,width=3]}] (-2,1) node[above] {$x^2+z^2=a^2$} to [bend right=45] (-0.9,0);
+		
+		\draw[->,black!60] (0,0) -- (0,1.5) node[above right] {$y$};
+		\draw[->,black!60] (0,0) -- (1.5,0) node[above right] {$x$};
+		\draw[->,black!60] (0,0) -- (-1,-1) node[below right] {$z$};
+		
+		\draw (0,0) circle(0.7 and 0.3);
+		\draw[dashed] (0,1) circle(0.7 and 0.3);
+		\draw[dashed] (0,-1) circle(0.7 and 0.3);
+		
+		\draw (0.7,-1.5) -- (0.7,1.5);
+		\draw (-0.7,-1.5) -- (-0.7,1.5);
+		\end{tikzpicture}
+\end{center}
+
 \begin{infobox}{Παραμετροποίηση καμπύλης}
 Γενικά:
 \[
@@ -619,8 +734,22 @@ c_3&=3
 \end{enumerate}
 
 Έχουμε \textbf{ΤΟΜΗ} σφαίρας και επιπέδου που είναι \textbf{ΠΑΝΤΑ κύκλος}.
+	\subparagraph{Ενδεικτικό σχήμα}
+\begin{center}
 
-%TODO Graph 5
+		\begin{tikzpicture}[scale=1]
+		
+		\draw[->,black!60] (0,0) -- (0,1.5) node[above right] {$z$};
+		\draw[->,black!60] (0,0) -- (1.5,0) node[above right] {$y$};
+		\draw[->,black!60] (0,0) -- (-1,-1) node[below right] {$x$};
+		
+		\draw (-1,0) arc (180:360:1cm and 0.5cm);
+		\draw (-1,0) arc (180:0:1cm and 0.5cm);
+		\draw[dashed] (0,1) arc (90:270:0.5cm and 1cm);
+		\draw[dashed] (0,1) arc (90:-90:0.5cm and 1cm);
+		\draw (0,0) circle (1cm);
+		\end{tikzpicture}
+\end{center}
 Θέτω \(z=t\), οπότε \(x^2+y^2=a^2-t^2\), \(y=2x\), \(x^2=\frac{a^2-t^2}{5}\) και προχωρώ λύνοντας \(2 \times 2\) σύστημα
 
 \emph{ή}
@@ -676,7 +805,36 @@ y&=2x
 Έστω \(f: R \subset  \mathbb R ^2 \to  \mathbb R: \ z = f(x,y)\) είναι μια συνάρτηση δύο μεταβλητών ΦΡΑΓΜΕΝΗ επί της \textbf{ορθογώνιας περιοχής}:
 \[R =  \left\lbrace (x,y): a \leq x \leq b, \ c \leq y \leq d  \right\rbrace\]
 
-%TODO Graph 1
+\begin{center}
+		\begin{tikzpicture}[scale=2]
+		
+		\draw[->] (0,0) -- (0,2) node[above right] {$z$};
+		\draw[->] (0,0) -- (2.2,0) node[above right] {$y$};
+		\draw[->] (0,0) -- (-1.2,-1.2) node[below right] {$x$};
+		
+		\draw (-0.1,-0.1) -- (0,-0.1) -- (0.1,0);
+		\filldraw (0, -0.05) circle(0.05pt);
+		
+		\draw (0.1,0) -- (0.1,0.1) -- (0,0.1);
+		\filldraw (0.05,0.05) circle(0.05pt);
+		
+		\draw (0,0.1) -- (-0.1,0) -- (-0.1,-0.1);
+		\filldraw (-0.05,0) circle(0.05pt);
+		
+		\foreach \i in {0,...,5} {
+			\draw (1+\i*0.15,0) -- ++(45:-2cm);
+			\draw (-0.4-\i*0.15/1.5,-0.4-\i*0.15/1.5) -- ++(0:2.2cm);
+		}
+		
+		\draw (1,0) node[above] {$c$};
+		\draw (1+5*0.15,0) node[above] {$d$};
+		
+		\draw(-0.4,-0.4) node[above left] {$a$};
+		\draw(-0.4-5*0.15/1.5,-0.4-5*0.15/1.5) node[above left] {$b$};
+		
+		
+		\end{tikzpicture}
+\end{center}
 
 \begin{enumparen}
 \item
@@ -693,7 +851,7 @@ y&=2x
 \(n=1,\dots,N-1,\ k=1,\dots,M-1\)
 
 \item
-Έστω \((\tilde{x_n}, \tilde{y_n}) \in \Omega_{n,\kappa} \) είναι ΤΥΧΑΙΟ σημείο του \(\Omega_{n,\kappa}\). Ορίζω τις τιμές \(f(\widetilde{x_n}, \widetilde{y_n})\).
+Έστω \((\widetilde{x_n}, \widetilde{y_n}) \in \Omega_{n,\kappa} \) είναι ΤΥΧΑΙΟ σημείο του \(\Omega_{n,\kappa}\). Ορίζω τις τιμές \(f(\widetilde{x_n}, \widetilde{y_n})\).
 
 \item
 Ορίζω το \textbf{άθροισμα}:
@@ -915,7 +1073,189 @@ I =
 Έστω \(T \subset  \mathbb R ^2\) ΦΡΑΓΜΕΝΟ χωρίο (με σύνορο αμελητέου εμβαδού). Τότε,
 \begin{enumlatin}
 \item Το \(T\) καλείται \textbf{κανονικό ως προς \(\mathbf y\)}, αν \(T\) είναι \textbf{συνεκτικό} και \boxed{\text{κάθε}} ευθεία \(\parallel \mathbf{y'y}\) \textbf{ΕΝΤΟΣ του \(\mathbf T\)} τέμνει το σύνορο του \(T\) \textbf{ακριβώς σε ΔΥΟ ΣΗΜΕΙΑ}.
-%TODO Graph 01
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.35\textwidth}
+		\begin{tikzpicture}
+		\draw[->] (-1,-0.75) -- (-1,2);
+		\draw[->] (-1.25,-0.5) -- (4,-0.5);
+		
+		\begin{scope}[scale=0.5]
+		\filldraw[thick,fill=green!20] plot [smooth cycle,tension=1] coordinates {
+			(0,0) (0.5,2) (3,0.3) (5.5,2) (6,0) (3,-0.3)
+		};
+		\draw[thick] (0.5,2) -- (0.5,-0.3);
+		\draw[thick] (3,0.3) -- (3,-0.3);
+		\draw[thick] (6,0) -- (6,1.8);
+		\draw[thick] (4,0.7) -- (4,-0.3);
+		
+		
+		\foreach \p in {
+			(0.5,2),  (0.5,-0.3),
+			(3,0.3), (3,-0.3), (6,0),(6,1.8), (4,0.7), (4,-0.3)
+		} {
+		\filldraw \p circle(2pt);
+		
+		\draw (2,2) node {$T$};
+	}
+	
+	\end{scope}
+	\end{tikzpicture}
+		\caption{Κανονικό ως προς \(y\)}
+	\end{subfigure}
+	\quad %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.31\textwidth}
+				\begin{tikzpicture}[scale=2]
+				\draw[->] (0,-0.25) -- (0,2);
+				\draw[->] (-0.25,0) -- (2,0);
+				
+				\begin{scope}[shift={(-0.5,-0.7)},scale=1.4]
+				\filldraw[fill=green!20] plot [smooth cycle,tension=1.5] coordinates {
+					(1.4, 1) (1,1) (1,1.5) (1.5, 2)   (1.2,1.3)
+				};
+				\draw (1.7,2) node {$T$};
+				
+				\draw[thin,dashed] (1,0.5) -- (1,2);
+				\draw[thick] (1,1) -- (1,1.5);
+				
+				\draw[thin,dashed] (1.3,0.5) -- (1.3,2.2);
+				\draw[thick,red] (1.3,0.9) -- (1.3,1.05);
+				\draw[thick,red] (1.3,1.64) -- (1.3,1.93);
+				
+				
+				\foreach \p in {
+					(1,1),(1,1.5)
+				} {
+				\filldraw \p circle(1pt);
+			}
+			
+			\foreach \p in {
+				(1.3,0.9), (1.3,1.05),
+				(1.3,1.64), (1.3,1.93)
+			} {
+			\filldraw[fill=red!80] \p circle(1pt);
+		}
+		
+		\end{scope}
+		\end{tikzpicture}
+		\caption{Μη κανονικό ως προς \(y\)}
+	\end{subfigure}
+	\\[0.5em]
+	\begin{subfigure}[b]{0.31\textwidth}
+		\begin{tikzpicture}[scale=2]
+		\draw[->] (0,-0.25) -- (0,2);
+		\draw[->] (-0.25,0) -- (2,0);
+		
+		\begin{scope}[]
+		\filldraw[thick,fill=green!20] (1,1) circle(0.75);
+		\filldraw[thick,fill=white] (1,1) circle(0.45);
+		\draw (1.8,1.8) node {$T$};
+		\end{scope}
+		\end{tikzpicture}
+\caption{Μη κανονικό}
+\end{subfigure}
+\quad 
+\begin{subfigure}[b]{0.31\textwidth}
+\begin{tikzpicture}[scale=2]
+\draw[->] (0,-0.25) -- (0,2);
+\draw[->] (-0.25,0) -- (2,0);
+
+\begin{scope}[shift={(1.2,0.5)}]
+
+\filldraw[fill=green!20] plot [smooth cycle,tension=1.5] coordinates {
+	(-0.5,0) (-0.8,0) (0,0.7) (0.8,0) (0.5,0) (0,0.4)
+};
+
+\draw[thick] (-1,0) -- (1,0);
+
+
+\foreach \p in {
+	(-0.5,0), (-0.8,0), (0.5,0), (0.8,0)
+} {
+\fill[black] \p circle(1pt);
+}
+
+\end{scope}
+
+\end{tikzpicture}
+	\caption{Μη κανονικό ως προς \(x\) \\ Κανονικό ως προς \(y\)}
+\end{subfigure}
+\\[0.3em]
+	\begin{subfigure}[b]{0.33\textwidth}
+		\begin{tikzpicture}[scale=2.2]
+		\draw[->] (0,-0.25) -- (0,2);
+		\draw[->] (-0.25,0) -- (2,0);
+		
+		\begin{scope}[shift={(1.2,0.8)},scale=0.7]
+		
+		\filldraw[fill=green!20] plot [smooth cycle,tension=0.7] coordinates {
+			(-0.3,0.1)  (-0.8,0.9) 
+			%(-0.5,1.4)
+			(0.5,1) (0.3,0) (-0.8,-0.8) 
+			%(-0.5, -0.4)
+		};
+		
+		\draw[thick] (-0.82,0.8)  -- (0.6,0.8);
+		
+		\foreach \p in {
+			(-0.82,0.8)  ,(0.6,0.8)
+		} {
+		\fill[black] \p circle(1.5pt);
+	}
+	
+	\end{scope}
+	
+	\end{tikzpicture}
+		\caption{Κανονικό ως προς \(x\) \\ Μη κανονικό ως προς \(y\)}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.25\textwidth}
+		\begin{tikzpicture}[scale=1.5]
+		\draw[->] (0,-0.25) -- (0,2);
+		\draw[->] (-0.25,0) -- (2,0);
+		
+		\begin{scope}[shift={(1,1)},scale=0.7]
+		
+		\filldraw[fill=green!20,thick] (0,0) circle(1);
+		
+		\foreach \p in {
+			30,45,60,75,90,105,120,135,150
+		} {
+		\draw (\p:1) -- (-\p:1);
+	}
+	
+	\end{scope}
+	
+	\end{tikzpicture}
+		\caption{Κανονικό}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.25\textwidth}
+		\begin{tikzpicture}[scale=1.5]
+		\draw[->] (0,-0.25) -- (0,2);
+		\draw[->] (-0.25,0) -- (2,0);
+		
+		\begin{scope}[shift={(1,1)},scale=0.7]
+		
+		\filldraw[thick,fill=green!20] plot [smooth cycle,tension=1.2] coordinates {
+			(-1,1) (0.5,0.4) (1,-1) (-0.5,-0.5)
+		};
+		
+		\draw (-1.15,0.7) -- (0.2,0.7);
+		\draw (-1.05,0.2) -- (0.7,0.2);
+		
+		\draw(0.5,0.4) -- (0.5,-1.15);
+		\draw (-0.3,1) -- (-0.3,-0.7);
+		
+		
+		\end{scope}
+		\end{tikzpicture}
+	\caption{Κανονικό}
+\end{subfigure}
+\end{figure}
+
 \item Το \(T\) καλείται \textbf{κανονικό ως προς \(\mathbf x\)}, αν \(T\) είναι \textbf{συνεκτικό} και \boxed{\text{κάθε}} ευθεία \(\parallel \mathbf{x'x}\) \textbf{ΕΝΤΟΣ του \(\mathbf T\)} τέμνει το σύνορο του \(T\) \textbf{ακριβώς σε ΔΥΟ ΣΗΜΕΙΑ}.
 \item Το \(T\) καλείται κανονικό αν είναι κανονικό ως προς \(x\) \boxed{ΚΑΙ} ως προς \(y\).
 \end{enumlatin}
@@ -969,7 +1309,72 @@ T =  \left\lbrace (x,y):\ c \leq y \leq d, \ \kappa (x) \leq x \leq \lambda(x)  
 \end{enumerate}
 \end{attnbox}
 
-%TODO Graph 03
+\begin{figure}[h]
+	\centering
+\begin{subfigure}[b]{0.45\textwidth}
+	\begin{tikzpicture}[scale=3]
+	\draw[->] (0,-0.25) -- (0,2) node[right] {$y$};
+	\draw[->] (-0.25,0) -- (2,0) node[below right] {$x$};
+	
+	\begin{scope}[shift={(0.5,0.5)},scale=0.7]
+	
+	
+	\fill[fill=green!20] plot[smooth cycle,tension=0.1] coordinates {
+		(0,0) (0,1) (0.3,1.3) (0.6,1) (0.9,1.3) (1.2,1) (1.2,0) (0.9,-0.3) (0.6,0) (0.3,0.3)
+	};
+	
+	\draw[dashed] (0,-0.5/0.7) node[below] {$a$} -- (0,2);
+	\draw[dashed] (1.2,-0.5/0.7) node[below] {$b$} -- (1.2,2);
+	
+	\draw[thick] plot [smooth] coordinates {
+		(0,1) (0.3,1.3) (0.6,1) (0.9,1.3) (1.2,1)
+	};
+	%\draw[thick] plot coordinates {(0,0) (0,1)};
+	%\draw[thick] plot coordinates {(1.2,0) (1.2,1)};
+	\draw[thick] plot [smooth] coordinates {
+		(0,0) (0.3,0.3) (0.6,0) (0.9,-0.3) (1.2,0)
+	};
+	
+	\draw (0.6,1.3) node [above] {$h(x)$};
+	\draw (0.6,-0.2) node [below] {$g(x)$};
+	
+	\end{scope}
+	\end{tikzpicture}
+\end{subfigure}
+~ \begin{subfigure}[b]{0.45\textwidth}
+	\begin{tikzpicture}[scale=3]
+	\draw[->] (0,-0.25) -- (0,1.8) node[right] {$y$};
+	\draw[->] (-0.25,0) -- (2,0) node[below right] {$x$};
+	
+	\begin{scope}[shift={(0.5,1.3)},rotate=-90,scale=0.7]
+	
+	
+	\fill[fill=green!20] plot[smooth cycle,tension=0.1] coordinates {
+		(0,0) (0,1) (0.3,1.3) (0.6,1) (0.9,1.3) (1.2,1) (1.2,0) (0.9,-0.3) (0.6,0) (0.3,0.3)
+	};
+	
+	\draw[dashed] (0,-0.5/0.7) node[left] {$d$} -- (0,2);
+	\draw[dashed] (1.2,-0.5/0.7) node[left] {$c$} -- (1.2,2);
+	
+	\draw[thick] plot [smooth] coordinates {
+		(0,1) (0.3,1.3) (0.6,1) (0.9,1.3) (1.2,1)
+	};
+	%\draw[thick] plot coordinates {(0,0) (0,1)};
+	%\draw[thick] plot coordinates {(1.2,0) (1.2,1)};
+	\draw[thick] plot [smooth] coordinates {
+		(0,0) (0.3,0.3) (0.6,0) (0.9,-0.3) (1.2,0)
+	};
+	
+	\draw (0.6,1.3) node [right] {$\lambda (x)$};
+	\draw (0.6,-0.1) node [left] {$\kappa (x)$};
+	
+	
+	\end{scope}
+	
+	
+	\end{tikzpicture}
+\end{subfigure}
+\end{figure}
 
 
 \subsection{Εφαρμογές διπλού ολοκληρώματος}
@@ -1039,6 +1444,24 @@ y_u & y_v
 \end{attnbox}
 
 \paragraph{Εφαρμογή σε πολικές συντεταγμένες}
+\begin{wrapfigure}{r}{0.3\textwidth}
+	\begin{tikzpicture}[scale=2]
+	\draw[->] (0,-0.25) -- (0,1.5); %node[right] {$y$};
+	\draw[->] (-0.25,0) -- (1.5,0); %node[below right] {$x$};
+	
+	\filldraw[black] (1,1) circle (0.5pt) node[above right] {$M(x,y)$};
+	\draw[->] (0,0) -- (1,1) node[midway,above left] {$\mathbf R$};
+	\draw [->](0,0) +(0:.2cm) arc (0:45:.2cm) node[midway,right] {$\theta$};
+	
+	\draw[dashed] (1,1) -- (1,0) node[below] {$x$};
+	\draw[dashed] (1,1) -- (0,1) node[left] {$y$};
+	
+	\end{tikzpicture}
+\end{wrapfigure}
+\leavevmode
+
+
+
 \begin{gather*}
 (x,y) \leftrightarrow (\rho, \theta) \\
 x = \rho \cos \theta \\
@@ -1047,8 +1470,7 @@ y = \rho \sin \theta
 \subparagraph{Τότε}
 \[
 \frac{D(x,y)}{D(\rho,\theta)}
-\overset{x=\rho \cos \theta}
-{\underset{y=\rho \sin \theta}{=}}
+\xlongequal[y=\rho \sin \theta]{x=\rho \cos \theta}
 \left|
 \begin{matrix}
 x_\rho & x_\theta \\
@@ -1191,7 +1613,7 @@ I &=\iint_T (x^2+y^2) \dif x \dif y
 \end{align*}
 
 \paragraph{Άσκηση 3}
-Υπολογίστε τον όγκοτου στερεού μεταξύ της επιφάνειας \(z = f(x,y)=1+xy\), και των επιπέδων \(y=0,\ z=0,\ x+y=1,\ y=x \quad (x,y \geq 0)\).
+Υπολογίστε τον όγκο του στερεού μεταξύ της επιφάνειας \(z = f(x,y)=1+xy\), και των επιπέδων \(y=0,\ z=0,\ x+y=1,\ y=x \quad (x,y \geq 0)\).
 
 Γνωρίζω ότι
 \[
