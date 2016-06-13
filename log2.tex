@@ -70,7 +70,7 @@
 
 \title{Σημειώσεις Λογισμού ΙΙ}
 \date{2016, Εαρινό εξάμηνο}
-\author{Καναβούρας Κωνσταντίνος \\ \textlatin{\url{http://users.auth.gr/konkanant}}}
+\author{\textlatin{\url{https://github.com/kongr45gpen/ece-notes}}}
 
 
 
@@ -2568,7 +2568,7 @@ I = \iiint_S x^2\dif x \dif z \dif y \overset{\text{στερεό $S$ κανον�
 \begin{align*}
 I &= \iint_{D_{xy}} \left. x^2z\right|_0^{c\left(1-\frac{x}{a}-\frac{y}{b}\right)} \dif x \dif y
 \\ &= \iint_{D_{xy}} x^2 \left(1-\frac{x}{a}-\frac{y}{b}\right) \dif x \dif y
-\\ &\overset{\mathclap{\text{εργάζομαι θεωρώντας $D_{xy}$ κανονικό ως προς $x$}}}{=}
+\\ &\xlongequal{\text{εργάζομαι θεωρώντας $D_{xy}$ κανονικό ως προς $x$}}
 \int_0^b \int_0^{a\left(1-\frac{y}{b}\right)} x^2\left(1-\frac{x}{a}-\frac{y}{b}\right) 
 \mathbf{dx} \dif y
 \\ &=
@@ -3802,10 +3802,12 @@ uu_x&uu_y&uu_z
  
 \paragraph{Θ2.}
 Έστω \( \mathbf F:D \subseteq \mathbb R ^n\to\mathbb R ^n \) συνεχές διαν. πεδίο επί \textbf{τόπου \( D \)}. Τότε:
-\[
+
+\(
 \mathbf F \text{ συντηρητικό στο } D \iff
-\mathbf{F} \text{ είναι πεδίο κλίσεων στο $D$, δηλ. } \mathbf{F} = \nabla f \text{για κάποια } f:D \subseteq \mathbb R ^n \to \mathbb R \text{ με συνεχείς μερ. παραγ. στο } D
-\]
+\mathbf{F} \text{ είναι πεδίο κλίσεων στο $D$, δηλ. } \mathbf{F} = \nabla f \text{ για κάποια } f:D \subseteq \mathbb R ^n \to \mathbb R \text{ με συνεχείς μερ. παραγ. στο } D
+\)
+
 \subparagraph{Απόδ.}
 ``\( \Leftarrow \)'' Έστω \( \mathbf F \) πεδίο κλίσεων, δηλ. \( \mathbf F = \nabla f \).
 
@@ -5354,7 +5356,7 @@ d(A,B) = &\norm{\overrightarrow{AB}} = \sqrt{(a_1-b_1)^2 + \dots + (a_n-b_n)^2} 
 
 
 
-\iffalse
+\iftrue
 \begin{figure}[H]
 \centering
 \begin{subfigure}[b]{0.44\textwidth}

@@ -1,6 +1,4 @@
 \documentclass[11pt,a4paper,titlepage,draft]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[greek]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -14,6 +12,23 @@
 \usepackage{cancel}
 \usepackage{mathtools}
 \usepackage{xfrac}
+
+\usepackage[no-math]{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+%\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
+%\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
+\usepackage{polyglossia}
+\newfontfamily\greekfont[Script=Greek]{Ubuntu}
+\newfontfamily\greekfontsf[Script=Greek]{Arial}
+\newfontfamily\greekfonttt[Script=Greek]{Latin Modern Mono}
+%\usepackage[greek]{babel}
+\setdefaultlanguage{greek}
+\setotherlanguage{english}
+\newcommand{\textlatin}[1]{#1}
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[greek]{babel}
 
 \usetikzlibrary{arrows.meta}
 
@@ -46,18 +61,14 @@
 
 \title{Σημειώσεις Στατιστική \& Πιθανότητες}
 \date{2016, Εαρινό εξάμηνο}
-\author{Καναβούρας Κωνσταντίνος \\ \textlatin{\url{http://users.auth.gr/konkanant}}}
+\author{\textlatin{\url{https://github.com/kongr45gpen/ece-notes}}}
 
 
 \begin{document}
 
 \maketitle
 
-\begin{dedication}
-	Αφιερωμένο στο πράσινο τοστ
-\end{dedication}
-
-%\tableofcontents
+\tableofcontents
 
 \newpage
 
