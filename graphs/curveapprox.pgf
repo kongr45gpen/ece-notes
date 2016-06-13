@@ -1,0 +1,19 @@
+\begin{tikzpicture}[scale=4]
+
+
+\draw[very thick,blue!80] plot [smooth,tension=1.2] coordinates {
+(0,0) (0.2,0.5) (0.5,0.7) (1,1) (2,1) (2.3,1.1) (2.6,1) (3,1.05) (3.5,0.8)
+};		
+
+\draw (0,0) -- (0.2,0.5) -- (0.5,0.7) -- (1,1) -- (2,1) -- (2.3,1.1) -- (2.6,1) -- (3,1.05) -- (3.5,0.8);
+\filldraw[black] (0,0) circle(0.4pt);
+\filldraw[black] (0.2,0.5) circle(0.4pt);
+\filldraw[black] (0.5,0.7) circle(0.4pt);
+\filldraw[black] (1,1) circle(0.4pt);
+\filldraw[black] (2,1) circle(0.4pt);
+\filldraw[black] (2.3,1.1) circle(0.4pt);
+\filldraw[black] (2.6,1) circle(0.4pt);
+\filldraw[black] (3,1.05) circle(0.4pt);
+\filldraw[black] (3.5,0.8) circle(0.4pt);
+
+\end{tikzpicture}

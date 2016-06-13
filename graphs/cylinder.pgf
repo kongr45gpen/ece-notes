@@ -1,0 +1,15 @@
+	\begin{tikzpicture}[scale=2]
+
+\draw[-{>[scale=2.5,width=3]}] (-2,1) node[above] {$x^2+z^2=a^2$} to [bend right=45] (-0.9,0);
+
+\draw[->,black!60] (0,0) -- (0,1.5) node[above right] {$y$};
+\draw[->,black!60] (0,0) -- (1.5,0) node[above right] {$x$};
+\draw[->,black!60] (0,0) -- (-1,-1) node[below right] {$z$};
+
+\draw (0,0) circle(0.7 and 0.3);
+\draw[dashed] (0,1) circle(0.7 and 0.3);
+\draw[dashed] (0,-1) circle(0.7 and 0.3);
+
+\draw (0.7,-1.5) -- (0.7,1.5);
+\draw (-0.7,-1.5) -- (-0.7,1.5);
+	\end{tikzpicture}

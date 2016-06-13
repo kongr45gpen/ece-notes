@@ -1,0 +1,10 @@
+\begin{tikzpicture}
+\draw[->] (0,-0.25) -- (0,2);
+\draw[->] (-0.25,0) -- (2,0);
+
+\begin{scope}[]
+\filldraw[thick,fill=green!20] (1,1) circle(0.75);
+\filldraw[thick,fill=white] (1,1) circle(0.45);
+\draw (1.8,1.8) node {$T$};
+\end{scope}
+\end{tikzpicture}

@@ -1,0 +1,14 @@
+\begin{tikzpicture}[scale=1]
+
+\path [thick,draw=black,fill=green!20,even odd rule] (0,0) circle (2) (0,0) circle (1) ;
+
+\filldraw[black] (1,0) circle (1pt) node[below left] {1};
+\filldraw[black] (2,0) circle (1pt) node[below right] {2};
+
+\draw[very thick,orange] (0,0) -- (50:3);
+
+\draw[->] (0,-3) -- (0,3);
+\draw[->] (-3,0) -- (3,0);
+
+\end{tikzpicture}
+

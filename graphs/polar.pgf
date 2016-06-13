@@ -1,0 +1,12 @@
+\begin{tikzpicture}[scale=3]
+\draw[->] (0,-0.25) -- (0,1.5); %node[right] {$y$};
+\draw[->] (-0.25,0) -- (1.5,0); %node[below right] {$x$};
+
+\filldraw[black] (1,1) circle (0.5pt) node[above right] {$M(x,y)$};
+\draw[->] (0,0) -- (1,1) node[midway,above left] {$\mathbf R$};
+\draw [->](0,0) +(0:.2cm) arc (0:45:.2cm) node[midway,right] {$\theta$};
+
+\draw[dashed] (1,1) -- (1,0) node[below] {$x$};
+\draw[dashed] (1,1) -- (0,1) node[left] {$y$};
+
+\end{tikzpicture}

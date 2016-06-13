@@ -1,0 +1,22 @@
+	\begin{tikzpicture}[scale=0.7]
+    \draw[-{>[scale=2.5,width=3]}, gray] (0.5,0.5) to [bend left=90] (6,4);
+	\draw[gray, thick] (-2.5,-2.5) -- (2.5,2.5);
+	\node[above right, rotate=45] at (-2.5,-2.5) {\(+\infty\)};
+	\node[above left, rotate=45] at (2.5,2.5) {\(-\infty\)};
+	
+	\filldraw[black] (0.5,0.5) circle (2pt) node[anchor=west] {\(t_0\)};
+\begin{scope}[shift={(7,0)},scale=2]
+	\draw (-1,0) arc (180:360:1cm and 0.5cm);
+	\draw[dashed] (-1,0) arc (180:0:1cm and 0.5cm);
+	\draw (0,1) arc (90:270:0.5cm and 1cm);
+	\draw[dashed] (0,1) arc (90:-90:0.5cm and 1cm);
+	\draw (0,0) circle (1cm);
+	\shade[ball color=blue!10!white,opacity=0.20] (0,0) circle (1cm);
+
+\draw[->] (0,0) -- (0,1.5) node[above right] {$z$};
+\draw[->] (0,0) -- (1.5,0) node[above right] {$y$};
+\draw[->] (0,0) -- (-1,-1) node[below right] {$x$};
+\end{scope}
+
+
+	\end{tikzpicture}

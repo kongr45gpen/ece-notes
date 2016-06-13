@@ -1,0 +1,25 @@
+\begin{tikzpicture}[scale=1]
+		\draw[-{>[scale=2.5,width=3]}, gray] (0.5,0.5) to [bend left=90] (6,4);
+		\draw[gray, thick] (-2.5,-2.5) -- (2.5,2.5);
+		\node[above right, rotate=45] at (-2.5,-2.5) {\(+\infty\)};
+		\node[above left, rotate=45] at (2.5,2.5) {\(-\infty\)};
+		
+		\filldraw[black] (0.5,0.5) circle (2pt) node[anchor=west] {\(t\)};
+\filldraw[black] (-0.5,-0.5) circle (2pt) node[anchor=west] {\(t+\mathrm d\, t\)};	
+		\begin{scope}[shift={(6,-2)},scale=1.5]
+		\draw[->] (0,-0.5) -- (0,3) node[above right] {$y$};
+\draw[->] (-0.5,0) -- (3,0) node[above right] {$x$};
+
+\draw[very thick,blue] plot [smooth] coordinates {
+(2.4,2.5) (1, 2.1) (0.5,2.5)
+};		
+
+\draw[->] (0,0) -- (2.4,2.5) node[below,midway,sloped] {$\mathbf r_\gamma(t)$} ;
+\draw[->] (0,0) -- (0.5,2.5) node[below,midway,sloped] {$\mathbf r_\gamma(t+\mathrm d\, t)$} ;
+\draw[->,gray] (2.4,2.5) -- (1.5,841/250) node[above] {$\mathrm d\, \mathbf r_\gamma(t) = \mathbf r'_\gamma(t)\mathrm d\, t$};
+\draw[->] (2.2,2.5) -- (0.7,2.5) node[above,midway,sloped] {$\mathbf r_\gamma(t+\mathrm d\, t) - \mathbf r_\gamma(t)$};
+
+\draw (2.8,1.2) node {$\big(\mathrm d\, t > 0\big)$};
+
+\end{scope}
+\end{tikzpicture}

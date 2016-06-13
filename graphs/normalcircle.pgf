@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+\draw[->] (0,-0.25) -- (0,2);
+\draw[->] (-0.25,0) -- (2,0);
+
+\begin{scope}[shift={(1,1)},scale=0.7]
+
+\filldraw[fill=green!20,thick] (0,0) circle(1);
+
+\foreach \p in {
+30,45,60,75,90,105,120,135,150
+} {
+\draw (\p:1) -- (-\p:1);
+}
+
+\end{scope}
+
+\end{tikzpicture}
