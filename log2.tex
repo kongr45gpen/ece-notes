@@ -55,11 +55,12 @@
 \makeatletter
 %\newcommand{\attnboxed}[1]{\textcolor{red}{\fbox{\normalcolor\m@th$\displaystyle#1$}}}
 \makeatother
+\tcbuselibrary{breakable}
 \tcbset{highlight math style={enhanced,colframe=red,colback=white,%
   arc=0pt,boxrule=1pt,shrink tight,boxsep=1.5mm,extrude by=0.5mm}}
 \newcommand{\attnboxed}[1]{\tcbhighmath[colback=red!5!white,drop fuzzy shadow,arc=0mm]{#1}}
 \titleformat{\section}{\bf\Large}{Κεφάλαιο \thesection}{1em}{}
-\newtcolorbox{attnbox}[1]{colback=red!5!white,%
+\newtcolorbox{attnbox}[1]{breakable,colback=red!5!white,%
   colframe=red!75!black,fonttitle=\bfseries,title=#1}
 \newtcolorbox{infobox}[1]{colback=blue!5!white,%
   colframe=blue!75!black,fonttitle=\bfseries,title=#1}
@@ -1621,15 +1622,56 @@ V = \iint_{\underbrace{\boxed{T}}_?} \underbrace{f(x,y)}_{?} \dif x\dif y
 \]
 
 \subparagraph{(Α) Υποτυπώδες σχήμα}
-%TODO Atreas Graph 01
+\mbox{}\\
+	\begin{figure}[h!]
+		\begin{center}
+		\begin{tikzpicture}
+		\begin{axis}[
+		axis lines = middle,
+		%hide axis,
+		colormap/cool,
+		zticklabels={,,},
+		yticklabels={,,},
+		xticklabels={,,},
+		]
+		\addplot3[black,variable=t,mesh,domain=-5:5] (t,t, 0);
+		\addplot3[black,variable=t,mesh,domain=-5:5] (t,1-t, 0);
+		\addplot3[surf,shader=faceted,samples=20] (0,-abs x,abs y);
+		\addplot3[surf,shader=faceted,samples=20] (abs y,- abs x,0);
+		\addplot3[samples=10,domain=0:3,thick,draw=magenta] (x,-x,0);
+		\addplot3[draw=blue,thick,samples=10,domain=0:2,fill=magenta] (x,-2+x,0.1);
+		\end{axis}
+		\draw[->] (6,3) node[right] {στο πρόχειρο} to[bend right=45] (5,2) ;
+		\end{tikzpicture}
+	\end{center}
+	\end{figure}
+
 
 \subparagraph{(Β) Προς ολοκλήρωση χωρίο}
 \[
 V=\iint_T (1+xy) \dif x \dif y
 \]
-Το χωρίο \(T\) είναι κανονικό (δηλ. και ως προς $x$ και ως προς $y$). Θα εργασθώ Επιλέγοντας το χωρίο \(T\) να είναι κανονικό ως προς \(x\).
+Το χωρίο \(T\) είναι κανονικό (δηλ. και ως προς $x$ και ως προς $y$). Θα εργασθώ επιλέγοντας το χωρίο \(T\) να είναι κανονικό ως προς \(x\).
 
-%TODO Atreas Graph 02
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[scale=2]
+	\fill[fill=green!20] plot coordinates { (0,0) (0.5,0.5) (1,0) } node[above right] {$T$};
+	
+	
+	\draw[->] (0,-0.25) -- (0,1.5);
+	\draw[->] (-0.25,0) -- (1.5,0);
+	
+	\draw[dashed] (0.5,0.5) -- (0,0.5) node[left] {$^1/_2$};
+	\draw[dashed] (0.5,0.5) -- (0.5,0) node[below] {$^1/_2$};
+	
+	\draw[thick] (1,0) -- (0,1) node[above,pos=0.8,sloped] {$x+y=1$};
+	\draw[thick] (0,0) -- (45:1.8) node[above,pos=0.8,sloped] {$x=y$};
+	
+	\end{tikzpicture}
+\end{figure}
+
+
 \textbf{Τότε έχω:}
 \begin{align*}
 V &= \overbrace{\int_0^\frac{1}{2}}^{\mathclap{\text{προβολή του χωρίου $T$ στον άξονα $y'y$}}} \underbrace{\int_{x_\mathrm{min}}^{x_\mathrm{max}} (1+xy) \dif x}_{\mathclap{\text{κανονικό ως προς $x$,\quad μεταβλητά όρια στο εσωτερικό ολοκλήρωμα}}} \dif y \\
@@ -1649,10 +1691,45 @@ V &= \overbrace{\int_0^\frac{1}{2}}^{\mathclap{\text{προβολή του χω�
  \\ &= \frac{24-9-2}{18} = \frac{13}{48}
 \end{align*}
 
+\begin{center}
+	\begin{tikzpicture}[scale=3]
+	
+	\draw[->] (0,-0.25) -- (0,1);
+	\draw[->] (-0.25,0) -- (1,0);
+	
+	\draw[dashed] (0.5,0.5) -- (0,0.5) node[left] {$^1/_2$};
+	\draw[dashed] (0.5,0.5) -- (0.5,0) node[below] {$^1/_2$};
+	
+	\draw[thick] (1,0) -- (0.5,0.5) node[above,pos=0.5,sloped] {$x+y=1$};
+	\draw[thick] (0,0) -- (0.5,0.5) node[above,pos=0.5,sloped] {$x=y$};
+	
+	\draw[very thick] (0.2,0.2) -- (0.8,0.2);
+	
+	\end{tikzpicture}
+\end{center}
+
+
 \begin{attnbox}{Σημείωση}
 Αν θεωρήσουμε το χωρίο $T$ κανονικό ως προς \(y\), τότε θα είχα:
 
-%TODO Atreas Graph 03
+\begin{center}
+	\begin{tikzpicture}[scale=2.5]
+	
+	\draw[->] (0,-0.25) -- (0,1);
+	\draw[->] (-0.25,0) -- (1,0);
+	
+	\draw[dashed] (0.5,0.5) -- (0,0.5) node[left] {$^1/_2$};
+	\draw[dashed] (0.5,0.5) -- (0.5,0) node[below] {$^1/_2$};
+	
+	\draw[thick] (1,0) -- (0.5,0.5) node[above,pos=0.5,sloped] {$x+y=1$};
+	\draw[thick] (0,0) -- (0.5,0.5) node[above,pos=0.5,sloped] {$x=y$};
+	
+	\draw[very thick] (0.2,0) -- (0.2,0.2);
+	\draw[very thick] (0.8,0) -- (0.8,0.2);
+	
+	
+	\end{tikzpicture}
+\end{center}
 
 \[
 V = \int_0^\frac{1}{2} \int_0^x (1+xy) \dif y \dif x
@@ -1670,7 +1747,35 @@ I = \int_0^3 \int_y^3 e^{x^2} \dif x \dif y
 Σην άσκηση, όπως είναι γραμμένο το προς ολοκλήρωση χωρίο, έχει θεωρηθεί κανονικό \textbf{ως προς $\mathbf x$}.
 
 \subparagraph{(Β) Ποιό είναι το χωρίο? Σχεδίαση (υποτυπώδης)}
-%TODO Atreas Graph 04
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\begin{tikzpicture}[scale=1]
+		\fill[fill=green!20] plot coordinates { (0,0) (3,3) (3,0) } node[xshift=-1cm,yshift=1cm] {$T$};
+		\draw[->] (0,-0.25) -- (0,4);
+		\draw[->] (-0.25,0) -- (4,0);
+		\draw[thick] (3,0) -- (3,3.2);
+		\draw[thick] (0,0) -- (3.2,3.2) node[above,pos=0.5,sloped] {$y=x$};
+		\filldraw[black] (0,3) circle (1pt) node[left] {3};
+		\filldraw[black] (3,0) circle (1pt) node[below] {3};
+		\draw[very thick] (2,2) -- (3,2);
+		\end{tikzpicture}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\begin{tikzpicture}[scale=1]
+		\fill[fill=green!20] plot coordinates { (0,0) (3,3) (3,0) } node[xshift=-1cm,yshift=1cm] {$T$};
+		\draw[->] (0,-0.25) -- (0,4);
+		\draw[->] (-0.25,0) -- (4,0);
+		\draw[thick] (3,0) -- (3,3.2);
+		\draw[thick] (0,0) -- (3.2,3.2) node[above,pos=0.5,sloped] {$y=x$};
+		\filldraw[black] (0,3) circle (1pt) node[left] {3};
+		\filldraw[black] (3,0) circle (1pt) node[below] {3};
+		\draw[very thick] (2.5,0) -- (2.5,2.5);
+		\end{tikzpicture}
+	\end{subfigure}
+\end{figure}
+
 Το προς ολοκλήρωση χωρίο είναι το γραμμοσκιασμένο στο σχήμα
 
 \subparagraph{(Γ)}
@@ -1697,8 +1802,24 @@ e^2-1
 σε πολικές συντεταγμένες.
 
 \begin{enumparen}
-\item
-%TODO Atreas Graph 05
+\item 
+\mbox{}
+\\
+\begin{center}
+	\begin{tikzpicture}[scale=1]
+	
+	\path [thick,draw=black,fill=green!20,even odd rule] (0,0) circle (2) (0,0) circle (1) ;
+	
+	\filldraw[black] (1,0) circle (1pt) node[below left] {1};
+	\filldraw[black] (2,0) circle (1pt) node[below right] {2};
+	
+	\draw[very thick,orange] (0,0) -- (50:3);
+	
+	\draw[->] (0,-3) -- (0,3);
+	\draw[->] (-3,0) -- (3,0);
+	
+	\end{tikzpicture}
+\end{center}
 \[
 A' =  \left\lbrace  (\rho,\theta): 1 \leq \rho \leq 2,\ 0 \leq \theta \leq 2\pi\right\rbrace
 \]
@@ -1709,6 +1830,20 @@ x^2+y^2 =1 \qquad & \text{(κύκλος κέντρου $(0,0)$ ακτ. 1} \\
 x^2+y^2 =18x \qquad & \text{(κύκλος κέντρου $(9,0)$ ακτ. 9} 
 \end{cases}
 \]
+
+\begin{center}
+	\begin{tikzpicture}[scale=0.3]
+	
+	\filldraw[thick,fill=green!20] (9,0) circle (9) node[above] {$\rho = 18\cos\theta$};
+	\filldraw[thick,fill=white] (0,0) circle(1) node[above,xshift=-20pt] {$\rho = 1$};;
+	%\fill[white] (0,0) circle(1);
+	
+	\draw[->] (0,-11) -- (0,11);
+	\draw[->] (-3,0) -- (20,0);
+	
+	\end{tikzpicture}
+\end{center}
+
 \[
 x^2-18x+y^2=0 \implies
 x^2-2\cdot 9 x +9^2-9^2+y^2=0
@@ -1718,7 +1853,7 @@ x^2-2\cdot 9 x +9^2-9^2+y^2=0
 Περιγράφω τις συνοριακές καμπύλες
 \(
 \begin{cases}
-x^2+y^2 &=11 \\
+x^2+y^2 &=1 \\
 x^2+y^2 &=18x  
 \end{cases}
 \)
@@ -1858,80 +1993,115 @@ R^2-\rho^2
 
 
 
-\paragraph{Άσκηση}
+
 \begin{attnbox}{SOS!}
+	\paragraph{Άσκηση}
+	Υπολογίστε τον όγκο του φραγμένου στερεού μεταξύ των επιφανειών \(\overbrace{z=3x^2}^{\mathllap{\text{κυλινδρική επιφάνεια γιατί λείπει το $y$}}}\) και \(\underbrace{z=4-x^2-y^2}_{\mathclap{\text{παραβολοειδές}}}\)
+	
+	\tcblower
+	
+	\subparagraph{(Α) Υποτυπώδες σχήμα}
+	\begin{center}
+	\begin{tikzpicture}
+	\begin{axis}[
+	axis lines = middle,
+	%hide axis,
+	colormap/cool,
+	zticklabels={,,},
+	yticklabels={,,},
+	xticklabels={,,},
+	]
+	
+	\addplot3[mesh,samples=20,domain=-7:7] {3*x*x+2};
+	\addplot3[mesh,domain=-7:7] {90-x^2-y^2};
+	
+	
+	\end{axis}
+	\end{tikzpicture}
+	\end{center}
+	\subparagraph{(Β) Χωρίο ολοκλήρωσης}
+	Η \textbf{προβολή} της τομής των δύο επιφανειών είναι:
+	\[
+	\begin{cases}
+	z&=3x^2\\z&=4-x^2-y^2
+	\end{cases}
+	\implies
+	3x^4-x^2-y^2\implies 4x^2+y^2=4 \implies x^2+\frac{y^2}{4}=1 \text{ (έλλειψη)}
+	\]
+	
+	Άρα ολοκληρώνω εντός του χωρίου \(T\).
+	\begin{center}
+		\begin{tikzpicture}[scale=0.5]
+		
+		\filldraw[thick,fill=green!20] (0,0) circle(1 and 2) node[above right] {$T$};
+		
+		\filldraw[black] (1,0) circle (1pt) node[below right] {1};
+		\filldraw[black] (-1,0) circle (1pt) node[below left] {-1};
+		
+		\draw[->] (0,-3) -- (0,3);
+		\draw[->] (-2,0) -- (2,0);
+		
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	\subparagraph{(Γ) Τι ολοκληρώνω?}
+	\begin{align*}
+	V &= \iint_T \big(z_\mathrm{max} - z_\mathrm{min}\big)(x,y)\dif x \dif y\\
+	&= \iint_T (4-x^2-y^2)-3x^2 \dif x \dif y
+	\end{align*}
+	
+	\subparagraph{(Δ) Υπολογισμός}
+	\[
+	V = \iint_T (4-4x^2-y^2)\dif x \dif y
+	\]
+	
+	Θα χρησιμοποιήσω το μετασχηματισμό:
+	\[
+	\begin{cases}
+	x&=\rho\cos\theta\\
+	y&=2\rho\sin\theta
+	\end{cases}
+	\]
+	
+	
+	\begin{align*}
+	\left| \frac{D(x,y)}{D(\rho,\theta)} \right| =
+	\left|
+	\begin{matrix}
+	x_\rho&x_\theta\\
+	y_\rho&y_\theta
+	\end{matrix}
+	\right| = \left|
+	\begin{matrix}
+	\cos\theta&-\rho\sin\theta\\
+	2\cos\theta&2\rho\sin\theta
+	\end{matrix}
+	\right| = 2\rho
+	\end{align*}
+	και
+	\begin{align*}
+	x^2+\frac{y^2}{4}=1 \xRightarrow[y=2\rho\sin\theta]{x=\rho\cos\theta}
+	\rho^2=1 \implies \boxed{\rho=1}
+	\end{align*}
+	άρα το χωρίο \(T\) μετασχηματίζεται στο:
+	\[
+	T' =  \left\lbrace 
+	(\rho,\theta):\ 0\leq\rho\leq1,\ 0\leq\theta\leq2\pi
+	\right\rbrace
+	\]
+	\textbf{άρα:}
+	\begin{align*}
+	V&=\iint_T \left( 4-4x^2-y^2\right)\dif x\dif y\\
+	&= \iint_{T'} \left( 4-4\rho^2\cos^2\theta-4\rho^2\sin^2\theta\right)
+	\mathbf{2\rho}\dif\rho\dif\theta\\
+	&=
+	8\int_0^{2\pi} \int_0^1 \left(1-\rho^2\right)\rho\dif\rho\dif\theta \\
+	&= 8\cdot2\pi\cdot \int_0^1 \left(\rho-\rho^3\right)\dif\rho = 4\pi
+	\end{align*}
 \end{attnbox}
 
-Υπολογίστε τον όγκο του φραγμένου στερεού μεταξύ των επιφανειών \(\overbrace{z=3x^2}^{\mathclap{\text{κυλινδρική επιφάνεια γιατί λείπει το $y$}}}\) και \(\underbrace{z=4-x^2-y^2}_{\mathclap{\text{παραβολοειδές}}}\)
 
-\subparagraph{(Α) Υποτυπώδες σχήμα}
-%TODO Atreas 01
-\subparagraph{(Β) Χωρίο ολοκλήρωσης}
-Η \textbf{προβολή} της τομής των δύο επιφανειών είναι:
-\[
-\begin{cases}
-z&=3x^2\\z&=4-x^2-y^2
-\end{cases}
-\implies
-3x^4-x^2-y^2\implies 4x^2+y^2=4 \implies x^2+\frac{y^2}{4}=1 \text{ (έλλειψη)}
-\]
-
-Άρα ολοκληρώνω εντός του χωρίου \(T\)
-
-\subparagraph{(Γ) Τι ολοκληρώνω?}
-\begin{align*}
-V &= \iint_T \big(z_\mathrm{max} - z_\mathrm{min}\big)(x,y)\dif x \dif y\\
-&= \iint_T (4-x^2-y^2)-3x^2 \dif x \dif y
-\end{align*}
-
-\subparagraph{(Δ) Υπολογισμός}
-\[
-V = \iint_T (4-4x^2-y^2)\dif x \dif y
-\]
-
-Θα χρησιμοποιήσω το μετασχηματισμό:
-\[
-\begin{cases}
-x&=\rho\cos\theta\\
-y&=2\rho\sin\theta
-\end{cases}
-\]
-
-
-\begin{align*}
-\left| \frac{D(x,y)}{D(\rho,\theta)} \right| =
-\left|
-\begin{matrix}
-x_\rho&x_\theta\\
-y_\rho&y_\theta
-\end{matrix}
-\right| = \left|
-\begin{matrix}
-\cos\theta&-\rho\sin\theta\\
-2\cos\theta&2\rho\sin\theta
-\end{matrix}
-\right| = 2\rho
-\end{align*}
-και
-\begin{align*}
-x^2+\frac{y^2}{4}=1 \implies^{x=\rho\cos\theta}_{y=2\rho\sin\theta}
-\rho^2=1 \implies \boxed{\rho=1}
-\end{align*}
-άρα το χωρίο \(T\) μετασχηματίζεται στο:
-\[
-T' =  \left\lbrace 
-(\rho,\theta):\ 0\leq\rho\leq1,\ 0\leq\theta\leq2\pi
- \right\rbrace
-\]
-\textbf{άρα:}
-\begin{align*}
-V&=\iint_T \left( 4-4x^2-y^2\right)\dif x\dif y\\
-&= \iint_{T'} \left( 4-4\rho^2\cos^2\theta-4\rho^2\sin^2\theta\right)
-\mathbf{2\rho}\dif\rho\dif\theta\\
-&=
-8\int_0^{2\pi} \int_0^1 \left(1-\rho^2\right)\rho\dif\rho\dif\theta \\
-&= 8\cdot2\pi\cdot \int_0^1 \left(\rho-\rho^3\right)\dif\rho = 4\pi
-\end{align*}
 
 \paragraph{Άσκηση}
 Υπολογίστε το εμβαδόν μεταξύ των καμπύλων \(\rho=a\sin\theta,\ \rho=a\left(1-\cos\theta\right),\quad a>0\) στο ΑΝΩ ημιεπίπεδο.
@@ -2009,8 +2179,36 @@ e- \frac{1}{e}
 \right)
 \end{align*}
 
-%TODO Atreas 03
-%TODO Atreas 04
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\begin{tikzpicture}[scale=1]
+		
+		\filldraw[thick,fill=green!20] (0,0.8) circle (0.8);
+		
+		%\filldraw[black] (1,0) circle (1pt) node[below right] {1};
+		%\filldraw[black] (-1,0) circle (1pt) node[below left] {-1};
+		
+		\draw[->] (0,-2) -- (0,2);
+		\draw[->] (-2,0) -- (2,0);
+		
+		\end{tikzpicture}
+	\end{subfigure}
+	\quad 
+	\begin{subfigure}[b]{0.4\textwidth}
+		\begin{tikzpicture}[scale=1]
+		
+		\filldraw[thick,fill=green!20] (0,0.8) circle (0.8);
+		
+		%\filldraw[black] (1,0) circle (1pt) node[below right] {1};
+		%\filldraw[black] (-1,0) circle (1pt) node[below left] {-1};
+		
+		\draw[->] (0,-2) -- (0,2);
+		\draw[->] (-2,0) -- (2,0);
+		
+		\end{tikzpicture}
+	\end{subfigure}
+\end{figure}
 
 
 
