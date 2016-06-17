@@ -5275,4 +5275,145 @@ decoration={markings,mark=at position 1 with {\arrow[thick]{>}}},postaction={dec
 \end{tikzpicture}
 \end{figure}
 
+
+
+\begin{exercise*}{}
+\[
+\od{x}{t} = x+y-x \cdot (x^2+y^2)
+\]
+\[
+\od{y}{t} = -x+y-y\cdot(x^2+y^2)
+\]
+\tcblower
+\begin{align*}
+x\od{x}{t} &= x^2+xy - x^2\cdot (x^2+y^2) \\
+y\od{y}{t} &= -xy+y^2-y^2\cdot(x^2+y^2) \\
+\implies x\od{x}{t} + y\od{y}{t} &= x^2+y^2 - (x^2+y^2)\cdot(x^2+y^2) 
+\intertext{Θέτω \( u=x^2+y^2 \)}
+\od{u}{t} &= 2 \cdot \left(u -u^2\right) = 2 \cdot u \cdot (1-u)
+\end{align*}
+
+Για το \( u \) σημεία ισορροπίας
+\[
+\begin{cases}
+u = 0 = x^2+y^2 \qquad & \text{ασταθές} \\
+u = 1 = x^2+y^2 \qquad & \text{ευσταθές}
+\end{cases}
+\]
+
+Άρα \( \forall (x,y) \neq (0,0):
+\left.
+\begin{array}{l}
+x(0) = x_0 \\ y(0) = y_0
+\end{array}
+\right| \implies
+x^2(t)+y^2(t) \rightarrow 1
+ \)
+ 
+ \( 
+\left.
+\begin{array}{l}
+\od{x}{t} = x+y - x \cdot (x^2+y^2) \\
+\od{y}{t} = -x+y-y\cdot (x^2+y^2)
+\end{array}
+ \right| \) όταν το \( t \rightarrow \infty \) γίνεται
+  \( 
+  \left.
+  \begin{array}{l|r}
+  \od{x}{t} \simeq& x+y - x =y \\
+  \od{y}{t} \simeq& -x+y-y=-x
+  \end{array}
+  \right| 
+  \implies \begin{array}{l}
+  x(t) = A(t) \cos(t +\phi_0) \\ y(t) = A(t)\sin (t+\phi_0)
+  \end{array}
+  \)
+  
+  τ.ώ \( A(t) \to 1 \)
+  
+  %TODO phase plot for initial point inside circle & outside circle
+
+\end{exercise*}
+
+\begin{exercise*}{Το μοντέλο μάχης του \textlatin{Lancaster}}
+\begin{align*}
+\od{x}{t} &= -ay\mathrm h(x) \\
+\od{y}{t} &= -bx\mathrm h(x)
+\end{align*}
+%TODO Plot h(x), h(0) = 0
+\( x(0)=x_0 > 0 \)
+
+\( y(0)=y_0 > 0 \)
+\tcblower
+%TODO phase plot
+Σημεία ισορροπίας τα \( (0,A) A \geq 0,\ (B,0) B \geq 0 \)
+
+Επίσης \( x(t) \downarrow,\ y(t) \downarrow \)
+
+Αφού μένω πάντα στο 1ο 4ημόριο, ας εξετάσω την
+\(  \left.
+\begin{array}{l}
+\od{x}{t}=-ay \\ \od{y}{t} = -bx
+\end{array} \right| \implies \od{y}{x}=\frac{bx}{ay} \\ \implies ay\dif y -bx\dif x = 0 \implies
+y^2(t)-x^2(t)=c=ay^2(0)-bx^2(0)
+ \)
+ 
+ Αν \( y(0) > \sqrt{\frac{b}{a}} x(0) \), νικάει ο \( Y \)
+
+
+\end{exercise*}
+
+\begin{exercise*}{Πρόβατα και κουνέλια}
+\begin{align*}
+\od{x}{t} &= (a-by)x \cdot \mathrm h(x) \\
+\od{y}{t} &= (m-nx)y \cdot \mathrm h(x)
+\end{align*}
+
+\( x(0) = x_0, \ y(0) = y_0 >0,\ a,b,m,n>0 \)
+\tcblower
+%TODO 
+%TODO phase plot with grace points
+%TODO and different routes
+%TODO 
+\[
+\left.
+\begin{array}{ll}
+\od{x}{t} &= (a-by)x \\ \od{y}{t} &= (m-nx)y
+\end{array}
+\right| \implies \frac{m-nx}{x} \dif x = \frac{a-by}{y} \dif y
+\]
+
+Έστω \( y < ^a/_b \implies \od{x}{t} > 0 \implies x(t) \uparrow \)
+
+Έστω \( x < ^m/_n \implies \od{y}{t} > 0 \implies y(t) \uparrow \)
+
+
+\end{exercise*}
+
+
+\begin{exercise*}{Κουνέλια και αλεπούδες}
+\begin{align*}
+\od{x}{t} &= (a-by)\cdot x \\
+\od{y}{t} &= (-m+nx)\cdot y
+\end{align*}
+Ίδιες συνθήκες
+\tcblower
+%TODO Phase Plot
+\begin{align*}
+y < \frac{a}{b} \implies x \uparrow \\
+y > \frac{m}{n} \implies y \uparrow
+\end{align*}
+Ποτέ δε θα χτυπήσουμε πάνω στους απορροφητήρες.
+
+\begin{align*}
+& \frac{-m+nx}{x}\dif x = \frac{a-by}{y}\dif y \\
+\implies & \frac{y^a}{e^{by}} = \kappa \cdot \frac{e^{nx}}{x^m}
+\end{align*}
+\end{exercise*}
+
+
+
+
+
+
 \end{document}
