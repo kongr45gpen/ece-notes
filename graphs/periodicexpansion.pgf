@@ -1,0 +1,23 @@
+\begin{tikzpicture}[scale=1]
+  \begin{axis}[ 
+%    xlabel=$t$,
+    axis lines=middle
+   ,ytick={-1,0,1}
+   ,ytick={0}
+   ,xtick={0,3.14159,-3.14159}
+   ,xticklabels={$0$,$\pi$,$-\pi$}
+   ,yticklabels={$-\pi$,$0$,$\pi$},
+	xmin=-4*pi,
+	xmax=4*pi,
+	ymin=-1.4,
+	ymax=1.4,
+  ] 
+  
+\addplot[blue,domain=-4*pi:4*pi,samples=200] {1/8*sin(deg(7.6*x))+1/5*sin(deg(3*x))+1/2*sin(deg(1.2*(x+1.5)))};
+\addplot[orange,very thick,opacity=0.5,domain=-pi:pi,samples=200] {1/8*sin(deg(7.6*x))+1/5*sin(deg(3*x))+1/2*sin(deg(1.2*(x+1.5)))};
+\addplot[orange,very thick,opacity=0.7,domain=-3*pi:-pi,samples=200] {1/8*sin(deg(7.6*(x+2*pi)))+1/5*sin(deg(3*(x+2*pi)))+1/2*sin(deg(1.2*(x+2*pi+1.5)))};
+\addplot[orange,very thick,opacity=0.7,domain=-4*pi:-3*pi,samples=200] {1/8*sin(deg(7.6*(x+4*pi)))+1/5*sin(deg(3*(x+4*pi)))+1/2*sin(deg(1.2*(x+4*pi+1.5)))};
+\addplot[orange,very thick,opacity=0.7,domain=pi:3*pi,samples=200] {1/8*sin(deg(7.6*(x-2*pi)))+1/5*sin(deg(3*(x-2*pi)))+1/2*sin(deg(1.2*(x-2*pi+1.5)))};
+
+  \end{axis}
+\end{tikzpicture}

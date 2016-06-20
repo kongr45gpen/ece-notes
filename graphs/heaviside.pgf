@@ -1,0 +1,18 @@
+\begin{tikzpicture}
+\begin{axis}[%
+    gray
+    ,xlabel=$t$
+    ,ylabel=$u(t)$
+    ,axis lines = center
+    ,ymax=1.5
+%    ,axis x line = bottom,axis y line = left
+    ,ytick={0,1}
+    ,xtick={0,1}
+    ,xticklabels={$0$,$c$}
+%    ,ymax=1.2 % or enlarge y limits=upper
+%    ,xmin=-1.2
+    ]
+\addplot+[const plot, no marks,very thick] coordinates {(-4,0) (1,1) (4,1)} node[below,pos=.57,black] {$u_c$};
+%\addplot+[const plot, no marks, thick] coordinates {(0,0) (1,0.25) (2,0.4) (3,0.5) (4,1) (4.49,1)} node[below=1.15cm,pos=.76,black] {$F_y$};
+\end{axis}
+\end{tikzpicture}

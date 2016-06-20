@@ -64,7 +64,6 @@
 \part{Σεβαστιάδης}
 Χρήστος Σεβαστιάδης
 
-\section{}
 
 \begin{defn*}{Διαφορική εξίσωση}
 Μια εξίσωση που αποτελείται από μια συνάρτηση και τις παραγώγους της
@@ -559,9 +558,9 @@ x = \frac{c_2}{t^2+1}
 
 
 
-\section{\textlatin{Overview}}
+\subsection{\textlatin{Overview}}
 
-\subsection{Συνήθεις Διαφορικές Εξισώσεις (ΣΔΕ - \textlatin{Ordinary Differential Equations})}
+\subsubsection{Συνήθεις Διαφορικές Εξισώσεις (ΣΔΕ - \textlatin{Ordinary Differential Equations})}
 
 \begin{defn}{}{}
 Εμπλέκουν:
@@ -583,7 +582,7 @@ F(t,x,x',\dots,x^{(n)}) = 0
 
 
 
-\subsection{1\textsuperscript{ης} τάξης ΔΕ}
+\subsubsection{1\textsuperscript{ης} τάξης ΔΕ}
 \begin{defn}{}{}
 όταν
 \[
@@ -1375,7 +1374,9 @@ e^{-10t}\left(
 -10e^{-10(0)}\left(
 (0)\cos10(0)+\kappa_2\sin10(0)
 \right)+e^{-10(0)}\left(-10(0)\cos10(0)+10\kappa_2\cos10(0)\right)
-\implies \boxed{\kappa_2=\frac{12}{5}}
+\implies
+\\  &\implies
+ \boxed{\kappa_2=\frac{12}{5}}
 \end{align*}
 
 Άρα:
@@ -1854,16 +1855,19 @@ x_p(t) = \underbrace{A_1x_1(t)+A_2x_2(t) + \dots + A_nx_n(t)}_{\text{αυθαί�
 	
 	Να βρεθεί το φορτίο στον πυκνωτή.
 	\tcblower
-	\begin{circuitikz} \draw
-		(0,0) to[vsourcesin=$v(t)$] (0,2)
-		to[R=$R$] (2,2) 
-		to[L=$L$] (4,2)
-		to[C=$C$] (6,2) -- (6,0) -- (0,0);
-	\end{circuitikz}
+	
+	\begin{center}
+		\begin{circuitikz} \draw
+			(0,0) to[vsourcesin=$v(t)$] (0,2)
+			to[R=$R$] (2,2) 
+			to[L=$L$] (4,2)
+			to[C=$C$] (6,2) -- (6,0) -- (0,0);
+		\end{circuitikz}
+	\end{center}
 	
 	\begin{gather*}
 	Ri + \frac{1}{C}q + L\od{i}{t} -v = 0\\
-	i = \od{q}{t} = q \implies \od{i}{t} = \od[2]{q}{t} = \ddot{q} \\
+	i = \od{q}{t} = q \implies \od{i}{t} = \od[2]{q}{t} = \ddot{q}
 	\implies R \dot q + \frac{1}{C}q + L \ddot q = v \\
 	\implies \boxed{\ddot q + \frac{R}{L} \dot q + \frac{1}{LC} q = \frac{1}{L}v} \quad \text{ΜΟ/ΓΡ/ΔΕ/2-τ/ΣΣ} \\
 	q(0)=0,\ i(0)=1\implies \dot q (0) = 1\\
@@ -2043,11 +2047,11 @@ u'_1,u'_2
 	
 	\begin{attnbox}{}
 		\[
-		(s-a)^m \rightarrow \frac{A_1}{(s-a)}+\frac{A_2}{(s-a)^2}+\dots + \frac{A_m}{(s-a)^m}
+		\frac{1}{(s-a)^m} \rightarrow \frac{A_1}{(s-a)}+\frac{A_2}{(s-a)^2}+\dots + \frac{A_m}{(s-a)^m}
 		\]
 		
 		\[
-		(s^2+bs+c)^p \rightarrow 
+		\frac{1}{(s^2+bs+c)^p} \rightarrow 
 		\frac{B_1s+C_1}{s^2+bs+c} + \frac{B_2s+C_2}{(s^2+bs+c)^2} + \dots + \frac{B_ps+C_p}{(s^2+bs+c)^p}
 		\]
 	\end{attnbox}
@@ -2528,8 +2532,6 @@ u(t)= \begin{cases}
 1 \quad t \geq0
 \end{cases}
 \]
-%TODO plot
-
 
 \paragraph{Μετατοπισμένη βηματική συνάρτηση}
 \[
@@ -2541,7 +2543,6 @@ u_c(t) = \begin{cases}
 1 \quad t \geq c
 \end{cases}
 \]
-%TODO plot
 
 \paragraph{Συνάρτηση τινάγματος ή πάγκου \textlatin{(bench)}}
 \begin{align*}
@@ -2552,7 +2553,66 @@ b(t) &= \begin{cases}
 0 \quad b \leq t
 \end{cases}
 \end{align*}
-%TODO Plot
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.31\textwidth}
+		\begin{tikzpicture}[scale=0.8]
+		\begin{axis}[%
+		gray
+		,xlabel=$t$
+		,ylabel=$u(t)$
+		,axis lines = center
+		,ymax=1.5
+		,ytick={0,1}
+		,xtick={0}
+		]
+		\addplot+[const plot, no marks,very thick] coordinates {(-4,0) (0,1) (4,1)} node[above,pos=.57,black] {$u$};
+		
+		\end{axis}
+		\end{tikzpicture}
+		\caption{Βηματική συνάρτηση \(u\)}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.31\textwidth}
+		\begin{tikzpicture}[scale=0.8]
+		\begin{axis}[%
+		gray
+		,xlabel=$t$
+		,ylabel=$u(t)$
+		,axis lines = center
+		,ymax=1.5
+		,ytick={0,1}
+		,xtick={0,1}
+		,xticklabels={$0$,$c$}
+		]
+		\addplot+[const plot, no marks,very thick] coordinates {(-4,0) (1,1) (4,1)} node[below,pos=.57,black] {$u_c$};
+		
+		\end{axis}
+		\end{tikzpicture}
+		\caption{Μετατοπισμένη βηματική \(u_c\)}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.31\textwidth}
+		\begin{tikzpicture}[scale=0.8]
+		\begin{axis}[%
+		gray
+		,xlabel=$t$
+		,ylabel=$u(t)$
+		,axis lines = center
+		,ymax=1.5
+		,ytick={0,1}
+		,xtick={0,-1,1.5}
+		,xticklabels={$0$,$a$,$b$}
+		,xmin=-2.5
+		,xmax=2.5
+		]
+		\addplot+[const plot, no marks,very thick] coordinates {(-4,0) (-1,1) (1.5,0) (4,0)} node[above,pos=.35,black] {$b$};
+		\end{axis}
+		\end{tikzpicture}
+		\caption{Συνάρτηση πάγκου \(b\)}
+	\end{subfigure}
+\end{figure}
 
 \begin{align*}
 u(t-c) & \leftrightarrow e^{-cs}\frac{1}{s}\\
@@ -2595,7 +2655,51 @@ A &= ^1/_2 \\ B&= - ^1/_2
 	1 \quad	 0 \leq t \leq \pi \\ 0 \quad t \geq \pi
 	\end{cases} \)
 	\tcblower
-	%TODO graph b, heaviside, (heaviside_\pi), αφαίρεση της heaviside-(heaviside_\pi)
+	\begin{centering}
+		\begin{tikzpicture}
+		\begin{axis}[%
+		%    gray
+		,xlabel=$t$
+		%    ,ylabel=$u(t)$
+		,axis lines = center
+		,ymax=1.5
+		%    ,axis x line = bottom,axis y line = left
+		,ytick={0,1}
+		,xtick={0,3.14}
+		,xticklabels={$0$,$\pi$}
+		,xmin=-1
+		,xmax=7
+		]
+		\addplot+[const plot, no marks,very thick,color=magenta] coordinates {(-1,1) (3.14,0) (7,0)} node[midway,anchor=east,black] {$b(t)$};
+		\end{axis}
+		\end{tikzpicture}
+		~
+		\begin{tikzpicture}
+		\begin{axis}[%
+		%    gray
+		,xlabel=$t$
+		%    ,ylabel=$u(t)$
+		,axis lines = center
+		,ymax=1.5
+		%    ,axis x line = bottom,axis y line = left
+		,ytick={0,1}
+		,xtick={0,3.14}
+		,xticklabels={$0$,$\pi$}
+		,xmin=-1
+		,xmax=7
+		%    ,ymax=1.2 % or enlarge y limits=upper
+		%    ,xmin=-1.2
+		]
+		%\addplot+[const plot, no marks,thick,opacity=1] coordinates {(-1,0) (3.14,1) (7,1)} node[midway,anchor=east,black] {$b(t)$};
+		\addplot+[const plot, no marks,very thick,opacity=0.75] coordinates {(-1,0) (0,1) (7,1)} node[pos=0.3,anchor=south,black] {$\mathrm u(t)$};
+		\addplot+[const plot, no marks,very thick,color=red,opacity=0.75] coordinates {(-1,0) (3.14,1) (7,1)} node[right,pos=0.3,black] {$\mathrm u(t-\pi)$};
+		\addplot+[const plot, no marks,very thick,color=orange,opacity=0] coordinates {(-1,1) (3.14,0) (7,0)} node[midway,anchor=east,black] {$b(t)$};
+		%\addplot+[const plot, blue, no marks,very thick] coordinates {(-4,0) (1,1) (4,1)} node[below,pos=.57,black] {$u_c$};
+		%\addplot+[const plot, no marks, thick] coordinates {(0,0) (1,0.25) (2,0.4) (3,0.5) (4,1) (4.49,1)} node[below=1.15cm,pos=.76,black] {$F_y$};
+		\end{axis}
+		\end{tikzpicture}
+	\end{centering}
+
 	\begin{gather*}
 	b(t) = u(t) - u(t-\pi) \implies \mathscr L \left\lbrace b(t) \right\rbrace = \mathscr L \left\lbrace u(t) \right\rbrace - \mathscr L \left\lbrace u(t-\pi) \right\rbrace \\
 	\implies B(s) = \frac{1}{s} - e^{-\pi s}\frac{1}{s}\\
@@ -2630,8 +2734,57 @@ s+1 = s +\frac{1}{2}+\frac{1}{2} = \left(s+\frac{1}{2}\right) + \frac{1}{2}\\
 	\end{cases} \)
 	
 	\tcblower
-	
-	%TODO Plot sin, u(t)-u(t-3), and their multiplication
+	\begin{centering}
+		
+		\begin{tikzpicture}
+		\begin{axis}[%
+		%    gray
+		,xlabel=$t$
+		%    ,ylabel=$u(t)$
+		,axis lines = center
+		,ymax=1.5
+		,ymin=-1.5
+		%    ,axis x line = bottom,axis y line = left
+		,ytick={0,1}
+		,xtick={0,3}
+		% ,xticklabels={$0$,$\pi$}
+		,xmin=-1
+		,xmax=7
+		%    ,ymax=1.2 % or enlarge y limits=upper
+		%    ,xmin=-1.2
+		]
+		%\addplot+[const plot, no marks,thick,opacity=1] coordinates {(-1,0) (3.14,1) (7,1)} node[midway,anchor=east,black] {$b(t)$};
+		\addplot[samples=200,very thick,color=orange,opacity=1,domain=0:3*pi] {cos(deg(x))};
+		\addplot+[const plot, no marks,very thick,opacity=0.75,color=blue] coordinates {(-1,0) (0,1) (7,1)} node[pos=0.3,anchor=south,black] {$\mathrm u(t)$};
+		\addplot+[const plot, no marks,very thick,color=red,opacity=0.75] coordinates {(-1,0) (3,1) (7,1)} node[right,pos=0.3,black] {$\mathrm u(t-3)$};
+		%\addplot+[const plot, blue, no marks,very thick] coordinates {(-4,0) (1,1) (4,1)} node[below,pos=.57,black] {$u_c$};
+		%\addplot+[const plot, no marks, thick] coordinates {(0,0) (1,0.25) (2,0.4) (3,0.5) (4,1) (4.49,1)} node[below=1.15cm,pos=.76,black] {$F_y$};
+		\end{axis}
+		\end{tikzpicture}
+		~
+		\begin{tikzpicture}
+		\begin{axis}[%
+		%    gray
+		,xlabel=$t$
+		%    ,ylabel=$u(t)$
+		,axis lines = center
+		,ymax=1.5
+		,ymin=-1.5
+		%    ,axis x line = bottom,axis y line = left
+		,ytick={0,1}
+		,xtick={0,3}
+		% ,xticklabels={$0$,$\pi$}
+		,xmin=-1
+		,xmax=7
+		%    ,ymax=1.2 % or enlarge y limits=upper
+		%    ,xmin=-1.2
+		]
+		\addplot[samples=200,very thick,color=orange,opacity=1,domain=0:3] {cos(deg(x))};
+		\addplot+[const plot, no marks,very thick,opacity=1,color=orange] coordinates {(3,-1) (3,0) (6.8,0)} node[midway,above,black] {$g(t)$};
+		\end{axis}
+		\end{tikzpicture}
+		
+	\end{centering}
 	\begin{gather*}
 	g(t) = \left[u(t)-u(t-\pi)\right]\sin t \\
 	\implies g(t) = u(t)\sin t +u(t-\pi)\sin(t-\pi)\\
@@ -3058,7 +3211,7 @@ Q(t) = \sum_{n \in \lbrace1,3,5,\dots\rbrace}Q_n(t)
 Γιατί όμως, αν \(V_1(t) \rightarrow Q_1(t), \ V_2(t) \rightarrow Q_2(t)\), τότε \(k_1V_1+k_2V_2 = k_1Q_1 +k_2Q_2\) σε αυτό το κύκλωμα (αρχή επαλληλίας/γραμμικότητα)?
 
 
-\section{Κεφάλαιο 8: Σειρές Fourier}
+\section{Σειρές \textlatin{Fourier}}
 
 \begin{defn*}{}
 Μία συνάρτηση \(f(t)\) λέγεται \textbf{τμηματικά συνεχής} στο \([t_1,t_2]\) ανν μπορώ να διαμερίσω:
@@ -3068,12 +3221,40 @@ Q(t) = \sum_{n \in \lbrace1,3,5,\dots\rbrace}Q_n(t)
 
 \textit{π.χ}
 
-%TODO Graph1
+\begin{center}
+	\begin{tikzpicture}[scale=0.5]
+	\draw[->] (-5,0) -- (11,0);
+	\draw[->] (0,-5) -- (0,5);
+	
+	\draw[dashed] (-pi,0) -- (-pi,-1);
+	\draw[dashed] (1*pi,-1) -- (1*pi,1);
+	\draw[dashed] (2*pi,-1) -- (2*pi,1);
+	\draw[dashed] (3*pi,0) -- (3*pi,1);
+	
+	\draw[thick,blue] (-pi, -1) -- (0,-1);
+	\draw[thick,blue] (0,1) -- (pi,1);
+	\draw[thick,blue] (pi,-1) -- (2*pi,-1);
+	\draw[thick,blue] (2*pi,1) -- (3*pi,1);
+	
+	\filldraw[blue] (-pi,-1) circle (2.5pt);
+	\filldraw[blue,fill=white] (0,-1) circle (2.5pt);
+	\filldraw[blue] (0,1) circle (2.5pt);
+	\filldraw[blue,fill=white] (pi,1) circle (2.5pt);
+	\filldraw[blue] (pi,-1) circle (2.5pt);
+	\filldraw[blue,fill=white] (2*pi,-1) circle (2.5pt);
+	\filldraw[blue] (2*pi,1) circle (2.5pt);
+	\filldraw[blue,fill=white] (3*pi,1) circle (2.5pt);
+	\filldraw[blue] (3*pi,0) circle (2.5pt);
+	
+	\end{tikzpicture}
+\end{center}
+
+
 Η \(f(t)\) είναι τμηματικά συνεχής στο \([-\pi,3\pi]\), επειδή, για \(t_1=-\pi,t_2=3\pi\):
 \[
 [-\pi,3\pi] = [-\pi,0] \cup [0,\pi] \cup [\pi,2\pi] \cup [2\pi,3\pi]
 \]
-Στα \( (-\pi,0),\ (0,\pi) ,\   (\pi,2\pi) ,\   (2\pi,3\pi)\) η \(f\) είναι συνεχής, και υπάρχουν τα αντίστοιχα πλευρικά όρια, %TODO
+Στα \( (-\pi,0),\ (0,\pi) ,\   (\pi,2\pi) ,\   (2\pi,3\pi)\) η \(f\) είναι συνεχής, και υπάρχουν τα αντίστοιχα πλευρικά όρια
 άρα η \(f\) είναι τμηματικά συνεχής.
 
 \subsubsection{Συνθήκες του \textlatin{Dirichlet}}
@@ -3176,7 +3357,7 @@ a_0 = \frac{1}{L} \int_{-L}^L f(t) \dif t
 }
 \\ &=
  \sum_{n=1}^\infty a_n \int_{-L}^L \cos\frac{n\pi t}{L} \cos\frac{m\pi t}{L } \dif t
-\\ & \overset{\cos a \cdot \cos \beta= \frac{cos(a+\beta)+cos(a-\beta}{2}}{=} 
+\\ & \overset{\cos a \cdot \cos \beta= \frac{\cos(a+\beta)+\cos(a-\beta)}{2}}{=} 
  \sum_{n=1}^\infty \frac{a_n}{2} \int_{-L}^L \left( \cos \frac{(n+m)\pi t}{L}
 + \cos \frac{(n-m)\pi t}{L}
 \right) \dif t
@@ -3242,14 +3423,15 @@ c_n =
 
 \subsection{Παράδειγμα}
 \begin{center}
-\begin{tikzpicture}
-%TODO L = \pi, A = 1
+\begin{tikzpicture}[scale=0.8]
   \begin{axis}[ 
     xlabel=$t$,
     ylabel={$V(t)$},
-    axis lines=middle,
-    xtick=\empty,
-	ytick=\empty,
+    axis lines=middle
+   ,ytick={-1,0,1}
+   ,xtick={0,1,2}
+   ,xticklabels={$0$,$\pi$,$2\pi$}
+   ,yticklabels={$-1$,$0$,$1$},
 	xmin=0,
 	xmax=8,
 	ymin=-1.4,
@@ -3272,7 +3454,7 @@ c_n &= \frac{1}{2\pi}
 \frac{1}{2\pi}
 \int_{-\pi}^0(-1)\cdot e^{-int} \dif t
 +
-\int_{0}^0(\pi)1\cdot e^{-int} \dif t
+\int_{0}^{\pi}1\cdot e^{-int} \dif t
 \\ &=
 \frac{1}{2\pi}
 \left(
@@ -3417,7 +3599,21 @@ c_n = \frac{1}{2L} \int_{-L}^L f(t)e^\frac{in\pi t}{L} \dif t
 \]
 \end{itemize}
 
-%TODO Kehagias 01 Graph
+\begin{center}
+	\begin{tikzpicture}[scale=2]
+	\draw[->] (0,0) -- (0,1);
+	\draw[->] (0,0) -- (1,0);
+	\draw[->] (0,0) -- (-0.7,-0.7);
+	
+	\draw[blue,thick,->] (0,0) -- (0,0.7) node[left] {$x_3 \vec e_3$};
+	\draw[blue,thick,->] (0,0) -- (0.7,0) node[below] {$x_2 \vec e_2$};
+	\draw[blue,thick,->] (0,0) -- (-0.5,-0.5) node[right] {$x_1 \vec e_1$};
+	\draw[dashed] (0.7,0) -- (0.7,0.7);
+	\draw[dashed] (0,0.7) -- (0.7,0.7);
+	\draw[thick,->] (0,0) -- (0.7,0.7) node[above right,sloped] {$\vec x$};
+	
+	\end{tikzpicture}
+\end{center}
 \begin{align*}
 \vec{x} = [x_1 x_2 x_3] &= x_1 \vec{e_1} +x_2 \vec{e_2}+x_3 \vec{e_3}
 \\ &=
@@ -3508,7 +3704,33 @@ f(t)
 = \sum_n
 |c_n|^2
 \]
-%TODO Graph 02 Kehagias
+\begin{center}
+	\begin{tikzpicture}[scale=5]
+	\filldraw[fill=green!15] plot [smooth cycle,tension=1] coordinates {
+		(0,0) (0,0.5) (0.4,0.7) (0.7,0.4)
+	};		
+	\draw (0.2,0.2) node {$f(t)$};
+	\draw (0.3,0.35) node {$g(t)$};
+	\draw (0.25,0.5) node {$h(t)$};
+	\draw (0.3,0.8) node {ΠΕΔΙΟ ΤΟΥ ΧΡΟΝΟΥ};
+	
+	\begin{scope}[shift={(1.5,0)}]
+	\filldraw[fill=blue!15] plot [smooth cycle,tension=1] coordinates {
+		(0,0) (0.2,0.4) (0.1,0.7) (0.7,0.5)
+	};
+	\draw (0.2,0.2) node {$\vec p$};
+	\draw (0.3,0.35) node {$\vec r$};
+	\draw (0.3,0.5) node {$\vec c$};
+	\draw (0,0.8) node {ΠΕΔΙΟ ΤΗΣ ΣΥΧΝΟΤΗΤΑΣ};
+	
+	\end{scope}
+	
+	\draw[<->] (0.8,0.35) -- (1.5,0.35) node[midway,below] {ΣΕΙΡΑ \textlatin{FOURIER}};
+	
+	\draw[->] (1.2,0.2) to [bend left=25] (1,0) node[below] {είναι μία ισομετρία};
+	
+	\end{tikzpicture}
+\end{center}
 \end{theorem}
 
 \begin{theorem}{}{}
@@ -3528,9 +3750,40 @@ f(t)
 \text{περιοδική επέκταση} &\qquad t \notin [-\pi,\pi]
 \end{cases}
 \)
+
 Να βρεθεί η Σειρά (\textlatin{Fourier}) της \(f(t)\).
 \subparagraph{Λύση}
-%TODO Kehagias Graph 03
+
+\begin{center}
+	\begin{tikzpicture}[scale=0.7]
+	\begin{axis}[ 
+	%    xlabel=$t$,
+	axis lines=middle
+	,ytick={-1,0,1}
+	,ytick={0}
+	,xtick={0,3.14159,-3.14159}
+	,xticklabels={$0$,$\pi$,$-\pi$}
+	,yticklabels={$-\pi$,$0$,$\pi$},
+	xmin=-4*pi,
+	xmax=4*pi,
+	ymin=-1.4,
+	ymax=1.4,
+	] 
+	\addplot+[blue,thick,mark=none]coordinates{
+		(-4*pi,0) (-3*pi,1) (-2*pi,0) (-1*pi,1) (0*pi,0) (1*pi,1) (2*pi,0) (3*pi,1) (4*pi,0)
+	};
+	\addplot+[blue,thick,mark=none,const plot,opacity=0.2]coordinates{
+		(-4*pi,1) (-3*pi,-1) (-2*pi,1) (-1*pi,-1) (0*pi,1) (1*pi,-1) (2*pi,1) (3*pi,-1) (4*pi,1)
+	};
+	\end{axis}
+	\end{tikzpicture}
+\end{center}
+
+Παρατηρώ ότι \( f(t) = \int g(t)\dif t \), όπου \( g(t) = \begin{cases}
+1 \quad& t \in (0,\pi) \\
+-1 \quad & t \in (-\pi,0]
+\end{cases} \)
+
 Αφού λοιπόν \(g(t)=
 \frac{4}{\pi} \cdot
 \left(
@@ -3593,7 +3846,7 @@ S_1 = 1 + \frac{1}{3^2} + \frac{1}{5^2} + \frac{1}{7^2} + \cdots
 
 
 
-\section{Κεφάλαιο 9: Μετασχηματισμός Fourier}
+\section{Κεφάλαιο 9: Μετασχηματισμός \textlatin{Fourier}}
 %TODO Kehagias Graph 04
 \begin{theorem*}{}
 Έστω ότι η \(f(t)\) ικανοποιεί τα εξής:
@@ -4042,7 +4295,7 @@ g(t) &= \begin{cases}
 \[
 \mathscr{F}(f*g)=
 \mathscr{F}(f)
-*
+\cdot
 \mathscr{F}(g)
 \]
 \end{theorem*}
@@ -4103,11 +4356,11 @@ f*(g+h)=f*g+f*h\\
 Τότε η \(g(t)\) θα είναι (για αρκετά μεγάλο \(\sigma\)) απολύτως ολοκληρώσιμη, και μπορώ να πάρω \(\mathscr{F}\left(g(t)\right) = \int_0^\infty e^{-\sigma t}f(t)e^{-i\omega t} \dif t = \int_0^\infty e^{-i(\sigma+i\omega)} =^{\text{Θέτοντας } s=\sigma+i\omega} \int_0^\infty f(t)e^{-st}\dif t = \mathscr{L}\left(f(t)\right)\).
 
 
-\section{Κεφαλαιο 10: Μετασχηματισμος Laplace}
+\section{Κεφαλαιο 10: Μετασχηματισμος \textlatin{Laplace}}
 \begin{itemize}
-\item Για να υπαρχει \(\mathscr{F}\left(x(t)\right)\) πρεπει η \(x(t)\) να ειναι απολυτως ολοκληρωσιμη. 
-\item Αν η $x(t)$ δεν ειναι απολυτως ολοκληρωσιμη, ισως ειναι η $y(t)=x(t)h(t)e^{-\sigma t}\).
-\item Οποτε δουλευω με την \(\mathscr{F}\left(y(t)\right)=\mathscr{F}\left(
+\item Για να υπάρχει \(\mathscr{F}\left(x(t)\right)\) πρέπει η \(x(t)\) να είναι απολύτως ολοκληρώσιμη. 
+\item Αν η $x(t)$ δεν είναι απολύτως ολοκληρώσιμη, ίσως είναι η $y(t)=x(t)h(t)e^{-\sigma t}\).
+\item Οπότε δουλεύω με την \(\mathscr{F}\left(y(t)\right)=\mathscr{F}\left(
 x(t)h(t)e^{-\sigma t}
 \right) 
 = \int_0^\infty x(t) e^{-\sigma t} e^{i\omega t} \dif t
@@ -4507,7 +4760,8 @@ a_0b_0 x^0 + (a_0b_1+a_1b_0)x^1 + (a_0b_2+a_1b_1+a_2b_0)x^2
 Γραμμικά, Χρονικά αμετάβλητα συστήματα\\
 ΓΧΑ συστήματα (\textlatin{LTI system})
 
-Περιγράφονται από \underline{\ \ \ \ \ \ \ \ \ \ } ΔΕ \underline{\ \ \ \ \ \ \ \ \ \ } \underline{\ \ \ \ \ \ \ \ \ \ \ }\\
+Περιγράφονται από \underline{\ \ \ \ \ \ \ \ \ \ } ΔΕ \underline{\ \ \ \ \ \ \ \ \ \ } \underline{\ \ \ \ \ \ \ \ \ \ \ }
+
 Περιγράφονται από \underline{γραμμικές} ΔΕ \underline{σταθερών} \underline{συντελεστών}
 
 \[
@@ -4584,6 +4838,10 @@ F(x) &= \int_0^\infty f(t)x^t\dif t
 \od[ ^1/_2]{x}{t} \left(
 t
 \right).
+\)
+\subparagraph{Απάντηση}
+\(
+\frac{2\sqrt{\pi}}{\pi} \sqrt{x}
 \)
 
 \section{Κεφάλαιο 11: Γενικευμένες Συναρτήσεις}
