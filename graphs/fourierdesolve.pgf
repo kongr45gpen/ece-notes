@@ -1,0 +1,16 @@
+\begin{tikzpicture}
+\begin{axis}[%
+    gray
+    ,xlabel=$t$
+    ,axis lines = center
+    ,ymax=1.5
+    ,ytick={0}
+    ,xtick={0}
+    ]
+\addplot+[brown,const plot, no marks,very thick] coordinates {(-4,0) (0,1) (4,1)} node[above,pos=.67,black] {$\mathrm h(t)$};
+\addplot[magenta,very thick,const plot, opacity=0.8] coordinates {(-4,0) (0,1)};
+\addplot[red,samples=200,very thick,domain=0:4] {exp(-x)} node[pos=.5,above right,black] {$e^{-t} \mathrm h(t)$};
+\addplot[blue,samples=200,very thick,domain=0:4,opacity=0.9] {exp(-x)-exp(-2*x)} node[pos=.12,below right,black] {$y(t)$};
+%\addplot+[const plot, no marks, thick] coordinates {(0,0) (1,0.25) (2,0.4) (3,0.5) (4,1) (4.49,1)} node[below=1.15cm,pos=.76,black] {$F_y$};
+\end{axis}
+\end{tikzpicture}

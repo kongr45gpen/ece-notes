@@ -1,0 +1,19 @@
+\begin{tikzpicture}
+\draw[->] (0,-1) -- (0,2);
+\draw[->] (-2,0) -- (2,0);
+
+\draw[thick,blue] (-1.8,0) -- (-0.8,0);
+\draw[thick,blue] (-0.8,1) -- (0.8,1);
+\draw[thick,blue] (0.8,0) -- (1.8,0);
+\draw[dashed] (-0.8,0) -- (-0.8,1);
+\draw[dashed] (0.8,0) -- (0.8,1);
+
+\begin{scope}[shift={(0,0.03)}]
+\draw[black!15!green,thick] (-1.8,0) -- (0.2,0) -- (0.2,1) -- (1.6,1)  node[midway,above] {$g(t-\tau)$} -- (1.6,0) -- (1.9,0);
+\end{scope}
+
+\filldraw[fill=white] (-0.8,1) circle (1.5pt);
+\filldraw[fill=white] (0.8,1) circle (1.5pt);
+\filldraw[fill=blue] (-0.8,0) circle (1.5pt);
+\filldraw[fill=blue] (0.8,0) circle (1.5pt);
+\end{tikzpicture}
