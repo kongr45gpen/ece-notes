@@ -37,7 +37,7 @@
 \newenvironment{dedication}
 {\clearpage           % we want a new page
 	\thispagestyle{empty}% no header and footer
-	\vspace*{\stretch{1}}% some space at the top 
+	\vspace*{\stretch{1}}% some space at the top
 	\itshape             % the text is in italics
 	\raggedleft          % flush to the right margin
 }
@@ -272,10 +272,10 @@ WA = A_1 \cup \left( \overline{A_1} \cap \overline{B_2} \cap \overline{\Gamma_3}
 
 \textit{\textlatin{H/W:}} Να βρεθούν τα \(WB, W \Gamma \).
 \begin{align*}
-WB &= \bar{A_1} \cap B_2 \cup 
+WB &= \bar{A_1} \cap B_2 \cup
 \left( \overline{B_2} \cap \overline{C_3} \cap \overline{A_4} \cap B_5 \right) \cup
 \left( \overline{B_5} \cap \overline{C_6} \cap \overline{A_7} \cap B_8 \right) \cup \cdots \\
-WC &= \bar{A_1} \cap \overline{B_2} \cap C_3 \cup 
+WC &= \bar{A_1} \cap \overline{B_2} \cap C_3 \cup
 \left( \overline{C_3} \cap \overline{A_4} \cap \overline{B_5} \cap C_6 \right) \cup
 \left( \overline{C_6} \cap \overline{A_7} \cap \overline{B_8} \cap C_9 \right) \cup \cdots \\
 \end{align*}
@@ -433,17 +433,17 @@ P(A \cap B \cap \Gamma ) = P(A)+P(B)+P( \Gamma )-P(A\cap B) - P(A \cap \Gamma ) 
 \(S =  \left\lbrace \Delta_1\cap\Delta_2,\overline{\Delta_1}\cap\Delta_2,\Delta_1\cap\overline{\Delta_2},\overline{\Delta_1}\cap\overline{\Delta_2} \right\rbrace\)
 
 \subsubsection{}
-Για τρία σύνολα \(A,B, \Gamma \): Η πιθανότητα να συμβεί μόνο ένα από αυτά είναι: 
+Για τρία σύνολα \(A,B, \Gamma \): Η πιθανότητα να συμβεί μόνο ένα από αυτά είναι:
 \begin{align*}
 & P\left[
 \left( A \cap \overline{B} \cap \overline{C} \right) \cap
 \left( \overline{A} \cap B \cap \overline{C} \right) \cap
-\left( \overline{A} \cap \overline{B} \cap C \right) \right] \\ &= 
-P(A \cap \overline{B} \cap \overline{C}) + \dots \\ &= 
+\left( \overline{A} \cap \overline{B} \cap C \right) \right] \\ &=
+P(A \cap \overline{B} \cap \overline{C}) + \dots \\ &=
 P\left[ A - (B \cap \Gamma )\right]
 -P(A)-P \left[ A \cap (B \cap \Gamma ) \right] + \dots
-\\ &= 
-P(A) - P \left[ (A \cap B) \cup (A \cup \Gamma \right]+ \dots  \\ &= 
+\\ &=
+P(A) - P \left[ (A \cap B) \cup (A \cup \Gamma \right]+ \dots  \\ &=
 P(A) - \left( P(A \cap B) + P(A \cap \Gamma) - P(A\cap B\cap \Gamma ) \right)+ \dots  \\\ &=
 P(A) - P(A \cap B) - P(A \cap \Gamma) + P(A \cap B \cap \Gamma)+ \dots
 \end{align*}
@@ -563,7 +563,7 @@ P(A_i|B)&=\frac{P(A_i \cap B)}{P(B)} \\
 Από την προηγούμενη άσκηση, ποια είναι η πιθανότητα το αποτέλεσμα να είναι \(1\) αν και η είσοδος είναι \(1\)?
 \begin{align*}
 P(X1|Y1)=
-\frac{P(X1)P(Y1|X1)}{P(Y1)} = 
+\frac{P(X1)P(Y1|X1)}{P(Y1)} =
 \frac{0.54}{0.62} > P(X1)=0.6
 \end{align*}
 
@@ -737,14 +737,14 @@ P(B)P(\bar A)
 \paragraph{Άσκηση 18}
 \[ S =
 \begin{cases}
-\mathrm A \mathrm B  \Gamma \\ \mathrm A  \Gamma \mathrm B \\\mathrm B \mathrm A  \Gamma \\\mathrm B  \Gamma \mathrm A \\ \Gamma \mathrm A \mathrm B \\ \Gamma \mathrm B \mathrm A 
+\mathrm A \mathrm B  \Gamma \\ \mathrm A  \Gamma \mathrm B \\\mathrm B \mathrm A  \Gamma \\\mathrm B  \Gamma \mathrm A \\ \Gamma \mathrm A \mathrm B \\ \Gamma \mathrm B \mathrm A
 \end{cases}
 \]
 
 \begin{align*}
 W &=  \left\lbrace \mathrm A \mathrm B \Gamma , \mathrm A  \Gamma \mathrm B,  \Gamma \mathrm A \mathrm B  \right\rbrace \\
 R &=  \left\lbrace \mathrm{A} \mathrm{B} \Gamma , \mathrm A  \Gamma  \mathrm B, \mathrm B A \mathrm  \Gamma  \right\rbrace \\
-\text{Πρέπει } \underbrace{P(W \cap R)}_\frac{1}{3} &= 
+\text{Πρέπει } \underbrace{P(W \cap R)}_\frac{1}{3} &=
 \underbrace
 {
 \underbrace{P(W)}_\frac{1}{2}
@@ -782,7 +782,7 @@ S &= S_1 \times S_2 \times \cdots \times S_{13} \\
 S &= S_1 \times S_2 \times S_3 \\
 &=  \left\lbrace \mathrm K, \Gamma   \right\rbrace \times  \left\lbrace \mathrm K, \Gamma  \right\rbrace\times \left\lbrace \mathrm K, \Gamma  \right\rbrace \\
 &=
- \left\lbrace 
+ \left\lbrace
  \mathrm K\mathrm K\mathrm K,
  \mathrm K\mathrm K \Gamma ,
  \mathrm K \Gamma \mathrm K,
@@ -790,7 +790,7 @@ S &= S_1 \times S_2 \times S_3 \\
   \mathrm K \Gamma  \Gamma ,
    \Gamma \mathrm K \Gamma ,
     \Gamma  \Gamma \mathrm K,
-     \Gamma  \Gamma  \Gamma 
+     \Gamma  \Gamma  \Gamma
   \right\rbrace
 \end{align*}
 Παρατηρώ ότι στο καρτεσιανό γινόμενο τα ενδεχόμενα π.χ. \((\mathrm K \mathrm K  \Gamma)\) και \((\Gamma \mathrm K \mathrm  K)\) θεωρούνται διαφορετικά. Αντίστοιχα, σε δύο ρίψεις ενός ζαριού, τα ενδεχόμενα \( (1,2)\), \((2,1)\) είναι διαφορετικά.
@@ -826,11 +826,11 @@ n(n-1)(n-2)\cdots 1 = n!
 \textit{π.χ.}
 Για τα \( \mathrm A, \mathrm B , \Gamma \) με \(n=3,\ k=2\) (συνδυάζω 3 αντικείμενα ανά 2) έχω:
 \[
- \mathrm A \mathrm B  \Gamma 
+ \mathrm A \mathrm B  \Gamma
  \begin{cases}
   \mathrm A \mathrm B \\
    \mathrm A \Gamma \\
-    \mathrm B \Gamma 
+    \mathrm B \Gamma
  \end{cases}
 \]
 
@@ -920,7 +920,7 @@ P(R)&=P(A_1)-P(A_2 \cap A_3)+P(A_4)
 \item \(\vdots\)
 \end{itemize}
 
-\[ 
+\[
 P(A)=\frac{(1-\sqrt{\frac{1}{2}})\cdot\left( \frac{1}{3} \right)^\frac{1}{3}}{2}
 \]
 
@@ -1101,7 +1101,7 @@ X =  \left\lbrace 0,1,2,3 \right\rbrace \\
  ,\  \left\lbrace X \subseteq x  \right\rbrace,\
   \left\lbrace  x_1 \subset X \subset x_2  \right\rbrace\\
    \left\lbrace X=1 \right\rbrace \equiv
-    \left\lbrace 
+    \left\lbrace
     \mathrm{K \Gamma  \Gamma ,\  \Gamma K \Gamma ,\  \Gamma  \Gamma K}
      \right\rbrace\\
       \left\lbrace X \subseteq 2  \right\rbrace \equiv A
@@ -1573,7 +1573,7 @@ X =  \left\lbrace 1,2,3,\dots \right\rbrace \\
 f(x_i) = P(X=x_i) = \frac{1}{2x_i}\\
 T = 1\\
 M = \text{οποιαδήποτε τιμή μεταξύ του 1 και 2}\\
-\mu_x = \sum_{x_i=1}^\infty x_i \frac{1}{2x_i} = \dots = 2 
+\mu_x = \sum_{x_i=1}^\infty x_i \frac{1}{2x_i} = \dots = 2
 \end{gather*}
 
 \paragraph{Άσκηση}
@@ -1585,7 +1585,7 @@ f(x)=\begin{cases}
 0&x<-2\\ax+\beta&-2\leq x\leq0\\c&0\leq x\leq4\\0&x<4
 \end{cases}
 \qquad
-\xRightarrow{\dots} 
+\xRightarrow{\dots}
 f(x)=\begin{cases}
 0&x<-2\\0.1x+0.2&-2\leq x\leq0\\c&0\leq x\leq4\\0&x<4
 \end{cases}
@@ -1662,7 +1662,7 @@ E(X)&=1 \cdot p + 0\, (1-p) = p\\
 
 \subsubsection{Διωνυμική}
 \begin{align*}
-X =&  \left\lbrace 
+X =&  \left\lbrace
 \begin{matrix}
 \text{αριθμός εμφάνισης $A$}\\
 \text{σε $n$ δοκιμές}
@@ -1695,7 +1695,7 @@ X=  \left\lbrace 0,1,2,\dots,100 \right\rbrace
 
 \subsubsection{Γεωμετρική}
 \begin{align*}
-X &=  \left\lbrace 
+X &=  \left\lbrace
 \begin{matrix}
 \text{αριθμός δοκιμών}\\
 \text{μέχρι εμφάνισης του $A$}\\
@@ -1719,7 +1719,7 @@ P(X<3)=1-P(X\leq3),\quad P(X\leq3)&=\sum_{x=1}^3 (1-p)^{x-1}p
 
 \subsubsection{\textlatin{Pascal}}
 \begin{align*}
-X_r&=  \left\lbrace 
+X_r&=  \left\lbrace
 \begin{matrix}
 \text{αριθμός δοκιμών}\\
 \text{μέχρι $r$ εμφανίσεις του $A$}
@@ -1733,7 +1733,7 @@ P(X_r=x) =& \binom{x-1}{r-1}(1-p)^{(x-1)-(r-1)}p^r
 \begin{gather*}
 p = 0.00005 \text{ πιθανότητα να χαλάσει ο υπολογιστής}\\
 \text{6 ωρών}\\
-X_3= \left\lbrace 
+X_3= \left\lbrace
 3,4,5,6,7,8,\dots
  \right\rbrace\\
  P(X_3>6) = 1-P(X_3 \leq 6)
@@ -1750,7 +1750,7 @@ X_3= \left\lbrace
 
 \subsubsection{\textlatin{Poisson}}
 \begin{align*}
-X_t= \left\lbrace 
+X_t= \left\lbrace
 \begin{matrix}
 \text{αριθμός εμφάνισης $A$}\\
 \text{σε διάστημα $t$}
@@ -1838,7 +1838,7 @@ P(\kappa = 2) &= \frac{1}{4}\\
  P(X=0) &= \binom{n}{0}p^0(1-p)^{n-0}\\
  P(X=1) &= \binom{n}{1}p^1(1-p)^{n-1}\\
  P(X=2) &= \binom{n}{2}p^2(1-p)^{n-2}\\
- P(E) &= 
+ P(E) &=
  P\left(E\middle| \left\lbrace \kappa=0  \right\rbrace\right)P(\kappa=0)
  +P\left(E\middle| \left\lbrace \kappa=1  \right\rbrace\right)P(\kappa=1)
  +P\left(E\middle| \left\lbrace \kappa=2  \right\rbrace\right)P(\kappa=2)
