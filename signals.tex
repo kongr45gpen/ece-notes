@@ -1,0 +1,223 @@
+\documentclass[11pt,a4paper,titlepage,fleqn]{article}
+%\usepackage[utf8]{inputenc}
+%\usepackage[greek]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{commath}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[skins,theorems]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{circuitikz}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{floatrow}
+\usepackage{esint}
+\usepackage{enumitem}
+\usepackage{xfrac}
+
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations.pathmorphing,patterns}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{backgrounds}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[no-math]{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+%\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
+%\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
+\usepackage{polyglossia}
+\newfontfamily\greekfont[Script=Greek]{Times New Roman}
+\newfontfamily\greekfontsf[Script=Greek]{Arial}
+\newfontfamily\greekfonttt[Script=Greek]{Latin Modern Mono}
+%\usepackage[greek]{babel}
+\setdefaultlanguage{greek}
+\setotherlanguage{english}
+\newcommand{\textlatin}[1]{#1}
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[greek]{babel}
+
+
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+%\usepackage{tkz-euclide} % loads  TikZ and tkz-base
+%\usetkzobj{angles} % important you want to use angles
+
+\newlist{enumparen}{enumerate}{1}
+\setlist[enumparen]{label=(\arabic*)}
+\newlist{enumpar}{enumerate}{1}
+\setlist[enumpar]{label=\arabic*)}
+
+\newlist{enumgreek}{enumerate}{1}
+\setlist[enumgreek]{label=\alph*.}
+\newlist{enumgreekparen}{enumerate}{1}
+\setlist[enumgreekparen]{label=(\alph*)}
+\newlist{enumgreekpar}{enumerate}{1}
+\setlist[enumgreekpar]{label=\alph*)}
+
+
+\newlist{enumroman}{enumerate}{1}
+\setlist[enumroman]{label=(\@alph*)}
+
+\newlist{enumlatin}{enumerate}{1}
+\setlist[enumlatin]{label=(\alph*)}
+
+
+
+\makeatletter
+\let\anw@true\anw@false
+
+%\newcommand{\attnboxed}[1]{\textcolor{red}{\fbox{\normalcolor\m@th$\displaystyle#1$}}}
+\makeatother
+\tcbset{highlight math style={enhanced,colframe=red,colback=white,%
+		arc=0pt,boxrule=1pt,shrink tight,boxsep=1.5mm,extrude by=0.5mm}}
+\newcommand{\attnboxed}[1]{\tcbhighmath[colback=red!5!white,drop fuzzy shadow,arc=0mm]{#1}}
+\titleformat{\section}{\bf\Large}{Κεφάλαιο \thesection}{1em}{}
+\newtcolorbox{attnbox}[1]{colback=red!5!white,%
+	colframe=red!75!black,fonttitle=\bfseries,title=#1}
+\newtcolorbox{infobox}[1]{colback=blue!5!white,%
+	colframe=blue!75!black,fonttitle=\bfseries,title=#1}
+
+
+\title{Θεωρία Σημάτων και Γραμμικών Συστημάτων - Σημειώσεις}
+\date{2016}
+\author{\textlatin{\csuse{no\greek @numbers}\selectlanguage{english} \url{https://github.com/kongr45gpen/ece-notes}}}
+
+
+
+\begin{document}
+	Την Τρίτη μάθημα 8:30 χωρίς διάλειμμα
+	
+	Σήμα - σύστημα
+	\begin{align*}
+	\boxed{\underbrace{g}_{\mathclap{\text{εξαρτημένη}}} = f(\underbrace{t}_{\mathclap{\text{ανεξάρτητη}}})} \qquad g=f(\vec r, t) \qquad \vec E (\vec r, t)
+	\end{align*} 
+	
+	\subsubsection{Αναλογικό}
+	Αν \( t \) συνεχής \( \in \mathbb R  \)\\
+	και \( y \) συνεχής \( \in \mathbb R \)
+	%TODO Rekanos Graph 01
+	
+	\subsubsection{Διακριτού χρόνου / Διακριτό (discrete)}
+	\( t \) διακριτό \( \rightarrow \mathbb Z,\ n \in \mathbb Z \)\\
+	\( g \) συνεχής \( \in \mathbb R  \)
+	%TODO Rekanos Graph 02
+	
+	\subsubsection{Κβαντισμένο}
+	\( n \in \mathbb Z \) \\
+	\( g \) διακριτή
+	%TODO Rekanos Graph 03
+	
+	\subsubsection{Στοχαστικό}
+	Περιέχει και τις τρεις κατηγορίες
+	
+	\subsection{Σύστημα}
+	%TODO Rekanos Graph 04
+	
+	\subsection{Περιοδικά σήματα}
+	Αν \( \exists T \in \mathbb R : \forall t \in \mathbb R \quad x(t)=x(t+T) \)
+	τότε \( x(t) \) \textbf{περιοδικό σήμα} με περίοδο \( T \).
+	
+	Ή θα είναι 0, ή θα συνεχιστεί για πάντα.
+	
+	\[
+	\int_{-\sfrac{T}{2}}^{\sfrac{T}{2}} x(t) \dif t =
+	\int_{t_0-\sfrac{T}{2}}^{t_0+\sfrac{T}{2}} x(t) \dif t\ \forall t
+	\]
+	
+	Η σύνθεση μιας συνάρτησης με μια περιοδική συνάρτηση είναι περιοδική;
+	
+	\subsection{Συμμετρίες}
+	\begin{itemize}
+	    \item Αν \( x(t) = x(-t) \ \forall t \) τότε η \( x(t) \) λέγεται \textbf{άρτια συνάρτηση} (even function).
+	    
+	    \item Αν \( x(t) = -x(t) \ \forall t \) τότε η \( x(t) \) λέγεται \textbf{περιττή συνάρτηση} (odd function).
+	\end{itemize}
+	
+	\paragraph{}
+	\( \forall x(t) \quad \exists\ x_0(t), x_e(t): x(t) = x_e(t)+x_0(t) \)
+	\subparagraph{Απόδ.}
+	\begin{align*}
+		x_e(t) &= \frac{x(t)+x(-t)}{2} \\
+		x_o(t) &= \frac{x(t)-x(-t)}{2}
+	\end{align*}
+	
+	\paragraph{}
+	\begin{align*}
+		x{\underbrace{_e}_{\mathclap{\text{άρτια}}}}y_e &= z_e\\
+		x_oy_o &=z_e \\
+		x_ey_0 &=z_0 \\
+		\int_{-A}^A x_0(t)\dif t &= 0 \\
+		\int_{-\infty}^\infty x_0(t)\dif t &= ? \text{ (εξαρτάται)} \\
+		\lim_{A\to \infty} \int_{-A}^A x_0(t)\dif t &= 0 \quad \text{(principal Cauchy value)}
+	\end{align*}
+	
+	\subparagraph{Χαρακτηριστικά σήματα}
+	\begin{enumpar}
+		\item \textbf{Εκθετικό σήμα}
+		\[
+		x(t) = ce^{at}\quad a \in \mathbb R \quad c > 0
+		\]
+		%TODO Rekanos Graph 05 float right
+		\[
+		x(t) = ce^{(\sigma t+j\omega)t} = ce^{\sigma t}e^{j\omega t}
+		= ce^{\sigma t} \left[
+		\cos(\omega t)+j\sin(\omega t)
+		\right]
+		\]
+		%TODO Rekanos Graph 06
+		\item \textbf{(Συν)ημιτονοειδή σήματα}
+		\[
+		x(t) = A \cos(\omega t\pm \phi)
+		= a \mathrm{Re} \left\lbrace e^{j(\omega t +\phi)} \right\rbrace 
+		= A \frac{e^{j(\omega t \pm \phi)} + e^{-j(\omega t\pm \phi)}}{2}
+		\]
+		\item \textbf{Δέλτα Dirac} \( \mathbf{ \delta(t)} \)
+		%TODO Rekanos Graph 07
+	    \paragraph{Ορ.}
+	    \[
+	    \int_{-\infty}^\infty f(t)\mathrm \delta(t) \dif t = f(0)\ \forall f(t)
+	    \]
+	    \paragraph{}
+	    \begin{align*}
+	    \int_{-\infty}^\infty \delta(t)\dif t &=1 \\
+	    \int_{-\infty}^\infty f(t)\delta(t-\tau) \dif t &= f(\tau) \\
+	    \Aboxed{\int_{-\infty}^\infty f(\tau) \delta(t-\tau)\dif \tau &= f(t)} \\
+	    \int_{-\infty}^\infty f(t)\delta(t-\tau)\dif \tau &= f(t)
+	    \end{align*}
+	    \paragraph{Ιδιότητες της \( \delta(t) \)}
+	    \begin{enumerate} %TODO enumparen?
+	    	\item \textbf{Κλιμάκωση}
+	    	\[
+	    	a \in \mathbb R: \delta(at) = \frac{1}{|a|}\delta(t)
+	    	\]
+	    	\subparagraph{Απόδ.}
+	    	\[
+	    	\underbrace{\int_{-\infty}^\infty \phi(t)\boxed{\delta(at)}\dif t}_{\mathclap{\begin{matrix}
+	    			at=\xi\\\dif t = \frac{\dif \xi}{a}
+	    			\end{matrix}}}
+	    =
+	    	\int_{-\infty_{(a)}}^{\infty_{(a)}} \phi\left( \frac{\xi}{a} \right) \delta(\xi)\frac{\dif \xi}{a}
+	    	= \frac{1}{|a|}\int_{-\infty}^\infty \frac{\phi\left(\frac{\xi}{a} \right)}{|a|}\delta(\xi)\dif\xi = \frac{\phi(0)}{|a|}
+	    	= \int_{-\infty}^\infty \phi(t)\boxed{\frac{\delta(t)}{|a|}}\dif t
+	    	\]
+	    	\item \(
+	    	f(t)\delta(t)=f(0)\delta(t)
+	    	\)
+	    	\item \(
+	    	f(t)\delta(t-\xi)=f(g)\delta(t-\xi)
+	    	\)
+    	\end{enumerate}
+	\end{enumpar}
+
+	
+\end{document}
