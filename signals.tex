@@ -20,6 +20,7 @@
 \usepackage{esint}
 \usepackage{enumitem}
 \usepackage{xfrac}
+\usepackage{bm}
 
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{patterns}
@@ -71,6 +72,9 @@
 \newlist{enumlatin}{enumerate}{1}
 \setlist[enumlatin]{label=(\alph*)}
 
+\newlist{invitemize}{itemize}{1}
+\setlist[invitemize]{noitemsep,label=}
+
 
 
 \makeatletter
@@ -99,25 +103,30 @@
 	
 	Σήμα - σύστημα
 	\begin{align*}
-	\boxed{\underbrace{g}_{\mathclap{\text{εξαρτημένη}}} = f(\underbrace{t}_{\mathclap{\text{ανεξάρτητη}}})} \qquad g=f(\vec r, t) \qquad \vec E (\vec r, t)
+	\boxed{\quad \underbrace{g}_{\mathclap{\text{εξαρτημένη}}} = f(\underbrace{t}_{\mathclap{\text{ανεξάρτητη}}}) \quad} \qquad g=f(\vec r, t) \qquad \vec E (\vec r, t)
 	\end{align*} 
 	
-	\subsubsection{Αναλογικό}
-	Αν \( t \) συνεχής \( \in \mathbb R  \)\\
-	και \( y \) συνεχής \( \in \mathbb R \)
+	\paragraph{Αναλογικό}
+	\begin{invitemize}
+		\item Αν \( t \) συνεχής \( \in \mathbb R  \)
+		\item και \( y \) συνεχής \( \in \mathbb R \)
+	\end{invitemize}
 	%TODO Rekanos Graph 01
 	
-	\subsubsection{Διακριτού χρόνου / Διακριτό (discrete)}
-	\( t \) διακριτό \( \rightarrow \mathbb Z,\ n \in \mathbb Z \)\\
-	\( g \) συνεχής \( \in \mathbb R  \)
-	%TODO Rekanos Graph 02
+	\paragraph{Διακριτού χρόνου / Διακριτό (discrete)}
+	\begin{invitemize}
+		\item \( t \) διακριτό \( \rightarrow \mathbb Z,\ n \in \mathbb Z \)
+		\item \( g \) συνεχής \( \in \mathbb R  \)
+	\end{invitemize}
 	
-	\subsubsection{Κβαντισμένο}
-	\( n \in \mathbb Z \) \\
-	\( g \) διακριτή
+	\paragraph{Κβαντισμένο}
+	\begin{invitemize}
+		\item \( n \in \mathbb Z \)
+		\item \( g \) διακριτή
+	\end{invitemize}
 	%TODO Rekanos Graph 03
 	
-	\subsubsection{Στοχαστικό}
+	\paragraph{Στοχαστικό}
 	Περιέχει και τις τρεις κατηγορίες
 	
 	\subsection{Σύστημα}
@@ -181,7 +190,7 @@
 		= a \mathrm{Re} \left\lbrace e^{j(\omega t +\phi)} \right\rbrace 
 		= A \frac{e^{j(\omega t \pm \phi)} + e^{-j(\omega t\pm \phi)}}{2}
 		\]
-		\item \textbf{Δέλτα Dirac} \( \mathbf{ \delta(t)} \)
+		\item \textbf{Δέλτα Dirac} \( \bm{ \delta(t)} \)
 		%TODO Rekanos Graph 07
 	    \paragraph{Ορ.}
 	    \[
@@ -194,7 +203,7 @@
 	    \Aboxed{\int_{-\infty}^\infty f(\tau) \delta(t-\tau)\dif \tau &= f(t)} \\
 	    \int_{-\infty}^\infty f(t)\delta(t-\tau)\dif \tau &= f(t)
 	    \end{align*}
-	    \paragraph{Ιδιότητες της \( \delta(t) \)}
+	    \paragraph{Ιδιότητες της \( \bm{ \delta(t)} \)}
 	    \begin{enumerate} %TODO enumparen?
 	    	\item \textbf{Κλιμάκωση}
 	    	\[
