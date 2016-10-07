@@ -21,6 +21,7 @@
 \usepackage{enumitem}
 \usepackage{xfrac}
 \usepackage{bm}
+\usepackage{comment}
 
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{patterns}
@@ -94,6 +95,8 @@
 	colframe=red!75!black,fonttitle=\bfseries,title=#1}
 \newtcolorbox{infobox}[1]{colback=blue!5!white,%
 	colframe=blue!75!black,fonttitle=\bfseries,title=#1}
+
+%\renewenvironment{tikzpicture}{\begin{comment}}{\end{comment}}
 
 
 \title{Θεωρία Σημάτων και Γραμμικών Συστημάτων - Σημειώσεις}
@@ -292,6 +295,204 @@
 	    	\)
     	\end{enumerate}
 	\end{enumpar}
+	
+	\paragraph{}
+	%TODO Rekanos Graph 04 again!
+	\begin{gather*}
+		y(t) = \mathscr{L}\left\lbrace x(t) \right\rbrace \\
+		\forall x_1(t)\ x_n(t)\\
+		y_1(t) = \mathscr{L}\left\lbrace x_1(t) \right\rbrace \\
+		y_2(t) = \mathscr{L}\left\lbrace x_2(t) \right\rbrace
+	\end{gather*}
+	
+	Για const \( a_1, a_2 \in \mathbb R  \)
+	\begin{align*}
+	x(t) &= a_1x_1(t)+a_2x_2(t) \\
+	y(t) &= \mathscr{L}\left\lbrace x(t) \right\rbrace \\
+	\intertext{ανν}
+	y(t) = a_1y_1(t)+a_2y_2(t) \\
+	\intertext{τότε}
+	\mathscr{L}: \text{ γραμμικό σύστημα}
+	\end{align*}
+	
+	\begin{itemize}
+		\item \(g(t) = \mathscr{L}\left\lbrace x(t) \right\rbrace\)
+		
+		\( x'(t)=x(t-\tau) \)
+		
+		ανν \( y'(t) = \mathscr{L} \left\lbrace x'(t) \right\rbrace
+		= \mathscr{L} \left\lbrace x(t-\tau)^2 \right\rbrace = y(t-\tau)
+		 \)
+		 
+		 τότε το σύστημα \( \mathscr L \) είναι αμετάβλητο κατά τη μετατόπιση.
+		
+	\end{itemize}
 
+    %TODO Rekanos Graph 09
+    Υποστηρίζω ότι ένα γραμμικό \& ΑΚΜ σύστημα περιγράφεται πλήρως από την κρουστική
+    απόκριση \( h(t) \).
+    \subparagraph{Απόδ.} Από παραπάνω, γνωρίζουμε ότι
+    \(
+    x(t) = \int_{-\infty}^\infty x(t)\delta(t-\tau)\dif t
+    \)
+    \begin{align*}
+    y(t) &= \mathscr L \left\lbrace y(t) \right\rbrace =
+    \mathscr L \left\lbrace \int_{-\infty}^{\infty} x(t)\delta(t-\tau) \dif \tau
+     \right\rbrace 
+     \\ & \overset{\text{linearity}}{=} \int_{-\infty}^{\infty} \mathscr L
+     \left\lbrace x(\tau)\delta(t-\tau) \right\rbrace
+     \\ &= \int_{-\infty}^{\infty} x(\tau) \mathscr L \left\lbrace 
+     \delta(t-\tau)
+      \right\rbrace \dif \tau
+      \\ & \underset{TSI}{\overset{\text{ΑΚΜ}}{=}}
+       \int_{-\infty}^{\infty} x(\tau) h(t-\tau)\dif \tau
+       \\ y(t) &= \int_{-\infty}^{\infty}
+        x(\tau)
+        \underbrace{h(t-\tau)}_{\mathclap{\text{linear time-shift invariant}}}
+        \dif\tau
+    \end{align*}
+    
+    \paragraph{}
+    
+    \begin{itemize}
+    	\item \( \delta(t)=\delta(-t) \) άρτια συνάρτηση
+    	\item \( \delta^{(n)}(t) = \od[n]{}{t}\delta(t) \), για την οποία
+    αποδεικνύεται ότι:
+        \[
+            \int_{-\infty}^{\infty} \delta^{(n)}(t)\phi(t)\dif t
+            = (-1)^n\left.\phi^{(n)}(t)\right|_{t=0}
+        \]
+    \end{itemize}
+    
+    \subsubsection{Βηματική Συνάρτηση (Unit Step Function)}
+    \[
+    \mathrm u(t) = \begin{cases}
+    1 \quad & t > 0 \\
+    0 \quad & t < 0
+    \end{cases}
+    \]
+    \[
+    \int_{-\infty}^{\infty} \mathrm u(t)\phi(t)\dif t =
+    \mathscr N_{\mathrm u}\left\lbrace \phi(t) \right\rbrace = 
+    \int_0^\infty \underbrace{\phi(t)}_{\mathclap{\text{number}}}\dif t
+    \]
+    \begin{tikzpicture}
+    \begin{axis}[%
+    xlabel=$t$
+    ,ylabel=$\mathrm u(t)$
+    ,axis lines = center
+    ,ymax=1.5
+    ,ytick={0,1}
+    ,xtick={0,1}
+    ]
+    \addplot+[const plot, no marks,ultra thick] coordinates {(-4,0) (0,1) (4,1)};
+    %\addplot+[const plot, no marks, thick] coordinates {(0,0) (1,0.25) (2,0.4) (3,0.5) (4,1) (4.49,1)} node[below=1.15cm,pos=.76,black] {$F_y$};
+    \end{axis}
+    \end{tikzpicture}
+    
+    \begin{align*}
+    \delta(t) &= \od{}{t} \mathrm u(t)\\
+    \mathrm u(t) &= \int_{-\infty}^t \delta(\tau)\dif\tau =
+    \int_0^\infty \delta(t-\xi)\dif\xi
+    \end{align*}
+    
+    \subsubsection{Ράμπα}
+    \[
+    \mathrm r(t) = \int_{-\infty}^t \mathrm u(\tau)\dif\tau =
+    \begin{cases}
+    t \quad & t \geq0 \\
+    0 \quad & \text{else}
+    \end{cases} = t\mathrm u(t)
+    \]
+    
+    %TODO Rekanos Graph 11
+    
+    \[
+    \mathrm u(t) =\od{}{t} \mathrm r(t)
+    \]
+    
+    \subsubsection{Ορθογωνικός παλμός (Rectangular Pulse function)}
+    \[
+    \mathrm p_a(t) = \begin{cases}
+    1 &\quad |t| < a \\
+    0 &\quad |t| > a
+    \end{cases}
+    \]
+    
+    %TODO Rekanos Graph 12
+    %TODO Rekanos Graph 13
+    
+    \begin{align*}
+    \mathrm p_a(t) =& \mathrm u(t+a) - \mathrm u(t-a) \\
+    \od{}{t} \mathrm p_a(t) =& \delta(t+a)-\delta(t-a)
+    \end{align*}
+    
+    %TODO Rekanos Graph 14
+    
+    \subsubsection{Τριγωνικός Παλμός (Triangular Pulse function)}
+    \[
+    \mathrm p_{\mathrm{tr},a} = \begin{cases}
+    1-\frac{|t|}{a} &\quad |t|<a \\
+    0 &\quad |t|>a
+    \end{cases}
+    \]
+    %TODO Rekanos Graph 15
+    \[
+    p_{\mathrm{tr},a}(t) = \frac{1}{a} \left[
+        \mathrm r(t+a) + \mathrm r(t-a) - 2\mathrm r(t)
+    \right]
+    \]
+    %TODO Rekanos Graph 16
+    
+    \subsection{Χαρακτηριστικά Μεγέθη}
+    \begin{enumpar}
+    	\item \textbf{Μέση τιμή (Mean Value)}
+    	\[
+    	\overline{x(t)} = \frac{1}{t_2-t_1} \int_{t_1}^{t_2}x(t)\dif t
+    	\]
+    	
+    	Αν περιοδική τότε \begin{align*}
+    	\bar x(t) &= \frac{1}{T} = \int_0^T x(t)\dif t \\
+    	&= \frac{1}{T} \int_{t_0}^{t_0+T} x(t)\dif t
+    	\end{align*}
+    	\item \textbf{Ενεργός τιμή (Root Mean Square Value)}
+    	\[
+    	\overline{\overline{x(t)}} = \left[
+    	    \frac{1}{t_2-t_1}\int_{t_1}^{t_2} x^2(t)\dif t
+    	\right]^{\sfrac{1}{2}}
+    	\]
+    	Αν ημιτονοειδές σήμα \(\bar{\bar{x}}(t) = \frac{x_{\max}}{\sqrt{2}}
+    	\)
+    	
+    	\item \textbf{Ενέργεια - Ισχύς}
+    	\begin{itemize}
+    		\item Στιγμιαία ισχύς (Instant power)
+    		\[
+    		p(t) = x^2(t)
+    		\]
+    		\item Μέση ισχύς (Mean power)
+    		\[
+    		\overline{p(t)} = \frac{1}{t_2-t_1}\int_{t_1}^{t_2}x^2(t)\dif t
+    		= \left( \overline{\overline{x(t)}} \right)^2
+    		\]
+    		\item Ενέργεια (Energy)
+    		\[
+    		W = \int_{t_1}^{t_2} p(t) \dif t =
+    		\int_{t_1}^{t_2} x^2(t)\dif t = (t_2-t_1)\left(
+    		\overline{\overline{x(t)}}
+    		\right)^2
+    		\]
+    	\end{itemize}
+    	
+    	\textbf{Σήματα} \( \begin{dcases}
+    	\text{\textbf{Σήμα ενέργειας} αν} \lim_{T\to \infty}W< \infty
+    	\\ \\
+    	\text{\textbf{Σήμα ισχύος} αν} \lim_{T\to \infty}\overline{p(t)}>0  
+	    \\ \text{Υπάρχουν και σήματα που δεν είναι ούτε ενέργειας, ούτε ισχύος.}
+    	\end{dcases}
+    	\)
+    \end{enumpar}
+    
+    
 	
 \end{document}
