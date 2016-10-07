@@ -94,6 +94,10 @@
 \newtcolorbox{infobox}[1]{colback=blue!5!white,%
 	colframe=blue!75!black,fonttitle=\bfseries,title=#1}
 
+\renewcommand{\arg}{\mathrm{Arg}}
+\renewcommand{\Re}{\mathrm{Re}}
+\renewcommand{\Im}{\mathrm{Im}}
+
 
 \title{Εφαρμοσμένα Μαθηματικά - Σημειώσεις}
 \date{2016}
@@ -332,5 +336,178 @@
 	\[
 	g(t) = 1+it, t\in \mathbb R,\ =(1,t) = (1,0)+t(0,1)
 	\]
+	
+	\part{Κεχαγιάς}
+	Σπιτεργασίες λιγότερες από πέρσι, για 1 βαθμό, αφορούν μόνο το μέρος του Κεχ.
+	\begin{enumerate}
+		\item ΜΙΓΑΔΙΚΟΙ ΑΡΙΘΜΟΙ
+		\item ΒΑΣΙΚΕΣ ΜΙΓΑΔΙΚΕΣ ΣΥΝΑΡΤΗΣΕΙΣ
+		\item ΑΚΟΛΟΥΘΙΕΣ, ΣΕΙΡΕΣ
+		\item ΔΥΝΑΜΟΣΕΙΡΕΣ
+		\item ΑΡΜΟΝΙΚΕΣ ΣΥΝΑΡΤΗΣΕΙΣ
+		\item ΔΙΑΦΟΡΙΚΕΣ ΕΞΙΣΩΣΕΙΣ με μερικές παραγώγους
+	\end{enumerate}
+	
+	\setcounter{section}{0}
+	
+	\section{Μιγαδικοί αριθμοί}
+	\begin{align*}
+	    z = & x+iy \in \mathbb C \\
+	    & x,y \in \mathbb R \qquad i^2=-1
+	\end{align*}
+	\begin{align*}
+	z_1 &= x_1 +iy_1 \\
+	z_2 &= x_2 +iy_2 \\
+	z_1+z_2 &= (x_1+x_2)+i(y_1+y_2) \\
+	z_1\cdot z_2 &= (x_1+iy_1)\cdot(x_2+iy_2) \\
+	&= x_1x_2+iy_1y_2+ix_1y_2+ix_2y_1 \\
+	&= (x_1x_2-y_1y_2)+i(x_1y_2+x_2y_1) \\
+	\frac{z_1}{z_2} &= \frac{x_1+iy_1}{x_2+iy_2}
+	= \frac{(x_1+iy_1)(x_2-iy_2)}{(x_2+iy^2)(x_2-iy_2)}
+	\\ &= \frac{x_1x_2+y_1y_2}{x_2^2+y_2^2} + i \frac{-x_1y_2+x_2y_1}{x_2^2+y_2^2}
+	\\ z &= x+iy
+	\\ \bar{z} &= x-iy
+	\\ \Re(z) &= x \in \mathbb R
+	\\ \Im(z) &= y \in \mathbb R 
+	\end{align*}
+	
+	%TODO Kehagias Graph 01
+	\[
+	r = \sqrt{x^2+y^2} = \sqrt{z\bar{z}} = |z| \leftarrow \text{μέτρο του } z
+	\]
+	γενίκευση της απόλυτης τιμής (δηλ. \( z=x \in \mathbb R,\ |z|=\sqrt{x^2}=|x| \))
+	
+	\begin{align*}
+	z=x+iy &= r\cdot\cos\theta + ir\sin\theta \\
+	&= r(\cos\theta+i\sin\theta) \\
+	&= r\cdot e^{i\theta} \quad \text{(Euler)}
+	\end{align*}
+	\begin{align*}
+	e^{i\theta} &= \cos\theta+i\sin\theta \text{ διότι}\\
+	e^{i\theta} &= 1 + i\theta + \frac{(i\theta)^2}{2!} + \frac{(i\theta)^3}{3!}
+	+ \frac{(i\theta)^4}{4!} + \dots \\
+	&= \left(
+	    1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \dots
+	\right) + i \left(
+	    \theta-\frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \dots
+	\right)
+	\\ &= \cos\theta+i\sin\theta
+	\end{align*}
+	
+	Επίσης:
+	\begin{align*}
+	z &= x+iy \\
+	&= \sqrt{x^2+y^2} \left( \frac{x}{\sqrt{x^2+y^2}}+i\frac{y}{\sqrt{x^2+y^2}} \right)
+	\\ &= r \cdot (\cos\theta + i\sin\theta)
+	\\ &= r \cos\theta + ir\sin\theta
+	\end{align*}
+	
+	\begin{gather*}
+		z_1=1+i = \sqrt{2}\cdot e^{i\sfrac{\pi}{4}} \\
+		r_1 = \sqrt{1^2+1^2} = \sqrt{2} \\
+		\theta_1 = \arctan\frac{1}{1} = \frac{\pi}{4}
+	\end{gather*}
+	\begin{gather*}
+		z_2=-1-i=\sqrt{2}e^{i\sfrac{5\pi}{4}} = \sqrt{2}e^{i\cdot\left(
+			-\sfrac{3\pi}{4} = \sqrt{2}e^{i\sfrac{13\pi}{4}}
+			\right)} \\
+		r_2=\sqrt{(-1)^2+(-1)^2} = \sqrt{2} \\
+		\theta_2 = \arctan\frac{-1}{-1} = \frac{\pi}{4}
+	\end{gather*}
+	
+	Γενικά: \( \mathlarger{-1-i=\sqrt{2}e^{i\left(
+			\frac{5\pi}{4}+2k \pi
+			\right)}},\quad k \in \mathbb Z \)
+
+    \subsection{Συναρτήσεις}
+    \[
+    \mathlarger{\mathlarger{\mathbb C \to \mathbb R}}
+    \]
+    \begin{gather*}
+    z=x+iy \\
+    \mathrm{mod}(z)= \sqrt{x^2+y^2} \\
+    \arg(z) = \begin{cases}
+    \theta_0 \quad & \text{αν } z \in \text{1\textsuperscript{ο} τεταρτημόριο} \\
+    \pi - \theta_0 \quad & \text{αν } z \in \text{2\textsuperscript{ο} τεταρτημόριο} \\
+    \pi + \theta_0 \quad & \text{αν } z \in \text{3\textsuperscript{ο} τεταρτημόριο} \\
+    2\pi - \theta_0 \quad & \text{αν } z \in \text{4\textsuperscript{ο} τεταρτημόριο}
+    \end{cases} \qquad \theta_0 = \arctan\left(\left|\frac{y}{x}\right|\right) \\
+    \forall z \in \mathbb C - \left\lbrace 0 \right\rbrace\ \arg(z) \in [0,2\pi)
+    \end{gather*}
+    
+    Ορίζω και την πλειότιμη συνάρτηση \( \mathrm{arg}(z) = \left\lbrace 
+    \arg(z)+2k\pi,\ k \in \mathbb Z
+     \right\rbrace \)
+     
+    \begin{align*}
+    z = x+iy &= \mathrm{mod}(z) \cdot e^{i\arg(z)}
+    \\ &= \mathrm{mod}(z) \cdot e^{i\left(\arg(z)+2k\pi\right)}
+    \end{align*}
+    \begin{align*}
+    z_1 = \mathrm{mod}(z_1)e^{i\arg(z_1)}\\
+    z_2 = \mathrm{mod}(z_2)e^{i\arg(z_2)}\\
+    z_1z_2 = \mathrm{mod}(z_1)\mathrm{mod}(z_2)e^{i\cdot\left(
+    	\arg(z_1)+\arg(z_2)
+    	\right)} \\
+    \arg(z_1z_2) \neq \arg(z_1)+\arg(z_2) \text{ επειδή} \\
+    \arg\left(
+        e^{i\frac{7\pi}{4}}e^{i\frac{7\pi}{4}}    \right) =
+         \frac{7\pi}{4} + \frac{7\pi}{4} -2\pi
+    \end{align*}
+    
+    Γενικά, αν \( A+B = \left\lbrace a+b: a \in A, b \in B \right\rbrace \), τότε:
+    \[
+    \mathrm{arg}(z_1z_2) = \mathrm{arg}(z_1) + \mathrm{arg}(z_2)
+    \]
+
+    \section{Βασικές μιγαδικές συναρτήσεις}
+    \( e^z,\ \log(z) \)
+    \[
+    e^z \overset{\text{ορισμός}}{=} e^xe^{iy}
+    = e^x(\cos y+i\sin y)
+    \]
+    
+    Ήξερα \( \begin{array}{l}
+    e^x: \mathbb R \to \mathbb R  \\
+    e^{iy}: \mathbb R \to \mathbb C
+    \end{array} \).
+    
+    Τώρα η νέα συνάρτηση \( e^z: \mathbb C \to \mathbb C \) και \textbf{γενικεύει}
+    τις δύο προηγούμενες συναρτήσεις.
+    
+    \paragraph{Παρ.}
+    \begin{align*}
+    e^{1+i}= ee^i &= e\cdot(\cos 1+i\sin 1) \\ &= e\cdot\cos1+i\cdot e\cdot \sin 1
+    \\ \Re\left(e^{1+i}\right) &= e\cos1
+    \\ \Im\left(e^{1+i}\right) &= e\sin1
+    \end{align*}
+    
+    \paragraph{}
+    \begin{align*}
+    \log(e) &= 1 \\
+    \log(-1) &= \log\left(e^{i(\pi+2k\pi)} \right) = i(\pi+2k\pi)
+    \end{align*}
+    Δηλ. η λογαριθμική συνάρτηση είναι \textbf{πλειότιμη}.
+    \begin{align*}
+    z &= |z|e^{i\theta} \\
+    \log(z) &= \ln\left(|z|\right)+i\theta
+    \end{align*}
+    
+    \paragraph{Ορίζω}
+    \subparagraph{Πλειότιμη} \( \log(z) = \ln\left(|z|\right)+i\mathrm{arg}(z) \)
+    \subparagraph{Μονότιμη} \( \mathrm{Log}(z) = \ln\left(|z|\right)+i\arg(z)\)
+    είναι ο πρωτεύων κλάδος της πλειότιμης
+
+    \begin{align*}
+    \log(1+i) &= \log\left(
+        \sqrt{2}e^{i\left(\sfrac{\pi}{4}+2k\pi \right)}
+    \right) \\ &=
+    \log\left(\sqrt{2}\right) + i\left( \frac{\pi}{4} +2k\pi \right)
+    \end{align*}
+    \begin{align*}
+    \left\lbrace 
+    \frac{1}{2}\ln(2) + i\left( \frac{\pi}{4} +2 k \pi \right)
+     \right\rbrace
+    \end{align*}
 
 \end{document}
