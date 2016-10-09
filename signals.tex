@@ -30,7 +30,7 @@
 \usetikzlibrary{backgrounds}
 \usetikzlibrary{shapes.misc}
 \tikzset{cross/.style={cross out, draw, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},
-	%default radius will be 1pt. 
+	%default radius will be 1pt.
 	cross/.default={1pt}}
 
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
@@ -96,7 +96,29 @@
 \newtcolorbox{infobox}[1]{colback=blue!5!white,%
 	colframe=blue!75!black,fonttitle=\bfseries,title=#1}
 
-%\renewenvironment{tikzpicture}{\begin{comment}}{\end{comment}}
+\newif\ifhidetikz
+\hidetikzfalse
+\hidetikztrue   % <---- comment/uncomment that line
+
+\ifhidetikz
+
+\let\oldtikzpicture\tikzpicture
+\let\oldendtikzpicture\endtikzpicture
+
+\renewenvironment{tikzpicture}{
+	\tiny
+	\tt
+	\color{blue}
+	\newcommand{\draw}{\textit{draw}}
+	\newcommand{\filldraw}{\textit{filldraw}}
+	\newcommand{\x}{\textit{x}}
+}{
+}
+\newenvironment{axis}{
+	\newcommand{\addplot}{\textit{addplot}}
+}{
+}
+\fi
 
 
 \title{Θεωρία Σημάτων και Γραμμικών Συστημάτων - Σημειώσεις}
@@ -106,13 +128,21 @@
 
 
 \begin{document}
+	\begin{verbatim}
+	\draw[->] (0,-1) -- (0,2);
+	\draw[->] (-2,0) -- (2,0);
+
+	\draw [blue, very thick]
+	plot [smooth, tension=1, domain=-2:2, samples=9] (\x,{1+rand/2}) node[below];
+	\end{verbatim}
+
 	Την Τρίτη μάθημα 8:30 χωρίς διάλειμμα
-	
+
 	Σήμα - σύστημα
 	\begin{align*}
 	\boxed{\quad \underbrace{g}_{\mathclap{\text{εξαρτημένη}}} = f(\underbrace{t}_{\mathclap{\text{ανεξάρτητη}}}) \quad} \qquad g=f(\vec r, t) \qquad \vec E (\vec r, t)
-	\end{align*} 
-	
+	\end{align*}
+
 	\paragraph{Αναλογικό}
 	\begin{invitemize}
 		\item Αν \( t \) συνεχής \( \in \mathbb R  \)
@@ -121,29 +151,29 @@
 	\begin{tikzpicture}
 		\draw[->] (0,-1) -- (0,2);
 		\draw[->] (-2,0) -- (2,0);
-		
+
 		\draw [blue, very thick]
-		plot [smooth, tension=1, domain=-2:2, samples=9] (\x,{1+rand/2}) node[below] {$g(x,y)$}; 
+		plot [smooth, tension=1, domain=-2:2, samples=9] (\x,{1+rand/2}) node[below] {$g(x,y)$};
 	\end{tikzpicture}
-	
+
 	\paragraph{Διακριτού χρόνου / Διακριτό (discrete)}
 	\begin{invitemize}
 		\item \( t \) διακριτό \( \rightarrow \mathbb Z,\ n \in \mathbb Z \)
 		\item \( g \) συνεχής \( \in \mathbb R  \)
 	\end{invitemize}
-	
+
 	\begin{tikzpicture}[scale=0.7]
 		\draw[->,gray] (0,0) -- (0,4.5);
 		\draw[->,gray] (-6,0) -- (6,0);
-		
+
 		\foreach \x in {-5,...,5} {
 			\draw (\x,0) node[below] {$\x$};
 			\filldraw[black] (\x,0) -- (\x,{(1+rand)*2}) circle (1.5pt);
 		};
-		
+
 		\draw (0,-1) node[below] {7\textsuperscript{ο} εξάμηνο};
 	\end{tikzpicture}
-	
+
 	\paragraph{Κβαντισμένο}
 	\begin{invitemize}
 		\item \( n \in \mathbb Z \)
@@ -152,11 +182,11 @@
 	\begin{tikzpicture}
 	\draw[->,gray] (0,0) -- (0,4.5);
 	\draw[->,gray] (-4,0) -- (4,0);
-	
+
 	\draw[gray,dashed] (-4,1) -- (4,1);
 	\draw[gray,dashed] (-4,2) -- (4,2);
 	\draw[gray,dashed] (-4,3) -- (4,3);
-	
+
 	\filldraw[black] (-3,0) node[below] {$-3$} -- (-3,1) circle (1.5pt);
 	\filldraw[black] (-2,0) node[below] {$-2$} -- (-2,2) circle (1.5pt);
 	\filldraw[black] (-1,0) node[below] {$-1$} -- (-1,1) circle (1.5pt);
@@ -166,29 +196,29 @@
 	\filldraw[black] ( 3,0) node[below] {$3$} -- (3,2) circle (1.5pt);
 	\draw (1,1) node[cross=10pt,red!50!black] {};
 	\end{tikzpicture}
-	
+
 	\paragraph{Στοχαστικό}
 	Περιέχει και τις τρεις κατηγορίες
-	
+
 	\subsection{Σύστημα}
 	\begin{tikzpicture}[scale=0.8]
 		\draw (-1,1) rectangle (3,-1) node[midway] {system};
-		
+
 		\draw[->] (-5,0) -- (-1,0) node[midway,above] {$x(t)$} node[midway,below] {input signal};
 		\draw[->] (3,0) -- (7,0) node[midway,above] {$y(t)$} node[midway,below] {output signal};
 	\end{tikzpicture}
-	
+
 	\subsection{Περιοδικά σήματα}
 	Αν \( \exists T \in \mathbb R : \forall t \in \mathbb R \quad x(t)=x(t+T) \)
 	τότε \( x(t) \) \textbf{περιοδικό σήμα} με περίοδο \( T \).
-	
+
 	Ή θα είναι 0, ή θα συνεχιστεί για πάντα.
-	
+
 	\[
 	\int_{-\sfrac{T}{2}}^{\sfrac{T}{2}} x(t) \dif t =
 	\int_{t_0-\sfrac{T}{2}}^{t_0+\sfrac{T}{2}} x(t) \dif t\ \forall t
 	\]
-	
+
 	Η σύνθεση μιας συνάρτησης με μια περιοδική συνάρτηση είναι περιοδική;
 	\subparagraph{Απόδ.}
 		Έστω \(g\) μία περιοδική συνάρτηση:
@@ -196,14 +226,14 @@
 		\big(f\circ g\big)(x) &= f\left(g(x)\right) = f \left( g(x+T) \right) =
 		\\ &= \big(f\circ g\big)(x+T)
 		\end{align*}
-	
+
 	\subsection{Συμμετρίες}
 	\begin{itemize}
 	    \item Αν \( x(t) = x(-t) \ \forall t \) τότε η \( x(t) \) λέγεται \textbf{άρτια συνάρτηση} (even function).
-	    
+
 	    \item Αν \( x(t) = -x(t) \ \forall t \) τότε η \( x(t) \) λέγεται \textbf{περιττή συνάρτηση} (odd function).
 	\end{itemize}
-	
+
 	\paragraph{}
 	\( \forall x(t) \quad \exists\ x_0(t), x_e(t): x(t) = x_e(t)+x_0(t) \)
 	\subparagraph{Απόδ.}
@@ -211,7 +241,7 @@
 		x_e(t) &= \frac{x(t)+x(-t)}{2} \\
 		x_o(t) &= \frac{x(t)-x(-t)}{2}
 	\end{align*}
-	
+
 	\paragraph{}
 	\begin{align*}
 		x{\underbrace{_e}_{\mathclap{\text{άρτια}}}}y_e &= z_e\\
@@ -221,7 +251,7 @@
 		\int_{-\infty}^\infty x_0(t)\dif t &= ? \text{ (εξαρτάται)} \\
 		\lim_{A\to \infty} \int_{-A}^A x_0(t)\dif t &= 0 \quad \text{(principal Cauchy value)}
 	\end{align*}
-	
+
 	\subparagraph{Χαρακτηριστικά σήματα}
 	\begin{enumpar}
 		\item \textbf{Εκθετικό σήμα}
@@ -231,9 +261,9 @@
 		\begin{tikzpicture}
 		\draw[->,gray] (0,0) -- (0,4);
 		\draw[->,gray] (-2,0) -- (4,0) node[below right] {$t$};
-		
+
 		\draw (1,3) node {$c > 0$};
-		
+
 		\draw[xscale=3,domain=-0.7:1.3,smooth,variable=\x,blue] plot ({\x},{exp(\x)});
 		\draw[xscale=3,domain=1.3:-1.2,dashed,smooth,variable=\x,blue] plot ({\x},{exp(-\x)});
 		\draw (4,1) node[anchor=north east,blue] {$a < 0$};
@@ -249,15 +279,15 @@
 		\item \textbf{(Συν)ημιτονοειδή σήματα}
 		\[
 		x(t) = A \cos(\omega t\pm \phi)
-		= a \mathrm{Re} \left\lbrace e^{j(\omega t +\phi)} \right\rbrace 
+		= a \mathrm{Re} \left\lbrace e^{j(\omega t +\phi)} \right\rbrace
 		= A \frac{e^{j(\omega t \pm \phi)} + e^{-j(\omega t\pm \phi)}}{2}
 		\]
 		\item \textbf{Δέλτα Dirac} \( \bm{ \delta(t)} \)
 		\begin{tikzpicture}[scale=1.3]
 		\draw[->,gray] (0,-2) -- (0,2);
 		\draw[->,gray] (-2,0) -- (4,0) node[below right] {$t$};
-		
-		
+
+
 		\draw[scale=1,domain=0:4,samples=200,smooth,variable=\x,blue,thick] plot ({\x},{sin((\x r)*20)*exp(-\x)});
 		\end{tikzpicture}
 	    \paragraph{Ορ.}
@@ -295,7 +325,7 @@
 	    	\)
     	\end{enumerate}
 	\end{enumpar}
-	
+
 	\paragraph{}
 	%TODO Rekanos Graph 04 again!
 	\begin{gather*}
@@ -304,7 +334,7 @@
 		y_1(t) = \mathscr{L}\left\lbrace x_1(t) \right\rbrace \\
 		y_2(t) = \mathscr{L}\left\lbrace x_2(t) \right\rbrace
 	\end{gather*}
-	
+
 	Για const \( a_1, a_2 \in \mathbb R  \)
 	\begin{align*}
 	x(t) &= a_1x_1(t)+a_2x_2(t) \\
@@ -314,18 +344,18 @@
 	\intertext{τότε}
 	\mathscr{L}: \text{ γραμμικό σύστημα}
 	\end{align*}
-	
+
 	\begin{itemize}
 		\item \(g(t) = \mathscr{L}\left\lbrace x(t) \right\rbrace\)
-		
+
 		\( x'(t)=x(t-\tau) \)
-		
+
 		ανν \( y'(t) = \mathscr{L} \left\lbrace x'(t) \right\rbrace
 		= \mathscr{L} \left\lbrace x(t-\tau)^2 \right\rbrace = y(t-\tau)
 		 \)
-		 
+
 		 τότε το σύστημα \( \mathscr L \) είναι αμετάβλητο κατά τη μετατόπιση.
-		
+
 	\end{itemize}
 
     %TODO Rekanos Graph 09
@@ -338,10 +368,10 @@
     \begin{align*}
     y(t) &= \mathscr L \left\lbrace y(t) \right\rbrace =
     \mathscr L \left\lbrace \int_{-\infty}^{\infty} x(t)\delta(t-\tau) \dif \tau
-     \right\rbrace 
+     \right\rbrace
      \\ & \overset{\text{linearity}}{=} \int_{-\infty}^{\infty} \mathscr L
      \left\lbrace x(\tau)\delta(t-\tau) \right\rbrace
-     \\ &= \int_{-\infty}^{\infty} x(\tau) \mathscr L \left\lbrace 
+     \\ &= \int_{-\infty}^{\infty} x(\tau) \mathscr L \left\lbrace
      \delta(t-\tau)
       \right\rbrace \dif \tau
       \\ & \underset{TSI}{\overset{\text{ΑΚΜ}}{=}}
@@ -351,9 +381,9 @@
         \underbrace{h(t-\tau)}_{\mathclap{\text{linear time-shift invariant}}}
         \dif\tau
     \end{align*}
-    
+
     \paragraph{}
-    
+
     \begin{itemize}
     	\item \( \delta(t)=\delta(-t) \) άρτια συνάρτηση
     	\item \( \delta^{(n)}(t) = \od[n]{}{t}\delta(t) \), για την οποία
@@ -363,7 +393,7 @@
             = (-1)^n\left.\phi^{(n)}(t)\right|_{t=0}
         \]
     \end{itemize}
-    
+
     \subsubsection{Βηματική Συνάρτηση (Unit Step Function)}
     \[
     \mathrm u(t) = \begin{cases}
@@ -373,7 +403,7 @@
     \]
     \[
     \int_{-\infty}^{\infty} \mathrm u(t)\phi(t)\dif t =
-    \mathscr N_{\mathrm u}\left\lbrace \phi(t) \right\rbrace = 
+    \mathscr N_{\mathrm u}\left\lbrace \phi(t) \right\rbrace =
     \int_0^\infty \underbrace{\phi(t)}_{\mathclap{\text{number}}}\dif t
     \]
     \begin{tikzpicture}
@@ -389,13 +419,13 @@
     %\addplot+[const plot, no marks, thick] coordinates {(0,0) (1,0.25) (2,0.4) (3,0.5) (4,1) (4.49,1)} node[below=1.15cm,pos=.76,black] {$F_y$};
     \end{axis}
     \end{tikzpicture}
-    
+
     \begin{align*}
     \delta(t) &= \od{}{t} \mathrm u(t)\\
     \mathrm u(t) &= \int_{-\infty}^t \delta(\tau)\dif\tau =
     \int_0^\infty \delta(t-\xi)\dif\xi
     \end{align*}
-    
+
     \subsubsection{Ράμπα}
     \[
     \mathrm r(t) = \int_{-\infty}^t \mathrm u(\tau)\dif\tau =
@@ -404,13 +434,13 @@
     0 \quad & \text{else}
     \end{cases} = t\mathrm u(t)
     \]
-    
+
     %TODO Rekanos Graph 11
-    
+
     \[
     \mathrm u(t) =\od{}{t} \mathrm r(t)
     \]
-    
+
     \subsubsection{Ορθογωνικός παλμός (Rectangular Pulse function)}
     \[
     \mathrm p_a(t) = \begin{cases}
@@ -418,17 +448,17 @@
     0 &\quad |t| > a
     \end{cases}
     \]
-    
+
     %TODO Rekanos Graph 12
     %TODO Rekanos Graph 13
-    
+
     \begin{align*}
     \mathrm p_a(t) =& \mathrm u(t+a) - \mathrm u(t-a) \\
     \od{}{t} \mathrm p_a(t) =& \delta(t+a)-\delta(t-a)
     \end{align*}
-    
+
     %TODO Rekanos Graph 14
-    
+
     \subsubsection{Τριγωνικός Παλμός (Triangular Pulse function)}
     \[
     \mathrm p_{\mathrm{tr},a} = \begin{cases}
@@ -443,14 +473,14 @@
     \right]
     \]
     %TODO Rekanos Graph 16
-    
+
     \subsection{Χαρακτηριστικά Μεγέθη}
     \begin{enumpar}
     	\item \textbf{Μέση τιμή (Mean Value)}
     	\[
     	\overline{x(t)} = \frac{1}{t_2-t_1} \int_{t_1}^{t_2}x(t)\dif t
     	\]
-    	
+
     	Αν περιοδική τότε \begin{align*}
     	\bar x(t) &= \frac{1}{T} = \int_0^T x(t)\dif t \\
     	&= \frac{1}{T} \int_{t_0}^{t_0+T} x(t)\dif t
@@ -463,7 +493,7 @@
     	\]
     	Αν ημιτονοειδές σήμα \(\bar{\bar{x}}(t) = \frac{x_{\max}}{\sqrt{2}}
     	\)
-    	
+
     	\item \textbf{Ενέργεια - Ισχύς}
     	\begin{itemize}
     		\item Στιγμιαία ισχύς (Instant power)
@@ -483,16 +513,15 @@
     		\right)^2
     		\]
     	\end{itemize}
-    	
+
     	\textbf{Σήματα} \( \begin{dcases}
     	\text{\textbf{Σήμα ενέργειας} αν} \lim_{T\to \infty}W< \infty
     	\\ \\
-    	\text{\textbf{Σήμα ισχύος} αν} \lim_{T\to \infty}\overline{p(t)}>0  
+    	\text{\textbf{Σήμα ισχύος} αν} \lim_{T\to \infty}\overline{p(t)}>0
 	    \\ \text{Υπάρχουν και σήματα που δεν είναι ούτε ενέργειας, ούτε ισχύος.}
     	\end{dcases}
     	\)
     \end{enumpar}
-    
-    
-	
+
+
 \end{document}
