@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper,titlepage,fleqn]{article}
+\documentclass[11pt,a4paper,titlepage,fleqn]{article}
 %\usepackage[utf8]{inputenc}
 %\usepackage[greek]{babel}
 \usepackage{amsmath}
@@ -38,7 +38,7 @@
 %\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
 %\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
 \usepackage{polyglossia}
-\newfontfamily\greekfont[Script=Greek]{Ubuntu Light}
+\newfontfamily\greekfont[Script=Greek,Scale=0.95]{Ubuntu Light}
 \newfontfamily\greekfontsf[Script=Greek]{Arial}
 \newfontfamily\greekfonttt[Script=Greek]{Latin Modern Mono}
 %\usepackage[greek]{babel}
@@ -109,71 +109,76 @@
 	\url{http://users.auth.gr/natreas} \\
 	Σημειώσεις: Εγώ Κεφ. 3-4-5 \\
 	Κεχαγιάς Κεφ. 1-2-6
-	
+
 	Βιβλία:
 	\begin{itemize}
 		\item Churchill - Brown (για μηχανικούς)
 		\item Marjden (πιο μαθηματικό)
 	\end{itemize}
-	
+
 	\part{Ατρέας}
 	\section{Μιγαδικοί Αριθμοί}
 	\textbf{Έστω} \( \mathbb C = \left\lbrace z = \overbrace{(x,y)}^{\mathclap{\text{γεωμετρική παράσταση μιγαδικού}}};\ x,y\in\mathbb R  \right\rbrace \)
-	
+
 	Είναι σύνολο εφοδιασμένο με τις πράξεις:
 	\begin{enumgreekparen}
 		\item Πρόσθεση μιγαδικών
-		
+
 		Αν \( z_1=(x_1,y_1) \) και \( x_2=(x_2,y_2) \), τότε:\[
 		z_1+z_2 = (x_1+x_2,\ y_1+y_2)
 		\]
-		
+
 		\item Γινόμενο \( \lambda \in \mathbb R  \) με μιγαδικό \( z \)
-		
+
 		Αν \( z=(x,y) \), τότε ορίζω:
 		\[
 		\lambda z = (\lambda x,\lambda y)
 		\]
-		
+
 		\item \attnboxed{\text{Πολλαπλασιασμό μιγαδικών αριθμών}}
-		
+
 		Αν \( z_1=(x_1,y_1),\ z_2=(x_2,y_2) \), τότε ορίζω:
 		\[
 		z_1z_2 = \left(x_1x_2-y_1y_2,\ x_1y_2+x_2y_1\right)
 		\]
 	\end{enumgreekparen}
-	
+
 	Καλείται σύνολο των μιγαδικών αριθμών.
-	
+
 	\begin{itemize}
 		\item Δεν μπορώ να συγκρίνω μιγαδικούς
 		\item Οι γνωστές ιδιότητες των πράξεων ισχύουν στους μιγαδικούς
 	\end{itemize}
-	
+
 	Η γεωμετρική παράσταση του \( \mathbb C \) είναι το λεγόμενο μιγαδικό επίπεδο.
-	
-	%TODO Atreas Graph 01
+
 	\begin{center}
 	\begin{tikzpicture}[scale=2.5]
-		\draw[->] (0,-1.5) -- (0,1.5);
-		\draw[->] (-1.5,0) -- (1.5,0);
-		
-		\draw[dashed] (0,1) -- (1,1) -- (1,0);
+		\draw[->] (0,-1.3) -- (0,1.5);
+		\draw[->] (-1.5,0) -- (1.7,0);
+
+		\draw[dashed] (0,1) -- (1,1) -- (1,-1);
 		\filldraw (1,1) circle(0.8pt) node[above right] {$z=(x,y)$} ;
 		\filldraw (0,1) circle(0.6pt) node[below right] {$(0,1)=i$};
 		\filldraw (1,0) circle(0.6pt);
-		
-		\draw[->] (0.7,-1) -- (0.7,-0.2) node[midway,right] {πραγματικός άξονας \( \Re(z) \)};
-		
-		\draw[->] (-1,0.7) -- (-0.2,0.7) node[midway,below] {φανταστικός άξονας \( \Im(z) \)};
-		
+
+		\draw[->] (1.4,-0.8) -- (1.4,-0.2) node[midway,right] {πραγματικός άξονας \( \Re(z) \)};
+
+		\draw[->] (-1,0.7) -- (-0.2,0.7) node[pos=.1,below] {φανταστικός άξονας \( \Im(z) \)};
+
+		\draw[gray,->] (0,0) -- (1,1);
+		\draw[->] (.3,0) arc (0:45:.3) node[midway,right] {$\theta$};
+
+		\draw[gray,->] (0,0) -- (1,-1);
+		\draw[->] (.3,0) arc (0:-45:.3);
+		\filldraw (1,-1) circle(0.8pt) node[right] {$\bar z=(x,-y)$} ;
 	\end{tikzpicture}
 	\end{center}
-	
+
 	\[
 	x \in \mathbb R \xleftrightarrow{\text{1-1}} A = \left\lbrace (x,0): x \in \mathbb R  \right\rbrace
 	\]
-	
+
 	\begin{itemize}
 		\item \(
 		    (x,0),(y,0) \in A \implies (x,0)+(y,0)=(x+y,0) \in A
@@ -182,36 +187,36 @@
 		    (x,0)(y,0) = (xy,0) \in A
 		\)
 	\end{itemize}
-	
+
 	Στο εξής γράφω: \begin{align*}
 	    1 &= (1,0) \\
 	    x &= (x,0)
 	\end{align*}
-	
+
 \textbf{Ορίζω}:
 	\[
 	\mathlarger{\mathlarger{\mathlarger{i = (0,1)}}}
 	\]
 	και καλείται φανταστική μονάδα του μιγαδικού επιπέδου.
-	
+
 	\begin{gather*}
 	i^2 = (0,1)(0,1) = (0\cdot0-1\cdot1,\ 0\cdot1+1\cdot0) = (-1,0) = -1 \\
 	\boxed{i^2=-1}
 	\end{gather*}
-	
+
 	\textbf{Έτσι}:
 	\begin{gather*}
 	    z=(x,y) = x(1,0) + y(0,1) \\
 	    \overset{x=(x,0)}{\underset{i=(0,1)}{=}} x \cdot 1 + yi \\
 	    \implies \boxed{z=x+iy}
 	\end{gather*}
-	
+
 	\[
 	\mathlarger{\mathlarger{\underbrace{z=x+iy}_{\mathclap{\text{άλγεβρα}}}
 			\iff \underbrace{z=(x,y)}_{\mathclap{\text{γεωμετρία}}}
 			}}
 	\]
-	
+
 	\paragraph{}
 	Έστω \( z=x+iy \)
 	\begin{gather}
@@ -219,7 +224,7 @@
 		\rho\cos\theta+i\rho\sin\theta = \nonumber
 		\\ = \mathlarger{\rho(\cos\theta+i\sin\theta)}
 	\end{gather}
-	
+
 	Έτσι, η (1) γράφεται ως:
 	\begin{align*}
 	z &= |z| \underbrace{(\cos\theta+i\sin\theta)} \\
@@ -230,12 +235,12 @@
 	\Aboxed{e^{i\theta} = \cos\theta+i\sin\theta} \\
 	\Aboxed{\text{τύπος του Euler}}
 	\end{align*}
-	
+
 	Τελικά: \[
 	\boxed{\mathlarger{\mathlarger{\mathlarger{\mathlarger{z=|z|e^{i\theta}}}}}}
 	\text{ (πολική μορφή μιγαδικών)}
 	\]
-	
+
 	\subparagraph{Σημείωση:} \( \cos\theta + i\sin\theta \)
 	\begin{gather*}
 	\overset{\text{σειρές}}{\underset{\text{McLaurin}}{=}} \left(
@@ -251,20 +256,19 @@
 	1 + (i\theta) + \frac{(i\theta)^2}{2!} + \frac{(i\theta)^3}{3!}
 	+ \dots + \frac{(i\theta)^n}{n!} + \dots = \mathlarger{e^{i\theta}}
 	\end{gather*}
-	
+
 	\begin{itemize}
 		\item Ορίζω {\large πρωτεύον όρισμα} \( \mathlarger{\mathlarger{\mathrm{Arg} z}} \) (μη μηδενικού) μιγαδικού \( z \) να είναι η γωνία \( \theta \)
 		που σχηματίζει ο θετικός πραγματικός ημιάξονας του \( \mathbb C \) με την
 		ημιευθεία \( OA \), όπου \( A \) το σημείο της γεωμετρικής παράστασης του
 		\( z=x+iy \).
 	\end{itemize}
-		
+
 	\subparagraph{Έτσι:}
-	%TODO \arg = \mathrm{Arg}
 	\[
 	z = |z|e^{i\arg z} \quad \text{πολική μορφή του } z
 	\]
-	
+
 	\begin{align*}
 	z_1z_2 &= |z_1|e^{i\arg z_1}|z_2|e^{i\arg z_2} \\
 	\Aboxed{z_1z_2 &= |z_1||z_2|e^{i(\arg z_1 + \arg z_2)}
@@ -274,19 +278,31 @@
 	\frac{z_1}{z_2} &= \frac{|z_1|}{|z_2|} \frac{e^{i\theta_1}}{e^{i\theta_2}}
 	\\ &= \left| \frac{z_1}{z_2} \right| e^{i(\theta_1-\theta_2)}
 	\end{align*}
-	
-	%TODO Atreas Graph 02
-	
+
+	\begin{tikzpicture}[scale=2.5]
+	\draw[gray,->] (0,-0.7) -- (0,2);
+	\draw[gray,->] (-1.5,0) -- (1.7,0);
+
+	\filldraw (0,0) -- ++(35:1.2) circle(0.6pt) node[above right] {$z_1$};
+	\draw[->] (.3,0) arc (0:35:.3) node[midway,right] {$\theta_1$};
+
+	\filldraw (0,0) -- ++(75:1.7) circle(0.6pt) node[above right] {$z_2$};
+	\draw[->] (.6,0) arc (0:75:.6) node[pos=.8,above right] {$\theta_2$};
+
+	\filldraw (0,0) -- ++(110:{1.2*1.7}) circle(0.6pt) node[above right] {$z_1z_2$};
+	\draw[->] (1,0) arc (0:110:1) node[pos=.6,above right] {$\theta_1+\theta_2$};
+	\end{tikzpicture}
+
 	\textbf{Ιδιότητα:} \( z\bar{z} = |z|^2 \)
-	
+
 	\section{Μιγαδικές συναρτήσεις}
 	Κάθε συνάρτηση \( f: A \subseteq \mathbb C \to \mathbb C \) καλείται μιγαδική
 	συνάρτηση μιγαδικής μεταβλητής.
-	
+
 	\[
 	f = \underbrace{f(\underbrace{z}_{\text{η μεταβλητή μιγαδικός}})}_{\text{μιγαδική συνάρτηση διότι έχει τιμή μιγαδική}}
 	\]
-	
+
 	\paragraph{π.χ.}
 	\begin{gather*}
 	f(z) = z^2 \implies
@@ -295,20 +311,20 @@
 	\overset{\text{γεωμετρική}}{\underset{\text{μορφή}}{=}} (x^2-y^2,\ 2xy)
 	\end{gather*}
 	\subparagraph{Τελικά:} \(\boxed{f(x,y)=(x^2-y^2,\ 2xy)} \quad \mathbb R^2 \to \mathbb R^2 \)
-	
+
 	\paragraph{π.χ.}
 	\begin{gather*}
 	f(z) = \frac{1}{|z|\bar{z}} \overset{z=x+iy}{=}
 	\frac{1}{\sqrt{x^2+y^2}}\cdot \frac{z}{\bar{z}z} \\
 	\overset{z\bar{z}=|z|^2}{=} \frac{1}{\sqrt{x^2+y^2}} \cdot \frac{z}{|z|^2}
-	= \frac{x+iy}{(x^2+y^2)^{\sfrac{3}{2}}} 
+	= \frac{x+iy}{(x^2+y^2)^{\sfrac{3}{2}}}
 	\\ \overset{\text{γεωμ}}{=}
-	\frac{(x,y)}{(x^2+y^2)^{\sfrac{3}{2}}} 
+	\frac{(x,y)}{(x^2+y^2)^{\sfrac{3}{2}}}
 	\overset{\vec{r} = (x,y)}{=} \boxed{\frac{\vec{r}}{|\vec{r}|^3}}
 	\end{gather*}
-	
+
 	Κεντρικό διαν. πεδίο που θυμίζει το πεδίο Coulomb.
-	
+
 	\[
 	\underbrace{f=f(z)}_{\mathclap{\text{μιγαδική μιγ. μεταβλ.}}} \xleftrightarrow{\quad\text{1-1}\quad}
 	\begin{array}{l}
@@ -317,10 +333,10 @@
 	\end{array}
 	\]
 	όπου \( u,v \) πραγματ. συναρτ. 2 μεταβλητών
-	
+
 	\paragraph{Υπάρχουν} \( f:A \subseteq \mathbb R \to \mathbb C \),
 	μιγαδικές πραγματικής μεταβλητής
-	
+
 	π.χ \begin{align*}
 	f(t) &= e^{it},\ t \in (0,\pi] \\
 	&= \cos t + i \sin t
@@ -328,15 +344,26 @@
 	\[
 	t \to (\cos t, \sin t) \quad \text{καμπύλη } x^2+y^2=\cos^2 t +\sin^2 t = 1
 	\]
-	
-	%TODO Atreas Graph 03: Circle with center (0,0), radis r=1, f(t)=e^{it}, counterclockwise arrow
+
+	\begin{tikzpicture}[scale=1.5]
+	\draw[->] (0,-1.5) -- (0,1.5);
+	\draw[->] (-1.5,0) -- (1.5,0);
+
+	\draw[thick,
+		decoration={markings, mark=at position 0.125 with {\arrow{>}}},
+		postaction={decorate}
+	] (0,0) circle (1);
+
+	\draw (0,1) node[above right] {$f(t)=e^{it}$};
+	\end{tikzpicture}
+
 	Η γραφ. παράσταση της \( f(t)=e^{it},\ t \in (-\pi,\pi) \) είναι ο μοναδιαίος κύκλος
 	κέντρου \( (0,0) \) με αντιωρολογιακή φορά.
-	
+
 	\[
 	g(t) = 1+it, t\in \mathbb R,\ =(1,t) = (1,0)+t(0,1)
 	\]
-	
+
 	\part{Κεχαγιάς}
 	Σπιτεργασίες λιγότερες από πέρσι, για 1 βαθμό, αφορούν μόνο το μέρος του Κεχ.
 	\begin{enumerate}
@@ -347,9 +374,9 @@
 		\item ΑΡΜΟΝΙΚΕΣ ΣΥΝΑΡΤΗΣΕΙΣ
 		\item ΔΙΑΦΟΡΙΚΕΣ ΕΞΙΣΩΣΕΙΣ με μερικές παραγώγους
 	\end{enumerate}
-	
+
 	\setcounter{section}{0}
-	
+
 	\section{Μιγαδικοί αριθμοί}
 	\begin{align*}
 	    z = & x+iy \in \mathbb C \\
@@ -368,15 +395,32 @@
 	\\ z &= x+iy
 	\\ \bar{z} &= x-iy
 	\\ \Re(z) &= x \in \mathbb R
-	\\ \Im(z) &= y \in \mathbb R 
+	\\ \Im(z) &= y \in \mathbb R
 	\end{align*}
-	
-	%TODO Kehagias Graph 01
+
+	\begin{center}
+		\begin{tikzpicture}[scale=2.5]
+		\draw[->] (0,-0.5) -- (0,1.5) node[above right]{$y$};
+		\draw[->] (-0.5,0) -- (1.7,0) node[below right]{$x$};
+
+		\draw[gray,dashed]
+			(0,1) node[above right,black] {$y$}
+			-- (1,1) --
+			(1,0) node[below,black] {$x$};
+		\filldraw (1,1) circle(0.8pt) node[above right] {$z=x+iy$} ;
+
+		\draw(0,0) -- (1,1) node[midway,above,sloped] {$r$};
+		\draw[->] (.3,0) arc (0:45:.3) node[midway,right] {$\theta$};
+
+		\draw (current bounding box.south) node {$r=\sqrt{x^2+y^2}$};
+		\draw (current bounding box.south) node[below] {$\theta=\arctan\frac{y}{x}$};
+		\end{tikzpicture}
+	\end{center}
 	\[
 	r = \sqrt{x^2+y^2} = \sqrt{z\bar{z}} = |z| \leftarrow \text{μέτρο του } z
 	\]
 	γενίκευση της απόλυτης τιμής (δηλ. \( z=x \in \mathbb R,\ |z|=\sqrt{x^2}=|x| \))
-	
+
 	\begin{align*}
 	z=x+iy &= r\cdot\cos\theta + ir\sin\theta \\
 	&= r(\cos\theta+i\sin\theta) \\
@@ -393,7 +437,7 @@
 	\right)
 	\\ &= \cos\theta+i\sin\theta
 	\end{align*}
-	
+
 	Επίσης:
 	\begin{align*}
 	z &= x+iy \\
@@ -401,7 +445,24 @@
 	\\ &= r \cdot (\cos\theta + i\sin\theta)
 	\\ &= r \cos\theta + ir\sin\theta
 	\end{align*}
-	
+
+	\begin{tikzpicture}[scale=2]
+	\draw[->] (0,-1.5) -- (0,1.5);
+	\draw[->] (-1.5,0) -- (1.5,0);
+
+	\draw[gray,dashed] (0,1) -- (1,1) -- (1,0);
+	\draw[gray,dashed] (0,-1) -- (-1,-1) -- (-1,0);
+
+	\filldraw (1,1) circle(0.8pt) node[above right] {$z_1=1+i$} ;
+	\filldraw (-1,-1) circle(0.8pt) node[above left] {$z_2=-1-i$} ;
+
+	\draw[->,thick] (0,0) -- (1,1);
+	\draw[->,thick] (0,0) -- (-1,-1);
+	\draw[->] (.7,0) arc (0:45:.7);
+	\draw[->] (.2,0) arc (0:225:.2);
+
+	\end{tikzpicture}
+
 	\begin{gather*}
 		z_1=1+i = \sqrt{2}\cdot e^{i\sfrac{\pi}{4}} \\
 		r_1 = \sqrt{1^2+1^2} = \sqrt{2} \\
@@ -414,7 +475,7 @@
 		r_2=\sqrt{(-1)^2+(-1)^2} = \sqrt{2} \\
 		\theta_2 = \arctan\frac{-1}{-1} = \frac{\pi}{4}
 	\end{gather*}
-	
+
 	Γενικά: \( \mathlarger{-1-i=\sqrt{2}e^{i\left(
 			\frac{5\pi}{4}+2k \pi
 			\right)}},\quad k \in \mathbb Z \)
@@ -434,11 +495,11 @@
     \end{cases} \qquad \theta_0 = \arctan\left(\left|\frac{y}{x}\right|\right) \\
     \forall z \in \mathbb C - \left\lbrace 0 \right\rbrace\ \arg(z) \in [0,2\pi)
     \end{gather*}
-    
-    Ορίζω και την πλειότιμη συνάρτηση \( \mathrm{arg}(z) = \left\lbrace 
+
+    Ορίζω και την πλειότιμη συνάρτηση \( \mathrm{arg}(z) = \left\lbrace
     \arg(z)+2k\pi,\ k \in \mathbb Z
      \right\rbrace \)
-     
+
     \begin{align*}
     z = x+iy &= \mathrm{mod}(z) \cdot e^{i\arg(z)}
     \\ &= \mathrm{mod}(z) \cdot e^{i\left(\arg(z)+2k\pi\right)}
@@ -454,7 +515,7 @@
         e^{i\frac{7\pi}{4}}e^{i\frac{7\pi}{4}}    \right) =
          \frac{7\pi}{4} + \frac{7\pi}{4} -2\pi
     \end{align*}
-    
+
     Γενικά, αν \( A+B = \left\lbrace a+b: a \in A, b \in B \right\rbrace \), τότε:
     \[
     \mathrm{arg}(z_1z_2) = \mathrm{arg}(z_1) + \mathrm{arg}(z_2)
@@ -466,22 +527,22 @@
     e^z \overset{\text{ορισμός}}{=} e^xe^{iy}
     = e^x(\cos y+i\sin y)
     \]
-    
+
     Ήξερα \( \begin{array}{l}
     e^x: \mathbb R \to \mathbb R  \\
     e^{iy}: \mathbb R \to \mathbb C
     \end{array} \).
-    
+
     Τώρα η νέα συνάρτηση \( e^z: \mathbb C \to \mathbb C \) και \textbf{γενικεύει}
     τις δύο προηγούμενες συναρτήσεις.
-    
+
     \paragraph{Παρ.}
     \begin{align*}
     e^{1+i}= ee^i &= e\cdot(\cos 1+i\sin 1) \\ &= e\cdot\cos1+i\cdot e\cdot \sin 1
     \\ \Re\left(e^{1+i}\right) &= e\cos1
     \\ \Im\left(e^{1+i}\right) &= e\sin1
     \end{align*}
-    
+
     \paragraph{}
     \begin{align*}
     \log(e) &= 1 \\
@@ -492,7 +553,7 @@
     z &= |z|e^{i\theta} \\
     \log(z) &= \ln\left(|z|\right)+i\theta
     \end{align*}
-    
+
     \paragraph{Ορίζω}
     \subparagraph{Πλειότιμη} \( \log(z) = \ln\left(|z|\right)+i\mathrm{arg}(z) \)
     \subparagraph{Μονότιμη} \( \mathrm{Log}(z) = \ln\left(|z|\right)+i\arg(z)\)
@@ -505,7 +566,7 @@
     \log\left(\sqrt{2}\right) + i\left( \frac{\pi}{4} +2k\pi \right)
     \end{align*}
     \begin{align*}
-    \left\lbrace 
+    \left\lbrace
     \frac{1}{2}\ln(2) + i\left( \frac{\pi}{4} +2 k \pi \right)
      \right\rbrace
     \end{align*}
