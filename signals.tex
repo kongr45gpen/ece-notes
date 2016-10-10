@@ -98,7 +98,7 @@
 
 \newif\ifhidetikz
 \hidetikzfalse
-\hidetikztrue   % <---- comment/uncomment that line
+%\hidetikztrue   % <---- comment/uncomment that line
 
 \ifhidetikz
 
@@ -282,13 +282,45 @@
 		= a \mathrm{Re} \left\lbrace e^{j(\omega t +\phi)} \right\rbrace
 		= A \frac{e^{j(\omega t \pm \phi)} + e^{-j(\omega t\pm \phi)}}{2}
 		\]
-		\item \textbf{Δέλτα Dirac} \( \bm{ \delta(t)} \)
 		\begin{tikzpicture}[scale=1.3]
 		\draw[->,gray] (0,-2) -- (0,2);
 		\draw[->,gray] (-2,0) -- (4,0) node[below right] {$t$};
 
 
 		\draw[scale=1,domain=0:4,samples=200,smooth,variable=\x,blue,thick] plot ({\x},{sin((\x r)*20)*exp(-\x)});
+		\end{tikzpicture}
+
+		\item \textbf{Δέλτα Dirac} \( \bm{ \delta(t)} \)
+
+		\begin{tikzpicture}[scale=1.3]
+		\draw[->,gray] (0,-2) -- (0,2) node[black,below right] {$\delta(t)$};
+		\draw[->,gray] (-1,0) -- (1,0) node[below right] {$t$};
+		\draw (0,0) node[below left] {$0$};
+
+		\draw[very thick,blue,->] (0,0) -- (0,1);
+		\end{tikzpicture}
+		\begin{tikzpicture}[scale=1.3]
+		\filldraw[fill=green!20] (-0.5,0) rectangle (0.5,1) node[above right] {$\sfrac{1}{T}$}
+			node[midway,right] {$1$};
+
+		\draw[->,gray] (0,-2) -- (0,2);
+		\draw[->,gray] (-1.5,0) -- (2,0);
+
+		\draw (current bounding box.east) node[above] {$\lim_{T\to0} P_T(t)=\delta(t)$};
+		\end{tikzpicture}
+		\begin{tikzpicture}[scale=1.3]
+		\filldraw[scale=1,domain=-2:2,samples=200,smooth,variable=\x,fill=green!20]
+			plot ({\x},{exp(-\x*\x)})
+			node[above right] {$G_\sigma(t) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{x^2}{\sigma^2}} $}
+			node[midway,above left] {$1$};
+
+		\draw[->,gray] (0,-2) -- (0,2);
+		\draw[->,gray] (-2,0) -- (2,0);
+
+		\draw[<->,gray] (0.7,{exp(-pow(0.7,2))}) -- (-0.7,{exp(-pow(0.7,2))})
+			node[above left] {$\sigma$};
+
+		\draw (current bounding box.east) node[below left] {$\lim_{T\to0} G_\sigma(t)=\delta(t)$};
 		\end{tikzpicture}
 	    \paragraph{Ορ.}
 	    \[
@@ -302,7 +334,7 @@
 	    \int_{-\infty}^\infty f(t)\delta(t-\tau)\dif \tau &= f(t)
 	    \end{align*}
 	    \paragraph{Ιδιότητες της \( \bm{ \delta(t)} \)}
-	    \begin{enumerate} %TODO enumparen?
+	    \begin{enumerate}
 	    	\item \textbf{Κλιμάκωση}
 	    	\[
 	    	a \in \mathbb R: \delta(at) = \frac{1}{|a|}\delta(t)
@@ -327,7 +359,12 @@
 	\end{enumpar}
 
 	\paragraph{}
-	%TODO Rekanos Graph 04 again!
+	\begin{tikzpicture}[scale=0.8]
+	\draw (-1,1) rectangle (3,-1) node[midway] {system};
+
+	\draw[->] (-5,0) -- (-1,0) node[midway,above] {$x(t)$} node[midway,below] {input signal};
+	\draw[->] (3,0) -- (7,0) node[midway,above] {$y(t)$} node[midway,below] {output signal};
+	\end{tikzpicture}
 	\begin{gather*}
 		y(t) = \mathscr{L}\left\lbrace x(t) \right\rbrace \\
 		\forall x_1(t)\ x_n(t)\\
@@ -358,7 +395,17 @@
 
 	\end{itemize}
 
-    %TODO Rekanos Graph 09
+	\paragraph{}
+
+    \begin{tikzpicture}[scale=0.8]
+    \draw (-1,-1) rectangle (3,1) node[above right] {$\mathscr L\left\lbrace\right\rbrace$} node[midway] {γραμμικό \& ΑΚΜ};
+
+
+    \draw[->] (-5,0) -- (-1,0) node[midway,above] {$\delta(t)$} node[midway,below] {input signal};
+    \draw[->] (3,0) -- (14,0) node[midway,above] {$\mathrm h(t)$}
+	    node[midway,below] {κρουστική απόκριση (impulse response)};
+    \end{tikzpicture}
+
     Υποστηρίζω ότι ένα γραμμικό \& ΑΚΜ σύστημα περιγράφεται πλήρως από την κρουστική
     απόκριση \( h(t) \).
     \subparagraph{Απόδ.} Από παραπάνω, γνωρίζουμε ότι
@@ -435,7 +482,14 @@
     \end{cases} = t\mathrm u(t)
     \]
 
-    %TODO Rekanos Graph 11
+    \begin{tikzpicture}
+    	\draw[->] (0,-0.5) -- (0,4) node[right] {$\mathrm r(t)$};
+    	\draw[->] (-2,0) -- (4,0) node[below] {$t$};
+
+    	\draw (0,0) node[below right] {$0$};
+
+    	\draw[very thick,blue] (-2,0) -- (0,0) -- (3.5,3.5);
+    \end{tikzpicture}
 
     \[
     \mathrm u(t) =\od{}{t} \mathrm r(t)
@@ -449,15 +503,57 @@
     \end{cases}
     \]
 
-    %TODO Rekanos Graph 12
-    %TODO Rekanos Graph 13
+    \begin{tikzpicture}
+    \draw[->] (0,-0.5) -- (0,3) node[right] {$\mathrm r(t)$};
+    \draw[->] (-2,0) -- (2,0) node[below] {$t$};
+
+    \draw[very thick,blue]
+	    (-1,0) node[below,black] {$-a$} --
+	    (-1,1.5) node[above left, black] {$1$} --
+	    (1,1.5) --
+	    (1,0) node[below,black] {$a$};
+    \end{tikzpicture}
+
+    \subparagraph{}
+
+    \begin{tikzpicture}
+    \draw[->] (0,-0.5) -- (0,2);
+    \draw[->] (-2,0) -- (3,0) node[below] {$t$};
+
+    \draw[very thick,blue]
+    (-3,0) --
+    (-1,0) node[below,black] {$-a$} --
+    (-1,1) --
+    (3,1) node[above right] {$\mathrm u(t+a)$};
+    \end{tikzpicture}
+    \begin{tikzpicture}
+    \draw[->] (0,-0.5) -- (0,2);
+    \draw[->] (-2,0) -- (3,0) node[below] {$t$};
+
+    \draw[very thick,blue]
+    (-3,0) --
+    (1,0) node[below,black] {$a$} --
+    (1,1) --
+    (3,1) node[above right] {$\mathrm u(t-a)$};
+    \end{tikzpicture}
 
     \begin{align*}
     \mathrm p_a(t) =& \mathrm u(t+a) - \mathrm u(t-a) \\
     \od{}{t} \mathrm p_a(t) =& \delta(t+a)-\delta(t-a)
     \end{align*}
 
-    %TODO Rekanos Graph 14
+    \begin{tikzpicture}
+    \draw[->] (0,-0.5) -- (0,3) node[right] {$\od{}{t}\mathrm p_a(t)$};
+    \draw[->] (-2,0) -- (2,0) node[below] {$t$};
+
+    \draw[very thick,blue,->]
+    (-1,0) node[below,black] {$-a$} --
+    (-1,1.5) node[above] {$\delta(t+a)$};
+
+    \draw[very thick,blue,->]
+    (1,0) node[above,black] {$a$} --
+    (1,-1.5) node[below] {$-\delta(t-a)$};
+    \end{tikzpicture}
 
     \subsubsection{Τριγωνικός Παλμός (Triangular Pulse function)}
     \[
@@ -466,7 +562,17 @@
     0 &\quad |t|>a
     \end{cases}
     \]
-    %TODO Rekanos Graph 15
+    \begin{tikzpicture}[scale=1.2]
+    \draw[->] (0,-0.5) -- (0,2) node[right] {$\mathrm p_{\mathrm{tr},a}(t)$};
+    \draw[->] (-2,0) -- (2,0) node[below] {$t$};
+
+    \draw[very thick,blue]
+    (-2,0) --
+    (-1,0) node[below,black] {$-a$} --
+    (0,1.5) node[above left, black] {$1$} --
+    (1,0) node[below,black] {$a$} --
+    (2,0);
+    \end{tikzpicture}
     \[
     p_{\mathrm{tr},a}(t) = \frac{1}{a} \left[
         \mathrm r(t+a) + \mathrm r(t-a) - 2\mathrm r(t)
