@@ -98,7 +98,7 @@
 
 \newif\ifhidetikz
 \hidetikzfalse
-%\hidetikztrue   % <---- comment/uncomment that line
+\hidetikztrue   % <---- comment/uncomment that line
 
 \ifhidetikz
 
@@ -628,6 +628,91 @@
     	\end{dcases}
     	\)
     \end{enumpar}
+    
+    \subsection{Συνέλιξη}
+    \[ x(t) = \int_{-\infty}^{\infty}x(t)\delta(t-\tau)d\tau \]
+    %TODO Rekanos Graph 09 (again)
+    \[ h(t)=\mathscr L\left\lbrace \delta(t) \right\rbrace \]
+    \[ y(t) = \int_{-\infty}^{\infty} x(\tau)h(t-\tau)\dif\tau 
+    = \underbrace{x(t)}_{\mathclap{\text{είσοδος}}} 
+    \underbrace{*}_{\text{συνέλιξη}}
+    \underbrace{h(t) }_{\mathclap{\text{κρουστική απόκριση}}}\]
+    
+    \paragraph{Συνέλιξη - Convolution}
+    \[
+    z(t)=x(t)*y(t)=\int_{-\infty}^{\infty} x(\tau)y(t-\tau)\dif\tau
+    \]
+    
+    \paragraph{}
+    \begin{itemize}
+    	\item \(x(t)*y(t)=y(t)*x(t)\) \textbf{Αντιμεταθετική}
+    	\subparagraph{}
+    	\[
+    	\int_{-\infty}^{\infty} x(\tau)y(t-\tau)\dif\tau
+    	= \int_{-\infty}^{\infty} x(t-\lambda)y(\lambda)[-\dif\lambda]
+    	= \int_{-\infty}^{\infty} y(\lambda)x(t-\lambda)\dif\lambda
+    	= y(t)*x(t)
+    	\]
+    	\item \( x_1(t)*\left[x_2(t)*x_3(t)\right] = 
+    	\left[x_1(t)*x_2(t)\right]*x_3(t) \) \textbf{Προσεταιριστική}
+    \end{itemize}
+    
+    \paragraph{Παρ.}
+    \begin{align*}
+    f_1(t) &= 2(1-t)\left[ \mathrm u(t)-u(t-1) \right] \\
+    f_2(t) &= \mathrm u(t) - \mathrm u(t-\tau)
+    \end{align*}
+    
+    \subparagraph{Γραφική μέθοδος υπολογισμού συνέλιξης}
+    %TODO Rekanos Graph 17
+    %TODO Rekanos Graph 18
+    %TODO Rekanos Graph 19
+    %TODO Rekanos Graph 20
+    %TODO Rekanos Graph 21
+    \subparagraph{}
+    Παρατηρώ ότι: \[
+    \int_{-\infty}^{\infty} f(t,\tau) \mathrm u(t-\xi)\mathrm u(\phi-\tau)\dif\tau
+    = \int_{\xi}^\phi f(t,\tau)\dif\tau\mathrm u(\phi-\xi)
+    \]
+    
+    \begin{align*}
+    f(t) &= \int_{-\infty}^{\infty}
+    \underbrace{2(1-\tau)}_{\mathclap{x(\tau)}}\left[\mathrm u(\tau)-\mathrm u(\tau+1) \right]\left[
+    \mathrm u(t-\tau)-\mathrm u(t-\tau-2)
+    \right] \dif\tau \\
+    &= \int_{-\infty}^{\infty} x(\tau) \left[
+    \mathrm u(\tau)\mathrm u(t-\tau)-\mathrm u(\tau-1)\mathrm u(t-\tau)
+    -\mathrm u(\tau)\mathrm u(t-\tau-2)+\mathrm u(\tau-1)\mathrm u(t-\tau-2)
+    \right]\dif\tau \\
+    &= \int_0^t x(\tau)\dif\tau\mathrm u(t)
+    -\int_1^x x(\tau)\dif\tau \mathrm u(t-1)
+    -\int_0^{t-2}x(\tau)\dif\tau \mathrm u(t-2)
+    +\int_1^{t-2}x(\tau)\dif\tau\mathrm u(t-3)
+    \\ &= (2t-t^2)\mathrm u(t) - \left[2t-t^2-1\right]\mathrm u(t-1)
+    - \left[ 2(t-2)-(t-2)^2 \right] \mathrm u(t-2)+
+    \left[
+    2(t-2)-(t-2)^2-1
+    \right] \mathrm u(t-3)
+    \end{align*}
+    
+    \paragraph{Ex}
+    \begin{align*}
+    f_1(t) &= e^t\mathrm u(-t) \\
+    f_2(t) &= \mathrm u(t+2)-u(t+1) \\
+    f &= f_1*f_2
+    \end{align*}
+    \begin{align*}
+    f &= \int_{-\infty}^{\infty}  e^\tau \mathrm u(-\tau)
+    \mathrm u\left( -(t-\tau)+2 \right)\dif\tau
+    \\&= \int_{-\infty}^{\infty} e^\tau \mathrm u(-\tau)
+    \mathrm u(\tau-t+2)\dif\tau
+    \\&= \int_{t-2}^0 e^\tau\dif\tau\mathrm u(t-2)
+    \\&= \left. e^\tau \right|_{t-2}^0\mathrm u(2-t)
+    \\&=\left[ 1-e^{t-2} \right]\mathrm u(2-t)
+    \end{align*}
+    
+
+
 
 
 \end{document}
