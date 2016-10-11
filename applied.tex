@@ -1,109 +1,17 @@
 \documentclass[11pt,a4paper,titlepage,fleqn]{article}
-%\usepackage[utf8]{inputenc}
-%\usepackage[greek]{babel}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{commath}
-\usepackage{xcolor}
-\usepackage{hyperref}
-\usepackage[skins,theorems]{tcolorbox}
-\usepackage{titlesec}
-\usepackage{circuitikz}
-\usepackage{pgfplots}
-\usepackage{mathtools}
-\usepackage[makeroom]{cancel}
-\usepackage{mathrsfs}
-\usepackage{wrapfig}
-\usepackage{subcaption}
-\usepackage{floatrow}
-\usepackage{esint}
-\usepackage{enumitem}
-\usepackage{bm}
-\usepackage{relsize}
-\usepackage{xfrac}
 
+\input{preamble.tex}
 
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{patterns}
-\usetikzlibrary{decorations.pathmorphing,patterns}
-\usetikzlibrary{decorations.markings}
-\usetikzlibrary{backgrounds}
-
-\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
-
-\usepackage[no-math]{fontspec}
 \setmainfont{Ubuntu Light}
 \setsansfont{Arial}
 %\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
 %\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
 \usepackage{polyglossia}
 \newfontfamily\greekfont[Script=Greek,Scale=0.95]{Ubuntu Light}
-\newfontfamily\greekfontsf[Script=Greek]{Arial}
-\newfontfamily\greekfonttt[Script=Greek]{Latin Modern Mono}
-%\usepackage[greek]{babel}
-\setdefaultlanguage{greek}
-\setotherlanguage{english}
-\newcommand{\textlatin}[1]{#1}
-%\newcommand{\mathlarger}{}
-
-%\usepackage[utf8]{inputenc}
-%\usepackage[greek]{babel}
-
-
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{calc}
-%\usepackage{tkz-euclide} % loads  TikZ and tkz-base
-%\usetkzobj{angles} % important you want to use angles
-
-\newlist{enumparen}{enumerate}{1}
-\setlist[enumparen]{label=(\arabic*)}
-\newlist{enumpar}{enumerate}{1}
-\setlist[enumpar]{label=\arabic*)}
-
-\newlist{enumgreek}{enumerate}{1}
-\setlist[enumgreek]{label=\alph*.}
-\newlist{enumgreekparen}{enumerate}{1}
-\setlist[enumgreekparen]{label=(\alph*)}
-\newlist{enumgreekpar}{enumerate}{1}
-\setlist[enumgreekpar]{label=\alph*)}
-
-
-\newlist{enumroman}{enumerate}{1}
-\setlist[enumroman]{label=(\@alph*)}
-
-\newlist{enumlatin}{enumerate}{1}
-\setlist[enumlatin]{label=(\alph*)}
-
-\newlist{invitemize}{itemize}{1}
-\setlist[invitemize]{noitemsep,label=}
-
-
-
-\makeatletter
-\let\anw@true\anw@false
-
-%\newcommand{\attnboxed}[1]{\textcolor{red}{\fbox{\normalcolor\m@th$\displaystyle#1$}}}
-\makeatother
-\tcbset{highlight math style={enhanced,colframe=red,colback=white,%
-		arc=0pt,boxrule=1pt,shrink tight,boxsep=1.5mm,extrude by=0.5mm}}
-\newcommand{\attnboxed}[1]{\tcbhighmath[colback=red!5!white,drop fuzzy shadow,arc=0mm]{#1}}
-\titleformat{\section}{\bf\Large}{Κεφάλαιο \thesection}{1em}{}
-\newtcolorbox{attnbox}[1]{colback=red!5!white,%
-	colframe=red!75!black,fonttitle=\bfseries,title=#1}
-\newtcolorbox{infobox}[1]{colback=blue!5!white,%
-	colframe=blue!75!black,fonttitle=\bfseries,title=#1}
-
-\renewcommand{\arg}{\mathrm{Arg}}
-\renewcommand{\Re}{\mathrm{Re}}
-\renewcommand{\Im}{\mathrm{Im}}
-
 
 \title{Εφαρμοσμένα Μαθηματικά - Σημειώσεις}
 \date{2016}
 \author{\textlatin{\csuse{no\greek @numbers}\selectlanguage{english} \url{https://github.com/kongr45gpen/ece-notes}}}
-
-
 
 \begin{document}
 	\url{http://users.auth.gr/natreas} \\
