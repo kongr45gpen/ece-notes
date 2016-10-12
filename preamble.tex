@@ -27,6 +27,23 @@
 \usetikzlibrary{decorations.pathmorphing,patterns}
 \usetikzlibrary{decorations.markings}
 \usetikzlibrary{backgrounds}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.multipart}
+
+\tikzset{cross/.style={cross out, draw,
+        minimum size=2*(#1-\pgflinewidth),
+        inner sep=0pt, outer sep=0pt}}
+\tikzset{
+    mark position/.style args={#1(#2)}{
+        postaction={
+            decorate,
+            decoration={
+                markings,
+                mark=at position #1 with \coordinate (#2);
+            }
+        }
+    }
+}
 
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
@@ -84,13 +101,13 @@
 %\newcommand{\attnboxed}[1]{\textcolor{red}{\fbox{\normalcolor\m@th$\displaystyle#1$}}}
 \makeatother
 \tcbset{highlight math style={enhanced,colframe=red,colback=white,%
-		arc=0pt,boxrule=1pt,shrink tight,boxsep=1.5mm,extrude by=0.5mm}}
+        arc=0pt,boxrule=1pt,shrink tight,boxsep=1.5mm,extrude by=0.5mm}}
 \newcommand{\attnboxed}[1]{\tcbhighmath[colback=red!5!white,drop fuzzy shadow,arc=0mm]{#1}}
 \titleformat{\section}{\bf\Large}{Κεφάλαιο \thesection}{1em}{}
 \newtcolorbox{attnbox}[1]{colback=red!5!white,%
-	colframe=red!75!black,fonttitle=\bfseries,title=#1}
+    colframe=red!75!black,fonttitle=\bfseries,title=#1}
 \newtcolorbox{infobox}[1]{colback=blue!5!white,%
-	colframe=blue!75!black,fonttitle=\bfseries,title=#1}
+    colframe=blue!75!black,fonttitle=\bfseries,title=#1}
 
 \renewcommand{\arg}{\mathrm{Arg}}
 \renewcommand{\Re}{\mathrm{Re}}
@@ -98,7 +115,7 @@
 
 \newif\ifhidetikz
 \hidetikzfalse
-\hidetikztrue   % <---- comment/uncomment that line
+%\hidetikztrue   % <---- comment/uncomment that line
 
 \ifhidetikz
 
@@ -106,16 +123,16 @@
 \let\oldendtikzpicture\endtikzpicture
 
 \renewenvironment{tikzpicture}{
-	\tiny
-	\tt
-	\color{blue}
-	\newcommand{\draw}{\textit{draw}}
-	\newcommand{\filldraw}{\textit{filldraw}}
-	\newcommand{\x}{\textit{x}}
+    \tiny
+    \tt
+    \color{blue}
+    \newcommand{\draw}{\textit{draw}}
+    \newcommand{\filldraw}{\textit{filldraw}}
+    \newcommand{\x}{\textit{x}}
 }{
 }
 \newenvironment{axis}{
-	\newcommand{\addplot}{\textit{addplot}}
+    \newcommand{\addplot}{\textit{addplot}}
 }{
 }
 \fi
