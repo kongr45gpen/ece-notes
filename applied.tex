@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper,titlepage,fleqn]{article}
+\documentclass[12pt,a4paper,titlepage,fleqn]{article}
 
 \input{preamble.tex}
 
@@ -7,7 +7,7 @@
 %\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
 %\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
 \usepackage{polyglossia}
-\newfontfamily\greekfont[Script=Greek,Scale=0.95]{Ubuntu Light}
+\newfontfamily\greekfont[Script=Greek,Scale=0.9]{Ubuntu Light}
 
 \title{Εφαρμοσμένα Μαθηματικά - Σημειώσεις}
 \date{2016}
@@ -271,7 +271,254 @@
 	\[
 	g(t) = 1+it, t\in \mathbb R,\ =(1,t) = (1,0)+t(0,1)
 	\]
-
+	
+	\paragraph{}
+	Το πεδίο ορισμού μιγαδικών συναρτήσεων μιγαδ. μεταβλητών
+	υπολογίζεται ως συνήθως (με τις πραγματικές συναρτήσεις)
+	ΜΕ ΚΑΠΟΙΕΣ Διαφοροποιήσεις
+	
+	\[
+	f(z)=\frac{1}{z}
+	\]
+	Πρέπει ο παρον. να είναι διάφορος του μηδενός: Έτσι
+	\( z \neq 0 \) Άρα Π.Ο \( = \mathbb C - \left\lbrace (0,0) \right\rbrace \)
+	
+    \[
+    g(z) = \frac{z}{z^2+2}
+    \]
+    \subparagraph{Σημείωση} Η \( g \) είναι \textbf{ρητή} συνάρτηση
+    (δηλ. πηλίκο δύο (μιγαδικών) πολυωνύμων).
+    
+    Κάθε συνάρτηση της μορφής \( 
+    a_0+a_1z+\dots+a_nz^n,\ a_0,\dots,a_n \in \mathbb Z
+     \) καλείται (μιγαδικό) πολυώνυμο.
+     
+    Πρέπει παρον. \( \neq0 \) δηλ:
+    \begin{gather*}
+    z^2+2=0\
+        \left(
+        \begin{array}{l}
+        \text{\textbf{ΠΡΟΣΟΧΗ!!} Κάθε μιγαδικό} \\
+        \text{πολυώνυμο βαθμού $N$ έχει} \\
+        \text{ΑΚΡΙΒΩΣ $N$ ρίζες στο $\mathbb C$}
+        \end{array}
+        \right)
+     \\ 
+    z^2+2 = 0 \xRightarrow{i^2=-1} z^2-2i^2=0 \\
+    \implies \left( z-\sqrt{2}i \right)\left(z+\sqrt{2}i \right)=0
+    \\ \implies \boxed{z = \pm \sqrt{2}i}
+    \end{gather*}
+    
+    \subparagraph{Τελικά} Π.Ο = \( \mathbb C - 
+    \left\lbrace \pm \sqrt{2}i \right\rbrace
+     \)
+     
+    \paragraph{}
+    \[ \boxed{
+    	h(z) = \arg z,\ \text{Π.Ο} = \mathbb C - \left\lbrace 0 \right\rbrace 
+    } \]
+    
+    Για \( z=0 \) ΔΕΝ ορίζεται όρισμα, επειδή \( 0 = |0|\cdot e^{i\theta}
+    \ \forall \theta
+     \)
+   
+  \paragraph{Σημείωση}
+  \( az^2+bz+c = 0 \) \\ \(\qquad a,b,c \in \mathbb C \)
+  
+  Λύνεται με διακρίνουσα κατά τα γνωστά.
+  
+  Επίσης μπορείτε να χρησιμοποιήσετε και σχήμα Horner για πολυώνυμα 
+  (με πραγματικούς συντελεστές) βαθμού \( N \geq 3 \).
+   
+ \paragraph{}
+ \begin{align*}
+ a(z) &=e^z = e^{x+iy} = e^x\cdot e^{iy} \\
+ &= e^x (\cos y + i \sin y) \\
+ &= \left( e^x\cos y,\ e^x\sin y \right),\quad x,y\in\mathbb R 
+ \end{align*}
+ Ως διανυσματικό πεδίο προφανώς Π.Ο = \( \mathbb R ^2 \)
+ 
+ Έτσι Π.Ο = \( \mathbb C \).
+    
+   \paragraph{}
+   \begin{gather*}
+   l(z) = \mathrm{Log}\. z \text{ (αντίστροφη της } e^z \text{)} \\
+   \underbrace{\mathrm{Log}\. z}_{\mathclap{\text{μιγαδικός λογάριθμος}}}
+   \overset{\text{ορισμός}}{:=} \ln|z| +i\arg z \\
+   \text{Π.Ο} = \mathbb C - \left\lbrace 0 \right\rbrace
+   \end{gather*}
+   %TODO Atreas Graph 03 (small)
+   \begin{align*}
+   \mathrm{Log}(3) &= \ln|-3| = i\arg(-3) \\ &= \ln3+i\pi
+   \end{align*}
+   
+    \paragraph{}
+    \[
+    \lambda(z) = \sin z \overset{\text{ορισμός}}{:=} \frac{e^{iz}-e^{-iz}}{2i}
+    \]
+    \[
+    \left(
+    \begin{array}{ll}
+    e^{i\theta} &=\cos\theta+i\sin\theta  \quad \theta\in (-\pi,\pi] \\
+    e^{-i\theta} &= \cos\theta -i\sin\theta \\[0.3pt] \hline 
+    \sin\theta &= \frac{e^{i\theta}-e^{-i\theta}}{2i}
+    \end{array}
+    \right)
+    \]
+    Π.Ο = \( \mathbb C \)
+    
+    \begin{gather*}
+    m(z) = \cos z \overset{\text{ορισμός}}{:=} \frac{e^{iz}+e^{-iz}}{2} \\
+    \text{Π.Ο} = \mathbb C
+    \end{gather*}
+    
+    Όλες οι γνωστές τριγωνομετρικές ταυτότητες ισχύουν στο \( \mathbb C \)
+    όπως στο \( \mathbb R  \).
+    
+    \paragraph{}
+    \begin{align*}
+    h(z) = \sqrt[n]{z} := 
+    \sqrt[n]{|z|} e^{i\frac{2k\pi+\arg z}{n}} \quad (k=0,1,\dots,n-1)
+    \end{align*}
+    (Η \( \sqrt[n]{a} \) ορίζεται ως το \textbf{σύνολο} όλων των λύσεων
+    της εξίσωσης \( z^n=a,\quad a\in\mathbb C \) )
+    \[
+    \text{Π.Ο} = \mathbb C - \left\lbrace 0 \right\rbrace
+    \]
+    
+    \subsection{Όριο/Συνέχεια\\μιγαδικών συναρτήσεων μιγαδικής μεταβλητής}
+    \begin{defn*}{}
+    	Έστω \( f(z)=f(x+iy)=u(x,y)+iv(x,y) \)
+    	μιγ. συνάρτηση ορισμένη σε σύνολο \( A \subset \mathbb C,
+    	\ z_0=x_0+iy_0 \) είναι σ.συσσ. του \( A \) και έστω \( a=a_0+ib_0 \).
+    	Τότε
+    	
+    	\begin{gather*}
+    	\lim_{z\to z_0}f(z) = a \in \mathbb C \\
+    	\qquad \Updownarrow \\
+    	\begin{cases}
+    	\lim\limits_{(x,y)\to(x_0,y_0)} u(x,y) = a_0 \\ \qquad \text{\textbf{ΚΑΙ}} \\
+    	\lim\limits_{(x,y)\to(x_0,y_0)} v(x,y) = b_0
+    	\end{cases}
+    	\end{gather*}
+    \end{defn*}
+    	\textbf{Επίσης,} αν \( z_0\in A \), τότε
+    	
+    	\( f \) συνεχής στο σημείο \( z_0 \)
+    	\[ \Updownarrow \]
+    	
+    	οι συναρτήσεις \( u,v:A \subset \mathbb R^2\to\mathbb R  \)
+    	είναι ΣΥΝΕΧΕΙΣ στο σημείο \( (x_0,y_0 \) (ως πραγματικές συναρτήσεις
+    	δύο μεταβλητών)
+    	
+    \subparagraph{Έτσι:}
+    \begin{align*}
+    \left.
+    \begin{array}{l}
+    \text{οι πολυωνυμικές}\\
+    \text{η εκθετική}\\
+    \text{οι τριγωνομετρικές }(\sin z,\cos z)\\
+    \text{οι υπερβολικές }(\mathrm{ch}\.z,\mathrm{sh}\.z)
+    \end{array}
+    \right\rbrace &\ \text{συνεχείς στο } \mathbb C
+    \\
+    \left.
+    \begin{array}{l}
+    \text{οι ρητές}\\
+    \text{οι τριγωνομετρικές }(\tan z,\cot z)\\
+    \end{array}
+    \right\rbrace &\ \text{συνεχείς στο \textbf{πεδίο ορισμού τους}}
+    \end{align*}
+    
+    Ορίζω το \( \infty \) του μιγαδικού επιπέδου να είναι το σύνολο
+    σημείων που απέχουν "άπειρη" απόσταση από την αρχή των αξόνων.
+    
+    Το επεκτεταμένο μιγαδικό επίπεδο ορίζεται ως:
+    \[
+    \overline{\mathbb C} = \mathbb C \cup \left\lbrace \infty \right\rbrace,\text{ όπου:}
+    \]
+    \begin{align*}
+    \infty+z &= \infty \quad \forall z \in \mathbb C \\
+    \infty\cdot z &= \infty \quad \forall z \neq 0 \\
+    \frac{z}{\infty} &= 0 \quad \forall z \neq \infty
+    \end{align*}
+    
+    Όλες οι πράξεις του ορίου που ξέρετε ισχύουν και στους μιγαδικούς
+    (αρκεί να μην εμφανίζονται οι γνωστές απροσδιόριστες μορφές):
+    \[
+    0\cdot\infty,\frac{\infty}{\infty},0^0,1^{\infty},\infty^0
+    \]
+    
+    Ο κανόνας De l' Hospital ισχύει στους μιγαδικούς.
+    
+    \paragraph{Σημείωση:}
+    \begin{gather*}
+    \lim_{z\to \infty}f(z) = a \in \mathbb C \iff
+    \lim_{z\to0}f\left(\frac{1}{z}\right) = a\in\mathbb C  \\
+    \lim_{z\to z_0}f(z) = \infty \iff \lim_{z\to z_0}\frac{1}{f(z)} = -\\
+    \lim_{z\to z_0}f(z) = 0 \iff \lim_{z\to z_0} \left|f(z)\right|=0
+    \end{gather*}
+    
+    \begin{theorem*}{}
+    	Έστω \( \arg z:\mathbb C - \left\lbrace 0 \right\rbrace
+    	\to (-\pi,\pi]
+    	 \)
+    	 
+    	Τότε η \( \arg z \) \textbf{είναι συνεχής} στο σύνολο:
+    	\[
+    	\mathbb C^* = \mathbb C -
+    	\left\lbrace 
+    	    x+iy: x \leq 0 \text{ ΚΑΙ } y = 0
+    	 \right\rbrace
+    	\]
+    \end{theorem*}
+    %TODO Atreas Graph 04
+    
+    Έστω \( z = x+iy \)
+    %TODO Atreas Graph 05
+    
+    
+    \[
+    \arg z = \begin{cases}
+    \arctan\left|\frac{y}{x}\right|, \qquad & x,y>0 \\
+    \pi - \arctan\left|\frac{y}{x}\right|, \qquad & x<0,\ y>0 \\
+    -\pi + \arctan\left|\frac{y}{x}\right|, \qquad & x<0,\ y<0 \\
+    -\arctan\left|\frac{y}{x}\right|, \qquad & x>0,\ y<0
+    \end{cases}
+    \]
+    
+    Για \( 
+    \begin{array}{ll}
+    x=0,\ & \text{τότε } \arg := \frac{\pi}{2} \text{ ή } -\frac{\pi}{2}\\
+    y=0,\ & \text{τότε } \arg := 0 \text{ή} \pi
+    \end{array}
+     \)
+     
+    Έστω \( z_0 = x_0 < 0 \)
+    \begin{itemize}
+    	\item Έστω \( z = x_0+it \quad (t>0) \)
+    	
+    	Για \( t\to0^+,\ z\to z_0=x_0 \), αλλά:
+    	\[
+    	\lim_{z\to z_0}\arg z \overset{z=x_0+it}{=}
+    	\lim_{t\to0^+} \arg(x_0+it) \overset{\text{2ο τετ.}}{=}
+    	\lim_{t\to0^+}\left(\pi-\arctan\left|\frac{t}{x_0}\right|\right)
+    	=\pi-\arctan0=\pi
+    	\]
+    	\item Για \( z=x_0+it \quad (t<0) \), τότε:
+    	\[
+    	t\to0^-,\quad z\to z_0,\text{ και}
+    	\]
+    	\[
+    	\lim_{z\to z_0}\arg z = \lim_{t\to0^-} \arg(x_0+it)
+    	\overset{\text{3ο τετ.}}{=} -\pi+\arctan0 = -\pi
+    	\]
+    \end{itemize}
+    Άρα το όριο στο \( z_0=x_0 \) ΔΕΝ υπάρχει, και έτσι η \( \arg z \) 
+    ασυνεχής στα \( z=x_0 \) με \( x_0\leq 0 \).
+    
+    Αν \( \arg z \in [0,2\pi) \) πού είναι ασυνεχής;
+    
 	\newpage
 
 	\part{Κεχαγιάς}
