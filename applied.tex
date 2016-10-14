@@ -677,6 +677,99 @@
     \[
     \mathrm{arg}(z_1z_2) = \mathrm{arg}(z_1) + \mathrm{arg}(z_2)
     \]
+    
+    Όμως:
+    \begin{align*}
+    \mathrm{arg}(z^z) &= \mathrm{arg}(z)+\mathrm{arg}(z) \\
+    &\neq 2\mathrm{arg}(z)
+    \end{align*}
+    διότι:
+    \begin{gather*}
+    	A = \left\lbrace a_1,a_2,\dots \right\rbrace \\
+    	B = \left\lbrace b_1,b_2,\dots \right\rbrace \\
+    	A+B = \left\lbrace a+b: a\in A, b\in B \right\rbrace \\
+    	A+A = \left\lbrace a_1+a_2:a_1,a_2\in A \right\rbrace \\
+    	2A = \left\lbrace 2a:a\in A \right\rbrace \\[.3pt]
+    	A = \left\lbrace 1,2,3 \right\rbrace \\
+    	B = \left\lbrace 4,5 \right\rbrace \\
+    	A+B = \left\lbrace a+b:a\in A, b\in B \right\rbrace
+    	= \left\lbrace 1+4,1+5,2+4,2+5,3+4,3+5 \right\rbrace
+    	= \left\lbrace 5,6,7,8 \right\rbrace\\
+    	A+A = \left\lbrace 2,3,4,5,6 \right\rbrace \\
+    	2A = \left\lbrace 2,4,6 \right\rbrace
+    \end{gather*}
+    
+    
+   	\subsection{n-οστές ρίζες}
+   	\[
+   	z = a^{\sfrac{1}{n}} \iff z^n=a
+   	\]
+   	Δηλ. ποιο \( z \) ικανοποιεί αυτή
+   	\begin{align*}
+   	a &= |a|e^{i\theta} \\
+   	z &= re^{i\phi}
+   	\end{align*}
+   	\begin{align*}
+   	& \left( re^{i\phi} \right)^n = |a|e^{i\theta} \\
+   	\implies& r^n\cdot e ^{in\phi} = |a|e^{i\theta} \\
+   	\implies& r^n\cdot(\cos n\phi+i\sin n\phi) = |a|\cdot(\cos\theta+i\sin\theta)\\
+   	\implies& \begin{cases}
+   	r^n=|a|\implies r =\sqrt[n]{|a|} \\
+   	\left.\begin{array}{l}
+   	\cos(n\phi)=\cos\theta \\
+   	\sin(n\phi)=\sin\theta \implies
+   	\end{array}\right| \implies
+   	n\phi = \theta+2k\pi \ \in\mathbb Z \implies \phi=\frac{\theta+2k\pi}{n}
+   	\end{cases} \\
+   	\implies& z=a^{\sfrac{1}{n}} = \sqrt[n]{|a|}\cdot
+   	e^{\sfrac{i(\theta+2k\pi)}{n}} \quad k\in\mathbb Z
+   	\end{align*}
+   	
+   	(Όμως αρκεί να πάρω \( k\in\left\lbrace 0,1,\dots,N-1 \right\rbrace \))
+   	
+   	\[
+   	a^{\sfrac{1}{n}} = \left\lbrace
+   	\quad \sqrt[n]{|a|}e^{\sfrac{i\theta}{n}},\
+   	\sqrt[n]{|a|}e^{\frac{i\theta+2\pi}{n}},\dots
+   	\right.
+   	\]
+   	%TODO Kehagias Graph 03
+   	
+   	\paragraph{Παρ.} \( a^{\sfrac{1}{2}} = 1^{\sfrac{1}{2}} \)
+   	\begin{gather*}
+   	a=1=1\cdot e^{i0} \quad |a|=1,\theta=0\\
+   	u_0 = \sqrt[2]{1}\cdot e^{i\left(\frac{0+2\cdot0\cdot\pi}{2}\right)}=e^{i0}=1 \\
+   	u_1 = \sqrt[2]{1}\cdot e^{i\left(\frac{0+2\cdot\pi}{2}\right)}=e^{i\pi}=-1
+   	\end{gather*}
+   	%TODO Kehagias Graph 04
+   	
+   	\paragraph{Παρ.} \( a^{\sfrac{1}{3}}=1^{\sfrac{1}{3}}=z \)
+   	\begin{gather*}
+   	a=1=e^{i0},|a|=1,\theta=0 \\
+   	u_0 = 1\\
+   	u_1 =e^{\sfrac{i2\pi}{3}} = \frac{-1+i\sqrt{3}}{2} \\
+   	u_2 =e^{\sfrac{i4\pi}{3}} = \frac{-1-i\sqrt{3}}{2}
+   	\end{gather*}
+   	%TODO Kehagias Graph 05
+   	\subparagraph{Διαφορετικά}
+   	\begin{gather*}
+   	1^{\sfrac{1}{3}}=z \iff 1=z^3 \\
+   	\iff z^3-1 = 0 \\
+   	\iff (z-1)(z^2+z+1)=0 \\
+   	\iff (z-1)\left(z+\frac{1-i\sqrt{3}}{2}\right)\left(
+   	z+\frac{1+i\sqrt{3}}{2}\right) = 0
+   	\end{gather*}
+   	
+   	\paragraph{Παρ.} \( 1^{\sfrac{1}{11}}=z \iff 1=z^{11} \)
+   	\begin{gather*}
+   	    \iff z^{11}-1 = 0 \\
+   		\iff (z-1)(z^{11}+z^{10}+\cdots+z^1+1) = 0
+   	\end{gather*}
+   	\[
+   	\left\lbrace u_0,u_1,\dots,u_{10} \right\rbrace
+   	\]
+    	
+    	
 
     \section{Βασικές μιγαδικές συναρτήσεις}
     \( e^z,\ \log(z) \)
@@ -727,5 +820,103 @@
     \frac{1}{2}\ln(2) + i\left( \frac{\pi}{4} +2 k \pi \right)
      \right\rbrace
     \end{align*}
+    
+    \subsection{}
+    Από σήμερα: \( \arg(z) \in (-\pi,\pi] \)
+    
+    Πριν 7 ημέρες: \( \cancel{e^z=e^{x+iy}=e^x{\cos y+i\sin y}} \)
+    	
+    \paragraph{Σήμερα:} \( \exp(z) \overset{\text{ορ}}{=}
+    1+z+\frac{z^2}{2!}+\dots=\sum_{n=0}^\infty \frac{z^n}{n!} \)
+    
+    \begin{theorem*}{}
+    	Η \( \exp(z) \) είναι παραγωγίσιμη σε κάθε \( z\in\mathbb C  \)
+    	και ικανοποιεί:
+    	\begin{enumparen}
+    		\item \( \forall z: \left(\exp(z)\right)' = \exp(z) \)
+    		\item \( \forall z_1,z_2:\exp(z_1+z_2)=\exp(z_1)\exp(z_2) \)
+    		\item \( \forall \theta\in\mathbb R
+    		:\exp(i\theta)=\cos\theta+i\sin\theta \)
+    	\end{enumparen}
+    \end{theorem*}
+    \subparagraph{Απόδ.}
+    \begin{enumparen}{}
+    	\item \begin{align*}
+    	\left(\exp(z)\right)'
+    	&= \left(1+z+\frac{z^2}{2!}+\frac{z^3}{3!}+\dots\right)'
+    	\\ &= 0+1+z+\frac{z^2}{2!}+\dots = \exp(z)
+    	\end{align*}
+    	\item \( g(z)=\exp(z)\exp(\zeta-z) \)
+    	\begin{align*}
+    	\od{g}{z} &=
+    	\exp(z)\exp(\zeta-z)+\exp(z)\exp(\zeta-z)(-1) = 0
+    	\\ \implies g(z) &= c \implies c=g(0)=\exp(\zeta) \\
+    	\implies \exp(\zeta)=g(z)=\exp(z)\exp(\zeta-z)
+    	\end{align*}
+    	
+    	\textbf{Θέτω:} \( z=z_1,\ \zeta=z_1+z_2 \)
+    	
+    	\textbf{Οπότε:}
+    	\[
+    	\exp(z_1+z_2) = \exp(z_1)\cdot\exp(z_2)
+    	\]
+    	
+    	\item \begin{align*}
+    	\exp(i\theta) &= 1+i\theta + \frac{(i\theta)^2}{2!} + \frac{(i\theta)^3}{3!}
+    	+\frac{(i\theta)^4}{4!} + \dots
+    	\\ &= \left(1-\frac{\theta^2}{2!}+\frac{\theta^4}{4!}-\dots \right)
+    	+ i\cdot\left(
+    	\theta-\frac{\theta^3}{3!}+\dots
+    	\right)
+    	\\ &= \cos\theta+i\sin\theta
+    	\end{align*}
+    	
+    	\paragraph{\( \exp(z) \quad e^z \)}
+    	\begin{align*}
+    	\exp(1+i)&=1+(1+i)+\frac{(1+i)^2}{2!}+\dots\\[.4pt]
+    	e^{1+i} &= 1+(i+1)+\dots\\
+    	\text{ή}\quad &\text{ο αρ. $e=2.718$ υψωμένος στη μιγαδική δύναμη } 1+i
+    	\end{align*}
+    	
+    	\paragraph{}
+    	\begin{theorem*}{}
+    		Η \( \exp(z) \) είναι περιοδική με περίοδο \( 2\pi i \)
+    	\end{theorem*}
+    	\subparagraph{Απόδ.}
+    	\[
+    	\exp(z+2\pi i) = \exp(z)\exp(2\pi i) = \exp(z)
+    	\]
+    	
+    	Η εικόνα του συνόλου \( A \subseteq \mathbb C  \) υπό την συνάρτηση \( f(z) \)
+    	Δηλ.
+    	\[ f(A)=\left\lbrace w=f(z),\ z\in A \right\rbrace \]
+    	\paragraph{Παρ.} Να δειχθεί ότι \( \exp(\mathbb C ) = 
+    	\mathbb C -\left\lbrace 0 \right\rbrace \)
+    	
+    	Διότι: έστω \( w=re^{i\phi}\in\mathbb C -\left\lbrace 0 \right\rbrace \).
+    	
+    	Θα βρω \( z=\rho e^{i\theta}=x+iy \) τ.ώ: \( \exp(z)=w \).
+    	\begin{gather*}
+    	\exp(z)=\exp(x+iy) = \exp(x)\exp(iy) \\
+    	w=re^{i\phi} \\
+    	\exp(x) = \left|\exp(z)\right|=|w|=r \implies \boxed{x = \ln(r)} \\[.5pt]
+    	\arg\left( \exp(z) \right) = \arg(w) \\
+    	\arg\left(\exp(z)\right) = \arg\left(\exp(x)\exp(iy)\right) = y \\
+    	\arg(w)=\arg(re^{i\phi}) = \phi \\
+        \arg\left(\exp(z)\right)=\arg(w) \implies \boxed{y=\phi}
+    	\end{gather*}
+    	
+    	Τελικά \( z=x+iy = \ln(r)+i\phi \) ικανοποιεί \( \exp(z)=re^{i\phi}=w \).
+    	Άρα \( \exp(\mathbb C)=\mathbb C-\left\lbrace 0 \right\rbrace \)
+    	
+    	Στην πραγματικότητα, δεν χρειάζομαι όλο το \( \mathbb C \) διότι:
+    	\[
+    	\exp(U) = \mathbb C-\left\lbrace 0 \right\rbrace,\quad
+    	\text{όπου } U = \left\lbrace 
+    	    x+iy:x\in\mathbb R,\ y\in(-\pi,\pi]
+    	 \right\rbrace
+    	\]
+    	%TODO Kehagias Graph 07
+    \end{enumparen}
 
 \end{document}
