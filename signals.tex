@@ -194,6 +194,19 @@
     \phi_3(t) = e^{-3t}\mathrm u(t)
     \)
     %TODO
+    
+    \( 
+    f(t) = \sum_{n=0}^N a_n\phi_n(t) \quad \left\lbrace \phi_n(t) \right\rbrace
+     \)  ορθοκανονική
+     
+     \begin{align*} E &\overset{\triangle}{=} \int_\Delta f^2(t)\dif t
+     = \int\left(
+     \sum a_n\phi_n(t)\sum a_n\phi_n(t)
+     \right)\dif t+
+     \\ &= \sum_{n=0}^\infty a_n\cancelto{1}{\int_\Delta \phi_n^2(t)\dif t} +
+     \sum_{m\neq n}a_ia_n\int_\cancelto{0}{\Delta\phi_i(t)\phi_n(t)} \\
+     E &= \sum_{a=m}^\Sigma a_n^2 \quad \text{Parseva}\int \text{ theorem}
+     \end{align*}
 
     
 \end{document}
