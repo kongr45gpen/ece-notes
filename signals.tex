@@ -53,6 +53,139 @@
 		 \)
 
     \end{enumpar}
+    
+    \paragraph{Συναρτησιακός χώρος}
+    \[
+    x(t),y(t) \in S =
+    \left\lbrace x(t)/x(t):[t_1,t_2]\to\mathbb R  \right\rbrace
+    \]
+    \begin{gather*}
+    \left\langle
+    x(t),y(t)
+    \right\rangle  = \int_{t_1}^{t_2}x(t)y(t)\dif t\\
+    \left\vert\middle\vert x(t)\middle\vert\right\vert =
+    \left[ \int_{t_1}^{t_2} x^2(t)\dif t \right]^{\sfrac{1}{2}}\\
+    d\left(
+    x(t),y(t)
+    \right)=\left[
+    \int_{t_1}^{t_2} \left[ x(t)-y(t) \right]^2\dif t
+    \right]^{\sfrac{1}{2}}
+    \end{gather*}
+    
+    \begin{tikzpicture} %TODO
+    	\draw (-3,0) -- (3,0);
+    	\draw (0,-3) -- (0,3);
+    	
+    	\draw[very thick,blue] plot[,smooth,tension=1]
+    	coordinates{(0,0)  (1.4,2)  (2.8,0)};
+    	
+    	\draw (0,0) node[below left] {$t_1$};
+    	\draw (2.8,0) node[below] {$t_2$};
+    \end{tikzpicture}
+    %TODO Add missing graph
+    
+    \begin{align*}
+    \text{Αν } & \left\langle \phi_1(t),\phi_2(t) \right\rangle
+    = 0 \quad \phi_1(t) \perp \phi_2(t) \\
+    & \left\langle \phi_1(t),\phi_1(t)\right\rangle = 1 \quad
+    \phi_1(t) \text{ κανονική}
+    \end{align*}
+    
+    %TODO Add more missing notes
+    
+    %TODO Rekanos Graph 11
+    \( \tilde{a} \) και \( d(\vec a,\tilde a) \)
+    \begin{gather*}
+    	\tilde a = k\hat x \\
+    	\vec a = a_x\hat x+a+y\hat y\\
+    	\vec a -\tilde a = (a_x-k)\hat x - a_y\hat y\\
+    	d(\vec a,\tilde a) = \sqrt{(a_x-k)^2+a_y^2} \\
+    	\od{}{k}\left( d(\vec a,\tilde a) \right) = \frac{a_x-k}{\cdots}
+    	= 0 \implies k=a_k = \tilde a \cdot \hat x\\
+    	\vec a\cdot\hat x = a_x
+    \end{gather*}
+    
+    \paragraph{Μη κάθετα διανύσματα}
+    \begin{gather*}
+    \vec a = a_x\hat x+a_y\hat y\\
+    \vec a \cdot \vec a = (a_x-k)\hat x+a_y\hat y\\
+    \left(
+    \left[ (a_x-k)\hat x+a_y\hat y \right]\cdot
+    \left[ (a_x-k)\hat x+a_y\hat y \right]
+    \right)^{\sfrac{1}{2}}\\
+    \left[
+    (a_x-k)^2+a_y^2+2(a_x-k)a_y\hat x\cdot\hat y
+    \right]^{\sfrac{1}{2}} \\
+    \tilde a = (\vec a \cdot \hat x)\hat x \neq a_x
+    \end{gather*}
 
 
+    \paragraph{}
+    \[
+    f(t)=\sum_{n=0}^\infty a_n\phi_n(t)\quad t \in \Delta
+    \]\begin{gather*}
+    \hat f(t)=\sum_{n=0}^M \hat a_n\phi_n(t) \text{ βέλτιστη, ώστε η απόσταση με την $f$
+    	να είναι ελάχιστη}  \\
+    \end{gather*}
+    \begin{align*}
+    \vec ? &= \int_\Delta\left[
+    f(t) %TODO
+    \right] \\ ??? & ??? \\
+    \vec i^2 &= \int_\Delta f^2(t)\dif t + \int_\Delta
+    \sum_{i=1}^? \left[ \hat a_n\phi_n(t) \right]^2
+    +\int_\Delta\left[
+    \sum_?^?\sum_?^? \hat a_? \hat a_? \phi_n(t)\phi_?(t)
+    \right]\dif t
+    -2\int_\Delta \sum_{?=0}^M \hat a_nf(t)\phi_n(t)\dif t
+    \\ &= \int_\Delta f^2(t)\dif t
+    + \sum_{n=0}^\infty\tilde a\int \phi_n^2(t)\dif t
+    + 2\sum{n=n}^N\sum_{???}^M\hat a_i\hat a_m\int_\Delta \phi_2(t)\phi_m(t)\dif t
+    - 2\sum_{h=0}^M \hat a_n\int_\Delta f(t)\phi_n(t)\dif t \\
+    \od{\vec i}{a_i} &= 2\hat a \int_\Delta \phi(t)\dif t
+    + 2 \sum \phi_i(t)\phi_n(t)\dif t -2\int_\Delta f(t)\phi_n(t)\dif t
+    \end{align*}%TODO boxed these
+    Έστω \( \phi_i \) μοναδιαία \( \iff \int_\Delta \phi^2(t)\dif t = 1 \)
+    και \( \phi_i \) ορθογώνια \( \iff \int_\Delta \phi_1\phi_2(t)=0 \)
+    
+    Αν η \( \left\lbrace \phi(t) \right\rbrace \) ορθοκανονική
+    \begin{align*}
+    2\vec a_i-2\int_\Delta f(t)\phi(t)\dif t = 0 \implies
+    \hat a_i = \int_\Delta f(t)\phi(t) \dif t 
+    \end{align*}\[
+    2a\left\langle \phi,\phi \right\rangle +\sum\sum \hat a_n
+    \left\langle \phi_i,\phi_n \right\rangle
+    -2\left\langle f,\phi\right\rangle = 0
+    \]
+    \begin{gather*}
+    f(t) = \sum_{a=0} a_n\phi_n(t)\\
+    \int_\Delta f(t)\phi(t)\dif t =a_i\\
+    \left\langle f,\phi_i\right\rangle = \left\langle
+    \sum_{n=0}^\infty a_i\phi_n,\phi_i
+    \right\rangle = \sum_{??}^\infty a_n\left\langle \phi_n,\phi_i\right\rangle
+    \end{gather*}
+    
+    Ηθικό δίδαγμα: Αν η βάση του χώρου είναι ορθοκανονική και μας ζητηθεί να υπολογίσουμε
+    μία προσέγγιση της συνάρτησης σε έναν υποχώρο, μπορούμε άμεσα να υπολογίσουμε την
+    προβολή της συνάρτησης πάνω στη βάση.
+    
+    \paragraph{Ex.}
+    \( f(t)=e^{-3t}\mathrm u(t)
+    \qquad \phi_1(t)=e^t\mathrm u(t) \ \& \
+    \phi_2(t) = e^{-2t}\mathrm u(t)
+     \)
+     
+    \begin{gather*}
+    \hat f(t) = a_1e^{-t}\mathrm u(t) + a_2e^{-2t}\mathrm u(t) \\
+    \int \left[ a_1\phi_1+a_2\phi_2 -f \right]\phi_1\dif t = 0\\
+    \int_0^\infty \left[ a_1e^{-t}+a_2e^{-2t}-e^{-3t}\right]e^{-t}\dif t = 0\implies
+    \\
+    a_1\int_0^\infty e^{-2t}\dif t+a_2\int_0^\infty e^{-3t}\dif t -\int_0^\infty
+    e^{-4t}\dif t = 0
+    \implies \boxed{ \frac{a_1}{2}+\frac{a_2}{3}-\frac{1}{4} = 0 } \\
+    \int\left[ a_1e^{-t}+a_2e^{-2t}-e^{-3t} \right]e^{-2t}\dif t = 0 \implies
+    \boxed{\frac{a_1}{2}+\frac{a_2}{4}-\frac{1}{5}=0}\\
+    a_1 = \sfrac{3}{10},\ a_2 = \sfrac{6}{5}
+    \end{gather*}
+
+    
 \end{document}
