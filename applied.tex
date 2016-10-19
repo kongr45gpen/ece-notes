@@ -271,28 +271,28 @@
 	\[
 	g(t) = 1+it, t\in \mathbb R,\ =(1,t) = (1,0)+t(0,1)
 	\]
-	
+
 	\paragraph{}
 	Το πεδίο ορισμού μιγαδικών συναρτήσεων μιγαδ. μεταβλητών
 	υπολογίζεται ως συνήθως (με τις πραγματικές συναρτήσεις)
 	ΜΕ ΚΑΠΟΙΕΣ Διαφοροποιήσεις
-	
+
 	\[
 	f(z)=\frac{1}{z}
 	\]
 	Πρέπει ο παρον. να είναι διάφορος του μηδενός: Έτσι
 	\( z \neq 0 \) Άρα Π.Ο \( = \mathbb C - \left\lbrace (0,0) \right\rbrace \)
-	
+
     \[
     g(z) = \frac{z}{z^2+2}
     \]
     \subparagraph{Σημείωση} Η \( g \) είναι \textbf{ρητή} συνάρτηση
     (δηλ. πηλίκο δύο (μιγαδικών) πολυωνύμων).
-    
-    Κάθε συνάρτηση της μορφής \( 
+
+    Κάθε συνάρτηση της μορφής \(
     a_0+a_1z+\dots+a_nz^n,\ a_0,\dots,a_n \in \mathbb Z
      \) καλείται (μιγαδικό) πολυώνυμο.
-     
+
     Πρέπει παρον. \( \neq0 \) δηλ:
     \begin{gather*}
     z^2+2=0\
@@ -303,43 +303,43 @@
         \text{ΑΚΡΙΒΩΣ $N$ ρίζες στο $\mathbb C$}
         \end{array}
         \right)
-     \\ 
+     \\
     z^2+2 = 0 \xRightarrow{i^2=-1} z^2-2i^2=0 \\
     \implies \left( z-\sqrt{2}i \right)\left(z+\sqrt{2}i \right)=0
     \\ \implies \boxed{z = \pm \sqrt{2}i}
     \end{gather*}
-    
-    \subparagraph{Τελικά} Π.Ο = \( \mathbb C - 
+
+    \subparagraph{Τελικά} Π.Ο = \( \mathbb C -
     \left\lbrace \pm \sqrt{2}i \right\rbrace
      \)
-     
+
     \paragraph{}
     \[ \boxed{
-    	h(z) = \arg z,\ \text{Π.Ο} = \mathbb C - \left\lbrace 0 \right\rbrace 
+    	h(z) = \arg z,\ \text{Π.Ο} = \mathbb C - \left\lbrace 0 \right\rbrace
     } \]
-    
+
     Για \( z=0 \) ΔΕΝ ορίζεται όρισμα, επειδή \( 0 = |0|\cdot e^{i\theta}
     \ \forall \theta
      \)
-   
+
   \paragraph{Σημείωση}
   \( az^2+bz+c = 0 \) \\ \(\qquad a,b,c \in \mathbb C \)
-  
+
   Λύνεται με διακρίνουσα κατά τα γνωστά.
-  
-  Επίσης μπορείτε να χρησιμοποιήσετε και σχήμα Horner για πολυώνυμα 
+
+  Επίσης μπορείτε να χρησιμοποιήσετε και σχήμα Horner για πολυώνυμα
   (με πραγματικούς συντελεστές) βαθμού \( N \geq 3 \).
-   
+
  \paragraph{}
  \begin{align*}
  a(z) &=e^z = e^{x+iy} = e^x\cdot e^{iy} \\
  &= e^x (\cos y + i \sin y) \\
- &= \left( e^x\cos y,\ e^x\sin y \right),\quad x,y\in\mathbb R 
+ &= \left( e^x\cos y,\ e^x\sin y \right),\quad x,y\in\mathbb R
  \end{align*}
  Ως διανυσματικό πεδίο προφανώς Π.Ο = \( \mathbb R ^2 \)
- 
+
  Έτσι Π.Ο = \( \mathbb C \).
-    
+
    \paragraph{}
    \begin{gather*}
    l(z) = \mathrm{Log}\. z \text{ (αντίστροφη της } e^z \text{)} \\
@@ -347,11 +347,20 @@
    \overset{\text{ορισμός}}{:=} \ln|z| +i\arg z \\
    \text{Π.Ο} = \mathbb C - \left\lbrace 0 \right\rbrace
    \end{gather*}
-   %TODO Atreas Graph 03 (small)
+
+   \begin{tikzpicture}[scale=0.5 ]
+   	\draw (-2,0) -- (2,0);
+   	\draw (0,-1) -- (0,2);
+
+   	\draw (-1,0) arc (180:0:1);
+   	\filldraw[fill=white] (-1,0) circle(3pt) node[below] {$-3$};
+   	\filldraw[fill=white] (1,0) circle(3pt);
+   \end{tikzpicture}
+
    \begin{align*}
    \mathrm{Log}(3) &= \ln|-3| = i\arg(-3) \\ &= \ln3+i\pi
    \end{align*}
-   
+
     \paragraph{}
     \[
     \lambda(z) = \sin z \overset{\text{ορισμός}}{:=} \frac{e^{iz}-e^{-iz}}{2i}
@@ -360,24 +369,24 @@
     \left(
     \begin{array}{ll}
     e^{i\theta} &=\cos\theta+i\sin\theta  \quad \theta\in (-\pi,\pi] \\
-    e^{-i\theta} &= \cos\theta -i\sin\theta \\[0.3pt] \hline 
+    e^{-i\theta} &= \cos\theta -i\sin\theta \\[0.3pt] \hline
     \sin\theta &= \frac{e^{i\theta}-e^{-i\theta}}{2i}
     \end{array}
     \right)
     \]
     Π.Ο = \( \mathbb C \)
-    
+
     \begin{gather*}
     m(z) = \cos z \overset{\text{ορισμός}}{:=} \frac{e^{iz}+e^{-iz}}{2} \\
     \text{Π.Ο} = \mathbb C
     \end{gather*}
-    
+
     Όλες οι γνωστές τριγωνομετρικές ταυτότητες ισχύουν στο \( \mathbb C \)
     όπως στο \( \mathbb R  \).
-    
+
     \paragraph{}
     \begin{align*}
-    h(z) = \sqrt[n]{z} := 
+    h(z) = \sqrt[n]{z} :=
     \sqrt[n]{|z|} e^{i\frac{2k\pi+\arg z}{n}} \quad (k=0,1,\dots,n-1)
     \end{align*}
     (Η \( \sqrt[n]{a} \) ορίζεται ως το \textbf{σύνολο} όλων των λύσεων
@@ -385,14 +394,14 @@
     \[
     \text{Π.Ο} = \mathbb C - \left\lbrace 0 \right\rbrace
     \]
-    
+
     \subsection{Όριο/Συνέχεια\\μιγαδικών συναρτήσεων μιγαδικής μεταβλητής}
     \begin{defn*}{}
     	Έστω \( f(z)=f(x+iy)=u(x,y)+iv(x,y) \)
     	μιγ. συνάρτηση ορισμένη σε σύνολο \( A \subset \mathbb C,
     	\ z_0=x_0+iy_0 \) είναι σ.συσσ. του \( A \) και έστω \( a=a_0+ib_0 \).
     	Τότε
-    	
+
     	\begin{gather*}
     	\lim_{z\to z_0}f(z) = a \in \mathbb C \\
     	\qquad \Updownarrow \\
@@ -403,14 +412,14 @@
     	\end{gather*}
     \end{defn*}
     	\textbf{Επίσης,} αν \( z_0\in A \), τότε
-    	
+
     	\( f \) συνεχής στο σημείο \( z_0 \)
     	\[ \Updownarrow \]
-    	
+
     	οι συναρτήσεις \( u,v:A \subset \mathbb R^2\to\mathbb R  \)
     	είναι ΣΥΝΕΧΕΙΣ στο σημείο \( (x_0,y_0 \) (ως πραγματικές συναρτήσεις
     	δύο μεταβλητών)
-    	
+
     \subparagraph{Έτσι:}
     \begin{align*}
     \left.
@@ -429,10 +438,10 @@
     \end{array}
     \right\rbrace &\ \text{συνεχείς στο \textbf{πεδίο ορισμού τους}}
     \end{align*}
-    
+
     Ορίζω το \( \infty \) του μιγαδικού επιπέδου να είναι το σύνολο
     σημείων που απέχουν "άπειρη" απόσταση από την αρχή των αξόνων.
-    
+
     Το επεκτεταμένο μιγαδικό επίπεδο ορίζεται ως:
     \[
     \overline{\mathbb C} = \mathbb C \cup \left\lbrace \infty \right\rbrace,\text{ όπου:}
@@ -442,42 +451,104 @@
     \infty\cdot z &= \infty \quad \forall z \neq 0 \\
     \frac{z}{\infty} &= 0 \quad \forall z \neq \infty
     \end{align*}
-    
+
     Όλες οι πράξεις του ορίου που ξέρετε ισχύουν και στους μιγαδικούς
     (αρκεί να μην εμφανίζονται οι γνωστές απροσδιόριστες μορφές):
     \[
     0\cdot\infty,\frac{\infty}{\infty},0^0,1^{\infty},\infty^0
     \]
-    
+
     Ο κανόνας De l' Hospital ισχύει στους μιγαδικούς.
-    
+
     \paragraph{Σημείωση:}
     \begin{gather*}
     \lim_{z\to \infty}f(z) = a \in \mathbb C \iff
     \lim_{z\to0}f\left(\frac{1}{z}\right) = a\in\mathbb C  \\
-    \lim_{z\to z_0}f(z) = \infty \iff \lim_{z\to z_0}\frac{1}{f(z)} = -\\
+    \lim_{z\to z_0}f(z) = \infty \iff \lim_{z\to z_0}\frac{1}{f(z)} = 0\\
     \lim_{z\to z_0}f(z) = 0 \iff \lim_{z\to z_0} \left|f(z)\right|=0
     \end{gather*}
-    
-    \begin{theorem*}{}
+
+    \begin{theorem*}[sidebyside,width=\textwidth]{}
     	Έστω \( \arg z:\mathbb C - \left\lbrace 0 \right\rbrace
     	\to (-\pi,\pi]
     	 \)
-    	 
+
     	Τότε η \( \arg z \) \textbf{είναι συνεχής} στο σύνολο:
     	\[
     	\mathbb C^* = \mathbb C -
-    	\left\lbrace 
+    	\left\lbrace
     	    x+iy: x \leq 0 \text{ ΚΑΙ } y = 0
     	 \right\rbrace
     	\]
+    	\tcblower
+    	\begin{tikzpicture}
+	    	\fill[inner color=green!50!black,outer color=green!5] (-3,-2) rectangle (3,2);
+
+    		\draw[->] (-3,0) -- (3,0) node[right] {$x$};
+    		\draw[->] (0,-2) -- (0,2) node[above] {$y$};
+
+    		\draw[line width=1mm, red!80!green] (-3.1,0) -- (0,0);
+    		\filldraw[red!80!green,fill=white] (0,0) circle (4pt);
+    	\end{tikzpicture}
     \end{theorem*}
-    %TODO Atreas Graph 04
-    
+
     Έστω \( z = x+iy \)
-    %TODO Atreas Graph 05
-    
-    
+
+    \begin{tikzpicture}
+    	\draw (-2,0) -- (2,0);
+    	\draw (0,-2) -- (0,2);
+
+    	\draw(0,0) -- (1.5,1.5);
+    	\draw (0.4,0) arc (0:45:.4) node[midway,right] {$\theta$};
+
+    	\draw[dashed] (0,1.5) node[left] {$y$} -- (1.5,1.5) -- (1.5,0) node[below] {$x$};
+
+    	\draw (current bounding box.north) node[above left] {(α) {$x>0,\ y>0$}};
+    \end{tikzpicture}
+
+    \begin{tikzpicture}
+    \draw (-2,0) -- (2,0);
+    \draw (0,-2) -- (0,2);
+
+    \draw(0,0) -- (1.5,1.5) node[above right] {$(-x,y)$};
+    \draw(0,0) -- (-1.5,1.5);
+    \draw[dashed] (0,1.5) -- (-1.5,1.5) -- (-1.5,0);
+    \draw (0.4,0) arc (0:135:.4);
+    \draw (0.7,0) arc (0:45:.7) node[midway,right] {$\phi$};
+
+    \draw[dashed] (0,1.5) -- (1.5,1.5) -- (1.5,0);
+
+    \draw (current bounding box.north) node[above left] {(β) {$x<0,\ y>0$}};
+    \end{tikzpicture}
+
+    \begin{tikzpicture}
+    \draw (-2,0) -- (2,0);
+    \draw (0,-2) -- (0,2);
+
+    \draw(0,0) -- (1.5,1.5) node[above right] {$(-x,-y)$};
+    \draw[dashed] (0,0) -- (-1.5,0) -- (-1.5,-1.5) -- (0,-1.5);
+    \draw (0,0) -- (-1.5,-1.5);
+    \draw (-0.4,0) arc (180:225:.4) node[midway,left,yshift=-1mm] {$\mathsmaller{\theta_a}$};
+    \draw (0.7,0) arc (0:45:.7) node[midway,right] {$\theta_a$};
+    \draw (0.5,0) arc(360:225:.5) node[midway,below right] {$-\pi+\theta_a$};
+
+    \draw[dashed] (0,1.5) -- (1.5,1.5) -- (1.5,0);
+
+    \draw (current bounding box.north) node[above left] {(γ) {$x<0,\ y<0$}};
+    \end{tikzpicture}
+
+        \begin{tikzpicture}
+        \draw (-2,0) -- (2,0);
+        \draw (0,-2) -- (0,2);
+
+        \draw(0,0) --(1.5,-1.5);
+        \draw[dashed] (1.5,0) -- (1.5,-1.5) -- (0,-1.5);
+        \draw[->] (0.7,0) arc (360:315:.7);
+
+        \draw (current bounding box.north) node[above left] {(δ) {$x>0,\ y<0$}};
+        \end{tikzpicture}
+
+
     \[
     \arg z = \begin{cases}
     \arctan\left|\frac{y}{x}\right|, \qquad & x,y>0 \\
@@ -486,18 +557,18 @@
     -\arctan\left|\frac{y}{x}\right|, \qquad & x>0,\ y<0
     \end{cases}
     \]
-    
-    Για \( 
+
+    Για \(
     \begin{array}{ll}
     x=0,\ & \text{τότε } \arg := \frac{\pi}{2} \text{ ή } -\frac{\pi}{2}\\
-    y=0,\ & \text{τότε } \arg := 0 \text{ή} \pi
+    y=0,\ & \text{τότε } \arg := 0\text{ ή }\pi
     \end{array}
      \)
-     
+
     Έστω \( z_0 = x_0 < 0 \)
     \begin{itemize}
     	\item Έστω \( z = x_0+it \quad (t>0) \)
-    	
+
     	Για \( t\to0^+,\ z\to z_0=x_0 \), αλλά:
     	\[
     	\lim_{z\to z_0}\arg z \overset{z=x_0+it}{=}
@@ -514,11 +585,11 @@
     	\overset{\text{3ο τετ.}}{=} -\pi+\arctan0 = -\pi
     	\]
     \end{itemize}
-    Άρα το όριο στο \( z_0=x_0 \) ΔΕΝ υπάρχει, και έτσι η \( \arg z \) 
+    Άρα το όριο στο \( z_0=x_0 \) ΔΕΝ υπάρχει, και έτσι η \( \arg z \)
     ασυνεχής στα \( z=x_0 \) με \( x_0\leq 0 \).
-    
+
     Αν \( \arg z \in [0,2\pi) \) πού είναι ασυνεχής;
-    
+
 	\newpage
 
 	\part{Κεχαγιάς}
@@ -677,7 +748,7 @@
     \[
     \mathrm{arg}(z_1z_2) = \mathrm{arg}(z_1) + \mathrm{arg}(z_2)
     \]
-    
+
     Όμως:
     \begin{align*}
     \mathrm{arg}(z^z) &= \mathrm{arg}(z)+\mathrm{arg}(z) \\
@@ -698,8 +769,8 @@
     	A+A = \left\lbrace 2,3,4,5,6 \right\rbrace \\
     	2A = \left\lbrace 2,4,6 \right\rbrace
     \end{gather*}
-    
-    
+
+
    	\subsection{n-οστές ρίζες}
    	\[
    	z = a^{\sfrac{1}{n}} \iff z^n=a
@@ -724,9 +795,9 @@
    	\implies& z=a^{\sfrac{1}{n}} = \sqrt[n]{|a|}\cdot
    	e^{\sfrac{i(\theta+2k\pi)}{n}} \quad k\in\mathbb Z
    	\end{align*}
-   	
+
    	(Όμως αρκεί να πάρω \( k\in\left\lbrace 0,1,\dots,N-1 \right\rbrace \))
-   	
+
    	\[
    	a^{\sfrac{1}{n}} = \left\lbrace
    	\quad \sqrt[n]{|a|}e^{\sfrac{i\theta}{n}},\
@@ -734,7 +805,7 @@
    	\right.
    	\]
    	%TODO Kehagias Graph 03
-   	
+
    	\paragraph{Παρ.} \( a^{\sfrac{1}{2}} = 1^{\sfrac{1}{2}} \)
    	\begin{gather*}
    	a=1=1\cdot e^{i0} \quad |a|=1,\theta=0\\
@@ -742,7 +813,7 @@
    	u_1 = \sqrt[2]{1}\cdot e^{i\left(\frac{0+2\cdot\pi}{2}\right)}=e^{i\pi}=-1
    	\end{gather*}
    	%TODO Kehagias Graph 04
-   	
+
    	\paragraph{Παρ.} \( a^{\sfrac{1}{3}}=1^{\sfrac{1}{3}}=z \)
    	\begin{gather*}
    	a=1=e^{i0},|a|=1,\theta=0 \\
@@ -759,7 +830,7 @@
    	\iff (z-1)\left(z+\frac{1-i\sqrt{3}}{2}\right)\left(
    	z+\frac{1+i\sqrt{3}}{2}\right) = 0
    	\end{gather*}
-   	
+
    	\paragraph{Παρ.} \( 1^{\sfrac{1}{11}}=z \iff 1=z^{11} \)
    	\begin{gather*}
    	    \iff z^{11}-1 = 0 \\
@@ -768,8 +839,8 @@
    	\[
    	\left\lbrace u_0,u_1,\dots,u_{10} \right\rbrace
    	\]
-    	
-    	
+
+
 
     \section{Βασικές μιγαδικές συναρτήσεις}
     \( e^z,\ \log(z) \)
@@ -820,15 +891,15 @@
     \frac{1}{2}\ln(2) + i\left( \frac{\pi}{4} +2 k \pi \right)
      \right\rbrace
     \end{align*}
-    
+
     \subsection{}
     Από σήμερα: \( \arg(z) \in (-\pi,\pi] \)
-    
+
     Πριν 7 ημέρες: \( \cancel{e^z=e^{x+iy}=e^x{\cos y+i\sin y}} \)
-    	
+
     \paragraph{Σήμερα:} \( \exp(z) \overset{\text{ορ}}{=}
     1+z+\frac{z^2}{2!}+\dots=\sum_{n=0}^\infty \frac{z^n}{n!} \)
-    
+
     \begin{theorem*}{}
     	Η \( \exp(z) \) είναι παραγωγίσιμη σε κάθε \( z\in\mathbb C  \)
     	και ικανοποιεί:
@@ -853,14 +924,14 @@
     	\\ \implies g(z) &= c \implies c=g(0)=\exp(\zeta) \\
     	\implies \exp(\zeta)=g(z)=\exp(z)\exp(\zeta-z)
     	\end{align*}
-    	
+
     	\textbf{Θέτω:} \( z=z_1,\ \zeta=z_1+z_2 \)
-    	
+
     	\textbf{Οπότε:}
     	\[
     	\exp(z_1+z_2) = \exp(z_1)\cdot\exp(z_2)
     	\]
-    	
+
     	\item \begin{align*}
     	\exp(i\theta) &= 1+i\theta + \frac{(i\theta)^2}{2!} + \frac{(i\theta)^3}{3!}
     	+\frac{(i\theta)^4}{4!} + \dots
@@ -870,14 +941,14 @@
     	\right)
     	\\ &= \cos\theta+i\sin\theta
     	\end{align*}
-    	
+
     	\paragraph{\( \exp(z) \quad e^z \)}
     	\begin{align*}
     	\exp(1+i)&=1+(1+i)+\frac{(1+i)^2}{2!}+\dots\\[.4pt]
     	e^{1+i} &= 1+(i+1)+\dots\\
     	\text{ή}\quad &\text{ο αρ. $e=2.718$ υψωμένος στη μιγαδική δύναμη } 1+i
     	\end{align*}
-    	
+
     	\paragraph{}
     	\begin{theorem*}{}
     		Η \( \exp(z) \) είναι περιοδική με περίοδο \( 2\pi i \)
@@ -886,15 +957,15 @@
     	\[
     	\exp(z+2\pi i) = \exp(z)\exp(2\pi i) = \exp(z)
     	\]
-    	
+
     	Η εικόνα του συνόλου \( A \subseteq \mathbb C  \) υπό την συνάρτηση \( f(z) \)
     	Δηλ.
     	\[ f(A)=\left\lbrace w=f(z),\ z\in A \right\rbrace \]
-    	\paragraph{Παρ.} Να δειχθεί ότι \( \exp(\mathbb C ) = 
+    	\paragraph{Παρ.} Να δειχθεί ότι \( \exp(\mathbb C ) =
     	\mathbb C -\left\lbrace 0 \right\rbrace \)
-    	
+
     	Διότι: έστω \( w=re^{i\phi}\in\mathbb C -\left\lbrace 0 \right\rbrace \).
-    	
+
     	Θα βρω \( z=\rho e^{i\theta}=x+iy \) τ.ώ: \( \exp(z)=w \).
     	\begin{gather*}
     	\exp(z)=\exp(x+iy) = \exp(x)\exp(iy) \\
@@ -905,18 +976,38 @@
     	\arg(w)=\arg(re^{i\phi}) = \phi \\
         \arg\left(\exp(z)\right)=\arg(w) \implies \boxed{y=\phi}
     	\end{gather*}
-    	
+
     	Τελικά \( z=x+iy = \ln(r)+i\phi \) ικανοποιεί \( \exp(z)=re^{i\phi}=w \).
     	Άρα \( \exp(\mathbb C)=\mathbb C-\left\lbrace 0 \right\rbrace \)
-    	
+
     	Στην πραγματικότητα, δεν χρειάζομαι όλο το \( \mathbb C \) διότι:
     	\[
     	\exp(U) = \mathbb C-\left\lbrace 0 \right\rbrace,\quad
-    	\text{όπου } U = \left\lbrace 
+    	\text{όπου } U = \left\lbrace
     	    x+iy:x\in\mathbb R,\ y\in(-\pi,\pi]
     	 \right\rbrace
     	\]
-    	%TODO Kehagias Graph 07
+
+    	\begin{tikzpicture}
+ 	    	\fill[fill=green!20] (-1.8,-1) rectangle (1.8,1);
+
+    		\draw[->,gray] (-2,0) -- (2.2,0);
+    		\draw[gray] (0,-2) -- (0,2);
+
+    		\draw[very thick] (-1.8,1) -- (1.8,1);
+    		\draw[very thick] (-1.8,-1) -- (1.8,-1);
+
+    		\draw (-1.4,1) node[above] {$\pi$};
+    		\draw (-1.4,-1) node[below] {$-\pi$};
+
+    		\draw[ultra thick,->] (3,0) -- (5,0) node[midway,above] {$\exp(z)$};
+
+    		\fill[inner color=green!70!black] (6,-2) rectangle (10,2);
+    		\draw[->] (6,0) -- (10,0);
+    		\draw (8,-2) -- (8,2);
+
+    		\filldraw[thick,red!80!blue,fill=white] (8,0) circle(4pt);
+    	\end{tikzpicture}
     \end{enumparen}
 
 \end{document}
