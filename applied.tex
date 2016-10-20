@@ -589,6 +589,207 @@
     ασυνεχής στα \( z=x_0 \) με \( x_0\leq 0 \).
 
     Αν \( \arg z \in [0,2\pi) \) πού είναι ασυνεχής;
+    
+    \subsection{Μιγαδική παράγωγος}
+    Την εβδομάδα της 28\textsuperscript{ης} θα γίνουν κανονικά τα μαθήματα του
+    Ατρέα.
+    \begin{defn*}{}
+       	Έστω \( f:A \subset \mathbb C \to \mathbb C  \), \( A \) ανοικτό,
+       	\( z_0 \in A \). Λέμε ότι η \( f \) είναι μιγαδικά παραγωγίσιμη στο σημείο
+       	\( z_0 \), αν υπάρχει το ΟΡΙΟ:
+       	\[
+       	\lim_{z\to z_0}
+       	\frac{f(z)-f(z_0)}{z-z_0} = a \in \mathbb C 
+       	\]
+       	(ή ισοδύναμα \( \lim_{h\to0}\frac{f(z_0+h)-f(z_0)}{h}=a\in\mathbb C \))
+       	
+       	Στο εξής το όριο αυτό συμβολίζουμε με \( f'(z_0) \) ή
+       	\( \od{f(z_0)}{z} \)
+    \end{defn*}
+    \begin{defn*}{}
+       	Αν \( f:A\in\mathbb C\to\mathbb C \), \( A \) ανοικτό, \( z_0\in A \),
+       	θα λέμε στο εξής ότι η \( f \) είναι ΟΛΟΜΟΡΦΗ (ή ΑΝΑΛΥΤΙΚΗ -
+       	holomorphic/analytic)
+       	\textbf{στο σημείο \( \mathbf{z_0} \)}, εάν η \( f \) είναι μιγαδικά
+       	παραγωγίσιμη \textbf{ΣΕ ΚΑΘΕ ΣΗΜΕΙΟ} του ανοικτού δίσκου
+       	\begin{tikzpicture}[scale=0.4]
+       	\filldraw[dashed,fill=green!30] (0,0) circle(1);
+       	\draw (0,0) -- ++(135:1) node[midway,above,sloped] {$\epsilon$};
+       	\filldraw (0,0) circle(1pt) node[above right] {$z_0$};
+       	\end{tikzpicture}
+       	\[
+       	D_\epsilon(z_0) = \left\lbrace 
+       	z\in\mathbb C: |z-z_0|<\epsilon
+       	\right\rbrace
+       	\]
+       	για κάποιο \( \epsilon>0 \)
+    \end{defn*}
+    
+    Αν \( f \) ολόμορφη σε ΚΑΘΕ σημείο του \( A \) λέμε ότι η \( f \) ολόμορφη στο
+    \( A \).
+    
+    \begin{defn*}{}
+       	Αν \( A \) μη ανοικτό, λέμε ότι η \( f \) ολόμορφη στο \( A \), αν
+       	υπάρχει \( B \supset A \), \( B \) ανοικτό ώστε η \( f \) στο \( B \).
+    \end{defn*}
+    
+    \paragraph{}
+    Όλες οι γνωστές ιδιότητες της παραγώγου που γνωρίζετε ισχύουν και για τη
+    μιγαδική παράγωγο
+    \subparagraph{π.χ.}
+    Έστω \( f,g \) \textbf{μιγαδικά} παραγωγίσιμες σε σημείο \( z_0 \). Τότε:
+    \begin{itemize}
+       	\item \( f \) παραγ. στο \( z_0 \implies f \) συνεχής στο \( z_0 \)
+       	\item \( \big(af\pm by\big)'(z_0)=
+       	af'(z_0)+bg'(z_0)\ \forall a,b\in\mathbb C  \)
+       	\item \( \big(fg\big)'(z_0) = f'(z_0)g(z_0)+f(z_0)g'(z_0) \)
+       	\item \(  \left(
+       	\frac{f}{g} \right)(z_0)= \frac{f'(z_0)g(z_0)-f(z_0)g'(z_0)}{g^2(z_0)}
+       	\quad \left(g(z_0)\neq0\right)
+       	\)
+       	\item Ο κανόνας αλυσίδας ισχύει στις μιγαδικές συναρτήσεις:
+       	\[
+       	\big( h\circ g \big)'(z_0)=h'\left( g(z_0) \right)g'(z_0)
+       	\]
+       	υπό την προϋπόθεση ότι η σύνθεση καλά ορισμένη
+    \end{itemize}
+    
+    \paragraph{Παραγώγιση αντίστροφης συνάρτησης} %TODO toc?
+    Έστω \( f \) ολόμορφη σε σημείο \( z_0 \) με \( f'(z_0)\neq 0 \).
+    
+    Αν \( w_0=f(z_0) \), τότε υπάρχουν \( \epsilon,\epsilon' >0 \) ώστε η
+    αντίστροφη συνάρτηση \( f^{-1}:\mathrm D_\epsilon(w_0)
+    \to\mathrm D_{\epsilon'}(z_0)
+    \) καλά ορισμένη, ολόμορφη στο \( w_0 \) και
+    \[
+    \mathlarger{
+       	\left( f^{-1} \right)'(w_0) = \frac{1}{f'(z_0)}
+    }
+    \]
+    
+    \paragraph{}
+    \begin{theorem*}[width=.7\textwidth]{Εξισώσεις Cauchy-Riemann}
+       	\vspace{15pt}
+       	Έστω \( f:A\subseteq\mathbb C \to\mathbb C:f(z)=f(x+iy)  
+       	= u(x+y)+iv(x,y)
+       	\). Θεωρώ \( z=x+iy,\ z_0=x_0+iy_0 \) και \( A \) ανοικτό.
+       	
+       	Τότε:
+       	
+       	\( f \) μιγαδικά παραγωγίσιμη στο \( z_0 \)
+       	\[
+       	\hfill \Updownarrow \hfill
+       	\]
+       	\begin{enumlatin}
+       		\item Η \( \mathbf F(x,y) = \left(
+       		u(x,y),\ v(x,y)
+       		\right) \) είναι \textbf{διαφορίσιμο} διανυσμ. πεδίο στο σημείο
+       		\( (x_0,y_0) \)
+       		\\
+       		\[
+       		\hfill \boxed{\text{ΚΑΙ}} \hfill
+       		\]
+       		\item \[\begin{cases}
+       		u_x(x_0,y_0) = v_y(x_0,y_0) \\
+       		u_y(x_0,y_0) = -v_x(x_0,y_0)
+       		\end{cases} \xleftarrow{ \displaystyle \text{εξισώσεις C-R}}
+       		\]
+       	\end{enumlatin}
+       	
+    \end{theorem*}
+    
+    \paragraph{Πόρισμα (ΠΡΑΚΤΙΚΟΤΑΤΟ)}
+    Αν \( f(z)=f(x+iy)=u(x,y)+iv(x,y) \) είναι έτσι ώστε:
+    \begin{enumgreekparen}
+       	\item \( u,v \) έχουν συνεχείς μερικές παραγώγους στο \( (x_0,y_0) \)
+       	και "κοντά" στο \( (x_0,y_0) \)
+       	\item \( \begin{cases}
+       	u_x(x_0,y_0) = v_y(x_0,y_0) \\
+       	u_y(x_0,y_0) = -v_x(x_0,y_0)
+       	\end{cases} \xleftarrow{\displaystyle\text{C-R}} \)
+    \end{enumgreekparen}
+    
+    Τότε \( (\implies) \) η \( f \) είναι μιγαδικά παραγωγίσιμη στο \( z_0=x_0+iy_0 \)
+    
+    \subparagraph{Παρ.}
+    \begin{align*}
+    z^2 &= (x+iy)^2=x^2+2ixy-y^2 =
+    \\  &= x^2-y^2+i(2xy),\ \text{άρα}\\
+    f &= (x^2-y^2,2xy) \quad \left| \begin{array}{l}
+    u_x=v_y\\ u_y = -v_x
+    \end{array} \right.
+    \end{align*}
+    
+    \paragraph{Παρατηρήσεις}
+    \begin{enumgreekparen}
+       	\item
+       	Έστω \( f \) μιγαδικά παραγ. συνάρτηση σε σημείο \( z_0=x_0+iy_0 \). Τότε
+       	εξ' ορισμού υπάρχει το όριο
+       	\[
+       	f'(z_0)=\lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}
+       	\]
+       	%TODO Atreas Graph 06
+       	
+       	\begin{itemize}
+       		\item Έστω \( z=x+iy_0\quad (x\in\mathbb R ) \) είναι τυχαίο σημείο της
+       		"οριζόντιας" ευθείας που διέρχεται από το \( z_0 \)
+       		\item Για \( x\to x_0 \), τότε \( z=x+iy_0 \to x_0+iy_0=z_0 \)
+       		(δηλ. \( z\to z_0 \) όταν \( x\to x_0 \) πάνω στην οριζόντια ευθεία)
+       	\end{itemize}
+       	
+       	
+       	Τότε για \( z=x+iy_0 \) έχω:
+       	\begin{align*}
+       	f'(z_0) &= \lim_{x\to x_0}
+       	\frac{u(x,y_0)+iv(x,y_0)-\left(
+       		u(x_0,y_0)+iv(x_0,y_0)
+       		\right)}{x+iy_0-(x_0+iy_0)}
+       	\\ &= \lim_{x\to x_0}\frac{
+       		u(x,y_0)-u(x_0,y_0)
+       	}{x-x_0}+i\lim_{x\to x_0}\frac{v(x,y_0)-v(x_0,y_0)}{x-x_0}
+       	\\ &= \mathlarger{u_x(x_0,y_0)+iv_x(x_0,y_0)}
+       	\\ &\implies \boxed{
+       		\mathlarger{
+       			f'(z_0) = u_x(x_0,y_0)+iv_x(x_0,y_0)
+       		}
+       	} := \pd{f(x_0,y_0)}{x}
+       	\end{align*}
+       	
+       	Με όμοιο τρόπο, αν εργαστούμε κατά μήκος της "κάθετης" ευθείας που διέρχεται
+       	από το \( z_0 \), έχουμε:
+       	\[
+       	\boxed{\mathlarger{
+       			f'(z_0) = v_y(x_0,y_0)-iu_y(x_0,y_0)
+       		}} := -i\pd{f(x_0,y_0)}{y}
+       		\]
+       		
+       		\item Γεωμετρική ερμηνεία της παραγώγου
+       		\begin{align*}
+       		& f'(z_0)=\frac{\dif f(z_0)}{\dif z}
+       		\\ \implies & \boxed{\dif f(z_0)=f'(z_0)\dif z}
+       		\end{align*}
+       		%TODO Atreas Graph 07
+       		\[
+       		\dif z := \begin{array}{l}
+       		\text{στοιχειώδης όγκος} \\
+       		\text{στο επίπεδο } xy
+       		\end{array}
+       		\]
+       		\[
+       		\dif f(z_0):= \begin{array}{l}
+       		\text{στοιχειώδες χωρίο στο επίπεδο } uv \\
+       		\text{στο οποίο μετασχηματίζεται το } \dif z\\
+       		\text{μέσω της απεικόνισης} f
+       		\end{array}
+       		\]
+       		
+       		\begin{gather*}
+       			\dif f(z_0) = \left|
+       			f'(z_0)\right|e^{i\arg f'(z_0)}\dif z\quad
+       			\mathsmaller{\left( f'(z_0)\neq 0 \right)}
+       		\end{gather*}
+       		
+      	\end{enumgreekparen}
 
 	\newpage
 
@@ -1009,5 +1210,4 @@
     		\filldraw[thick,red!80!blue,fill=white] (8,0) circle(4pt);
     	\end{tikzpicture}
     \end{enumparen}
-
 \end{document}
