@@ -12,253 +12,141 @@
 	Την Τρίτη μάθημα 8:30 χωρίς διάλειμμα
 
 	\include{signals/chap0}
+    \include{signals/chap1}
 
-	\section{Συναρτηστιακοί χώροι}
-	Διανυσματικός χώρος \( S \)
-	\[
-	\bar x,\quad \bar y\quad S
-	\]
-
-	\paragraph{Εσωτερικό γινόμενο}
-	\[ \left\langle\bar x,\bar y\right\rangle\ \in \mathbb C  \]
+    \section{Ανάλυση Fourier}
+	\subsubsection{Περιοδικές συναρτήσεις με περίοδο $T$}
+	\begin{gather*}  
+	x_k =\sqrt{\frac{2}{T}} \cos(k\omega t)\qquad \omega = \frac{2\pi}{T}
+	\text{ θεμελιώδης κυκλική συχνότητα}
+	\\
+	\left\langle 
+	x_k(t),x_n(t)
+	\right\rangle =
+	\int_{-\sfrac{T}{2}}^{\sfrac{T}{2}} x_k(t)x_n(t)\dif t
+	= \int_{-\sfrac{T}{2}}^{\sfrac{T}{2}} \cos(k\omega t)\cos(n\omega t)\dif t
+	= \begin{cases}
+	n \neq k \to 0 \\ n = k \to 1
+	\end{cases}
+	\end{gather*}
+	\begin{gather*}
+		y_k = \sqrt{\frac{2}{T}}\sin(k\omega t)
+		\left\langle
+		y_k,y_n
+		\right\rangle = \begin{cases}
+		n \neq k \to 0 \\ n = k \to 1
+		\end{cases}
+	\end{gather*}
+	
+	Υποστηρίζω ότι κάθε περιοδική \( \displaystyle 
+	f(t) = \sum_{n=0}^\infty a_n\cos(n\omega t)+b_n\sin(n\omega t) \)
+	
+	Οραματίζομαι ότι αν η παραπάνω \( f(t) \) είναι σήμα εισόδου σε ένα σύστημα,
+	τα ημίτονα και συνημίτονα ως ιδιοσυναρτήσεις θα παραμείνουν αμετάβλητα,
+	και θα τροποποιηθούν μόνο τα \( a_n, b_n \).
+	
+	\begin{gather*}
+	z_k(t) =  e^{jk\omega t} \\
+	\left\langle
+	z_k,z_n
+	\right\rangle = \begin{cases}
+	k\neq n \to 0 \\
+	k = n \to T
+	\end{cases}\\
+	z_k(t)=\frac{1}{\sqrt{T}}e^{jk\omega t}
+	\end{gather*}
+	
+	\begin{gather*}
+	\boxed{
+	f(t) = \sum_{n=-\infty}^\infty F_n e^{jn\omega t}
+    } \text{ εκθετική σειρά} \\
+    \boxed{
+    	f(t) =\frac{a_0}{2} + \sum_{n=1}^\infty \left[
+    	a_n\cos(n\omega t)+b_n\sin(n\omega t)
+    	\right]
+    	} \text{ τριγωνομετρική σειρά Α} \\
+    \boxed {
+    	f(t) = A_0 + \sum_{n=1}^\infty A_n\cos(n\omega t+\phi_n)
+    	} \text{ τριγωνομετρική σειρά Β}
+	\end{gather*}
+	
+	Οι συντελεστές μπορούν να βρεθούν από τις προβολές της συνάρτησης πάνω στα
+	ημίτονα και τα συνημίτονα:
+	\begin{align*}
+	a_n &= \frac{2}{T} \int_{-\sfrac{T}{2}}^{\sfrac{T}{2}} f(t)\cos(n\omega t)\dif t
+	\quad n \neq 0 \\
+	b_n &= \frac{2}{T} \int_{-\sfrac{T}{2}}^{\sfrac{T}{2}} f(t)\sin(n\omega t)\dif t
+	\\ a_0 &= \frac{2}{T} \int_{-\sfrac{T}{2}}^{\sfrac{T}{2}} f(t)\dif t
+	\\[5pt] F_n &= \frac{1}{T} \int_{-\sfrac{T}{2}}^{\sfrac{T}{2}}
+	f(t)e^{-jn\omega t}\dif t
+	\end{align*}
+	
+	\paragraph{Συνθήκες Dirichlet}
 	\begin{enumpar}
-		\item \( \left\langle\bar x,\bar y\right\rangle
-		= \left\langle\bar y,\bar x\right\rangle^* \)
-		\item \( c\left\langle\bar x,\bar y\right\rangle
-		=\left\langle c\bar x,\bar y\right\rangle \)
-		\item \( \left\langle\bar x+\bar y,\bar z\right\rangle
-		= \left\langle\bar x,\bar z\right\rangle+\left\langle\bar y,\bar z\right\rangle \)
-		\item \( \left\langle\bar x,\bar x\right\rangle \ \geq 0 \) με
-		\( \left\langle\bar x,\bar x\right\rangle = 0 \) ανν \( \bar x = \bar 0 \)
-	\end{enumpar}
-
-	\paragraph{Νόρμα}
-	\[
-	\bar x \in S
-	\]\[
-	||\bar x|| \geq0
-	\]
-	\begin{enumpar}
-		\item \( ||\bar x|| = 0 \) ανν \( \bar x = \bar 0 \)
-		\item \( ||a\bar x|| = |a|||\bar x|| \quad x \in\mathbb C \)
-		\item \( ||\bar x+\bar y|| \leq ||\bar x|| + ||\bar y|| \)
-	\end{enumpar}
-	\paragraph{Μέτρο:} Απόσταση μεταξύ \( \bar x,\bar y \in S \)
-	\begin{enumpar}
-		\item \( d(\bar x,\bar y)\geq 0 \qquad d(\bar x,\bar y)=0 \)
-		ανν \( \bar x = \bar y \)
-		\item \( d(\bar x,\bar y) = d(\bar y,\bar x) \)
-		\item \( d(\bar x,\bar y) \leq d(\bar x,\bar z) + d(\bar y,\bar z)
-		\quad \bar z\in S
+		\item \( 
+		\displaystyle \int_{-\sfrac{T}{2} }^{\sfrac{T}{2} }\left|
+		f(t)
+		\right| \dif t < \infty
 		 \)
-
-    \end{enumpar}
-    
-    \paragraph{Συναρτησιακός χώρος}
-    \[
-    x(t),y(t) \in S =
-    \left\lbrace x(t)/x(t):[t_1,t_2]\to\mathbb R  \right\rbrace
-    \]
-    \begin{gather*}
-    \left\langle
-    x(t),y(t)
-    \right\rangle  = \int_{t_1}^{t_2}x(t)y(t)\dif t\\
-    \left\vert\middle\vert x(t)\middle\vert\right\vert =
-    \left[ \int_{t_1}^{t_2} x^2(t)\dif t \right]^{\sfrac{1}{2}}\\
-    d\left(
-    x(t),y(t)
-    \right)=\left[
-    \int_{t_1}^{t_2} \left[ x(t)-y(t) \right]^2\dif t
-    \right]^{\sfrac{1}{2}}
-    \end{gather*}
-    
-    \begin{tikzpicture} %TODO
-    	\draw (-3,0) -- (3,0);
-    	\draw (0,-3) -- (0,3);
-    	
-    	\draw[very thick,blue] plot[,smooth,tension=1]
-    	coordinates{(0,0)  (1.4,2)  (2.8,0)};
-    	
-    	\draw (0,0) node[below left] {$t_1$};
-    	\draw (2.8,0) node[below] {$t_2$};
-    \end{tikzpicture}
-    %TODO Add missing graph
-    
-    \begin{align*}
-    \text{Αν } & \left\langle \phi_1(t),\phi_2(t) \right\rangle
-    = 0 \quad \phi_1(t) \perp \phi_2(t) \\
-    & \left\langle \phi_1(t),\phi_1(t)\right\rangle = 1 \quad
-    \phi_1(t) \text{ κανονική}
-    \end{align*}
-    
-    %TODO Add more missing notes
-    
-    %TODO Rekanos Graph 11
-    
-    %TODO Mess starts here
-    \paragraph{Τερατοχώρος}
-    
-    \begin{tikzpicture}[scale=2]
-    	\draw[->] (-0.5,0) -- (2,0) node[below right] {$\hat x$};
-    	\draw[->] (0,-0.5) -- (0,2) node[above left] {$\hat y$};
-    	
-    	\draw[thick,->] (0,0) -- (1.5,1.5) node[right] {$\vec a$};
-	    \draw[thick,->]	(0,0) -- (1.5,0) node[below] {$\tilde a$};
-    \end{tikzpicture}
-    
-    \( \hat x,\hat y \) όχι εξαρτημένα (συνευθειακά)
-    
-    Ποια είναι η καλύτερη προσέγγιση για το \(\vec a\) εφ' όσον δεν υπάρχει
-    το \( \vec y \);
-    
-    \( \tilde a \) best γιατί \(\mathrm d(\vec a,\tilde a)\) min.
-    
-    Άρα:
-    \begin{gather*}
-    	\tilde a = k\hat x \\
-    	\vec a = a_x\hat x+a_y\hat y\\
-    	\vec a -\tilde a = (a_x-k)\hat x - a_y\hat y\\
-    	d(\vec a,\tilde a) = \sqrt{(a_x-k)^2+a_y^2} \\
-    	\od{}{k}\left( d(\vec a,\tilde a) \right) = \frac{a_x-k}{\cdots}
-    	= 0 \implies k=a_x = \tilde a \cdot \hat x\\
-    	\vec a\cdot\hat x = a_x
-    \end{gather*}
-    
-    Η βέλτιστη έκφραση του \( \vec a \) στο δισδιάστατο χώρο είναι το ίδιο το \( \vec a \).
-    
-    \paragraph{Μη κάθετα διανύσματα}
-    
-    %TODO There are some shapes here
-    
-    \begin{gather*}
-    \vec a = a_x\hat x+a_y\hat y\\
-    \vec a - \tilde a = (a_x-k)\hat x+a_y\hat y\\
-    \mathrm d(\vec a,\tilde a)= ||\vec a - \tilde a|| = \sqrt{(\vec a-\tilde a)(\vec a-\tilde a)}
-    =\left(
-    \left[ (a_x-k)\hat x+a_y\hat y \right]\cdot
-    \left[ (a_x-k)\hat x+a_y\hat y \right]
-    \right)^{\sfrac{1}{2}}\\
-    \left[
-    (a_x-k)^2+a_y^2+2(a_x-k)a_y\hat x\cdot\hat y
-    \right]^{\sfrac{1}{2}} \\
-    \vec a_{\mathrm{best}} = (\vec a \cdot \hat x)\hat x \neq a_x \\
-    \boxed{\vec a \cdot \hat x = a_x+a_y\cos\phi\neq a_x}
-    \end{gather*}
-    
-    %TODO There are some shapes here
-
-
-    \paragraph{Συναρτηστιακός κόσμος}
-    \( \phi_n(t) \) παράγουν χώρο με το μηχανισμό:
-    \[
-    f(t)=\sum_{n=0}^\infty a_n\phi_n(t)\quad t \in \Delta
-    \]
-    
-    \( \phi_n(t) \) ανεξάρτητες μεταξύ τους (βάση απειροδιάστατου χώρου)
-    
-    \begin{gather*}
-    \hat f(t)=\sum_{n=0}^M \underbrace{\hat a_n}_{%
-    	\mathclap{\neq a_n\text{, επειδή η βάση δεν είναι ορθοκανονική}}
-    	}\phi_n(t) \text{ βέλτιστη, ώστε η απόσταση με την $f$
-    	να είναι ελάχιστη}  \\
-    \end{gather*}
-    
-    \begin{align*}
-    	\overbrace{I^2}^{\mathclap{\text{σφάλμα}}} &=
-    	\int_\Delta\left[ f(t)-\hat f(t) \right]^2\dif t
-    	\\ &=
-    	\int_\Delta \left[
-	    	\sum_{n=0}^{+\infty}a_n\phi_n(t)-\sum_{n=0}^M\hat a_n\phi(t)
-    	\right]^2\dif t
-    	\\ &= \int_\Delta f^2(t)\dif t + \int_\Delta \left(
-	    	\sum_{n=0}^M \hat a_n\phi_n(t)
-    	\right)^2\dif t -2\int_{\Delta}\left[
-	    	f(t)\sum_{n=0}^M \hat a_n\phi_n(t)
-    	\right] \dif t
-    \end{align*}
-    
-    Άρα:
-    \begin{align*}
-    	I^2 &= \int_{\Delta} f^2(t)\dif t + \int_\Delta \sum_{n=0}^M \left[
-	    	\hat a_n\phi_n(t)
-    	\right]^2\dif t + 2 \int_\Delta \left[
-	    	\sum_{n=0}^M\sum_{m=n+1}^M \hat a_n\cdot\hat a_m \phi_n(t)\phi_m(t)
-    	\right] \dif t - 2 \int_\Delta \sum_{n=0}^M \hat a_n f(t)\phi_n(t)\dif t
-    	\\ &= \int_\Delta f^2(t)\dif t + \sum_{n=0}^M \hat a_n^2\int_\Delta
-    	\phi_n^2(t)\dif t + 2 \sum_{n=0}^M \sum_{n=m+1}^M \hat a_n\hat a_m
-    	\int_\Delta \phi_n(t)\phi_m(t)\dif t - 2\sum_{n=0}^M \hat a_n
-    	\int_\Delta f(t)\phi_n(t)\dif t\\
-    	\od{(I^2)}{\underbrace{\hat a_i}_{\mathclap{\text{από $0$ έως $n$}}}}
-    	&= 2\hat a_i\int_\Delta \phi_i^2(t)\dif t +2\sum_{m\neq i}
-    	\hat a_m\int_\Delta \phi_i(t)\phi_m(t)\dif t - 2\int_\Delta f(t)\phi(t)\dif t = 0
-    \end{align*}
-    
-    %TODO Mess fixed up to here
-    
-
-    Έστω \( \phi_i \) μοναδιαία \( \iff \int_\Delta \phi^2(t)\dif t = 1 \)
-    και \( \phi_i \) ορθογώνια \( \iff \int_\Delta \phi_1\phi_2(t)=0 \)
-    
-    Αν η \( \left\lbrace \phi(t) \right\rbrace \) ορθοκανονική
-    \begin{align*}
-    2\vec a_i-2\int_\Delta f(t)\phi(t)\dif t = 0 \implies
-    \hat a_i = \int_\Delta f(t)\phi(t) \dif t 
-    \end{align*}\[
-    2a\left\langle \phi,\phi \right\rangle +\sum\sum \hat a_n
-    \left\langle \phi_i,\phi_n \right\rangle
-    -2\left\langle f,\phi\right\rangle = 0
-    \]
-    \begin{gather*}
-    f(t) = \sum_{a=0} a_n\phi_n(t)\\
-    \int_\Delta f(t)\phi(t)\dif t =a_i\\
-    \left\langle f,\phi_i\right\rangle = \left\langle
-    \sum_{n=0}^\infty a_i\phi_n,\phi_i
-    \right\rangle = \sum_{??}^\infty a_n\left\langle \phi_n,\phi_i\right\rangle
-    \end{gather*}
-    
-    Ηθικό δίδαγμα: Αν η βάση του χώρου είναι ορθοκανονική και μας ζητηθεί να υπολογίσουμε
-    μία προσέγγιση της συνάρτησης σε έναν υποχώρο, μπορούμε άμεσα να υπολογίσουμε την
-    προβολή της συνάρτησης πάνω στη βάση.
-    
-    \paragraph{Ex.}
-    \( f(t)=e^{-3t}\mathrm u(t)
-    \qquad \phi_1(t)=e^t\mathrm u(t) \ \& \
-    \phi_2(t) = e^{-2t}\mathrm u(t)
-     \)
-     
-    \begin{gather*}
-    \hat f(t) = a_1e^{-t}\mathrm u(t) + a_2e^{-2t}\mathrm u(t) \\
-    \int \left[ a_1\phi_1+a_2\phi_2 -f \right]\phi_1\dif t = 0\\
-    \int_0^\infty \left[ a_1e^{-t}+a_2e^{-2t}-e^{-3t}\right]e^{-t}\dif t = 0\implies
-    \\
-    a_1\int_0^\infty e^{-2t}\dif t+a_2\int_0^\infty e^{-3t}\dif t -\int_0^\infty
-    e^{-4t}\dif t = 0
-    \implies \boxed{ \frac{a_1}{2}+\frac{a_2}{3}-\frac{1}{4} = 0 } \\
-    \int\left[ a_1e^{-t}+a_2e^{-2t}-e^{-3t} \right]e^{-2t}\dif t = 0 \implies
-    \boxed{\frac{a_1}{2}+\frac{a_2}{4}-\frac{1}{5}=0}\\
-    a_1 = \sfrac{3}{10},\ a_2 = \sfrac{6}{5}
-    \end{gather*}
-    
-    \paragraph{Ex.}
-    \( f(t)=e^{-3t}\mathrm u(t)
-    \qquad \phi_1(t)=e^t\mathrm u(t) \ \& \
-    \phi_2(t) = e^{-2t}\mathrm u(t) \ \& \
-    \phi_3(t) = e^{-3t}\mathrm u(t)
-    \)
-    %TODO
-    
-    \( 
-    f(t) = \sum_{n=0}^N a_n\phi_n(t) \quad \left\lbrace \phi_n(t) \right\rbrace
-     \)  ορθοκανονική
-     
-     \begin{align*} E &\overset{\triangle}{=} \int_\Delta f^2(t)\dif t
-     = \int\left(
-     \sum a_n\phi_n(t)\sum a_n\phi_n(t)
-     \right)\dif t+
-     \\ &= \sum_{n=0}^\infty a_n\cancelto{1}{\int_\Delta \phi_n^2(t)\dif t} +
-     \sum_{m\neq n}a_ia_n\int_?\cancelto{0}{\Delta\phi_i(t)\phi_n(t)} \\
-     E &= \sum_{a=m}^\Sigma a_n^2 \quad \text{Parseval}\int \text{ theorem}
-     \end{align*}
-
+		\item Πεπερασμένο πλήθος ασυνεχειών εντός \( T \)
+		\item Πεπερασμένος αριθμός τοπικών ακροτάτων εντός \( T \)
+	\end{enumpar}
+	
+	\( f(t) \) περιοδική \( T \)
+	
+	\hspace{-2cm}
+	\begin{tabular}{|c|c|c|c|}
+		\hline \textbf{Μορφή} & \textbf{Σειρά}  & \textbf{Συντελεστές} & \textbf{Αλλαγές} \\ 
+		\hline Εκθετική & \(\displaystyle f(t)=\sum_{-\infty}^\infty F_n e^{j\omega n t} \) &
+		\(\displaystyle F_n = \frac{1}{T} \int_{-\sfrac{T}{2}}^{\sfrac{T}{2}}
+		f(t)e^{-jn\omega t}\dif t\) &\(
+		\begin{array}{l}
+			F_0 = \sfrac{a_0}{2} \\ F_n = \sfrac{1}{2} (a_n-jb_n)  
+		\end{array}\)
+		 \\ 
+		\hline {\small Τριγωνομετρική} Α  & \( 
+		\displaystyle f(t)=\frac{a_0}{2}+\sum_{n=1}^\infty a_n\cos(n\omega t)
+		+b_n\sin(n\omega t)
+		 \)  & \(
+		 \begin{array}{ll}
+		 a_n &= \frac{2}{T} \int_{-\sfrac{T}{2}}^{\sfrac{T}{2}} f(t)\cos(n\omega t)\dif t \\
+		 b_n &= \frac{2}{T} \int_{-\sfrac{T}{2}}^{\sfrac{T}{2}} f(t)\sin(n\omega t)\dif t \\ a_0 &= \frac{2}{T} \int_{-\sfrac{T}{2}}^{\sfrac{T}{2}} f(t)\dif t
+		 \end{array}
+		 \) & 
+		 \(
+		 \begin{array}{l}
+		 a_n = (F_n+F_{-n})\\
+		 b_n=j(F_n-F_{-n})\\
+		 a_0=2F_0
+		 \end{array}
+		 \)
+		 \\ 
+		\hline 
+		{\small Τριγωνομετρική} Β
+		& \(
+		f(t) = A_0 + \sum_{n=1}^\infty A_n\cos(n\omega t+\phi_n)
+		\) & &
+		\(
+		\begin{array}{l}
+		A_0 = \sfrac{a_0}{2} \\
+		A_n = \sqrt{a_n^2+b_n^2} = 2|F_n| \\
+		\phi_n = \arctan\left(\frac{b_n}{a_n}\right)
+		\end{array}
+		\)
+		\\ \hline
+	\end{tabular} 
+	
+	\paragraph{}
+	\begin{align*}
+	P &= \frac{W}{T} = \frac{1}{T} \int_0^T f^2(t)\dif t =	
+	\frac{a_0^2}{4}+\frac{1}{2}\sum_{n=1}^\infty a_n^2+b_n^2
+	\\ &= F_0^2+2\sum_{n=1}^\infty |F_n|^2 = 
+	\sum_{n=-\infty}^\infty \left|F_n\right|^2 
+	\end{align*}
+	
+	\paragraph{Άσκηση για το σπίτι}
+	Να βρεθούν η εκθετική και η τριγωνομετρική σειρά του σήματος:
+	%TODO Rekanos Graph 13
+	%TODO Rekanos Graph 14
     
 \end{document}
