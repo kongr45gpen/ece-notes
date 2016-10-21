@@ -1259,4 +1259,200 @@
     		\filldraw[thick,red!80!blue,fill=white] (8,0) circle(4pt);
     	\end{tikzpicture}
     \end{enumparen}
+    
+    \subsection{Λογαριθμική Συν.}
+    \[
+    w = \overbrace{\log(z)}^{\mathclap{\text{πλειότιμη}}}
+    \iff z=\exp(w)
+    \]
+    
+    \begin{align*}
+    	w &= \log(1+i) \\
+    	1+i &= \sqrt{2}e^{i\left( \frac{\pi}{4}+2k\pi \right)}\\
+    	\log(1+i) &= \log\left( \sqrt{2}e^{i\left( \frac{\pi}{4}+2k \pi\right)} \right) \\
+    	&= \ln(\sqrt{2})+\log\left( e^{i\left[ \frac{\pi}{4}+2k\pi \right]} \right) \\
+    	&= \ln(\sqrt{2}) + i\left( \frac{\pi}{4}+2k\pi \right)\quad k \int\mathbb Z\\
+    	&= \left\lbrace
+    	\dots,\ln(\sqrt{2})-i\frac{7\pi}{4},
+    	\ln(\sqrt{2})+i\frac{\pi}{4},
+    	\ln(\sqrt{2})+i\frac{3\pi}{4},
+    	\ln(\sqrt{2})-i\frac{17\pi}{4},\dots
+    	\right\rbrace
+    \end{align*}
+    
+    \begin{align*}
+    	\boxed{
+    		\log(z)=\ln(r)+i\mathrm {arg}(z)
+    		} \leftarrow& \text{ πλειότιμη}\\
+    	\boxed{
+    		\mathrm {Log}(z)=\ln(r)+i\arg(z)
+    	} \leftarrow\ & \begin{array}{l}\text{μονότιμη}
+    	\\ \text{ασυνεχής για } x\in(-\infty,0]\end{array}
+    \end{align*}
+    
+    %TODO Kehagias Graph 08
+    
+    
+    \subsection{Μιγαδικές δυνάμεις}
+    \begin{align*}
+    z^c &= e^{\mathrm {log}(z^c)}
+    =e^{c\mathrm{log} z} = e^{c\left(
+    	\ln\left(|z|\right)+i\mathrm{arg}(z)
+    	\right)} \intertext{ή} \\
+    z^c &= e^{\mathrm{Log}(z^c)} = e^{c\left(
+    	\ln\left(|z|\right)+i\mathrm{Arg}(z)
+    	\right)}
+    \end{align*}
+    
+    \begin{align*}
+    \underbrace{(1+i)^{2-i}}_{\mathclap{\begin{array}{l}
+    		z=1+i\\ c=2-i
+    		\end{array}}} &= e^{(2-i)\log(1+i)}
+    = e^{(2-i)\left( \ln\left(\sqrt{2}\right)+i\left(
+    	\frac{\pi}{4}+2k\pi
+    	\right) \right)}
+    \\ &= e^{
+       	\left(
+       	2\ln\left(\sqrt{2}\right)+\left(\frac{\pi}{4}+2k\pi\right)
+       	\right)+i\left(
+       	-\ln\left(\sqrt{2}\right)+\frac{\pi}{4}+4k\pi
+       	\right)
+    }
+    \\ &= e^{2\ln\left(\sqrt{2}\right)+\frac{\pi}{4}+2k\pi} \cdot
+    e^{i\left(
+       	-\ln\sqrt{2}+\frac{\pi}{2}+4k\pi
+       	\right)}
+    \\ &= 2e^{\sfrac{\pi}{4}+2k\pi}\cdot\left[
+    \cos\left(
+    -\ln\left(\sqrt{2}\right)+\frac{\pi}{2}+\cancel{4k\pi}
+    \right)+i\sin\left(
+    -\ln\left(\sqrt{2}\right)+\frac{\pi}{2}+\cancel{4k\pi}
+    \right)
+    \right]
+    \end{align*}
+    
+    \begin{align*}
+    \sqrt{1+i} = (1+i)^{\sfrac{1}{2}} &= e^{\sfrac{1}{2}\cdot\log(1+i)} \\
+    &= e^{\sfrac{1}{2}\left( \ln\left(\sqrt{2}\right)
+    	+i\left( \frac{\pi}{4}+2k\pi \right)
+    	 \right)}
+    \\ &= e^{\sfrac{1}{2}\ln\left(\sqrt{2}\right)}\cdot e^{
+    	\frac{1}{2}\left( \sfrac{\pi}{4}+2k\pi \right)
+    	}
+    \\ &= \sqrt[4]{2}e^{i\left( \frac{\pi}{8}+k\pi \right)}
+    \\ &= \sqrt[4]{2}\left( \cos\left( \frac{\pi}{8}+k\pi \right)
+    +i\sin\left( \frac{\pi}{8}+k\pi \right)\right)
+    \\ &= \begin{cases}
+    \sqrt[4]{2} \left( \cos\left( \frac{\pi}{8} \right)
+    +i\sin\left( \frac{\pi}{8} \right)\right) \\
+    \sqrt[4]{2} \left( \cos\left( \frac{9\pi}{8} \right)
+    +i\sin\left( \frac{9\pi}{8} \right)\right)
+    \end{cases}
+    \end{align*}
+    \begin{align*}
+    (-1)^i &= e^{\log\left( (-1)^i \right)}
+    =e^{i\log(-1)} = e^{
+    	i\left( i(2k+1)\pi \right)
+    	} = e^{-(2k+1)\pi}
+    \end{align*}
+    
+    \begin{align*}
+    (1+i)^{\sqrt{2}} &= e^{\sqrt{2}\log(1+i)} = e^{\sqrt{2}\left(
+    	\ln\left(\sqrt{2}\right)+i\left(\frac{\pi}{4}+2k\pi\right)
+    	\right)} \\ &=
+    \sqrt{2}^{\sqrt{2}}\cdot e^{i\sqrt{2}\left(\frac{\pi}{4}\right)+2k\pi}
+    \\ &=
+    \sqrt{2}^{\sqrt{2}}
+    \left[
+    \cos\left(\frac{\sqrt{2}\pi}{4}+2k\sqrt{2}\pi\right)
+    +i\sin\left(\frac{\sqrt{2}\pi}{4}+2k\sqrt{2}\pi\right)
+    \right]
+    \\ & \cos\left( \frac{\sqrt{2}\pi}{4} \right) = \cos\left(
+    \frac{\sqrt{2}\pi}{4}+2k\sqrt{2}\pi
+    \right)\\ & \implies \frac{\sqrt{2}\pi}{4}=
+    \frac{\sqrt{2}\pi}{4}+2k\sqrt{2}\pi+2m\pi \implies
+    2k\sqrt{2}\pi=2m\pi\implies \sqrt{2}=\sfrac{m}{k}
+    \end{align*}
+    
+    \begin{gather*}
+    (1+i)^{\sfrac{p}{q}}=\dots\\ m=\lambda q
+    \end{gather*}
+    
+    \paragraph{Παρ.}
+    Να βρεθούν οι τιμές του \( n \) τ.ώ:
+    \[
+    c_n = \sum_{k=0}^n i^k \in \mathbb I
+    \]
+    
+    \subparagraph{}
+    \[
+    \begin{array}{r|l}
+    n & \\ \hline
+    0 & 1 \\ 1 & 1+i \\ 2 & 1+i \\ 3 & 1+i+i^2=i \\ 4 & 1
+    \\ \hline
+    5 & 1+i \\ 6 & i \\ \vdots & \vdots
+    \end{array}
+    \]
+    
+    Αρα \( \forall_{n,m}: c_n=c_{n+4m} \)
+    
+    Οι φανταστικές τιμές του \( c_n \) προκύπτουν για
+    \begin{align*}
+    	n =& 2,3, \\& 6,7, \\ & 10,11,
+    \end{align*}
+    
+    %TODO Kehagias Graph 09
+    \subparagraph{Απ.} \( 
+    n\in\left\lbrace m+4l: m\in\left\lbrace 2,3 \right\rbrace
+    ,l\in \mathbb N_0
+    \right\rbrace
+     \)
+     
+    \paragraph{Παρ.}
+    Να λυθεί η \( (1+z)^{2n}=-(1-z)^{2n}\quad n\in\mathbb N \)
+    \subparagraph{Λύση}
+    Φαίνεται άμεσα ότι \( z\neq 1 \)
+    \begin{align*}
+    \left(
+    \frac{1+z}{1-z}
+    \right)^{2n}&=-1 \implies \\
+    \frac{1+z}{1-z} &= (-1)^{\sfrac{1}{2n}}
+    = \left(e^{i(2k+1)\pi}\right)^{\sfrac{1}{2n}}
+    \\ z&=\frac{
+    	e^{i(2k+1)\sfrac{\pi}{2n}}-1
+    	}{e^{i(2k+1)\sfrac{\pi}{2n}}+1}
+    \\ &= \frac{
+    	\cos\left((2k+1)\frac{\pi}{2n}\right)+i\sin\left((2k+1)\frac{\pi}{2n}\right)-1
+    	}{
+    	\cos\left((2k+1)\frac{\pi}{2n}\right)+i\sin\left((2k+1)\frac{\pi}{2n}\right)+1
+    	}
+    \\ & \underset{\begin{cases}
+    	\cos\phi-1=-2\sin^2\frac{\phi}{2}\\
+    	\cos\phi+1=2\cos^2\frac{\phi}{2}
+    	\end{cases}}{=} -\frac{
+    	2\sin^2\left( (2k+1)\frac{\pi}{4n} \right)+i2\sin\left((2k+1)\frac{\pi}{4n}\right)\cos\left(
+    	(2k+1)\frac{\pi}{4}
+    	\right)
+    	}{2\cos^2\left( (2k+1)\frac{\pi}{4n} \right)+i2\sin\left((2k+1)\frac{\pi}{4n}\right)\cos\left(
+    	(2k+1)\frac{\pi}{4}
+    	\right)}
+    \\ &= \frac{
+    	\sin\left((2k+1)\frac{\pi}{4n}\right)\left[
+    	-\sin\left(
+    	(2k+1)\frac{\pi}{4n}
+    	\right)+i\cos\left(
+    	(2k+1)\frac{\pi}{4n}
+    	\right)
+    	\right]
+    	}{\cos\left(
+    	(2k+1)\frac{\pi}{4n}
+    	\right)\left[
+    	\cos\left((2k+1)\frac{\pi}{4n}\right)+i\sin\left(
+    	(2k+1)\frac{\pi}{4n}
+    	\right)
+    	\right]}
+    \\ z_k &= i\tan\left((2k+1)\frac{\pi}{4n}\right) \qquad
+    k=0,1,\dots,2n-1
+    \end{align*}
+    
 \end{document}
