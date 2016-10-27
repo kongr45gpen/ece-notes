@@ -791,6 +791,287 @@
        		
       	\end{enumgreekparen}
 
+
+	\paragraph{}
+	Για τις παραγώγους στοιχειωδών συναρτήσεων ισχύουν τα συνήθη από την πραγματική
+	ανάλυση.
+	\subparagraph{π.χ}
+	Αν \( f(z)=e^z \), τότε \( (e^z)'=e^z\ \forall z\in\mathbb C  \)
+	
+	\begin{align*}
+		f(z)= e^z &=e^{x+iy} = e^xe^{iy} = e^x(\cos y+\sin y)
+		\\ &= \underbrace{e^x\cos y}_{\mathclap{u(x,y)}}
+		+ i \underbrace{(e^x\sin y)}_{\mathclap{v(x,y)}}
+	\end{align*}
+	
+	Ορίζω \( \begin{cases}
+	u(x,y) = \Re(e^z) = e^x\cos y \\
+	v(x,y) = \Im(e^z) = e^x\sin y
+	\end{cases} \)
+	
+	\begin{itemize}
+		\item \( u,v \) καλά ορισμένες \( \forall (x,y)\in\mathbb R^2 \), και επιπλέον
+		\( u,v \) είναι \textbf{ΣΥΝΕΧΕΙΣ} \( \forall (x,y)\in\mathbb R ^2 \)
+		\item \(\begin{matrix}
+			u_x=e^x\cos y& u_y=-e^x\sin y\\
+			v_x=e^x\sin y& v_y=e^x\cos y
+		\end{matrix}\), έτσι παρατηρώ ότι \( 
+		\begin{cases}
+		& u_x = v_y \\ \text{ΚΑΙ } & u_y=-v_x
+		\end{cases} \forall (x,y)\in\mathbb R ^2
+		 \)
+	\end{itemize}
+	\( \xRightarrow{\text{πόρισμα}} f(z)=e^z \) μιγαδικά παραγωγίσιμη \( \forall z\in\mathbb C  \)
+	\begin{itemize}
+		\item Γνωρίζω ότι αν η \( f=u+iv \) είναι μιγ. παραγ., τότε \( f'(z)=u_x+iv_x \).
+		
+		\textbf{Έτσι} στην προκειμένη περίπτωση:
+		\begin{align*}
+		f'(z)=\left( e^z \right)'=u_x+iv_x=e^x\cos y+ie^x\sin y =
+		e^x(\cos y+i\sin y)=e^xe^{iy}=e^z
+		\end{align*}
+	\end{itemize}
+	
+	\subparagraph{π.χ}
+	\( \mathrm{Log}z=\frac{1}{z}\ \forall z \in \mathbb C^* = \mathbb C -
+	\left\lbrace x+iy: x\leq0 \text{ και } y=0 \right\rbrace
+	\Big(
+	\text{υπό την προϋπόθεση ότι } \arg z \in (-\pi,\pi]\
+	\Big)
+	 \) \\ διότι
+	 \( \mathrm{Log} z = w \xLeftrightarrow{\text{ορ.}} z=e^w \),
+	 άρα \( \forall z \in\mathbb C ^* \), από το θεώρ. παραγώγισης αντίστροφης
+	 συνάρτησης έχουμε: \( (\mathrm{Log}z)' = \frac{1}{e^w}=\frac{1}{z} \)
+	 
+	 Με την ίδια λογική (και με χρήση των ιδιοτήτων παραγώγου) αποδεικνύεται ότι
+	 \begin{itemize}
+	 	\item \( (z^n)' =nz^{n-1}\quad \forall n\in\mathbb N \quad \forall z\in\mathbb C \)
+	 	\item \( 
+	 	(z^{-n})' = -nz^{-n-1}\quad\forall n\in\mathbb N \quad\forall z\in
+	 	\mathbb C - \left\lbrace 0 \right\rbrace
+	 	 \)
+	    \item \( 
+	    (z^a)'=az^{a-1}\quad\forall a\in\mathbb Q \text{
+	    	ή $a$ άρρητος ή $a$ έχει μη μηδενικό φανταστικό μέρος
+	    	}\quad\forall z\in\mathbb C^* (\mathbb C^* \text{ 
+	    	όπως στο λογάριθμο πριν
+	    	})
+	     \)
+	    \item \( (\sin z)'=\cos z\quad\forall z\in\mathbb C  \)
+	    \item \( (\cos z)'=-\sin z \quad\forall z\in\mathbb C  \)
+	    \item \( (\sinh z)' = \cosh z\quad\forall z\in\mathbb C \)
+	    \item \( (\cosh z)' = \sinh z\quad\forall z\in\mathbb C \)
+	    \item \( (a^z)'=a^z\mathrm{Log}a\quad\forall z\int\mathbb C \)
+	 \end{itemize}
+	 κλπ.
+	 
+	 \subsection{Ασκήσεις}
+	 \paragraph{} ΝΔΟ
+	 η \( f(z)=\bar z \) ΔΕΝ είναι μιγαδικά παραγωγίσιμη \textbf{σε κανένα}
+	 σημείο του \( \mathbb C \).
+	 
+	 \begin{itemize}
+	 	\item \( \bar z = \overline{x+iy}=x-iy \), ορίζω
+	 	\( \left| \begin{array}{l}
+	 	u(x,y) = x \\ v(x,y) = -y
+	 	\end{array} \right. \)
+	 	\item Προφανώς \( u \) και \( v \) καλά ορισμένες και συνεχείς
+	 	\( \forall (x,y)\in\mathbb R^2 \), αλλά:
+	 	\[
+	 	u_x=1\neq -1 = v_y
+	 	\]
+	 	\( \forall(x,y)\in \mathbb R \), άρα αφού η μία από τις δύο εξισ.
+	 	C-R δεν ισχύει \underline{\( \forall(x,y)\in\mathbb R^2 \)},
+	 	η \( f(z)=\bar z \) \textbf{ΔΕΝ} είναι μιγαδικά παραγ.
+	 	\( \forall z\in\mathbb C \).
+	 \end{itemize}
+	 
+	 %TODO Atreas Graph 08
+	 %TODO Atreas Graph 09
+	 
+	 \paragraph{}
+	 \begin{gather*}
+	 f(z)=e^z=e^x\cos y+ie^x\sin y \\
+	 \left|
+	 \begin{array}{l}
+	 u = e^x\cos y_0 \\ v=e^x\sin y_0
+	 \end{array}
+	 \right.
+	 \end{gather*}
+	 
+	 %TODO Atreas Graph 10
+	 
+	 \paragraph{Άσκ. 2}
+	 Η συνάρτηση \( f(z)=|z| \) \textbf{ΔΕΝ} είναι μιγαδικά παραγωγίσιμη σε
+	 \textbf{ΚΑΝΕΝΑ} σημείο του \( \mathbb C  \).
+	 
+	 \begin{infobox}{}
+	 	Οι εξισώσεις C-R σε πολικές συντ/νες είναι οι εξής:
+	 	\[
+	 	\begin{cases}
+	 	u_\rho = \frac{1}{\rho}v_\theta \quad \forall \rho>0,
+	 	         \theta\in(-\pi,\pi]\\
+	 	u_\theta=-\rho v_\rho
+	 	\end{cases}
+	 	\]
+	 	\tcblower
+	 	\begin{align*}
+	 	f(z) &= f(x+iy) \\
+	 	     &= f\left( |z|e^{i\arg z} \right) = f\left(\rho e^{i\theta}\right)
+	 	     = u(\rho,\theta)+iv(\rho,\theta)
+	 	\end{align*}
+	 \end{infobox}
+	 
+	 \( f(z)=|z|=\rho \), άρα \( \begin{cases}
+	 u(\rho,\theta)=\rho \\ v(\rho,\theta)=0
+	 \end{cases} \)
+	 
+	 Οι \( u,v \) καλά ορισμένες και συνεχείς \( \forall \rho>0,
+	 \theta\in (-\pi,\pi]
+	  \) αλλά \[
+	  u_\rho = 1 \neq \frac{1}{\rho}\cdot 0 =\frac{1}{\rho}v_\theta
+	  \quad \forall \rho>0,\theta\in(-\pi,\pi]
+	  \]
+	  και αφού μία από τις εξισώσεις C-R δεν ισχύει \( \forall \rho>0,
+	  \theta\in(-\pi,\pi]
+	   \) αναγκαστικά η \( f(z)=|z| \) δεν είναι μιγαδικά παραγ. σε κανένα
+	   σημείο του \( \mathbb C  \).
+	\subparagraph{π.χ}
+	\begin{align*}
+	f(z) &= \frac{\bar z}{|z|^2} \quad z\neq0
+	\\ &\overset{|z|^2=z\bar z}{=} \frac{\bar z}{z\bar z}=\frac{1}{z}
+	\end{align*}
+	άρα η \( f \) είναι παραγωγίσιμη.
+	
+	\paragraph{Άσκ. 3} Υπολογίστε τα όρια:
+	\begin{enumgreekparen}
+		\item \( 
+		\displaystyle \lim_{z\to0} \frac{e^{z^2}-1}{z^2}
+		 \)
+		\item \( 
+		\displaystyle \lim_{z\to1} \frac{z^2-1}{\bar z^2-1}
+		 \)
+		\item \( 
+		\displaystyle \lim_{z\to \infty} e^z
+		 \)
+	\end{enumgreekparen}
+	\begin{infobox}{}
+		Στα όρια ισχύει ο De L' Hospital
+	\end{infobox}
+	\subparagraph{}\begin{enumgreekparen}
+		\item
+		\begin{align*}
+		\lim_{z\to0} \frac{e^{z^2}-1}{z^2} 
+		&\underbrace{\overset{\left(\frac{0}{0}\right)}
+			{\underset{\text{L'Hospital}}{=}}}_{
+			\mathclap{\text{διότι $e^{z^2}-1$ και $z^2$ μιγ. παραγ.}}}
+		\lim_{z\to 0} \frac{2ze^{z^2}-0}{2z} = \lim_{z\to0}e^{z^2}=e^0=1
+		\end{align*}
+		
+        \item
+        Θα προσπαθήσω να αποδείξω ότι το όριο δεν υπάρχει, κάτι που φαντάζομαι
+        επειδή μέσα στο όριο υπάρχει ο \( \bar z \).
+        %TODO Atreas Graph 11
+        \begin{itemize}
+        	\item Θεωρώ την "κίνηση κατά μήκος του οριζόντιου άξονα" που διέρχεται
+        	      από το \( z_0 =1 \).
+        	      \\
+        	      \textbf{Δηλ. } θεωρώ σημεία \( z \) της μορφής \[ z=x+i0 \quad
+        	      (x\in\mathbb R )
+        	      \]
+        	      
+        	      Προφανώς για \( x\to 1 \), έχω: \( z\to z_0=1 \).\\
+        	      Τότε \( \forall z=x \) έχω:
+        	      \begin{align*}
+        	      \lim_{z\to 1}\frac{z^2-1}{\bar z^2-1}
+        	      \overset{\text{κατα μήκος}}{\underset{\text{του οριζ. άξονα}}{=}}
+        	      \lim_{x\to 1}\frac{x^2-1}{x^2-1}=1
+        	      \end{align*}
+            \item Θεωρώ την "κίνηση κατά μήκος του κάθετου άξονα" που διέρχεται
+                  από το \( z_0=1 \), δηλαδή σημεία:
+                  \[
+                  z=1+ix\quad (x\in\mathbb R )
+                  \]
+                  
+                  Προφανώς για \( x\to0 \), έχω \( z\to z_0=1 \), και
+                  \begin{align*}
+                  \lim_{z\to1} \frac{z^2-1}{\bar z^2-1}
+                  &\overset{\text{κατα μήκος}}{%
+                  	\underset{\text{του κατακόρυφου άξονα}}{=}}
+                  \lim_{x\to 0}\frac{(1+ix)^2-1}{(1-ix)^2-1}
+                  =\lim_{x\to0}
+                  \frac{\cancel{1}+2ix-x^2-\cancel{1}}{\cancel{1}-2ix-x^2-\cancel{1}}
+                  \\ &= \lim_{x\to0} \frac{2ix-x^2}{-2ix-x^2}
+                  =\lim_{x\to 0}\frac{2i-x}{-2i-x}=\frac{2i}{-2i}=-1
+                  \end{align*}
+        \end{itemize}
+        Εφόσον \( 1\neq -1 \) το όριο ΔΕΝ υπάρχει.
+        
+        \item \( \lim\limits_{x\to\infty}e^x=? \)
+        \begin{itemize}
+        	\item Έστω \( z=x \quad (x<0) \), για \( x\to -\infty \), τότε
+        	\( z\to \infty \) και \( \lim\limits_{z\to \infty} e^z
+        	=\lim\limits_{x\to-\infty}e^x=0
+        	 \)
+        	\item Έστω \( z=x \quad (x>0) \), για \( x\to +\infty \), τότε
+        	\( z\to \infty \), αλλά: \( \lim\limits_{z\to \infty} e^z
+        	=\lim\limits_{x\to+\infty}e^x=+\infty
+        	\), συνεπώς το \( \lim\limits_{z\to \infty}e^z \) ΔΕΝ υπάρχει.
+        \end{itemize}
+	\end{enumgreekparen}
+	
+	\paragraph{Άσκ. 4}
+	Αν \( f(z)=u+iv \) είναι ακεραία (ολόμορφη στο \( \mathbb C \)) και αν
+	\[
+	au+bv =c
+	\] όπου \( a,b,c\in\mathbb R \) σταθερές όχι όλες ίσες με μηδέν, ΝΔΟ
+	\( f(z)=A, \ A\in\mathbb C \) σταθερά.
+	
+	\begin{itemize}
+		\item Έστω \underline{\( c=0 \)}, εξ' υποθέσεως \( a^2+b^2\neq 0 \)
+		\item Έστω \( c\neq 0 \), πάλι πρέπει \( a^2+b^2\neq 0 \)
+		      (διότι αλλιώς \( 0=c \), άτοπο)
+		\item Τελικά \( a^2+b^2\neq 0 \) σε κάθε περίπτωση.
+	\end{itemize}
+
+
+    \begin{align*}
+    \begin{cases}
+    au_x+bv_x = 0 \\
+    au_y+bv_y = 0
+    \end{cases} &\implies \left[
+    \begin{matrix}
+    u_x & v_x \\ u_y & v_y
+    \end{matrix}
+    \right]\left[\begin{matrix}
+    a \\ b
+    \end{matrix}\right] = \left[\begin{matrix}
+    0 \\ 0
+    \end{matrix}\right]
+    \\ &\xRightarrow[u_y=-v_x\text{ αφού $f$ ακεραία}]{u_x=v_y}
+    \left[\begin{matrix}
+    u_x&-u_y\\ u_y& u_x
+    \end{matrix}\right]\left[
+    \begin{matrix}
+    a\\b
+    \end{matrix}
+    \right]=\left[\begin{matrix}
+    0 \\ 0
+    \end{matrix}\right]
+    \end{align*}
+    \begin{gather*}
+    \left|\begin{matrix}
+    u_x & -u_y \\ u_y & u_y
+    \end{matrix}\right| = u_x^2+u_y^2
+    \end{gather*}
+    και επειδή \( a^+b^2\neq 0 \), πρέπει \( u_x^2+u_y^2=0 \) για να έχει λύση
+    το σύστημα \( \implies u_x=0 \) και \( u_y=0 
+    \xRightarrow{\text{C-R}} u_x=u_y=v_x=v_y=0 \ \forall (x,y)\in\mathbb R ^2
+    \implies f(z) = A\in\mathbb C
+    \) σταθερά.
+
+
+
 	\newpage
 
 	\part{Κεχαγιάς}
