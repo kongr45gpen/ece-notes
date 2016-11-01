@@ -148,5 +148,173 @@
 	Να βρεθούν η εκθετική και η τριγωνομετρική σειρά του σήματος:
 	%TODO Rekanos Graph 13
 	%TODO Rekanos Graph 14
+	
+	\subsection{Μετασχηματισμός Fourier}
+	%TODO Rekanos Graph 15
+	\paragraph{Φορέας} συνάρτησης είναι το διάστημα του πεδίου ορισμού της στο
+	οποίο η συνάρτηση δεν είναι 0 (από \( \min x \) για το οποίο δεν είναι 0 ως
+	το αντίστοιχο \( \max x \)).
+	
+	\begin{gather*}
+	\tilde f(t) = \sum{k=-\infty}^\infty f(t-kT)\\
+	\downarrow T\text{-περιοδική} \rightarrow \tilde f(t)=\frac{a_0}{2}
+	+\sum_{n=1}^\infty a_n\cos(\omega_0 n t)+b_n\sin(\omega_0 n t)
+	\qquad \omega_0=\frac{2\pi}{T} \\[3pt]
+	f(t)=\begin{cases}
+	\tilde f(t) &\quad -\sfrac{T}{2}\leq t \leq \sfrac{T}{2}\\
+	0 &\quad\text{elsewhere} 
+	\end{cases}
+	\end{gather*}
+	
+	%TODO Rekanos Graph 16
+	
+	\paragraph{Μετασχηματισμός Fourier}
+	\begin{align*}
+	F(\omega) &\overset{\triangle}{=}
+	\int_{-\infty}^{\infty} f(t)e^{-j\omega t}\dif t
+	\\ f(t) &= \frac{1}{2\pi}\int_{-\infty}^{\infty}
+	F(\omega )e^{j\omega t}\dif\omega
+	\end{align*}
+	
+	\begin{attnbox}{Προσοχή}
+		Όταν παίρνουμε τύπους από τυπολόγια, ελέγχουμε τον ορισμό
+		του μετασχηματισμού Fourier, για διαφορές στη σύμβαση!
+	\end{attnbox}
+	
+	\paragraph{Αντίστοιχος ορισμός}
+	\begin{align*}
+	F(\mathfrak{f}) &\overset{\triangle}{=} \int_{-\infty}^{\infty}
+	e^{-j2\pi\mathfrak{f}t}\dif t\\
+	f(t) &= \int_{-\infty}^{\infty} F(\mathfrak f)e^{j2\pi\mathfrak{f}t}\dif
+	\mathscr{f}
+	\end{align*}
+	(όπου \( \mathfrak{x} \) η συχνότητα)
+	
+	Η αρνητική συχνότητα δεν έχει καμία φυσική σημασία!
+	 
+	 \subsubsection{Ιδιότητες}
+	 \begin{itemize}
+
+     \item
+	 \begin{gather*}
+	 F(\omega)= A(\omega )e^{j\Phi(\omega )} =
+	 \underbrace{F_R(\omega )}_{\mathclap{\Re\left\lbrace F(\omega ) \right\rbrace}}
+	 +j\underbrace{F_i(\omega )}_{\mathclap{\Im\left\lbrace F(\omega ) \right\rbrace}}
+	 \\ A(\omega )=\left| F(\omega ) \right|
+	 \end{gather*}
+	 \item
+	 \begin{gather*}
+	 F(\omega )=\int_{-\infty}^{\infty} f(t)\left(\cos(\omega t)-j\sin(\omega t)\right)
+	 \dif t = \underbrace{\int_{-\infty}^{\infty} f(t)\cos\omega t\dif t}_{%
+	 	\Re\left\lbrace F(\omega ) \right\rbrace
+	 	}
+	 	\underbrace{-}_{-}
+	 	j \underbrace{\int_{-\infty}^{\infty} f(t)\sin\omega t\dif t}_{%
+	 		\Im\left\lbrace F(\omega ) \right\rbrace
+	 		}
+	 \end{gather*}
+	 
+	 Αν \( f(t):\mathbb R \to\mathbb R  \) είναι άρτια\\
+	 \( F(\omega ) \) είναι πραγματική \quad \( 
+	 F(\omega ) \equiv \Re\left\lbrace F(\omega ) \right\rbrace
+	  \) και είναι άρτια
+	  
+	 Αν \( f(t):\mathbb R \to\mathbb R  \) είναι περιττή\\
+	 \( F(\omega ) \) είναι φανταστική \quad \( 
+	 F(\omega ) = j\Im \left\lbrace F(\omega) \right\rbrace
+	  \) και είναι περιττή
+	  
+	 Κάθε συνάρτηση είναι άθροισμα μίας άρτιας και μίας περιττής. Έστω
+	 \( f(t) = f_e(t)+f_o(t) \). Τότε:
+	 \begin{align*}
+	 F(\omega ) &= \int_{-\infty}^{\infty} \left(
+	 f_o(t)+f_e(t)
+	 \right)(\cos\omega t -j\sin \omega t)\dif t
+	 \\ &= \cancel{\int_{-\infty}^{\infty} f_o\cos\omega t\dif t}
+	 + \int_{-\infty}^{\infty} f_e\cos\omega t\dif t
+	 - j\int_{-\infty}^{\infty} \sin\omega t\dif t
+	 - j \cancel{\int_{-\infty}^{\infty} f_e\sin\omega t\dif t }
+	 \end{align*}
+	 
+	 Αν η \( f \) είναι πραγματική: \\
+	 \( \Re\left\lbrace F(\omega ) \right\rbrace \) είναι άρτια \\
+	 \( \Im\left\lbrace F(\omega ) \right\rbrace \) είναι περιττή \\
+	 \( A(\omega)=\left|F(\omega )\right| = 
+	 \sqrt{\Re^2\left\lbrace F(\omega ) \right\rbrace}
+	 +\Im^2\left\lbrace F(\omega) \right\rbrace
+	  \) είναι άρτια\\
+	  \( \Phi(\omega) =\arctan
+	  \frac{\Im\left\lbrace F(\omega) \right\rbrace}%
+	  {\Re\left\lbrace F(\omega ) \right\rbrace}
+	   \) είναι περιττή.
+	   
+	 Αν η \( f(t):\mathbb R \to \mathbb R  \) και άρτια:
+	 \begin{itemize}
+	 	\item \( \Im\left\lbrace F(\omega)=0 \right\rbrace \)
+	 	\item \( \Phi(\omega) = 0 \)
+	 \end{itemize}
+	 
+	 Αν η \( f(t):\mathbb R\to\mathbb R  \) είναι περιττή:
+	 \begin{itemize}
+	 	\item \( \Re\left\lbrace F(\omega) \right\rbrace = 0 \)
+	 \end{itemize}
+	 
+	 \item
+	 
+	 Αν \( f_1(t) \xrightarrow{\text{FT}} F_1(\omega ) \) και
+	 \( f_2(t)\xrightarrow{\text{FT}} F_2(\omega ) \) \\
+	 \( \forall a_1,a_2\in\mathbb C \) σταθερά: \\
+	 \( f(t) = a_1f_1(t)+a_2f_2(t) \xrightarrow{\text{FT}}
+	 F(\omega) = a_1F_1(\omega)+a_2F_2(\omega)
+	  \) \\
+	  Γραμμικότητα του Fourier Transform
+	  
+	 \item Συμμετρική ιδιότητα (το διπλάσιο τυπολόγιο)
+	 
+	 Αν \( f(t)\xrightarrow{\text{FT}} F(\omega)
+	 \qquad F(t)\xrightarrow{\text{FT}} 2\pi f(-\omega)
+	  \)
+	  
+	 \item 
+	 \begin{align*}
+	 f(t) &\to F(\omega ) \quad = A(\omega) e^{j\Phi(\omega )} \\
+	 f(t-\tau) &\to e^{-j\omega \tau}F(\omega ) \quad =
+	 A(\omega )e^{j\left( \Phi(\omega )-\omega \tau \right)}
+	 \end{align*}
+	 
+	 \item
+	 \begin{align*}
+	 f(t)&\to F(\omega) \\
+	 e^{j\omega_0 t}f(t) &\to F(\omega-\omega_0) \\[7pt]
+	 \text{π.χ}\quad \cos(\omega_0 t)f(t)=
+	 \frac{e^{j\omega_0 t}+e^{-j\omega_0 t}}{2}f(t) &\xrightarrow{\text{FT}}
+	 \frac{1}{2}\left[
+	 F(\omega-\omega_0)+F(\omega+\omega_0)
+	 \right]
+	 \end{align*}
+	 
+	 \end{itemize}
+	 
+	 \paragraph{Κλιμάκωση στο χρόνο}
+	 \begin{align*}
+	 f(t) &\to F(\omega )\\
+	 f(at)&\to \frac{1}{|a|}F\left( \frac{\omega }{a} \right)
+	 \quad \text{γιατί; να αποδειχθεί στο σπίτι!}
+	 \end{align*}
+	 
+     \paragraph{Τι συμβαίνει με τη συνέλιξη}
+     \begin{align*}
+     g(t) &= x(t)*h(t) \\
+     x(t)&\to X(\omega )\\
+     h(t)&\to H(\omega )\\
+     y(t)&\to Y(\omega) = X(\omega)H(\omega)
+     \end{align*}
+     
+     \begin{align*}
+     y(t) &= x(t)\cdot h(t)\\
+     y(t) &\to Y(\omega) = \frac{1}{2\pi}X(\omega)*H(\omega )
+     \\ &= \frac{1}{2\pi} \int_{-\infty}^{\infty} X(\xi)H(\omega-\xi)\dif\xi
+     \end{align*}
+     
     
 \end{document}
