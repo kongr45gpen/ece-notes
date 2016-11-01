@@ -1069,6 +1069,252 @@
     \xRightarrow{\text{C-R}} u_x=u_y=v_x=v_y=0 \ \forall (x,y)\in\mathbb R ^2
     \implies f(z) = A\in\mathbb C
     \) σταθερά.
+    
+	\paragraph{Άσκ.}    
+	Βρείτε τα σημεία ολομορφίας των συναρτήσεων:
+	\begin{enumgreekparen}
+		\item \( f(z)=\mathrm{Log}(z-i) \)
+		\item \( g(z)=\tan z \)
+	\end{enumgreekparen}
+	\begin{enumgreekparen}
+		\item
+		Έστω ότι \( \arg{z}\in(-\pi,\pi] \). Τότε είναι γνωστό ότι η \( \mathrm{Log} z \)
+		είναι μιγαδικά παραγ. στο \( \mathbb C ^*=\mathbb C-
+		\left\lbrace x+iy\quad x\leq 0 \text{ και } y = 0 \right\rbrace
+		 \).
+		 
+	    Έτσι η \( \mathrm{Log}(z-i) \) είναι μιγ. παραγ. στο σύνολο
+	    \begin{align*}
+	    &\mathbb C-\left\lbrace x+iy: \Re(z-i)\leq 0\text{ και }\Im(z-i)=1\right\rbrace
+	    \\ &\overset{\mathclap{z=x+iy}}{=}
+	    \mathbb C -\left\lbrace x+iy: x\leq 0 \text{ και }y-1=0 \right\rbrace
+	    \\ &= \mathbb C - \left\lbrace 
+	    x+iy: x\leq 0 \text{ και } y = 1
+	     \right\rbrace
+	    \end{align*}
+	    %TODO Atreas Graph 12
+	    
+	    \item \( \tan z = \frac{\sin z}{\cos z} \), η \( g \) είναι ολόμορφη στο
+	    \( \mathbb C  \) εκτός των σημείων που μηδενίζουν τον παρονομαστή.
+	    
+	    \begin{itemize}
+	    	\item \( 
+	    	\cos z = 0 \iff \cos(x+iy) = 0 \iff \cos x\cos(iy)-\sin x\sin(iy)=0
+	    	\xLeftrightarrow{\text{ορ. } \sin \text{ \& } \cos}
+	    	\cos x \cdot \frac{e^{-y}+e^y}{2}-\sin x\cdot\frac{e^{-y}-e^y}{2i}=0
+	    	\iff \cos x\cdot\cosh y -i\sin x\cdot\sinh y = 0
+	    	\iff \left|
+	    	\begin{array}{l}
+	    	\cos x \cdot \cosh y = 0 \\ \qquad \text{και} \\
+	    	\sin x \cdot \sinh y = 0
+	    	\end{array}\right. \iff \left|
+	    	\begin{array}{l}
+	    	\cos x = 0 \\ \qquad \text{και} \\ \sin x = 0 \\ \ \text{(Αδύνατο)}
+	    	\end{array}\right. \text{ ή } \left|
+	    	\begin{array}{l}
+	    	\cos x = 0 \\ \qquad \text{και} \\ \sinh y = 0
+	    	\end{array}
+	    	\right. \iff \left|
+	    	\begin{array}{l}
+	    	x=k\pi + \frac{\pi}{2} \\ y=0
+	    	\end{array}
+	    	\right., k\in\mathbb Z
+	    	 \).
+	    	 
+            %TODO Atreas Graph 13
+	    	 
+	    	\textbf{Τελικά} \( \cos z \iff \boxed{z=k\pi+\frac{\pi}{2},\ k
+	    		\int\mathbb Z
+	    		}  \) και έτσι \( g \) είναι ολόμορφη στο
+	    		\[
+         		\mathbb C - \left\lbrace k\pi+\frac{\pi}{2}:k\in\mathbb Z \right\rbrace
+	    		\]
+	    \end{itemize}
+
+	    
+	\end{enumgreekparen}
+	
+	\paragraph{Άσκ.}
+	Έστω \( f(x+iy) = (x^2+2y)+i(x^2+y^2) \)
+	\begin{enumroman}
+		\item Να γραφεί η \( f \) συναρτήσει του \( z=x+iy \)
+		\item Να βρείτε όλα τα σημεία, όπου η \( f \) είναι μιγαδικά παραγωγίσιμη
+		\item Να βρείτε όλα τα σημεία στα οποία η \( f \) είναι ολόμορφη
+	\end{enumroman}
+	\begin{enumroman}
+		\item \( x=\frac{z+\bar z}{2},\ y=\frac{z-\bar z }{2i} \) \\
+		\( \big(z=x+iy\big) \)
+		
+		\begin{align*}
+			f(z) &= \left(\frac{z+\bar z}{2}\right)^2+2\left(\frac{z-\bar z}{2i}\right)
+			+i\left(\left(\frac{z+\bar z}{2}\right)^2+\left(\frac{z-\bar z}{2i}\right)^2\right)
+			\\ &= \frac{z^2+2z\bar z+\bar z^2}{4}-
+			i\left(z-\bar z\right)+i\left(\frac{z^2+2z\bar z+\bar z^2}{4}
+			-\frac{z^2-2z\bar z+z^2}{4}\right)
+			\\ &= \frac{z^2+2|z|^2+\bar z^2}{4}-i\left(
+			z-\bar z-|z|^2
+			\right)
+		\end{align*}
+		\item Προφανώς
+		\( 
+		\left|
+		\begin{array}{l}
+		\Re(f) := u(x,y) = x^2+2y \\
+		\Im(f) := v(x,y) = x^2+y^2
+		\end{array}
+		 \right.
+		 \)
+		 \begin{itemize}
+		 	\item Οι \( u \) και \( v \) είναι συνεχείς (ως πολυωνυμικές) \( \forall
+		 	(x,y)\in\mathbb R^2
+		 	 \)
+		 	\item
+		 	\( 
+		 	\begin{cases}
+		 	u_x=v_y \\ \quad\text{ΚΑΙ} \\ u_y=-v_x
+		 	\end{cases} \implies \begin{cases}
+		 	2x=2y\\ \quad\text{ΚΑΙ} \\ 2=-2x
+		 	\end{cases} \implies \begin{cases}
+		 	x=y \\ \quad \text{ΚΑΙ} \\ x = -1
+		 	\end{cases} \iff \begin{cases}
+		 	x=-1 \\ \quad\text{ΚΑΙ} \\ y=-1
+		 	\end{cases}
+		 	 \)
+		 \end{itemize}
+		 Άρα η \( f \) είναι μιγαδ. παραγ. \textbf{μόνον} στο \( \boxed{z=-1-i} \),
+		 και μάλιστα εφ' όσον \( f(z)=f'(x+iy)=u_x+iv_x \):
+		 \[
+		 f'(-1-i) = 2(-1)+i2(-1) = \underline{-2-i2}
+		 \]
+		 \item ΔΕΝ υπάρχουν σημεία όπου η \( f \) είναι ολόμορφη.
+	\end{enumroman}
+	
+	\section{Μιγαδική ολοκλήρωση}
+	\paragraph{Εισαγωγή} \hspace{0pt}\\
+	
+	\begin{defn*}{}
+        Καλούμε \textbf{καμπύλη} στο μιγαδικό επίπεδο κάθε \underline{συνεχή} συνάρτηση
+        \[
+        \gamma:[a,b]\to\mathbb C :\gamma(t)=x(t)=iy(t)
+        \]
+        όπου \( x,y:[a,b]\to\mathbb R  \) συνεχείς πραγματικές συναρτήσεις.
+	\end{defn*}
+	
+	\subparagraph{Έτσι:} \( \gamma(t) \) καλείται
+	\begin{invitemize}
+		\item \textbf{ΑΠΛΗ} αν είναι 1-1 (δεν αυτοτέμνεται)
+		\item \textbf{ΚΛΕΙΣΤΗ} αν έχει ίδια αρχή και πέρας
+		\item \textbf{ΛΕΙΑ} αν είναι παραγωγίσιμη στο \( [a,b] \) με συνεχή παράγωγο
+		\[
+		\gamma'(t)=x'(t)+iy'(t)
+		\]
+		και μη μηδενική παράγωγο \( \forall t \)
+	\end{invitemize}
+	\begin{itemize}
+		\item Κάθε τέτοια καμπύλη έχει ΠΡΟΣΑΝΑΤΟΛΙΣΜΟ (φορά διαγραφής) προς την
+		κατεύθυνση αύξησης του \( t \)
+		\subparagraph{π.χ.} \( \gamma(t)=e^{it},\ t\in(-\pi,\pi] \)
+		%TODO Atreas Graph 14
+		
+		\( \gamma(t)=e^{-it},\ t\in(-\pi,\pi] \) %TODO Atreas Graph 15
+		
+		\item Αν \( \gamma \) κλειστή λέω ότι είναι \underline{θετικά}
+		προσανατολισμένη αν η φορά διαγραφής είναι η αντιωρολογιακή
+		
+		\item \( -\gamma \): ίδιο ίχνος με τη \( \gamma \), αλλά
+		αντίθετη φορά διαγραφής
+		
+		\item \( \gamma_1+\gamma_2 \): %TODO Atreas Graph 16
+	\end{itemize}
+	
+	\begin{defn*}{}
+		Έστω \( f=f(z) \) ΣΥΝΕΧΗΣ μιγαδική συνάρτηση μιγαδικής μεταβλητής και
+		\( \gamma:[a,b]\to\mathbb C  \) λεία καμπύλη. Καλώ επικαμπύλιο ολοκλήρωμα
+		της \( f \) ΠΑΝΩ στη \( \gamma \) να είναι ο ΜΙΓΑΔΙΚΟΣ ΑΡΙΘΜΟΣ
+		\[
+		\int_\gamma f(z)\dif z = \int_a^b f\left(\gamma(t)\right)
+		\underbrace{\gamma'(t)\dif t}_{\dif\gamma(t)}
+		\]
+	\end{defn*}
+	\paragraph{ΣΗΜΕΙΩΣΗ}
+	\begin{align*}
+		\dif\gamma(t) &=\dif\left(x(t)+iy(t)\right) = \\
+		&=\dif x(t)+i\dif y(t) = \left( x'(t)+iy'(t) \right)\dif t \\
+		\Aboxed{\dif\gamma(t) &= \gamma'(t)\dif t}
+	\end{align*}
+	
+	Οι κλασικές ιδιότητες των επικαμπυλίων ολοκληρωμάτων έργου ισχύουν στους μιγαδικούς.
+	
+	Ενδεικτικά:
+	\begin{itemize}
+		\item \( \displaystyle\int_{-\gamma} f(z)\dif z = - \int_{-\gamma} f(z)\dif z \)
+		\item \( \displaystyle\int_{\gamma} (af+by)(z)\dif z =
+		a\int_{\gamma} f(z)\dif z + b\int_{\gamma} g(z)\dif z \ \forall a,b\in
+		\mathbb C
+		 \)
+	    \item \( \displaystyle
+	    \int_{\gamma_1+\gamma_2}f(z)\dif z = \int_{\gamma_1}f(z)\dif z
+	    +\int_{\gamma_2} f(z)\dif z
+	     \)
+	    \item \( \displaystyle \left|
+	    \int_\gamma f(z)\dif z
+	    \right| \leq \int_\gamma \left|f(z)\right|\dif z \leq
+	    M \cdot (\text{μήκος της } \gamma)
+	      \) όπου \( M \) μέγιστο της \( |f| \) επί της \( \gamma \)
+	    \item \( \displaystyle \int_\gamma |\dif z| = 
+	    \int_a^b \sqrt{\left(x'(t)\right)^2+\left(y'(t)\right)^2}\dif t
+	    := \text{ μήκος της καμπ. } \gamma
+	     \)
+	\end{itemize}
+    
+    \paragraph{Πρόταση:}
+    Έστω \( f(z)=f(x+iy)=u(x,y)+iv(x,y) \) συνεχής επί καμπύλης λείας
+    \( \gamma(t)=x(t)+iy(t) \).
+    
+    \textbf{Τότε:}
+    \[
+    \int_\gamma f(z)\dif z = 
+    \underbrace{\left(\int_\gamma u\dif x-v\dif y\right)}%
+    _{\mathclap{\begin{array}{l}
+    	\text{επικαμπύλιο ολοκλ.}\\
+    	\text{διαν. πεδίου στον } \mathbb R^2
+    	\end{array}}}
+    +i
+    \underbrace{\left(\int_\gamma u\dif y+v\dif x\right)}%
+    _{\mathclap{\begin{array}{l}
+    	\text{επικαμπύλιο ολοκλ.}\\
+    	\text{διαν. πεδίου στον } \mathbb R^2
+    	\end{array}}}
+    \]
+    
+    \subparagraph{Απόδ.}
+    \begin{align*}
+    &\int_\gamma (u+iv)\dif(x+iy)\\
+    =& \int_a^b \left[ u\left(x(t),y(t)\right)+iv\left(x(t),y(t)\right)\right]
+    \left( x'(t)+iy'(t) \right)\dif t
+    \\ =& \int_a^b \left(
+    u\left(x(t),y(t)\right)x'(t)-v\left(x(t),y(t)\right)y'(t)
+    \right)\dif t+i
+    \int_a^b \left(
+    u\left(x(t),y(t)\right)y'(t)+v\left(x(t),y(t)\right)x'(t)
+    \right)\dif t
+    \\ \overset{\text{ορ.}}{=}&
+    \left(\int_{\gamma} u\dif x-v\dif y \right)
+    +i\left( \int_\gamma u\dif y+v\dif x\right)
+    \end{align*}
+    
+    Ορίζω \( \bar f(z) = u(x,y)-iv(x,y) \)
+    
+    \textbf{Τότε}
+    \begin{align*}
+    \int_\gamma u\dif x-v\dif y &\overset{\text{Λογ. II}}{:=}
+    \text{έργο του πεδίου $\bar f$ επί της καμπύλης } \gamma
+    \\
+    \int_\gamma u\dif y+v\dif x &\overset{\text{Λογ. II}}{:=}
+    \text{\underline{ροή} του $\bar f$ διά μέσου της } \gamma
+    \\
+     \end{align*}
+
 
 
 
