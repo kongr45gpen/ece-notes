@@ -316,5 +316,165 @@
      \\ &= \frac{1}{2\pi} \int_{-\infty}^{\infty} X(\xi)H(\omega-\xi)\dif\xi
      \end{align*}
      
+     \paragraph{}
+     \begin{align*}
+     f(t) &\to F(\omega)\\
+     y(t)=\od{f(t)}{t}&\to j\omega F(\omega ) \\
+     \od[n]{f(t)}{t}&\to (j\omega )^nF(\omega )
+     \end{align*}
+     \begin{align*}
+     y(t)=\od{}{t}f(t) &= \od{}{t} \int_{-\infty}^{\infty} \frac{1}{2\pi}
+     F(\omega ) e^{j\omega t}\dif \omega 
+     \\ &= \frac{1}{2\pi}\int_{-\infty}^{\infty} F(\omega )\od{}{t}
+     e^{j\omega t}]dif \omega 
+     \\ &= \frac{1}{2\pi} \int_{-\infty}^{\infty} j\omega F(\omega )
+     e^{j\omega t}\dif \omega 
+     \end{align*}
+     \subparagraph{}
+     
+     \begin{align*}
+     f(t)&\to F(\omega )\\
+     tf(t)&\xrightarrow{\text{F.T}}\od{}{t} F(\omega )\\
+     t^nf(t)&\xrightarrow{\text{F.T}}\od[n]{}{t} F(\omega )\\
+     \end{align*}
+     
+     \paragraph{}
+     Φανταστείτε ότι \( f:\mathbb R\to\mathbb C \qquad 
+     f(t) \xrightarrow F(\omega )
+      \)
+     
+     \[
+     f^*(t) \to F^*(-\omega )
+     \]
+     
+     \begin{align*}
+     f(t) &= \frac{1}{2\pi}\int_{-\infty}^{\infty} F(\omega)e^{j\omega t}\dif \omega \\
+     f^*(t) &= \frac{1}{2\pi}\int_{-\infty}^{\infty} 
+     F^*(\omega)e^{-j\omega t}\dif \omega \\
+     &= \frac{1}{2\pi}\int_{-\infty}^{\infty}
+     F^*(-\omega )e^{j\omega t}\dif \omega 
+     \end{align*}
+     
+     \subsubsection{Θεώρημα Parseval}
+     
+     
+     \begin{theorem*}[title=Θεώρημα Parseval,width=\textwidth]{Parseval}
+     	%TODO This doesn't look great
+     	\begin{align*}
+     	W = \int_{-\infty}^{\infty} \left| f(t) \right|^2\dif t
+     	=\frac{1}{2\pi}\int_{-\infty}^{\infty} \left|F(\omega )\right|^2
+     	\dif \omega = \int_{-\infty}^{\infty} A^2(\omega )\dif \omega 
+     	\end{align*}
+     	
+     	όπου \( \displaystyle F(\omega ) = A(\omega )e^{j\varPhi(\omega )} \)
+     \end{theorem*}
+     
+     \begin{align*}
+     y(t) &= f(t)f^*(t)=\left|f(t)\right|^2 \\
+     Y(\omega ) &= \frac{1}{2\pi} F(\omega )*F^*(\omega ) \\
+     Y(\omega ) &= \int_{-\infty}^{\infty} y(t)e^{-j\omega t}\dif t
+     = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\xi) F^*\left(
+     -(\omega -\xi) \right)\dif \xi
+     = \frac{1}{2\pi}\int_{-\infty}^{\infty} \left|F(\omega )\right|^2\dif \omega 
+     \\ &= \frac{1}{2\pi}\int_{-\infty}^{\infty} \left|A(\omega )\right|^2\dif\omega
+     \end{align*}
+     
+     \begin{defn*}{}
+     	\textbf{Πυκνότητα φασματικής ενέργειας:}
+     	\(\displaystyle
+     	\frac{A(\omega)}{2\pi}
+     	\)
+     \end{defn*}
+     
+     \subsubsection{Μετασχηματισμός Fourier γενικευμένων συναρτήσεων}
+     \begin{enumgreekpar}
+     	\item\( \delta(t) \to 1 \)
+     	\[
+     	\int_{-\infty}^{\infty} \delta(t)e^{-j\omega t}\dif t=
+     	\left.e^{-j\omega t}\right|_{t=0}=e^0=1
+     	\]
+     	
+     	\( \delta(t\mp t_0) \to e^{\pm j\omega t_0} \)
+     	
+     	\( f(t) =1\to 2\pi\delta(\omega ) \), άρα
+     	\( \displaystyle \int_{-\infty}^{\infty}e^{-j\omega t }\dif t
+     	=2\pi\delta(\omega ) \implies \int_{-\infty}^{\infty} \cos\omega t \dif t
+     	-j\int_{-\infty}^{\infty}\sin\omega t\dif t = 2\pi\delta(\omega )\implies
+     	\begin{cases}
+     	\int_{-\infty}^{\infty} \cos\omega t\dif t = 2\pi\delta(\omega ) \\
+     	\int_{-\infty}^{\infty} \sin\omega t\dif t = 0
+     	\end{cases}
+     	 \)
+     	 %TODO Rekanos Graph 18
+     \end{enumgreekpar}
+     
+     \subsubsection{}
+     \[
+     \mathrm{sgn}(t) = \frac{|t|}{t}
+     \]
+     %TODO Rekanos Graph 19
+     \begin{align*}
+     \mathrm{sgn}(t)&=\lim_{u\to0}\left[
+     e^{-a|t|}\mathrm{sgn}(t)
+     \right] \\
+     \mathrm{ FT }\ \mathrm{sgn}(t) &=
+     \int_{-\infty}^{\infty} e^{-a|t|}\mathrm{sgn}te^{-j\omega t}\dif t
+     \\ &= \lim_{a\to0}\int_{-\infty}^{0} e^{at-j\omega t}\dif t
+     + \lim_{a\to 0} \int_0^\infty e^{-at-j\omega t}\dif t
+     \\ &=
+     \lim_{a\to0}\left[ \left.-\frac{e^{(at-j\omega t)}}{a-j\omega }
+     \right|_{-\infty}^0 + \left. \frac{e^{-at-j\omega t}}{-(a+j\omega )}
+     \right|_0^\infty
+      \right]
+     \\ &= \lim_{a\to 0} \left[ \frac{-1}{a-j\omega }+\frac{1}{a+j\omega} \right]
+     \\ &= \frac{2}{j\omega }\in\mathbb I
+     \end{align*}
+     
+     \paragraph{}
+     \begin{align*}
+     u(t) &\xrightarrow{\text{F.T.}} \\
+     u(t) &= \frac{1}{2}+\frac{1}{2}\mathrm{sgn}(t)
+     \xrightarrow{\text{F.T.}} \pi\delta(\omega ) +\frac{1}{j\omega }
+     \end{align*}
+     
+     %TODO Rekanos Graph 20
+     \subsubsection{}     
+     \begin{align*}
+     \mathrm u(t) &\xrightarrow{\text{F.T.}} \pi\delta(\omega )+\frac{1}{j\omega }\\
+     f(t) &\xrightarrow{\text{F.T.}} F(\omega ) \\
+     g(t) &= \int_{-\infty}^{t}f(t)\dif t = \int_{-\infty}^{\infty} f(\tau)
+     \mathrm u(t-\tau)\dif\tau = f(t)*\mathrm u(t) \\
+     G(\omega ) &= F(\omega )\cdot\left[ \pi\delta(\omega )+\frac{1}{j\omega } \right]
+     \end{align*}
+     
+     \subsubsection{}
+     \begin{align*}
+     \delta(t) &\to 1 \quad \text{άρτια} \\
+     \delta^{(1)}(t)=\od{}{t}\delta(t) &\to j\omega \\
+     \delta^{(n)}(t)=\od[n]{}{t}\delta(t) &\to (j\omega )^n
+     \end{align*}
+     \paragraph{}
+     \begin{align*}
+     t^n \to 2\pi j^n\delta^{(n)}(\omega )
+     \end{align*}
+     
+     \subsubsection{}
+     \paragraph{Παρ.}
+     \begin{align*}
+     f(t)&=|t| = t\mathrm u(t) - t\mathrm u(-t)\\
+     F(\omega ) &= \frac{1}{2\pi}\left[
+     2\pi j\delta(\omega )*\left[\pi\delta(\omega )+\frac{1}{j\omega }\right]
+     -2\pi j \delta(\omega )*\left[ \pi\delta(\omega )-\frac{1}{j\omega } \right]
+     \right]
+     \end{align*}
+     
+     Calculate at home! The ansewr is \( -\frac{2}{\omega ^2} \)
+     
+     \begin{align*}
+     t &\to 2\pi j^1\delta^{(1)}(\omega )\\
+     \mathrm u(t) &\to \pi\delta(\omega )+\frac{1}{j\omega } \\
+     \mathrm u(-t) &\to \pi\delta(\omega)-\frac{1}{j\omega }
+     \end{align*}
+     
     
 \end{document}
