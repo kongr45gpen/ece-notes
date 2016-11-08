@@ -276,11 +276,11 @@
 	  \)
 	  
 	 \item 
-	 \begin{align*}
-	 f(t) &\to F(\omega ) \quad = A(\omega) e^{j\Phi(\omega )} \\
-	 f(t-\tau) &\to e^{-j\omega \tau}F(\omega ) \quad =
+	 \begin{alignat*}{2}
+	 f(t) &\to F(\omega ) &&\quad = A(\omega) e^{j\Phi(\omega )} \\
+	 f(t-\tau) &\to e^{-j\omega \tau}F(\omega ) &&\quad =
 	 A(\omega )e^{j\left( \Phi(\omega )-\omega \tau \right)}
-	 \end{align*}
+	 \end{alignat*}
 	 
 	 \item
 	 \begin{align*}
@@ -468,7 +468,7 @@
      \right]
      \end{align*}
      
-     Calculate at home! The ansewr is \( -\frac{2}{\omega ^2} \)
+     Calculate at home! The answer is \( -\frac{2}{\omega ^2} \)
      
      \begin{align*}
      t &\to 2\pi j^1\delta^{(1)}(\omega )\\
@@ -476,5 +476,239 @@
      \mathrm u(-t) &\to \pi\delta(\omega)-\frac{1}{j\omega }
      \end{align*}
      
+     \subsubsection{Kramer's Kronig Relations}
+     Από ηλεκτρομαγνητικό πεδίο: \[
+       \underbrace{\vec D}_{\mathclap{\text{πυκνότητα ροής}}} = 
+       \overbrace{\epsilon }^{\mathclap{\text{διηλεκτρική σταθερά}}}
+       \underbrace{\vec E}_{\mathclap{\text{ένταση πεδίου}}}
+     \]
+     \begin{align*}
+     \vec E =& \vec E(\vec r, t) \\
+     &\vec E(\vec r,\omega ) \\
+     \vec D(\omega ) =& \epsilon(\omega )\vec E(\omega )\\
+     \vec D(t) =& \epsilon (t) +\vec E(t)
+     \end{align*}
+     %TODO Rekanos Graph 21
+     
+     \paragraph{}
+     \begin{align*}
+     h(t) &= 0 \quad \forall t < 0 \\
+     h(t)&: \mathbb R \to \mathbb R
+     \end{align*}
     
+    Αν \( H(\omega ) = \mathscr F T\left\lbrace h(t) \right\rbrace = H_R(\omega )
+    +jH_I(\omega )
+     \)
+     
+     \begin{align*}
+     \Aboxed{ H_I(\omega ) &= -\frac{1}{\pi} \int_{-\infty}^{\infty}
+     \frac{H_R(\omega)}{\omega -\omega'}\dif \omega ' } \\
+     \Aboxed{ H_R(\omega ) &= \frac{1}{\pi} \int_{-\infty}^{\infty}
+     \frac{H_I(\omega )}{\omega -\omega'}\dif \omega' }
+     \end{align*}
+     
+     Η απόδειξη των σχέσεων θα πέσει στις εξετάσεις.
+     
+     \paragraph{Άσκ.}
+     \begin{align*}
+     f(t) &= 2\cos\omega_1 t \cos\omega_2 t = \cos(\omega_1-\omega_2)t
+     +\cos(\omega_1+\omega_2)t
+     \\ F(\omega ) &= \mathscr F\left\lbrace 
+     \cos(\omega_1-\omega_2)t
+      \right\rbrace + \mathscr F \left\lbrace \cos(\omega_1+\omega_2)t \right\rbrace
+      \\ &=
+      \pi \left[
+      \delta\left( \omega -(\omega_1-\omega_2) \right)
+      +\delta\left( \omega +(\omega_1-\omega_2) \right)
+      \right] + \pi \left[
+      \delta\left( \omega -(\omega_1+\omega_2) \right)
+      +\delta\left( \omega +(\omega_1+\omega_2) \right)
+      \right] 
+     \end{align*}
+     
+     \( \left( \cos\omega_0t \xrightarrow{\text{FT}}
+     \pi\left[ \delta(\omega -\omega_0)+\delta(\omega+\omega_0) \right]
+      \right) \)
+     
+     Εναλλακτικά:
+     \begin{align*}
+     F(\omega ) &= 2\frac{1}{2\pi}\mathscr F \left\lbrace \cos\omega_1 t \right\rbrace
+     * \mathscr F\left\lbrace \cos\omega_2 t \right\rbrace \\
+     &= \pi \left[ \delta(\omega -\omega_1)+\delta(\omega+\omega_1) \right]
+     * \left[ \delta(\omega -\omega_2)+\delta(\omega+\omega_2) \right]
+     \\ &= \pi \left[
+     \delta(\omega-\omega_2-\omega_1) +\delta(\omega-\omega_2+\omega_1)
+     +\delta(\omega+\omega_2+\omega_1)+\delta(\omega+\omega_2-\omega_1)
+     \right]
+     \end{align*}
+     
+     \paragraph{Άσκηση}
+     \begin{align*}
+     f(t) &= g(t) \cos^2 \omega_0 t \qquad g(t) \xrightarrow{\text{FT}} G(\omega )
+     \\ &= g(t)\frac{1+\cos2\omega_0 t}{2} = \frac{g(t)}{2} + 
+     \frac{1}{2}g(t)\cos2\omega_0 t \\
+     \implies F(\omega ) &= \frac{1}{2}G(\omega )+\frac{1}{2}G(\omega )
+     *\mathscr F\left\lbrace \cos2\omega_0 t \right\rbrace
+     \\ &= \frac{1}{2}G(\omega )+\frac{1}{2}G(\omega ) *
+     \left[ \pi\left(\delta(\omega-2\omega_0)+\delta(\omega+2\omega_0)\right) \right]
+     \frac{1}{2\pi} \\ &= \frac{1}{2}G(\omega ) + \frac{1}{4} \left[
+     G(\omega -2\omega_0)+G(\omega +2\omega_0)
+     \right]
+     \end{align*}
+     
+     Αν δεν θυμάμαι τον τύπο:
+     \begin{align*}
+     f(t) &= g(t)\cos^2\omega_0 t = g(t)\cos\omega_0 t\cos\omega_0 t \\
+     F(\omega ) &= \frac{1}{2\pi}G(\omega)*\left[
+     \frac{1}{2\pi}\mathscr F\left\lbrace \cos\omega_0t \right\rbrace
+     *\mathscr F \left\lbrace \cos\omega_0 t \right\rbrace
+     \right] \\ &= \frac{1}{4\pi^2} G(\omega ) * \left[
+     \pi\left[ \delta(\omega -\omega_1)+\delta(\omega+\omega_2) \right]
+     \right] * \pi\left[
+     \delta(\omega-\omega_1)+\delta(\omega+\omega_2)
+     \right] \\ &=
+     \frac{1}{4}G(\omega ) * \left[
+     \delta(\omega -2\omega_0)+\delta(\omega)+\delta(\omega)+\delta(\omega+2\omega_0)
+     \right]
+     \\ &= \frac{1}{4}\left[
+     G(\omega -2\omega_1)+2G(\omega )+G(\omega +2\omega_0)
+     \right]
+     \end{align*}
+     
+     \paragraph{Άσκηση}
+     \begin{align*}
+     f(t) &= g(at+b) \qquad g(t)\xrightarrow{\text{FT}}G(\omega ) \\
+     h(t)=g(at) \qquad
+     F(\omega ) &= \mathscr F\left\lbrace g(at)+b \right\rbrace
+     = \mathscr F \left\lbrace h\left(t+\frac{b}{a}\right) \right\rbrace
+     = H(\omega )e^{j\omega \frac{b}{a}} \\[5pt]
+     H(\omega ) &= \frac{1}{|a|}G\left(\frac{\omega}{a}\right) \\
+     \Aboxed{F(\omega ) &=
+     \frac{1}{|a|}e^{j\omega\frac{b}{a}}G\left(\frac{\omega}{a}\right)}
+     \end{align*}
+     
+     \paragraph{}
+     \begin{align*}
+     \cos t &\xrightarrow{\text{FT}} \pi\left[
+     \delta(\omega -1)+\delta(\omega +1)
+     \right] \\
+     \sin \omega_0 t &= \cos\left(\omega_0t-\frac{\pi}{2}\right)
+     \\
+     \sin t &\xrightarrow{\text{FT}}
+     \frac{1}{|\omega_0|}e^{-j\omega\frac{\pi}{2\omega_0}}\pi
+     \left[ \delta\left(\frac{\omega}{\omega_0}-1\right)
+     +\delta\left(\frac{\omega}{\omega_0} + 1\right)
+      \right]
+      \\ &\overset{\mathllap{\delta\left(\frac{\omega}{\omega_0}-1\right)
+      	= \delta\left(\frac{1}{\omega_0}(\omega-\omega_0)\right)}
+      	}{=}
+      	e^{-j\frac{\omega}{\omega_0}}\pi\left[
+      	\delta(\omega-\omega_0)+\delta(\omega +\omega_0)
+      	\right] \\ &= -j\pi\left[
+      	\delta(\omega -\omega_0)-\delta(\omega+\omega_0)
+      	\right]
+     \end{align*}
+     
+     \paragraph{}
+     %TODO Rekanos Graph 22
+     \begin{align*}
+     F(\omega ) &= \int_{-\infty}^{\infty} f(t)e^{-j\omega t}\dif t
+     = A \int_{-\sfrac{\tau}{2} }^{\sfrac{\tau}{den} }e^{-j\omega t}\dif t
+     \\ &= A\frac{1}{-j\omega }
+     \left. e^{-j\omega t}\right|_{\sfrac{\tau}{2}}^{\sfrac{\tau}{2}}
+     =\frac{A}{-j\omega }\left[ e^{-j\omega \sfrac{\tau}{2} } 
+     -e^{j\omega \sfrac{\tau}{2}}
+     \right] \\ &= A\tau\frac{\sin\left(\omega\frac{t}{2}\right)}{\frac{\omega t}{2}}
+     \\ &= A\tau\frac{\sin\left(\frac{\omega t}{2}\right)}{\frac{\omega t}{2}}
+     =A\tau \mathrm{sinc}\left(\frac{\omega t}{2\pi}\right)
+     \end{align*}
+     \begin{infobox}{sinc}
+     	\vspace{-5pt}
+     	\begin{align*}
+     	\text{Μαθηματικοί:}\quad \mathrm{sinc}(x)&=\frac{\sin x}{x}\\
+     	\text{Μηχανικοί:}\quad \mathrm{sinc}(x)&=\frac{\sin(\pi x)}{\pi x}
+     	\end{align*}
+     \end{infobox}
+     
+     \subsection{Χρονοπερατό vs Ζωνοπερατό Σήμα}
+     %TODO Rekanos Graph 23
+     \begin{itemize}
+     	\item Ένα ζωνοπερατό σήμα \textbf{δεν} μπορεί να είναι χρονοπερατό
+     	\item Ένα χρονοπερατό σήμα \textbf{δεν} μπορεί να είναι ζωνοπερατό
+     	\item Ένα σήμα μπορεί να μην είναι ούτε χρονοπερατό, ούτε ζωνοπερατό.
+     \end{itemize}
+     
+     %TODO Rekanos Graph 24
+     
+     %TODO Rekanos Graph 25
+     \begin{align*}
+     f(t) &= \int_{-\sfrac{\sigma}{2} }^{\sfrac{\sigma}{2} } F(\omega )
+     e^{j\omega t}\dif\omega \\
+     \od[n]{f(t)}{t} &= \int_{-\sfrac{\sigma}{2} }^{\sfrac{\sigma}{2} }
+     (j\omega )^n F(\omega )e^{j\omega t}\dif\omega
+     \end{align*}
+     Ορίζεται η σειρά Taylor επομένως σε οποιοδήποτε σημείο, όμως τότε, επειδή
+     σε κάποια σημεία οι παράγωγοι είναι 0, θα έπρεπε η \( F \) να είναι
+     μηδενική, άτοπο.
+     
+     \subsection{Γκαουσιανός παλμός}
+     \[
+     f(t) = \frac{1}{\sigma\sqrt{2\pi}}
+     e^{\sfrac{t^2}{(2\sigma^2)} } \quad \xrightarrow{\quad\text{FT}\quad}
+     F(\omega ) = e^{\frac{1}{2}\omega^2\sigma^2}
+     = e^{-\frac{1}{2\frac{1}{\sigma^2}}\omega^2}
+     \]
+     
+     %TODO Rekanos Graph 26
+     %TODO Rekanos Graph 27
+     
+     \begin{gather*}
+     {\textstyle \int_{-\infty}^{\infty} f(t)\dif t = 1} \\
+     \sigma^2 \text{ διασπορά}
+     \end{gather*}
+     \begin{align*}
+     F(\omega ) &= \int_{-\infty}^{\infty} f(t)e^{-j\omega t}\dif t
+     =\frac{1}{\sigma\sqrt{2\pi}}\int_{-\infty}^{\infty}
+     e^{-\frac{t^2}{2\sigma^2}-j\omega t}\dif t
+     \\ &= \frac{1}{\sigma\sqrt{2\pi}}\int_{-\infty}^{\infty}
+     e^{-\frac{1}{\sigma^2}\left[
+     	t^2+2\sigma^2j\omega t+(j\omega \sigma^2)^2
+     	\right]}\cdot e^{\frac{1}{2\sigma^2}\left(j\omega \sigma^2\right)^2}\dif t
+     \\ &=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2\sigma^2}\omega^2\sigma^4}
+     \int_{-\infty}^{\infty} e^{-\frac{1}{2\sigma^2} 
+     	\overbrace{\textstyle\left(t+j\omega\sigma^2\right)}^{t+j\omega\sigma^2-\tau}
+     	}\dif t
+     	\\ &= e^{-\frac{1}{2}\omega^2\sigma^2}\boxed{
+     		\frac{1}{\sigma\sqrt{2\pi}}\int_{-\infty}^{\infty}
+     		e^{-\frac{2}{\sigma^2}\tau^2}\dif\tau
+     		} = \displaystyle e^{\displaystyle -\frac{1}{2}\omega^2\sigma^2}
+     \end{align*}
+     
+     Ηθικά διδάγματα:
+     \begin{itemize}
+     	\item Ο μετασχηματισμός της Gaussian είναι Gaussian
+     	\item Ό,τι στενεύει στον χρόνο απλώνει στο φάσμα, και αντίθετα
+     \end{itemize}
+     %TODO Rekanos Graph 28 (optional)
+     
+     \paragraph{}
+     \begin{gather*}
+     \int_{-\infty}^{\infty} td^2(t)\dif t \\
+     \text{διασπορά στον χρόνο} \quad d^2 = \int_{-\infty}^{\infty} t^2f^2(t)\dif t\\
+     \text{διασπορά στο φάσμα}\quad D^2=\frac{1}{2\pi}
+     \int\omega^2\left|\right|\dif\omega \\
+     \left|\int_{-\infty}^{\infty} tx(t)\od{x(t)}{t}\dif t\right|
+     \leq \int_{-\infty}^{\infty} t^2x^2(t)\dif t \cdot
+     \int_{-\infty}^{\infty}\left|\od{x(t)}{t}\right|\dif t 
+     \overset{\text{Parseval theorem}}{=} d^2D^2
+     \implies \boxed{dD \geq \sfrac{1}{2} }
+     \end{gather*}
+     
+     Γιατί \( \sfrac{1}{2}  \); (Υπόδειξη: \( 
+     \int_{-\infty}^{\infty} tx\od{x}{t}\dif t =
+     \int_{-\infty}^{\infty} t \frac{1}{2}\od{x^2}{t}\dif t
+     = \left[ \quad \right] - \cancelto{1}{\frac{1}{2}\int x^2\dif t}
+      \))
+      
+    Θα τα ξαναπούμε Τρίτη 22 Νοεμβρίου (χάνουμε 3 μαθήματα).
 \end{document}
