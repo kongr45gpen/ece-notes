@@ -1315,7 +1315,126 @@
     \\
      \end{align*}
 
+%TODO A LOT OF STUFF MISSING
 
+\subsection{Θεώρημα Caychy}
+Έστω \( f=f(z) \) είναι \textbf{ολόμορφη} συνάρτηση \textbf{πάνω} και στο
+\textbf{εσωτερικό} \textbf{απλής}, κλειστής και λείας καμπύλης \( \gamma \).
+
+Τότε: \[
+\oint_\gamma f(z)\dif z = 0
+\]
+
+\paragraph{Απόδ.}
+Έστω \( f = u+iv \), όπου \( u=u(x,y) \) και \( v=v(x,y) \) έχουν συνεχείς
+μερικές παραγώγους πάνω και στο εσωτερικό της \( \gamma \). Τότε:
+\begin{align*}
+\oint_\gamma f(z)\dif z &= \left(
+\oint_\gamma u\dif x-v\dif y
+\right) + i\left( \oint u\dif y+v\dif x \right)
+\\ &\overset{\mathclap{\text{Θεώρ.}}}{\underset{\mathclap{\text{Green}}}{=}}
+\iint_R (-v_x-u_y)\dif x \dif y + i\iint_R (u_x-v_y)\dif x\dif y
+\end{align*}
+και επειδή η \( f \) ολόμορφη ικανοποιούνται οι συνθήκες Cauchy-Riemann
+\( \forall (x,y) \) στο εσωτερικό της \( \gamma \), δηλαδή το \( R \), άρα:
+\[
+\oint_\gamma f(z)\dif z
+\overset{u_x=v_y}{\underset{u_y=v_x}{=}}
+\iint_R 0\dif x\dif y+i\iint_\gamma 0\dif x \dif y = 0
+\]
+
+\paragraph{}
+\[
+\int_\gamma f(z)\dif z =
+\underbrace{a}_{\mathclap{\text{έργο του πεδίου $f$ κατά μήκος $ \gamma $}}} 
++ i\overbrace{b}^{\mathclap{\text{ροή του πεδίου $\bar f$ διά μέσου της $\gamma$}}}
+\]
+
+\paragraph{ΣΗΜΕΙΩΣΗ:}
+Αν υπάρχει έστω και ένα σημείο όπου η \( f \) δεν είναι μιγαδικά
+παραγωγίσιμη στο εσωτερικό της \( \gamma \), τότε το \textbf{θεώρ. Cauchy
+	δεν ισχύει εν γένει}.
+
+\subparagraph{π.χ} \( \displaystyle \oint_{|z|=1\text{ με θετική φορά}}
+\frac{\dif z}{z} \)
+%TODO Atreas Graph 17
+
+    \begin{align*}
+    \oint_{|z|=1} \frac{\dif z}{z} & \overset{\gamma(t)=e^{it}}{\underset{t\in[0,2\pi)}{=}}
+    \\ &\overset{\text{ορ.}}{=}\int_{0}^{2\pi}\frac{\dif\, \left(e^{it}\right)}{e^{it}}
+    =\int_{0}^{2\pi} \frac{(e^{it})^2}{e^{it}}\dif t
+    \\ &= \int_0^{2\pi} \frac{ie^{it}}{e^{it}} = 2\pi i
+    \end{align*}
+    
+    \begin{theorem*}[width=\textwidth]{Παραμόρφωση δρόμων}
+    	\vspace{25pt}
+    	Έστω \( f=f(z) \) είναι ολόμορφη σε τόπο \( G \) με σύνολο
+    	\( \partial G = \gamma_1 \cup \gamma_2 \) όπου \( \gamma_1,\gamma_2 \)
+    	απλές λειστές καμπύλες, λείες, με κοινό προσανατολισμό π.χ. όπως στο σχήμα
+    	%TODO Atreas Graph 18
+    	Τότε \( \displaystyle \oint_{\gamma_1}f(z)\dif z
+    	= \oint_{\gamma_2} f(z)\dif z
+    	 \)
+    \end{theorem*}
+    
+    \subparagraph{Απόδ.}
+    Φέρνω δύο ευθ. τμήματα \( L_1 \) και \( L_2 \) που διαμερίζουν το \( G \) σε
+    δύο χωρία έστω \( G_1,G_2 \). Τότε το θ. Cauchy ισχύει και στο \( G_1 \)
+    και στο \( G_2 \).
+    
+    \begin{itemize}
+    \item \( \displaystyle 
+    \int_{\gamma_1^+ + L_1 + \gamma_2^+ + L_2} f(z)\dif z = 0 \)
+    \quad (θ. Cauchy για το χωρίο \( G_1 \))
+    \item \( \displaystyle
+    \int_{\gamma_2^- - L_1 - \gamma_2^- - L_2} f(z)\dif z = 0
+     \) \quad (θ. Cauchy για το χωρίο \( G_2\))
+    \end{itemize}
+    \[
+    \implies \left| \begin{array}{l}
+    \left( \int_{\gamma_1^+} + \int_{L_1} - \int_{\gamma_2^+} + \int_{L_2} \right)
+    f(z)\dif z = 0 \\
+    \left( \int_{\gamma_1^-} - \int_{L_1} - \int_{\gamma_2^-} - \int_{L_2} \right)
+    f(z)\dif z = 0
+    \end{array}
+    \right. \implies \oint_{\gamma_1}f(z)\dif z - \oint_{\gamma_2}f(z)\dif z = 0
+    \]
+    
+    \paragraph{Πόρισμα (Γενικευμένο θεώρ. Cauchy)} 
+    Έστω \( f=f(z) \) ολόμορφη σε τόπο \( G \) με σύνορο \( \partial G =
+    \Gamma \cup \left( \gamma_1 \cup \cdots \cup \gamma_2 \right)
+    \), όπου:
+    \begin{itemize}
+       	\item \( \Gamma, \gamma_1,\gamma_2,\dots,\gamma_n \) απλές, κλειστές, λείες
+       	και ΘΕΤΙΚΑ ΠΡΟΣΑΝΑΤΟΛΙΣΜΕΝΕΣ καμπύλες
+       	\item Οι \( \gamma_1,\gamma_2,\dots,\gamma_n \) βρίσκονται εντός της
+       	\( \Gamma \) και
+       	\item Κάθε καμπύλη \( \gamma_j \quad j=1,\dots,n \) βρίσκεται εκτός των
+       	υπόλοιπων
+       	\( \gamma_1,\gamma_2,\dots,\gamma_{i-1},\gamma_{i+1},\dots,\gamma_n \)
+       	%TODO Atreas Graph 19
+       	
+       	Τότε: \( 
+       	\displaystyle \oint_\Gamma f(z)\dif z= \sum_{j=1}^k \oint_{\gamma_1}f(z)
+       	\dif z
+       	\)
+    \end{itemize}
+    
+    \begin{theorem*}[width=.8\textwidth]{Ολοκληρωτικός τύπος Cauchy}
+    	\vspace{25pt}
+    	Έστω \( f=f(z) \) είναι ολόμορφη πάνω και στο εσωτερικό απλής, κλειστής,
+    	τμημ. λείας και { \large ΘΕΤΙΚΑ ΠΡΟΣΑΝΑΤΟΛΙΣΜΕΝΗΣ  } καμπύλης \( \gamma \).
+    	
+    	Τότε { \large ΓΙΑ ΚΑΘΕ } σημείο \( z_0 \) ΣΤΟ ΕΣΩΤΕΡΙΚΟ της \( \gamma \)
+    	ισχύει:
+    	
+    	\[
+    	\boxed{
+    		f(z_0) = \frac{1}{2\pi i}\oint_\gamma
+    		\frac{f(z)}{z-z_0}\dif z
+    		}
+    	\]
+    \end{theorem*}
 
 
 	\newpage
@@ -1953,9 +2072,9 @@
     	}{
     	\cos\left((2k+1)\frac{\pi}{2n}\right)+i\sin\left((2k+1)\frac{\pi}{2n}\right)+1
     	}
-    \\ & \underset{\begin{cases}
-    	\cos\phi-1=-2\sin^2\frac{\phi}{2}\\
-    	\cos\phi+1=2\cos^2\frac{\phi}{2}
+    \\ & \underset{\textstyle \begin{cases}
+    	\mathsmaller{\cos\phi-1=-2\sin^2\frac{\phi}{2}}\\
+    	\mathsmaller{\cos\phi+1=2\cos^2\frac{\phi}{2}}
     	\end{cases}}{=} -\frac{
     	2\sin^2\left( (2k+1)\frac{\pi}{4n} \right)+i2\sin\left((2k+1)\frac{\pi}{4n}\right)\cos\left(
     	(2k+1)\frac{\pi}{4}
