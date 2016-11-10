@@ -2101,4 +2101,226 @@
     k=0,1,\dots,2n-1
     \end{align*}
     
+    \subsection{}
+    \subsubsection{Η γραμμική απεικόνιση}
+    \paragraph{Τύπος:} \( f(z) = az+b,\quad a,b\in\mathbb C  \)
+    
+    Προφανώς η \( w = f(z)=az+b \) είναι 1-1 συνάρτηση και εύκολα βρίσκουμε την
+    αντίστροφή της λύνοντας την \( w=az+b \) ως προς \( z \).
+    
+    Έτσι: \( f: \mathbb C \to \mathbb C : f(z)=az+b \) και μπορώ να την επεκτείνω
+    στο \( \bar{\mathbb C}  \) με 1-1 τρόπο θέτοντας \[
+    f(\infty) = \infty
+    \]
+    
+    \subparagraph{Γεωμετρική ερμηνεία}
+    %TODO Kehagias Graph 10
+    %TODO Kehagias Graph 11
+    
+    \begin{itemize}
+    	\item Προφανώς, από τη δομή της, η γραμμική απεικόνιση απεικονίζει
+    	ευθείες σε ευθείες και κύκλους σε κύκλους.
+    \end{itemize}
+    \paragraph{Ερώτηση}
+    Έστω \( f(z) = az+b \).
+    
+    Αν \( Ax+By+\Gamma = 0 \) ευθεία τυχαία, βρείτε πού αυτή απεικονίζεται
+    μέσω της \( f(z) \).
+    
+    \begin{align*}
+    w &= u+iv = az+b \\
+    &= u(x,y) + iv(x,y) = a(x+iy) + b
+    \end{align*}
+    \begin{itemize}
+    	\item \( w = az+b \iff z = \frac{w-b}{a} \iff
+    	x+ i y = \frac{u+iv-(b_0+ib_1)}{a_0+ia_1}
+    	= \frac{\left[(u-b_0)+i(v-b_1)\middle]\middle[a_0-a_1i \right]}{|a|^2}
+    	= \frac{(u-b_0)a_0+a_1(v+b_1)}{|a|^2}+i
+    	\frac{-a_1(u-b_0)+a_0(v-b_1)}{|a|^2}
+    	 \)
+    \end{itemize}
+    Άρα:
+    \begin{align*}
+    x &= \frac{a_0u+a_1v-(a_0b_0+a_1b_1)}{|a|^2} \\
+    y &= \frac{-a_1u+a_0v-(a_1b_0+a_0b_1)}{|a|^2}
+    \end{align*}
+    (μπορεί να είναι λάθος)
+    
+    \begin{align*}
+    & Ax+By+\Gamma = 0 \\ \iff &
+    A\left( a_0u+a_1v - (a_0b_0)-(a_0b_0+a_1b_1 \right)
+    + B\left( -a_1u+a_0v-(a_1b_0+a_0b_1) \right) +\Gamma|a|^2 = 0
+    \end{align*}
+    
+    \subsubsection{Αντιστροφή \( f(z)=\frac{1}{z} \quad (z \neq 0) \)}
+    Προφανώς: \(  \mathbb C - \left\lbrace 0 \right\rbrace \to
+    \mathbb C  : f(z) = \frac{1}{z}
+     \) \\ και μορεί να επεκταθεί στο \( \bar{\mathbb C} \) θέτοντας
+     \( f(0) = \infty \) και \( f(\infty) = 0 \).
+     
+     Εννοείται ότι είναι 1-1 με \( w = \frac{1}{z} \iff \frac{1}{w} \)
+     δηλ. για \( \begin{cases}
+     w=u+iv \\ z = x+iy
+     \end{cases} \) έχουμε: \begin{equation} \label{reveq}
+     x+iy = \frac{u-iv}{u^2+v^2} \iff \left|\begin{array}{l}
+     x = \frac{u}{u^2+v^2} \\ y = \frac{-v}{u^2+v^2} 
+     \end{array} \right.
+     \end{equation}
+     
+     Έτσι φαίνεται ότι η συνάρτηση αυτή απεικονίζει ευθείες σε ευθείες ή κύκλους,
+     και κύκλους σε ευθείες ή κύκλους.
+     
+     Πράγματι, αν
+     \( Ax+By+\Gamma = 0 \) τυχαία ευθεία στο επίπεδο του \( z \), τότε
+     από \eqref{reveq}:
+     \begin{align*}
+     & A\frac{u}{u^2+v^2} - B \frac{v}{u^2+v^2} + \Gamma = 0
+     \\ \iff & \boxed{
+     	Au-Bv + \Gamma\left( u^2+v^2 \right) = 0
+     	}
+     \end{align*}
+     
+     \begin{itemize}
+     	\item \( \underline{\Gamma = 0} \) τότε \( Au-By = 0 \) 
+     	άρα ευθεία απεικον. σε ευθεία, ενώ:
+     	\item \( \underline{\Gamma \neq 0} \) τότε \( 
+     	u^2+v^2+\frac{A}{\Gamma}u-\frac{B}{\Gamma}v = 0
+     	 \) \textbf{δηλ.} κύκλος
+     	 \[
+     	 x^2+y^2+Ax+By+\Gamma = 0
+     	 \]
+     \end{itemize}
+     
+     Η\( f(z) = \frac{1}{z} \) απεικονίζει το εσωτερικό μοναδιαίου κύκλου
+     \( |z| = 1 \) με κέντρο το \( z=0 \), στο εξωτερικό του (με 1-1 τρόπο, και
+     αντιστρόφως).
+     
+     \textbf{Πράγματι:}
+     \begin{align*}
+     & z: |z| < 1, \text{ τότε } f(z) = \frac{1}{z} \text{ με } \left|f(z)\right|
+     = \frac{1}{|z|}>1 \implies \left|f(z)\right|> 1 \\
+     & z: |z| > 1, \text{ τότε } f(z) = \frac{1}{z} \text{ με } \left|f(z)\right|
+      = \frac{1}{|z|}<1 \implies \left|f(z)\right|< 1 \\
+     & z: |z| = 1, \text{ τότε } f(z) = \frac{1}{z} = \frac{\bar z}{z\bar z}
+     = \frac{\bar z}{|z|^2} = \bar z
+     \end{align*}
+     
+     \subsubsection{Μετασχ. M\"obius}
+     Καλούμε ρητογραμμικό μετασχηματισμό (M\"obius) κάθε συνάρτηση
+     \[
+     f(z) = \frac{az+b}{cz+d}\qquad (\text{με } ad-bc \neq 0)
+     \]
+     
+     Προφανώς: \( f: \mathbb C - \left\lbrace - \sfrac{d}{c}  \right\rbrace 
+     \to \mathbb C  - \left\lbrace \frac{a}{c} \right\rbrace
+     \), αν \( c \neq 0 \)
+     \\ ή \( f: \mathbb C \to \mathbb C \) \quad αν \( c = 0 \)
+    
+     H \( f \) είναι 1-1 (εύκολο).
+     
+     \begin{itemize}
+     	\item
+     	Αποδεικνύεται ότι ο μετασχ. M\"obius είναι σύνθεση \underline{διαστολής},
+     	\underline{περιστροφής}, \underline{μετάθεσης} και \underline{αντιστροφής},
+     	άρα απεικονίζει ευθείες σε ευθείες
+     	ή κύκλους, και κύκλους σε ευθείες ή κύκλους.
+     	
+     	\item
+     	Ο μετασχ. M\"obius (στην περίπτωση ευθείας ή κύκλου) απεικονίζει
+     	συμπληρωματικούς τόπους σε συμπληρωματικούς τόπους.
+     	\subparagraph{π.χ.}
+     	%TODO Kehagias Graph 12
+     	
+     	\item
+     	Αποδεικνύεται ότι \underline{υπάρχει} ΜΟΝΑΔΙΚΟΣ μετασχ. M\"obius που
+     	απεικονίζει ΤΡΙΑ σημεία \( z_1, z_2, z_3 \) σε ΤΡΙΑ ΑΛΛΑ σημεία
+     	\( w_1 = f(z_1),\ w_2 = f(z_2),\ w_3 = f(z_3) \), και έχει τη μορφή:
+     	\[
+     	\frac{(w-w_1)(w_2-w_3)}{(w-w_3)(w_2-w_1)}=
+     	\frac{(z-z_1)(z_2-z_3)}{(z-z_3)(z_2-z_1)}.
+     	\]
+     \end{itemize}
+     
+     \subsubsection{Τριγωνομετρικές και αντίστροφές τους}
+     
+     \begin{itemize}
+     	\item Η συνάρτηση
+     	\[
+     	\sin: \mathbb C \to \mathbb C : \sin z = \frac{e^{iz}-e^{-iz}}{2}
+     	\] είναι 2\( \pi \)-περιοδική, άρα μη αντιστρέψιμη στο \( \mathbb C  \)
+     	
+     	Έστω \( 
+     	E_k = \left\lbrace 
+     	x+iy: \kappa \pi -\frac{\pi}{2}<x<\kappa\pi+\frac{\pi}{2},y\in\mathbb R
+     	 \right\rbrace, k \in \mathbb Z
+     	 \) είναι "κατακόρυφες λωρίδες". Για \underline{\( k=0 \)}, έχω:
+     	 %TODO Kehagias Graph 13
+     	 
+     	 Τότε η \( \sin z \) γίνεται 1-1 με πεδίο τιμών το σύνολο
+     	 \[
+     	 A = \mathbb C - \left\lbrace u+iv: |u| \geq 1 \text{ και }
+     	 v = 0
+     	  \right\rbrace
+     	 \]
+     	 
+     	 Έτσι η \( \sin: E_k \to A \) είναι 1-1 (για κάθε συγκεκριμένο \( k\in
+     	 \mathbb Z
+     	  \)), άρα αντιστρέψιμη.
+     	  
+     	  \begin{itemize}
+     	  	\item Από \( w=\sin z \) παίρνω: \[
+     	  	\left| \begin{array}{l}
+     	  	u(x,y) = \sin x \cosh y \\ v(x,y) = \cos x\sinh y
+     	  	\end{array} \right.
+     	  	\]
+     	  	\item Για \( x=\frac{\pi}{2},\ y\in\mathbb R 
+     	  	\xrightarrow[\text{απεικονίζεται}]{\sin z} (\cosh y,0 )
+     	  	 \)
+     	  	 
+     	  	 Αλλά \( \cosh y \) δεν είναι 1-1 \( \forall y \), επομένως η
+     	  	 \( \sin z \) ΔΕΝ μπορεί να είναι 1-1 πάνω στην \( x=\frac{\pi}{2} \), η
+     	  	 οποία εξαιρείται από το πεδίο ορισμού. Έτσι, από το πεδίο τιμών,
+     	  	 εξαιρείται η ημιευθεία \[ \left\lbrace
+     	  	 u+iv: u \geq 1,\ v = 0 \right\rbrace
+     	  	 \]
+     	  	 \item Για \( x=-\frac{\pi}{2} \), ομοίως εξαιρείται η ημιευθεία \[
+     	  	 \left\lbrace
+     	  	 u+iv: u \leq 1,\ v = 0 \right\rbrace
+     	  	 \]
+     	  	 \item Για \underline{\( x = 0 \)}, \( y\in\mathbb R
+     	  	 \xrightarrow[\text{απεικον.}]{\sin z}
+     	  	 (0, \sinh y)
+     	  	  \) και επειδή \( \sinh y \) 1-1 γν. αύξ. με πεδίο τιμών το
+     	  	  \( \mathbb R \ \forall y \) η \( x = 0 \) απειον. στην \( u=0 \).
+     	  	 \item Έστω \( x=a \quad (a \neq \pm \frac{\pi}{2}),\ a\neq 0 \).
+     	  	 
+     	  	 \textbf{Τότε: } \( 
+     	  	 \left|
+     	  	 \begin{array}{l}
+     	  	 u = \sin a \cosh y \\ v = \cos a \sinh y
+     	  	 \end{array}
+     	  	  \right. \implies \boxed{ \frac{u^2}{\sin^2 a} - \frac{v^2}{\cos^2 a} = 1 }
+     	  	  \). Αν \( a \in \left( 0,\frac{\pi}{2} \right) \), τότε \( 
+     	  	  \left| \begin{array}{l}
+     	  	  u > 0 \\ v \in \mathbb R
+     	  	  \end{array}  \right.
+     	  	   \), και αντίστοιχα για \( a \in \left( -\frac{\pi}{2},0 \right) \).
+     	  	   
+     	  	   Έτσι ορίζουμε:
+     	  	   \[
+     	  	   \mathrm{τοξημ } = \arcsin: E' \to E_k:
+     	  	   \]
+     	  	   \begin{gather*}
+     	  	   \arcsin z = w \iff z = \sin w = \frac{e^{iw}-e^{-iw}}{2} \\
+     	  	   \iff e^{2iw}-2ize^{iw}-1 = 0 \iff e^{iw} = \frac{2iz+\sqrt{4-4z^2}}{2}
+     	  	   \\ \implies iw = \log\left( z+\frac{2}{\sqrt{1-z^2}} \right) \\
+     	  	   \implies \boxed{
+     	  	   	\arcsin z = \log\left(
+     	  	   	z+\frac{2}{\sqrt{1-z^2}}
+     	  	   	\right)
+     	  	   	}
+     	  	   \end{gather*}
+     	  \end{itemize}
+     	  
+     \end{itemize}
 \end{document}
