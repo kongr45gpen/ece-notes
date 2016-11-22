@@ -1477,7 +1477,237 @@
     		}
     	\]
     \end{theorem*}
+    \subparagraph{Απόδειξη}
+    %TODO Atreas Graph 20
+    
+    Έστω \( \left|z-z_0\right| =r \) κύκλος ακτίνας \( r \) κατάλληλης ώστε ο δίσκος
+    \( \left|z-z_0\right| \leq r \) να βρίσκεται εξ' ολοκλήρου στο εσωτερικό της
+    \( \gamma \).
+    
+    Τότε από το θεώρημα παραμόρφ. δρόμων, εφ' όσον \( \frac{f(z)}{z-z_0} \) ολόμορφη
+    στο γραμμοσκιασμένο χωρίο, έχουμε:
+    \[
+    \oint_\gamma \frac{f(z)}{z-z_0} \dif z =
+    \oint_{\left|z-z_0\right|=r} \frac{f(z)}{z-z_0}\dif z
+    = \underbrace{\oint_{\left|z-z_0\right|=r} \frac{f(z)-f(z_0)}{z-z_0}\dif z}_{I_2}
+    +\underbrace{\oint_{\left|z-z_0\right|=r} \frac{f(z_0)}{z-z_0}\dif z}_{I_1}
+    \]
+    
+    Για το \( I_2 \) έχω:
+    \begin{align*}
+    I_2 &= \oint_{\left|z-z_0\right|=r} \frac{f(z_0)}{z-z_0}\dif z
+    \overset{z=z_0+re^{i\theta}}{\underset{\theta\in[0,2\pi]}{=}}
+    f(z_0)\int_{0}^{2\pi}\frac{1}{re^{i\theta}}rie^{i\theta}\dif\theta
+    \\ &= 2\pi i f(z_0)
+    \end{align*}
 
+    \begin{infobox}{}
+    \vspace{-10pt}\[
+    \left(
+    \begin{array}{lcl}
+    l = l' & \iff & \left| l-l' \right|<\epsilon\ \forall \epsilon>0 \\
+    & "\implies" & \text{προφ. ισχύει} \\
+    & "\impliedby" & \text{Έστω } l \neq l' \implies \left| l-l' \right| \geq
+    \epsilon_0 > 0 \text{ άτοπο } \implies l=l'
+    \end{array}
+    \right)
+    \]
+    \end{infobox}
+
+    \textbf{Έτσι:} \[
+    \boxed{
+    	\oint_\gamma \frac{f(z)}{z-z_0}\dif z -2\pi i f(z_0) = I_1
+    	}
+    \]
+    
+    \begin{align*}
+    \left|I_1\right| &\leq
+    \oint_{\left|z-z_0\right|=r} \frac{\left|f(z)-f(z_0)\right|}{\left|z-z_0\right|}
+    \dif z \leq 
+    M \cdot \oint_{\left|z-z_0\right|=r} \frac{1}{\left|z-z_0\right|}\dif z,
+    \\ \intertext{όπου $
+    	M=\max\left\lbrace \left|f(z)-f(z_0)\right|\ \forall
+    	z:\left|z-z_0\right|=1
+    	 \right\rbrace
+    	$}
+    &= M\oint_{\left|z-z_0\right|=r} \frac{1}{r}|\dif z|
+    \\ &= \frac{M}{r}
+    \underbrace{\oint_{\left|z-z_0\right|=r} |\dif z|}_{%
+    	\mathclap{\text{μήκος καμπύλης}}}
+    =\frac{2\pi M r}{r} = \underline{2\pi M}
+    \end{align*}
+    
+    Αλλά \( f \) ολόμορφη στο \( z_0 \), άρα \( f \) συνεχής στο \( z_0 \).
+    
+    Εξ' ορισμού λοιπόν: \( \forall \epsilon>0\ \exists r_1>r>0:\
+    \forall z: 0<\left|z-z_0\right|<r<r_1 \implies \left|f(z)-f(z_0)\right|<\epsilon
+     \)
+     
+    Έτσι \( \forall \epsilon > 0 \) μπορώ να βρω ακτίνα 
+    \( r: \left|f(z)-f(z_0)\right|\ \forall z:\left|z-z_0\right|=r \), δηλ.
+    \( M \leq \epsilon \) και τελικά \( \left|I_1\right| \leq 2\pi M \leq
+    2\pi\epsilon\ \forall \epsilon>0 \implies I_1 = 0 \)
+    
+    \begin{theorem*}{Ολοκληρ. τύπος Cauchy για παραγώγους}
+    	\vspace{20pt}
+    	Έστω \( f \) είναι ολόμορφη πάνω και στο εσωτερικό απλής, κλειστής, λείας
+    	και θετικά προσανατολισμένης καμπύλης \( \gamma \).
+    	
+    	Αν \( z_0 \) σημείο στο ΕΣΩΤΕΡΙΚΟ της \( \gamma \), τότε η \( f \)
+    	ΕΧΕΙ ΠΑΡΑΓΩΓΟΥΣ \underline{ΚΑΘΕ ΤΑΞΗΣ} στο σημείο \( z_0 \) και μάλιστα:
+    	\[
+    	f^{(n)}(z_0) = \frac{n!}{2\pi i}\oint_\gamma
+    	\frac{f(z)}{\left(z-z_0\right)^{n+1}}\dif z
+    	\]
+    \end{theorem*}
+    
+    \begin{attnbox}{}
+    	Ο Ατρέας θα δίνει τύπους σε τυπολόγιο:
+    	\url{http://users.auth.gr/natreas/Efarmosmena/ΤΥΠΟΛΟΓΙΟ.pdf}
+    \end{attnbox}
+    
+    \subsection{Εφαρμογές}
+    \begin{enumparen}
+    	\item \textbf{Θεώρ. μέσης τιμής Gauss}
+    	
+    	Αν \( f \) ολόμορφη πάνω και στο εσωτερικό θετικά προσανατολισμένου κύκλου
+    	\( \left|z-z_0\right| = R \), τότε:
+    	\[
+    	f(z_0) = \frac{1}{2\pi} \int_{0}^{2\pi}
+    	\mathlarger{f}\!\left( z_0+Re^{i\theta} \right)\dif \theta
+    	\]
+    	\subparagraph{Απόδειξη}
+    	Εφαρμόζω τον ολοκλ. τύπο του Cauchy με τα δεδομένα μου και έχω:
+    	\begin{align*}
+    	f(z_0) &= \frac{1}{2\pi i}
+    	\oint_{\left|z-z_0\right|=R} \frac{f(z)}{z-z_0}\dif z \\
+    	&\overset{z=z_0+Re^{i\theta}}{\underset{\text{ορισμός}}{=}}
+        \frac{1}{2\pi i}\int_{0}^{2\pi}
+    	\frac{f\left(z_0+Re^{i\theta}\right)}{Re^{i\theta}}\dif\left(
+    	z_0+Re^{i\theta}
+    	\right) \\ &=
+    	\frac{1}{2\pi i}\int_{0}^{2\pi}
+    	\frac{f\left(z_0+Re^{i\theta}\right)}{\cancel{Re^{i\theta}}}
+    	i\cancel{Re^{i\theta}}\dif\theta
+    	\\ &= \text{ ζητούμενο}
+    	\end{align*}
+    	
+    	\item \textbf{Ανισότητα Cauchy}
+    	Έστω \( f \) ολόμορφη πάνω και στο εσωτερικό θετικά προσανατολισμένου κύκλου
+    	\( \left|z-z_0\right| = R \) και \( M_R = \max \left\lbrace 
+    	\left|f(z)\right|,\ \forall z:\left|z-z_0\right|=R
+    	 \right\rbrace \)
+    	 
+    	\textbf{Τότε:} \[
+    	\left| f^{(n)}(z_0) \right| \leq \frac{n!M_R}{R^n},\ 
+    	n=1,2,3,\dots
+    	\]
+    	\subparagraph{Απόδ.}
+    	Εφαρμόζουμε τον ολοκλ. τύπο Cauchy για παραγώγους προσαρμοσμένο στα δεδομένα:
+    	\begin{align*}
+    	\left|f^{(n)}(z_0)\right| &= \left|
+    	\frac{n!}{2\pi i}\oint_{|z-z_0|=R} \frac{f(z)}{(z-z_0)^{n+1}}\dif z
+    	\right|
+    	\\ &\leq \frac{n!}{2\pi} 
+    	\oint_{|z-z_0|=R} \frac{\left|f(z)\right|}{\left|z-z_0\right|^{n+1}}|\dif z|
+    	\\ &\leq \frac{n!}{2\pi} M_R \oint_{|z-z_0|=R}
+    	\frac{1}{|z-z_0|^{n+1}}|\dif z|
+    	\\ &= \frac{n!}{2\pi} M_R \oint_{|z-z_0|=R} \frac{1}{R^{n+1}}|\dif z|
+    	\\ &= \frac{n!}{2\pi} M_R \frac{1}{R^{n+1}}
+    	\underbrace{\oint_{|z-z_0|=R} |\dif z|}_{\mathclap{\text{μήκος κύκλου } z-z_0=R}}
+    	\\ &= \frac{n!}{2\pi} M_R \frac{1}{R^{n+1}}\cdot 2\pi R
+    	= \frac{n!M_R}{R^n}
+    	\end{align*}
+    	
+    	\item \textbf{Θεώρ. Liouville}
+    	
+    	Κάθε \textbf{ακεραία} συνάρτηση (δηλ. ολόμορφη στο \( \mathbb C  \)) και φραγμένη
+    	\( \boxed{\text{στο } \mathbb C}  \) είναι η σταθερή συνάρτηση.
+    	\subparagraph{Απόδ.}
+    	Έστω \( z \in \mathbb C  \) τυχαίο. Χρησιμοποιώ ανισότητα Cauchy για \( n=1 \):
+    	\[
+    	\left|f'(z)\right| \leq \frac{1!\ M_R}{R},\quad M_R = \max
+    	\left\lbrace \left|f(z)\right|: |z-z_0|=R \right\rbrace
+    	\]
+    	
+    	Αφού \( f \) εξ' υποθέσεως είναι φραγμένη, άρα \( \exists \underline{M > 0}:
+    	\left|f(z)\right| \leq M \quad \forall z \in \mathbb C 
+    	 \)
+    	 
+    	\textbf{Δηλ.} \(  \displaystyle
+    	\left|f'(z)\right| \leq \frac{M_R}{R} \leq \frac{M}{R}
+    	\xrightarrow[R\to \infty] 0
+    	 \)
+    	 
+        Τότε \( \left|f'(z)\right| = 0 \iff f'(z)=0 \forall z\in
+        \iff f(z) = c\in\mathbb C 
+        \)
+        
+        \item \textbf{Αρχή μεγίστου/ελαχίστου}
+        
+        Έστω \( f \) ολόμορφη σε ανοικτό και συνεκτικό σύνολο \( G \) και μη σταθερή στο
+        \( G \). Τότε η \( |f| \) \textbf{ΔΕΝ έχει μέγιστη τιμή} στο \( G \).
+        
+        Αν μάλιστα \( f(z) \neq 0 \quad \forall z \in G \), τότε η \( |f| \)
+        \textbf{ΔΕΝ έχει ελάχιστη τιμή στο \( \mathbf G \)}.
+        
+        Ειδικά αν \( G \) είναι και \textbf{ΦΡΑΓΜΕΝΟ} και η \( f \) είναι συνεχής στο
+        σύνορο του \( G \) (το οποίο είναι απλή, λεία καμπύλη), τότε η \( |f| \)
+        \textbf{παίρνει ΜΕΓΙΣΤΗ ΤΙΜΗ ΠΑΝΩ στο σύνορο του \( \mathbf G \)}.
+        Ομοίως αν \( f(z) \neq 0 \quad \forall z \in G \), τότε η \( |f| \)
+        παίρνει ελάχιστη τιμή ΠΑΝΩ στο σύνορο του \( G \).
+    	
+    \end{enumparen}
+    
+    \paragraph{Άσκ.} Υπολογίστε το \( \int_\gamma \left( i\bar z - z \right)\dif z \)
+    \\ όπου \( \gamma \) είναι η παραβολή \( y=2t^2+1 \) με αρχή το σημείο \( (1,3) \)
+    και πέρας το σημείο \( 2,9 \).
+    \subparagraph{}
+    Γενικά, μπορώ να κινηθώ μέσω ορισμού, αντιπαραγώγου ή θεωρημάτων. Η \( \bar z \)
+    δεν έχει παράγωγο, άρα δεν έχει αντιπαράγωγο (διαφορετικά από προηγούμενη εφαρμογή
+    θα είχε άπειρες παραγώγους).
+    
+    \subparagraph{Έχουμε:} 
+    \begin{align*}
+    \int_\gamma (i\bar z - z)\dif z &=
+    i\int_\gamma \bar z\dif z - \int_\gamma z\dif z = I_1+I_2
+    \end{align*}
+    \begin{itemize}
+    	\item όσον αφορά το \( I_2 \), εφ' όσον η \( f(z)=z \) είναι ολόμορφη στο
+    	\( \mathbb C  \) ως πολυώνυμο, έχει μοναδική αντιπαράγωγο (με προσέγγιση σταθεράς),
+    	άρα:
+    	\begin{align*}
+    	\int_\gamma z\dif z &= \left. \frac{z^2}{2} \right|_{z_0=1+3i}^{z_1=2+9i}
+    	\intertext{(αντιπαράγωγος \( \xRightarrow{\text{θεωρία}} \) ανεξαρτησία δρόμου)}
+    	\\ &= \frac{(2+9i)^2}{2} - \frac{(1+3i)^2}{2}
+    	\\ &= \frac{69}{2} - 15i \\ &= B
+    	\end{align*}
+    	\item Για το \( I_1 \):
+    	\begin{align*}
+    	I_1 &= i\int_\gamma \bar z \dif z
+    	\overset{\text{ορισμός}}{\underset{\text{διότι η $\bar z$ ΔΕΝ
+    				είναι παραγωγίσιμη σε κανένα σημείο}}{=}}
+    	\\ &
+    	\overset{(t,2t^2+1)}{\underset{t+i(2t^2+1)=\gamma(t)}{=}}
+    	\int_1^2 \overline{\gamma(t)} \dif\left(\gamma(t)\right)
+    	\\ &= \int_1^2 \left[
+    	t-i\left(2t^2+1\right)
+    	\right]\underbrace{\left[
+    	1+4ti
+    	\right]\dif t}_{\mathclap{
+    		\gamma'(t)\dif t := \dif\gamma(t)
+    		}}
+        \\ &= i\int_1^2 \left[
+        t+4t\left(2t^2+1\right)
+        \right]+i\left[ 1+2t^2+4t^2 \right]\dif t
+        \\ &= i\int_1^2 \left( 5t+8t^3 \right) + i\left( 6t^2+1 \right)\dif t
+        \\ &= i \left[ \frac{5t^2}{2} + 2t^4 \right]_1^2 - \left(2t^3+t\right)_1^2
+        \\ &= A + B
+    	\end{align*}
+    	
+    	\textbf{Τελικά}
+    	
+    \end{itemize}
 
 	\newpage
 
