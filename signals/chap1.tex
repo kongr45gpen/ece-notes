@@ -178,28 +178,34 @@
         \hat a_m\int_\Delta \phi_i(t)\phi_m(t)\dif t - 2\int_\Delta f(t)\phi(t)\dif t = 0
     \end{align*}
     
-    %TODO Mess fixed up to here
+    \paragraph{Σύστημα εξισώσεων}
+    Αν \( \phi_i^{(t)} \) μοναδιαία, τότε: \( \int_\Delta \phi_i^2(t)\dif t = 1 \)
     
-
-    Έστω \( \phi_i \) μοναδιαία \( \iff \int_\Delta \phi^2(t)\dif t = 1 \)
-    και \( \phi_i \) ορθογώνια \( \iff \int_\Delta \phi_1\phi_2(t)=0 \)
+    Αν \( \phi_i(t) \) είναι ορθογώνια, τότε: 
+    \( \int_{\Delta}  \phi_i(t) \phi_j(t)\dif t = 0, \quad i \neq j \)
     
-    Αν η \( \left\lbrace \phi(t) \right\rbrace \) ορθοκανονική
-    \begin{align*}
-    2\vec a_i-2\int_\Delta f(t)\phi(t)\dif t = 0 \implies
-    \hat a_i = \int_\Delta f(t)\phi(t) \dif t 
-    \end{align*}\[
-    2a\left\langle \phi,\phi \right\rangle +\sum\sum \hat a_n
-    \left\langle \phi_i,\phi_n \right\rangle
-    -2\left\langle f,\phi\right\rangle = 0
-    \]
+    Αν \( \left\lbrace \phi_i(t) \right\rbrace \) είναι ορθοκανονική βάση, τότε:
     \begin{gather*}
-    f(t) = \sum_{a=0} a_n\phi_n(t)\\
-    \int_\Delta f(t)\phi(t)\dif t =a_i\\
-    \left\langle f,\phi_i\right\rangle = \left\langle
-    \sum_{n=0}^\infty a_i\phi_n,\phi_i
-    \right\rangle = \sum_{??}^\infty a_n\left\langle \phi_n,\phi_i\right\rangle
+    2\vec{a_i}-2\int_{\Delta} f(t)\phi(t)\dif t = 0 \implies
+    \vec{a_i} = \overbrace{\int_\Delta
+    \underbrace{f(t)}_{\mathclap{\text{προβολή του διανύσματος στο μοναδιαίο}}}
+    \phi_i(t)\dif t}^{\mathclap{\text{όπως το } k=\vec a \cdot \vec x}} = a_i
     \end{gather*}
+    
+    Με άλλη γραφή:
+    \[
+    2\vec{a_i}\left\langle\phi_i,\phi_i \right\rangle
+    +2\sum_{m+i}\vec{a_m}\left\langle \phi_i,\phi_m \right\rangle
+    -2\left\langle f,\phi_i \right\rangle=0
+    \]
+    
+    Είναι:
+    \[
+    \left\langle f,\phi_i \right\rangle = \left\langle
+    \sum_{n=0}^{+\infty}a_n\phi_n,\phi_i\right\rangle
+    = \sum_{n=0}^{+\infty} a_n\left\langle \phi_nm\phi_i \right\rangle
+    = a_i \quad \text{όπως στα διανύσματα}
+    \]
     
     Ηθικό δίδαγμα: Αν η βάση του χώρου είναι ορθοκανονική και μας ζητηθεί να υπολογίσουμε
     μία προσέγγιση της συνάρτησης σε έναν υποχώρο, μπορούμε άμεσα να υπολογίσουμε την
@@ -207,12 +213,13 @@
     
     \paragraph{Ex.}
     \( f(t)=e^{-3t}\mathrm u(t)
-    \qquad \phi_1(t)=e^t\mathrm u(t) \ \& \
+    \qquad \phi_1(t)=e^{-t}\mathrm u(t) \quad \& \quad
     \phi_2(t) = e^{-2t}\mathrm u(t)
      \)
      
     \begin{gather*}
-    \hat f(t) = a_1e^{-t}\mathrm u(t) + a_2e^{-2t}\mathrm u(t) \\
+    \overbrace{\hat f(t)}^{\mathclap{\text{βέλτιστη}}} = a_1e^{-t}\mathrm u(t) +
+     a_2e^{-2t}\mathrm u(t) \\
     \int \left[ a_1\phi_1+a_2\phi_2 -f \right]\phi_1\dif t = 0\\
     \int_0^\infty \left[ a_1e^{-t}+a_2e^{-2t}-e^{-3t}\right]e^{-t}\dif t = 0\implies
     \\
@@ -220,27 +227,15 @@
     e^{-4t}\dif t = 0
     \implies \boxed{ \frac{a_1}{2}+\frac{a_2}{3}-\frac{1}{4} = 0 } \\
     \int\left[ a_1e^{-t}+a_2e^{-2t}-e^{-3t} \right]e^{-2t}\dif t = 0 \implies
-    \boxed{\frac{a_1}{2}+\frac{a_2}{4}-\frac{1}{5}=0}\\
-    a_1 = \sfrac{3}{10},\ a_2 = \sfrac{6}{5}
+    \boxed{\frac{a_1}{3}+\frac{a_2}{4}-\frac{1}{5}=0}\\
+    a_1 = -\sfrac{3}{10},\ a_2 = \sfrac{6}{5}
     \end{gather*}
     
-    \paragraph{Ex.}
-    \( f(t)=e^{-3t}\mathrm u(t)
-    \qquad \phi_1(t)=e^t\mathrm u(t) \ \& \
-    \phi_2(t) = e^{-2t}\mathrm u(t) \ \& \
-    \phi_3(t) = e^{-3t}\mathrm u(t)
-    \)
-    %TODO
+    \paragraph{}
+    \[
+    \underset{ \text{γενικότερη μορφή}
+    	}{\boxed{E \overset{\triangle}{=} \int_\Delta f^2(t)\dif t
+    = \sum_{n=0}^{\infty} a_n^2 \quad
+    \begin{array}{l} \text{Parseval's} \\ \text{Theorem}\end{array}}}
+    \]
     
-    \( 
-    f(t) = \sum_{n=0}^N a_n\phi_n(t) \quad \left\lbrace \phi_n(t) \right\rbrace
-     \)  ορθοκανονική
-     
-     \begin{align*} E &\overset{\triangle}{=} \int_\Delta f^2(t)\dif t
-     = \int\left(
-     \sum a_n\phi_n(t)\sum a_n\phi_n(t)
-     \right)\dif t+
-     \\ &= \sum_{n=0}^\infty a_n\cancelto{1}{\int_\Delta \phi_n^2(t)\dif t} +
-     \sum_{m\neq n}a_ia_n\int_?\cancelto{0}{\Delta\phi_i(t)\phi_n(t)} \\
-     E &= \sum_{a=m}^\Sigma a_n^2 \quad \text{Parseval}\int \text{ theorem}
-     \end{align*}
