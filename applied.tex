@@ -2885,4 +2885,238 @@
   
   Αν είναι "γνήσια" σειρά Laurent (\( a_n \neq 0 \) για κάποια αρνητικά \( n \)),
   τότε το \( z_0 \) λέγεται ανώμαλο σημείο της σειράς Laurent.
+  
+  \begin{infobox}{}
+  	Από την ΑΛΛΗ ΕΒΔΟΜΑΔΑ \\
+  	ΤΡΙ \textbf{και} ΠΕ στον ΑΤΡΕΙΑ
+  	\textbf{ΚΑΙ ΤΑ 2} τμήματα
+  \end{infobox}
+  
+  \begin{theorem*}{}
+  	Για κάθε ΔΣ \( \displaystyle f(z) = \boxed{ \sum_{n=0}^\infty a_n (z-z_0)^n } \)
+  	υπάρχει αριθμός \( R \geq 0 \) (ακτίνα σύγκλισης) \textbf{τ.ώ}
+  	\begin{enumgreekparen}
+  		\item Η ΔΣ συγκλίνει ομοιόμορφα και απόλυτα στο
+  		\( \underbrace{D_R}_{\mathclap{\text{δίσκος σύγκλισης}}}(z_0) =
+  		\left\lbrace z: |z-z_0| < R \right\rbrace
+  		\)
+  		\item Η ΔΣ αποκλίνει στο
+  		\( \left\lbrace z:|z-z_0| > R \right\rbrace \)
+  		\item Σε κάθε σημείο του συνόρου του δίσκου σύγκλισης
+  		\( \left\lbrace z:|z-z_0| = R \right\rbrace \)
+  		η ΔΣ μπορεί να συγκλίνει ή να αποκλίνει
+  	\end{enumgreekparen}
+  \end{theorem*}
+  
+  \begin{theorem*}{}
+    Για κάθε ΔΣ \( f(z) = \sum_{n=0}  a_n(z-z_0)^n \), \(\forall z \in D_R(z_0) \)
+    ισχύουν:
+    \begin{enumgreekparen}
+    	\item 
+    	\[
+    	\frac{\dif\; f}{\dif z} = 
+    	\sum_{n=0}^\infty n\cdot a_n \cdot (z-z_0)^{n-1}
+    	\]
+    	
+    	\item Για κάθε \( C \subseteq D_R(z_0) \)
+    	\[
+    	\int_C f(z) \dif z = \sum_{n=0}^\infty a_n \int_C (z-z_0)^n \dif z
+    	\]
+    \end{enumgreekparen}
+  \end{theorem*}
+  
+  \paragraph{}
+  \begin{theorem*}{}
+  	Έστω \( f(z) \) αναλυτική στο εσωτερικό κλειστής καμπύλης \( C \).
+  	Έστω \( z_0,\ z \) σημεία στο εσωτερικό της \( C \). Τότε
+  	\begin{align*}
+  	\Aboxed{f(z) &= \sum_{n=0}^\infty \frac{f^{(n)}}{n!} (z-z_0)^n}
+  	\\ \Aboxed{
+  		\qquad &= \sum_{n=0}^\infty \frac{1}{2\pi i} \left(
+  		    \oint_{C'} \frac{f(z)}{(z-z_0)^{n-1}} \dif z
+  		\right)(z-z_0)^n
+  		}
+  	\end{align*}
+  	%TODO Kehagias Graph 13
+  \end{theorem*}
+  
+  \paragraph{ΠΑΡ.}
+  Να βρεθεί η σειρά Taylor της \( f(z) = \sin z \), γύρω από το \( z_0 = 0 \).
+  \subparagraph{ΛΥΣΗ}
+  \[
+  \begin{array}{rlrl}
+  f(z) &= \sin(z)  \qquad & f(0)&=0                    \\
+  f'(z) &= \cos(z) & f'(0) &= 1                     \\
+  f''(z) &= -\sin(z) & f''(0) &= 0                  \\
+  f'''(z) &= -\cos(z) & f'''(0) &= -1
+  \end{array}
+  \]
+  \begin{align*}
+  \sin(z) &= 0(z-\cancelto{0}{z_0})^0 + \frac{1}{1!}(z-\cancelto{0}{z_0})^1
+  + \frac{0}{2!}(z-\cancelto{0}{z_0})^2 + \frac{1}{3!}(z-\cancelto{0}{z_0})^3+\dots
+  \\ \sin(z) &= z - \frac{z^3}{3!} + \frac{z^5}{5!} + \dots
+  \end{align*}
+  
+  \paragraph{ΠΑΡ.}
+  Να βρεθεί η σειρά Taylor
+  \subparagraph{Α' τρόπος}
+  \begin{align*}
+  f\left(\sfrac{\pi}{3} \right) = \sfrac{\sqrt{3}}{2} \qquad &,
+  f''\left(\sfrac{\pi}{3} \right) = -\sfrac{\sqrt{3}}{2} \\
+  f'\left(\sfrac{\pi}{3} \right) = \sfrac{1}{2} \quad &,
+  f'''\left(\sfrac{\pi}{3} \right) = -\sfrac{1}{2},\dots\end{align*}\[
+  \\ \sin(z)=\frac{\sqrt{3}}{2}+\frac{1}{2}\left(z-\sfrac{\pi}{3} \right)
+  -\frac{\sqrt{3}}{2\cdot 2!} \left(z-\sfrac{\pi}{3} \right)^2
+  -\frac{1}{2\cdot 3!}\left( z-\sfrac{\pi}{3}  \right)^3
+  \]
+  \subparagraph{Β' τρόπος}
+  \( u = z-\sfrac{\pi}{3} \implies z=u+\sfrac{\pi}{3}   \)
+  
+  \begin{align*}
+  \sin(z) = \sin(u+\sfrac{\pi}{3} ) &=
+  \sinh \cancelto{\sfrac{1}{2} }{\cos\frac{\pi}{3}}
+  +\cosh \cancelto{\sfrac{\sqrt{3}}{2} }{\sin\sfrac{\pi}{3}}
+  \\ &= \frac{1}{2}\left(
+  u-\sfrac{u^3}{3!} +\sfrac{u^5}{5!} -\dots
+  \right) + \frac{\sqrt{3}}{2} \cdot \left(
+  1-\frac{u^2}{2!} + \frac{u^4}{4!} - \dots
+  \right)
+  \\ &= \frac{\sqrt{3}}{2} + \frac{1}{2}u-\frac{\sqrt{3}}{2\cdot 2!}u^2
+  -\frac{1}{2\cdot 3!}u^3+\dots
+  \\ &= \frac{\sqrt{3}}{2}+\frac{1}{2}\left( z-\frac{\pi}{3} \right)
+  -\frac{\sqrt{3}}{2\cdot 2!} \left( z-\frac{\pi}{3} \right)^2 - \dots
+  \end{align*}
+  
+  \paragraph{ΠΑΡ.}
+  Να βρεθεί η σειρά Taylor της \( f(z) = \frac{1}{1-z} \) γύρω από το \( z_0 = 2 \)
+  \subparagraph{ΛΥΣΗ}
+  \begin{align*}
+  z-2 &= u \\
+  z-1 &= u+ 1 \\
+  1-z &= -(1+u) \\
+  & \forall u:|u|<1:\frac{1}{1+u} = 1-u+u^2-u^3+\dots
+  \end{align*}
+  \begin{align*}
+  \frac{1}{1-z} &= - \frac{1}{1+u} = -1+u-u^2+u^3-\dots \\
+  |z-2| < 1 : \frac{1}{1-z} &= -1 + (z-2) - (z-2)^2 + (z-2)^3
+  \end{align*}
+  (για \( z=3,\ f(z)=-1+1-1+1-\dots \))
+  
+  %TODO Kehagias Graph 14
+  
+  \paragraph{ΠΑΡ.}
+  Να βρεθεί η σειρά Taylor της \( f(z) = \frac{z}{z^2-2z-3} \) γύρω από το \(z_0 = 0\)
+  \begin{align*}
+  \frac{z}{z^2-2z-3} &= \frac{A}{z-3}+\frac{B}{z-1} = \frac{1}{4}\cdot\frac{1}{z+1}
+  + \frac{3}{4} \cdot \frac{1}{z-3} \\
+  &= \frac{1}{4} \cdot (1-z+z^2-z^3+\dots) - \frac{3}{4}\cdot\frac{1}{3}\cdot
+  \frac{1}{1-\frac{z}{3}} \\ &=
+  \frac{1}{4}\cdot\left(1-z+z^3-z^3+\dots \right)
+  -\frac{1}{4}\left( 1+\frac{z}{3} + \frac{z^2}{9}+\dots \right)
+  \\ &= -\frac{1}{3}z+\frac{8}{36}z^2+\dots
+  \end{align*}
+  \( |z|<1 \quad \left|\frac{z}{3}\right|<1 \implies |z| < 3 \)
+  
+  \subparagraph{}
+  \begin{align*}
+  \frac{1}{z^2-2z-3} &= \frac{1}{(z-1)^2 - 4} = -\frac{1}{4}\cdot
+  \frac{1}{1-\left(\frac{z-1}{z}\right)^2} \\ &=
+  -\frac{1}{4}\cdot\left(
+  1+\left(\frac{z-1}{2}\right)^2+\left(\frac{z-1}{2}\right)
+  -\left(\frac{z-1}{2}\right)^6+\dots
+  \right) \\ |z-1|<2 : \quad \frac{1}{z^2-2z-3}
+  &= -\frac{1}{4} -\frac{\left(\frac{z-1}{2}\right)^2}{4} 
+  - \frac{\left( \frac{z-1}{z} \right)}{4}
+  \end{align*}
+  
+  \paragraph{}
+  
+  \begin{theorem*}{}
+  	Έστω \( R_2 < R_1,\ \begin{array}{l}
+  	C_1 = \left\lbrace z:|z-z_0| = R_1 \right\rbrace \\
+  	C_2 = \left\lbrace z:|z-z_0| = R_2 \right\rbrace 
+  	\end{array} \)
+  	
+  	\begin{align*}
+  	A_{R_2,R_1}(z_0) &= \left\lbrace 
+  	z:\ R_1 < |z-z_0| < R_2
+  	 \right\rbrace \qquad \text{δακτύλιος χωρίς σύνορο} \\
+  	\bar A_{R_2,R_1}(z_0) &= \left\lbrace 
+  	z:\ R_1 \leq | z - z_0 | \leq R_2
+  	 \right\rbrace \qquad \text{δακτύλιος με σύνορο}
+  	\end{align*}
+  	
+  	%TODO Kehagias Graph 15
+  	
+  	Έστω \( f(z) \) αναλυτική στο \( \bar A_{R_2,R_1}(z_0) \). Τότε \( \forall z
+  	\in A_{R_1,R_2}(z_0) \) ισχύει \[
+  	f(z) = \sum_{n=-\infty}^\infty a_0 (z-z_0)^n
+  	\]
+  	
+  	Αυτή λέγεται σειρά Laurent (Λοράντ) της \( f(z) \) γύρω από το \( z_0 \).
+  	
+  	\[
+  	\forall n \in \mathbb Z: \quad a_n=\frac{1}{2\pi i}\oint_C
+  	\frac{f(z)}{(z-z_0)^{n+1}}\dif z
+  	\] (η \( C \) εντός του \( A_{R_2,R_1}(z_0) \))
+  \end{theorem*}
+  
+  \paragraph{ΠΑΡ.}
+  Βρείτε την σειρά Laurent της \( f(z) = \frac{\sin z}{z^2} \) γύρω από το
+  \( z_0 = 0 \).
+  \subparagraph{Λύση}
+  \begin{align*}
+  \frac{\sin z}{z^2}&=\frac{1}{z^2}\cdot \sin z 
+  \\ &= \frac{1}{z^2}\left( z-\frac{z^3}{3!}+\frac{z^5}{5!}-\dots \right)
+  \\ \forall z: 0<|z|<\infty: \quad \frac{\sin z}{z^2} &= \frac{1}{z}-\frac{z}{3!}
+  +\frac{z}{5!}-\dots
+  \end{align*}
+  Το \( z_0 = 0 \) είναι \textbf{πόλος} πρώτης τάξης.
+  
+  \paragraph{ΠΑΡ} \( \frac{\sin z}{z} \)
+  \[
+  0<|z|<\infty:\quad \frac{\sin z}{z} = 1-\frac{z^2}{3!}+\frac{z^4}{5!}-\dots
+  \]
+  Το \( z_0 = 0 \) είναι απαλείψιμο ανώμαλο σημείο.
+  
+  \paragraph{ΠΑΡ}
+  Να βρεθεί η σειρά Laurent της \( f(z) = \frac{e^{2z}}{(z+1)^2} \) γύρω
+  από το \( z_0 = -1 \)
+  
+  \subparagraph{Λύση}
+  \begin{align*}
+  \frac{e^{2z}}{(z+1)^2} &= \frac{e^{-2}}{(z+1)^2} \cdot e^{2(z+1)}
+  \\ &= e^{-2} \cdot \frac{1}{(z+1)^2}\cdot\left(
+  1+2(z+1)+\frac{4\cdot(z+1)^2}{2!}+\frac{8\cdot(z+1)^3}{3!}+\dots
+  \right) \\ 0<|z+1|<\infty :\quad \frac{e^{2z}}{(z+1)^2} &=
+  \frac{e^{-2}}{(z+1)^2}+\frac{2e^{-2}}{z+1}+2e^{-2}+\frac{4e^{-2}}{3}
+  \cdot (z+1)+\dots
+  \end{align*}
+  Παρατηρώ ότι \( z_0=-1 \) είναι πόλος 2\textsuperscript{ης} τάξης
+  
+  \begin{align*}
+  \oint \frac{e^{2z}}{(z+1)^2} \dif z &=
+  \cancelto{0}{\oint_C \frac{e^{-2}}{(z+1)^2}}\dif z
+  +\cancelto{2e^{-2}2\pi i}{\oint_C \frac{2e^{-2}}{z+1}\dif z}
+  +\cancelto{0}{\oint_C \frac{4e^{-2}}{3}(z+1)\dif z} + \dots \\
+  \Aboxed{\oint \frac{e^{2z}}{(z+1)^2} &= 2e^{-2}2\pi i}
+  \end{align*}
+  
+  \begin{defn*}{}
+  	Έστω \( \displaystyle f(z) = \sum_{n=-\infty}^\infty a_n(z-z_0)^n \).
+  	
+  	Έστω \( n_1 \) ο ελάχιστος \( n \) τ.ώ. \( a_n \neq 0 \). \\
+  	(αν δεν υπάρχει το ελάχιστο, θέτω \( n_1=-\infty \))
+  	
+  	\begin{enumgreek}
+  		\item Αν \( -n_1 = 0 \), τότε το \( z_0 \) είναι απαλείψιμο ανώμαλο
+  		σημείο (πόλος μηδενικής τάξης)
+  		\item Αν \( \infty > -n_1 > 0 \), τότε το \( z_0 \) είναι πόλος τάξης
+  		\( -n_1 \)
+  		\item Αν \( n_1 = -\infty \), τότε το \( z_0 \) είναι ουσιώδες ανώμαλο
+  		σημείο (πόλος \( \infty \) τάξης)
+  	\end{enumgreek}
+  \end{defn*}
+  
+  Η \( f(z) = e^{\sfrac{1}{z} } \) έχει το \( z_0 = 0 \) πόλο άπειρης τάξης.
 \end{document}
