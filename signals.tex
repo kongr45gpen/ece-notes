@@ -30,7 +30,7 @@
 	\( \displaystyle
 	x(t) = \frac{1}{2\pi j}
 	\int_{\sigma-j\underset{\mathclap{(-\infty)}}{\omega} }^{
-		\sigma+j\overset{\mathclap{(\infty)}}{\omega}} X(s)e^{st}\dif \omega 
+		\sigma+j\overset{\mathclap{(\infty)}}{\omega}} X(s)e^{st}\dif s
 	 \)
 	 
 	 \paragraph{}
@@ -66,7 +66,7 @@
 	Το \( 0^- \) μάς επιτρέπει να ασχοληθούμε με συναρτήσεις που απειρίζονται
 	στο 0, π.χ. \( \frac{1}{x} \) or \( \delta(t) \).
 	
-	\section{Ιδιότητες}
+	\subsection{Ιδιότητες}
 	\( x(t)\to X(s) \quad \Re\left\lbrace s \right\rbrace > \sigma_1 \)
 	
 	\( y(t)\to\, Y(s) \quad \Re\left\lbrace s \right\rbrace > \sigma_2 \)
@@ -239,4 +239,160 @@
     \frac{\omega_0}{\omega_0^2-\omega^2}
     \right] 
     \end{align*}
+    
+    \begin{theorem*}[title=Θεωρήματα Αρχικής \& Τελικής Τιμής,width=.5\textwidth]%
+    	{Αρχικής \& Τελικής Τιμής}
+    \begin{align*}
+    \lim_{t\to 0^+} x(t) &= \lim_{s\to \infty} \left( sX(s) \right) \\
+    \lim_{t\to \infty} x(t) &= \lim_{s\to 0} \left( sX(s) \right)
+    \end{align*}
+    \end{theorem*}
+    
+    \begin{gather*}
+    (-t)^n f(t) \xrightarrow{\mathscr L T} \od[n]{F(s)}{s} \\
+    f(t) \xrightarrow{\mathscr L T} F(s)
+    \end{gather*}
+    
+    Για να βρίσκουμε αντίστροφους μετασχηματισμούς Laplace χωρίς μιγαδική
+    ολοκλήρωση χρειαζόμαστε ένα ισχυρό τυπολόγιο.
+    
+    \begin{infobox}{Τυπολόγιο}
+    \[
+    \begin{array}{cc}
+    	X(s) & x(t) \\ \hline
+    	\frac{1}{s} & \mathrm u(t) \\ \hline
+    	\frac{1}{s+a} & e^{-at}\mathrm u(t) \\ \hline
+    	\frac{1}{(s+a)^n} & \frac{t^{n-1}}{(n-1)!}e^{-at}\mathrm u(t) \\ \hline
+    	\frac{1}{s^n} & \frac{t^{n-1}}{(n-1)!}\mathrm u(t) \\ \hline
+    	\frac{\beta}{s^2+\beta^2} & \sin(\beta t)\mathrm u(t) \\ \hline
+    	\frac{s}{s^2+\beta^2} & \cos(\beta t)\mathrm u(t) \\ \hline
+    	\frac{\beta}{(s+a)^2+\beta^2} & e^{-at}\sin(\beta t)\mathrm u(t) \\ \hline
+    	\frac{s+a}{(s+a)^2+\beta^2} & e^{-at}\cos(\beta t)\mathrm u(t)
+    \end{array}
+    \]
+    \end{infobox}
+    
+    \paragraph{}
+    \begin{gather*}
+    X(s) = \frac{P(s)}{Q(s)} = \frac{N(s)}{D(s)}
+     \overset{\mathclap{\text{π.χ}}}{=}
+     \frac{N(s)}{(s+a)D_1(s)} = \frac{A}{s+a}+ \frac{N_1(s)}{D_1(s)} \\
+    x(t) = Ae^{-at}\mathrm u(t) - \mathscr L T \left\lbrace 
+    \frac{N_1(s)}{D_1(s)}
+     \right\rbrace
+    \end{gather*}
+    \subparagraph{}
+    \begin{align*}
+    X(s) &= \frac{N(s)}{(s+a)^\kappa D_1(s)} \\ &=
+    \frac{A_1}{(s+a)}+\frac{A_2}{(s+a)^2}+\dots+\frac{A_\kappa}{(s+a)^\kappa}
+    + \frac{N_1(s)}{D_1(s)}
+    \end{align*}
+    \[
+    \boxed{\frac{A_i}{(s+a)^i} \xrightarrow{I\mathscr L T}
+    A_i \frac{t^{i-1}}{(i-1)!}e^{-at}\mathrm u(t)}
+    \]
+    \subparagraph{}
+    \begin{gather*}
+    X(s) = \frac{N(s)}{\left[ (s+a)^2+\omega_0^2 \right]D_1(s)}
+    = \frac{As+B}{(s+a)^2+\omega_0^2+\frac{N_1(s)}{D_1(s)}}
+    \\ s_1 = -a-j\omega_0 \quad \text{ένας πόλος} \\
+       s_2 = -a+j\omega_0
+    \end{gather*}
+    
+    \subsubsection*{}
+    \paragraph{Ex. 1}
+    %TODO Rekanos Graph 34
+    \begin{align*}
+    p(t) &= \mathrm u(t) - \mathrm{u}(t-T) \\
+    \mathscr L \left\lbrace p(t) \right\rbrace &=
+    \mathscr L \left\lbrace \mathrm u(t) \right\rbrace
+    - \mathscr L \left\lbrace \mathrm{u}(t-T) \right\rbrace
+    \\ &= \frac{1}{s} - \frac{1}{s} e^{-sT} = \frac{1-e^{-sT}}{s}
+    \end{align*}
+    
+    \paragraph{Ex. 2}
+    %TODO Rekanos Graph 35
+    \begin{align*}
+    f(t) &= \frac{t}{T}\mathrm u(t) - \frac{t-T}{T}\mathrm u(t-T) \\
+    F(s) &= \frac{1}{T}\frac{1}{s^2} - \frac{1}{T}\frac{1}{s^2}e^{-sT}
+    \\ &= \frac{1}{Ts^2}\left[ 1-e^{-sT} \right],\quad s>0 
+    \end{align*}
+    
+    \paragraph{Ex. 3}
+    %TODO Rekanos Graph 36
+    \begin{align*}
+    f(t) &= t\mathrm u(t) - (t-1)\mathrm u(t-1) - (t-3)\mathrm u(t-3)
+    + (t-4)\mathrm u(t-4) \\
+    F(s) &= \frac{1}{s^2} \left[
+    1-e^{-s}-e^{-3s}+e^{-4s}
+    \right]
+    \end{align*}
+
+    \paragraph{Ex. 4}
+    %TODO Rekanos Graph 37
+    \begin{align*}
+    f(t) &= \sin(t)\mathrm u(t) + \sin(t-\pi)\mathrm u(t-\pi) \\
+    F(s) &= \frac{1}{s^2}+\frac{1}{s^2+1}e^{-\pi s}
+    \end{align*}
+    
+    \paragraph{Ex. 5}
+    %TODO Rekanos Graph 38
+    \begin{align*}
+    f(t) &= |\sin t|\mathrm u(t) \\
+    F(s) &= \frac{1+e^{-\pi s}}{1-e^{-\pi s}}
+    \end{align*}
+    
+    \paragraph{Ex. 6}
+    \begin{align*}
+    F(s) = \underset{\text{αιτιατής συνάρτησης}}{\frac{s^2-6}{s^3+4s^2+3s}}
+    = \frac{s^2 - 6}{s(s^2+4s+3)} &= \frac{s^2-6}{s(s+1)(s+3)}
+    = \frac{A}{s} + \frac{B}{s+1} + \frac{\varGamma}{s+3}
+    \\ &= \frac{-2}{s} + \frac{\sfrac{5}{2} }{s+1}+\frac{\sfrac{1}{2} }{s+3}
+    \\ f(t) &= \left[ 
+    -2+\frac{5}{2} e^{-t} + \frac{1}{2} e^{-3t}
+    \right]\mathrm u(t)
+    \end{align*}
+    
+    \paragraph{Ex. 7}
+    \begin{align*}
+    F(s) &= \frac{5s^3-6s-3}{s^3(s+1)^2} =
+    \frac{A}{s} + \frac{B}{s^2} + \frac{\varGamma}{s^3}
+    + \frac{\varDelta}{(s+1)} + \frac{E}{(s+1)^2} \\
+    F(s) &= \frac{-3}{s} - \frac{3}{s^3} - \frac{3}{s+1} + \frac{2}{(s+1)^2}
+    \\ f(t) &= \left[-3 - \frac{3}{2} t^2 - 3e^{-t} + 2te^{-t} \right] \mathrm u(t)
+    \end{align*}
+    
+    \paragraph{Ex. 8}
+    \begin{align*}
+    F(s) = \frac{16}{s(s^2+4)^2} &=
+    \frac{A}{s} + \frac{B_1s + C_1}{s^2+4} + \frac{B_2s+C_2}{(s^2+4)^2} \\
+    16 &= A(s^2+4)^2 + (B_1s+C_1)s(s^2+4) + (B_2s+C_2)s \\
+    F(s) &= \frac{1}{s} - \frac{s}{s^2+4} - \frac{4s}{(s^2+4)^2} \\
+    f(t) &= \left[ 1-\cos 2t - t\sin 2t \right] \mathrm u(t)
+    \end{align*}
+    
+    \paragraph{Ex. 9}
+    \[
+    f''' + 6f'' + 11f' + 6f = 1 \qquad t\geq 0 \qquad
+    \underbrace{f=f'=f''}_{@ 0^-}=0
+    \]
+    \begin{align*}
+    \mathscr{LT}\left\lbrace \qquad \right\rbrace & \\
+    s^3F - \cancel{s^2f_0 - sf_0' -f_0''}
+    +6 \left[ s^2F-\cancel{sf_0-f_0} \right]
+     + 11 \left[ sF - \cancel{f_0} \right] + 6F
+    &= \frac{1}{s} \\
+    F(s^3+6s^2+11s+6)&= \frac{1}{s}
+    \implies F(s) = \frac{1}{s(s+1)(s+2)(s+3)}
+    \\ F(s) &= \frac{\sfrac{1}{6} }{s}
+    + \frac{-\sfrac{1}{2} }{s+1}
+    + \frac{\sfrac{1}{2} }{s+1}
+    + \frac{-\sfrac{1}{6} }{s+3} \\
+    f(t) &= \left[
+    \frac{1}{6}-\frac{1}{2}e^{-t}+\frac{1}{2}e^{-2t}-\frac{1}{6}e^{-3t}
+    \right]\mathrm u(t)
+    \end{align*}
+    
+    Η μόνιμη κατάσταση που συντηρείται από το 1 στην διαφορική εξίσωση είναο το
+    \( \frac{1}{6} \)
 \end{document}
