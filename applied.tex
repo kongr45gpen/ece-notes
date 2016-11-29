@@ -1709,6 +1709,179 @@
     	\textbf{Τελικά}
     	
     \end{itemize}
+    
+    Από εδώ και στο εξής, μέχρι νεωτέρας, όλοι μαζί, Τρίτη και Πέμπτη.
+    
+    \paragraph{Άσκ.}
+    Υπολογίστε τα επικαμπύλια ολοκληρώματα
+    \begin{enumgreekparen}
+    	\item \( \displaystyle
+    	\oint_{\left|z-\frac{1}{z}\right|=\frac{3}{2}}
+    	\frac{z\cos z}{2z+1}\dif z
+    	 \)
+    	\item \( \displaystyle
+    	\oint_{|z|=3} \frac{z^3+2}{(z-2)^3}\dif z
+    	 \)
+    	\item \( \displaystyle
+    	\oint_{|z|=2} \frac{\rho^z}{z^2-1} \dif z
+    	 \)
+    \end{enumgreekparen}
+    Όλες οι καμπύλες θεωρούνται προσανατολισμένες με τη θετική φορά.
+    
+    \paragraph{}
+    
+    \begin{enumgreekparen}
+    	\item 
+    	%TODO Atreas Graph 21
+    	Θα χρησιμοποιήσω ολοκλ. τύπο Cauchy.
+    	
+    	Έστω \( f(z)=z\cos z \), ολόμορφη στο \( \mathbb C  \) άρα και πάνω και στο
+    	εσωτερικό του κύκλου \[ \left| z-\frac{1}{2} \right| =\frac{3}{2} \]
+    	
+    	\textbf{Προφανώς:} \begin{align*}
+    		&\ \oint_{\left| z-\frac{1}{2} \right|=\frac{3}{2}}
+    		\frac{z\cos z}{2z+1}\dif z \\
+    		=&\ \frac{1}{2} \oint_{\left| z-\frac{1}{2} \right|=\frac{3}{2}}
+    		\frac{z\cos z}{z-\left(-\frac{1}{2}\right)} \dif z,
+    	\end{align*}
+    	όπου \( z_0 = -\frac{1}{2} \ \in \) \underline{εσωτερικό} του κύκλου
+    	\( \left|z-\frac{1}{2}\right| = \frac{3}{2} \), ο οποίος είναι
+    	\underline{θετικά προσανατολισμένος}.
+    	
+    	Τότε ικανοποιούνται όλες οι συνθήκες ώστε να έχω
+    	\begin{align*}
+    		&\ \frac{1}{2\pi i}\oint_{\left| z-\frac{1}{2} \right|=\frac{3}{2}}
+    		\frac{z\cos z}{z-\left(-\frac{1}{z}\right)}\dif z
+    		\\ =&\ \big|z\cos z\big|_{z_0=-\frac{1}{2}} \implies
+    		\oint_{\left| z-\frac{1}{2} \right|=\frac{3}{2}} \frac{z\cos z}{z+\frac{1}{2}}
+    		\dif z = 2\pi \left(-\frac{1}{2}\right) \cos \left(-\frac{1}{2}\right)
+    	\end{align*}
+    	
+    	\textbf{Τελικά:} \( 
+    	\displaystyle \boxed{
+    		\oint_\gamma \frac{z\cos z}{2z+1}\dif z = \frac{-\pi i}{2}
+    		\cos\left(-\frac{1}{2}\right)
+    		}
+    	 \)
+    	 
+    	 \item 
+    	 %TODO Atreas Graph 22
+    	 Θα χρησιμοποιήσω τύπο Cauchy για παραγώγους με \( \mathbf{n=2} \).
+    	 
+    	 Έστω \( g(z) = z^3+2 \), προφανώς ακεραία (ολόμορφη σε όλο το \( \mathbb C  \)),
+    	 άρα ολόμορφη πάνω και στο εσωτερικό του κύκλου μας.
+    	 
+    	 Επίσης, \( z_0 = 2 \ \in \ \) εσωτερικό του θετικά προσανατολισμένου κύκλου
+    	 μας, άρα από τύπο Cauchy για παραγώγους έχουμε:
+    	 \begin{align*}
+    	 g''(2) &= \frac{2!}{2\pi i} \oint_{|z|=3} \frac{g(z)}{(z-2)^3} \dif z
+    	 \qquad \left(g(z) = z^3+2 \right) \\
+    	 \implies \oint_{|z|=3} \frac{z^3+2}{(z-2)^3} \dif z &= \pi i \cdot g''(2)
+    	 \end{align*}
+    	 \begin{align*}
+    	 	g'(z) &= 3z^2 \\
+    	 	g''(z) &= 6z \\
+    	 	g''(2) &= 12
+    	 \end{align*}
+    	 
+    	 \textbf{Τελικά} \( 
+    	 \displaystyle \oint_{|z|=3} \frac{z^3+2}{(z-2)^3} \dif z = 12\pi i
+    	  \)
+        \item
+        %TODO Atreas Graph 23
+        Χρησιμοποιώ κατ' αρχήν γενικευμένο θεώρημα Cauchy, και έχω:
+        \begin{align*}
+        I_{\text{ζητούμενο}} &= \oint_{\gamma_1} \frac{e^z \dif z}{(z-1)(z+1)}
+        + \oint_{\gamma_2} \frac{e^z\dif z}{(z-1)(z+1)}
+        \\ &= \oint_{\gamma_1} \frac{\sfrac{e^z}{(z+1)} }{z-1} \dif z
+        + \oint_{\gamma_2} \frac{\sfrac{e^z}{(z-1)} }{z+1}\dif z
+        \\ &\overset{\text{τύπος}}{\underset{\text{Cauchy}}{=}}
+        \left. 2\pi i \frac{e^z}{z+1} \right|_{z=1}
+        + \left. 2\pi i \frac{e^z}{z-1} \right|_{z=-1}
+        \\ &= \pi i e - \pi i e^{-1}
+        \end{align*}
+        (διότι οι αριθμητές \( 
+        \left|
+        \begin{array}{l}
+        a(z) = \frac{e^z}{z+1} \\ b(z)=\frac{e^z}{z-1}
+        \end{array}
+        \right.
+         \) είναι ολόμορφες συναρτήσεις πάνω και στο εσωτερικό των καμπύλων \( \gamma_1 \)
+         και \( \gamma_2 \) αντιστοίχως και \( z_0 = 1 \in \) εσωτερικό της \( \gamma_1 \)
+         ενώ \( z_1 = -1 \in \) εσωτερικό \( \gamma_2 \))
+    \end{enumgreekparen}
+    
+    \paragraph{Θέμα:}
+    Υπολογίστε το \( \displaystyle \oint_{|z|=R} \frac{1}{(z-i)^2} \dif z \)
+    για όλες τις τιμές του \( R \), όπου \( R > 0 \) και \( R \neq 1 \)
+    \subparagraph{}
+    \begin{enumgreekparen}
+    	\item \( \underline{R < 1} \)
+    	
+    	Τότε \( I = 0 \) από θεώρ Cauchy αφού ανωμαλία \( z_0 = i \) εκτός κύκλου
+    	\( |z| = R \)
+    	
+    	\item \( \underline{R>1} \)
+    	
+    	Τότε \( z_0 = i \ \in \ \) εσωτερικό κύκλου \( |z| = R \) οπότε χρησιμοποιώ τύπο
+    	Cauchy για παραγώγους και βρίσκω \[ I = 0 \].
+    \end{enumgreekparen}
+    
+    \paragraph{Άσκ. }    
+    Έστω \( f \) ολόμορφη πάνω και στο εσωτερικό κύκλου \( |z| = R \), με
+    \( f(z) \neq 0\ \forall z \) στο εσωτερικό του κύκλου και \( f(z) = c \) για κάθε
+    \( z \) πάνω στον κύκλο \( |z| = R \).
+    
+    ΝΔΟ \( \left|f(z)\right| = A \geq 0 \ \forall z \) στο εσωτερικό του κύκλου.
+    
+    \subparagraph{}
+    Θα χρησιμοποιήσω αρχή μεγίστου/ελαχίστου, η οποία λέει ότι η \( \left|f(z)\right| \)
+    παίρνει τόσο τη μέγιστη, όσο και την ελάχιστη τιμή της ΠΑΝΩ στον κύκλο \( |z|=R \).
+    
+    Εφ' όσον όμως \( f(z) = c\ \forall z: |z| = R \) τότε \( \left|f(z)\right| = |c| = \)
+    σταθερό \( \forall z \) πάνω στον κύκλο, όπου όμως η \( |f| \) παίρνει και μέγιστη και
+    ελάχιστη τιμή. Άρα η \( \max |f| = \min |f| \ \forall z:|z| = R \), συνεπώς
+    \( |f| =  \) σταθερά \( \forall z \) στο εσωτερικό του κύκλου.
+    
+    \paragraph{Άσκ.}
+    Έστω \( f \) ακεραία και \( \left|f(z)\right| \leq A|z| \forall z\in\mathbb C  \).
+    ΝΔΟ \( f(z) = cz \), όπου \( c \in \mathbb C  \) σταθερά.
+    \subparagraph{}
+    Θα χρησιμοποιήσω ανισότητα Cauchy για \( n=2 \), προσπαθώντας να δείξω ότι:
+    \[
+    \left|f''(z)\right| = 0 \quad \forall z \in \mathbb C 
+    \]
+    τότε \( f'(z) = c \implies f(z) = cz+d \quad c,d\in\mathbb C  \). Από υπόθεση,
+    για \( z=0 \) έχω \( \left|f(0)\right| \leq A \cdot 0 \implies f(0) = 0 \) άρα \(d = 0\).
+    
+    Ανισότητα Cauchy
+    \[
+    \left|f^{(n)} (z_0)\right| \leq \frac{n! \cdot M_R}{R^n}
+    \qquad n=1,2,3,\dots
+    \]
+    όπου \( M_R = \max\left\lbrace \left|f(z)\right| : |z-z_0|=R \right\rbrace \)
+    
+    Έτσι για \( n=2 \) έχω για \( z_0 \in \mathbb C  \)
+    \[
+    f''(z_0) \leq \frac{2! \cdot M_R}{R^2} = \frac{2MR}{R^2}
+    \]
+    
+    Για \( |z-z_0| = R \) δηλ. για \( z = z_0 + Re^{i\theta} \) έχω
+    \( \left|f(z)\right|
+    \overset{\mathclap{\text{εξ' υποθέσεως}}}{\leq}
+    A|z| = A \left|z_0+Re^{i\theta}\right| \leq A|z_0| + AR
+     \)
+     
+    \textbf{Τότε:}
+    \[
+      \left| f''(z_0) \right| \leq
+      \frac{2\left(|z_0+R|\right)}{R^2}
+      \xrightarrow[R\to \infty] 0      
+    \]
+    
+    άρα \( \left|f''(z_0)\right| = 0\ \forall z_0\in\mathbb C  \), άρα
+    \( f''(z_0) = 0\ \forall z_0 \in \mathbb C  \).
+
 
 	\newpage
 
