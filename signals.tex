@@ -395,4 +395,102 @@
     
     Η μόνιμη κατάσταση που συντηρείται από το 1 στην διαφορική εξίσωση είναο το
     \( \frac{1}{6} \)
+    
+    \section{Θεώρημα Δειγματοληψίας}
+    \begin{gather*}
+    	X(f) = \int_{-\infty}^{\infty} x(t) e^{-j2\pi ft}\dif t\\
+    	x(t) = \int_{-\infty}^{\infty} X(f) e^{j2\pi f t}\dif t\\
+    	x_1(t) x_2(t) \xrightarrow{\mathscr F} X_1(f)*X_2(f)\\
+    	X_1(f) X_2(f) \xrightarrow{\mathscr F^{-1}} x_1(t)*x_2(t)\\
+    	\mathrm{sinc} (t) = \frac{\sin(\pi t)}{t}
+    \end{gather*}
+    
+    Συνάρτηση δειγματοληψίας: \( 
+    \displaystyle S_{T_s}(t) = \sum_{n=-\infty}^\infty
+    \delta(t-nT_s) \xrightarrow{\mathscr F} F_p \sum_{n=-\infty}^\infty
+    \delta(f-nF_p) \qquad F_p=\frac{1}{T_s}
+     \)
+     
+    %TODO Rekanos Graph 39
+    \begin{gather*}
+    	S_{F_s}(f) \xrightarrow{\mathscr F^{-1}} T_p S_{T_p} (t)
+    	\qquad T_p=\frac{1}{F_s} \\
+    	S_{\Xi_s}(\xi)
+    \end{gather*}
+    
+    Αν κάπου δειγματοληπτώ, στον άλλο χώρο είναι περιοδικότητα
+    
+    \subsubsection{Συνάρτηση ορθογωνικού παραθύρου μήκους \( T \) στον κόσμο \( t \)}
+    \[
+    W_T(t) = \begin{cases}
+    1 \quad & |t| <  \sfrac{T}{2}  \\
+    0 \quad & \text{αλλού}
+    \end{cases}
+    \]
+    
+    %TODO Rekanos Graph 40
+    %TODO Rekanos Graph 41
+    
+    \subsubsection{}
+    %TODO Rekanos Graph 42
+    \begin{align*}
+    G^S(f) &= G(f) * F_p S_{F_p}(f)
+    \\ &= F_p G(f) * \left( \sum_n \delta(f-nF_p) \right)
+    \\ &= F_p \sum_n G(f-nF_P)
+    \end{align*}
+    Παρατηρούμε τις επικαλύψεις μεταξύ των διαδοχικών φασμάτων (aliasing). Για να περιοριστεί
+    αυτό μπορούμε να αυξήσουμε το \( F_p \) (\( \implies \) να αυξήσουμε τη συχνότητα
+    δειγματοληψίας)
+    
+    %TODO Rekanos Graph 43
+    
+    %TODO Rekanos Graph 44
+    Για να μην έχουμε aliasing πρέπει:
+    \[
+    F_p -\sigma > \sigma \implies F_p > 2\sigma
+    \]
+    
+    \[
+    \text{\Large Nyquist's Criterion:} \quad \boxed{ \hspace{100pt}
+    	\mathlarger{\mathlarger{\mathlarger{\mathlarger{\mathlarger{
+    	\underbrace{F_p}_{\mathclap{\text{συχνότητα δειγματοληψίας}}} >
+    	2\overbrace{\sigma}^{\mathclap{\text{max frequency}}}
+    						}}}}} \hspace{100pt}
+    	}
+    \]
+    
+    %TODO Rekanos Graph 45
+    \begin{gather*}
+    W_F(f): \sigma < \sfrac{F}{2}  < F_p-\sigma \\
+    \underbrace{F_p = W_F(f)\cdot G^S(f)}_{\downarrow FT}
+    F_p g(t) = \mathscr F^{-1} \left\lbrace W_F(f) \right\rbrace
+    * \mathscr F^{-1} \left\lbrace G^S(f) \right\rbrace
+    \end{gather*}
+    \begin{align*}
+    F_p g(t) &= F \sinc(Ft) * \left(
+    \underbrace{g(t)\cdot S_{T_s}(t)}_{g_s(t)}
+    \right) \\
+    \\ &= F\int_{-\infty}^{\infty} g(t)\sum_n \delta(t'-nT_s)\sinc\left(F(t-t')\right)\dif t'
+    \\ &= F\sum_n \int_{-\infty}^{\infty} g(t)\delta(t'-nT_s)\sinc\left(F(t-t')\right)\dif t'
+    \\ &= \frac{F}{F_p} \sum_n g(nT_s) \sinc\left( F\cdot(t-nT_s) \right)
+    \end{align*}
+    
+    \begin{align*}
+    	g(kT_s) &= \frac{F}{F_P} \sum_n g(nT_s) \sinc\left(F(kT_s-nT_s)\right)
+    	\\ F=F_p \qquad g(kT_s) &= \sum_n g(nT_s)\sinc(k-n)
+    \end{align*}
+    
+    Γενικά, αν \(  F = F_p \):
+    \[
+    g(t) = \sum_n g(nT_s) \sinc\left( \frac{1}{T_s} (t-nT_s) \right)
+    \]
+    
+    %TODO Rekanos Graph 46
+    
+    \subsubsection{Άσκηση για το σπίτι}
+    \[
+    \phi_n^{F,T_s}(t) = \sinc\left(  F(t-nF_p) \right)
+    \]
+    
+    Να βρεθεί το \( \left\langle \phi_n(t),\phi_k(t)\right\rangle \).
 \end{document}
