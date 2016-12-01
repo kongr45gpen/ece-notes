@@ -1863,7 +1863,7 @@
     
     Έτσι για \( n=2 \) έχω για \( z_0 \in \mathbb C  \)
     \[
-    f''(z_0) \leq \frac{2! \cdot M_R}{R^2} = \frac{2MR}{R^2}
+    f''(z_0) \leq \frac{2! \cdot M_R}{R^2} = \frac{2MR}{R^2} 
     \]
     
     Για \( |z-z_0| = R \) δηλ. για \( z = z_0 + Re^{i\theta} \) έχω
@@ -1881,6 +1881,157 @@
     
     άρα \( \left|f''(z_0)\right| = 0\ \forall z_0\in\mathbb C  \), άρα
     \( f''(z_0) = 0\ \forall z_0 \in \mathbb C  \).
+
+	
+	\section{Ολοκληρωτικά υπόλοιπα και εφαρμογές}
+	\begin{defn*}{}
+		Έστω \( f = f(z) \) μιγαδική συνάρτηση. Ένα σημείο \( z_0 \in \mathbb C  \)
+		καλείται \textbf{ΑΝΩΜΑΛΟ σημείο} της \( f \), εάν είτε η \( f \) ΔΕΝ ΟΡΙΖΕΤΑΙ στο
+		\( z_0 \), είτε ορίζεται στο \( z_0 \) αλλά δεν έχει "καλή συμπεριφορά" στο
+		\( z_0 \), π.χ. δεν είναι ολόμορφη στο \( z_0 \)
+	\end{defn*}
+	\begin{itemize}
+		\item
+		Αν \( z_0 \) είναι ανώμαλο σημείο της \( f \), τότε το \( z_0 \) καλείται
+		\textbf{ΑΠΟΜΟΝΩΜΕΝΟ ανώμαλο σημείο} της \( f \), εάν η \( f \) είναι ολόμορφη στον
+		Ανοικτό δακτύλιο \[
+		0 < |z-z_0| < R
+		\]
+		για κάποιο \( R > 0 \), διαφορετικά το \( z_0 \) καλείται ΜΗ απομονωμένο
+		ανώμαλο σημείο.
+	\end{itemize}
+	π.χ. \begin{itemize}
+		\item \( \displaystyle f(z) =
+		\frac{z^2+1}{z^2-1}
+		 \) \qquad (\( z_0=1,z_0=-1 \)) απομονωμένα ανώμαλα σημεία της \( f \)
+		 %TODO Atreas Graph 24
+		 
+		\item \( \displaystyle g(z) = \mathrm{Log} z
+		 \) (\( z_0 = 0 \) μη απομονωμένη ανωμαλία. Επίσης τα σημεία του αρνητικού
+		 ημιάξονα των πραγματικών είναι μη απομονωμένα ανώμαλα σημεία του λογάριθμου)
+		 %TODO Atreas Graph 25
+		\item \( \displaystyle h(z) =
+		\cos\left( \frac{1}{z} \right)
+		 \) (\( z_0 = 0 \) το μοναδικό μεμονωμένο σημείο)
+	\end{itemize}
+	
+	Έστω \( z_0 \) είναι \textbf{ΑΠΟΜΟΝΩΜΕΝΟ} ανώμαλο σημείο μιας συνάρτησης \( f \).
+	Τότε υπάρχει κάποιος δακτύλιος \[ 0 < |z-z_0| < R \] όπου η \( f \) είναι ολόμορφη
+	και η \( f \) αναπτύσσεται σε σειρά Laurent
+	\[
+	f(z) = \sum_{n=-\infty}^\infty a_n(z-z_0)^k,\quad \forall 0<|z-z_0|<R
+	\]
+	
+	\textbf{Δηλ.}
+	\[
+	f(z) = \dots + \frac{a{-n}}{(z-z_0)^n} + \dots + \frac{a_{-1}}{z-z_0}
+	+ a_0 + a_1(z-z_0) + \dots + a_n(z-z_0)^k + \dots
+	\]
+	
+	Θα λέμε ότι:
+	\begin{itemize}
+		\item Το \( z_0 \) είναι \textbf{ΑΠΑΛΕΙΨΙΜΗ ανωμαλία}, εάν:
+		\[
+		a_n = 0 \quad \forall n < 0
+		\]
+		όπου \( a_n \in \mathbb C  \) οι συντελεστές του αναπτύγματος Laurent της \( f \)
+		"γύρω" από το \( z_0 \).
+		
+		\subparagraph{π.χ.}
+		\( \displaystyle f(z) = \frac{\sin z}{z} \quad z_0 = 0 \text{ (ανώμαλο σημείο)} \)
+		\begin{align*}
+			\sin z &= z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + \dots
+			\\ \frac{\sin z}{z} &= 1 - \frac{z^2}{3!} + \frac{z^4}{5!} - \frac{z^6}{7!}
+			+ \dots
+			\\ \frac{\sin z}{z^2} &= \frac{1}{z} - \frac{z}{3!} + \frac{z^3}{5!}
+			- \frac{z^5}{7!} + \dots \quad \text{δεν είναι απαλείψιμη ανωμαλία στο \( 0 \)}
+		\end{align*}
+		\item Το \( z_0 \) καλείται \textbf{ΠΟΛΟΣ} της \( f \) τάξης \( k\in\mathbb{N} \),
+		εάν \[
+		\boxed{a_n = 0 \quad \forall n < -k}
+		\]
+		
+		Τότε το ανάπτυγμα Laurent της \( f \) γίνεται:
+		\[
+		f(z) = \frac{a_{-k}}{(z-z_0)^k} + \frac{a_{-k+1}}{(z-z_0)^{k-1}}
+		+ \dots + a_0 + a_1(z-z_0) + \dots
+		\]
+		
+		Έτσι έχουμε:
+		\begin{align*}
+		f(z) &= \frac{1}{(z-z_0)^k} \underbrace{
+			\left(
+			a_{-k}+a_{-k+1}(z-z_0)+\dots + a_0(z-z_0)^k+\dots
+			\right)
+			}_{= g(z)} \\
+	    f(z) &= \frac{g(z)}{(z-z_0)^k} \quad \forall 0 < |z-z_0| < R
+		\end{align*}
+		όπου \( g=g(z) \) είναι ολόμορφη συνάρτηση στο \( z_0 \) με \( g(z_0) \neq 0 \).
+		
+		\textbf{Τελικά:} (εναλλακτικός ορισμός)
+		\begin{gather*}
+			z_0 \text{ πόλος της } f \text{ τάξης } k \in \mathbb{N} \\
+			\qquad \Updownarrow \\
+			f(z) = \frac{g(z)}{(z-z_0)^k} \text{ με $g$ κάποια ολόμορφη συνάρτηση στο $z_0$
+				για την οποία } \boxed{g(z_0) \neq 0}
+		\end{gather*}
+		
+		\item Το \( z_0 \) καλείται \textbf{ΟΥΣΙΩΔΗΣ ΑΝΩΜΑΛΙΑ} της \( f \), εάν υπάρχει
+		ΑΠΕΙΡΟ ΠΛΗΘΟΣ \underline{ΜΗ ΜΗΔΕΝΙΚΩΝ} όρων \( a_n \) στο ανάπτυγμα Laurent της
+		\( f \) ΜΕ ΔΕΙΚΤΕΣ \( n \) να είναι \underline{ΑΡΝΗΤΙΚΟΙ ΑΡΙΘΜΟΙ}.
+	\end{itemize}
+	
+	\paragraph{π.χ.}
+	Τι είδους ανωμαλία είναι το σημείο \( z_0 \) για τη συνάρτηση
+	\( f(z) = \displaystyle \frac{1}{z^2-1} \);
+	\subparagraph{}
+	\begin{align*}
+	\frac{1}{z^2-1} &= \frac{1}{(z-1)(z+1)}
+	\overset{\text{απλά}}{\underset{\text{κλάσματα}}{=}}
+	\frac{1}{2} \left( \frac{1}{z-1} - \frac{1}{z+1} \right)
+	\\ &= \frac{1}{2} \cdot \frac{1}{z-1} - \frac{1}{2} \frac{1}{(z-1)+2}
+	\\ &= \frac{1}{2} \cdot \frac{1}{z-1} - \frac{1}{2}\cdot \frac{1}{2}
+	\cdot \frac{1}{1+\frac{z-1}{2}}
+	\\ &= \frac{1}{2}\frac{1}{z-1} - \frac{1}{4}\cdot \sum_{n=0}^\infty\left(
+	-\frac{z-1}{2}
+	\right)^k, \quad \left|\frac{z-1}{2}\right|<1
+	\qquad \qquad \left( \frac{1}{1-z} = \sum z^n \quad |z|<1 \right)
+	\\ \frac{1}{z^2-1} &= \frac{1}{2} \cdot \frac{1}{z-1} - \frac{1}{4}
+	+ \frac{1}{8} (z-1) - \frac{1}{16}(z-1)^2 + \dots \quad 0<\left|\frac{z-1}{2}\right|<1
+	\end{align*}
+	
+	Το \( z_0 = 1 \) είναι πόλος 1\textsuperscript{ης} τάξης εξ' ορισμού.
+
+
+    \subsubsection*{}
+    ΠΡΑΚΤΙΚΟΙ ΤΡΟΠΟΙ για ταξινόμηση ΑΠΟΜΕΝΩΜΕΝΩΝ ανώμαλων σημείων:
+    
+    Έστω \( z_0 \) είναι απομονωμένο ανώμαλο σημείο της \( f \). Τότε:
+    \begin{itemize}
+    	\item \( z_0 \) είναι απαλείψιμη ανωμαλία \( \iff \) υπάρχει το
+    	\( \displaystyle \lim_{z\to z_0} f(z) = \lambda \in \mathbb C  \)
+    	(όχι το \( \infty \))
+    	\item \( z_0 \) πόλος τάξης \( k \iff \) Ο \( k \in \mathbb N \) ο μοναδικός φυσικός
+    	ώστε \[
+    	\lim_{z\to z_0} (z-z_0)^k f(z) = \lambda \in \mathbb C -
+    	\underbrace{\left\lbrace 0 \right\rbrace}_{%
+    		\mathclap{\text{ΠΡΟΣΟΧΗ εδώ! Το όριο θέλω μη μηδενικό
+    				(επειδή μηδενίζεται για όλα τα επόμενα $n>k$)}}}
+    	\]
+    	\item \( z_0 \) ουσιώδης ανωμαλία της \( f \iff \) Το \( \lim_{z \to z_0} f(z) \)
+    	\underline{ΔΕΝ} υπάρχει
+    \end{itemize}
+   \textbf{Τελικά:} 
+   \[
+   \lim_{z\to z_0} f(z) = \begin{cases}
+   = \lambda \in \mathbb C &\implies z_0 \text{ απαλείψιμη ανωμαλία} \\
+   \infty &\implies z_0 \text{ πόλος} \\
+   \text{ΔΕΝ υπάρχει} &\implies z_0 \text{ ουσιώδης ανωμαλία}
+   \end{cases}
+   \]
+
+
+
 
 
 	\newpage

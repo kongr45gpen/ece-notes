@@ -411,7 +411,36 @@
     \delta(f-nF_p) \qquad F_p=\frac{1}{T_s}
      \)
      
-    %TODO Rekanos Graph 39
+    \begin{tikzpicture}
+    	\draw[->] (-3,0) -- (3,0);
+    	\draw (0,0) -- (0,3);
+    	
+    	\draw[thick,blue,->] (-2,0) -- (-2,1.5);
+    	\draw[thick,blue,->] (-1,0) -- (-1,1.5);
+    	\draw[thick,blue,->] (0,0) -- (0,1.5);
+    	\draw[thick,blue,->] (1,0) -- (1,1.5);
+    	\draw[thick,blue,->] (2,0) -- (2,1.5);
+    	
+    	\draw[<->] (1,-0.2) --(2,-0.2) node[below,midway] {$T_s$};
+    	
+    	\draw (4,1.5) node {\(
+    		\xrightarrow{\qquad
+    			\mathlarger{\mathlarger{\mathlarger{\mathscr F}}}\qquad
+    			}
+    		\)};
+    	
+ 	    \draw (6,0) -- (11,0);
+ 	    \draw[->] (8.4,0) -- (8.4,3);
+ 	    	
+ 	    \draw[thick,blue,->] (6.8,0) -- (6.8,1.5);
+ 	    \draw[thick,blue,->] (7.6,0) -- (7.6,1.5);
+ 	    \draw[thick,blue,->] (8.4,0) -- (8.4,1.5);
+ 	    \draw[thick,blue,->] (9.2,0) -- (9.2,1.5);
+ 	    \draw[thick,blue,->] (10,0) -- (10,1.5);
+ 	    	
+ 	    \draw[<->] (9.2,-0.2) --(10,-0.2) node[below,midway] {$F_p = \frac{1}{T_s}$};
+    \end{tikzpicture}
+    
     \begin{gather*}
     	S_{F_s}(f) \xrightarrow{\mathscr F^{-1}} T_p S_{T_p} (t)
     	\qquad T_p=\frac{1}{F_s} \\
@@ -428,7 +457,25 @@
     \end{cases}
     \]
     
-    %TODO Rekanos Graph 40
+    \begin{tikzpicture}
+    	\draw (-2,0) -- (2,0);
+    	\draw[->] (0,-0.2) -- (0,2);
+    	
+    	\draw[very thick, blue]
+    	(-1,0) node[black,below] {$-\sfrac{T}{2} $}
+    	--(-1,1) -- (1,1) -- (1,0) node[black,below] {$\sfrac{T}{2} $};
+    	
+    	\draw (3,1) node {\(
+    		\xrightarrow{\qquad
+    			\mathlarger{\mathlarger{\mathlarger{\mathscr F}}}\qquad
+    		}
+    		\)};
+    	
+    	\draw (5,0) -- (9,0);
+    	\draw[->] (7,-0.2) -- (7,2);
+    	
+    	\draw (0,0) plot[domain=-3:3] {x};
+    \end{tikzpicture}
     %TODO Rekanos Graph 41
     
     \subsubsection{}
