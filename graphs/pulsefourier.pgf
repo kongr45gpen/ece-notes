@@ -1,0 +1,32 @@
+    \begin{tikzpicture}
+    	\draw (-2,0) -- (2,0);
+    	\draw[->] (0,-0.2) -- (0,2);
+    	
+    	\draw[very thick, blue]
+    	(-1,0) node[black,below] {$-\frac{T}{2} $}
+    	--(-1,1) -- (1,1) -- (1,0) node[black,below] {$\frac{T}{2} $};
+    	
+    	\draw (3,1) node {\(
+    		\xrightarrow{\qquad
+    			\mathlarger{\mathlarger{\mathlarger{\mathscr F}}}\qquad
+    		}
+    		\)};
+    	
+    	\draw (5,0) -- (9,0);
+    	\draw[->] (7,-0.2) -- (7,2);
+
+    \pgfmathdeclarefunction{sinc}{1}{%
+        \pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
+        \ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%
+        }
+
+		\draw[very thick, xshift=7cm,xscale=0.5,samples=200,domain=-4:4,smooth,variable=\x,blue] 
+       		plot ({\x},{sinc(pi*\x)});
+
+	\draw[thick,green!60!black,<->] (6.5,-0.1) -- ++(1,0) node[below,midway]
+{$\frac{2}{T}$};
+\draw[thick,green!60!black,<->] (8,-0.1) -- ++(0.5,0) node[below,midway]
+{$\frac{1}{T}$};
+
+ 
+    \end{tikzpicture}

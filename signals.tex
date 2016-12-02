@@ -457,29 +457,86 @@
     \end{cases}
     \]
     
-    \begin{tikzpicture}
-    	\draw (-2,0) -- (2,0);
-    	\draw[->] (0,-0.2) -- (0,2);
-    	
-    	\draw[very thick, blue]
-    	(-1,0) node[black,below] {$-\sfrac{T}{2} $}
-    	--(-1,1) -- (1,1) -- (1,0) node[black,below] {$\sfrac{T}{2} $};
-    	
-    	\draw (3,1) node {\(
-    		\xrightarrow{\qquad
-    			\mathlarger{\mathlarger{\mathlarger{\mathscr F}}}\qquad
-    		}
-    		\)};
-    	
-    	\draw (5,0) -- (9,0);
-    	\draw[->] (7,-0.2) -- (7,2);
-    	
-    	\draw (0,0) plot[domain=-3:3] {x};
-    \end{tikzpicture}
-    %TODO Rekanos Graph 41
+        \begin{tikzpicture}
+        \draw (-2,0) -- (2,0);
+        \draw[->] (0,-0.2) -- (0,2);
+        
+        \draw[very thick, blue]
+        (-1,0) node[black,below] {$-\frac{T}{2} $}
+        --(-1,1) -- (1,1) -- (1,0) node[black,below] {$\frac{T}{2} $};
+        
+        \draw (3,1) node {\(
+        	\xrightarrow{\qquad
+        		\mathlarger{\mathlarger{\mathlarger{\mathscr F}}}\qquad
+        	}
+        	\)};
+        
+        \draw (5,0) -- (9,0);
+        \draw[->] (7,-0.2) -- (7,2);
+        
+        \pgfmathdeclarefunction{sinc}{1}{%
+        	\pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
+        	\ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%
+        }
+        
+        \draw[very thick, xshift=7cm,xscale=0.5,samples=200,domain=-4:4,smooth,variable=\x,blue] 
+        plot ({\x},{sinc(pi*\x)});
+        
+        \draw[thick,green!60!black,<->] (6.5,-0.1) -- ++(1,0) node[below,midway]
+        {$\frac{2}{T}$};
+        \draw[thick,green!60!black,<->] (8,-0.1) -- ++(0.5,0) node[below,midway]
+        {$\frac{1}{T}$};
+        
+        
+        
+        
+        \end{tikzpicture}
+        
+        \begin{tikzpicture}
+        \draw[->] (-2,0) -- (2,0) node[below] {$f$};
+        \draw[->] (0,-0.2) -- (0,2) node[below right] {$\mathrm W_F(f)$};
+        
+        \draw[very thick, blue]
+        (-1,0) node[black,below] {$-\frac{F}{2} $}
+        --(-1,1) -- (1,1) -- (1,0) node[black,below] {$\frac{F}{2} $};
+        
+        \draw (3,1) node {\(
+        	\xrightarrow{\qquad
+        		\mathlarger{\mathlarger{\mathlarger{\mathscr F^{-1}}}}\qquad
+        	}
+        	\)};
+        
+        \draw (6,1) node[yshift=-5pt] {\(
+        	\mathlarger{\mathlarger{\mathlarger{F\;\mathrm{sinc}(Ft)}}}
+        	\)};
+        
+        
+        \end{tikzpicture}
     
     \subsubsection{}
-    %TODO Rekanos Graph 42
+    \begin{tikzpicture}
+    \draw[thick] (0,0) circle(0.15);
+    \fill[thick] (0,0) circle (0.03);
+    
+    \draw[snake,->] (0,2) node[right] {γινόμενο} -- (0,0.15);
+    \draw[thick,->] (-2,0) -- ++(1.85,0) node[above,midway] {$g(t)$};
+    \draw[thick,->] (0,-2) node[below] {$S_{T_S}$} -- ++(0,1.85);
+    \draw[thick,->] (0.15,0) -- (2,0) node[below] {$g_s(T)$};
+    
+    \draw[->] (3,0) -- ++(1.5,0) node[above,midway] {$\mathscr F$};
+    
+    \begin{scope}[xshift=7cm]
+    \draw[thick] (0,0) node {$*$} circle(0.15);
+    
+    \draw[snake,->] (0,2) node[right] {συνέλιξη} -- (0,0.15);
+    \draw[thick,->] (-2,0) -- ++(1.85,0) node[above,midway] {$G(f)$};
+    \draw[thick,->] (0,-2) node[below] {$F_P S_{F_P}$} -- ++(0,1.85);
+    \draw[thick,->] (0.15,0) -- (2,0) node[below] {$G^S(f)$};
+    
+    \end{scope}
+    
+    \draw (0,-3) node {Δειγματοληψία};
+    \end{tikzpicture}
     \begin{align*}
     G^S(f) &= G(f) * F_p S_{F_p}(f)
     \\ &= F_p G(f) * \left( \sum_n \delta(f-nF_p) \right)
@@ -540,4 +597,171 @@
     \]
     
     Να βρεθεί το \( \left\langle \phi_n(t),\phi_k(t)\right\rangle \).
+    
+    
+    \subsection{Υποδειγματοληψία (undersampling)}
+    \begin{tikzpicture}[scale=2]
+    \draw[very thick,red!50] (0.5,0) -- (0.5,1) -- (1.5,0);
+    \draw[very thick,red!20] (-0.5,0) -- (-0.5,1) -- (0.5,0);
+    \draw[very thick,red!10] (-1.5,0) -- (-1.5,1) -- (-0.5,0);
+    
+    \draw[very thick,green!70] (1.47,0) -- (1.47,1) -- (0.47,0);
+    \draw[very thick,green!70] (3.5,0) -- (3.5,1) -- (2.5,0);
+    \draw[very thick,green!40] (3.5,0) -- (3.5,1) -- (4.5,0);
+    
+    \draw[->] (-3,0) -- (5,0) node[below] {$f$};
+    \draw[->] (0,-0.2) -- (0,2) node[right] {$x(f)$};
+    
+    \draw[very thick,blue] (1.5,0) node[black,below] 
+    {$f_L$} -- (1.5,1) -- (2.5,0) node[black,below] {$f_H$};
+    
+    
+    
+    \draw[very thick,blue] (-1.5,0) node[black,below] 
+    {$-f_L$} -- (-1.5,1) -- (-2.5,0) node[black,below] {$-f_H$};
+    \end{tikzpicture}
+    
+    Για να μην πέφτουν τα "πλακάκια" το ένα πάνω στο άλλο:
+    \begin{align*}
+    \left. \begin{array}{ll}
+    \kappa f_s-f_L < f_L \\
+    (\kappa+1)f_s - f_H > f_H
+    \end{array} \right\rbrace &\implies \begin{array}{l}
+    f_s < \frac{2f_L}{\kappa} \\
+    f_s > \frac{2f_H}{\kappa + 1}
+    \end{array} \\
+    &\frac{2f_H}{\kappa+1} < f_s < \frac{2f_L}{\kappa}
+    \intertext{Ψάχνω το μέγιστο $\kappa$, έτσι ώστε να βρω το ελάχιστο $f_s$}
+    \\& \frac{2f_H}{\kappa+1} < \frac{2f_L}{\kappa} \\ & k \leq \frac{f_L}{f_H-f_L}
+    \\ \underset{\min}{f_s} \leftarrow & \kappa_{\text{best}} = \left\lfloor
+    \frac{f_L}{f_H - f_L}
+    \right\rfloor
+    \end{align*}
+    
+    Θα ψάξω το ελάχιστο \( f_s \):
+    \begin{gather*}
+    	\frac{2f_H}{\left\lfloor\frac{f_L}{f_H-f_L}\right\rfloor+1} < f_s
+    	< \frac{2f_L}{\left\lfloor\frac{f_L}{f_H-f_L}\right\rfloor} \\
+    	\frac{2f_H}{\left\lfloor\frac{f_L}{f_H-f_L}+1\right\rfloor} < f_s
+    	< \frac{2f_L}{\left\lfloor\frac{f_L}{f_H-f_L}+1\right\rfloor} \\
+    	\frac{2f_H}{\left\lfloor\frac{f_H}{f_H-f_L}\right\rfloor} < f_s \\
+    	\frac{2f_H}{\left\lfloor\frac{f_H}{f_H-f_L}\right\rfloor} =
+    	\frac{2f_H}{\frac{f_H}{f_H-f_L}-\underset{\mathclap{0<\epsilon<1}}{\epsilon}}
+    	=\frac{2f_H}{\frac{f_H-\epsilon f_H + \epsilon f_L}{f_H-f_L}}
+    	= \frac{2f_H (f_H-f_L)}{f_H(1-\epsilon)+\epsilon f_L}
+    	= \frac{2(f_H-f_L)}{(1-\epsilon)+\epsilon\frac{f_L}{f_H}} \\
+    	= \frac{2(f_H-f_L)}{1-\epsilon\left(1-\frac{f_L}{f_H}\right)}
+    	> 2(f_H - f_L) \quad \text{ αλλά όχι πολύ κοντά εκεί!}
+    \end{gather*}
+    \[
+    2(f_H-f_L) < \boxed{
+    	\frac{2f_H}{\left\lfloor\frac{f_L}{f_H-f_L}\right\rfloor + 1} < f_s
+    	}
+    \]
+    
+    \begin{tikzpicture}[scale=1.5]
+    \draw[thick,blue!50] (2,0) -- (2,1) --(1,0);
+    \draw[thick,blue!50] (0,0) -- (0,1) -- (1,0);
+    \draw[thick,blue!50] (-2,0) -- (-2,1) -- (-1,0);
+    \draw[thick,blue!50] (0,0) -- (0,1) -- (-1,0);
+    
+    \filldraw[very thick,blue,fill=green!30] (2,0) node[black,below] 
+    {$f_L$} -- (2,1) -- (3,0) node[black,below] {$f_H$};
+    \filldraw[very thick,blue,fill=green!30] (-2,0) node[black,below] 
+    {$-f_L$} -- (-2,1) -- (-3,0) node[black,below] {$-f_H$};
+    
+    \draw[->] (-4,0) -- (4,0) node[below] {$f$};
+    \draw[->] (0,-0.2) -- (0,2) node[right] {$X^S(f)$};
+    
+    \draw[thick,green!60!black] (-3.05,0) -- ++(0,1.5) -- ++(1.1,0) -- ++(0,-1.5);
+    \draw[thick,green!60!black] (3.05,0) -- ++(0,1.5) -- ++(-1.1,0) -- ++(0,-1.5);
+    
+    \draw[thick,orange!70] (-3.1,0) -- ++(0,3.5) -- ++(6.2,0) -- ++(0,-3.5);
+    \draw[thick,red!70] (-1.9,0) -- ++(0,3) node[below left] {-} -- ++(3.8,0) -- ++(0,-3);
+    
+    \end{tikzpicture}
+    
+    \subsection{Gibbs' Phenomenon}
+    %TODO Rekanos Graph 49
+    \begin{align*}
+    x(t) &\xrightarrow{FT} X(\omega ) 
+    \\ x_\sigma(t) &= \frac{1}{2\pi} \int_{-\sigma}^{\sigma}
+    X(\omega ) e^{j\omega t} \dif\omega = \frac{1}{2\pi}
+    \int_{-\sigma}^{\sigma} \boxed{\int_{-\infty}^{\infty} x(\tau) e^{j\omega\tau}\dif\tau }
+    e^{j\omega t}\dif \omega 
+    \\ &= \frac{1}{2\pi} \int_{-\infty}^{\infty} x(\tau) \int_{-\sigma}^{\sigma}
+    e^{-j\omega \tau +j\omega t}\dif\omega\dif t
+    = \int_{-\sigma}^{\sigma} e^{j\omega (t-\tau)}\dif\omega
+    \\ &= \left.\frac{1}{j(t-\tau)}e^{j\omega (t-\tau)} \right|_{-\sigma}^\sigma
+    \\ &= \frac{1}{j(t-\tau)}\left[
+    e^{j\sigma(t-\tau)}-e^{-j\sigma (t-\tau)}
+    \right] \\ &= \frac{2}{t-\tau} \sin \left( \sigma(t-\tau) \right)
+    \intertext{δηλαδή}
+    X_\sigma(f) &= \int_{-\infty}^{\infty} x(\tau) \frac{\sin\left(\sigma(t-\tau)\right)}%
+    {\pi(t-\tau)}\dif\tau
+    \end{align*}
+    %TODO Rekanos Graph 50
+    \begin{align*}
+    	\lim_{\sigma\to \infty  }
+    	x_\sigma(t) &= \int_{-\infty}^{\infty} x(\tau)
+    	\lim_{\sigma\to \infty} \frac{\sin\left(\sigma(t-\tau)\right)}{\pi(t-\tau)}\dif\tau
+    	\\ \lim_{\sigma\to \infty} x_\sigma(t) &=
+    	\int_{-\infty}^{\infty} x(\tau)\delta(t-\tau)
+    	\dif\tau \\
+    	\lim_{\sigma \to \infty} x_\sigma(t) = x(t)
+    \end{align*}
+    
+    \begin{align*}
+    x(t) &= x_c(t) + \left[x(0^+)-x(0^-)\right]\mathrm u(t)
+    \\ x_\sigma(t) &= \int_{-\infty}^{\infty} x_c(t)
+    \frac{\sin\left(\sigma(t-\tau)\right)}{\pi(t-\tau)}\dif\tau
+    -\frac{\left[x(0^+)-x(0^-)\right]}{\pi} \int_{0}^{\infty}
+    \frac{\sin\left(\sigma(t-\tau)\right)}{(t-\tau)}\dif \tau \\
+    \int_0^\infty \frac{\sin\left(\sigma(t-\tau)\right)}{t-\tau}\dif\tau & \\
+    \text{Θέτουμε }&\begin{array}{l}
+    \sigma(t-\tau)=x \\ \dif\tau = -\frac{1}{\sigma}\dif x \\ t-\tau = \frac{x}{\sigma}
+    \end{array}
+    \\ &= \int_{\sigma t}^{\infty} \frac{\sin x}{\frac{x}{\sigma}} \left(
+    \frac{\sin x}{x}\dif x
+    \right) = \int_{-\infty}^{0} \frac{\sin x}{x}\dif x + \int_0^{\sigma t}\frac{\sin x}{x}
+    \dif x
+    \\ &= \frac{\pi}{2} + \int_{0}^{\sigma t} \frac{\sin x}{x}\dif x
+    = \frac{\pi}{2} + \underbrace{\mathrm{Si}(\sigma t)}_{\mathclap{\text{Sine Integral}}}
+    \end{align*}
+    
+    Άρα
+    \begin{align*}
+    	x_\sigma(t) &= \int_{-\infty}^{\infty} x_c(\tau)
+    	\frac{\sin\left(\sigma(t-\tau)\right)}{\pi(t-\tau)}\dif\tau
+    	+ \frac{\left[x(0^+)-x(0^-)\right]}{2}
+    	+ \frac{\left[x(0^+)-x(0^-)\right]}{\pi} \cdot
+    	\mathrm{Si}\; (\sigma t)
+    \end{align*}
+    
+    \paragraph{}
+    \[
+    \mathrm{Si}(t) = \int_0^t \frac{\sin x}{x}\dif x
+    \]
+    %TODO Rekanos Graph 52
+    
+    Χρησιμοποιώντας τον Leibniz Rule (παραγωγίζοντας το ολοκλήρωμα) μπορούμε να αποδείξουμε
+    την θέση των μεγίστων της \( \mathrm{Si} \).
+    
+    \begin{align*}
+    	x_\sigma(t) &= \int_{-\infty}^{\infty} x_c(t)
+    	 \frac{\sin\left[\sigma(t-\tau)\right]}{\pi(t-\tau)} \dif\tau +
+    	 \frac{x(0^+)-x(0^-)}{2} + \frac{\left[x(0^+)-x(0^-)\right]}{\pi}\mathrm{Si}(\sigma t)
+      \\ \lim_{\sigma\to \infty} x_\sigma(t) &= x_c(t) + \frac{x(0^+)-x(0^-)}{2}
+      + \frac{\left[x(0^+)-x(0^-)\right]}{\pi} \lim_{\sigma\to \infty}\mathrm{Si}(\sigma t)
+      \\ \lim_{\sigma\to \infty} x_\sigma(0) = x(0^-) + \frac{x(0^+)-x(0^-)}{2}
+      = \frac{x(0^+)+x(0^-)}{2}
+    \end{align*}
+    
+    %TODO Rekanos Graph 53
+    
+    Παρατηρώ ότι τα ζιγκζακωτά παραμένουν και το ύψος του κυματισμού δεν αλλάζει. Το μόνο που
+    μπορεί να μεταβληθεί είναι η θέση του μεγίστου, με αύξηση του \( \sigma \) (ώστε να
+    έρθει πιο κοντά στο σημείο ασυνέχειας). Αυτό είναι το φαινόμενο Gibbs.
+    
+    
 \end{document}
