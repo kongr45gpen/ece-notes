@@ -3444,4 +3444,188 @@
   \end{defn*}
   
   Η \( f(z) = e^{\sfrac{1}{z} } \) έχει το \( z_0 = 0 \) πόλο άπειρης τάξης.
+  
+  \subsection{Δέκα Σειρές Laurent}
+  \begin{enumerate}
+  	\item \( f(z) = (z-2)\sin(z-1) \) γύρω από το \( z_0 = 1 \)
+  	\subparagraph{Λύση}
+  	\begin{align*}
+  		f(z) &= (z-1)\sin(z-1) - \sin(z-1)
+  		\\ &= (z-1)^2 - \frac{(z-1)^4}{3!} + \frac{(z-1)^6}{5!} - \dots 
+  		-\left( z-1-\frac{(z-1)^3}{3!} + \frac{(z-1)^5}{5!} - \dots \right)
+  		\\ &= -(z-1)+(z-1)^2+\frac{(z-1)^3}{3!} - \frac{(z-1)^4}{3!} + \dots
+  	\end{align*}
+  	Ισχύει \( \forall z \in \mathbb C  \)
+  	
+  	\item \( f(z) = \frac{1}{z^2+3z+2},\quad z_0=-2 \)
+  	\subparagraph{Λύση}
+  	\begin{align*}
+  		f(z) &= \frac{z}{(z+1)(z+2)} = -\frac{1}{z+1} + \frac{2}{z+2} \\
+  		g_2(z) &= \frac{1}{z+2} \\
+  		g_1(z) &= -\frac{1}{z+1} = - \frac{1}{z+2-1}
+  		= \frac{1}{1-(z+2)} = 1 + (z+2) + (z+2)^2+\dots \qquad
+  		0<|z+2|<1 \\
+  		f(z) &= g_2(z)+g_1(z) \\ &= 
+  		\frac{2}{z+2} + 1 + (z+2) + (z+2)^2+\dots 
+	\end{align*}
+	%TODO Kehagias Graph 17
+	
+	\subparagraph{}
+	Σε δυνάμεις της \( (z+2) \) αλλά μακριά από το \( z_0=-2 \)
+	(δηλ. \( |z+2|>1 \))
+	\begin{align*}
+		f(z) &= \frac{2}{z+2} + \frac{1}{1-(z+2)} \\
+		\frac{1}{1-(z+2)} &= -\frac{1}{z+2}\cdot\frac{1}{-\frac{1}{z+2}+1}
+		\\ &= - \frac{1}{z+2} \cdot \frac{1}{1-\frac{1}{z+2}}
+		= - \frac{1}{z+2} \left(1+\frac{1}{z+2}+\frac{1}{(z+2)^2}+\dots\right) \\
+		f(z) &= \frac{1}{z+2} - \frac{1}{(z+2)^2} - \frac{1}{(z+2)^3} - \dots
+	\end{align*}
+	
+	Το \( z_0 = -2 \) είναι πόλος 1\textsuperscript{ης} τάξης.
+	
+	\item Η ίδια σειρά, γύρω και κοντά στο \( z_0 = -1 \)
+	\begin{align*}
+	f(z) &= -\frac{1}{z+1} + \frac{2}{z+2} \\
+	g_2(z) &= \frac{2}{z+2} = \frac{2}{1+(z+1)} = 
+	2\cdot\left( 1-(z+1)+(z+1)^2-(z+1)^3+\dots \right) \\
+	f(z) &= -\frac{1}{z+1} +2 -2\cdot(z-1)+2(z+1)^2-2(z+1)^3+\dots
+	\end{align*}
+	
+	\subparagraph{}
+	\begin{align*}
+		\Aboxed{-\frac{1}{z+1} +2 -2\cdot(z-1)+2(z+1)^2-2(z+1)^3+\dots &=
+			\frac{z}{z^2+3z+2}
+			} \boxed{0<|z+1|<1} \\
+		\Aboxed{\frac{2}{z+2} +1 +(z+2)+(z+2)^2+\dots &=
+			\frac{z}{z^2+3z+2}
+		} \boxed{0<|z+2|<1} \\
+	\end{align*}
+	
+	Θα επιβεβαιώσω ότι οι δύο αυτές σειρές είναι ίσες μεταξύ τους και με την τιμή της
+	συνάρτησης.
+	\begin{alignat*}{2}
+	f\left(-\sfrac{3}{2} \right) &= \frac{-\sfrac{3}{2} }{\sfrac{9}{4}
+		-\sfrac{3}{2}+\sfrac{3}{4}   } &&= 6 \\
+	f_1\left(-\sfrac{3}{2} \right) &= 2 + 2 + 1 + \frac{1}{2} + \frac{1}{4} + \dots &&= 6
+	\\
+	f_2\left(-\sfrac{3}{2} \right) &= 4 + 1 + \frac{1}{2} + \frac{1}{4} + \dots &&= 6
+	\end{alignat*}
+	
+	
+  \item \( f(z) = \frac{1}{z^2\cdot(z-1)^2} \) γύρω από το \( z_0 = 0 \)
+  \subparagraph{Λύση}
+  \begin{align*}
+  f_1(z) &= \frac{1}{z^2} \\
+  f_2(z) &= \frac{1}{(z-1)^2} \\
+  \frac{1}{1-z} &= 1 + z + z^2 + \dots \\
+  \frac{1}{(z-1)^2} = \frac{1}{(1-z)^2} &= \left( \frac{1}{1-z} \right)' =
+   (1+z+z^2+z^3+\dots)' =
+   0+1+2z+3z^2+\dots
+  \\ f_2(z) &= 1+2z+3z^2+\dots \\
+  f(z) &= f_1f_2 = \frac{1}{z^2} + \frac{2}{z} + 3 + 4z + 5z^2 + \dots
+  \end{align*}
+  
+  \item \( f(z) = \frac{1}{z^2\cdot(z-1)^2},\quad z_0 = 1 \)
+  \begin{align*}
+  f_2(z) &= \frac{1}{(z-1)^2} \\
+  f_1(z) &= \frac{1}{z^2} = \frac{1}{\left(1+(z-1)\right)^2} \\
+  \frac{1}{(1+u)^2} &= 1 - 2u + 3u^2 - \dots \\
+  \frac{1}{z^2} &= 1-2(z-1)+3(z-1) + \dots \\
+  f(z) &= \frac{1}{(z-1)^2} - \frac{2}{(z-1)} + 3 - 4(z-1) + \dots
+  \end{align*}
+  
+  \subparagraph{}
+  \[
+  \frac{1}{(1+u)^2} = \frac{1}{1+2u+u^2}
+  \]
+  
+  \[
+  \begin{array}{l|l}
+  1 & 1+2u+u^3 + \dots \\ \hline
+  1+2u+u^2 & 1-2u+3u^2+\dots \\
+  -2u-u^2 & \\ -2u-4u^2-2u^3 & \\ 3u^2+2u^3
+  \end{array}
+  \]
+  
+  Ομοίως, τη σειρά της \( \frac{1}{z^2+3z+2} \) γύρω από το \( z_0 = -1 \) μπορώ
+  να την βρω αντικαθιστώντας:
+  \[
+  \frac{1}{z^2+3z+2} = \frac{1}{(z+1)^2+(z-1)} = \frac{1}{u^2+u}
+  \]\[
+  \begin{array}{l|l}
+  1 & u+u^2 \\ \hline
+  1+u & \frac{1}{u} - 1 + \dots \\
+  -u &
+  \end{array}
+  \]
+  
+  \item \( f(z) = \frac{1}{z\cdot(z-1)} \) γύρω από το \( z_0 = 0 \)
+  \subparagraph{Λύση}
+  \begin{align*}
+  f(z) &= -\frac{1}{z}\cdot ( 1+z+z^2+\dots) \\
+  &= -\frac{1}{z} - 1 - z - \dots
+  \end{align*}
+  για \( 0<|z|<1 \)
+  
+  \item \( f(z) = \frac{1}{z(z-1)} \) γύρω από το \( z_0 = 0 \) για \( |z|>1 \)
+  \subparagraph{Λύση}
+  \( f(z) = f_1(z)f_2(z) \)
+  \begin{align*}
+  f_1(z) &= \frac{1}{z} \\
+  f_2(z) &= \frac{1}{z-1} = \frac{1}{z} \cdot \frac{1}{1-\frac{1}{z}}
+  = \frac{1}{z} \left(
+  1+\frac{1}{z} + \frac{1}{z^2} + \dots
+  \right) \\
+  f(z) &= \frac{1}{z^2} + \frac{1}{z^3} + \frac{1}{z^4} + \dots
+  \end{align*}
+  
+  \item \( f(z) = \frac{2z+1}{z^2+z-2} \), να βρεθούν όλες οι δυνατές σειρές Laurent γύρω
+  από το \( z_0 = 0 \).
+  \subparagraph{Λύση} Τα ΑΣ (ανώμαλα σημεία) είναι \( z_1 = 1 \) και \( z_2 = -2 \).
+  Οπότε %TODO Kehagias Graph 19
+  
+  Αυτή είναι η άσκηση που θα πέσει στις εξετάσεις αν δεν έχει κέφι ο Κεχαγιάς.
+  
+  \textbf{1η σειρά:} \( |z|<1 \)
+  
+  \textbf{2η σειρά:} \( 1<|z|<2 \)
+  
+  \textbf{3η σειρά:} \( 2<|z| \)
+  
+  \begin{align*}
+  f(z) &= \underbrace{\frac{1}{z-1}}_{f_1(z)}+\underbrace{\frac{1}{z+2}}_{f_2(z)}
+  = f_1(z) + f_2(z)
+  \end{align*}
+  
+  \subparagraph{1η σειρά} \( |z|<1 \)
+  \begin{align*}
+  	f_1(z) &= -(1+z+z^2+\dots) \\
+	f_2(z) &= \frac{1}{z+2} = \frac{1}{2} \cdot \frac{1}{1+\frac{z}{2}}
+	= \frac{1}{2} \cdot
+	\underbrace{\left(1-\frac{z}{2}+\frac{z^2}{4}+\dots\right)}_{\left|\frac{z}{2}\right|<1}
+	\intertext{άρα για $\forall z: |z| < 1$}
+	f(z) &= f_1(z) + f_2(z) = -\frac{1}{2} - \frac{5z}{4} - \frac{7z^2}{8} - \dots
+  \end{align*}
+  
+  \subparagraph{2η σειρά} \( 1 < |z| < 2 \)
+  με \( u = \sfrac{1}{z}  \)
+  \begin{align*}
+  	f_1(z) &= \frac{1}{\frac{1}{u}-1} = \frac{u}{1-u}
+  	\\ &= u (1+u+u^2)+\dots \\ &= u+u^2+u^3+\dots \\
+  	f_1(z) &= \frac{1}{z} + \frac{1}{z^2} + \frac{1}{z^3} + \dots \\
+  	f_2(z) &= \frac{1}{2} - \frac{z}{4} + \frac{z^2}{8}
+  	\intertext{Τελικά:}
+  	f(z) &= \dots - \sfrac{1}{z^2}  - \sfrac{1}{2} -\sfrac{z}{4}  + \sfrac{z^2}{8}  + \dots
+  \end{align*}
+  
+  \subparagraph{3η σειρά} \( 2 < |z| \)
+  \begin{align*}
+  f_1(z) &= \frac{1}{z} + \frac{1}{z^2} + \frac{1}{z^3} + \dots \\
+  f_2(z) &= \frac{1}{z+2} = \frac{1}{z} \cdot \frac{1}{1+\frac{2}{z}}
+  \\ &= \frac{1}{z} \cdot \left( 1 - \frac{2}{z} + \frac{4}{z^2} - \dots \right)
+  \\f_2(z) &= \frac{1}{z} - \frac{2}{z^2} + \frac{4}{z^3} - \dots
+  \\ f(z) &= f_1+f_2 = \frac{2}{z} - \frac{1}{z^2} + \frac{5}{z^3}
+  \end{align*}
+  
+  \end{enumerate}
 \end{document}
