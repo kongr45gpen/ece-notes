@@ -763,5 +763,93 @@
     μπορεί να μεταβληθεί είναι η θέση του μεγίστου, με αύξηση του \( \sigma \) (ώστε να
     έρθει πιο κοντά στο σημείο ασυνέχειας). Αυτό είναι το φαινόμενο Gibbs.
     
+    Εάν όμως το \( \sigma \) δεν τείνει στο \( \infty \), το αποτέλεσμα στο \( 0 \) δεν είναι
+    απαραίτητα το ημιάθροισμά των \( x(0^+) \) και \( x(0^-) \).
     
+    \subsection*{}
+    Ευσταθές ονομάζεται ένα σύστημα όταν πεπερασμένη (φραγμένη στο πλάτος) είσοδος
+    δίνει πεπερασμένη έξοδο -
+    ΠΕΠΕ (Πεπερασμένη Είσοδος - Πεπερασμένη Έξοδος) / BIBO (Bounded Input - Bounded Output)
+    ευστάθεια
+    
+    Φραγμένη συνάρτηση \( f(t) \in BF \) σημαίνει ότι
+    \[
+    \exists M>0 : \forall t \quad \left|f(t)\right| < M
+    \]
+    όπου \( BF \) ο κόσμος των φραγμένων συναρτήσεων.
+    
+    Ένα σύστημα είναι ευσταθές όταν \( \forall  \) είσοδο \( x(t) \in BF \) η έξοδος του
+    συστήματος είναι επίσης φραγμένη (\( y(t) \in BF \)).
+    (
+    Αν το σύστημά μας είναι γραμμικό και ΑΚΜ (αμετάβλητο κατά τη μετατόπισης)
+    \[
+    \exists h(t) \text{ κρουστική απόκριση }\quad y(t) = h(t)*x(t) = \int_{-\infty}^{\infty}
+    h(\tau)x(t-\tau)\dif\tau
+    \]
+    
+    Έστω \begin{align*}
+    \exists M : \forall t,\quad & \left|x(t)\right| < M \implies
+    \\& \left|x(t-\tau)\right| < M
+    \end{align*}
+    
+    Επίσης έστω \begin{align*}
+    	\exists N:& \left|y(t)\right| < N \quad \forall t
+    	\\ & \left|y(t)\right| = \left|
+    	\int_{-\infty}^{\infty} h(t) x(t-\tau)\dif \tau
+    	\right| < \int_{-\infty}^{\infty} \left|h(t)x(t-\tau)\right|\dif\tau
+    	< \int_{-\infty}^{\infty} \left|h(\tau)\right|\dif\tau < \frac{N}{M}
+    \end{align*}
+    
+    Εάν η κρουστική απόκριση είναι απολύτως ολοκληρώσιμη, τότε το σύστημα είναι ευσταθές.
+    
+    \subsubsection{}
+    Έστω ένα ιδανικό χαμηλοπερατό φίλτρο:
+    %TODO Rekanos Graph 54
+    \[
+    W_F(f) \xrightarrow{\text{IFT}} h(t) = F\sinc (Ft) = F \frac{\sinc(\pi Ft)}{\pi Ft}
+    \]
+    %TODO Rekanos Graph 54 (down)
+    
+    Παρατηρώ ότι η κρουστική απόκριση του ιδανικού αυτού φίλτρου δεν είναι αιτιατή, οπότε ένα
+    τέτοιο φίλτρο δεν είναι υλοποιήσιμο.
+    
+    Άσκηση για το σπίτι: Η \( h(t) \) είναι απολύτως ολοκληρώσιμη;
+    
+    \subsubsection{Kramer's - Kronig}
+    Έστω \( h(t) \) αιτιατή - πραγματική συνάρτηση με Μ\( F \): \( H(\omega )=
+    H_R(\omega ) + jH_I(\omega ) \)
+    
+    \begin{gather*}
+\text{Ξέρω}    h(t) = \underbrace{h_e(t)}_{\mathclap{\text{even}}} +
+    \underbrace{h_o(t)}_{\mathclap{\text{odd}}} \\
+\text{Ξέρω}    h_o(t) \xrightarrow{\text{FT}} H_o(\omega ) \in \mathbb I \quad
+\text{(επίσης περιττή συνάρτηση)}\\
+\text{Ξέρω}    h_e(t) \xrightarrow{\text{FT}} H_e(\omega ) \in \mathbb R \quad
+\text{(επίσης άρτια συνάρτηση)}
+    \end{gather*}
+    \begin{gather*}
+    h_o(t) = -h_e(t) \quad t<0 \\
+    h_0(t) = h_e(t) \quad t \geq 0 \\
+    \text{Συνεπώς } h(t) = h_e(t) + \mathrm{sgn}(t) h_e(t) \\
+    \text{        } h(t) = h_o(t) + \mathrm{sgn}(t) h_o(t)
+    \end{gather*}
+    \begin{gather*}
+    X(\omega ) = \int_{-\infty}^{\infty} x(t)e^{-j\omega t}\dif t \\
+    x_1(t) x_2(t) \xrightarrow{\text{FT}} \frac{1}{2\pi}X_1(\omega )*X_2(\omega ) \\
+    \mathrm{sgn}(t) \xrightarrow{\text{FT}} \frac{2}{j\omega } \\
+    h(t) = h_e(t) + \mathrm{sgn}(t) h_e(t) \xRightarrow{\text{FT}}
+    H(\omega ) = H_e(\omega ) + \frac{1}{2\pi}\frac{2}{j\omega }*H_e(\omega )
+    = H_e(\omega ) - j\frac{1}{\pi} \int_{-\infty}^{\infty} \frac{1}{\omega -\omega'}
+    H_e(\omega')\dif \omega' \\
+    \boxed{
+    	H(\omega ) = \underbrace{H_e(\omega ) }_{H_R(\omega )}
+    	- \underbrace{j\frac{1}{\pi}\int_{-\infty}^{\infty}
+    	\frac{H_e(\omega )}{\omega -\omega'}\dif \omega }_{jH_I(\omega )}
+    	}
+    \\ \boxed{
+    	H_I(\omega ) = -\frac{1}{\pi}
+    	\int_{-\infty}^{\infty} \frac{H_R(\omega')}{\omega -\omega'}\dif \omega'
+    	}
+    \end{gather*}
+    ομοίως από πάνω υπολογίζουμε το \( H_R \).
 \end{document}
