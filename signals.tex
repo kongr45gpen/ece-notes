@@ -804,12 +804,44 @@
     
     \subsubsection{}
     Έστω ένα ιδανικό χαμηλοπερατό φίλτρο:
-    %TODO Rekanos Graph 54
+    
+    \begin{tikzpicture}
+        \draw[->] (0,-0.2) -- (0,2.5) node[right] {$H(f)$};
+    	\draw[->] (-3,0) -- (3,0) node[below,right] {$f$};
+    	
+    	\draw[very thick,blue] (-1.5,0) node[below,black] {$-\sfrac{F}{2}$}
+    	-- ++(0,1.5) -- ++(3,0) -- ++(0,-1.5) node[below,black] {$\sfrac{F}{2}$};
+    \end{tikzpicture}
+    
     \[
     W_F(f) \xrightarrow{\text{IFT}} h(t) = F\sinc (Ft) = F \frac{\sinc(\pi Ft)}{\pi Ft}
     \]
-    %TODO Rekanos Graph 54 (down)
     
+    \begin{tikzpicture}[scale=1.2]
+    %TODO: Global sinc declaration
+    \pgfmathdeclarefunction{sinc}{1}{%
+    	\pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
+    	\ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%
+    }
+    
+    \filldraw[xscale=0.5,samples=200,domain=-5:5,smooth,variable=\x,blue,
+    fill=blue!20] 
+    plot ({\x},{abs(sinc(pi*\x))});
+    
+    \draw[->] (0,-0.5) -- (0,1.5) node[right] {$h(t)$};
+    \draw[->] (-2.5,0) -- (2.5,0) node[below,right] {$t$};
+    
+    \draw[very thick,xscale=0.5,samples=200,domain=-5:5,smooth,variable=\x,blue] 
+    plot ({\x},{sinc(pi*\x)});
+    
+    \draw (0,0) node[below right] {$0$};
+    \draw (0.5,0) node[below] {$\frac{1}{F}$};
+    \draw(1,0) node[below] {$\frac{2}{F}$};
+    \draw(1.5,0) node[below] {$\frac{3}{F}$};
+    \draw (-0.5,0) node[below] {$-\frac{1}{F}$};
+    \draw(2,0) node[below] {$\cdots$};
+    \end{tikzpicture}
+
     Παρατηρώ ότι η κρουστική απόκριση του ιδανικού αυτού φίλτρου δεν είναι αιτιατή, οπότε ένα
     τέτοιο φίλτρο δεν είναι υλοποιήσιμο.
     
