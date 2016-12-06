@@ -728,7 +728,14 @@
        	\[
        	f'(z_0)=\lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}
        	\]
-       	%TODO Atreas Graph 06
+       	\begin{tikzpicture}[scale=1.3]
+       	\draw[->] (-1.5,0) -- (2,0) node[below] {$\Re(z)$};
+       	\draw[->] (0,-1.5) -- (0,2) node[right] {$\Im(z)$};
+       	
+       	\draw[very thick,green!40!black] (-0.2,1) node[black, left] {$y_0$} -- (1.5,1);
+       	\draw[very thick,cyan!40!black] (1,-0.2) node[black, below left] {$x_0$} -- (1,1.5);
+       	\draw (1,1) node[above right] {$z_0=x_0+iy_0$};
+       	\end{tikzpicture}
        	
        	\begin{itemize}
        		\item Έστω \( z=x+iy_0\quad (x\in\mathbb R ) \) είναι τυχαίο σημείο της
@@ -1904,12 +1911,34 @@
 		\item \( \displaystyle f(z) =
 		\frac{z^2+1}{z^2-1}
 		 \) \qquad (\( z_0=1,z_0=-1 \)) απομονωμένα ανώμαλα σημεία της \( f \)
-		 %TODO Atreas Graph 24
+		 
+		 \begin{tikzpicture}[scale=1.3]
+		 		 	
+		 	\draw (-2,0) -- (2,0);
+		 	\draw (0,-1) -- (0,1);
+		 	
+		 	\filldraw[fill=red!70,fill opacity=.5] (-1,0) circle(0.3);
+		 	\filldraw[fill=red!70,fill opacity=.5] (1,0) circle(0.3);
+		 	
+		 	\draw (-1,-0.3) node[below] {$z=-1$};
+		 	\draw (1,-0.3) node[below] {$z=1$};
+		 \end{tikzpicture}
 		 
 		\item \( \displaystyle g(z) = \mathrm{Log} z
 		 \) (\( z_0 = 0 \) μη απομονωμένη ανωμαλία. Επίσης τα σημεία του αρνητικού
 		 ημιάξονα των πραγματικών είναι μη απομονωμένα ανώμαλα σημεία του λογάριθμου)
-		 %TODO Atreas Graph 25
+		 
+		 \begin{tikzpicture}[scale=1.3]
+		 
+		 \draw (-2,0) -- (1.5,0);
+		 \draw (0,-1) -- (0,1);
+		 
+		 \filldraw[fill=red!70,fill opacity=.5] (0,0) circle(0.35);
+		 
+		 \draw[ultra thick, red!90, decorate,
+		 decoration={snake,amplitude=.3mm}
+		 ] (-2,0) -- (0,0);
+		 \end{tikzpicture}
 		\item \( \displaystyle h(z) =
 		\cos\left( \frac{1}{z} \right)
 		 \) (\( z_0 = 0 \) το μοναδικό μεμονωμένο σημείο)
@@ -2029,8 +2058,148 @@
    \text{ΔΕΝ υπάρχει} &\implies z_0 \text{ ουσιώδης ανωμαλία}
    \end{cases}
    \]
+   
+   \subsubsection{Πώς βρίσκουμε (κάποιες φορές) την τάξη ενός πόλου \( z_0 \)}
+   \begin{theorem*}[title=Λήμμα]{Λήμμα}
+   	Έστω \( f = f(z) \) ολόμορφη σε σημείο \( z_0 \). Τότε:
+   	\[
+   	z_0 \text{ ρίζα της } f \text{ πολ/τας } \kappa
+   	\iff f(z_0) = f'(z_0) = \dots = f^{(\kappa-1)}(z_0) = 0
+   	\text{ και } f^{(\kappa)}(z_0) \neq 0
+   	\]
+   \end{theorem*}
+   \paragraph{Απόδειξη}
+   \subparagraph{"\( \impliedby \)"}
+   Αφού \( f \) ολόμορφη στο \( z_0 \) \textbf{αναπτύσσεται ΠΑΝΤΑ} σε σειρά Taylor "γύρω"
+   από το \( z_0 \) ως εξής:
+   \begin{align*}
+   f(z) &= \sum_{n=0}^\infty \frac{f^{(n)(z_0)}}{n!}(z-z_0)^n
+   \\ &= \cancel{f(z_0)} + \cancel{f'(z_0)}(z-z_0)
+   + \dots + \frac{\cancel{f^{(k-1)}(z_0)}}{(k-1)!}(z-z_0)^{k-1}
+   + \frac{f^{(k)}(z_0)}{k!}(z-z_0)^k + \dots
+   \\ &= (z-z_0)^k \underbrace{\left(
+   \frac{f^{(k)}(z_0)}{k!} + \frac{f^{(k+1)}(z_0)}{(k+1)!} + \dots
+   \right)}_{=h(z)} \\
+   f(z) &= (z-z_0)^k h(z), \text{ όπου $h(z)$ ολόμορφη στο $z_0$ με } h(z_0) \neq 0
+   \end{align*}
+   \subparagraph{"\( \implies \)"}
+   Τότε \( f(z) = (z-z_0)^k h(z) \), όπου \( h \) ολόμορφη στο \( z_0 \) με
+   \( h(z_0) \neq 0 \). Παραγωγίζοτας \( k-1 \) φορές παίρνουμε \( f^{(j)}(z_0)=0
+   \ \forall j=0,1,\dots,k-1
+    \), ενώ \( f^{(k)}(z_0) \neq 0 \).
+    
+    \paragraph{}
 
-
+    \begin{itemize}
+    	\item Έστω τώρα \( f(z) = \frac{a(z)}{b(z)} \), όπου \( a,b \) είναι ολόμορφες στο
+    	\( z_0 \). Υποθέτουμε ότι το \( z_0 \) είναι ρίζα αριθμητή πολ/τας \( K \)
+    	(\( K=\mathbf 0,1,2,\dots \)) και ρίζα παρονομαστή πολ/τας
+    	\( \varLambda \) (\( \varLambda = \mathbf 1,2,3,\dots \)). Τότε:
+    	\[
+    	z_0 \text{ είναι: } \begin{cases}
+    	\text{απαλείψιμη ανωμαλία για την $f$} & \quad \text{εάν: } \ K \geq \varLambda
+    	\\
+    	\text{πόλος τάξης } \varLambda - K & \quad \text{εάν: } \ K < \varLambda
+    	\end{cases}
+    	\]
+    \end{itemize}
+    
+    \subsubsection{%
+    	Υπολογισμός ολοκληρωτικού υπολοίπου σε απομονωμένο ανώμαλο σημείο \( z_0 \)}
+    
+    \begin{defn*}{Ολοκληρωτικό υπόλοιπο}
+    Σειρά Laurent της \( f \) στο \( z_0 \):
+    \[
+    f(z) = \cdots + \frac{a_{-k}}{(z-z_0)^k} + \dots + \frac{a_{-1}}{z-z_0} + a_0
+    + a_1(z-z_0) + \cdots
+    \]
+    
+    Ο όρος \( \displaystyle a_{-1} = \oint_\gamma f(z)\dif z \) καλείται ολοκληρωτικό
+    υπόλοιπο της \( f \) στο \( z_0 \), συμβολικά \( \Res(f,z_0) \).
+    \end{defn*}
+    
+    Έστω \( z_0 \) είναι απομονωμένο ανώμαλο σημείο συνάρτησης \( f \).
+    \begin{itemize}
+    	\item Αν \( \mathbf{z_0} \) \textbf{απαλείψιμη ανωμαλία}, 
+    	τότε το ολοκληρωτικό υπόλοιπο της \( f \) στο \( z_0 \)
+    	\[
+    	\Res(f,z_0) = 0
+    	\]
+    	
+    	\textbf{Τελικά:}
+    	\[
+    	\boxed{z_0 \text{ απαλείψιμο } \implies \Res (f,z_0) = 0}
+    	\]
+    \end{itemize}
+    
+    \begin{itemize}
+    	\item Αν \( z_0 \) είναι πόλος τάξης \( N \), τότε το \( \Res(f,z_0) \) βρίσκεται
+    	ως εξής:
+    	
+    	Εφόσον \( z_0 \) πόλος τάξης \( N \) έχουμε:
+    	\[
+    	f(z) = \frac{a_{-k}}{(z-z_0)^k} + \frac{a_{-k+1}}{(z-z_0)^{k-1}}
+    	+ \dots + \frac{a_{-1}}{z-z_0} + a_0 + a_1(z-z_0) + \cdots
+    	\]
+    	
+    	\begin{align*}
+    	& (z-z_0)^k f(z) = a_{-k}+a_{-k+1}(z-z_0) + \dots + a_{-1}(z-z_0)^{k-1}
+    	+ a_0(z-z_0)^k + \dots 
+    	\\ \implies & \left(
+    	(z-z_0)^k f(z)
+    	\right)^{\underbrace{ \mathsmaller{(k-1)}}_{\mathclap{\text{παράγωγος}}}}
+    	= (k-1)!a_{-1} + a_0(k\cdots 2)(z-z_0) + \dots
+    	\\ \implies & \lim_{z\to z_0} \left[
+    	\left( (z-z_0)^k f(z) \right)^{(k-1)}
+    	\right] = (k-1)!a_{-1}
+    	\\ \implies & \boxed{a_{-1} \overset{\text{ορ.}}{=} \Res (f,z_0)
+    	 = \frac{1}{(k-1)!} \lim_{z\to z_0} \left[
+    	 \left( (z-z_0)^k f(z) \right)^{(k-1)}
+    	 \right]}
+    	\end{align*}
+    	
+    	\begin{attnbox}{} {
+    		\large \textbf{Προσοχή!}
+    	    Το \( ^{(k-1)} \) είναι \textbf{ΠΑΡΑΓΩΓΟΣ}!
+    	}
+    	\end{attnbox}
+    	
+    	\item \( z_0 \) \textbf{ουσιώδης ανωμαλία}:
+    	Τότε \textbf{αναγκαστικά} θα πρέπει να βρείτε το ανάπτυγμα Laurent της \( f \)
+    	στο \( z_0 \) και μέσω αυτού να υπολογίσετε τον όρο \( a_{-1} = \Res(f,z_0) \)
+    \end{itemize}
+    
+    \paragraph{}
+    \begin{theorem*}[colbacktitle=red!35!black]{Ολοκληρωτικών υπολοίπων}
+    	Έστω \( f = f(z) \) είναι ολόμορφη πάνω και στο εσωτερικό απλής, κλειστής, τμημ.
+        λείας και θετικά προσανατολισμένης καμπύλης \( \gamma \), εκτός
+        \textbf{ΠΕΠΕΡΑΣΜΕΝΟΥ ΠΛΗΘΟΥΣ ΑΠΟΜΟΝΩΜΕΝΩΝ ΑΝΩΜΑΛΩΝ} σημείων \( z_1,\dots,z_n \)
+        στο ΕΣΩΤΕΡΙΚΟ της \( \gamma \). Τότε:
+        \[
+        \mathlarger{\oint_\gamma f(z) \dif z = 2\pi i \sum_{j=1}^n \Res(f,z_j)}
+        \]
+    \end{theorem*}
+    
+    \begin{theorem*}[colbacktitle=red!35!black]{Αρχή ταυτισμού}
+       	Έστω \( f = f(z) \) είναι ολόμορφη πάνω και στο εσωτερικό απλής, κλειστής, τμηματικά
+       	λείας και θετικά προσανατολισμένης καμπύλης \( \gamma \).
+       	
+       	Αν \( \left\lbrace z_\kappa \right\rbrace_{\kappa \in \mathbb Z} \) ακολουθία
+       	σημείων στο εσωτερικό της \( \gamma \), με \( z_\kappa \neq z_\lambda \
+       	\forall \kappa \neq \lambda \) και είναι τέτοια ώστε
+       	\( \displaystyle
+       	\lim_{\kappa \to \infty} z_\kappa = z_0\) ανήκει στο εσωτερικό της \( \gamma \).
+       	
+       	Τότε, εάν \( f(z_\kappa) = 0 \ \forall \kappa \) ισχύει
+       	\[
+       	f(z) = 0 \quad \forall z \text{ στο εσωτερικό της } \gamma
+       	\]
+    \end{theorem*}
+    
+    
+    
+    
+    
 
 
 
