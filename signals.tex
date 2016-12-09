@@ -42,9 +42,77 @@
 		%TODO Rekanos Graph 29
 		
 		\item Έστω ότι \( x(t) \) αντιαιτιατή (\( x(t)=0 \quad t>0 \))
-		%TODO Rekanos Graph 30
 		
-		\item %TODO Rekanos Graph 31
+		\begin{tikzpicture}[scale=1,xscale=1]
+		
+		\fill[samples=30,domain=-4:0,smooth,variable=\x,blue!10] 
+		plot ({\x},{exp(-\x/2-1)}) -- (0,0) -- (-4,0) -- cycle;
+		\fill[samples=30,domain=-4:0,smooth,variable=\x,blue!10] 
+		plot ({\x},{-exp(-\x/2-1)}) -- (0,0) -- (-4,0) -- cycle;
+		
+		\draw[->] (0,-2) -- (0,2); %node[right] {$f(t)$};
+		\draw[->] (-4,0) -- (3,0) node[below,right] {$t$};
+		
+		\draw[samples=100,domain=-4:0,smooth,variable=\x,blue,very thick] 
+		plot ({\x},{-exp(-\x/2-1)* sin(5*\x r)});
+		\draw[samples=50,domain=-4:0,smooth,variable=\x,blue] 
+		plot ({\x},{exp(-\x/2-1)}) plot ({\x},{-exp(-\x/2-1)});
+		
+		\draw (0,-2) node[below] {$x(t) = \sin \omega t\, e^{-t} \omega(-t)$};
+		
+		\begin{scope}[xshift=6cm]
+		\fill[green!70] (-1,-2) rectangle (-0.7,2);
+		\fill[green!70,path fading=west] (-2,-2) rectangle (-1,2);
+		
+		\draw[->] (-2,0) -- (2,0);
+		\draw (0,-2) -- (0,2);
+		
+		\draw[dashed] (-0.7,-2) -- ++(0,4);
+		\draw (-0.7,0) node[above right] {$-1$};
+		
+		\draw (1,1) node {$s$-plane};
+		\end{scope}
+		\end{tikzpicture}
+		
+		
+		\item \mbox{}
+		\\
+		\begin{tikzpicture}[scale=1,xscale=0.5]
+		
+		\fill[green!70,path fading=east] (0,-2) rectangle (5,2) ;
+		
+		\draw (-2,0) -- (4,0);
+		\draw (0,-2) -- (0,2);
+		
+		\draw (0,0) node[below left] {$\mathsmaller{0}$};
+		
+		\draw (0,-2) node[below right] {$\Re \lbrace s \rbrace \geq 0 $};
+		
+		\begin{scope}[xshift=9cm]
+		\fill[green!50!blue!70!white,path fading=west] (1,-2) rectangle (-3,2) ;
+		
+		\draw (-2,0) -- (4,0);
+		\draw (0,-2) -- (0,2);
+		
+		\draw (1,0) node[below right] {$1$};
+		
+		\draw (0,-2) node[below right] {$\Re \lbrace s \rbrace < 1$};
+		\draw[dashed] (1,-2) -- ++(0,4);
+		\end{scope}
+		
+		\begin{scope}[xshift=16cm]
+		\fill[green!70!blue!50!white] (1,-2) rectangle (0,2) ;
+		
+		\draw (-2,0) -- (4,0);
+		\draw (0,-2) -- (0,2);
+		
+		\draw (1,0) node[below right] {$1$};
+		\draw[dashed] (1,-2) -- ++(0,4);
+		\end{scope}
+		
+		\draw (current bounding box.north west) node[above right]
+		{$\sin \omega t\, \mathrm u(t) + \sin \omega t\, e^t \mathrm u(-t)$};
+		\end{tikzpicture}
 		
 		\item Η \( \sin \omega \mathrm u(t)+\sin\omega t e^{-t}\mathrm u(-t) \)
 		δεν έχει περιοχή σύγκλισης.
@@ -53,7 +121,18 @@
 	\[
 	X(s) = \frac{35}{(x-8)(x+2)}
 	\]
-	%TODO Rekanos Graph 32
+	
+	\begin{tikzpicture}[scale=1,xscale=0.5]
+	
+	\fill[green!30] (-4,-2) rectangle (-2.5,2) node[black,pos=.5,above] {$x_2(t)$};
+	\fill[blue!30] (-2.5,-2) rectangle (1.5,2) node[black,pos=.5,below] {$x_3(t)$};
+	\fill[orange!30] (1.5,-2) rectangle (4,2) node[black,pos=.5,above] {$x_1(t)$};
+	
+	\draw (-4,0) -- (4,0);
+	\draw [dashed](-2.5,-2) -- ++(0,4);
+	\draw[dashed] (1.5,-2) -- ++(0,4);
+	\end{tikzpicture}
+	
 	Οι πόλοι (ρίζες του παρονομαστή) καθορίζουν τις περιοχές σύγκλισης.
 	
 	\paragraph{}
@@ -125,7 +204,38 @@
 	0 &\quad \text{αλλού}
 	\end{cases}
 	\]
-	%TODO Rekanos Graph 33
+	
+	\begin{tikzpicture}[scale=0.8,xscale=0.5]
+	
+	\begin{scope}
+	\draw[->] (0,-0.5) -- (0,2) node[right] {$x(t)$};
+	
+	\draw[samples=50,domain=0:pi,smooth,variable=\x,blue,very thick] 
+	plot ({\x},{sin(\x r)}) -- (2*pi,0);
+	\draw[samples=50,domain=2*pi:3*pi,smooth,variable=\x,blue,very thick] 
+	plot ({\x},{sin(\x r)}) -- (4*pi,0);
+	\draw[samples=50,domain=4*pi:5*pi,smooth,variable=\x,blue,very thick] 
+	plot ({\x},{sin(\x r)}) -- (6*pi,0);
+	
+	\draw[->] (-0.5,0) -- (6*pi+0.4,0) node[below,right] {$t$};
+	\end{scope}
+	
+	\begin{scope}[yshift=-3cm]
+	\draw[->] (0,-0.5) -- (0,2); %node[right] {$f(t)$};
+	\draw[->] (-0.5,0) -- (6*pi,0) node[below,right] {$t$};
+	
+	\draw (6,0) node[below] {$T$};
+	\draw(pi/2,1) node[above right] {$x_p(T)$};
+	
+	\draw[very thick, blue] (pi-0.01,0) -- (6,0);
+	
+	\draw[samples=200,domain=0:pi,smooth,variable=\x,blue,very thick] 
+	plot ({\x},{sin(\x r)});
+	
+	\end{scope}
+	
+	\end{tikzpicture}
+	
 	\begin{align*}
 	x(t)&=x_T(t)+x_T(t-T)+x_T(t-2T)+\dots\\
 	x(t)&= \sum_{n=0}^\infty x_T (t-nT) \\
@@ -301,7 +411,21 @@
     
     \subsubsection*{}
     \paragraph{Ex. 1}
-    %TODO Rekanos Graph 34
+    \hfill[0pt]
+    
+    \begin{tikzpicture}[scale=1.2]
+    
+    \draw[->] (0,-0.5) -- (0,1.5) node[left] {$p(t)$};
+    \draw[->] (-0.5,0) -- (1.7,0) node[below,right] {$t$};
+    
+    \draw[very thick, blue] (0,1) -- ++(0.9,0) -- ++(0,-1);
+    
+    \draw (0.9,0) node[below] {$T$};
+    \draw (0,0) node[below left] {$0$};
+    \draw (0,1) node[left] {$1$};
+    
+    \end{tikzpicture}
+    
     \begin{align*}
     p(t) &= \mathrm u(t) - \mathrm{u}(t-T) \\
     \mathscr L \left\lbrace p(t) \right\rbrace &=
@@ -311,7 +435,21 @@
     \end{align*}
     
     \paragraph{Ex. 2}
-    %TODO Rekanos Graph 35
+    \mbox{}
+    
+    \begin{tikzpicture}[scale=1.1]
+    
+    \draw[->] (0,-0.5) -- (0,1.5) node[right] {$f(t)$};
+    \draw[->] (-0.5,0) -- (3,0) node[below,right] {$t$};
+    
+    \draw[very thick, blue] (0,0) -- (0.7,1) -- (3,1);
+    
+    \draw[dashed] (0.7,0) node[below] {$T$} -- ++(0,1);
+    \draw (0,0) node[below left] {$0$};
+    \draw[dashed] (0,1) node[left] {$1$} -- ++(0.7,0);
+    
+    \end{tikzpicture}
+    
     \begin{align*}
     f(t) &= \frac{t}{T}\mathrm u(t) - \frac{t-T}{T}\mathrm u(t-T) \\
     F(s) &= \frac{1}{T}\frac{1}{s^2} - \frac{1}{T}\frac{1}{s^2}e^{-sT}
@@ -319,7 +457,22 @@
     \end{align*}
     
     \paragraph{Ex. 3}
-    %TODO Rekanos Graph 36
+    \mbox{} \\
+    \begin{tikzpicture}[scale=1.1]
+    
+    \draw[->] (0,-0.5) -- (0,1.5) node[right] {$f(t)$};
+    \draw[->] (-0.5,0) -- (4.5,0) node[below,right] {$t$};
+    
+    \draw[dashed] (1,0) node[below] {$1$} -- ++(0,1);
+    \draw (0,0) node[below left] {$0$};
+    \draw[dashed] (0,1) node[left] {$1$} -- ++(1,0);
+    \draw[dashed] (3,0) node[below] {$3$} -- ++(0,1);
+    \draw (4,0) node[below] {$4$};
+    
+    \draw[very thick, blue] (0,0) -- (1,1) -- (3,1) -- (4,0);
+    
+    \end{tikzpicture}
+    
     \begin{align*}
     f(t) &= t\mathrm u(t) - (t-1)\mathrm u(t-1) - (t-3)\mathrm u(t-3)
     + (t-4)\mathrm u(t-4) \\
@@ -329,14 +482,41 @@
     \end{align*}
 
     \paragraph{Ex. 4}
-    %TODO Rekanos Graph 37
+    \mbox{} \\
+        \begin{tikzpicture}[xscale=0.6,scale=1.2]
+       
+        \draw[->] (0,-0.5) -- (0,1.5) node[left] {$f(t)$};
+        \draw[->] (-0.5,0) -- (4.5,0) node[below,right] {$t$};
+        
+        \draw[samples=200,domain=0:pi,smooth,variable=\x,blue,very thick] 
+        plot ({\x},{sin(\x r)});
+        
+        \draw[dashed] (0,1) node[left] {$1$} -- (pi/2,1)
+        node[above right,blue] {$\mathsmaller{sin(t)}$};
+        \draw (pi,0) node[below] {$\pi$};
+        \end{tikzpicture}
     \begin{align*}
     f(t) &= \sin(t)\mathrm u(t) + \sin(t-\pi)\mathrm u(t-\pi) \\
     F(s) &= \frac{1}{s^2}+\frac{1}{s^2+1}e^{-\pi s}
     \end{align*}
     
     \paragraph{Ex. 5}
-    %TODO Rekanos Graph 38
+    \mbox {} \\
+        \begin{tikzpicture}[xscale=0.6]
+        
+        \filldraw
+        [samples=200,domain=0:pi,smooth,variable=\x,blue,very thick,fill=green!60] 
+        plot ({\x},{sin(\x r)});
+        
+        \draw[->] (0,-0.5) -- (0,1.5); %node[left] {$f(t)$};
+        \draw[->] (-0.5,0) -- (14,0); %node[below,right] {$t$};
+        
+        \draw[samples=200,domain=pi:4*pi,smooth,variable=\x,blue,very thick] 
+        plot ({\x},{abs(sin(\x r))});
+        
+        \draw (pi,0) node[below] {$\pi$};
+        
+        \end{tikzpicture}
     \begin{align*}
     f(t) &= |\sin t|\mathrm u(t) \\
     F(s) &= \frac{1+e^{-\pi s}}{1-e^{-\pi s}}
@@ -847,16 +1027,31 @@
     
     Άσκηση για το σπίτι: Η \( h(t) \) είναι απολύτως ολοκληρώσιμη;
     
+    \paragraph{}
+    %TODO Rekanos Graph 55
+    
+    \begin{gather*}
+    \int_0^\pi \sin(t) \dif t = 2
+    k \leq t \leq k+1 \quad \left|h(t)\right| = \left|\frac{\sin(t)}{t}\right| >
+    \frac{\left|\sin(t)\right|}{k+1} \\
+    \int_1^\infty \left|h(t)\right|\dif t > \sum_{k=1}^\infty \int_k^{k+1}
+    \left|\frac{\sin(t)}{t}\right|\dif t > \sum_{n=1}^\infty \frac{1}{k+1}
+    \cancelto{2}{\int \left|\sin(t)\right|} \\
+    \int_{-\infty}^{\infty} \left|h(t)\right|\dif t > \Xi + 2\sum_{k=1}^\infty
+    \frac{2}{k+1}
+    \end{gather*}
+    Δηλαδή το σύστημα του ιδανικού χαμηλοπερατού φίλτρου δεν είναι ευσταθές.
+    
     \subsubsection{Kramer's - Kronig}
     Έστω \( h(t) \) αιτιατή - πραγματική συνάρτηση με Μ\( F \): \( H(\omega )=
     H_R(\omega ) + jH_I(\omega ) \)
     
     \begin{gather*}
-\text{Ξέρω}    h(t) = \underbrace{h_e(t)}_{\mathclap{\text{even}}} +
+\text{Ξέρω }    h(t) = \underbrace{h_e(t)}_{\mathclap{\text{even}}} +
     \underbrace{h_o(t)}_{\mathclap{\text{odd}}} \\
-\text{Ξέρω}    h_o(t) \xrightarrow{\text{FT}} H_o(\omega ) \in \mathbb I \quad
+\text{Ξέρω }    h_o(t) \xrightarrow{\text{FT}} H_o(\omega ) \in \mathbb I \quad
 \text{(επίσης περιττή συνάρτηση)}\\
-\text{Ξέρω}    h_e(t) \xrightarrow{\text{FT}} H_e(\omega ) \in \mathbb R \quad
+\text{Ξέρω }    h_e(t) \xrightarrow{\text{FT}} H_e(\omega ) \in \mathbb R \quad
 \text{(επίσης άρτια συνάρτηση)}
     \end{gather*}
     \begin{gather*}
@@ -884,4 +1079,99 @@
     	}
     \end{gather*}
     ομοίως από πάνω υπολογίζουμε το \( H_R \).
+
+   \section{Συστήματα}
+   
+   \subsection{Ανακεφαλαίωση}
+   \paragraph{Γραμμικά Αναλογικά Συστήματα}
+   \begin{enumerate}
+   	\item \underline{Γραμμικότητα }
+   	\qquad \( T\left[ax_1(t)+bx_2(t)\right] = ay_1(t)+by_2(t) \)
+   	όπου \( \begin{array}{l}
+   	y_1(t) = T\left[x_1(t)\right] \\
+   	y_2(t) = T\left[x_2(t)\right]
+   	\end{array} \qquad \forall x_1(t),x_2(t),\ a,b\)
+   	\item \underline{Χρονοαμετάβλητο}
+   	\qquad \( T\left[x(t-k)\right] = y(t-k) \) 
+   	όπου \( y(t)=T\left[x(t)\right] \qquad \forall k,x(t) \)
+   	\item \underline{\textbf{Στιγμιαίο} (\( \neq \) δυναμικό)}
+   	\qquad \( y(t) = f\left(x(t)\right) \)
+   	
+   	Η έξοδος οποιαδήποτε χρονική στιγμή \( t \) εξαρτάται μόνο από την είσοδο την ίδια
+   	στιγμή \( t \).
+   	
+   	Η αντίσταση είναι ένα στιγμιαίο σύστημα, ενώ ο πυκνωτής και το πηνίο δεν είναι.
+   	\item \underline{Αιτιατό} \qquad
+   	Η έξοδος δεν εξαρτάται από μελλοντικές τιμές της εισόδου
+   	
+   	\( \left[\begin{matrix}
+   	\text{\small ΞΕΡΩ} \\ \text{\small Γραμμικό} \\ \text{\small Χρον. Αμετάβλητο}
+   	\end{matrix}\right] \rightarrow h(t) = 0 \quad \forall t < 0 \)
+   	\item \underline{Ευσταθές} \qquad
+   	Για κάθε φραγμένει είσοδο, η έξοδος είναι φραγμένη
+   	
+   	\( \left[\begin{matrix}
+   	\text{\small ΞΕΡΩ} \\ \text{\small Γραμμικό} \\ \text{\small Χρον. Αμετάβλητο}
+   	\end{matrix}\right] \rightarrow \int_{-\infty}^{\infty} \left|h(t)\right|\dif t
+   	< \infty \)
+   	
+   	\item \underline{Συγκεντρωμένο και Κατανεμημένο}
+   	\qquad Συγκεντρωμένο λέγεται όταν μοναδική ελεύθερη μεταβλητή είναι ο χρόνος \( t \).
+   \end{enumerate}
+   
+   \paragraph{Παράδειγμα} Το σύστημα \( y(t) = x^2(t) \) είναι:
+   \begin{enumerate}[itemsep=-1mm]
+   	\item Μη γραμμικό
+   	\item Χρονοαμετάβλητο
+   	\item Δυναμικό
+   	\item Αιτιατό
+   	\item Ευσταθές
+   	\item Συγκεντρωμένο
+   \end{enumerate}
+   
+   \subsection{}
+   \[
+   \sum_{i=0}^{n} a_i \od[i]{}{t} y(t) = \sum_{l=0}^m b_l \od[l]{}{t}x(t) \qquad
+   t \geq 0
+   \]
+   \begin{enumerate}[itemsep=-.5mm]
+   	\item Γραμμικό
+   	\item Χρονοαμετάβλητο
+   	\item Δυναμικό, εκτός αν \( n=m=0 \)
+   	\item Αιτιατό
+   \end{enumerate}
+   
+   \begin{align*}
+   	\text{Ολική λύση } &= \text{Ομογενής $+$ Μερική Λύση}\\
+   	\text{Ολική λύση } &= \underbrace{\text{Εξαναγκασμένη λύση }}_{\text{%
+   			λύση θεωρώντας δεδομένη $x(t)$ και μηδενικές Α.Σ.}} +
+   	\underbrace{\text{Ελεύθερη λύση}}_{\text{Λύση θεωρώντας $x(t)$=0 και δεδομένες Α.Σ.}}
+   	\intertext{(Τα ζευγάρια ομογενής/ελεύθερη \& εξαναγκασμένη/μερική δεν ταυτίζονται!)}
+   	\text{Ολική λύση } &= \text{Λύση μόνιμης κατάστασης $+$ μεταβατική λύση}
+   \end{align*}
+   
+   \paragraph{Μ. Laplace}
+   \[
+   \int_{i=0}^n a_i\left(
+   s^i Y(s) - \sum_{k=0}^{i-1} s^{i-k-1}y_0^{(k)}
+   \right) = \int_{l=0}^m b_l\left(
+   s^i X(s) - \sum_{k=0}^{l-1} s^{l-k-1}x_0^{(k)}
+   \right)
+   \]
+   \begin{gather*}
+   Y(s) = \underbrace{\dfrac{\sum_{l=0}^m b_ls^l}{\sum_{i=0}^n a_is^i} X(s)
+   - \dfrac{\sum_{l=0}^m\sum_{k=0}^{l-1} b_l s^{l-k-1}x_0^{(k)}}{\sum_{i=0}^n a_is^i}}_%
+{\mathclap{\text{εξαναγκασμένη}}}
+   + \underbrace{\dfrac{\sum_{i=0}^n \sum_{k=0}^{l-1} a_i s^{i-k-1}y_0^{(k)}}%
+   	{\sum_{i=0}^n a_is^i}}_{\mathclap{\text{ελεύθερη}}}
+   \end{gather*}
+   
+   \subparagraph{}
+   \begin{align*}
+   	y(t) &= x(t)*h(t) \\ Y(s) &= X(s)H(s)
+   \end{align*}
+   
+   Συγκρίνοντας με τον παραπάνω τύπο, παρατηρούμε ότι η \( y(t)=x(t)*h(t) \) μόνο\
+   όταν οι αρχικές συνθήκες είναι 0!
+
 \end{document}
