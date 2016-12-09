@@ -3797,4 +3797,234 @@
   \end{align*}
   
   \end{enumerate}
+
+	\section{Αρμονικές συναρτήσεις}
+	\begin{theorem*}{}
+		Αν η \( f(z) = u(x,y) + iv(x,y) \) είναι παραγωγίσιμη στο \( (x_0,y_0) \) τότε
+		\begin{align*}
+			\begin{array}{ll}
+			u_x(x_0,y_0) &= v_y(x_0,y_0) \\
+			u_y(x_0,y_0) &= -v_x(x_0,y_0)
+			\end{array} &\quad \left(
+			\begin{array}{c}
+			\text{Cauchy-} \\ \text{Riemann}
+			\end{array}
+			\right)
+		\end{align*}
+	\end{theorem*}
+	
+	\paragraph{Παρ.}
+	\( f(z) = z^3 = (x+iy)^3 \)
+	\begin{align*}
+		&= x^3+3x^2iy+3xi^2y^2+(iy)^3 \\
+		&= (x^3-3xy^2) + i \cdot (3x^2y-y^3)
+	\end{align*}
+	\underline{Δηλ.} \( 
+	\begin{array}{l}
+	u=x^3-3xy^2 \\ v=3x^2y-y^3
+	\end{array} \quad \begin{array}{l}
+	u_x = 3x^2-3y^2 = v_y \\
+	u_y = -6xy = - v_x
+	\end{array}
+	 \)
+	 
+	\begin{defn*}{}
+		Λέμε την \( u(x,y) \) \textbf{αρμονική} στο χωρίο \( D \) ανν \( \forall (x,y)\in D\):
+		\begin{enumgreekparen}
+			\item Οι \( u_{xx},u_{yy},u_{xy} \) είναι συνεχείς
+			\item Ισχύει η εξίσωση του Laplace \[
+			\boxed{u_{xx} + u_{yy} = 0}
+			\]
+		\end{enumgreekparen}
+	\end{defn*}
+	
+	\begin{theorem*}{}
+		Αν η \( f(z) = u(x,y)+iv(x,y) \) είναι \textbf{αναλυτική στο \( \mathbf D \)}, τότε
+		οι \( u(x,y),\ v(x,y) \) είναι αρμονικές στο \( D \)
+	\end{theorem*}
+	\paragraph{Απόδ.}
+	Αφού η \( f(z) \) είναι αναλυτική ισχύουν
+	\begin{gather*} \left.
+		\begin{array}{l}
+		u_x = v_y \\ v_x = -u_y
+		\end{array} \right\rbrace \implies \left. \begin{array}{l}
+		u_{xx} = v_{yx} \\ v_{xy} = u_{yx}
+		\end{array} \right\rbrace \implies \\
+		u_{xx} = - u_{yy} \implies u_{xx}+u_{yy} = 0
+			\end{gather*}
+		Ομοίως δείχνεται \( v_{xx} + v_{yy} = 0 \).
+	
+	\paragraph{Παρ.}
+	\( f(z) = z^3 = (x^3-3xy^2)+i(3x^2y-y^3) \)
+	
+	Θα δείξω ότι οι \( u,v \) αρμονικές
+	\subparagraph{Λύση}
+	\begin{align*}
+		u_{xx} &= (u_x)_x = (3x^2-3y^2)_x = 6x \\
+		u_{yy} &= (u_y)_y = (-6yy) = -6x \\
+		u_{xx} + u_{yy} &= 6x-6x = 0 \quad \text{άρα η $u$ αρμ.} \\
+		v_{xx} &= (v_x)_x = (6xy)_x = 6y \\
+		v_{yy} &= (v_y)_y = (3x^2-3y^2)_y = -6y \\
+		v_{xx} + v_{yy} &= 0 \quad \text{άρα η $v$ αρμ.}
+	\end{align*}
+	
+	\paragraph{}
+	\begin{defn*}{}
+		Αν η \( f(z) = u(x,y) + iv(x,y) \) είναι αναλυτική, λέμε ότι οι \( u,v \) είναι
+		\textbf{συζυγείς αρμονικές}
+	\end{defn*}
+	\paragraph{Παρ.} Να βρεθεί η \underline{συζυγής αρμονική} της \( u = x^2-y^2 \)
+	\subparagraph{Λύση} Από την εκφώνηση υποτίθεται ότι υπάρχει \underline{αναλυτική}
+	\( f(z) = u(x,y)+iv(x,y) \), με \( u(x,y)=x^2-y^2 \). Τότε:
+	\begin{gather*}
+		u_x = 2x = v_y \implies v(x,y) = \int 2x\dif y = 2xy+c(x) \\
+		\implies v_x = 2y + \od{c}{x} = -u_y = 2y \implies \od{c}{x} = 0 \\
+		\implies c \text{ σταθ.}
+	\end{gather*}
+	\textbf{Τελικά}
+	\( v(x,y) = 2xy +c,\ f(z) = \underbrace{x^2-y^2}_{u} + \underbrace{i2xy}_v + \tilde c
+	= (x+iy)^2 + \tilde c = \boxed{z^2+\tilde c = f(z)}
+	 \)
+	 
+	 \paragraph{Παρ.} Να βρεθεί η συζυγής αρμονική της \( u = e^x\cos y \)
+	 \subparagraph{Λύση} Με το μάτι \( f(z) = e^z,\ v(x,y)=e^x\sin y \)
+	 \subparagraph{Αλλιώς} \( u = e^x\cos y,\ u_x=e^x\cos y = v_y \implies v = e^x\sin y+c
+	 \implies v_x = e^x\sin y + \od{z}{x} = -u_y \implies \dots \implies v=e^x\sin y +c
+	  \)
+	  \begin{align*}
+	  	f(z) &= e^x\cos y + ie^x\sin y + \tilde c \\ &=e^x(\cos y+i\sin y) + \tilde c
+	  	\\ &= e^x = e^x e^{iy} + \tilde c = e^z + \tilde c = f(z)
+	  \end{align*}
+	  
+	  \subsubsection{Τι σημαίνει/σε τι χρησιμεύει/τι είναι η εξίσωση του Laplace;}
+	  Η λύση της Εξ. Laplace περιγράφει προβλήματα όπως
+	  \begin{enumparen}
+	  	\item μετάδοση θερμότητας σε σταθερή κατάσταση
+	  	\item ροή ρευστών \item πυκνότητα ηλ. φορτίου
+	  	\item δυναμικό μέσα σε έναν αγωγό
+	  \end{enumparen}
+	  
+	  %TODO Kehagias Graph 20
+	  Η εξ. Laplace \( \displaystyle \pd[2]{u}{x} + \pd[2]{u}{y} = 0 \) είναι διαφορική
+	  εξίσωση με μερικές παραγώγους. Αν αυτή ισχύει σε κάποιο χωρίο \( D \) και την εφοδιάσω
+	  με \textbf{οριακές συνθήκες} (τιμές της \( u(x,y) \) στο \( \partial D \) - 
+	  σύνορο του \( D \)), τότε έχω μοναδική λύση στο πρόβλημα Dirichlet:
+	  \begin{enumparen}
+	    \item \( \forall (x,y) \in D : \pd[2]{u}{x} + \pd[2]{u}{y} = 0 \)	
+	    \item \( \forall (x,y) \in \partial D : u(x,y) = F(x,y) \)
+      \end{enumparen}
+      
+      \paragraph{Παρ.} Ένα μεταλλικό τετράγωνο έλασμα \( D \) έχει σταθερές θερμοκρασίες
+      στα άκρα του, όπως φαίνεται στο σχήμα. 
+      
+      \begin{tikzpicture}
+      \draw[->] (0,0) -- (0,3);
+      \draw[->] (0,0) -- (3,0);
+      
+      \draw[thick,blue!50!black] (2,0) node[black, below] {$1$}
+      -- (2,2) -- (0,2) node[black,left] {$1$};
+      
+      \draw (1,1) node {$D$};
+      \draw (0,1) node[left] {$0^\circ\, \mathrm C$};
+      \draw (1,0) node[below] {$0^\circ\, \mathrm C$};
+      \draw (1,2) node[above] {$0^\circ\, \mathrm C$};
+      \draw (2,1) node[right] {$100^\circ\, \mathrm C$};
+      \end{tikzpicture}
+      
+      Η θερμοκρασία του ελάσματος δίνεται από τη λύση του:
+      \begin{enumparen}
+      	\item \( \forall (x,y) : \begin{array}{l}
+      	0<x<1 \\ 0<y<1
+      	\end{array}: u_{xx} + u_{yy} = 0   \)
+      	\item \( \forall (x,y): \begin{array}{l}
+      	u(x,0) = 0 \\ u(x,1) = 0 \\ u(0,y) = 0 \\ u(1,y) = 100
+      	\end{array} \)
+      \end{enumparen}
+      
+      Τι σχέση έχουν όλα αυτά με \begin{enumparen}
+      	\item Μιγαδικές συναρτήσεις;
+      	\item Λογισμό II;
+      \end{enumparen}
+      
+      Τι ασκήσεις μπαίνουν στις εξετάσεις;
+      
+      Τι σημαίνει η εξ. Laplace;
+      
+      \paragraph{Διακριτοποίηση εξίσωσης Laplace}
+      %TODO Kehagias Graph 21
+      \begin{gather*}
+      \forall (x,y) \in D: u_{xx} + u_{yy} = 0 \\
+      \forall (x,y) \in \partial D: 
+      u(x,y) = \underbracket[1pt][1pt]{F(x,y)}_{\mathclap{\text{δεδομένη συνάρτηση}}} \\
+      u_x (m\delta, n\delta) \simeq
+      \frac{u\left((m+1)\delta,n\delta\right)-u(m\delta,n\delta)}{\delta} \\
+      u_x \left((m-1)\delta,n\delta\right)  \simeq
+      \frac{u(m\delta,n\delta)-u\left((m-1)\delta,n\delta\right)}{\delta} \\
+      u_{xx} (m\delta,n\delta) \simeq
+      \frac{u_x(m\delta,n\delta)-u_x\left((m-1)\delta,n\delta\right)}{\delta} \\ u_{xx} \simeq
+      \frac{u\left((m+1)\delta,n\delta\right)
+      	-2u(m\delta,n\delta)-u\left((m-1)\delta,n\delta\right)}{\delta^2}
+      \\ u_{yy} \simeq
+      \frac{u\left(m\delta,(n+1)\delta\right)
+      	-2u(m\delta,n\delta)-u\left(m\delta,(n-1)\delta\right)}{\delta^2}
+      \end{gather*}
+      \begin{gather*}
+      	0 = u_{xx} + u_{yy} = \frac{
+      	    -4u(m\delta,n\delta) + u\left((m+1)\delta,n\delta\right)
+      	    +u\left(m\delta,(n+1)\delta\right)+u\left((m-1)\delta,n\delta\right)
+      	    +u\left(m\delta,(n-1)\delta\right)
+      		}{\delta^2} \\
+      	\implies u(m\delta,n\delta) = \frac{
+      		u\left((m+1)\delta,n\delta\right)
+      		+u\left((m-1)\delta,n\delta\right)
+      		+u\left(m\delta,(n+1)\delta\right)
+      		+u\left(m\delta,(n-1)\delta\right)
+      		}{4}
+      \end{gather*}
+      
+      Παρατηρούμε δηλαδή ότι η εξίσωση Laplace δηλώνει ότι η τιμή σε κάθε σημείο είναι ο
+      μέσος όρος της τιμής των 4 γειτονικών σημείων.
+      
+      	\paragraph{Παρ.}
+      	Στο προηγούμενο πρόβλημα:
+      	%TODO Kehagias Graph 22
+      	\begin{align*} u\left(\sfrac{1}{2},\sfrac{1}{2}  \right) 
+      	&= \frac{1}{4} \left( u\left(\sfrac{1}{2},0 \right) 
+      	+ u \left(\sfrac{1}{2}, 1 \right) + u \left(0,\sfrac{1}{2} \right)
+      	+ u \left(1,\sfrac{1}{2} \right)
+      	\right) \\
+      	\implies u\left(\sfrac{1}{2},\sfrac{1}{2}  \right) &=
+      	\frac{1}{4} (0 + 0 + 0 + 100) \\ &= 25
+      	\end{align*}
+      	
+      	%TODO Kehagias Graph 23
+      	Τότε θα μπορούσαμε να βρούμε τη λύση λύνοντας ένα σύστημα 9x9, ή με υπολογιστική
+      	προσέγγιση.
+
+    %TODO Kehagias Graph 20 (2nd time)
+    \begin{gather*}
+    \forall (x,y) \in D: u_{xx} + u_{yy} = 0 \\
+    \forall (x,y) \in \partial D: 
+    u(x,y) = \underbracket[1pt][1pt]{F(x,y)}_{\mathclap{\text{δεδομένη συνάρτηση}}}
+    \end{gather*}
+    \begin{gather*}
+    	f(z_0) = \frac{1}{2\pi i} \oint_{\partial D}\frac{f(z)}{z-z_0}\dif z \\
+    	u(x_0,y_0) = \frac{1}{2\pi} \oint_{\partial D} \Re\left(
+    	\frac{u(x,y)+iv(x,y)}{x-x_0+i(y-y_0)} \dif\ (x+iy)
+    	\right) \\ v(x_0,y_0) = \cdots
+    \end{gather*}
+    Από θεώρημα του Gauss/Μέσης Τιμής:
+    \begin{align*}
+    \Aboxed{
+    	f(z_0) &= \frac{1}{2\pi} \int_0^{2\pi} f(z_0+re^{i\theta}) \dif\theta
+    	} \\
+    u(x_0,y_0) &= \frac{1}{2\pi} \int_0^{2\pi} u(x_0+r\cos\theta,y_0+r\sin\theta)\dif\theta
+    \\
+    v(x_0,y_0) &= \frac{1}{2\pi} \int_0^{2\pi} v(x_0+r\cos\theta,y_0+r\sin\theta)\dif\theta
+    \end{align*}, δηλαδή σε κάθε σημείο η τιμή είναι ο μέσος όρος των γειτόνων.
+    
+    \paragraph{}
+    Αυτά που μπαίνουν στις εξετάσεις είναι: Να βρεθεί η συζυγής αρμονική, και να λυθεί η
+    εξίσωση Laplace, κάτι που θα μάθουμε τις επόμενες Παρασκευές.
+    
 \end{document}
