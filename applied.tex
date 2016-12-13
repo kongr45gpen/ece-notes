@@ -2196,11 +2196,145 @@
        	\]
     \end{theorem*}
     
+    %TODO Lesson 13/12/2016
+    
+    \subsection{...}
+    \[
+    \cdots
+    \]
+    
+    \begin{enumlatin}
+    	\item \( \cdots \)
+    	\item \( \cdots \)
+    	\item \( \cdots \)
+    	\item \( \displaystyle k(z) = \frac{z}{e^z-1} \)
+    	
+    	
+    	Σημεία που μηδενίζουν παρονομαστή
+    	\[
+    	e^z = 1 \iff z = \log 1 = \ln 1 + i(0+2k\pi) = 2k\pi i\quad
+    	(k \in \mathbb Z)
+    	\]
+    	
+    	Άρα τα σημεία \( z_k = 2k\pi i \quad (k \in \mathbb Z) \) ανώμαλα σημεία
+    	της \( k(z) \).
+    	
+    	\paragraph{}
+    	Για \( n = 0 \) έχουμε \( z_0 = 0 \) ανώμαλο σημείο της \( k(z) \) που
+    	μηδενίζει τον παρονομαστή και αριθμητή 1 φορά άρα απαλείψιμο.
+    	\[
+    	\Res(k,0) = 0
+    	\]
+    	
+    	Για \underline{\( n \neq 0 \)} έχουμε \( z_n = 2n\pi i \) μηδενίζουν μια
+    	φορά παρονομαστή, καμία αριθμητή, άρα πόλοι 1\textsuperscript{ης} τάξης.
+    	
+    	Έτσι:
+    	\begin{align*}
+    		\Res(k,z_n) &= \frac{1}{1} \lim_{z\to z_n} (z-z_n)k(z)
+    		\\ &= \lim_{z\to z_n} (z-z_n)\frac{z}{e^z-1} \overset{\text{L' Hosp.}}{=}
+    		\\ &= \lim_{z\to z_n} \frac{z+z-z_n}{e^z} = \frac{z_n}{e^{z_n}}
+    		= \frac{2n \pi i}{e^{2n\pi i}} = 2n\pi i
+    	\end{align*}
+    \end{enumlatin}
     
     
+    \paragraph{(2)}
+    Υπολογίστε το \( \displaystyle \oint_{|z| = 3} \frac{e^z}{\cosh z} \dif z \)
     
+    \begin{wrapfigure}{lh}{.5\textwidth}
+    	\begin{infobox}{}
+    		\begin{enumgreekparen}
+    			\item τύπος (θεώρ. ολοκλ. υπολοίπων)
+    			\item ανώμαλα σημεία, θέλεις ΕΝΤΟΣ καμπύλης
+    			\item ταξινόμηση ανώμαλων
+    			\item υπολ. \( \Res(f,z_j),\ z_j \) ανώμαλα
+    		\end{enumgreekparen}
+    	\end{infobox}
+    \end{wrapfigure}
     
-
+    \begin{enumgreekparen}
+    \item 	Από θεωρία έχω:
+    	
+    	\[
+    	I = 2\pi i \sum_{j=1}^n \Res\left(
+    	\frac{e^z}{\cosh h}, z_j
+    	\right)
+    	\]
+    	όπου \( z_j \) ανώμαλα σημεία εντός κύκλου: \( |z|=3 \)
+    	
+    	\item Ανώμαλα σημεία της \( \sfrac{e^z}{\cosh z} \):
+    	\begin{align*}
+    		\cosh z &= 0 \xLeftrightarrow{\text{ορ.}} \frac{e^z+e^{-z}}{2} = 0
+    		\iff e^z + e^{-z} = 0 \\
+    		e^z + \frac{1}{e^z} &= 0 \xLeftrightarrow[\forall z]{z \neq 0} e^{2z} + 1 = 0
+    		\iff e^{2z} = -1  \iff 2z = \log(-1) = \ln(-1) + i(\pi + 2i\pi)    		\\
+   		 \implies \Aboxed{z &= \left(k\pi + \frac{\pi}{2}\right)i,\quad k\in\mathbb Z}
+    	\end{align*}
+    	
+    	\( \displaystyle z = 
+    	\frac{\pm \pi i}{2}, \frac{\pm 3\pi i}{2},\frac{\pm 5\pi i}{2}\) ανώμαλα σημεία
+    	
+    	Άρα μένουν οι \( z_1 = \frac{\pi i}{2} \) και \( z_2 = \frac{-\pi i}{2} \)
+    	βρίσκονται ΕΝΤΟΣ κύκλου \( |z| = 3 \).
+    	
+    	Έτσι από θεώρημα ολοκλ. υπολοίπων έχουμε:
+    	\[
+    	I = 2\pi i \left(
+    	\Res \left(\frac{e^z}{\cosh z},\frac{\pi i}{2}\right)
+    	+\Res \left( \frac{e^z}{\cosh z}, \frac{-\pi i}{2} \right)
+    	\right)
+    	\]
+    	
+    	\item Αλλά το \( z_1 = \frac{\pi i}{2} \) είναι πόλος 1\textsuperscript{ης} τάξης,
+    	διότι
+    	\begin{itemize}
+    		\item μηδενίζει μια φορά τον παρονομαστή, αφού
+    		\begin{align*}
+    			A(z) = \cosh z, &\quad \cosh\left(\frac{\pi i}{2}\right) = 0
+    			\\
+    			A'(z) = \sinh z, &\quad \sinh\left(\frac{\pi i}{2}\right) \neq 0
+    		\end{align*}
+    		(τα μηδενικά του \( \sinh z \) είναι στα \( k\pi i \))
+    		
+    		και προφανώς δε μηδενίζει καθόλου τον αριθμητή, αφού
+    		\[
+    		e^z \neq 0 \quad \forall z
+    		\] άρα και \[
+    		e^{\sfrac{\pi i}{2} } \neq 0
+    		\]
+    	\end{itemize}
+    	\item Ακριβώς με την ίδια λογική, το \( z_1 = -\frac{\pi i}{2} \) είναι πόλος
+    	1\textsuperscript{ης} τάξης.
+    	
+    	\item \begin{align*}
+    		\Res\left(\frac{e^z}{\cosh z},\frac{\pi}{2}\right)
+    		&= \lim_{z\to\frac{\pi i}{2}} \left(
+    		\left(z-\frac{\pi i}{2}\right)\frac{e^z}{\cosh z}
+    		\right) \overset{\text{L' Hospital}}{=}
+    		\\ &=
+    		\lim_{z\to \frac{\pi i}{2}} 
+    		\frac{e^z\left(z-\frac{\pi i}{2}\right)+e^z}{\sinh z}
+    		\\ &= \frac{e^{z}}{\sinh\left(\frac{\pi i}{2}\right)}
+    	\end{align*}
+    	
+    	\begin{itemize}
+    		\item \begin{align*}
+    			\Res\left(\frac{e^z}{\cosh z},\frac{-\pi i}{2}\right)
+    			&= \lim_{z\to \frac{-\pi i}{2}} \left(z+\frac{\pi i }{2}\right)
+    			\frac{e^z}{\cosh z}
+    			\\ &= \frac{e^{\sfrac{-\pi i}{2} }}{\sinh\left(\sfrac{\pi i}{2} \right)}
+    		\end{align*}
+    	\end{itemize}
+    	
+    	\item Τελικά
+    	\[
+    	I = 2\pi i \left(
+    	\frac{e^{\sfrac{\pi i}{2} }}{\sinh\left(\frac{\pi i}{2}\right)} +
+    	\frac{e^{\sfrac{-\pi i}{2} }}{\sinh\left(\frac{-\pi i}{2}\right)}
+    	\right)
+    	\]
+    \end{enumgreekparen}
 
 
 	\newpage
