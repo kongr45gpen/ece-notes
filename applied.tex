@@ -2196,17 +2196,101 @@
        	\]
     \end{theorem*}
     
-    %TODO Lesson 13/12/2016
-    
-    \subsection{...}
-    \[
-    \cdots
-    \]
+    \paragraph{Άσκηση}
+    Να ταξινομηθούν όλα τα ανώμαλα σημεία των συναρτήσεων
+    \begin{enumlatin}
+    	\item \( \displaystyle f(z) = \frac{1-\cos(z)}{z^2} \)
+    	\item \( \displaystyle g(z) = \frac{e^z}{z^3} \)
+    	\item \( \displaystyle h(z) = 
+    	\frac{\cos\left(\sfrac{1}{2} \right)}{z} \)
+    	\item \( \displaystyle k(z) = \frac{z}{e^z-1} \)
+    \end{enumlatin}
+    και να υπολογιστούν τα ολοκληρωτικά υπόλοιπα στα σημεία αυτά.
     
     \begin{enumlatin}
-    	\item \( \cdots \)
-    	\item \( \cdots \)
-    	\item \( \cdots \)
+    	\item
+    	Ανώμαλα σημεία της \( f \) (σημεία όπου η \( f \)) "πιθανώς" δεν ορίζεται ή
+    	αν ορίζεται δεν είναι μιγαδικά παραγωγίσιμη):
+    	
+    	"Το μοναδικό ανώμαλο σημείο είναι αυτό που μηδενίζει τον παρονομαστή, δηλαδή
+    	το \( \boxed{z_0=0} \)."
+    	
+    	Προφανώς το \( z_0 = 0 \) μηδενίζει τον παρονομαστή της \( f \) δύο φορές, δηλαδή
+    	το \( z_0 = 0 \) είναι διπλή ρίζα του παρονομαστή.
+    	
+    	\textbf{Έστω}
+    	\begin{align*}
+    		a(z) &= \text{"αριθμητής"} = 1-\cos(z),\quad a(0) = 1-\cos(0)=0 \\
+    		a'(z) &= \sin(z),\quad a'(0) = 0 \\
+    		a''(z) &= \cos(z),\quad a''(0) = 1 \neq 0
+    	\end{align*}
+    	
+    	Άρα το \( z_0 = 0 \) είναι \textbf{διπλή} ρίζα του αριθμητή.
+    	
+    	Επομένως, το \( z_0 = 0 \) είναι "απαλείψιμη ανωμαλία", διότι:
+    	\[
+    	\text{πολλαπλότητα ρίζας $z_0=0$ του αριθμητή $=2$ } \geq
+    	\text{ πολλαπλότητα ρίζας $z_0=0$ του παρονομαστή $=2$}
+    	\]
+    	
+    	Αφού το \( z_0 = 0 \) είναι απαλείψιμη ανωμαλία:
+    	\[
+    	\boxed{\Res(f,0) = 0}
+    	\]
+    	\item
+    	Το \( z_0 = 0 \) είναι το μοναδικό ανώμαλο σημείο της \( g \). Προφανώς η ρίζα
+    	του παρονομαστή είναι πολλαπλότητας 3. Το \( z_0 = 0 \) δεν μηδενίζει τον αριθμητή,
+    	διότι \( e^{0^2} = 1 \neq 0 \), άρα η πολλαπλότητα του \( z_0 = 0 \) για τον
+    	αριθμητή είναι ίση με 0 και έτσι το \( z_0 = 0 \) είναι \textbf{πόλος}, τάξης:
+    	\[
+    	\left.
+    	\begin{array}{l}
+    	\text{πολλαπλότητα ρίζας $z_0=0$ του παρονομαστή} \\
+    	\qquad \mathlarger{-} \\
+    	\text{πολλαπλότητα ρίζας $z_0=0$ του αριθμητή}
+    	\end{array} \right\rbrace 3 - 0 = 3
+    	\]
+    	
+    	Τότε:
+    	\begin{align*}
+    		\Res(g,0) &= \frac{1}{2!} \lim_{z\to 0}
+    		\left([z-0]^3\frac{e^{z^2}}{z^3}\right)''
+    		\\ &= \frac{1}{2} \lim_{z\to 0} \lim_{z\to 0}\left[\left(e^{z^2}\right)''\right]
+    		\\ &= \frac{1}{2} \lim_{z\to 0} \left(2ze^{z^2}\right)'
+    		\\ &= \frac{1}{2} \lim_{z\to 0} \left(2e^{z^2}+4z^2e^{z^2}\right)
+    		\\ &= \frac{1}{2} \cdot 2 = 1
+    	\end{align*}
+    	\item Το μοναδικό ανώμαλο σημείο είναι το \( z_0 = 0 \)
+    	\begin{attnbox}{Σημείωση}
+    		Αν \( z_0 \) είναι \textbf{πόλος} για συνάρτηση \( f \) και αν η \( g \)
+    		είναι ακεραία, τότε το \( z_0 \) είναι ουσιώδης ανωμαλία για την \( g\cdot f \).
+    	\end{attnbox}
+    	Έτσι, με βάση τη σημείωση αυτή το \( z_0 \) είναι ουσιώδης ανωμαλία.
+    	
+    	\textbf{Άρα}:
+    	\[
+    	\Res(h,0) \overset{\text{ορισμός}}{=} a_1
+    	\text{ (ο οποίος είναι συντελεστής του 
+    		$\frac{1}{z-z_0} \overset{z_0=0}{=} \frac{1}{2}$
+    		), στο ανάπτυγμα Laurent της $h$ με κέντρο το $z_0 = 0$.}
+    	\]
+    	
+    	\textbf{Επομένως}:
+    	\begin{align*}
+    	\cos(z) &\overset{\mathclap{\text{McLaurin}}}{=} 
+    	1 - \frac{z^2}{2} + \frac{z^4}{4!} - \dots \quad z \in \mathbb C \\
+    	\cos\left(\frac{1}{z}\right) &= 1-\frac{1}{2z^2} + \frac{1}{24z^4} - \dots
+    	\quad z \ in \mathbb C  - \left\lbrace 0 \right\rbrace \\
+    	\frac{1}{z} \cdot \cos \left(\frac{1}{z}\right) &=
+    	\frac{1}{z} - \frac{1}{2z^3} + \frac{1}{24z^3} - \dots \quad
+    	z \in \mathbb C - \left\lbrace 0 \right\rbrace
+    	\end{align*}
+    	
+    	\textbf{Έτσι}:
+    	\[
+    	\Res(h,0) = \text{"συντελεστής του $\frac{1}{z}$ στο ανάπτυγμα Laurent
+    		της $h$"} = 1.
+    	\]
     	\item \( \displaystyle k(z) = \frac{z}{e^z-1} \)
     	
     	
