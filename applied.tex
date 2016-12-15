@@ -2242,7 +2242,7 @@
     \paragraph{(2)}
     Υπολογίστε το \( \displaystyle \oint_{|z| = 3} \frac{e^z}{\cosh z} \dif z \)
     
-    \begin{wrapfigure}{lh}{.5\textwidth}
+   % \begin{wrapfigure}{h}{.5\textwidth}
     	\begin{infobox}{}
     		\begin{enumgreekparen}
     			\item τύπος (θεώρ. ολοκλ. υπολοίπων)
@@ -2251,7 +2251,7 @@
     			\item υπολ. \( \Res(f,z_j),\ z_j \) ανώμαλα
     		\end{enumgreekparen}
     	\end{infobox}
-    \end{wrapfigure}
+    %\end{wrapfigure}
     
     \begin{enumgreekparen}
     \item 	Από θεωρία έχω:
@@ -2335,6 +2335,220 @@
     	\right)
     	\]
     \end{enumgreekparen}
+    
+    \subsection{Εφαρμογές ολοκλ. υπολοίπων}
+    \subsubsection[Λήμμα Jordan]{\attnboxed{\text{Λήμμα Jordan}}}
+    Έστω \( f=f(z) \) είναι ολόμορφη στο διάτρητο δίσκο
+    \[
+    0 < |z-z_0| < R,
+    \]
+    το \( z_0 \) είναι \textbf{ΑΠΛΟΣ ΠΟΛΟΣ} της \( f \)
+    (δηλ. πόλος 1\textsuperscript{ης} τάξης), και έστω \( \gamma_\rho \) είναι
+    το τόξο \( \gamma_\rho := \left\lbrace z:z=z_0+\rho e^{i\theta} \right\rbrace \)
+    και \( \rho < R \). Τότε:
+    \[
+    \lim_{\rho\to 0^+} \int_{\gamma_\rho} f(z) \dif z
+    = i\left(\theta_1 - \theta_0\right)\Res(f,z_0)
+    \]
+    
+    \paragraph{Απόδ.}
+    \[
+    \int_{\gamma_\rho} f(z)\dif z = 
+    \int_{\gamma_\rho} \left(\frac{a_{-1}}{z-z_0} + h(z)\right) \dif z,\text{ όπου}
+    \]
+    \( h=h(z) \) ολόμορφη στο \( z_0 \), διότι το \( z_0 \) είναι \underline{απλός πόλος}
+    της \( f \).
+    
+    \begin{align*}
+    	I_0 &= a_{-1} \int_{\gamma_\rho} \frac{1}{z-z_0}\dif z + \int_{\gamma_\rho}
+    	h(z)\dif z \\ &= a_{-1} \int_{\theta_0}^{\theta_1} \frac{1}{\rho e^{i\theta}}
+    	i\rho e^{i\theta}\dif \theta + \int_{\gamma_\rho} h(z) \dif z \\
+    	I_0(\rho) &= \Res(f,z_0) \cdot i (\theta_1 - \theta_0) + \int_{\gamma_\rho} h(z)
+    	\dif z
+    \end{align*}    
+    
+    Παίρνοντας όριο, \( \rho\to 0^+ \), έχουμε:
+    \[
+    \lim_{\rho\to 0^+} \int_{\gamma_rho} f(z)\dif z = i(\theta_1-\theta_0)\Res(f,z_0)
+    + \lim_{\rho\to 0^+} \int_{\gamma_\rho} h(z)\dif z
+    \]
+    
+    Αρκεί ΝΔΟ \( \displaystyle \lim_{\rho\to 0^+} \int_{\gamma_\rho} h(z)\dif z = 0 \).
+    
+    Αλλά \( h \) ολόμορφη στο \( z_0 \implies h \) συνεχής στο \( z_0 \implies h \)
+    φραγμένη σε μία περιοχή του \( z_0 \). Έτσι:
+    
+    \begin{align*}
+    	\left| \int_{\gamma_\rho} \right|
+    	&\leq \int_{\gamma_\rho} \left|h(z)\right|\left|\dif z\right| 
+    	\leq M \cdot \int_{\gamma_\rho} \left|\dif z\right|
+    	\\ &= (\theta_1 - \theta_0) \rho M \to 0,
+    \end{align*}
+    όπου \( M \) είναι άνω φράγμα της \( h \) σε μια περιοχή του \( z_0 \).
+    
+    \paragraph{}
+    \begin{enumgreekparen}
+    	\item Υπολογισμός περίπλοκων ολοκληρωμάτων της μορφής
+    	\[
+    	\lim_{R\to +\infty} \int_{-R}^{R} f(x)\dif x
+    	\]
+    	\paragraph{}
+    	\begin{theorem*}{}
+    		Έστω \( f=f(z) \) ολόμορφη στο \( \mathbb C  \) εκτός από πεπερασμένου πλήθους
+    		απομονωμένα ανώμαλα σημεία, και η \( f \) τέτοια ώστε \[
+    		\lim_{z\to \infty} zf(z) = 0.
+    		\]
+    		
+    		Υποθέτουμε ότι η \( f \) έχει:
+    		\begin{itemize}
+    			\item ανώμαλα σημεία \( z_1,\dots,z_n \) ΣΤΟ ΑΝΩ ΗΜΙΕΠΙΠΕΔΟ \( \Im(z)>0 \)
+    			\item ανώμαλα σημεία \( w_1,\dots,w_k \) ΣΤΟ ΚΑΤΩ ΗΜΙΕΠΙΠΕΔΟ \( \Im(z)<0 \)
+    			\item \underline{ΠΟΛΟΥΣ 1\textsuperscript{ης} τάξης μόνον}
+    			\( \zeta_1,\dots,\zeta_r \) πάνω στον ΠΡΑΓΜΑΤΙΚΟ ΑΞΟΝΑ.
+    		\end{itemize}
+    		
+    		Τότε:
+    		\[
+    		\lim_{R\to +\infty} \int_{-R}^{R} f(x) \dif x = 2\pi i
+    		\sum_{j=1}^n \overbrace{\Res(f,z_j)}^{\mathclap{\text{άνω ημιεπίπεδο}}} + \pi i
+    		\sum_{\lambda=1}^r
+    		\overbrace{\Res(f,z_\lambda)}^{%
+    			\mathclap{\text{απλοί πόλοι πάνω σε πραγμ. άξονα}}}
+    		\]
+    		
+    		ή \textbf{ισοδύναμα}:
+    		\[
+    		\lim_{R\to +\infty} \int_{-R}^{R} f(x)\dif x =
+    		-2\pi i \sum_{\mu = 1}^k
+    		\overbrace{\Res(f,w_\mu)}^{\mathclap{\text{κάτω ημιεπίπεδο}}}
+    		-\pi i \sum_{\lambda = 1}^{r}
+    		\overbrace{\Res(f,\zeta_\lambda)}^{%
+    			\mathclap{\text{απλοί πόλοι πάνω σε πραγμ. άξονα}}}
+    		\]
+    	\end{theorem*}
+     \end{enumgreekparen}
+     
+    \subsubsection{Ασκήσεις}
+    \paragraph{Άσκ.} Υπολογίστε το \( 
+    \displaystyle 
+    \underbrace{\lim_{R\to + \infty} \int_{-R}^{R}}_{%
+    	\mathclap{\text{τέτοια ολοκληρώματα καλούνται καταχρηστικά ή κατά Cauchy}}}
+    \frac{\dif x}{(x+1)(x^2+4x+5)}
+     \)
+     \subparagraph{}
+    \begin{attnbox}{}
+    	Το \( \displaystyle \int_{-\infty}^{+\infty} x\dif x \) δεν υπάρχει, επειδή
+    	\[
+    	 \int_{-\infty}^{+\infty} x\dif x = \lim_{N,M\to 0} \int_{N}^{M} x\dif x
+    	\] που εξαρτάται από την διαδρομή που ακολουθούν τα \( M,N \).
+    	
+    	\begin{tikzpicture}
+    	    \fill[green!30] (-2,0) -- (-2,-2) -- (2,2) -- (2,0);
+    	
+    		\draw (-2,0) -- (2,0);
+    		\draw (0,-2) -- (0,2);
+    		
+    		\draw[very thick,blue] (-2,-2) -- (2,2);
+    	\end{tikzpicture}
+    \end{attnbox}
+    \begin{enumgreekparen}
+    	\item Θεωρώ \( f(z) = \frac{1}{(z+1)(z^2+4z+5)^2} \) 
+    	\item Ελέγχω αν ισχύει η συνθήκη
+    	\[
+    	\lim_{z\to \infty} zf(z) = 0
+    	\]
+    	
+    	\begin{align*}
+    	\lim_{z\to \infty} \frac{z}{(z+1)(z^2+4z+5)^2} &=
+    	\lim_{z\to \infty} \frac{z}{z^5} \cdot \frac{1}{\left(1+\frac{1}{z}\right)
+    		\left(1+\frac{4}{z}+\frac{5}{z^2}\right)^2
+    		} \\ &=
+    	\lim_{z\to \infty} \frac{1}{z^4} \cdot \lim_{z\to \infty}
+    	\frac{1}{\left(1+\frac{1}{z}\right)\left(1+\frac{4}{z}+\frac{5}{z^2}\right)^2}
+    	= 0 \cdot 1 = 0
+    	\end{align*}
+    	\item Υπολογίζω \textbf{όλα} τα ανώμαλα σημεία της \( f \) και τα ταξινομώ:
+    	\begin{align*}
+    		& (z+1)(z^2+4z+5)^2 = 0 \iff \\
+    		\iff & z_0 = -1 \text{ (απλή ρίζα) \quad και } z_{1,2} = \frac{-4\pm 2i}{2}
+    		\\ \iff &
+    		z_0 = -1 \text{ (απλή) \quad και } z_{1,2} = -2 \pm i \text{ (διπλές ρίζες)}
+    	\end{align*}
+    	
+    	\textbf{Έτσι:}
+    	\begin{align*}
+    		z_0 = -1 \quad& \text{(απλός πόλος στον πραγματικό άξονα)} \\
+    		z_1 = -2+i \quad& \text{(διπλός πόλος στο άνω ημιεπίπεδο)} \\
+    		z_2 = -2-i \quad& \text{(διπλός πόλος στο κάτω ημιεπίπεδο)}
+    	\end{align*}
+    	
+    	\item Τύπος:
+    	\begin{align*}
+    		\lim_{R\to +\infty} \int_{-R}^{R} f(x) \dif x &=
+    		+\overbrace{2\pi i \cdot \Res (f,-2\!+\!i) }^{%
+    			\mathclap{\text{ανώμαλο στο άνω ημιεπίπεδο}}}
+    		+ \pi i \Res(f,-1)
+    	\end{align*}
+    	
+    	\item Υπολογισμός ολοκλ. υπολοίπου
+    	\begin{itemize}
+    		\item \( \displaystyle \Res(f,\ -1) = \lim_{z\to -1}(z+1)
+    		\frac{1}{(z+1)(z^2+4z+5)^2} = \frac{1}{4}. 
+    		 \)
+    		\item \( \displaystyle \Res(f,z_1) =
+    		\lim_{z\to z_1} \left((z-z_1)^2 \frac{1}{(z+1)(z-z_1^2)(z-z_2)^2}\right)'
+    		 \) \\
+    		όπου \( z_1 =-2+i,\ z_2=-2-i \)
+    		\begin{align*}
+    			&= \lim_{z\to z_1} \left(\frac{1}{(z+1)(z-z_2)^2}\right)'
+    			= - \lim_{z\to z_1} \frac{(z-z_2)^2+2(z+1)(z-z_2)}{(z+1)^2(z-z_2)^4}
+    			\\ &= -\frac{(z_1-z_2)+2(z_1+1)}{(z_1+1)^2(z_1-z_2)^3}
+    			\intertext{$\mathsmaller{z_1-z_2=\cancel{-2}+i+\cancel{2}+i}$}
+    			&= -\frac{2i+2(i-1)}{(i-1)^2(2i)^3} = \frac{4i-2}{+2\cdot 8}
+    			\\ &= \boxed{\frac{2i-1}{8}}
+    		\end{align*}
+    	\end{itemize}
+    	
+    	\item Τελικό αποτέλεσμα
+    	\begin{align*}
+    		\lim_{R\to+\infty} \int_{-R}^{R} \frac{\dif x}{(x+1)(x^2+4x+5)^2}
+    		&= 2\pi i \cdot \frac{2i-1}{8} + \pi i \cdot \frac{1}{4}
+    		\\ &= -\frac{\pi}{2} - \cancel{\frac{\pi i}{4}} + \cancel{\frac{\pi i}{4}}
+    		= - \frac{\pi}{2}
+    	\end{align*}
+    \end{enumgreekparen}
+    
+    \paragraph{(2)}
+    Υπολογίστε το \( \displaystyle \oint_\gamma \frac{1}{z\left(z-z_1\right)^2}
+    \dif z \), όπου \( \gamma \) είναι το τετράγωνο:
+    %TODO Atreas Graph 27
+    με θετική φορά.
+    \subparagraph{}
+    Εφαρμόζω θεώρ. ολοκλ. υπολοίπων
+    \begin{align*}
+    	I &= 2\pi i \cdot \Res\left(f,\begin{array}{l}
+    	\text{στα ανώμαλα σημεία} \\ \text{\textbf{ΕΝΤΟΣ} τετραγώνου}
+    	\end{array}\right) \mathlarger{\mathlarger{\mathlarger{\mathlarger{+}}}
+    		i\frac{\pi}{2}
+    		\Res(f,\!\!\overbrace{0}^{\mathclap{\text{πάνω στην καμπύλη}}}\!\!)
+    		}
+    \end{align*}
+    
+    \begin{itemize}
+    	\item \( \displaystyle
+    	\Res(f,0) \overset{z=0 \text{ απλός}}{\underset{\text{πόλος}}{=}}
+    	\lim_{z\to 0} z\frac{1}{z(z-z_1)^2} = \frac{1}{z_1^2}
+    	 \)
+    	\item \( \displaystyle
+    	\Res(f,z_1) \overset{\text{δεύτερης}}{\underset{\text{πόλος}}{=}}
+    	\lim_{z\to z_1} \left(
+    	(z-z_1)^2\frac{1}{z(z-z_1)^2} = \lim_{z\to z_1} -\frac{1}{z^2}
+    	= -\frac{1}{\left(\frac{1}{2}+i\frac{1}{2}\right)}
+    	\right)
+    	 \)
+    \end{itemize}
+    
+    Αντικαθιστώντας παραπάνω προκύπτει το ζητούμενο αποτέλεσμα.
 
 
 	\newpage
