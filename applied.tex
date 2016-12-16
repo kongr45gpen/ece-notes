@@ -4459,4 +4459,99 @@
     Αυτά που μπαίνουν στις εξετάσεις είναι: Να βρεθεί η συζυγής αρμονική, και να λυθεί η
     εξίσωση Laplace, κάτι που θα μάθουμε τις επόμενες Παρασκευές.
     
+    \subsection{Αρμονικές στην εξίσωση Laplace}
+    \paragraph{Παρ.} Δίνεται το χωρίο \( D = \left\lbrace z: a<\Re(z)<b \right\rbrace \)
+    
+    Να βρεθεί \( u(x,y) \) τ.ώ \( \begin{array}{ll}
+    \forall (x,y) \in D &: u_{xx} + u_{yy} = 0 \\
+    \forall y &: u(a,y) = u_1 \\
+    \forall y &: u(b,y) = u_2
+    \end{array} \)
+    \subparagraph{Λύση}
+    %TODO Kehagias Graph 24
+    
+    Λόγω συμμετρίας υποθέτω ότι \( u(x,y) = u(x) \) οπότε \( 0 = u_{xx}+u_{yy} = u_{xx}
+    \implies u_x = k \implies u = kx+\lambda
+     \)
+     
+    Χρησιμοποιώντας τις οριακές συνθήκες:
+    \[
+    \left. \begin{array}{l}
+    u_1 = u(a) = ka+\lambda \\
+    u_1 = u(b) = kb+\lambda
+    \end{array} \right| \implies
+    \boxed{u(x,y) = \frac{u_1-u_2}{a-b}x + \underset{u_1}{?} }
+    \]
+    
+    \begin{gather*}
+    	u = kx+\lambda \\ v= 0 \\ u_y=-v_x\implies 0 =-v_x\implies v=c(y) \\
+    	\implies v_y = \od{c}{y} = u_x= k \implies v(y) = ky+c' \\ \implies f(x,y)
+    	= u+iv = kx+\lambda +i(ky+c') \\ \implies f(z) = kz+c''
+    \end{gather*}
+    
+    \paragraph{Παρ.}
+    %TODO Kehagias Graph 25
+    
+    \begin{gather*}
+    	\hat u(,\rho,\theta) = u(\theta) \\
+    	D = \left\lbrace (\rho,\theta): \theta_1 < \theta < \theta_2 \right\rbrace \\
+    	D = \left\lbrace z: \theta_1 < \arg(z) < \theta_2 \right\rbrace \\
+    	u(z) = u_1 \text{ όταν } \arg(z) = \theta_1 \\
+    	u(z) = u_2 \text{ όταν } \arg(z) = \theta_2
+    \end{gather*}
+    
+    Παρατηρώ ότι \( \arg(z) = \Im\left(\mathrm{Log}(z)\right) \)
+    
+    Άρα με \( f(z) = \mathrm{Log}(z) \), η \( \arg(z) \) είναι αρμονική όπως και η
+    \( u(z) = k\cdot\arg(z) + \lambda \), ισοδύναμα
+    \( \boxed{u(x,y) = k\cdot\arctan(y,x) + \lambda} \)
+    
+    Σημείωση: \( \arctan(y,x) = \arg(x+iy) \)
+    
+    \( \boxed{u(x,y) = \frac{u_1-u_2}{\theta_1-\theta_2} \arctan(y,x) + \lambda} \)
+    
+    \paragraph{Παρ.}
+    %TODO Kehagias Graph 26
+    \( u(x,y) = g(r) \)
+    
+    Παρατηρώ ότι \( 
+    f(z) = \underbrace{\mathrm{Log}(z)}_{\mathclap{\text{αναλυτική}}} = 
+    \underbrace{\ln r}_{\mathclap{\text{αρμονική}}} + i\arg(z)
+     \)
+     
+    Άρα υποθέτω λύση της μορφής:
+    \begin{align*}
+    	u(x,y) &= k\ln r + \lambda \implies \dots \\
+    	u(x,y) &= \frac{u_1-u_2}{R_1-R_2} \ln(r) + c
+    \end{align*}
+    
+    \paragraph{Παρ.}
+    %TODO Kehagias Graph 27
+    
+    \begin{gather*}
+    	u(x,y) = \frac{u_2-u_1}{\theta_2-\theta_1}\arctan(y,x) + u_1
+        = \boxed{\frac{1}{\pi} \arctan(y,x) = u(x,y)} \\
+        x<0: u(x,0) = \frac{1}{\pi} \arctan(0,x) = \frac{\pi}{\pi} = 1 \\
+        x>0: u(x,0) = \frac{1}{\pi} \arctan(0,x) = \frac{0}{\pi} = 0
+    \end{gather*}
+    
+    \paragraph{Παρ.}
+    %TODO Kehagias Graph 28
+    \( u(x,y) = \frac{1}{\pi} \arctan(y,x-x_0) \)
+    
+    %TODO Kehagias Graph 29
+    \[
+    u(x,0) = \begin{cases}
+    u_0 &\quad x<x_1 \\
+    u_1 &\quad x_1<x<x_2 \\
+    u_2 &\quad x_2<x<x_3 \\
+    \vdots & \quad \vdots \\
+    u_n &\quad x_N < x
+    \end{cases}
+    \]
+    
+    \[
+    u(x,y) = \frac{1}{\pi} \sum_{n=1}^{N} \left(u_n-u_{n-1}\right) \arctan(y,x_n-x)
+    + u_0
+    \]
 \end{document}
