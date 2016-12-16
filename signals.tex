@@ -718,5 +718,56 @@
     \( \pm 3\mathrm{dB} \) σημαίνει (υπο)διπλασιασμό της ισχύος, ή
     πολλαπλασιασμό/διαίρεση του πλάτους με \( \sqrt{2} \).
    
+   
+   \section{Ασκήσεις}
+   \paragraph{Άσκηση} \( x(t) = 4000\sinc(4000t) \)
+   \begin{enumgreekparen}
+   	\item \( X(f) = ? \)
+   	\item Nyquist Συχνότητα για τα \( x(t) \) και \( x^2(t) \)
+   \end{enumgreekparen}
+   
+   \begin{enumgreekparen}
+   	\item
+   	%TODO Rekanos Graph 57
+    \begin{gather*}
+    	T\sinc(Tt) \xrightarrow{\text{FT}} \mathrm W_T (f) \\
+    	x(t) = 4000\sinc (4000t) \xrightarrow[f]{\text{FT}}
+    	W_{4000}(f) = %TODO Rekanos Graph 58
+    \end{gather*}
+    \item Nyquist συχνότητα για το \( x(t) \) είναι \( 2\times 2000\ \mathrm{Hz}
+    = 4000\ \mathrm{Hz}
+     \)
+     
+     \[
+     \mathrm{FT}\left\lbrace x^2(t) \right\rbrace
+     = \mathrm{FT}\left\lbrace x(t)x(t) \right\rbrace
+     = X(f) * X(f)
+     \]
+     
+     %TODO Rekanos Graph 59
+     
+     Για το \( x^2(t) \) η Nyquist είναι \( 2\cdot 4\ \mathrm{kHz} = 8\ \mathrm{kHz} \)
+   \end{enumgreekparen}
+
+   \paragraph{Άσκηση}
+   %TODO Rekanos Graph 60
+   \begin{align}
+   	\int a(x+r) \dif t &= r \xRightarrow{\sfrac{\dif}{\dif t} } \od{r}{t} = ax+ar
+   	 \label{eq:ex21}
+   	\\ r+b\int r\dif t &= y \implies \od{r}{t} + br = \od{y}{t} \label{eq:ex22}
+   	\end{align}
+   	\begin{align*}
+   	\eqref{eq:ex21} - \eqref{eq:ex22} \implies r(a+b) &= \od{y}{t} - ax \\
+   	r &= \frac{1}{a+b} \left(\od{y}{t} - ax\right) \\
+   	\frac{\od[2]{y}{t}-a\od{x}{t}}{a+b} + \frac{-a}{a+b} \left(
+   	\od{y}{t}-ax
+   	\right) = ax \\
+   	\od[2]{y}{t} - a\od{y}{t} &= a\od{x}{t} + abx
+   	\implies \\ \implies s^2Y(s) - asY(s) &= asX(s) + abX(s) \\
+   	\implies \frac{Y(s)}{X(s)} &= H(s) = \frac{a(s+b)}{s(s-a)}
+   \end{align*}
+   
+   Αν \( \Re\left\lbrace a \right\rbrace < 0 \), τότε 
+   \( \displaystyle H(\omega ) = \frac{a(j\omega +b)}{j\omega (j\omega -a)} \)
 
 \end{document}
