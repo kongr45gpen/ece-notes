@@ -1,0 +1,21 @@
+\begin{tikzpicture}
+\draw[->] (-3,0) -- (3,0) node[right] {$\omega$};
+\draw[->] (0,-0.7) -- (0,2.5) node[right] {$H(\omega)$};
+
+\draw[dashed] (0.79,0) node[below] {$\omega_1$} -- ++(0,1.83) -- ++(-0.79,0);
+
+\draw[very thick, blue] plot [smooth] coordinates {
+(-2,0) (-1.5,1.7) (1.5,1.7) (2,0)};
+
+\begin{scope}[yshift=-4cm]
+\draw[->] (-3,0) -- (3,0) node[right] {$\omega$};
+\draw[->] (0,-0.7) -- (0,2.5) node[right] {$\mathrm{dB}$};
+
+\draw (0,0) node[below left] {$0$};
+\draw[dashed] (.79,0) node[below] {$50$Hz} -- ++(0,1) -- (0,1) node[left] {$3$};
+
+\draw[very thick,samples=100,yscale=1.8,domain=-3:2.96,smooth,variable=\x,blue]
+        plot ({\x},{exp(-\x*\x)});
+\end{scope}
+
+\end{tikzpicture}

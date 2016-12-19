@@ -47,6 +47,11 @@
     }
 }
 
+\pgfmathdeclarefunction{sinc}{1}{%
+	\pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
+	\ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%
+}
+
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
 \usepackage[no-math]{fontspec}
@@ -114,8 +119,8 @@
 \renewcommand{\arg}{\mathrm{Arg}\, }
 \renewcommand{\Re}{\mathrm{Re}}
 \renewcommand{\Im}{\mathrm{Im}}
-\newcommand{\sinc}{\;\mathrm{sinc}\!}
-\newcommand{\Res}{\mathrm{Res}}
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\Res}{Res}
 
 \newif\ifhidetikz
 \hidetikzfalse

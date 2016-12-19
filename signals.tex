@@ -94,12 +94,7 @@
         \draw (5,0) -- (9,0);
         \draw[->] (7,-0.2) -- (7,2);
         
-        \pgfmathdeclarefunction{sinc}{1}{%
-        	\pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
-        	\ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%
-        }
-        
-        \draw[very thick, xshift=7cm,xscale=0.5,samples=200,domain=-4:4,smooth,variable=\x,blue] 
+        \draw[very thick, xshift=7cm,xscale=0.5,samples=50,domain=-4:4,smooth,variable=\x,blue] 
         plot ({\x},{sinc(pi*\x)});
         
         \draw[thick,green!60!black,<->] (6.5,-0.1) -- ++(1,0) node[below,midway]
@@ -437,13 +432,7 @@
     W_F(f) \xrightarrow{\text{IFT}} h(t) = F\sinc (Ft) = F \frac{\sinc(\pi Ft)}{\pi Ft}
     \]
     
-    \begin{tikzpicture}[scale=1.2]
-    %TODO: Global sinc declaration
-    \pgfmathdeclarefunction{sinc}{1}{%
-    	\pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
-    	\ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%
-    }
-    
+    \begin{tikzpicture}[scale=1.2]   
     \filldraw[xscale=0.5,samples=200,domain=-5:5,smooth,variable=\x,blue,
     fill=blue!20] 
     plot ({\x},{abs(sinc(pi*\x))});
@@ -467,8 +456,24 @@
     
     Άσκηση για το σπίτι: Η \( h(t) \) είναι απολύτως ολοκληρώσιμη;
     
-    \paragraph{}
-    %TODO Rekanos Graph 55
+    \subparagraph{Απάντηση}
+    \begin{tikzpicture}[baseline=(current bounding box.north)]
+    
+    \filldraw[xscale=0.8,samples=200,domain=-3:3,thick,variable=\x,blue,
+    fill=blue!20] 
+    plot ({\x},{  abs(sinc(pi*\x))  });
+    \filldraw[xscale=0.8,samples=25,domain=-1:1,smooth,thick,variable=\x,blue,
+    fill=blue!30] 
+    plot ({\x},{  abs(sinc(pi*\x))  });
+    
+    \draw (0,-0.5) -- (0,1.5) ;
+    \draw[->] (-2.5,0) -- (2.5,0) node[below,right] {$t$};
+    
+    
+    \draw (0.8,0) node[below] {$k$};
+    \draw (1.6,0) node[below] {$k+1$};
+    \draw (0,0.5) node[right] {$\Xi$};
+    \end{tikzpicture}
     
     \begin{gather*}
     \int_0^\pi \sin(t) \dif t = 2
@@ -714,7 +719,29 @@
     
     Παρατηρούμε ότι τα dB πλάτους και dB ισχύος είναι το ίδιο!
     
-    %TODO Rekanos Graph 56
+    \begin{tikzpicture}
+    \draw[->] (-3,0) -- (3,0) node[right] {$\omega$};
+    \draw[->] (0,-0.7) -- (0,2.5) node[right] {$H(\omega)$};
+    
+    \draw[dashed] (0.79,0) node[below] {$\omega_1$} -- ++(0,1.83) -- ++(-0.79,0);
+    
+    \draw[very thick, blue] plot [smooth] coordinates {
+    	(-2,0) (-1.5,1.7) (1.5,1.7) (2,0)};
+    
+    \begin{scope}[yshift=-4cm]
+    \draw[->] (-3,0) -- (3,0) node[right] {$\omega$};
+    \draw[->] (0,-0.7) -- (0,2.5) node[right] {$\mathrm{dB}$};
+    
+    \draw (0,0) node[below left] {$0$};
+    \draw[dashed] (.79,0) node[below] {$50$Hz} -- ++(0,1) -- (0,1) node[left] {$3$};
+    
+    \draw[very thick,samples=100,yscale=1.8,domain=-3:2.96,smooth,variable=\x,blue]
+    plot ({\x},{exp(-\x*\x)});
+    \end{scope}
+    
+    \end{tikzpicture}
+    
+    
     \( \pm 3\mathrm{dB} \) σημαίνει (υπο)διπλασιασμό της ισχύος, ή
     πολλαπλασιασμό/διαίρεση του πλάτους με \( \sqrt{2} \).
    
@@ -728,11 +755,36 @@
    
    \begin{enumgreekparen}
    	\item
-   	%TODO Rekanos Graph 57
+   	\begin{tikzpicture}[baseline=(current bounding box.north)]
+   	\draw[->] (-3,0) -- (3,0) node[below right] {$f (\mathrm{Hz})$};
+   	\draw[->] (0,-0.7) -- (0,2);
+   	
+   	\draw[very thick, blue] (-2,0) -- (-2,1.2) -- (2,1.2) -- (2,0);
+   	\draw (-2,0) node[below] {$\sfrac{-T}{2} $};
+   	\draw (2,0) node[below] {$\sfrac{T}{2} $};
+   	\draw (0,1.2) node[above right] {$1$};
+   	
+   	\draw[->] (4,0.5) -- ++(2,0)
+   	node[above,midway] {FT} node[below,midway] {$f$};
+   	\draw (7,0.5) node {$\mathlarger{T\sinc(Tf)}$};
+   	
+   	\draw[->] (3.5,1) node[left] {$\mathrm W_T(t)$} to[bend left=45] (6.5,1);
+   	
+   	\end{tikzpicture}
+   	
     \begin{gather*}
     	T\sinc(Tt) \xrightarrow{\text{FT}} \mathrm W_T (f) \\
     	x(t) = 4000\sinc (4000t) \xrightarrow[f]{\text{FT}}
-    	W_{4000}(f) = %TODO Rekanos Graph 58
+    	W_{4000}(f) = \begin{tikzpicture}[baseline=-0.65ex,scale=0.5]
+    	\draw[->] (-3,0) -- (3,0) node[below right] {$f (\mathrm{Hz})$};
+    	\draw[->] (0,-0.7) -- (0,2);
+    	\draw[very thick, blue] (-2,0) -- (-2,1.2) -- (2,1.2) -- (2,0);
+    	\draw (-2,0) node[below] {$-2000$};
+    	\draw (2,0) node[below] {$2000$};
+    	\draw (0,1.2) node[above right] {$1$};
+    	%\draw (4, .5) node
+    	%{$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\mathlarger{*}}}}}$};
+    	\end{tikzpicture}
     \end{gather*}
     \item Nyquist συχνότητα για το \( x(t) \) είναι \( 2\times 2000\ \mathrm{Hz}
     = 4000\ \mathrm{Hz}
@@ -744,13 +796,83 @@
      = X(f) * X(f)
      \]
      
-     %TODO Rekanos Graph 59
+     \begin{tikzpicture}[scale=0.7]
+     \draw (-3,0) -- (3,0);
+     \draw (0,-1) -- (0,2);
+     
+     \draw[very thick, blue] (-2,0) -- (-2,1.3) -- (2,1.3) -- (2,0);
+     \draw (-2,0) node[below] {$-2\mathrm{k}$};
+     \draw (2,0) node[below] {$2\mathrm{k}$};
+     
+     \draw (4, .5) node
+     {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\mathlarger{*}}}}}$};
+     
+     \begin{scope}[xshift=8cm]
+     \draw (-3,0) -- (3,0);
+     \draw (0,-1) -- (0,2);
+     
+     \draw[very thick, blue] (-2,0) -- (-2,1.3) -- (2,1.3) -- (2,0);
+     \draw (-2,0) node[below] {$-2\mathrm{k}$};
+     \draw (2,0) node[below] {$2\mathrm{k}$};
+     \end{scope}
+     
+     \draw (12, .5) node
+     {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\mathlarger{=}}}}}$};
+     
+     \begin{scope}[xshift=16cm]
+     \draw (-3,0) -- (3,0);
+     \draw (0,-1) -- (0,2);
+     
+     \draw[very thick, blue] (-2.5,0) -- (0,1.3) -- (2.5,0);
+     \draw (-2.5,0) node[below] {$-4\mathrm{k}$};
+     \draw (2.5,0) node[below] {$4\mathrm{k}$};
+     \end{scope}
+     
+     \end{tikzpicture}
      
      Για το \( x^2(t) \) η Nyquist είναι \( 2\cdot 4\ \mathrm{kHz} = 8\ \mathrm{kHz} \)
    \end{enumgreekparen}
 
-   \paragraph{Άσκηση}
-   %TODO Rekanos Graph 60
+   \paragraph{Άσκηση} \hspace{0pt}
+   
+   \begin{tikzpicture}
+   \draw[->] (0.25,0) -- (2-.2,0) node[above,midway] {$x(t)$};
+   
+   \draw[->] (2,0) -- ++(0,-3) -- ++(1.5,0) node[midway,above] {$a$} -- ++(0,0.75);
+   \draw (3,-2.25) rectangle ++(1,1.5) node[midway]
+   {$\mathlarger{\mathlarger{\mathlarger{\int}}}$};
+   \draw[->] (3.5,-0.75) -- (3.5,-0.25);
+   \draw (3.5,-0.25) -- (3.5, 0);
+   
+   \draw[->] (5.5,-2.25) -- (5.5,-3);
+   \draw[->] (5.5,-3) -- ++(1.5,0) node[midway,above] {$b$} -- ++(0,3-.2);
+   \draw (5,-2.25) rectangle ++(1,1.5) node[midway]
+   {$\mathlarger{\mathlarger{\mathlarger{\int}}}$};
+   \draw (5.5,-0.75) -- (5.5,-0.25);
+   \draw[<-] (5.5,-0.35) -- (5.5, 0);
+   
+   \draw[<->] (2+.2,0) -- (7-.2,0)
+   node[midway,above,green]
+   {$\mathsmaller{r(t) \text{ (βοηθητική συνάρτηση)}}$};
+   \draw[->] (7+.2,0) -- ++(1.5-.2,0) node[above] {$y(t)$};
+   
+   \filldraw[fill=white] (2,0) node {$+$} circle (.2);
+   \filldraw[fill=white] (7,0) node {$+$} circle (.2);
+   
+   \end{tikzpicture}
+   
+   \begin{infobox}{Σημείωση}
+   	\begin{itemize}
+   	\item \begin{tikzpicture}
+   		\draw[->] (0,0) -- (1.5,0) node[midway, above] {$a$};
+   	\end{tikzpicture}\hspace{.7em} δηλώνει πολλαπλασιασμό με τον αριθμό \( a \)
+   	\item \begin{tikzpicture}[scale=0.7]
+   		\draw (0,0) rectangle (0.7,1) node[midway] {$\int$};
+   	\end{tikzpicture}\hspace{.7em} σημαίνει ολοκλήρωση
+   	\end{itemize}
+   \end{infobox}
+   
+   
    \begin{align}
    	\int a(x+r) \dif t &= r \xRightarrow{\sfrac{\dif}{\dif t} } \od{r}{t} = ax+ar
    	 \label{eq:ex21}
