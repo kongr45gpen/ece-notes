@@ -2633,7 +2633,176 @@
     \end{itemize}
     
     Αντικαθιστώντας παραπάνω προκύπτει το ζητούμενο αποτέλεσμα.
-
+    
+    \subsubsection{Υπολογισμός ολοκληρωμάτων της μορφής \( \displaystyle
+    \int_{0}^{2\pi} R(\sin\theta, \cos\theta) \dif\theta
+    \)}
+    όπου \( R \) είναι μια ρητή συνάρτηση των \( \sin\theta \) και \( \cos\theta \)
+    \paragraph{Μεθοδολογία:}
+    Θέτουμε \( z = e^{i\theta},\quad \theta \in [0,2\pi) \)
+    
+    Τότε: \begin{align*}
+    	\dif z &= \dif \left(e^{i\theta}\right) = ie^{i\theta}\dif\theta =
+    	iz \dif\theta
+    	\\ \text{άρα } \Aboxed{\dif z &= iz\dif\theta}
+    \end{align*}
+    
+    Επίσης: \( 
+    \begin{cases}
+    \cos\theta &= \frac{e^{i\theta+e^{-i\theta}}}{2} = \frac{z+z^{-1}}{2}
+    = \frac{z^2+1}{2z} \\
+    \sin\theta &= \frac{e^{i\theta-e^{-i\theta}}}{2i} = \frac{z-z^{-1}}{2i}
+    = \frac{z^2-1}{2iz}
+    \end{cases}
+     \)
+     
+    Αντικαθιστούμε τα παραπάνω και παίρνουμε:
+    \[
+    \int_{0}^{2\pi} R(\sin\theta, \cos\theta) \dif\theta
+    = \oint_{|z|=1} R\left( \frac{z^2-1}{2iz},\frac{z^2+1}{2z} \right) \frac{\dif z}{iz}
+    = \oint_{|z|=1} K(z)\dif z,
+    \]
+    όπου \( K \) είναι μια ρητή συνάρτηση του \( z \). Στη συνέχεια χρησιμοποιούμε το θ.
+    ολοκλ. υπολοίπων, και έχουμε:
+    \[
+    \int_{0}^{2\pi} R(\sin\theta, \cos\theta)\dif\theta = 2\pi \sum_{j=1}^n
+    \Res(K,z_j),
+    \] όπου \( z_j, \mathsmaller{j=1,\dots,n} \) ανώμαλα σημεία της \( K \) εντός του
+    μοναδιαίου κύκλου \( |z| = 1 \).
+    
+    \paragraph{Παράδειγμα:}
+    Υπολογίστε το
+    \( \displaystyle \int_0^{2\pi} \frac{\cos 2\theta}{2+\sin\theta} \dif\theta \)
+    \subparagraph{}
+    
+    \begin{enumgreekparen}
+    \item
+    Θέτω \( z=e^{i\theta}, \theta \in [0,2\pi) \)
+    
+    Τότε \begin{align*}
+    \dif z &= \dif \left(e^{i\theta}\right) = ie^{i\theta}\dif\theta = iz\dif z \\
+    \text{άρα } \Aboxed{\dif z &= iz\dif\theta}
+    \end{align*}
+    
+    \begin{itemize}
+    	\item \( \displaystyle
+    	\sin\theta = \frac{e^{i\theta} - e^{-i\theta}}{2i} = \frac{z-z^{-1}}{2i}
+    	= \frac{z^2-1}{2iz}
+    	 \)
+    	\item \( \displaystyle \cos(2\theta) =
+    	\frac{e^{i2\theta}+e^{-i2\theta}}{2} \overset{\mathclap{z=e^{i\theta}}}{=}
+    	\frac{z^2+z^{-2}}{2} = \frac{z^4+1}{2z^2}
+    	 \)
+    \end{itemize}
+    
+    \textbf{Τότε}
+    \begin{align*}
+    	I &= \oint_{|z| = 1} \frac{\frac{z^4+1}{2z^2}}{2+\frac{z^2-1}{2iz}}
+    	\frac{\dif z}{iz}
+    	\\ &=  \oint_{|z|=1} \frac{z^4+1}{z^2(z^2+4iz-1)} \dif z
+    \end{align*}
+    
+    \item Ανώμαλα σημεία:
+    Εκείνα που μηδενίζουν τον παρονομαστή. Άρα
+    \begin{gather*}
+    	z^2(z^2+4iz-1) = 0 \iff \\
+    	z = 0 \text{ (διπλή)} \quad \text{ή} \quad z_{1,2} =
+    	\frac{-4i \pm \sqrt{16i^2+4}}{2} = -2i \pm i\sqrt{3} = i\left(-2\pm\sqrt{3}\right)
+    \end{gather*}
+    
+    Από αυτά με ενδιαφέρουν μόνον τα ανώμαλα σημεία ΕΝΤΟΣ του μοναδιαίου κύκλου, δηλ.:
+    \begin{align*}
+    	z_0 &= 0 \text{ (διπλή)} \\
+    	z_1 &= i\left(-2+\sqrt{3}\right)
+    \end{align*}
+    
+    \item Ταξινόμηση ανώμαλων σημείων και υπολογισμός ολοκληρωτικών υπολοίπων
+    \begin{align*}
+        z_0 &= 0 \text{ είναι πόλος 2\textsuperscript{ης} τάξης
+        	(μηδενίζει δύο φορές τον παρονομαστή, καμία τον αριθμητή)}
+        \\ z_1 &= i\left(-2+\sqrt{3}\right) \text{ πόλος 1\textsuperscript{ης} τάξης}
+    \end{align*}
+    
+    \begin{attnbox}{}
+    	Ο τύπος \( \displaystyle \Res(f,z_0) = \frac{1}{(N-1)!}
+    	\lim_{z\to z_0} \left( (z-z_0)^N f(z) \right)^{(N-1)}
+    	 \) θα δίνεται
+    \end{attnbox}
+    
+    \textbf{και έτσι} αν \( f(z) = \sfrac{(z^4+1)}{z^2(z^2+4iz-1)}  \), τότε
+    \begin{align*}
+    	\Res(f,0) &= \lim_{z\to 0} \left(
+    	\cancel{z^2} \frac{z^4+1}{\cancel{z^2}(z^2+4iz-1)}
+    	\right) \\ &= \lim_{z\to 0}
+    	\frac{4z^3(z^2+4iz-1) - (2z+4i)(z^4+1) }{(z^2+4iz-1)^2}
+    	\\ &= -4i
+    \end{align*}
+    
+    Έστω \( z_1 = i\left(-2+\sqrt{3}\right) \) και \( z_2 = i\left(-2-\sqrt{3}\right) \).
+    Τότε
+    \begin{align*}
+    	\Res(f,z_1) &= \lim_{z\to z_1}
+    	\cancel{(z-z_1)}\frac{z^4+1}{z^2\cancel{(z-z_1)}(z-z_2)}
+    	\\ &= \frac{z_1^4 + 1}{z_1^2(z_1-z_2)}
+    	\\ &= \frac{\left(\sqrt{3}-2\right)^4 + 1}{-\left(\sqrt{3} - 2\right)^2
+    		\cdot i 2\sqrt{3}}
+    	= i\frac{\left(\sqrt{3}-2\right)^4+1}{2\sqrt{3}\left(\sqrt{3}-2\right)^2}
+    \end{align*}
+    
+    \item Τελικά από θεώρημα ολοκλ. υπολοίπων έχω:
+    \begin{align*}
+    	I &= 2\pi i \left( -4i +i
+    	\frac{(\sqrt{3}-2)^4+1}{2\sqrt{3}(\sqrt{3}-2)^2}
+    	\right) \\ &=
+    	8\pi - \pi \cdot \frac{(\sqrt{3}-2)^4 + 1}{\sqrt{3}(\sqrt{3}-2)^2}
+    \end{align*}
+    
+    \end{enumgreekparen}
+    
+    \subsubsection[Υπολογισμός μετασχηματισμού Fourier τοπικά
+    ολοκληρώσιμης συνάρτησης f]{Υπολογισμός
+    	μετασχηματισμού Fourier τοπικά ολοκληρώσιμης συνάρτησης \( f \)}
+    \[
+    \hat f(\omega) = \lim_{R\to +\infty} \int_{-R}^{R} f(x) e^{-i\omega x}\dif x
+    \]
+    όπου \( x \in \mathbb R,\ \omega \in \mathbb R \)
+    
+    \begin{theorem*}{}
+    	Έστω \( f = f(z) \) είναι ολόμορφη στο \( \mathbb C  \) εκτός πεπερασμένου πλήθους
+    	απομονωμένων ανώμαλων σημείων και η \( f \) έτσι ώστε:
+    	\[
+    	\lim_{z\to \infty} f(z) = 0
+    	\]
+    	
+    	Υποθέτουμε ότι:
+    	\begin{enumgreekparen}
+    		\item Η \( f \) έχει ανώμαλα σημεία \( z_1,\dots,z_n \) στο ΑΝΩ ΗΜΙΕΠΙΠΕΔΟ
+    		\( \Im(z) > 0 \)
+    		\item Η \( f \) έχει ανώμαλα σημεία \( w_1,\dots,w_m \) στο ΚΑΤΩ ΗΜΙΕΠΙΠΕΔΟ
+    		\( \Im(z) < 0 \)
+    		\item Η \( f \) έχει \textbf{ΑΠΛΟΥΣ ΠΟΛΟΥΣ} \( \zeta_1,\dots,\zeta_r \) πάνω
+    		στον \textbf{πραγματικό άξονα}.
+    	\end{enumgreekparen}
+    	
+    	\textbf{Τότε}
+    	\begin{enumlatin}
+    		\item Αν \( \boxed{\omega < 0} \), έχουμε:
+    		\[
+    		\hat f (\omega) = 2\pi i
+    		\sum_{j=1}^n \Res\left( f(z) e^{-i\omega z}, z_j \right)
+    		+ \pi i \sum_{\mu=1}^{r} \Res\left( f(z)e^{-i\omega z},\zeta_\mu \right)
+    		\]
+    		
+    		\item Αν \( \boxed{\omega > 0} \), έχουμε:
+    		\[
+    		\hat f(\omega) = -2\pi i 
+    		\sum_{\lambda=1}^{m} \Res\Big(f(z)e^{-\omega z},
+    		\underset{\mathclap{\text{ημιεπ.}}}{\underset{\mathclap{\text{κάτω}}}{w_\lambda}}
+    		\Big)
+    		-\pi i \sum_{\mu=1}^{r} \Res\left(f(z) e^{-i\omega z},\zeta_\mu\right).
+    		\]
+    	\end{enumlatin}
+    \end{theorem*}
 
 	\newpage
 
