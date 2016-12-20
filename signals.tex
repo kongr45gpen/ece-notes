@@ -892,4 +892,98 @@
    Αν \( \Re\left\lbrace a \right\rbrace < 0 \), τότε 
    \( \displaystyle H(\omega ) = \frac{a(j\omega +b)}{j\omega (j\omega -a)} \)
 
+    \paragraph{...}
+    %TODO Some missing notes with 3 graphs
+    
+    %TODO Rekanos Graph 64
+    \begin{align*}
+    	Y(s) &= H_1(s) \cdot \Xi(s) \\
+    	&= H_1(s) \cdot \left[ X(s) + Y(s) \right] \implies \\
+    	Y(s) &= H_1(s) \left[ X(s)+H_2(s)Y(s) \right] \implies \\
+    	Y(s) \left[1-H_1(s)H_2(s)\right] &= H_1(s)X(s) \\[.3em]
+    	Y(s) &= H(s) X(s) \\
+    	H(s) &= \frac{Y(s)}{X(s)} = \frac{H_1(s)}{1-H_1(s)H_2(s)}
+    \end{align*}
+    
+    \paragraph{Άσκηση}
+    %TODO Rekanos Graph 65
+    
+    \begin{align*}
+    	H_1(s) &= \frac{O(s)}{I(s)} = \frac{s+1}{s^2+5s+6} = \frac{s+1}{(s+3)(s+2)} \\
+    	H_2(s) &= \frac{O(s)}{I(s)} = \frac{1}{s+1}
+    	\intertext{\( H_1,H_2 \) ευσταθή,
+    		αφού οι πόλοι τους βρίσκονται στο αριστερό ημιεπίπεδο}
+    	Y(s) &= H_1(s) \cdot \left[ X(s) - H_2(s)Y(s) \right] \implies
+    	\frac{Y(s)}{X(s)} = H(s) = \frac{H_1(s)}{1+H_1(s)H_2(s)}
+    \end{align*}
+
+
+    \paragraph{Άσκηση}
+    %TODO Rekanos Graph 66
+    
+    Αν η είσοδος \( x(t) = \mathrm u(t) \), βρίσκω μετά από "πολλά χρόνια" ότι \( y(t)=1 
+    \implies \lim_{t\to \infty} y(t) = 1
+    \). Να βρεθεί ολόκληρη η \( y(t) \).
+    
+    \begin{align*}
+   	    H(s) &= \frac{k}{(s+1)\left(s+\sfrac{1}{2} \right)} \\
+   	    Y(s) &= H(s)X(s) = \frac{k}{(s+1)\left(s+\sfrac{1}{2} \right)}\frac{1}{s} \\
+   	    \text{Όμως } \lim_{t\to \infty} y(t) &= \lim_{s \to 0} sY(s) \\
+   	    1 &= \lim_{s\to 0} 
+   	    \left[\frac{k}{(s+1)\left(s+\sfrac{1}{2} \right)}\frac{1}{s}s\right] = 2k \implies
+   	    \boxed{k = \sfrac{1}{2} } \\
+   	    \text{Άρα }
+   	    Y(s) &= \frac{\sfrac{1}{2} }{s(s+1)\left(s+\sfrac{1}{2} \right)}
+   	    = \frac{1}{s} + \frac{1}{s+1} + \frac{-2}{s+\sfrac{1}{2} } \\
+   	    y(t) &= \left[ 1+e^{-t} -2e^{\sfrac{-t}{2} } \right]\mathrm{u}(t)
+    \end{align*}
+    
+    \paragraph{Άσκηση}
+    \begin{tikzpicture}[baseline=(current bounding box.north)]
+    	\draw[->] (0,0) -- (2,0);
+    	\draw (2,-0.5) rectangle (4,0.5) node[midway] {$M$};
+    	\draw[->] (4,0) -- (6,0) node[above right]
+    	{$y(t) = \left. 2\pi X(-\omega )\right|_{\omega = t}$};
+    \end{tikzpicture}
+    
+    όπου \( X(\omega ) = \mathrm{FT}\left\lbrace x(t) \right\rbrace \)
+    
+    %TODO Rekanos Graph 67
+    Για να υπάρχει συνάρτηση μεταφοράς του \( M \), πρέπει να είναι γραμμικό \& αμετάβλητο:
+    
+    \begin{align*}
+    	x(t) &\to 2\pi X(-t) \\
+    	y(t) &\to 2\pi Y(-t) \\
+    	ax+\beta y\ (t) &\to a2\pi X(-t) + \beta 2\pi Y(-t) \text{ good} \\[.3em]
+    	x(t) &\to \left. 2\pi X(-\omega ) \right|_{\omega = t} \\
+    	y(t) &\to 2\pi e^{-j\tau} X(-\tau)
+    \end{align*}
+    
+    Έχω:
+    \begin{align*}
+    	y_1(t) &= \left. 2\pi X(-\omega )\right|_{\omega =t}
+    	= \left.2\pi \int_{-\infty}^{\infty} x(\tau_1) e^{-j\tau_1(-\omega )}\dif\tau_1
+    	\right|_{\omega =t}
+    	=2\pi \int_{-\infty}^{\infty} x(\tau_1) e^{j\tau_1 t}\dif\tau_1 \\
+    	y_2(t) &= \left. 2\pi Y_1(-\omega )\right|_{\omega =t}
+    	= \left.2\pi \int_{-\infty}^{\infty} y_1(\tau_2) e^{-j\tau_2(-\omega )}\dif\tau_2
+    	\right|_{\omega =t}
+    	\\ &=\left. 2\pi \int_{-\infty}^{\infty} 2\pi
+    	\int_{-\infty}^{\infty} x(\tau_1) e^{j\tau_1\tau_2}\dif\tau_1 e^{-j\tau_2(-\omega)}
+    	\dif\tau_2\right|_{\omega = t}
+    	\\ &= (2\pi)^2 \int_{-\infty}^{\infty} x(\tau_1) \int_{-\infty}^{\infty}
+    	e^{j\tau_2(\tau_1+t)}\dif\tau_2\dif\tau_1
+    	\\ &= (2\pi)^2 \int_{-\infty}^{\infty} x(\tau_1)2\pi \delta(\tau_1+t)\dif\tau_1
+    	= (2\pi)^3 \int_{-\infty}^{\infty} x(\tau_1)\delta(\tau_1+t)\dif\tau_1 =
+    	(2\pi)^3 x(-t) \\
+    	Y_2(\omega) &= (2\pi)^3 X(-\omega)
+    	y_3(t) &= \left. 2\pi Y_2(-\omega ) \right|_{\omega =t}
+    	= \left. (2\pi)^3 X(\omega ) \right|_{\omega = t} \\ &= (2\pi)^4 X(t)
+    \end{align*}
+    
+    \begin{attnbox}{}
+    	Στις εξετάσεις θα κουβαλήσουμε ένα δικό μας μαθηματικό τυπολόγιο
+    	(π.χ. Tables \& Formulas)
+    \end{attnbox}
+    
 \end{document}
