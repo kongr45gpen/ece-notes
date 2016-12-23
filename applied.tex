@@ -4363,7 +4363,8 @@
   \textbf{3η σειρά:} \( 2<|z| \)
   
   \begin{align*}
-  f(z) &= \underbrace{\frac{1}{z-1}}_{f_1(z)}+\underbrace{\frac{1}{z+2}}_{f_2(z)}
+  f(z) &= \underbrace{\ \frac{1}{z-1}\ }_{f_1(z)\ }
+  +\underbrace{\ \frac{1}{z+2}\ }_{f_2(z)}
   = f_1(z) + f_2(z)
   \end{align*}
   
@@ -4719,8 +4720,127 @@
     \end{cases}
     \]
     
-    \[
-    u(x,y) = \frac{1}{\pi} \sum_{n=1}^{N} \left(u_n-u_{n-1}\right) \arctan(y,x_n-x)
+    \begin{align*}
+    u(x,y) &= \frac{1}{\pi} \sum_{n=1}^{N} \left(u_n-u_{n-1}\right) \arctan(y,x_n-x)
     + u_0
+    \\
+    &= \frac{1}{\pi} \sum_{n=1}^{N-1} \left( u_{n-1} - u_n \right) \arctan(y,x-x_n)
+    + u_{N-1}
+    \end{align*}
+    
+    \subsection{}
+    \[
+    w = \frac{az+b}{cz+d} = f(z)
     \]
+    Μετασχηματισμός M\"obius
+    %TODO Kehagias Graph 30
+    
+    Απεικονίζει (\underline{κύκλους} και \underline{ευθείες}) σε
+    (\underline{κύκλους} και \underline{ευθείες})
+    
+    \paragraph{Παρ.}
+    Ο Μ/Σ \( \left( \frac{i-z}{i+z} \right) \)
+    απεικονίζει την ευθεία \( \left\lbrace (x,0): x\in \right\rbrace \)
+    στον κύκλο \( \left\lbrace (u,v):u^2+v^2=1 \right\rbrace \)
+    
+    \textbf{διότι} \( w=\frac{i-x}{i+x} \implies |w| = \frac{|i-x|}{|i+x|} = 1 \)
+    
+    Επίσης απεικονίζει το \underline{άνω ημιεπίπεδο} \( \left\lbrace 
+    (x,y) : x \in \mathbb R,\ y > 0
+     \right\rbrace \) στον \underline{δίσκο} \( \left\lbrace 
+     (u,v) : u^2+v^2 < 1
+      \right\rbrace \)
+      
+    \textbf{διότι}
+    \(  \displaystyle
+    |w|^2 = \left|
+    \frac{i-(x+iy)}{i+(x+iy)}
+    \right|^2 = \left|
+    \frac{-x+i(-y+1)}{x+i(y+1)}
+    \right|^2 = \frac{A}{B}
+     \)
+    \begin{align*}
+    	A &= \left|-x+i(-y+1)\right|^2 = x^2 + (1-y)^2 \\
+    	B &= \left|x+i(y+1)\right|^2 = x^2 + (1+y)^2
+    \end{align*}
+    Βλέπω ότι \( (1-y)^2 < (1+y)^2 \quad \forall y<0 \) διότι \( \forall y>0:A<B \)
+    
+    Τι σχέση έχουν αυτά με τις αρμονικές συναρτήσεις και με το πρόβλημα Dirichlet;
+    Μπορούν να χρησιμοποιηθούν για λύση του προβλήματος σε χωρία πέρα του άνω ημιεπιπέδου.
+    
+    \paragraph{Παρ.}
+    Να λυθεί αυτό:
+    %TODO Kehagias Graph 31
+    
+    \[
+    \Phi(x,y) = \begin{cases}
+    1: & 0<\theta = \arctan(y,x) < \pi \\
+    0: & \pi<\theta = \arctan(y,x) < 2\pi
+    \end{cases}
+    \]
+    
+    \begin{align*}
+    1&=\frac{i-w}{i+w} \implies i+w = i-w \implies w=-w \implies w = 0 \\
+    -1 &= \frac{i-w}{i+w} \implies -i-w=i-w \implies w = \infty \\
+    i &= \frac{i-w}{i+w} \implies iw-1 = i-w \implies w = 1 \\
+    -i &= \frac{i-w}{i+w} \implies \cdots \implies w=-1
+    \end{align*}
+    
+    Στο επίπεδο \( uw \) το πρόβλημα \( \nabla^2 \Psi = 0 \) στο
+    \( \left\lbrace (u,v): v>0 \right\rbrace \), \( 
+    \begin{cases}
+    1 \quad & \forall (u,0):u>0 \\
+    0 \quad & \forall (u,0):u<0
+    \end{cases}
+     \)
+    
+    \[
+    \Psi = 1 - \frac{1}{\pi}\arctan(v,y)
+    \]
+    οπότε \( \Phi(x,y) = 1-\frac{1}{\pi} \arctan\left( u(x,y),\ v(x,y) \right)  \)
+    
+    \begin{gather*}
+    	x+iy = \frac{i-(u+iv)}{i+(u+iv)} = \underbrace{\dots}_{\mathclap{\text{πραγμ.}}}
+    	+ i\underbrace{\dots}_{\mathclap{\text{φαντ.}}} \implies \dots \\
+    	\dots \implies u=\frac{2x}{(1+x)^2+y^2},\ v=\frac{1-(x^2+y^2)}{(1+x)^2+y^2}
+    \end{gather*}
+    
+    οπότε τελικά: 
+    \[
+    \boxed{
+    	\Phi(x,y) = 1 -\frac{1}{\pi}
+    	\arctan\left(
+    	\frac{1-(x^2+y^2)}{(1+x)^2+y^2},\frac{2x}{(1+x)^2+y^2}
+    	\right)
+    	}
+    \]
+    
+    \paragraph{Παρ.}
+    %TODO Kehagias Graph 32
+    \begin{align*}
+    	w = f(z) &= \sin(\pi z) \\
+    	z = g(z) &= \frac{1}{\pi} \arcsin(w)
+    \end{align*}
+    
+    Υπενθυμίζουμε ότι
+    \begin{align*}
+    	w &= \sin(\phi) = \sin(a+ib) =
+    	\\ &= \sin(a)\cos(ib)+\sin(ib)\cos(a)
+    	\\ &= \sin a \cosh b +i\sinh b \cos a \\
+    	w &= \sin(\pi z) = \sin(\pi x) \cosh(\pi y) +i\sinh(\pi y)\cos(\pi x)
+    \end{align*}
+    
+    Και η λύση προύπτει:
+    \begin{align*}
+    \Aboxed{
+    	\Psi &= \frac{5}{\pi}\arctan(v,u+1) - \frac{10}{\pi} \arctan(v,u-1) + 10
+    	} \\
+    \Aboxed{
+    	\Phi &= \frac{5}{\pi}\mathsmaller{\mathsmaller{\arctan\left(
+    	\sinh(\pi y)\cos(\pi x),\sin(\pi x)\cosh(\pi y) + 1
+    	\right)}} - \frac{10}{\pi}\mathsmaller{\arctan\left(
+    	\sinh(\pi y)\cos(\pi x),\sin(\pi x)\cosh(\pi y) - 1
+    	\right)} + 10
+    	}
+    \end{align*}
 \end{document}
