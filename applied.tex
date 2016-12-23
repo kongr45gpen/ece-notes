@@ -4858,14 +4858,14 @@
      \)
     
     \[
-    \Psi = 1 - \frac{1}{\pi}\arctan(v,y)
+    \Psi = 1 - \frac{1}{\pi}\arctan(v,u)
     \]
-    οπότε \( \Phi(x,y) = 1-\frac{1}{\pi} \arctan\left( u(x,y),\ v(x,y) \right)  \)
+    οπότε \( \Phi(x,y) = 1-\frac{1}{\pi} \arctan\left( v(x,y),\ u(x,y) \right)  \)
     
     \begin{gather*}
     	x+iy = \frac{i-(u+iv)}{i+(u+iv)} = \underbrace{\dots}_{\mathclap{\text{πραγμ.}}}
     	+ i\underbrace{\dots}_{\mathclap{\text{φαντ.}}} \implies \dots \\
-    	\dots \implies u=\frac{2x}{(1+x)^2+y^2},\ v=\frac{1-(x^2+y^2)}{(1+x)^2+y^2}
+    	\dots \implies u=\frac{2y}{(1+x)^2+y^2},\ v=\frac{1-(x^2+y^2)}{(1+x)^2+y^2}
     \end{gather*}
     
     οπότε τελικά: 
@@ -4873,10 +4873,19 @@
     \boxed{
     	\Phi(x,y) = 1 -\frac{1}{\pi}
     	\arctan\left(
-    	\frac{1-(x^2+y^2)}{(1+x)^2+y^2},\frac{2x}{(1+x)^2+y^2}
+    	\frac{1-(x^2+y^2)}{(1+x)^2+y^2},\frac{2y}{(1+x)^2+y^2}
     	\right)
     	}
     \]
+    
+    % Sage code:
+    % var('x y')
+    % psi(u,v) = 1 - 1/pi * arctan2(v,u)
+    % phi(x,y) = psi(2*y, 1-(x^2+y^2))
+    % density_plot( phi(x,y), (-1,1), (-1,1) , plot_points=1200, cmap = 'hsv')
+    \begin{center}
+       	\includegraphics[width=0.8\linewidth]{graphics/sage0}
+    \end{center}
     
     \paragraph{Παρ.} \hspace{0pt}
     
@@ -4940,4 +4949,14 @@
     	\end{array}}
     }
     \end{align*}
+    
+    % Sage code:
+    % var('x y')
+    % psi(u,v) = 5/pi*arctan2(v,u+1) - 10/pi*arctan2(v,u-1) + 10
+    % phi(x,y) = psi(sin(pi*x)*cosh(pi*y), sinh(pi*y)*cos(pi*x))
+    % density_plot( phi(x,y), (-1,1), (0.1,1) , cmap = 'hsv', plot_points=1200)
+    \begin{center}
+    \includegraphics[width=0.8\linewidth]{graphics/sage1}
+    \end{center}
+
 \end{document}
