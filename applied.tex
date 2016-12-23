@@ -4622,8 +4622,8 @@
     	} \\
     u(x_0,y_0) &= \frac{1}{2\pi} \int_0^{2\pi} u(x_0+r\cos\theta,y_0+r\sin\theta)\dif\theta
     \\
-    v(x_0,y_0) &= \frac{1}{2\pi} \int_0^{2\pi} v(x_0+r\cos\theta,y_0+r\sin\theta)\dif\theta
-    \end{align*}, δηλαδή σε κάθε σημείο η τιμή είναι ο μέσος όρος των γειτόνων.
+    v(x_0,y_0) &= \frac{1}{2\pi} \int_0^{2\pi} v(x_0+r\cos\theta,y_0+r\sin\theta)\dif\theta,
+    \end{align*} δηλαδή σε κάθε σημείο η τιμή είναι ο μέσος όρος των γειτόνων.
     
     \paragraph{}
     Αυτά που μπαίνουν στις εξετάσεις είναι: Να βρεθεί η συζυγής αρμονική, και να λυθεί η
@@ -4728,18 +4728,37 @@
     + u_{N-1}
     \end{align*}
     
-    \subsection{}
+    \subsection{Επίλυση προβλήματος Dirichlet σε άλλα χωρία}
     \[
     w = \frac{az+b}{cz+d} = f(z)
     \]
     Μετασχηματισμός M\"obius
-    %TODO Kehagias Graph 30
+    
+    \begin{tikzpicture}
+    
+    \draw[->] (0,-1.5) -- (0,1.5) node[right] {$y$};
+    \draw[->] (-1.5,0) -- (1.5,0) node[below] {$x$};
+    
+    \draw[very thick,blue!50] (0,0) circle(1);
+    \fill (0.75,0.75) circle (1pt) node[right] {$z=x+iy$};
+    
+    \draw[->] (1.5,1.2) to[bend left] node[above,midway] {$f$} (6.5,1.2);
+    
+    \begin{scope}[xshift=7cm]
+    \draw[->] (0,-1.5) -- (0,1.5) node[right] {$v$};
+    \draw[->] (-2,0) -- (2,0) node[below] {$u$};
+    
+    \draw[very thick,blue!50] (-2,0.7) -- (2,0.7);
+    \fill (0.95,0.35) circle (1pt) node[right] {$w=u+iv$};
+    
+    \end{scope}
+    \end{tikzpicture}
     
     Απεικονίζει (\underline{κύκλους} και \underline{ευθείες}) σε
     (\underline{κύκλους} και \underline{ευθείες})
     
     \paragraph{Παρ.}
-    Ο Μ/Σ \( \left( \frac{i-z}{i+z} \right) \)
+    Ο Μ/Σ \( \displaystyle \left( \frac{i-z}{i+z} \right) \)
     απεικονίζει την ευθεία \( \left\lbrace (x,0): x\in \right\rbrace \)
     στον κύκλο \( \left\lbrace (u,v):u^2+v^2=1 \right\rbrace \)
     
@@ -4770,14 +4789,58 @@
     
     \paragraph{Παρ.}
     Να λυθεί αυτό:
-    %TODO Kehagias Graph 31
     
+    \begin{tikzpicture}[scale=1.2]
+    \fill[green!20] (0,0) circle (1);
+    
+    \draw (0.4,-0.4) node[rotate=45] {$\mathsmaller{\nabla^2 \Phi = 0}$};
+    
+    \draw[->] (0,-1.5) -- (0,1.5) node[right] {$y$};
+    \draw[->] (-1.5,0) -- (1.5,0) node[below] {$x$};
+    
+    \draw[very thick,blue] (1,0) arc (0:180:1) node[pos=.65,above,sloped] {$\Phi=1$};
+    \draw[very thick,cyan!50!green] (1,0) arc (360:180:1)
+    node[pos=.35,below,sloped] {$\Phi=0$};
+    
+    
+    \begin{scope}[xshift=5cm,xscale=1.2]
+    \fill[green!50] (-2,0) rectangle (2,0.7);
+    \fill[green!50,path fading=north] (-2,0.7) rectangle (2,2);
+    
+    \draw[->] (-2,0) -- (2.1,0) node[below] {$u$};
+    \draw[->] (0,-0) -- (0,2) node[right] {$v$};
+    
+    \draw (-1,1) node {$\nabla^2 \Psi = 0$};
+    \draw (1,1.2) node {$\Psi(u,v)$};
+    
+    \draw[very thick, blue] (-2,0) -- (0,0)
+    node[black,midway,below] {$\mathsmaller{\Psi(u,0) = 0}$};
+    \draw[very thick, cyan!50!green] (0,0) -- (2,0)
+    node[black,midway,below] {$\mathsmaller{\Psi(u,0) = 1}$};
+    
+    
+    \end{scope}
+    
+    \fill (1,0) circle (1pt);
+    \fill (5,0) circle (1pt);
+    \draw[dashed,gray,->] (1.1,-0.1) to[bend right] (4.9,-0.1);
+    \fill (0,-1) circle (1pt);
+    \fill (4,0) circle (1pt);
+    \draw[dashed,gray!70!red,->] (0.1,-1.1) to[bend right] (3.9,-0.1);
+    \fill (-1,0) circle (1pt);
+    \draw[dashed,gray!70!violet,->] (-1.1,0.1) to[bend left=90] (0,2) node[right]
+    {$\infty$};
+    \end{tikzpicture}
     \[
     \Phi(x,y) = \begin{cases}
     1: & 0<\theta = \arctan(y,x) < \pi \\
     0: & \pi<\theta = \arctan(y,x) < 2\pi
     \end{cases}
     \]
+    
+    Θα χρησιμοποιήσουμε τον παραπάνω μετασχηματισμό M\"obius για να μετατρέψουμε το πρόβλημα
+    του κυκλικού δίσκου σε πρόβλημα ημιεπιπέδου. Γι' αυτό πρέπει να βρούμε τις οριακές
+    συνθήκες του ημιεπιπέδου, χρησιμοποιώντας τις οριακές συνθήκες του Laplace:
     
     \begin{align*}
     1&=\frac{i-w}{i+w} \implies i+w = i-w \implies w=-w \implies w = 0 \\
@@ -4815,8 +4878,39 @@
     	}
     \]
     
-    \paragraph{Παρ.}
-    %TODO Kehagias Graph 32
+    \paragraph{Παρ.} \hspace{0pt}
+    
+    \begin{tikzpicture}[scale=1.1]
+    \fill[green!50,path fading=north] (-0.8,0) rectangle (0.8,2);
+    
+    \draw[->] (0,-0.1) -- (0,2)  node[midway,rotate=45] {$\nabla^2 \Phi = 0$};;
+    \draw[->] (-2,0) -- (2,0);
+
+    \draw[ultra thick, blue!50!cyan] (-0.8,0) -- (0.8,0) node[midway,below right,black]
+    {$0$};
+    \draw[ultra thick, blue!50!black] (-0.8,2) -- ++(0,-2) node[midway,left,black] {$5$};
+    \draw[ultra thick, blue!70!black] (0.8,2) -- ++(0,-2) node[midway,right,black] {$10$};
+    
+    \draw[->] (2,1) to[bend left]  node[pos=.5,above] {$z=g(w)$} (3.8,1);
+    \draw[->,gray!50] (3.8,0.8) to[bend right] (2,0.8);
+    
+    \begin{scope}[xshift=6cm]
+    \fill[green!50] (-2,0) rectangle (2,0.7);
+    \fill[green!50,path fading=north] (-2,0.7) rectangle (2,2);
+    
+    \draw (-2,0) -- (2,0);
+    \draw[->] (0,-.1) -- (0,2);
+    
+    \draw (1,1) node {$\nabla^2 \Psi = 0$};
+    
+    \draw[very thick, blue!50!black] (-2,0) -- (-0.5,0)
+    node[black,midway,below] {$5$};
+    \draw[very thick, blue!50!cyan] (-0.5,0) -- (0.5,0)
+    node[black,midway,below] {$0$};
+    \draw[very thick, blue!70!black] (0.5,0) -- (2,0)
+    node[black,midway,below] {$10$};
+    \end{scope}
+    \end{tikzpicture}
     \begin{align*}
     	w = f(z) &= \sin(\pi z) \\
     	z = g(z) &= \frac{1}{\pi} \arcsin(w)
@@ -4830,17 +4924,20 @@
     	w &= \sin(\pi z) = \sin(\pi x) \cosh(\pi y) +i\sinh(\pi y)\cos(\pi x)
     \end{align*}
     
-    Και η λύση προύπτει:
+    Και η λύση προκύπτει:
     \begin{align*}
     \Aboxed{
     	\Psi &= \frac{5}{\pi}\arctan(v,u+1) - \frac{10}{\pi} \arctan(v,u-1) + 10
     	} \\
     \Aboxed{
-    	\Phi &= \frac{5}{\pi}\mathsmaller{\mathsmaller{\arctan\left(
+    	\Phi &= {\begin{array}{ll}
+    	& \frac{5}{\pi}\arctan\left(
     	\sinh(\pi y)\cos(\pi x),\sin(\pi x)\cosh(\pi y) + 1
-    	\right)}} - \frac{10}{\pi}\mathsmaller{\arctan\left(
+    	\right)
+    	\\ - & \frac{10}{\pi}\arctan\left(
     	\sinh(\pi y)\cos(\pi x),\sin(\pi x)\cosh(\pi y) - 1
-    	\right)} + 10
-    	}
+    	\right) \\ + & 10
+    	\end{array}}
+    }
     \end{align*}
 \end{document}
