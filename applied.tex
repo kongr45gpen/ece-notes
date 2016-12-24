@@ -3303,7 +3303,41 @@
     	\\ \text{ασυνεχής για } x\in(-\infty,0]\end{array}
     \end{align*}
     
-    %TODO Kehagias Graph 08
+    \begin{tikzpicture}[scale=1.2]
+    \fill[inner color=green!70!black,outer color=green!5,fill=white] (0,0) circle (2);
+    
+    \draw[->] (0,-2) -- (0,2);
+    \draw[->] (0,0) -- (2,0);
+    
+    \draw[ultra thick, red!90, decorate,
+    decoration={snake,amplitude=.3mm}
+    ] (-2,0) -- (0,0);
+    
+    \filldraw[fill=white] (0,0) circle (2pt);
+    
+    \filldraw (0.5,0) circle (1pt);
+    \draw[->] (0.4,0.1) to[bend right=60] (-0.4,0.1);
+    
+    \draw (current bounding box.south) node
+    {$\mathrm{Arg}(-1)=\pi \quad \mathrm{Log}(-1) = i\pi$};
+    
+    \draw[->] (2,1) to[bend left]  node[pos=.5,above] {$\mathrm{Log}(\ )$} (3.8,1);
+    \draw[<-] (2,-1) to[bend right]  node[pos=.5,below] {$\mathrm{exp}$} (3.8,-1);
+    
+    \begin{scope}[xshift=6cm]
+    \fill[green!50,postaction={pattern=north west lines,opacity=.2}]
+    (-2,-1) rectangle (2,1);
+    
+    \draw (-2,0) -- (2,0);
+    \draw[->] (0,-2) -- (0,2);
+    
+    \filldraw (0,0) circle (1.5pt);
+    
+    \draw[blue!50!black,very thick]
+    (-2,1) -- (2,1) node[midway,above right,black] {$\pi$}
+    (-2,-1) -- (2,-1) node[midway,below left,black] {$-\pi$};
+    \end{scope}
+    \end{tikzpicture}
     
     
     \subsection{Μιγαδικές δυνάμεις}
@@ -3414,7 +3448,19 @@
     	n =& 2,3, \\& 6,7, \\ & 10,11,
     \end{align*}
     
-    %TODO Kehagias Graph 09
+    \begin{tikzpicture}   [scale=1.2]
+    \draw[->] (0,-2) -- (0,2);
+    \draw[->] (-2,0) -- (2,0);
+    
+    \draw[ultra thick] (0,1.5) -- ++(1.5,0) -- ++(0,-1.5);
+    
+    \filldraw (0,0) circle (1pt) node[below left] {$c_7=c_3=0$};
+    \filldraw (1.5,0) circle (1pt) node[below right] {$1=c_0=c_4$};
+    \filldraw (1.5,1.5) circle (1pt) node[above right] {$1+i=c_1=c_5$};
+    \filldraw (0,1.5) circle (1pt) node[above right] {$i=c_2=c_6$};
+    
+    \draw[red,opacity=.5] (0,0) ellipse (0.5 and 2.2);
+    \end{tikzpicture}
     \subparagraph{Απ.} \( 
     n\in\left\lbrace m+4l: m\in\left\lbrace 2,3 \right\rbrace
     ,l\in \mathbb N_0
@@ -4097,7 +4143,15 @@
   \end{align*}
   (για \( z=3,\ f(z)=-1+1-1+1-\dots \))
   
-  %TODO Kehagias Graph 14
+	\begin{tikzpicture}[scale=0.8]
+	\begin{scope}[xshift=-0.2cm]
+	\filldraw[fill=green!50,very thick] (2,0) circle (1);
+	\filldraw (1,0) circle(1pt)  node[below left] {$1$};
+	\filldraw (2,0) circle(1pt)  node[below] {$2$};
+	\end{scope}
+	\draw[->] (0,-2) -- (0,2);
+	\draw[->] (-3,0) -- (3,0);
+	\end{tikzpicture}
   
   \paragraph{ΠΑΡ.}
   Να βρεθεί η σειρά Taylor της \( f(z) = \frac{z}{z^2-2z-3} \) γύρω από το \(z_0 = 0\)
@@ -4141,7 +4195,17 @@
   	 \right\rbrace \qquad \text{δακτύλιος με σύνορο}
   	\end{align*}
   	
-  	%TODO Kehagias Graph 15
+   \begin{tikzpicture}[scale=1.2]
+   \filldraw[draw=blue!40!black,very thick,fill=blue!40,even odd rule]
+   (0.8,0.8) circle (0.4)  (0.8,0.8) circle (1.2);
+   
+   \draw[->] (0,-1.5) -- (0,2);
+   \draw[->] (-1.5,0) -- (2,0) ;
+   
+   \filldraw (0.8,0.8) circle (1pt) node[above left,xshift=3,yshift=-2] {$z_0$};
+   \draw[->] (0.8,0.8) -- ++(45:1.2) node[above,pos=.7,sloped] {$R_1$};
+   \draw[->] (0.8,0.8) -- ++(-40:0.4) node[right] {$R_2$};
+   \end{tikzpicture}
   	
   	Έστω \( f(z) \) αναλυτική στο \( \bar A_{R_2,R_1}(z_0) \). Τότε \( \forall z
   	\in A_{R_1,R_2}(z_0) \) ισχύει \[
@@ -4167,6 +4231,14 @@
   +\frac{z}{5!}-\dots
   \end{align*}
   Το \( z_0 = 0 \) είναι \textbf{πόλος} πρώτης τάξης.
+  
+  \begin{tikzpicture}
+  \fill[inner color=green!50!black, outer color=green!5,fill=white]
+  (0,0) circle (2);
+  \draw[->] (0,-2) -- (0,2);
+  \draw[->] (-2,0) -- (2,0) ;
+  \filldraw[fill=white] (0,0) circle (2pt);
+  \end{tikzpicture}
   
   \paragraph{ΠΑΡ} \( \frac{\sin z}{z} \)
   \[
@@ -4238,7 +4310,23 @@
   		f(z) &= g_2(z)+g_1(z) \\ &= 
   		\frac{2}{z+2} + 1 + (z+2) + (z+2)^2+\dots 
 	\end{align*}
-	%TODO Kehagias Graph 17
+	
+	\begin{tikzpicture}[scale=0.8]
+	
+	\begin{scope}[xshift=0.2cm]
+	
+	\filldraw[fill=green!50,very thick] (-2,0) circle (1);
+	
+	\draw (-3,0) node[below left] {$-3$};
+	\draw (-2,0) node[below] {$-2$};
+	\draw (-1,0) node[below right] {$-1$};
+	
+	\end{scope}
+	
+	\draw[->] (0,-2) -- (0,2);
+	\draw[->] (-3,0) -- (3,0);
+	
+	\end{tikzpicture}
 	
 	\subparagraph{}
 	Σε δυνάμεις της \( (z+2) \) αλλά μακριά από το \( z_0=-2 \)
@@ -4270,6 +4358,28 @@
 			\frac{z}{z^2+3z+2}
 		} \boxed{0<|z+2|<1} \\
 	\end{align*}
+	
+	\begin{tikzpicture}[scale=0.8]
+	
+	\begin{scope}[xshift=0.2cm]
+	
+	\begin{scope}
+	\clip  (-2,0) circle (1);
+	\filldraw[fill=green!50,very thick,even odd rule] (-1,0) circle(1);
+	\end{scope}
+	
+	\draw[blue!30!black,very thick,even odd rule] (-1,0) circle(1)  (-2,0) circle(1);
+	
+	
+	\filldraw (-2,0) circle(1pt) node[below left] {$-2$};
+	\filldraw (-1,0)  circle (1pt) node[below right] {$-1$};
+	
+	\end{scope}
+	
+	\draw[->] (0,-2) -- (0,2);
+	\draw[->] (-3,0) -- (2,0);
+	
+	\end{tikzpicture}
 	
 	Θα επιβεβαιώσω ότι οι δύο αυτές σειρές είναι ίσες μεταξύ τους και με την τιμή της
 	συνάρτησης.
@@ -4352,7 +4462,23 @@
   \item \( f(z) = \frac{2z+1}{z^2+z-2} \), να βρεθούν όλες οι δυνατές σειρές Laurent γύρω
   από το \( z_0 = 0 \).
   \subparagraph{Λύση} Τα ΑΣ (ανώμαλα σημεία) είναι \( z_1 = 1 \) και \( z_2 = -2 \).
-  Οπότε %TODO Kehagias Graph 19
+  Οπότε     \begin{tikzpicture}[baseline]
+  
+  \fill[inner color=green!50!black, outer color=green!20,even odd rule]
+  (0,0) circle (1.5) -- (0,0) circle (2.5);
+  
+  \fill[red!40,postaction={pattern=north east lines,opacity=.3}] (0,0) circle(0.8);
+  \fill[blue!40,even odd rule] (0,0) circle (0.8) -- (0,0) circle (1.5);
+  
+  \draw[->] (0,-2) -- (0,2);
+  \draw[->] (-2,0) -- (2,0) ;
+  
+  \draw[blue,very thick] (0,0) circle (0.8) -- (0,0) circle (1.5);
+  
+  \filldraw[fill=white] (0,0) circle (2pt);
+  
+  \draw (1.5,0) node[below right] {$2$};
+  \end{tikzpicture}
   
   Αυτή είναι η άσκηση που θα πέσει στις εξετάσεις αν δεν έχει κέφι ο Κεχαγιάς.
   
@@ -4506,7 +4632,13 @@
 	  	\item δυναμικό μέσα σε έναν αγωγό
 	  \end{enumparen}
 	  
-	  %TODO Kehagias Graph 20
+	  \begin{tikzpicture}
+	  \filldraw[fill=blue!10,draw=blue,very thick] plot [smooth cycle] coordinates
+	  {(0,0) (-0.7,1) (0.5,2) (2,1.5) (0.5,0.5) (1.9,-1) (1.5,-1.8) (0.8, -1.7) (-0.5,-1.8)};
+	  
+	  \draw (0.5,1.3) node {$\mathlarger{D}$};
+	  \end{tikzpicture}
+	  
 	  Η εξ. Laplace \( \displaystyle \pd[2]{u}{x} + \pd[2]{u}{y} = 0 \) είναι διαφορική
 	  εξίσωση με μερικές παραγώγους. Αν αυτή ισχύει σε κάποιο χωρίο \( D \) και την εφοδιάσω
 	  με \textbf{οριακές συνθήκες} (τιμές της \( u(x,y) \) στο \( \partial D \) - 
@@ -4553,7 +4685,36 @@
       Τι σημαίνει η εξ. Laplace;
       
       \paragraph{Διακριτοποίηση εξίσωσης Laplace}
-      %TODO Kehagias Graph 21
+      \hspace{0pt}
+      
+      \begin{tikzpicture}
+      
+      \filldraw[fill=blue!50!green!20!white,draw=blue,very thick,name path=D]
+      plot [smooth cycle] coordinates
+      { (-1.5,1.2) (-1.7,1.9) (0,3) (0.8,2.5) (1.5,2.2) (1.6,1.2) (2,0) (2.2,-0.8)
+      	(2.5,-1.8) (1.4,-2.7) (0.4,-2.8) (-0.4,-3) (-2,-0.8)   }
+      node[left,black] {$n$};
+      
+      \begin{scope}
+      \clip plot [smooth cycle,scale=0.99] coordinates
+      { (-1.5,1.2) (-1.7,1.9) (0,3) (0.8,2.5) (1.5,2.2) (1.6,1.2) (2,0) (2.2,-0.8)
+      	(2.5,-1.8) (1.4,-2.7) (0.4,-2.8) (-0.4,-3) (-2,-0.8)   }
+      node[left,black] {$n$};
+      
+      \foreach \x in {-2,-1.25,...,2}
+      \draw[gray] (\x,-3.2) -- (\x,3);
+      
+      \foreach \y in {-2,-1.25,...,2}
+      \draw[gray] (-2,\y) -- (2.5,\y);
+      \end{scope}
+      
+      \draw (-1,0) node {$\mathlarger{D}$};
+      \draw (0,-3.1) node[below] {$m$};
+      
+      \filldraw (-0.1, 1.5) circle (1pt) node[above right] {$(m\delta,n\delta)$};
+      
+      \end{tikzpicture}
+      			
       \begin{gather*}
       \forall (x,y) \in D: u_{xx} + u_{yy} = 0 \\
       \forall (x,y) \in \partial D: 
@@ -4589,7 +4750,27 @@
       
       	\paragraph{Παρ.}
       	Στο προηγούμενο πρόβλημα:
-      	%TODO Kehagias Graph 22
+      	
+      	\begin{tikzpicture}
+      	
+      	\fill[green!20] (-1,-1) rectangle (1,1);
+      	
+      	\draw (-1,0) -- (1,0);
+      	\draw (0,-1) -- (0,1);
+      	\filldraw[fill=white] (0,0) circle(2pt);
+      	\draw (-1.5,1) -- (1.5,1) node[above,midway] {$0 \si{\degreeCelsius}$};
+      	\draw (-1.5,-1) -- (1.5,-1) node[below,midway] {$0 \si{\degreeCelsius}$};
+      	\draw (1,-1.5) -- (1,1.5) node[right,midway] {$100 \si{\degreeCelsius}$};
+      	\draw (-1,-1.5) -- (-1,1.5) node[left,midway] {$0 \si{\degreeCelsius}$};
+      	
+      	\filldraw (1,1) circle (1pt) node[above right] {$1,1$};
+      	\filldraw (-1,1) circle (1pt) node[above left] {$1$};
+      	\filldraw (-1,-1) circle (1pt) node[below left] {$0$};
+      	\filldraw (1,-1) circle (1pt) node[below right] {$1$};
+      	
+      	\draw[->] (2.3pt,2.3pt) to[bend left] (0.5,0.5) node[right,xshift=-2] {$25$};
+      	\end{tikzpicture}
+      	
       	\begin{align*} u\left(\sfrac{1}{2},\sfrac{1}{2}  \right) 
       	&= \frac{1}{4} \left( u\left(\sfrac{1}{2},0 \right) 
       	+ u \left(\sfrac{1}{2}, 1 \right) + u \left(0,\sfrac{1}{2} \right)
@@ -4599,11 +4780,34 @@
       	\frac{1}{4} (0 + 0 + 0 + 100) \\ &= 25
       	\end{align*}
       	
-      	%TODO Kehagias Graph 23
+      	\begin{tikzpicture}
+      	
+      	\foreach \x in {-1,-0.5,...,1}
+      	\draw (\x,-1) -- (\x,1);
+      	
+      	\foreach \y in {-1,-0.5,...,1}
+      	\draw (-1,\y) -- (1,\y);
+      	
+      	\foreach \x in {-1,-0.5,...,1}
+      	\foreach \y in {-1,-0.5,...,1}
+      	\filldraw (\x,\y) circle (1pt);
+      	
+      	\draw (0,0) circle(3pt);
+      	
+      	\end{tikzpicture}
+      	
       	Τότε θα μπορούσαμε να βρούμε τη λύση λύνοντας ένα σύστημα 9x9, ή με υπολογιστική
       	προσέγγιση.
 
-    %TODO Kehagias Graph 20 (2nd time)
+    \begin{tikzpicture}
+    \filldraw[fill=blue!10,draw=blue,very thick] plot [smooth cycle] coordinates
+    {(0,0) (-0.7,1) (0.5,2) (2,1.5) (0.5,0.5) (1.9,-1) (1.5,-1.8) (0.8, -1.7) (-0.5,-1.8) };
+    
+    \draw (0.5,1.3) node {$\mathlarger{D}$};
+    
+    \filldraw (0.7,-0.7) circle (1pt) node[below] {$z_0$};
+    \end{tikzpicture}
+    
     \begin{gather*}
     \forall (x,y) \in D: u_{xx} + u_{yy} = 0 \\
     \forall (x,y) \in \partial D: 
@@ -4638,7 +4842,25 @@
     \forall y &: u(b,y) = u_2
     \end{array} \)
     \subparagraph{Λύση}
-    %TODO Kehagias Graph 24
+    \hspace{0pt}
+    
+    \begin{tikzpicture}
+    
+    \fill[green!30] (0.5,2) rectangle (1.5,-1.5);
+    
+    \draw[->] (0,-1.5) -- (0,2);
+    \draw[->] (-1.5,0) -- (2,0) ;
+    
+    \draw[blue,very thick] (0.5,2) -- ++(0,-3.5);
+    \draw[blue,very thick] (1.5,2) -- ++(0,-3.5);
+    
+    \draw (0.5,0) node[below left] {$a$};
+    \draw (1.5,0) node[below right] {$b$};
+    
+    \draw[<-] (0.48,1) to[bend left=10] (-0.2,1) node[left,xshift=2] {$u=u_1$};
+    \draw[<-] (1.52,1) to[bend left=10] (2,1.2) node[right] {$u=u_2$};
+    
+    \end{tikzpicture}
     
     Λόγω συμμετρίας υποθέτω ότι \( u(x,y) = u(x) \) οπότε \( 0 = u_{xx}+u_{yy} = u_{xx}
     \implies u_x = k \implies u = kx+\lambda
@@ -4660,7 +4882,26 @@
     \end{gather*}
     
     \paragraph{Παρ.}
-    %TODO Kehagias Graph 25
+    \hspace{0pt}
+    
+    \begin{tikzpicture}[scale=1.5]
+    
+    \fill[green!30,transform canvas={rotate=25},path fading=east]
+    (0.5,2) (0,0) -- (2,0) -- (2,{2*tan(40)}) -- (0,0);
+    
+    \draw[->] (0,-1.5) -- (0,2);
+    \draw (-1.5,0) -- (2,0) ;
+    
+    \draw (45:1.5) node[rotate=45] {$\nabla^2 u = 0$};
+    
+    \draw[very thick] (0,0) -- (25:2.2) node[below,pos=.7,sloped] {$u(x,y)=k_1$};
+    \draw[very thick] (0,0) -- (65:2.2) node[above,pos=.7,sloped] {$u(x,y)=k_2$};
+    
+    \draw (0.4,0) arc (0:25:0.4) node[right,midway] {$\mathsmaller{\theta_1}$};
+    \draw (0.2,0) arc (0:65:0.2)
+    node[above right,midway,xshift=-3] {$\mathsmaller{\theta_2}$};
+    
+    \end{tikzpicture}
     
     \begin{gather*}
     	\hat u(,\rho,\theta) = u(\theta) \\
@@ -4681,7 +4922,25 @@
     \( \boxed{u(x,y) = \frac{u_1-u_2}{\theta_1-\theta_2} \arctan(y,x) + \lambda} \)
     
     \paragraph{Παρ.}
-    %TODO Kehagias Graph 26
+    \hspace{0pt}
+    
+    \begin{tikzpicture}
+    
+    \fill[blue!20,even odd rule] (0,0) circle (0.8) -- (0,0) circle (1.5);
+    
+    \draw[->] (0,-2) -- (0,2);
+    \draw[->] (-2,0) -- (2,0) ;
+    
+    \draw[blue,very thick] (0,0) circle (0.8) -- (0,0) circle (1.5);
+    
+    
+    \draw[<-] (240:1.52) to[bend left=10] (-1.7,-1.5) node[left,xshift=2] {$u=u_2$};
+    \draw[<-] (40:0.85) to[bend left=10] (1.7,1.2) node[right] {$u=u_1$};
+    
+    \draw (230:1.05) node[rotate=-40] {$\nabla^2 u = 0$};
+    
+    \end{tikzpicture}
+    
     \( u(x,y) = g(r) \)
     
     Παρατηρώ ότι \( 
@@ -4696,7 +4955,25 @@
     \end{align*}
     
     \paragraph{Παρ.}
-    %TODO Kehagias Graph 27
+    \hspace{0pt}
+    
+    \begin{tikzpicture}
+    \fill[outer color=green!5,inner color=green] (-2,-2) rectangle (2,2);
+    
+    \draw (-2,0) -- (2.1,0);
+    \draw (0,-2) -- (0,2) ;
+    
+    \draw (-1,1) node {$D$};
+    \draw (1,1.2) node {$\nabla^2 u = 0$};
+    
+    \draw (-1,0) node[below] {$\mathsmaller{u(x,0)=1}$};
+    \draw (1,0) node[below] {$\mathsmaller{u(x,0) = 0}$};
+    
+    \draw (-1,-1.3) node {$(x <0)$};
+    \draw (1,-1.3) node {$(x>0)$};
+    
+    \draw[fill=white,fill opacity=0.3] (0,0) circle (2pt);
+    \end{tikzpicture}
     
     \begin{gather*}
     	u(x,y) = \frac{u_2-u_1}{\theta_2-\theta_1}\arctan(y,x) + u_1
@@ -4706,10 +4983,45 @@
     \end{gather*}
     
     \paragraph{Παρ.}
-    %TODO Kehagias Graph 28
+    \hspace{0pt}
+    
+    \begin{tikzpicture}
+    
+    \fill[green!50] (-2,0) rectangle (2,1.7);
+    \fill[green!50,path fading=north] (-2,1.7) rectangle (2,2);
+    
+    \draw (-2,0) node[below right] {$\mathsmaller{u=1}$} 
+    -- (2,0) node[below left] {$\mathsmaller{u=0}$}; 
+    \draw (0,-1.5) -- (0,2) ;
+    
+    \draw (1,1.2) node {$\nabla^2 u = 0$};
+    
+    \fill (0.7,0) circle (1pt) node[below,xshift=-5] {$\leftarrow x_0$}
+    node[above right] {$\rightarrow$};
+    \end{tikzpicture}
+    
     \( u(x,y) = \frac{1}{\pi} \arctan(y,x-x_0) \)
     
-    %TODO Kehagias Graph 29
+    \begin{tikzpicture}
+    \draw[->] (-2,0) -- (2,0) node[right] {$u_N$};
+    \draw (0,-1.5) -- (0,2) ;
+    
+    \draw (1,1.2) node {$\nabla^2 u = 0$};
+    \foreach \n in {0,...,3} {
+       	\def\x{-2 + \n*0.5}
+       	\draw[thick,blue!50!black,opacity=0.9] (\x+0.05,0.1) -- ({\x+0.45},0.1)
+       	node[midway,above,yshift=-1] {$\mathsmaller{u_\n    }$};
+    }
+    \foreach \n in {1,...,3} {
+       	\def\x{-2 + \n*0.5}
+       	\fill (\x,0) circle (1pt) node[below] {$\mathsmaller{x_\n}$};
+    }
+    
+    \draw[thick,blue!50!black,opacity=0.9] (0.7,0.1) -- (1.1,0.1) node[above,midway]
+    {$\mathsmaller{u_N}$};
+    \fill (0.65,0) circle (1pt) node[below] {$\mathsmaller{x_N}$};
+    \end{tikzpicture}
+    
     \[
     u(x,0) = \begin{cases}
     u_0 &\quad x<x_1 \\

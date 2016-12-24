@@ -1,0 +1,41 @@
+\begin{tikzpicture}
+\fill[green!20] (0,0) circle (1);
+
+\draw (0.4,-0.4) node[rotate=45] {$\mathsmaller{\nabla^2 \Phi = 0}$};
+        
+ \draw[->] (0,-1.5) -- (0,1.5) node[right] {$y$};
+\draw[->] (-1.5,0) -- (1.5,0) node[below] {$x$};
+
+\draw[very thick,blue] (1,0) arc (0:180:1) node[pos=.65,above,sloped] {$\Phi=1$};
+\draw[very thick,cyan!50!green] (1,0) arc (360:180:1)
+node[pos=.35,below,sloped] {$\Phi=0$};
+
+       
+\begin{scope}[xshift=5cm,xscale=1.2]
+        \fill[green!50] (-2,0) rectangle (2,0.7);
+        \fill[green!50,path fading=north] (-2,0.7) rectangle (2,2);
+
+\draw[->] (-2,0) -- (2.1,0) node[below] {$u$};
+\draw[->] (0,-0) -- (0,2) node[right] {$v$};
+
+        \draw (-1,1) node {$\nabla^2 \Psi = 0$};
+        \draw (1,1.2) node {$\Psi(u,v)$};
+
+    \draw[very thick, blue] (-2,0) -- (0,0)
+node[black,midway,below] {$\mathsmaller{\Psi(u,0) = 0}$};
+ \draw[very thick, cyan!50!green] (0,0) -- (2,0)
+node[black,midway,below] {$\mathsmaller{\Psi(u,0) = 1}$};
+
+
+\end{scope}
+
+\fill (1,0) circle (1pt);
+\fill (5,0) circle (1pt);
+\draw[dashed,gray,->] (1.1,-0.1) to[bend right] (4.9,-0.1);
+\fill (0,-1) circle (1pt);
+\fill (4,0) circle (1pt);
+\draw[dashed,gray!70!red,->] (0.1,-1.1) to[bend right] (3.9,-0.1);
+\fill (-1,0) circle (1pt);
+\draw[dashed,gray!70!violet,->] (-1.1,0.1) to[bend left=90] (0,2) node[right]
+{$\infty$};
+        \end{tikzpicture}
