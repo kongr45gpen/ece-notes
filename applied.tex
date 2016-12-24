@@ -3527,8 +3527,96 @@
     \]
     
     \subparagraph{Γεωμετρική ερμηνεία}
-    %TODO Kehagias Graph 10
-    %TODO Kehagias Graph 11
+    \hspace{0pt}
+    
+    \begin{center}
+    \begin{tikzpicture}[scale=1.7]
+    \draw[->] (0,-0.5) -- (0,2);
+    \draw[->] (-0.5,0) -- (2,0);
+    
+    \filldraw (0,0) circle (1pt);
+    \draw (0,0) -- (1,1);
+    \filldraw (1,1) circle (1pt) node[above right] {$z=x+iy$};
+    
+    \draw (1.5,0) node [below] {επίπεδο $z$};
+    
+    \draw (1,2) node[above] {$z \in \mathbb C$};
+    \draw[->] (1.8,2.2) -- ++(2,0) node[midway,above] {διαστολή};
+    
+    \begin{scope}[xshift=4cm]
+    \draw[->] (0,-0.5) -- (0,2);
+    \draw[->] (-0.5,0) -- (2,0);
+    
+    \filldraw (0,0) circle (1pt);
+    \draw (0,0) -- (0.7,0.7);
+    \filldraw (0.7,0.7) circle (1pt) node[above right] {$\zeta$};
+    
+    \draw (1.5,0) node [below] {επίπεδο $\zeta$};
+    
+    \draw (1,2) node[above] {$|a|z=\zeta \in \mathbb C$};
+    \end{scope}
+    
+    \begin{scope}[yshift=-4cm]
+    \draw[->] (0,-1) -- (0,2);
+    \draw[->] (-1,0) -- (2,0);
+    
+    \filldraw (0,0) circle (1pt);
+    \draw[dashed] (0,0) -- (0.7,0.7) node[above right] {$\zeta$};
+    \filldraw (-0.7,0.7) circle (1pt) node[above left] {$\sigma$};
+    \draw[->] (0,0) -- (-0.68,0.68);
+    
+    \draw (45:0.3) arc(45:135:0.3) node[midway,above] {$\mathrm{Arg}\, a$};
+    
+    \draw (1.5,0) node [below] {επίπεδο $\sigma$};
+    
+    \draw[->] (-0.5,2.4) -- ++(1.7,0) node[midway,above] {στροφή}
+    node[right] {$e^{i\mathrm{Arg}\, a} \zeta=\sigma = az$};
+    \end{scope}
+    
+    \begin{scope}[xshift=4cm,yshift=-4cm]
+    \draw[->] (0,-1) -- (0,2);
+    \draw[->] (-1,0) -- (2,0);
+    
+    \filldraw (0,0) circle (1pt);
+    \draw[->] (0,0) -- (30:1) node[above right] {$b$};
+    \draw[->] (0,0) -- (-0.7,0.7) node[above left] {$\sigma$};
+    
+    \draw[dashed,name path=A] (-0.7,0.7) -- ++(30:1);
+    \draw[dashed,name path=D] (30:1) -- ++(-0.7,0.7);
+    
+    \coordinate (F) at ({-0.7+cos(30)}, {0.7+sin(30)} );
+    \draw[->] (0,0) -- ([xshift=-0.2pt,yshift=-1pt]F);
+    \filldraw (F) circle (1pt) node[above right] {$\sigma+b$};
+    
+    \draw (1.5,0) node [below] {επίπεδο $f(z)$};
+    
+    \draw[->] (0,2.4) -- ++(1.7,0) node[midway,above] {παράλληλη μεταφορά}
+    node[midway,below] {κατά $b$}
+    node[right] {$\sigma+b = az+b$};
+    \end{scope}
+    \end{tikzpicture}
+    
+    \begin{tikzpicture}
+    \draw[gray,->] (0,-1.2) -- (0,1.2);
+    \draw[gray,->] (-2.2,0) -- (2,0);
+    \draw [very thick, green!50!blue,yscale=0.9] plot[smooth cycle] coordinates 
+    {(-2,0) (-0.6,0.8) (-0.4,1) (0.8,0.6) (1.1,1) (1.5,0.6) (1.8,0.5)
+       	(1,-1) (-0.3,-0.5) (-0.5, -0.7)
+    };
+    
+    \draw[thick,->] (2.5,0) -- ++(1.5,0);
+    
+    \begin{scope}[xshift=7cm,scale=1.5,rotate=10]
+    \draw[gray,->] (0,-1.2) -- (0,1.2);
+    \draw[gray,->] (-2.2,0) -- (2,0);
+    \draw [very thick, green!50!blue,yscale=0.9] plot[smooth cycle] coordinates 
+    {(-2,0) (-0.6,0.8) (-0.4,1) (0.8,0.6) (1.1,1) (1.5,0.6) (1.8,0.5)
+       	(1,-1) (-0.3,-0.5) (-0.5, -0.7)
+    };
+    \end{scope}
+    
+    \end{tikzpicture}
+    \end{center}
     
     \begin{itemize}
     	\item Προφανώς, από τη δομή της, η γραμμική απεικόνιση απεικονίζει
@@ -3642,7 +3730,47 @@
      	Ο μετασχ. M\"obius (στην περίπτωση ευθείας ή κύκλου) απεικονίζει
      	συμπληρωματικούς τόπους σε συμπληρωματικούς τόπους.
      	\subparagraph{π.χ.}
-     	%TODO Kehagias Graph 12
+     	\hspace{0pt}
+     	
+     	\begin{center}
+     	\begin{tikzpicture}[scale=1.4]
+     	
+     	\fill[green!40] (0,0) -- (0,2) -- (2,2) -- cycle;
+     	\fill[blue!40] (0,0) -- (2,0) -- (2,2) -- cycle;
+     	
+     	\draw (65:1.5) node {$G_1(\epsilon)$};
+     	\draw (25:1.5) node {$G_2$};
+     	
+     	\draw[->] (0,0) -- (0,2);
+     	\draw[->] (0,0) -- (2,0);
+     	
+     	\draw[very thick] (0,0) -- (2,2);
+     	
+     	\draw (current bounding box.south)
+     	node[below,rectangle,style={align=center}]
+     	{$G_1,G_2$ συμπληρωματικοί τόποι \\ επειδή η συρραφή
+   		τους \\ απεικονίζει όλο το επίπεδο};
+   		
+   		\draw[thick,->] (2.2,1) to[bend left] 
+   		node[above,midway] {$f(z)=\frac{az+b}{cz+d}$} (4.8,1);
+   		
+   		\begin{scope}[xshift=5cm]
+   		\fill[red!40] (0,0) rectangle (2,2);
+   		\filldraw[fill=yellow!40,draw=red!30!black,postaction={pattern=north east lines,opacity=.1}]
+   		(1.2,1.3) node {$A_1$} circle(0.5);
+   		\draw (45:0.8) node {$A_2$};
+   		
+   		\draw[->] (0,0) -- (0,2);
+   		\draw[->] (0,0) -- (2,0);
+   		
+   		\draw (1,0) node[below] {$A_1,A_2$ συμπλ. τόποι};
+   		\end{scope}
+   		
+   		\draw (current bounding box.south east)
+   		node[yshift=4,rectangle,draw,style={align=right}]
+   		{Τότε $G_1 \to A_1$ ή $A_2$ \\ $G_2 \to A_2$ ή $A_1$};
+   		\end{tikzpicture}
+   		\end{center}
      	
      	\item
      	Αποδεικνύεται ότι \underline{υπάρχει} ΜΟΝΑΔΙΚΟΣ μετασχ. M\"obius που
@@ -3667,7 +3795,53 @@
      	x+iy: \kappa \pi -\frac{\pi}{2}<x<\kappa\pi+\frac{\pi}{2},y\in\mathbb R
      	 \right\rbrace, k \in \mathbb Z
      	 \) είναι "κατακόρυφες λωρίδες". Για \underline{\( k=0 \)}, έχω:
-     	 %TODO Kehagias Graph 13
+     	 
+     	 \begin{center}
+     	 \begin{tikzpicture}
+     	 \fill[pattern=north east lines] (-1,-2) rectangle (1,2);
+     	 
+     	 \draw[->] (0,-2) -- (0,2);
+     	 \draw[->] (-2,0) -- (2,0);
+     	 
+     	 \draw[very thick,dashed] (-1,-2) -- (-1,2);
+     	 \draw[very thick,dashed] (1,-2) -- (1,2);
+     	 
+     	 \filldraw (0,0) circle (1pt) node[below left] {$0$};
+     	 
+     	 \draw (-1,0) node[below left] {$-\frac{\pi}{2}$};
+     	 \draw (1,0) node[below right] {$\frac{\pi}{2}$};
+     	 
+     	 \draw[thick,->] (1.5,1) to[bend left] 
+     	 node[above,midway] {$u+iv=f(z)=\sin z$} (4.8,1);
+     	 
+     	 \begin{scope}[xshift=8cm]
+     	 \begin{axis}[
+     	 anchor=origin,
+     	 xmin=-5,xmax=5,
+     	 ymin=-5,ymax=5, 
+     	 xlabel=$w$,ylabel=$v$,		axis lines=center,
+     	 xtick={ -2.1,2.1 },xticklabels={$-1$, $1$},
+     	 ytick={0}  ]
+     	 \addplot [blue,very thick,domain=-2:2] ({cosh(x)}, {sinh(x)});
+     	 \addplot [blue,very thick,domain=-2:2] ({-cosh(x)}, {sinh(x)});
+     	 
+     	 \addplot [blue,very thick,domain=-2:2] ({cosh(x)/2}, {2*sinh(x)});
+     	 \addplot [blue,very thick,domain=-2:2] ({-cosh(x)/2}, {2*sinh(x)});
+     	 
+     	 \addplot [blue,very thick,domain=-2:2] ({cosh(x)/0.5}, {0.5*sinh(x)});
+     	 \addplot [blue,very thick,domain=-2:2] ({-cosh(x)/0.5}, {0.5*sinh(x)});
+     	 
+     	 \addplot [green,very thick,decorate,opacity=0.5,
+     	 decoration={snake,amplitude=.3mm}] coordinates { (0,-5) (0,5)};
+     	 
+     	 \addplot[red,very thick] coordinates {(2.1,0) (4.8,0) };
+     	 \addplot[red,very thick] coordinates {(-2.1,0) (-58,0) };
+     	 \end{axis}
+     	 \draw[red!30!black,->] (1.8,0.1) -- ++(0.3,0);
+     	 \draw[red!30!black,->] (-1.8,0.1) -- ++(-0.3,0);
+     	 \end{scope}
+     	 \end{tikzpicture}
+     	 \end{center}
      	 
      	 Τότε η \( \sin z \) γίνεται 1-1 με πεδίο τιμών το σύνολο
      	 \[
@@ -4078,7 +4252,19 @@
   		\right)(z-z_0)^n
   		}
   	\end{align*}
-  	%TODO Kehagias Graph 13
+  	
+  	\begin{center}
+  	\begin{tikzpicture}[scale=1.4]
+  	
+  	\draw[very thick,blue] plot [smooth cycle,tension=1]
+  	coordinates {(-0.2,-0.1) (-1,0.6) (-0.5,1) (0.4,0.5) (1,0) (0.4,-1)};
+  	
+  	\filldraw (-0.2,0.3) circle (1pt) node[above left] {$z_0$};
+  	\filldraw (0.4,0) circle(1pt) node[below] {$z$};
+  	
+  	\end{tikzpicture}
+  	\end{center}
+  	
   \end{theorem*}
   
   \paragraph{ΠΑΡ.}
