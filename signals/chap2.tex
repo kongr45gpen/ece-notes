@@ -129,12 +129,100 @@
     \end{align*}
     
     \paragraph{Άσκηση για το σπίτι}
-    Να βρεθούν η εκθετική και η τριγωνομετρική σειρά του σήματος:
-    %TODO Rekanos Graph 13
-    %TODO Rekanos Graph 14
+    Να βρεθούν η εκθετική και η τριγωνομετρική σειρά των σημάτων:
+    
+    \begin{tikzpicture}
+    \draw[->] (0,-1.5) -- (0,2);
+    \draw[->] (-2,0) -- (5,0) node[below] {$t$};
+    
+    \draw[very thick,draw=blue]
+    (-1,0) node[below] {$-D$} -- ++(0,1.2) node[above left] {$Q$} 
+    -- ++(2,0) -- ++(0,-1.2) node[below] {$D$};
+    
+    \draw[very thick,draw=blue,xshift=3.2cm]
+    (-1,0) -- ++(0,1.2) node[above left] (A) {}
+    -- ++(2,0) node[above right] (B) {} -- ++(0,-1.2);
+    
+    \draw[thick,<->] (A) -- (B) node[midway,above] {$2D$};
+    
+    \draw (5,0.6) node {$\mathlarger{\mathlarger{\mathlarger{\cdots}}}$};
+    
+    \draw[dashed,gray] (3.2,0.6) -- ++(0,-2);
+    \draw[thick,<->] (0,-0.9) -- ++(3.2,0) node[below,midway] {$T$};
+    \end{tikzpicture}
+    
+    \begin{tikzpicture}
+    \draw (0,-1.5) -- (0,2);
+    \draw[->] (-2,0) -- (2,0) node[below] {$t$};
+    
+    \draw[very thick,blue] plot[variable=\x,samples=50,smooth,domain=-2:2]
+    ({\x},{   abs(cos(pi/2*\x r))   });
+    
+    \draw[thick,<->] (-1,-0.2) -- ++(2,0) node[below right,midway] {$T$};
+    
+    \begin{scope}[xshift=5cm]
+    \draw(0,-2) -- (0,2);
+    \draw[->] (-1,0) -- (4,0) node[right] {$n$};
+    
+    \draw[ultra thick,orange!70!black] (0,0) -- ++(0,5/3);
+    \draw[ultra thick,orange!70!black] (1,0) -- ++(0,4/3);
+    \draw[ultra thick,orange!70!black] (2,0) -- ++(0,2/3);
+    \draw[ultra thick,orange!70!black] (3,0) -- ++(0,-4/3);
+    
+    \filldraw (0,5/3) circle (1pt) node[left] {$Α_0$};
+    \filldraw (1,4/3) circle (1pt) node[above] {$Α_1$};
+    \filldraw (2,2/3) circle (1pt) node[above] {$Α_2$};
+    \filldraw (3,-4/3) circle (1pt) node[left] {$Α_3$};
+    
+    \draw (0,0) node[below left] {$0$};
+    \draw (1,0) node[below] {$1$};
+    \draw (2,0) node[below] {$2$};
+    \draw (3,0) node[above] {$3$};
+    \end{scope}
+    
+    \begin{scope}[xshift=11cm]
+    \draw(0,-2) -- (0,2);
+    \draw (-1,0) -- (4,0);
+    
+    \draw[ultra thick,orange!60!black] (0,0) -- ++(0,5/3);
+    \draw[ultra thick,orange!60!black] (1,0) -- ++(0,4/3);
+    \draw[ultra thick,orange!60!black] (2,0) -- ++(0,2/3);
+    \draw[ultra thick,orange!60!black] (3,0) -- ++(0,-4/3);
+    
+    \filldraw (0,5/3) circle (1pt);
+    \filldraw (1,4/3) circle (1pt);
+    \filldraw (2,2/3) circle (1pt);
+    \filldraw (3,-4/3) circle (1pt);
+    
+    \draw (0,0) node[below left] {$0$};
+    \draw (1,0) node[below] {$\frac{2\pi}{T}$};
+    \draw (2,0) node[below] {$2\frac{2\pi}{T}$};
+    \draw (3,0) node[above] {$3\frac{2\pi}{T}$};
+    
+    \draw[green!40!black,<->] (1,0.4) -- ++(1,0)
+    node[midway,above] {$\frac{2\pi}{T}$};
+    \end{scope}
+    \end{tikzpicture}
     
     \subsection{Μετασχηματισμός Fourier}
-    %TODO Rekanos Graph 15
+    \begin{tikzpicture}[scale=1.2]
+    \draw[->] (0,-1.5) -- (0,2);
+    \draw[->] (-2,0) -- (2,0) node[below] {$t$};
+    
+    \draw[gray,dashed] (-1,1.8) -- ++(0,-3);
+    \draw[gray,dashed] (1,1.8) -- ++(0,-3);
+    
+    \draw[very thick,blue] plot[smooth]
+    coordinates {(-1,0) (-0.8,0.8) (-0.5,0.7) (0.3,1.5) (0.5,0.8) (0.7,0.75) (1,0)};
+    \draw[xshift=-2cm,path fading=west,very thick,blue!60!cyan] plot[smooth]
+    coordinates {(-1,0) (-0.8,0.8) (-0.5,0.7) (0.3,1.5) (0.5,0.8) (0.7,0.75) (1,0)};
+    \draw[xshift=2cm,path fading=east,very thick,blue!60!cyan] plot[smooth]
+    coordinates {(-1,0) (-0.8,0.8) (-0.5,0.7) (0.3,1.5) (0.5,0.8) (0.7,0.75) (1,0)};
+    
+    \draw (-1,0) node[below right] {$-\frac{T}{2}$};
+    \draw (1,0) node[below right] {$\frac{T}{2}$};
+    \end{tikzpicture}
+
     \paragraph{Φορέας} συνάρτησης είναι το διάστημα του πεδίου ορισμού της στο
     οποίο η συνάρτηση δεν είναι 0 (από \( \min x \) για το οποίο δεν είναι 0 ως
     το αντίστοιχο \( \max x \)).
@@ -150,7 +238,46 @@
     \end{cases}
     \end{gather*}
     
-    %TODO Rekanos Graph 16
+    \begin{tikzpicture}
+    \draw[->] (0,-2) -- (0,2) node[above] {$\mathrm{Term}(n)$};
+    \draw[->] (-1,0) -- (5,0) node[right] {$n$};
+    
+    \draw[ultra thick,orange!70!black] (0,0) -- ++(0,2/3);
+    \draw[ultra thick,orange!70!black] (1,0) -- ++(0,4/3);
+    \draw[ultra thick,orange!70!black] (2,0) -- ++(0,-4/3);
+    
+    \filldraw (0,2/3) circle (1pt) node[left] {$\frac{a_0}{2}$};
+    \filldraw (1,4/3) circle (1pt) node[above] {$a_1$};
+    \filldraw (2,-4/3) circle (1pt) node[left] {$a_2$};
+    
+    \draw (0,0) node[below left] {$0$};
+    \draw (1,0) node[below] {$1$};
+    \draw (2,0) node[above] {$2$};
+    
+    \begin{scope}[yshift=-5cm]
+    \draw[->] (0,-2) -- (0,2);
+    \draw[->] (-1,0) -- (5,0) node[right] {$\omega$};
+    
+    \draw[ultra thick,orange!60!black] (0,0) -- ++(0,2/3);
+    \draw[ultra thick,orange!60!black] (1,0) -- ++(0,4/3);
+    \draw[ultra thick,orange!60!black] (2,0) -- ++(0,-4/3);
+    
+    \filldraw (0,2/3) circle (1pt) node[left] {$\frac{a_0}{2}$};
+    \filldraw (1,4/3) circle (1pt) node[above] {$a_1$};
+    \filldraw (2,-4/3) circle (1pt) node[left] {$a_2$};
+    \filldraw (3,0) circle (1pt);
+    
+    \draw (0,0) node[below left] {$0$};
+    \draw (1,0) node[below] {$\omega_0$};
+    \draw (2,0) node[above] {$2\omega_0$};
+    \draw (3,0) node[below] {$3\omega_0$};
+    
+    \draw[green!50!black,<->,thick] (0,0.4) -- ++(1,0)
+    node[midway,above] {$\omega_0$};
+    
+    \draw (6,0) node[right] {$\omega_0 =\frac{2\pi}{T}$};
+    \end{scope}
+    \end{tikzpicture}
     
     \paragraph{Μετασχηματισμός Fourier}
     \begin{align*}
@@ -179,15 +306,14 @@
      \subsubsection{Ιδιότητες}
      \begin{itemize}
 
-     \item
-     \begin{gather*}
-     F(\omega)= A(\omega )e^{j\Phi(\omega )} =
+     \item\( 
+     \begin{aligned}[t]
+     F(\omega)&= A(\omega )e^{j\Phi(\omega )} =
      \underbrace{F_R(\omega )}_{\mathclap{\Re\left\lbrace F(\omega ) \right\rbrace}}
      +j\underbrace{F_i(\omega )}_{\mathclap{\Im\left\lbrace F(\omega ) \right\rbrace}}
-     \\ A(\omega )=\left| F(\omega ) \right|
-     \end{gather*}
-     \item
-     \begin{gather*}
+     \\ A(\omega )&=\left| F(\omega ) \right|
+     \end{aligned}\)
+     \item \( \displaystyle
      F(\omega )=\int_{-\infty}^{\infty} f(t)\left(\cos(\omega t)-j\sin(\omega t)\right)
      \dif t = \underbrace{\int_{-\infty}^{\infty} f(t)\cos\omega t\dif t}_{%
         \Re\left\lbrace F(\omega ) \right\rbrace
@@ -196,7 +322,7 @@
         j \underbrace{\int_{-\infty}^{\infty} f(t)\sin\omega t\dif t}_{%
             \Im\left\lbrace F(\omega ) \right\rbrace
             }
-     \end{gather*}
+     \)
      
      Αν \( f(t):\mathbb R \to\mathbb R  \) είναι άρτια\\
      \( F(\omega ) \) είναι πραγματική \quad \( 
@@ -285,6 +411,33 @@
      f(at)&\to \frac{1}{|a|}F\left( \frac{\omega }{a} \right)
      \quad \text{γιατί; να αποδειχθεί στο σπίτι!}
      \end{align*}
+     
+     \begin{center}
+     	\begin{tikzpicture}[scale=1.2]
+     	
+     	\draw[->] (0,-0.5) -- (0,2);
+     	\draw[->] (-0.5,0) -- (5,0) node[right] {$t$};
+     	
+     	
+     	\draw[blue!50!black,very thick]
+     	plot [smooth,tension=1] coordinates {(0,0) (1.2,1.2) (2.4,0)};
+     	\draw (1.2,1.2) node[above,blue!50!black] {$f(t)$};
+     	
+     	\draw[blue!50!green,very thick]
+     	plot [smooth,tension=1,xscale=0.5] coordinates {(0,0) (1.2,1.2) (2.4,0)};
+     	\draw (1.2,0.4) node[right,xshift=-3,blue!50!green] {$f(at)$};
+     	
+     	\draw[green!30!red,very thick]
+     	plot [smooth,tension=1,xscale=1.8] coordinates {(0,0) (1.2,1.2) (2.4,0)};
+     	\draw (3.7,0.4) node[left,xshift=3,green!30!red] {$f\left(\frac{t}{a}\right)$};
+     	
+     	\draw (0,0) node[below right] {$0$};
+     	
+     	\draw (2.4,0) node[below] {$T$};
+     	\draw (1.2,0) node[below] {$\frac{T}{a}$};
+     	\draw (2.4*1.8,0) node[below] {$aT$};
+     	\end{tikzpicture}
+     \end{center}
      
      \paragraph{Τι συμβαίνει με τη συνέλιξη}
      \begin{align*}
@@ -505,7 +658,21 @@
      \vec D(\omega ) =& \epsilon(\omega )\vec E(\omega )\\
      \vec D(t) =& \epsilon (t) +\vec E(t)
      \end{align*}
-     %TODO Rekanos Graph 21
+     
+     \begin{tikzpicture}
+     \draw[->] (0,-2) -- (0,0) node[left]
+     {$\Im\left\lbrace \varepsilon(\omega)\right\rbrace$};
+     \draw[->] (0,0) -- (0,2) node[left]
+     {$\Re\left\lbrace \varepsilon(\omega)\right\rbrace$};
+     
+     \draw (0,0) -- (3,0);
+     
+     \draw[very thick,blue] (0,0.4) --
+     plot [smooth, tension=1, domain=0.4:3, samples=9] (\x,{0.8+0.7*rand});
+     
+     \draw[very thick,blue!70!orange] (0,-0.2) --
+     plot [smooth, tension=1, domain=0.4:3, samples=9] (\x,{-0.8+0.7*rand});
+     \end{tikzpicture}
      
      \paragraph{}
      \begin{align*}
@@ -666,7 +833,7 @@
      \begin{center}
      \begin{tikzpicture}
      \draw[->] (0,0) -- (0,2) node[right] {$f(t)$};
-     \draw[->] (-2.1,0) -- (2,0) node[below] {$t$};
+     \draw[->] (-3,0) -- (3,0) node[below] {$t$};
      
      \draw[very thick,blue] 
      plot[smooth] coordinates {(-2,0) (-1.9,0.5) (-1.7,0.7) (-1.5,0.4) (-1.2, 0.7)  
@@ -690,7 +857,7 @@
      \draw (-1,0) node[below] {$\sfrac{-\sigma}{2}$};
      \draw (1,0) node[below] {$\sfrac{\sigma}{2}$};
      
-     \draw (0,-1.2) node {$\sigma$-timelimited};
+     \draw (0,-1.2) node {$\sigma$-bandlimited};
      \end{scope}
      \end{tikzpicture}
      \end{center}
@@ -835,7 +1002,6 @@
         \item Ό,τι στενεύει στον χρόνο απλώνει στο φάσμα, και αντίθετα
      \end{itemize}
      \begin{center}
-     	\begin{tikzpicture}
      		\begin{tikzpicture}
      		\draw[thick,green!60!black,<->] (-0.9,0.5) -- (0.9,0.5);
      		
@@ -857,7 +1023,7 @@
      		\draw[->] (0,-1) -- (0,2) node[right] {$F(\omega)$};
      		\draw[->] (-2,0) -- (2,0) node[below] {$\omega$};
      		
-     		\draw (0.9,0.5) node[above right,black] {$\sfrac{1}{\sigma_1^2}$};
+     		\draw (0.9,0.5) node[above right,black] {$\frac{1}{\sigma_1^2}$};
      		\end{scope}
      		
      		\begin{scope}[yshift=-4cm]    
@@ -880,12 +1046,11 @@
      		\draw[->] (-2,0) -- (2,0) node[below] {$\omega$};
      		
      		\draw (0.9,0.5) node[above right,black]
-     		{$\sfrac{1}{\sigma_2^2} > \sfrac{1}{\sigma_1^2}$};
+     		{$\frac{1}{\sigma_2^2} > \frac{1}{\sigma_1^2}$};
      		\end{scope}
      		\end{scope}
      		
      		\end{tikzpicture}
-     	\end{tikzpicture}
      \end{center}
      
      \paragraph{}

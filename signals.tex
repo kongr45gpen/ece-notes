@@ -161,9 +161,127 @@
     αυτό μπορούμε να αυξήσουμε το \( F_p \) (\( \implies \) να αυξήσουμε τη συχνότητα
     δειγματοληψίας)
     
-    %TODO Rekanos Graph 43
+    \begin{tikzpicture}
     
-    %TODO Rekanos Graph 44
+    \draw[very thick,blue] plot [variable=\x,domain=-2:2,smooth,samples=20]
+    ({\x}, {  1.5*exp( -\x*\x)   });
+    
+    
+    \draw[->] (0,-0.5) -- (0,2) node[right] {$G(f)$};
+    \draw[->] (-2,0) -- (2,0) node[below] {$f$};
+    
+    \draw (0,1.5) node[above left] {$A$};
+    
+    \draw[->,thick] (2,1) -- ++(2,0) node[above,midway] {After};
+    
+    \begin{scope}[xshift=7cm]
+    \draw[very thick,blue!15] 
+    plot [variable=\x,xshift=2cm,domain=-2:2,smooth,samples=20]
+    ({\x}, {  1.5*exp( -\x*\x)   });
+    \draw[very thick,blue!40] 
+    plot [variable=\x,xshift=-1cm,domain=-2:2,smooth,samples=20]
+    ({\x}, {  1.5*exp( -\x*\x)   });
+    \draw[very thick,blue!40] 
+    plot [variable=\x,xshift=1cm,domain=-2:2,smooth,samples=20]
+    ({\x}, {  1.5*exp( -\x*\x)   });
+    \draw[very thick,blue] plot [variable=\x,domain=-2:2,smooth,samples=20]
+    ({\x}, {  1.5*exp( -\x*\x)   });
+    
+    
+    \draw[->] (0,-0.5) -- (0,2) node[right] {$G^S(f)$};
+    \draw[->] (-2,0) -- (2.5,0) node[above right] {$f$};
+    
+    \draw (0,1.5) node[above left] {$A_{F_p}$};
+    \draw (-1,0) node[below] {$-F_P$};
+    \draw (1,0) node[below] {$F_P$};
+    \draw (2,0) node[below] {$2F_P$};
+    \end{scope}
+    
+    \end{tikzpicture}
+    
+    \begin{tikzpicture}[scale=1.1]
+    
+    \draw[very thick,blue] plot[smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    \draw (-1,0) node[below] {$-\sigma$};
+    \draw (1,0) node[below] {$\vphantom{-} \sigma$};
+    
+    \draw (0,-1) node {$\sigma$-ζωνοπερατό};
+    
+    \draw[->] (0,-0.5) -- (0,2) node[right] {$G(f)$};
+    \draw[->] (-2,0) -- (2,0) node[below] {$f$};
+    
+    \draw (0,1.5) node[above left] {$A$};
+    \filldraw (0,1.5) circle (1pt);
+    
+    \draw[->,thick] (1.8,1) -- ++(2,0) node[above,midway] {After};
+    
+    \begin{scope}[xshift=8cm]
+    \foreach \x in {-3,-1.5,...,1.5} {
+    	\begin{scope}
+    	\clip plot[xshift=\x cm,smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    	\fill[purple!40,postaction={pattern=north east lines,opacity=.2}]
+    	plot[xshift={\x cm+1.5 cm},smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    	\end{scope}
+    }
+    
+    \draw[xshift=3cm,very thick,blue!70,path fading=east] 
+    plot[smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    \draw[xshift=1.5cm,very thick,blue!85] 
+    plot[smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    \draw[xshift=-3cm,very thick,blue!70,path fading=west] 
+    plot[smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    \draw[xshift=-1.5cm,very thick,blue!85] 
+    plot[smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    \draw[very thick,blue] plot[smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    
+    \draw[->] (0,-0.5) -- (0,2);
+    \draw[->] (-3,0) -- (3,0);
+    
+    \draw[dashed] (1.5,1.5) -- ++(0,-1.5) node[below] {$F_P$};
+    \draw[->] (0.5,-0.05) -- (0.5,-0.4) node[below] {$\mathsmaller{F_P-\sigma}$};
+    
+    \begin{scope}[yshift=-4cm]
+    \fill[green!30,postaction={pattern=north west lines,opacity=.1}]
+    (-1.3,0.7) rectangle (1.3,0);
+    \draw[xshift=5cm,very thick,blue!70,path fading=east] 
+    plot[smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    \draw[xshift=2.5cm,very thick,blue!85] 
+    plot[smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    \draw[xshift=-5cm,very thick,blue!70,path fading=west] 
+    plot[smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    \draw[xshift=-2.5cm,very thick,blue!85] 
+    plot[smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    \draw[very thick,blue] plot[smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    
+    \draw[->] (0,-0.5) -- (0,2);
+    \draw[->] (-3,0) -- (3,0);
+    
+    \draw[dashed] (2.5,1.5) -- ++(0,-1.5) node[below] {$F_P$};
+    \draw[->] (1.5,-0.05) -- (1.5,-0.4) node[below] {$\mathsmaller{F_P-\sigma}$};
+    \draw[->] (3.5,-0.05) -- (3.5,-0.4) node[below] {$\mathsmaller{F_P-\sigma}$};
+    
+    \draw[green!50!black,very thick] (-1.3,0) -- ++(0,0.7) 
+    node[above,rotate=45,xshift=15pt,yshift=-1mm] {$W_F(f)$}
+    -- ++(2.6,0) -- ++(0,-0.7);
+    
+    \draw[gray!50!black,thick,->] (0,-1) -- ++(0,-1);
+    
+    \draw[blue!50!black] (-1,0) node[below] {$-\sigma$};
+    \draw[blue!50!black] (1,0) node[below] {$\vphantom{-} \sigma$};
+    \end{scope}
+    
+    \begin{scope}[yshift=-8.5cm]
+    \draw[->] (0,-0.5) -- (0,2);
+    \draw[->] (-3,0) -- (3,0);
+    
+    \draw[very thick,blue] plot[smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    
+    \draw[blue!50!black] (-1,0) node[below] {$-\sigma$};
+    \draw[blue!50!black] (1,0) node[below] {$\vphantom{-} \sigma$};
+    \end{scope}
+    \end{scope}
+    
+    \end{tikzpicture}
     Για να μην έχουμε aliasing πρέπει:
     \[
     F_p -\sigma > \sigma \implies F_p > 2\sigma
@@ -178,7 +296,25 @@
     	}
     \]
     
-    %TODO Rekanos Graph 45
+    \begin{center}
+    \begin{tikzpicture}[scale=1.5]
+    
+    \fill[green!10,postaction={pattern=north west lines,opacity=.1}]
+    (-1.7,0.7) rectangle (1.7,0);
+    \draw[very thick,blue] plot[smooth,tension=2] coordinates {(-1,0) (0,1.5) (1,0)};
+    
+    \draw[->] (0,-0.5) -- (0,2) node[right] {$F_P-\sigma$};
+    \draw (-3,0) -- (3,0);
+    
+    \draw[green!50!black,very thick] (-1.7,0) -- ++(0,0.7) -- ++(3.4,0) -- ++(0,-0.7);
+    
+    \draw (-1,0) node[below] {$-\sigma$};
+    \draw (1,0) node[below] {$\vphantom{-} \sigma$};
+    
+    \draw[green!50!black] (-1.7,0) node[below] {$-\frac{F}{2}$};
+    \draw[green!50!black] (1.7,0) node[below] {$\frac{F}{2}$};
+    \end{tikzpicture}
+    \end{center}
     \begin{gather*}
     W_F(f): \sigma < \sfrac{F}{2}  < F_p-\sigma \\
     \underbrace{F_p = W_F(f)\cdot G^S(f)}_{\downarrow FT}
@@ -204,7 +340,39 @@
     g(t) = \sum_n g(nT_s) \sinc\left( \frac{1}{T_s} (t-nT_s) \right)
     \]
     
-    %TODO Rekanos Graph 46
+    \begin{tikzpicture}
+    
+    \draw[very thick,blue] plot[variable=\x,domain=-2:3,smooth,samples=50]
+    ({\x}, {  sin(\x r*pi/2*2)  });
+    
+    \draw[->] (0,-0.5) -- (0,2);
+    \draw (-2,0) -- (3,0);
+    
+    \filldraw[very thick,draw=orange!60!black,fill=orange,fill opacity=.5]
+    (0,0) circle (4pt) + (1,0) circle(4pt);
+    
+    \begin{scope}[yshift=-4cm,xshift=15pt]
+    \draw[->] (0,-1.5) -- (0,2);
+    \draw[->] (-2,0) -- (2,0);
+    
+    \draw[orange!70!black,ultra thick,->] (-1,0) -- ++(0,-1);
+    \draw[orange!70!black,ultra thick,->] (1,0) -- ++(0,1);
+    
+    \begin{scope}[xshift=5cm]
+    \draw[->] (0,-1.5) -- (0,2);
+    \draw[->] (-2,0) -- (2.5,0);
+    
+    \draw[orange!70!black,ultra thick,->] (-1,0) -- ++(0,-1);
+    \draw[orange!70!black,ultra thick,->] (1,0) -- ++(0,1);
+    \draw[orange!70!black,ultra thick,->] (1,0) -- ++(0,-1);
+    \draw[orange!70!black,ultra thick,->] (2,0) -- ++(0,1);
+    
+    \draw[orange!40!black,opacity=.5] (1,0) ellipse (0.5 and 1.5);
+    
+    \draw (1.5,1.5) node {$0$};
+    \end{scope}
+    \end{scope}
+    \end{tikzpicture}
     
     \subsubsection{Άσκηση για το σπίτι}
     \[
@@ -297,7 +465,19 @@
     \end{tikzpicture}
     
     \subsection{Gibbs' Phenomenon}
-    %TODO Rekanos Graph 49
+    \begin{tikzpicture}
+    \draw (2.5,0) node[below] {$\vphantom{-}\sigma$} -- ++(0,{1.2*exp(-2.5^2/7)});
+    \draw (-2.5,0) node[below] {$-\sigma$} -- ++(0,{1.2*exp(-2.5^2/7)});
+    
+    \fill[green!20] plot[variable=\x,domain=-2.5:2.5,smooth,samples=20]
+    ({\x}, {  1.2*exp(-\x*\x/7)  }) -- (2.5,0) -- (-2.5,0) -- cycle;
+    \draw[very thick,blue] plot[variable=\x,domain=-3:3,smooth,samples=20]
+    ({\x}, {  1.2*exp(-\x*\x/7)  });
+
+    \draw[->] (0,-0.5) -- (0,2) node[right] {$X(\omega)$};
+    \draw[->] (-3,0) -- (3,0) node[right] {$\omega$};
+    \end{tikzpicture}
+    
     \begin{align*}
     x(t) &\xrightarrow{FT} X(\omega ) 
     \\ x_\sigma(t) &= \frac{1}{2\pi} \int_{-\sigma}^{\sigma}
@@ -315,7 +495,36 @@
     X_\sigma(f) &= \int_{-\infty}^{\infty} x(\tau) \frac{\sin\left(\sigma(t-\tau)\right)}%
     {\pi(t-\tau)}\dif\tau
     \end{align*}
-    %TODO Rekanos Graph 50
+    
+    \begin{tikzpicture}
+    
+    \draw[very thick,draw=blue]
+    (-1,0) node[below] {$-\sigma$} -- (-1,1) -- (1,1) -- (1,0) node[below] {$\sigma$};
+    \draw (0,1) node[above right] {$1$};
+    
+    
+    \draw[->] (0,-0.5) -- (0,2) node[right] {$X(\omega)$};
+    \draw[->] (-2,0) -- (2,0) node[right] {$\omega$};
+    
+    \draw[thick,->] (2,1) -- (3,1) node[midway,above] {IFT};
+    \draw[thick,->] (0,-1) -- (0,-2) node[midway,right] {$\sigma\to\infty$};
+    \draw[thick,->] (4,-1) -- (4,-2) node[midway,right] {$\sigma\to\infty$};
+    
+    \draw (4,1) node {$\mathlarger{\frac{\sin(\sigma t)}{\pi t}}$};
+    
+    \begin{scope}[yshift=-4.5cm]
+    \draw[very thick,draw=blue] (-1.9,1) -- (1.9,1);
+    
+    
+    \draw[->] (0,-0.5) -- (0,2) node[right] {$X(\omega)$};
+    \draw[->] (-2,0) -- (2,0) node[right] {$\omega$};
+    
+    \draw[thick,->] (2.2,1) -- (3.2,1) node[midway,above] {IFT};
+    
+    \draw (4,1) node {$\mathlarger{\delta(t)}$};
+    \end{scope}
+    \end{tikzpicture}
+    
     \begin{align*}
     	\lim_{\sigma\to \infty  }
     	x_\sigma(t) &= \int_{-\infty}^{\infty} x(\tau)
@@ -325,6 +534,49 @@
     	\dif\tau \\
     	\lim_{\sigma \to \infty} x_\sigma(t) = x(t)
     \end{align*}
+    
+    \begin{tikzpicture}[scale=0.8]
+    \draw[very thick,blue] plot[variable=\x,domain=-3:0,smooth,samples=40]
+    ({\x}, {  0.4*sin(5*\x r)-\x  });
+    \draw[very thick,blue] plot[variable=\x,domain=0:3,smooth,samples=40]
+    ({\x}, {  1.5+0.3*sin(3*\x r)-\x/1.5  });
+    
+    \draw (0,0) node[below right] {$x(0^-)$};
+    \draw (0,1.5) node[left,xshift=3pt] {$x(0^+)$};
+    \draw[blue] (0.4,0.3) node[right] {$x(t)$};
+    
+    \draw[->] (0,-0.5) -- (0,2);
+    \draw[->] (-3,0) -- (3,0) node[right] {$t$};
+    
+    \draw (4,1) node {$=$};
+    
+    \begin{scope}[xshift=7cm]
+    \draw[very thick,blue] plot[variable=\x,domain=-3:0,smooth,samples=40]
+    ({\x}, {  0.4*sin(5*\x r)-\x  });
+    \draw[very thick,blue] plot[variable=\x,domain=0:3,smooth,samples=40]
+    ({\x}, {  0.3*sin(3*\x r)-\x/1.5  });
+    
+    \draw (-2,1) node {$x(0^-)$};
+    \draw (1.7,1) node {$x(0^-)$};
+    
+    \draw[->] (0,-0.5) -- (0,2) node[right] {$X_C(t)$};
+    \draw[->] (-3,0) -- (3,0) node[right] {$t$};
+    
+    \draw (4,1) node {$+$};
+    \end{scope}
+    \begin{scope}[xshift=14cm]
+    
+    
+    \draw[very thick,draw=blue,->] (0,0) -- (0,1.2)
+    node[midway,above,xshift=10pt,sloped]
+    {$\mathsmaller{\mathsmaller{\left[x(0^+)-x(0^-)\right]}}$}
+    -- ++(3.2,0)
+    node[midway,above] {$\left[x(0^+)-x(0^-)\right]\mathrm u(t)$};
+    
+    \draw (0,-0.5) -- (0,2);
+    \draw[->] (-3,0) -- (3,0) node[right] {$t$};
+    \end{scope}
+    \end{tikzpicture}
     
     \begin{align*}
     x(t) &= x_c(t) + \left[x(0^+)-x(0^-)\right]\mathrm u(t)
@@ -357,7 +609,34 @@
     \[
     \mathrm{Si}(t) = \int_0^t \frac{\sin x}{x}\dif x
     \]
-    %TODO Rekanos Graph 52
+    
+    \begin{tikzpicture}   
+    
+    \draw[dashed,draw=brown!40!black]
+    (0,pi/2) node[left] {$\frac{\pi}{2}$} -- ++(5,0);
+    \draw[dashed,draw=brown!40!black]
+    (0,-pi/2) node[right] {$-\frac{\pi}{2}$} -- ++(-4,0);
+    
+    \draw[dashed,brown!80!black] (0,{pi*(1/2+0.0895)}) -- ++(5,0);
+    \draw[thick,<->] (4.5,pi/2) -- ++(0,0.0895*pi) node[midway,right,yshift=-1pt]
+    {$\pi \cdot 0,0895\dots$};
+    
+    \draw[very thick,blue] plot[xscale={1/pi},smooth] file{data/sine_integral.data};
+    
+    
+    \draw[->] (0,-2) -- (0,2);
+    \draw[->] (-4,0) -- (4,0) node[right] {$t$};
+    
+    \draw (1,0.1) -- ++(0,-0.2) node[below] {$\frac{\pi}{\sigma}$};
+    \draw (2,0.1) -- ++(0,-0.2) node[below] {$\frac{2\pi}{\sigma}$};
+    \draw (3,0.1) -- ++(0,-0.2) node[below] {$\frac{3\pi}{\sigma}$};
+    \draw (-1,0.1) -- ++(0,-0.2) node[below] {$\frac{-\pi}{\sigma}$};
+    \draw (-2,0.1) -- ++(0,-0.2) node[below] {$\frac{-2\pi}{\sigma}$};
+    \draw (-3,0.1) -- ++(0,-0.2) node[below] {$\frac{-3\pi}{\sigma}$};
+    
+    \draw (5,0) node {$\mathlarger{\mathrm{Si}\, (\sigma t)}$};
+    
+    \end{tikzpicture}
     
     Χρησιμοποιώντας τον Leibniz Rule (παραγωγίζοντας το ολοκλήρωμα) μπορούμε να αποδείξουμε
     την θέση των μεγίστων της \( \mathrm{Si} \).
@@ -372,7 +651,16 @@
       = \frac{x(0^+)+x(0^-)}{2}
     \end{align*}
     
-    %TODO Rekanos Graph 53
+    \begin{tikzpicture}   
+    
+    \draw[ultra thick,red!90!blue] (-2,pi/2) -- (0,pi/2) -- (0,-pi/2) -- (2,-pi/2);
+    
+    \draw[thick,blue] plot[xscale={-0.5/pi},smooth] file{data/sine_integral.data};
+    
+    \filldraw[very thick, draw=brown!50!black, fill=orange, fill opacity=.8]
+    (0,0) circle (4pt);
+    
+    \end{tikzpicture}
     
     Παρατηρώ ότι τα ζιγκζακωτά παραμένουν και το ύψος του κυματισμού δεν αλλάζει. Το μόνο που
     μπορεί να μεταβληθεί είναι η θέση του μεγίστου, με αύξηση του \( \sigma \) (ώστε να

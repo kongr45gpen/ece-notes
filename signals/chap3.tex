@@ -22,7 +22,69 @@
         \item Έστω ότι \( x(t) \) είναι αιτιατή (\( x(t)=0 \quad t< 0 \)).
         
         Ας φανταστούμε ότι η \( x(t) \) δεν έχει μετασχηματισμό Fourier.
-        %TODO Rekanos Graph 29
+        
+        \begin{tikzpicture}[scale=1,xscale=1]
+        \fill[samples=30,domain=0:4,smooth,variable=\x,blue!10] 
+        plot ({\x},{exp(\x/2-1)}) -- (4,0) -- (0,0) -- cycle;
+        \fill[samples=30,domain=0:4,smooth,variable=\x,blue!10] 
+        plot ({\x},{-exp(\x/2-1)}) -- (4,0) -- (0,0) -- cycle;
+        
+        \draw[->] (0,-2) -- (0,2); %node[right] {$f(t)$};
+        \draw[->] (-2,0) -- (4,0) node[below,right] {$t$};
+        
+        \draw[samples=100,domain=4:0,smooth,variable=\x,blue,very thick] 
+        plot ({\x},{-exp(\x/2-1)* sin(-5*\x r)});
+        \draw[samples=50,domain=4:0,smooth,variable=\x,blue] 
+        plot ({\x},{exp(\x/2-1)}) plot ({\x},{-exp(\x/2-1)});
+        
+        \draw (0,-2) node[below] {$x(t) = \sin( \omega t)\, e^t \mathrm u(t)$};
+        
+        \begin{scope}[xshift=7cm]
+        \fill[green!70] (1,-2) rectangle (0.7,2);
+        \fill[green!70,path fading=east] (2,-2) rectangle (1,2);
+        
+        \draw[->] (-2,0) -- (2,0) node[below] {$\sigma$};
+        \draw[->] (0,-2) -- (0,2) node[right] {$j\omega$};
+        
+        \draw[dashed] (0.7,-2) -- ++(0,4);
+        \draw (0.7,0) node[above left] {$1$};
+        
+        \draw (-1,-1) node {$s$-plane};
+        \draw (2,-1) node {$\Re\lbrace s\rbrace = \sigma>1$};
+        \end{scope}
+        \end{tikzpicture}
+        
+        \vspace{5pt}
+        
+        \begin{tikzpicture}[scale=1,xscale=1]
+        \fill[samples=30,domain=0:4,smooth,variable=\x,blue!10] 
+        plot ({\x},{exp(-\x/1.5+0.5)}) -- (4,0) -- (0,0) -- cycle;
+        \fill[samples=30,domain=0:4,smooth,variable=\x,blue!10] 
+        plot ({\x},{-exp(-\x/1.5+0.5)}) -- (4,0) -- (0,0) -- cycle;
+        
+        \draw[->] (0,-2) -- (0,2); %node[right] {$f(t)$};
+        \draw[->] (-2,0) -- (4,0) node[below,right] {$t$};
+        
+        \draw[samples=100,domain=4:0,smooth,variable=\x,blue,very thick] 
+        plot ({\x},{-exp(-\x/1.5+0.5)* sin(-5*\x r)});
+        \draw[samples=50,domain=4:0,smooth,variable=\x,blue] 
+        plot ({\x},{exp(-\x/1.5+0.5)}) plot ({\x},{-exp(-\x/1.5+0.5)});
+        
+        \draw (0,-2) node[below] {$x(t) = \sin( \omega t)\, e^{-t} \mathrm u(t)$};
+        
+        \begin{scope}[xshift=7cm]
+        \fill[green!70] (-0.3,-2) rectangle (-0.7,2);
+        \fill[green!70,path fading=east] (-0.3,-2) rectangle (2,2);
+        
+        \draw[->] (-2,0) -- (2,0) node[below] {$\sigma$};
+        \draw (0,-2) -- (0,2);
+        
+        \draw[dashed] (-0.7,-2) -- ++(0,4);
+        \draw (-0.7,0) node[above left] {$-1$};
+        
+        \draw (2,-1) node {$\Re\lbrace s\rbrace = \sigma>-1$};
+        \end{scope}
+        \end{tikzpicture}
         
         \item Έστω ότι \( x(t) \) αντιαιτιατή (\( x(t)=0 \quad t>0 \))
         
@@ -41,7 +103,7 @@
         \draw[samples=50,domain=-4:0,smooth,variable=\x,blue] 
         plot ({\x},{exp(-\x/2-1)}) plot ({\x},{-exp(-\x/2-1)});
         
-        \draw (0,-2) node[below] {$x(t) = \sin \omega t\, e^{-t} \omega(-t)$};
+        \draw (0,-2) node[below] {$x(t) = \sin \omega t\, e^{-t} \mathrm u(-t)$};
         
         \begin{scope}[xshift=6cm]
         \fill[green!70] (-1,-2) rectangle (-0.7,2);
@@ -56,7 +118,7 @@
         \draw (1,1) node {$s$-plane};
         \end{scope}
         \end{tikzpicture}
-        
+
         
         \item \mbox{}
         \\
@@ -556,5 +618,5 @@
     \right]\mathrm u(t)
     \end{align*}
     
-    Η μόνιμη κατάσταση που συντηρείται από το 1 στην διαφορική εξίσωση είναο το
+    Η μόνιμη κατάσταση που συντηρείται από το 1 στην διαφορική εξίσωση είναι το
     \( \frac{1}{6} \)
