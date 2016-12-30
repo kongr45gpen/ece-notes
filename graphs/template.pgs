@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{mathptmx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+\usepackage{relsize}
+\usepackage{mathrsfs}
+\usepackage{lmodern}
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathmorphing}
+\tikzset{snake/.style={decorate, decoration=snake}}
+\usepackage[greek]{babel}
+%\usepackage{color}
+\usepackage[active,pdftex,tightpage]{preview}
+\PreviewEnvironment[]{tikzpicture}
+\PreviewEnvironment[]{pgfpicture}
+\DeclareSymbolFont{symbolsb}{OMS}{cmsy}{m}{n}
+\SetSymbolFont{symbolsb}{bold}{OMS}{cmsy}{b}{n}
+\DeclareSymbolFontAlphabet{\mathcal}{symbolsb}
+\newcommand{\sfrac}{\frac}
+    \pgfmathdeclarefunction{sinc}{1}{%
+        \pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
+        \ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%
+    }
+
+
+
+\begin{document}
+<>
+\end{document}
