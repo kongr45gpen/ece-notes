@@ -1,13 +1,14 @@
-\documentclass[12pt,a4paper,titlepage,fleqn]{article}
+\documentclass[12pt,a4paper,titlepage,fleqn,draft]{article}
 
 \input{preamble.tex}
 
 \setmainfont{Ubuntu Light}
 \setsansfont{Arial}
+\setmathfont{TeX Gyre Termes Math}
 %\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
 %\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
 \usepackage{polyglossia}
-\newfontfamily\greekfont[Script=Greek,Scale=0.9]{Ubuntu Light}
+\newfontfamily\greekfont[Script=Greek,Scale=0.9]{Ubuntu}
 
 \title{Εφαρμοσμένα Μαθηματικά - Σημειώσεις}
 \date{2016}
@@ -892,9 +893,68 @@
 	 	η \( f(z)=\bar z \) \textbf{ΔΕΝ} είναι μιγαδικά παραγ.
 	 	\( \forall z\in\mathbb C \).
 	 \end{itemize}
+
+	 \begin{tikzpicture}[scale=1.5]
+	 \draw[->] (0,-1) -- (0,2) node[left] {$y$};
+	 \draw[->] (-0.5,0) -- (2,0) node[below] {$x$};
 	 
-	 %TODO Atreas Graph 08
-	 %TODO Atreas Graph 09
+	 \filldraw[green!50,
+	 path fading=north,postaction={pattern=north east lines,opacity=.5}]
+	 (0.5,1) rectangle ++(0.9,0.4);
+	 \draw (0.5,1) rectangle ++(0.9,0.4);
+	 \draw[->] (0.9,1.4) to[bend left] ++(0.3,0.4) node[above right] {$\dif z$};
+	 
+	 \filldraw (0.5,1) circle (1.5pt) node[below,xshift=5pt] {$z=x+iy$};
+	 
+	 \draw[thick,->] plot [smooth]
+	 coordinates {(2.1,0.7) (2.2,1) (3.3,0.9)};
+	 
+	 \begin{scope}[xshift=4cm]
+	 \draw[->] (0,-1) -- (0,2) node[left] {$v$};
+	 \draw[->] (-0.5,0) -- (2,0) node[below] {$u$};
+	 
+	 \filldraw[green!50,
+	 path fading=south,postaction={pattern=north west lines,opacity=.5}]
+	 (0.5,-1) rectangle ++(0.9,-0.4);
+	 \draw (0.5,-1) rectangle ++(0.9,-0.4) ;
+	 \draw (0.95,-1.4) node[below] {$\dif f(z)$};
+	 
+	 \filldraw (0.5,-1) circle (1.5pt);
+	 \end{scope}
+	 
+	 \draw (current bounding box.south) node[below]
+	 {$\dif f(z) = f'(z)\dif z = 
+ 	 	\underbrace{\left|f'(z)\right|}_{\mathclap{\raisebox{-1ex}{\scriptsize μεγέθυνση}}}
+ 	 	\underbrace{e^{i\arg f'(z)}}_{\mathclap{\text{περιστροφή}}}
+ 	 	\dif z
+ 	 	$};
+	 \end{tikzpicture}
+	 
+	 \begin{tikzpicture}[scale=1.3]
+	 \foreach \y in {-0.8,-0.4,...,2}
+	 \draw[gray] (-0.2,\y) -- (2,\y);
+	 \foreach \x in {0,0.4,...,1.8}
+	 \draw[gray] (\x,-1) -- (\x,2);
+	 
+	 \draw[thick,->] (0,-1) -- (0,2) node[left] {$y$};
+	 \draw[thick,->] (-0.5,0) -- (2,0) node[below] {$x$};
+	 
+	 \draw[very thick,->] (2.1,1) to[bend left=15]
+	 node[midway,above] {παραγωγίσιμη $f(z)$} (4.8,1);
+	 
+	 
+	 \begin{scope}[xshift=5.5cm]
+	 \begin{scope}[xshift=15pt,rotate=45,yshift=-15pt]
+	 \foreach \y in {-0.8,-0.4,...,2}
+	 \draw[gray] (-0.2,\y) -- (2,\y);
+	 \foreach \x in {0,0.4,...,1.8}
+	 \draw[gray] (\x,-1) -- (\x,2);
+	 \end{scope}
+	 
+	 \draw[thick,->] (0,-1) -- (0,2) node[left] {$y$};
+	 \draw[thick,->] (-0.5,0) -- (2,0) node[below] {$x$};
+	 \end{scope}
+	 \end{tikzpicture}
 	 
 	 \paragraph{}
 	 \begin{gather*}
@@ -2277,7 +2337,7 @@
     	
     	\textbf{Επομένως}:
     	\begin{align*}
-    	\cos(z) &\overset{\mathclap{\text{McLaurin}}}{=} 
+    	\cos(z) &\overset{\mathclap{\raisebox{1ex}{\scriptsize McLaurin}}}{=} 
     	1 - \frac{z^2}{2} + \frac{z^4}{4!} - \dots \quad z \in \mathbb C \\
     	\cos\left(\frac{1}{z}\right) &= 1-\frac{1}{2z^2} + \frac{1}{24z^4} - \dots
     	\quad z \ in \mathbb C  - \left\lbrace 0 \right\rbrace \\
@@ -5456,5 +5516,4 @@
     \begin{center}
     \includegraphics[width=0.8\linewidth]{graphics/sage1}
     \end{center}
-
 \end{document}

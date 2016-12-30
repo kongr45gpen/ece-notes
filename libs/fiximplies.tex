@@ -25,5 +25,14 @@
   \kern-.2\wd0 %
   \clipbox{\dimexpr(\wd4-.6\wd0) 0pt 0pt 0pt}{\copy4}%
 }
+
+\def\Rightarrowfill@{\arrowfill@\NewRelbar\NewRelbar\Rightarrow}
+\def\Leftarrowfill@{\arrowfill@\Leftarrow\NewRelbar\NewRelbar}
+
+% Fix long xleft(right)arrow
+\patchcmd{\arrowfill@}{-7mu}{-14mu}{}{}
+\patchcmd{\arrowfill@}{-7mu}{-14mu}{}{}
+\patchcmd{\arrowfill@}{-2mu}{-4mu}{}{}
+\patchcmd{\arrowfill@}{-2mu}{-4mu}{}{}
 \makeatother
 

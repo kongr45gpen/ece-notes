@@ -60,6 +60,8 @@
 
 %\usepackage[no-math]{fontspec}
 \usepackage{fontspec}
+%\usepackage{mathspec}
+\usepackage{unicode-math}
 \setmainfont{Times New Roman}
 \setsansfont{Arial}
 %\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
@@ -119,9 +121,14 @@
 \newtcolorbox{infobox}[1]{colback=blue!5!white,%
     colframe=blue!75!black,fonttitle=\bfseries,title=#1}
 
-\renewcommand{\arg}{\mathrm{Arg}\, }
-\renewcommand{\Re}{\mathrm{Re}}
-\renewcommand{\Im}{\mathrm{Im}}
+\AtBeginDocument{%
+\let\arg\relax
+\let\Re\relax
+\let\Im\relax
+\DeclareMathOperator{\arg}{Arg}
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+}
 \DeclareMathOperator{\sinc}{sinc}
 \DeclareMathOperator{\Res}{Res}
 
