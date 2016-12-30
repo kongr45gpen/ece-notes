@@ -3,7 +3,7 @@
 	\draw[gray, thick] (-2.5,-2.5) -- (2.5,2.5);
 	\node[above right, rotate=45] at (-2.5,-2.5) {\(+\infty\)};
 	\node[above left, rotate=45] at (2.5,2.5) {\(-\infty\)};
-	
+
 	\filldraw[black] (0.5,0.5) circle (2pt) node[anchor=west] {\(t_0\)};
 \begin{scope}[shift={(7,0)},scale=2]
 	\draw (-1,0) arc (180:360:1cm and 0.5cm);

@@ -2,7 +2,7 @@
 \fill[green!20] (0,0) circle (1);
 
 \draw (0.4,-0.4) node[rotate=45] {$\mathsmaller{\nabla^2 \Phi = 0}$};
-        
+
  \draw[->] (0,-1.5) -- (0,1.5) node[right] {$y$};
 \draw[->] (-1.5,0) -- (1.5,0) node[below] {$x$};
 
@@ -10,7 +10,7 @@
 \draw[very thick,cyan!50!green] (1,0) arc (360:180:1)
 node[pos=.35,below,sloped] {$\Phi=0$};
 
-       
+
 \begin{scope}[xshift=5cm,xscale=1.2]
         \fill[green!50] (-2,0) rectangle (2,0.7);
         \fill[green!50,path fading=north] (-2,0.7) rectangle (2,2);

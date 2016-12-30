@@ -5,15 +5,15 @@
     	}
 
 		\filldraw[xscale=0.5,samples=200,domain=-5:5,smooth,variable=\x,blue,
-fill=blue!20] 
+fill=blue!20]
     	plot ({\x},{abs(sinc(pi*\x))});
-    	
+
     	\draw[->] (0,-0.5) -- (0,1.5) node[right] {$h(t)$};
     	\draw[->] (-2.5,0) -- (2.5,0) node[below,right] {$t$};
-    	
-    	\draw[very thick,xscale=0.5,samples=200,domain=-5:5,smooth,variable=\x,blue] 
+
+    	\draw[very thick,xscale=0.5,samples=200,domain=-5:5,smooth,variable=\x,blue]
     	plot ({\x},{sinc(pi*\x)});
-    	
+
     	\draw (0,0) node[below right] {$0$};
     	\draw (0.5,0) node[below] {$\frac{1}{F}$};
 		\draw(1,0) node[below] {$\frac{2}{F}$};
@@ -21,4 +21,4 @@ fill=blue!20]
 		\draw (-0.5,0) node[below] {$-\frac{1}{F}$};
 	    \draw(2,0) node[below] {$\cdots$};
     \end{tikzpicture}
-    
+

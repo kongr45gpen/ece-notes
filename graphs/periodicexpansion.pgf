@@ -1,5 +1,5 @@
 \begin{tikzpicture}[scale=1]
-  \begin{axis}[ 
+  \begin{axis}[
 %    xlabel=$t$,
     axis lines=middle
    ,ytick={-1,0,1}
@@ -11,13 +11,13 @@
 	xmax=5*pi,
 	ymin=-2,
 	ymax=2,
-  ] 
+  ]
 
 \addplot[dashed,opacity=0.4] coordinates { (-pi,-2) (-pi,2) };
 \addplot[dashed,opacity=0.4] coordinates { (-3*pi,-2) (-3*pi,2) };
 \addplot[dashed,opacity=0.4] coordinates { (pi,-2) (pi,2) };
 \addplot[dashed,opacity=0.4] coordinates { (3*pi,-2) (3*pi,2) };
-  
+
 \addplot[blue,domain=-5*pi:5*pi,samples=200] {1/8*sin(deg(7.6*x))+1/5*sin((deg(3*x)))+1/2*sin(deg(1.2*(x+1.5)))+sin(deg(0.3*x))+sin(x)/x};
 \addplot[orange,shift={(0,0)},very thick,opacity=0.5,domain=-pi:pi,samples=200] {1/8*sin(deg(7.6*x))+1/5*sin((deg(3*x)))+1/2*sin(deg(1.2*(x+1.5)))+sin(deg(0.3*x))+sin(x)/x};
 \addplot[orange,shift={(-20*pi,0)},very thick,opacity=0.5,domain=-pi:pi,samples=200] {1/8*sin(deg(7.6*x))+1/5*sin((deg(3*x)))+1/2*sin(deg(1.2*(x+1.5)))+sin(deg(0.3*x))+sin(x)/x};
