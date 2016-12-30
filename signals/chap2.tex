@@ -113,7 +113,8 @@
         \(
         \begin{array}{l}
         A_0 = \sfrac{a_0}{2} \\
-        A_n = \sqrt{a_n^2+b_n^2} = 2|F_n| \\
+        A_n = \sqrt{a_n^2+b_n^2} \\[-0.1pt]
+        \hphantom{A_n} = 2|F_n| \\
         \phi_n = \arctan\left(\frac{b_n}{a_n}\right)
         \end{array}
         \)
@@ -495,8 +496,7 @@
      \subsubsection{Θεώρημα Parseval}
      
      
-     \begin{theorem*}[title=Θεώρημα Parseval,width=\textwidth]{Parseval}
-        %TODO This doesn't look great
+     \begin{theorem*}[title=Θεώρημα Parseval,width=.8\textwidth]{Parseval}
         \begin{align*}
         W = \int_{-\infty}^{\infty} \left| f(t) \right|^2\dif t
         =\frac{1}{2\pi}\int_{-\infty}^{\infty} \left|F(\omega )\right|^2
@@ -852,7 +852,8 @@
      \draw[->] (0,-0.5) -- (0,2) node[right] {$G(\omega)$};
      \draw[->] (-2,0) -- (2,0) node[below] {$\omega$};
      
-     \draw[very thick,blue] plot[smooth,tension=1.2] coordinates {(-1,0) (0,1) (1,0)};
+     \draw[very thick,blue!30!orange] plot[smooth,tension=1.2]
+     coordinates {(-1,0) (0,1) (1,0)};
      
      \draw (-1,0) node[below] {$\sfrac{-\sigma}{2}$};
      \draw (1,0) node[below] {$\sfrac{\sigma}{2}$};

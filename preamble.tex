@@ -1,7 +1,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage{commath}
+\usepackage{libs/commath2}
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage[skins,theorems]{tcolorbox}
@@ -33,6 +33,8 @@
 \usetikzlibrary{snakes}
 \usetikzlibrary{fadings}
 \usetikzlibrary{intersections}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
 
 \tikzset{cross/.style={cross out, draw,
         minimum size=2*(#1-\pgflinewidth),
@@ -56,7 +58,8 @@
 
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
-\usepackage[no-math]{fontspec}
+%\usepackage[no-math]{fontspec}
+\usepackage{fontspec}
 \setmainfont{Times New Roman}
 \setsansfont{Arial}
 %\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
@@ -75,8 +78,6 @@
 %\usepackage[greek]{babel}
 
 
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{calc}
 %\usepackage{tkz-euclide} % loads  TikZ and tkz-base
 %\usetkzobj{angles} % important you want to use angles
 
@@ -102,7 +103,7 @@
 \newlist{invitemize}{itemize}{1}
 \setlist[invitemize]{noitemsep,label=}
 
-
+\input{libs/fiximplies}
 
 \makeatletter
 \let\anw@true\anw@false

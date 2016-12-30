@@ -1,5 +1,4 @@
     \begin{tikzpicture}[scale=1.2]
-        %TODO: Global sinc declaration
     	\pgfmathdeclarefunction{sinc}{1}{%
     		\pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
     		\ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%

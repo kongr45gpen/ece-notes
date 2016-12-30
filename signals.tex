@@ -6,11 +6,15 @@
 \date{2016}
 \author{\textlatin{\csuse{no\greek @numbers}\selectlanguage{english} \url{https://github.com/kongr45gpen/ece-notes}}}
 
+\setmainfont{Linux Libertine O}
+\setsansfont{Ubuntu}
+%\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
+%\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
+\usepackage{polyglossia}
+\newfontfamily\greekfont[Script=Greek,Scale=0.95]{GFS Artemisia}
 
 
 \begin{document}
-	Την Τρίτη μάθημα 8:30 χωρίς διάλειμμα
-
 	\include{signals/chap0}
     \include{signals/chap1}
 	\include{signals/chap2}
@@ -647,7 +651,7 @@
     	 \frac{x(0^+)-x(0^-)}{2} + \frac{\left[x(0^+)-x(0^-)\right]}{\pi}\mathrm{Si}(\sigma t)
       \\ \lim_{\sigma\to \infty} x_\sigma(t) &= x_c(t) + \frac{x(0^+)-x(0^-)}{2}
       + \frac{\left[x(0^+)-x(0^-)\right]}{\pi} \lim_{\sigma\to \infty}\mathrm{Si}(\sigma t)
-      \\ \lim_{\sigma\to \infty} x_\sigma(0) = x(0^-) + \frac{x(0^+)-x(0^-)}{2}
+      \\ \lim_{\sigma\to \infty} x_\sigma(0) &= x(0^-) + \frac{x(0^+)-x(0^-)}{2}
       = \frac{x(0^+)+x(0^-)}{2}
     \end{align*}
     
@@ -1180,10 +1184,168 @@
    Αν \( \Re\left\lbrace a \right\rbrace < 0 \), τότε 
    \( \displaystyle H(\omega ) = \frac{a(j\omega +b)}{j\omega (j\omega -a)} \)
 
-    \paragraph{...}
-    %TODO Some missing notes with 3 graphs
+    \begin{infobox}{Ένα διάγραμμα όπως τα παρακάτω μπορεί να περιέχει:}
+    	\subparagraph{Τελεστή άθροισης}
+    	\( y(t) = x(t) + v(t) \pm w(t) \)
+    	
+	    \begin{tikzpicture}[scale=1.5]
+	    \def\cr{4pt};
+	    
+	    \draw (0,0) node{$+$} circle (\cr);
+	    
+	    \draw[->] (-1,0) -- (-\cr,0) node[midway,above] {$x(t)$};
+	    \draw[->] (0,-1) node[right] {$w(t)$} -- (0,-\cr) node[midway,above left] {$\pm$};
+	    \draw[->] (0,1) node[right] {$v(t)$} -- (0,\cr);
+	    \draw[->] (\cr,0) -- (1,0) node[midway,above] {$y(t)$};
+	    \end{tikzpicture}
+	    
+	    \subparagraph{Γινόμενο συνάρτησης με αριθμό}
+	    \( y(t) = ax(t) \)
+	    
+	    \begin{tikzpicture}[scale=1.5]
+	    	\draw[->] (0,0) node[left] {$x(t)$} -- 
+	    	(1,0) node[right] {$y(t)$} node[midway,above] {$a$};
+	    \end{tikzpicture}
+	    
+	    \subparagraph{Συνέλιξη} \hspace{0pt}
+	    
+	    \begin{tikzpicture}[scale=1.2]
+	    	\draw[->] (0,0) -- (1,0) node[above,midway] {$x(t)$} ;
+	    	\draw (1,0.25) rectangle (2.3,-0.25) node[midway] {$h_1(t)$};
+	    	\draw[->] (2.3,0) -- (3.3,0) node[above,midway] {$y(t)$}
+	    	node[xshift=5mm,right] {$y(t) = h_1(t) * x(t)$};
+	    	
+	    	\begin{scope}[yshift=-1cm]
+	    	\draw[->] (0,0) -- (1,0) node[above,midway] {$x(t)$} ;
+	    	\draw (1,0.25) rectangle (2.3,-0.25) node[midway] {$H_1(s)$};
+	    	\draw[->] (2.3,0) -- (3.3,0) node[above,midway] {$y(t)$}
+	    	node[xshift=5mm,right] {$Y(s) = H_1(s) X(s)$};
+	    	\end{scope}
+	    	
+	    	\draw[thick,decorate,decoration={brace,amplitude=10pt}]
+	    	(3.4,0.5) -- (3.4,-1.5);
+	    	
+	    	\draw (8,-1) node
+	    	{$\mathsmaller{\mathsmaller{
+	    				H_1(s) = \mathscr L \left\lbrace h_1(t)\right\rbrace}}$};
+	    \end{tikzpicture}
+	    
+	    \subparagraph{Συνδυασμός (σε σειρά)}
+	    \( y(t) = h_2(t) * v(t) = h_2(t) * \left(x(t)*h_1(t)\right) =
+	    \left[h_1(t) * h_2(t)\right] * x(t)
+	     \)
+	     
+	    \begin{tikzpicture}[scale=1.3]
+	    	\draw[->] (0,0) -- (1,0) node[above,midway] {$x(t)$} ;
+	    	\draw (1,0.25) rectangle (2.3,-0.25) node[midway] {$h_1(t)$};
+	    	\draw[->] (2.3,0) -- (3.3,0) node[midway] (V) {};
+	    	\draw (3.3,0.25) rectangle (4.6,-0.25) node[midway] {$h_2(t)$};
+	    	\draw[->] (4.6,0) -- (5.6,0) node[right] {$y(t)$};
+	    	
+	    	\filldraw[blue!50!green] (V) circle (1pt) node[above] {$v(t)$};
+	    	
+	    	\draw ({(1+2.3)/2},-0.7)
+	    	node {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\Updownarrow}}}}$};
+	    	
+	    	\begin{scope}[yshift=-1.4cm]
+	    	\draw[->] (0,0) -- (1,0) node[above,midway] {$x(t)$} ;
+	    	\draw (1,0.25) rectangle (2.3,-0.25) node[midway] {$\mathsmaller{h_1(t)*h_2(t)}$};
+	    	\draw[->] (2.3,0) -- (3.3,0) node[above,midway] {$y(t)$};
+	    	\end{scope}
+	    \end{tikzpicture}
+	    
+	    ή
+	    
+	    \begin{tikzpicture}[scale=1.3]
+	    	\draw[->] (0,0) -- (1,0) node[above,midway] {$x(t)$} ;
+	    	\draw (1,0.25) rectangle (2.3,-0.25) node[midway] {$H_1(s)$};
+	    	\draw[->] (2.3,0) -- (3.3,0);
+	    	\draw (3.3,0.25) rectangle (4.6,-0.25) node[midway] {$H_2(s)$};
+	    	\draw[->] (4.6,0) -- (5.6,0) node[right] {$y(t)$};
+	    	
+	    	\draw ({(1+2.3)/2},-0.7)
+	    	node {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\Updownarrow}}}}$};
+	    	
+	    	\begin{scope}[yshift=-1.4cm]
+	    	\draw[->] (0,0) -- (1,0) node[above,midway] {$x(t)$} ;
+	    	\draw (1,0.25) rectangle (2.3,-0.25) node[midway] {$\mathsmaller{H_1(s)H_2(s)}$};
+	    	\draw[->] (2.3,0) -- (3.3,0) node[above,midway] {$y(t)$};
+	    	\end{scope}
+	    \end{tikzpicture}
+	    
+	    
+	    \subparagraph{Συνδυασμό (παράλληλα)} \hspace{0pt}
+	    
+	    \begin{tikzpicture}[scale=1.3]
+	    \def\cr{4pt};
+	    
+	    \draw[->] (-1,0) -- (0,0) node[above,midway] {$x(t)$} ;
+	    \draw[->] (0,0) -- (0,0.75) -- ++(1,0);
+	    \draw (1,1) rectangle ++(1.3,-0.5) node[midway] {$h_1(t)$};
+	    \draw[->] (2.3,0.75) -- ++(1,0) -- (3.3,\cr);
+	    \draw[->] (0,0) -- (0,-0.75) -- ++(1,0);
+	    \draw (1,-1) rectangle ++(1.3,0.5) node[midway] {$h_2(t)$};
+	    \draw[->] (2.3,-0.75) -- ++(1,0) -- (3.3,-\cr);
+	    
+	    \draw (3.3,0) node {$+$} circle (\cr);
+	    \draw[->] (3.3cm+\cr,0) -- ++(1,0) node[above,midway] {$y(t)$};
+	    
+	    \draw ({(1+2.3)/2},-1.4)
+	    node {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\Updownarrow}}}}$};
+	    
+	    \begin{scope}[yshift=-2.1cm]
+	    \draw[->] (0,0) -- (1,0) node[above,midway] {$x(t)$} ;
+	    \draw (1,0.25) rectangle (2.3,-0.25) node[midway] {$\mathsmaller{h_1(t)+h_2(t)}$};
+	    \draw[->] (2.3,0) -- (3.3,0) node[above,midway] {$y(t)$};
+	    \end{scope}
+	    \end{tikzpicture}
+	    
+	    \subparagraph{Τελεστές} \hspace{0pt}
+	    
+	    \begin{tikzpicture}[scale=1,baseline]
+	    \draw[->] (0,0) -- (1,0) node[above,pos=.4] {$x(t)$};
+	    \draw (1,0.35) rectangle (1.4,-0.35) node[midway] {$\int$};
+	    \draw[->] (1.4,0) -- ++(1,0) node[above,pos=.5] {$y(t)$};
+	    \end{tikzpicture}
+	    \( y(t) = \int_{-\infty}^{t} x(\tau) \dif\tau \)
+	    
+	    \begin{tikzpicture}[scale=1,baseline]
+	    \draw[->] (0,0) -- (1,0) node[above,pos=.4] {$x(t)$};
+	    \draw (1,0.35) rectangle (1.4,-0.35) node[midway] {$\od{}{t}$};
+	    \draw[->] (1.4,0) -- ++(1,0) node[above,pos=.5] {$y(t)$};
+	    \end{tikzpicture}
+	    \( y(t) = \od{x}{t} \)
+    \end{infobox}
     
-    %TODO Rekanos Graph 64
+    \newpage
+    
+    \paragraph{Άσκηση}
+    Να βρεθεί το ισοδύναμο του block diagram:
+
+    \begin{tikzpicture}
+    \def\cr{7pt};
+    \draw[->] (0,0) -- (1cm-\cr,0)
+    node[midway,above] {$x(t)$} node[midway,below] {$X(s)$};
+    \draw (1,0) node {$+$} circle (\cr);
+    \draw[->] (1cm+\cr,0) -- (2.1,0) node [midway,below] (A) {};
+    \draw (2.1,0.25) rectangle ++(1.5,-0.5) node[midway] {$H_1(s)$};
+    
+    \draw[->,green!50!black] (A) -- ++(0,1) node[above] {$\Xi(s)$};
+    \draw[->] (3.6,0) -- (5,0) node[right] {$y(t)$} node[below right,yshift=-2mm] {$Y(s)$};
+    
+    \draw[->] (4.6,0) -- ++(0,-1) -- (3.6,-1);
+    \draw (2.1,0.25-1) rectangle ++(1.5,-0.5) node[midway] {$H_2(s)$};
+    \draw[->] (2.1,-1) -- (1,-1) -- (1,-\cr);
+    
+    \draw (2.85,-2)
+    node {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\Updownarrow}}}}$};
+    
+    \begin{scope}[yshift=-3cm]
+    \draw[->] (1,0) -- (2.1,0) node[midway,above] {$x(t)$};
+    \draw (2.1,0.25) rectangle ++(1.5,-0.5) node[midway] {$H(s)$};
+    \draw[->] (3.6,0) -- (5,0) node[midway,above] {$y(t)$};
+    \end{scope}
+    \end{tikzpicture}
     \begin{align*}
     	Y(s) &= H_1(s) \cdot \Xi(s) \\
     	&= H_1(s) \cdot \left[ X(s) + Y(s) \right] \implies \\
@@ -1194,7 +1356,33 @@
     \end{align*}
     
     \paragraph{Άσκηση}
-    %TODO Rekanos Graph 65
+    \hspace{0pt}
+    
+    \begin{tikzpicture}[scale=1.2]
+    \def\cr{7pt};
+    \draw[->] (-0.5,0) -- (1cm-\cr,0) node[midway,above] {$x(t)$};
+    \draw (1,0) node {$+$} circle (\cr);
+    \draw[->] (1cm+\cr,0) -- (2.1,0) node [midway,below] (A) {};
+    \draw (2.1,0.3) rectangle ++(3,-0.6) node[midway]
+    {$\ddot o + 5\dot o +6o = \dot\imath + \imath$};
+    
+    \draw[->] (5.1,0) -- (6.5,0) node[right] {$y(t)$}
+    node[below right,yshift=-2mm] {};
+    
+    \draw[->] (6,0) -- ++(0,-1) -- (4.55,-1);
+    \draw (2.55,0.25-1) rectangle ++(2,-0.5) node[midway] {$\dot o + o = \imath$};
+    \draw[->] (2.55,-1) -- (1,-1) -- (1,-\cr);
+    
+    \draw (3.6,0.25) node[above,green]
+    {$\mathsmaller{H_1: \ s^2O(s)+5sO(s)+6O(s)=sI(s)+I(s)}$};
+    \draw (3.6,-1.25) node[below,green]
+    {$\mathsmaller{H_2: \ sO(s)+O(s)=I(s)}$};
+    
+    \draw[dashed,gray] (0.6, 0.8) rectangle (6.3,-1.8);
+    
+    \draw (2.85,-2)
+    node {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\Updownarrow}}}}$};
+    \end{tikzpicture}
     
     \begin{align*}
     	H_1(s) &= \frac{O(s)}{I(s)} = \frac{s+1}{s^2+5s+6} = \frac{s+1}{(s+3)(s+2)} \\
@@ -1206,8 +1394,22 @@
     \end{align*}
 
 
-    \paragraph{Άσκηση}
-    %TODO Rekanos Graph 66
+    \paragraph{Άσκηση} \hspace{0pt}
+
+    \begin{tikzpicture}
+    \draw[->] (0,-2) -- (0,2) node[above] {$i\omega$};
+    \draw[->] (-2,0) -- (2,0) node[below] {$\sigma$};
+    
+    \draw (1,1) node[above right] {$s$-plane};
+    
+    \draw (-0.75,0) node[cross=3pt,thick,red] {} node[below,yshift=-1mm] {$-0.5$};
+    \draw (-1.5,0) node[cross=3pt,thick,red] {} node[below,yshift=-1mm] {$-1$};
+    
+    \draw plot [smooth]
+    coordinates {(-1.5,-0.7) ({(-0.75-1.5)/2},-1.1) (-0.75,-0.7)};
+    \draw[->] ({(-0.75-1.5)/2},-1.1) -- ++(0,-0.5) node[below,rectangle,align=center]
+    {απλοί πόλοι,\\δεν έχει μηδενικά};
+    \end{tikzpicture}
     
     Αν η είσοδος \( x(t) = \mathrm u(t) \), βρίσκω μετά από "πολλά χρόνια" ότι \( y(t)=1 
     \implies \lim_{t\to \infty} y(t) = 1
@@ -1236,7 +1438,20 @@
     
     όπου \( X(\omega ) = \mathrm{FT}\left\lbrace x(t) \right\rbrace \)
     
-    %TODO Rekanos Graph 67
+    \begin{tikzpicture}[scale=1.2]
+    \draw[->,yshift=-0.5mm] (0,0) -- (1,0) node[midway,above] {$x(t)$};
+    \draw (1,0.25) rectangle (2,-0.25) node[midway] {$M$};
+    \draw[->] (2,0) -- (3,0) node[blue,midway,below] {$\mathsmaller{(1)}$};
+    \draw (3,0.25) rectangle (4,-0.25) node[midway] {$M$};
+    \draw[->] (4,0) -- (5,0) node[blue,midway,below] {$\mathsmaller{(2)}$};
+    \draw (5,0.25) rectangle (6,-0.25) node[midway] {$M$};
+    \draw[->] (6,0) -- (7,0) node[blue,midway,below] {$\mathsmaller{(3)}$};
+    \draw (7.2,0) node {$\times$} circle (0.2);
+    \draw[->] (7.4,0) -- (8,0) node[right] {$w(t)$};
+    
+    \draw[<-] (7.2,-0.2) -- ++(0,-0.5) node[below] {$\left(\frac{1}{2\pi}\right)^4$};
+    \end{tikzpicture}
+
     Για να υπάρχει συνάρτηση μεταφοράς του \( M \), πρέπει να είναι γραμμικό \& αμετάβλητο:
     
     \begin{align*}

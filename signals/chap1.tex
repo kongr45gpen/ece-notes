@@ -57,38 +57,23 @@
     \right]^{\sfrac{1}{2}}
     \end{gather*}
     
-    \begin{tikzpicture} %TODO
-        \draw (-3,0) -- (3,0);
-        \draw (0,-3) -- (0,3);
-        
-        \draw[very thick,blue] plot[,smooth,tension=1]
-        coordinates{(0,0)  (1.4,2)  (2.8,0)};
-        
-        \draw (0,0) node[below left] {$t_1$};
-        \draw (2.8,0) node[below] {$t_2$};
-    \end{tikzpicture}
-    %TODO Add missing graph
-    
     \begin{align*}
     \text{Αν } & \left\langle \phi_1(t),\phi_2(t) \right\rangle
     = 0 \quad \phi_1(t) \perp \phi_2(t) \\
     & \left\langle \phi_1(t),\phi_1(t)\right\rangle = 1 \quad
     \phi_1(t) \text{ κανονική}
     \end{align*}
-    
-    %TODO Add more missing notes
-    
-    %TODO Rekanos Graph 11
-    
-    %TODO Mess starts here
+
     \paragraph{Τερατοχώρος}
     
-    \begin{tikzpicture}[scale=2]
+    \begin{tikzpicture}[scale=1,baseline]
         \draw[->] (-0.5,0) -- (2,0) node[below right] {$\hat x$};
         \draw[->] (0,-0.5) -- (0,2) node[above left] {$\hat y$};
         
         \draw[thick,->] (0,0) -- (1.5,1.5) node[right] {$\vec a$};
         \draw[thick,->] (0,0) -- (1.5,0) node[below] {$\tilde a$};
+        
+        \draw (0.2,0) -- (0.2,0.2) -- (0,0.2);
     \end{tikzpicture}
     
     \( \hat x,\hat y \) όχι εξαρτημένα (συνευθειακά)
@@ -106,14 +91,42 @@
         d(\vec a,\tilde a) = \sqrt{(a_x-k)^2+a_y^2} \\
         \od{}{k}\left( d(\vec a,\tilde a) \right) = \frac{a_x-k}{\cdots}
         = 0 \implies k=a_x = \tilde a \cdot \hat x\\
-        \vec a\cdot\hat x = a_x
+        \boxed{\vec a\cdot\hat x = a_x}
     \end{gather*}
     
     Η βέλτιστη έκφραση του \( \vec a \) στο δισδιάστατο χώρο είναι το ίδιο το \( \vec a \).
     
-    \paragraph{Μη κάθετα διανύσματα}
+    \paragraph{Μη κάθετα διανύσματα} \hspace{0pt}
     
-    %TODO There are some shapes here
+    \begin{tikzpicture}[scale=1]
+    \draw[->,dotted] (4,0) -- (6,0);
+    \draw[dotted] (6,0) -- (6,2);
+    \draw[->] (0,0) -- (4,0) node[below right] {$\hat x$};
+    \draw[->] (0,0) -- (6,2) node[right] {$\vec a$};
+    
+    \draw[->] (0,0) -- (50:2) node[above right] {$\hat y$};
+    \draw[->,blue,thick] (0.5,0) node[below] {$\mathsmaller{<\frac{\pi}{2}}$}
+    arc (0:50:0.5);
+    \end{tikzpicture}
+    
+    \begin{tikzpicture}[scale=1]
+    \draw[very thick,draw=blue,->] (0,0) -- (29.8:4.88)
+    node[above right] {$\vec a = a_x\hat x + a_y\hat y$};
+    
+    \draw[->] (0,0) -- (3,0) node[below right] {$\hat x$};
+    
+    \draw[very thick,blue!50!green,yshift=-5pt,xshift=2pt,mark position=1(X),->]
+    (0,0) -- (2,0) node[midway,below] {$a_x$};
+    \draw[very thick,blue!50!green,yshift=4pt,xshift=-4pt,mark position=1(Y),->]
+    (0,0) -- (50:3) node[midway,above,sloped] {$a_y$};
+    
+    \draw[->] (0,0) -- (50:2) node[above right] {$\hat y$};
+    
+    \draw[dashed] (X) -- ++(50:3.4);
+    \draw[dashed] (Y) -- ++(2.5,0);
+    
+    \draw (5,0.5) node {$\hat x \not\perp \hat y$};
+    \end{tikzpicture}
     
     \begin{gather*}
     \vec a = a_x\hat x+a_y\hat y\\
@@ -128,10 +141,9 @@
     \right]^{\sfrac{1}{2}} \\
     \vec a_{\mathrm{best}} = (\vec a \cdot \hat x)\hat x \neq a_x \\
     \boxed{\vec a \cdot \hat x = a_x+a_y\cos\phi\neq a_x}
+    \quad \leftarrow
+    \text{Η βέλτιστη περιγραφή του $\vec a$ στον διδιάστατο στον άλλο χώρο}
     \end{gather*}
-    
-    %TODO There are some shapes here
-
 
     \paragraph{Συναρτηστιακός κόσμος}
     \( \phi_n(t) \) παράγουν χώρο με το μηχανισμό:
@@ -141,12 +153,14 @@
     
     \( \phi_n(t) \) ανεξάρτητες μεταξύ τους (βάση απειροδιάστατου χώρου)
     
-    \begin{gather*}
+    \[
     \hat f(t)=\sum_{n=0}^M \underbrace{\hat a_n}_{%
-        \mathclap{\neq a_n\text{, επειδή η βάση δεν είναι ορθοκανονική}}
-        }\phi_n(t) \text{ βέλτιστη, ώστε η απόσταση με την $f$
-        να είναι ελάχιστη}  \\
-    \end{gather*}
+   	\mathclap{\raisebox{-2ex}{\ensuremath{ \scriptstyle
+   				\neq a_n\text{, επειδή η βάση δεν είναι ορθοκανονική}
+   			}}}
+   		}\phi_n(t) \text{ βέλτιστη, ώστε η απόσταση με την $f$
+   		να είναι ελάχιστη}
+   	\]
     
     \begin{align*}
         \overbrace{I^2}^{\mathclap{\text{σφάλμα}}} &=
@@ -163,6 +177,8 @@
     \end{align*}
     
     Άρα:
+    {
+    \setlength{\mathindent}{0cm}
     \begin{align*}
         I^2 &= \int_{\Delta} f^2(t)\dif t + \int_\Delta \sum_{n=0}^M \left[
             \hat a_n\phi_n(t)
@@ -177,6 +193,7 @@
         &= 2\hat a_i\int_\Delta \phi_i^2(t)\dif t +2\sum_{m\neq i}
         \hat a_m\int_\Delta \phi_i(t)\phi_m(t)\dif t - 2\int_\Delta f(t)\phi(t)\dif t = 0
     \end{align*}
+    }
     
     \paragraph{Σύστημα εξισώσεων}
     Αν \( \phi_i^{(t)} \) μοναδιαία, τότε: \( \int_\Delta \phi_i^2(t)\dif t = 1 \)
