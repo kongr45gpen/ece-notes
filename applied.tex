@@ -1159,7 +1159,21 @@
 	    x+iy: x\leq 0 \text{ και } y = 1
 	     \right\rbrace
 	    \end{align*}
-	    %TODO Atreas Graph 12
+
+	    \begin{tikzpicture}
+	    \fill[white,inner color=green!70!red,outer color=white]
+	    (0,0) circle (2);
+	    
+	    \draw[->] (0,-1.5) -- (0,1.5) node[right] {$\Im(z)$};
+	    \draw[->] (-2,0) -- (2,0) node[below] {$\Re(z)$};
+	    \draw[ultra thick,red,decorate,decoration={snake,amplitude=.6mm}]
+	    (-2,0.5) -- (0,0.5);
+	    \draw[red] (-2,0.5) -- (0,0.5);
+	    
+	    \filldraw[fill opacity=.1] (0,0.5)
+	    node[opacity=1,right,xshift=3pt] {$i$} circle (3pt);
+	    
+	    \end{tikzpicture}
 	    
 	    \item \( \tan z = \frac{\sin z}{\cos z} \), η \( g \) είναι ολόμορφη στο
 	    \( \mathbb C  \) εκτός των σημείων που μηδενίζουν τον παρονομαστή.
