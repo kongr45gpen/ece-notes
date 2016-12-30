@@ -1,0 +1,96 @@
+%%% ====================================================================
+%%% @LaTeX-file{
+%%%   filename  = "commath2.sty",
+%%%   version   = "0.1",
+%%%   date      = "2015",
+%%%   author    = "Filip Sund",
+%%%   address   = "",
+%%%   email     = "filip.sund@gmail.com",
+%%%   codetable = "UTF-8",
+%%%   keywords  = "LaTeX",
+%%% }
+%%% ====================================================================
+
+% The author of most of the commands in this package is egreg on StackExchange (profile: http://tex.stackexchange.com/users/4427/egreg), and most of the code is copied from his answer here: http://tex.stackexchange.com/a/135985/31078
+
+% The original author of the commath package is Wolfgang Putschögl
+
+\NeedsTeXFormat{LaTeX2e} % LaTeX 2.09 can't be used (nor non-LaTeX)
+[1994/12/01]             % LaTeX date must December 1994 or later
+
+\RequirePackage{amsmath}
+
+% Differential (upface d)
+\newcommand{\dif}{\mathop{}\!\mathrm{d}}
+% Derivative (upface D)
+\newcommand{\Dif}{\mathop{}\!\mathrm{D}}
+
+\makeatletter
+\newcommand{\spx}[1]{%
+  \if\relax\detokenize{#1}\relax
+    \expandafter\@gobble
+  \else
+    \expandafter\@firstofone
+  \fi
+  {^{#1}}%
+}
+\makeatother
+
+% Command for derivatives. The first argument denotes the function and the second argument denotes the variable with respect to which the derivative is taken. The optional argument denotes the order of differentiation. 
+% For the commands with no prefix the style (text style/display style) is determined automatically
+% The commands with prefix t (\tpd, \tmd, and \tod) forces text style
+% The commands with prefix d (\dpd, \dmd, and \dod) forces display style
+
+% Partial derivatives
+\newcommand\pd[3][]{\frac{\partial\spx{#1}#2}{\partial#3\spx{#1}}}
+\newcommand\tpd[3][]{\tfrac{\partial\spx{#1}#2}{\partial#3\spx{#1}}} % text style
+\newcommand\dpd[3][]{\dfrac{\partial\spx{#1}#2}{\partial#3\spx{#1}}} % display style
+
+% Mixed derivative
+\newcommand{\md}[6]{\frac{\partial\spx{#2}#1}{\partial#3\spx{#4}\partial#5\spx{#6}}}
+\newcommand{\tmd}[6]{\tfrac{\partial\spx{#2}#1}{\partial#3\spx{#4}\partial#5\spx{#6}}} % text style
+\newcommand{\dmd}[6]{\dfrac{\partial\spx{#2}#1}{\partial#3\spx{#4}\partial#5\spx{#6}}} % display style
+
+% Ordinary derivative
+\newcommand{\od}[3][]{\frac{\dif\spx{#1}#2}{\dif#3\spx{#1}}}
+\newcommand{\tod}[3][]{\tfrac{\dif\spx{#1}#2}{\dif#3\spx{#1}}} % text style
+\newcommand{\dod}[3][]{\dfrac{\dif\spx{#1}#2}{\dif#3\spx{#1}}} % display style
+
+% Make nested braces grow.
+\delimitershortfall-1sp
+
+% The value for the optional argument ranges from -1 to 4 with higher values resulting in larger delimiters
+% Default value for #1 is -1 which results in automatic size
+\newcommand{\genericdel}[4]{%
+  \ifcase#3\relax
+  \ifx#1.\else#1\fi#4\ifx#2.\else#2\fi\or
+  \bigl#1#4\bigr#2\or
+  \Bigl#1#4\Bigr#2\or
+  \biggl#1#4\biggr#2\or
+  \Biggl#1#4\Biggr#2\else
+  \left#1#4\right#2\fi
+}
+\newcommand{\del}[2][-1]{\genericdel(){#1}{#2}}
+\newcommand{\set}[2][-1]{\genericdel\{\}{#1}{#2}}
+\let\cbr\set
+\newcommand{\sbr}[2][-1]{\genericdel[]{#1}{#2}}
+\let\intoo\del
+\let\intcc\sbr
+\newcommand{\intoc}[2][-1]{\genericdel(]{#1}{#2}}
+\newcommand{\intco}[2][-1]{\genericdel[){#1}{#2}}
+\newcommand{\eval}[2][-1]{\genericdel.|{#1}{#2}}
+\newcommand{\envert}[2][-1]{\genericdel||{#1}{#2}}
+\let\abs\envert
+\newcommand{\sVert}[2][0]{%
+  \ifcase#1\relax
+  \rvert\or\bigr|\or\Bigr|\or\biggr|\or\Biggr
+  \fi
+}
+\newcommand{\enVert}[2][-1]{\genericdel\|\|{#1}{#2}}
+\let\norm\enVert
+\newcommand{\fullfunction}[5]{%
+  \begin{array}{@{}r@{}r@{}c@{}l@{}}
+  #1 \colon & #2 & {}\longrightarrow{} & #3 \\
+            & #4 & {}\longmapsto{}     & #5
+  \end{array}
+}
