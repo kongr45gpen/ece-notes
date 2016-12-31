@@ -590,7 +590,7 @@
     ασυνεχής στα \( z=x_0 \) με \( x_0\leq 0 \).
 
     Αν \( \arg z \in [0,2\pi) \) πού είναι ασυνεχής;
-    
+
     \subsection{Μιγαδική παράγωγος}
     Την εβδομάδα της 28\textsuperscript{ης} θα γίνουν κανονικά τα μαθήματα του
     Ατρέα.
@@ -600,10 +600,10 @@
        	\( z_0 \), αν υπάρχει το ΟΡΙΟ:
        	\[
        	\lim_{z\to z_0}
-       	\frac{f(z)-f(z_0)}{z-z_0} = a \in \mathbb C 
+       	\frac{f(z)-f(z_0)}{z-z_0} = a \in \mathbb C
        	\]
        	(ή ισοδύναμα \( \lim_{h\to0}\frac{f(z_0+h)-f(z_0)}{h}=a\in\mathbb C \))
-       	
+
        	Στο εξής το όριο αυτό συμβολίζουμε με \( f'(z_0) \) ή
        	\( \od{f(z_0)}{z} \)
     \end{defn*}
@@ -619,21 +619,21 @@
        	\filldraw (0,0) circle(1pt) node[below] {$\mathsmaller{z_0}$};
        	\end{tikzpicture}
        	\[
-       	D_\epsilon(z_0) = \left\lbrace 
+       	D_\epsilon(z_0) = \left\lbrace
        	z\in\mathbb C: |z-z_0|<\epsilon
        	\right\rbrace
        	\]
        	για κάποιο \( \epsilon>0 \)
     \end{defn*}
-    
+
     Αν \( f \) ολόμορφη σε ΚΑΘΕ σημείο του \( A \) λέμε ότι η \( f \) ολόμορφη στο
     \( A \).
-    
+
     \begin{defn*}{}
        	Αν \( A \) μη ανοικτό, λέμε ότι η \( f \) ολόμορφη στο \( A \), αν
        	υπάρχει \( B \supset A \), \( B \) ανοικτό ώστε η \( f \) στο \( B \).
     \end{defn*}
-    
+
     \paragraph{}
     Όλες οι γνωστές ιδιότητες της παραγώγου που γνωρίζετε ισχύουν και για τη
     μιγαδική παράγωγο
@@ -654,10 +654,10 @@
        	\]
        	υπό την προϋπόθεση ότι η σύνθεση καλά ορισμένη
     \end{itemize}
-    
+
     \paragraph{Παραγώγιση αντίστροφης συνάρτησης} %TODO toc?
     Έστω \( f \) ολόμορφη σε σημείο \( z_0 \) με \( f'(z_0)\neq 0 \).
-    
+
     Αν \( w_0=f(z_0) \), τότε υπάρχουν \( \epsilon,\epsilon' >0 \) ώστε η
     αντίστροφη συνάρτηση \( f^{-1}:\mathrm D_\epsilon(w_0)
     \to\mathrm D_{\epsilon'}(z_0)
@@ -667,16 +667,16 @@
        	\left( f^{-1} \right)'(w_0) = \frac{1}{f'(z_0)}
     }
     \]
-    
+
     \paragraph{}
     \begin{theorem*}[width=.7\textwidth]{Εξισώσεις Cauchy-Riemann}
        	\vspace{15pt}
-       	Έστω \( f:A\subseteq\mathbb C \to\mathbb C:f(z)=f(x+iy)  
+       	Έστω \( f:A\subseteq\mathbb C \to\mathbb C:f(z)=f(x+iy)
        	= u(x+y)+iv(x,y)
        	\). Θεωρώ \( z=x+iy,\ z_0=x_0+iy_0 \) και \( A \) ανοικτό.
-       	
+
        	Τότε:
-       	
+
        	\( f \) μιγαδικά παραγωγίσιμη στο \( z_0 \)
        	\[
        	\hfill \Updownarrow \hfill
@@ -696,9 +696,9 @@
        		\end{cases} \xleftarrow{ \displaystyle \text{εξισώσεις C-R}}
        		\]
        	\end{enumlatin}
-       	
+
     \end{theorem*}
-    
+
     \paragraph{Πόρισμα (ΠΡΑΚΤΙΚΟΤΑΤΟ)}
     Αν \( f(z)=f(x+iy)=u(x,y)+iv(x,y) \) είναι έτσι ώστε:
     \begin{enumgreekparen}
@@ -709,9 +709,9 @@
        	u_y(x_0,y_0) = -v_x(x_0,y_0)
        	\end{cases} \xleftarrow{\displaystyle\text{C-R}} \)
     \end{enumgreekparen}
-    
+
     Τότε \( (\implies) \) η \( f \) είναι μιγαδικά παραγωγίσιμη στο \( z_0=x_0+iy_0 \)
-    
+
     \subparagraph{Παρ.}
     \begin{align*}
     z^2 &= (x+iy)^2=x^2+2ixy-y^2 =
@@ -720,7 +720,7 @@
     u_x=v_y\\ u_y = -v_x
     \end{array} \right.
     \end{align*}
-    
+
     \paragraph{Παρατηρήσεις}
     \begin{enumgreekparen}
        	\item
@@ -732,20 +732,20 @@
        	\begin{tikzpicture}[scale=1.3]
        	\draw[->] (-1.5,0) -- (2,0) node[below] {$\Re(z)$};
        	\draw[->] (0,-1.5) -- (0,2) node[right] {$\Im(z)$};
-       	
+
        	\draw[very thick,green!40!black] (-0.2,1) node[black, left] {$y_0$} -- (1.5,1);
        	\draw[very thick,cyan!40!black] (1,-0.2) node[black, below left] {$x_0$} -- (1,1.5);
        	\draw (1,1) node[above right] {$z_0=x_0+iy_0$};
        	\end{tikzpicture}
-       	
+
        	\begin{itemize}
        		\item Έστω \( z=x+iy_0\quad (x\in\mathbb R ) \) είναι τυχαίο σημείο της
        		"οριζόντιας" ευθείας που διέρχεται από το \( z_0 \)
        		\item Για \( x\to x_0 \), τότε \( z=x+iy_0 \to x_0+iy_0=z_0 \)
        		(δηλ. \( z\to z_0 \) όταν \( x\to x_0 \) πάνω στην οριζόντια ευθεία)
        	\end{itemize}
-       	
-       	
+
+
        	Τότε για \( z=x+iy_0 \) έχω:
        	\begin{align*}
        	f'(z_0) &= \lim_{x\to x_0}
@@ -762,7 +762,7 @@
        		}
        	} := \pd{f(x_0,y_0)}{x}
        	\end{align*}
-       	
+
        	Με όμοιο τρόπο, αν εργαστούμε κατά μήκος της "κάθετης" ευθείας που διέρχεται
        	από το \( z_0 \), έχουμε:
        	\[
@@ -770,7 +770,7 @@
        			f'(z_0) = v_y(x_0,y_0)-iu_y(x_0,y_0)
        		}} := -i\pd{f(x_0,y_0)}{y}
        		\]
-       		
+
        		\item Γεωμετρική ερμηνεία της παραγώγου
        		\begin{align*}
        		& f'(z_0)=\frac{\dif f(z_0)}{\dif z}
@@ -780,22 +780,22 @@
        		\begin{tikzpicture}[scale=1.2]
        		\draw[->] (0,-1.5) -- (0,2) node[right] {$y$};
        		\draw[->] (-1.5,0) -- (2,0) node[below] {$x$};
-       		
+
        		\fill[fill=green!40,postaction={pattern=north west lines,opacity=.5}]
        		(0.5,0.7) rectangle (1.2,1.7);
-       		
+
        		\draw[thick] (0.5,0) node[below] {$x_0$} -- (0.5,1.7);
        		\draw[thick] (1.2,0) node[below] {$\dif x$} -- (1.2,1.7);
-       		
+
        		\draw[thick] (0,0.7) node[left] {$y_0$} -- (1.2,0.7);
        		\draw[thick] (0,1.7) node[left] {$\dif y$} -- (1.2,1.7);
-       		
+
        		\draw[thick,->] (2,1) to[bend left=20] node[above] {$f=u+iv$} (4,1);
-       		
+
        		\begin{scope}[xshift=5cm]
        		\draw[->] (0,-1.5) -- (0,2) node[left] {$y$};
        		\draw[->] (-1.5,0) -- (2,0) node[right] {$x$};
-       		
+
        		\def\a{plot[smooth,tension=1.5]
        			coordinates {(-0.2,0.6) (0.7,1.2) (1.5,1.5)}}
        		\def\b{plot[smooth,tension=1.3]
@@ -804,7 +804,7 @@
        			coordinates { (0.3,2) (1.3,1) (1.7,-0.3) }}
        		\def\d{plot[smooth,tension=1.5]
        			coordinates {(0.2,1.5) (0.8,1) (1.2,0.2)}}
-       		
+
        		\begin{scope}
        		\clip \a --(2,0) -- (1,0);
        		\clip \b --(2,2) -- (0,2);
@@ -813,18 +813,18 @@
        		\fill[fill=green!40,postaction={pattern=north west lines,opacity=.5}]
        		(0,0) rectangle (2,2);
        		\end{scope}
-       		
+
        		\draw[thick] \a;
        		\draw[thick,name path=b] \b;
        		\draw[thick] \c;
        		\draw[thick,name path=d] \d;
-       		
+
        		\path[name intersections={of=b and d,by=m}];
-       		
+
        		\draw[dashed,gray] (m -| 0,0) -- (m) -- (m |- 0,0);
        		\filldraw (m) circle (1pt)
        		node[below right,yshift=1pt,xshift=2pt,scale=0.5] {$f(z_0)$};
-     		
+
        		\end{scope}
        		\end{tikzpicture}
 
@@ -841,13 +841,13 @@
        		\text{μέσω της απεικόνισης} f
        		\end{array}
        		\]
-       		
+
        		\begin{gather*}
        			\dif f(z_0) = \left|
        			f'(z_0)\right|e^{i\arg f'(z_0)}\dif z\quad
        			\mathsmaller{\left( f'(z_0)\neq 0 \right)}
        		\end{gather*}
-       		
+
       	\end{enumgreekparen}
 
 
@@ -856,25 +856,25 @@
 	ανάλυση.
 	\subparagraph{π.χ}
 	Αν \( f(z)=e^z \), τότε \( (e^z)'=e^z\ \forall z\in\mathbb C  \)
-	
+
 	\begin{align*}
 		f(z)= e^z &=e^{x+iy} = e^xe^{iy} = e^x(\cos y+\sin y)
 		\\ &= \underbrace{e^x\cos y}_{\mathclap{u(x,y)}}
 		+ i \underbrace{(e^x\sin y)}_{\mathclap{v(x,y)}}
 	\end{align*}
-	
+
 	Ορίζω \( \begin{cases}
 	u(x,y) = \Re(e^z) = e^x\cos y \\
 	v(x,y) = \Im(e^z) = e^x\sin y
 	\end{cases} \)
-	
+
 	\begin{itemize}
 		\item \( u,v \) καλά ορισμένες \( \forall (x,y)\in\mathbb R^2 \), και επιπλέον
 		\( u,v \) είναι \textbf{ΣΥΝΕΧΕΙΣ} \( \forall (x,y)\in\mathbb R ^2 \)
 		\item \(\begin{matrix}
 			u_x=e^x\cos y& u_y=-e^x\sin y\\
 			v_x=e^x\sin y& v_y=e^x\cos y
-		\end{matrix}\), έτσι παρατηρώ ότι \( 
+		\end{matrix}\), έτσι παρατηρώ ότι \(
 		\begin{cases}
 		& u_x = v_y \\ \text{ΚΑΙ } & u_y=-v_x
 		\end{cases} \forall (x,y)\in\mathbb R ^2
@@ -883,14 +883,14 @@
 	\( \xRightarrow{\text{πόρισμα}} f(z)=e^z \) μιγαδικά παραγωγίσιμη \( \forall z\in\mathbb C  \)
 	\begin{itemize}
 		\item Γνωρίζω ότι αν η \( f=u+iv \) είναι μιγ. παραγ., τότε \( f'(z)=u_x+iv_x \).
-		
+
 		\textbf{Έτσι} στην προκειμένη περίπτωση:
 		\begin{align*}
 		f'(z)=\left( e^z \right)'=u_x+iv_x=e^x\cos y+ie^x\sin y =
 		e^x(\cos y+i\sin y)=e^xe^{iy}=e^z
 		\end{align*}
 	\end{itemize}
-	
+
 	\subparagraph{π.χ}
 	\( \mathrm{Log}z=\frac{1}{z}\ \forall z \in \mathbb C^* = \mathbb C -
 	\left\lbrace x+iy: x\leq0 \text{ και } y=0 \right\rbrace
@@ -901,18 +901,18 @@
 	 \( \mathrm{Log} z = w \xLeftrightarrow{\text{ορ.}} z=e^w \),
 	 άρα \( \forall z \in\mathbb C ^* \), από το θεώρ. παραγώγισης αντίστροφης
 	 συνάρτησης έχουμε: \( (\mathrm{Log}z)' = \frac{1}{e^w}=\frac{1}{z} \)
-	 
+
 	 Με την ίδια λογική (και με χρήση των ιδιοτήτων παραγώγου) αποδεικνύεται ότι
 	 \begin{itemize}
 	 	\item \( (z^n)' =nz^{n-1}\quad \forall n\in\mathbb N \quad \forall z\in\mathbb C \)
-	 	\item \( 
+	 	\item \(
 	 	(z^{-n})' = -nz^{-n-1}\quad\forall n\in\mathbb N \quad\forall z\in
 	 	\mathbb C - \left\lbrace 0 \right\rbrace
 	 	 \)
-	    \item \( 
+	    \item \(
 	    (z^a)'=az^{a-1}\quad\forall a\in\mathbb Q \text{
 	    	ή $a$ άρρητος ή $a$ έχει μη μηδενικό φανταστικό μέρος
-	    	}\quad\forall z\in\mathbb C^* (\mathbb C^* \text{ 
+	    	}\quad\forall z\in\mathbb C^* (\mathbb C^* \text{
 	    	όπως στο λογάριθμο πριν
 	    	})
 	     \)
@@ -923,12 +923,12 @@
 	    \item \( (a^z)'=a^z\mathrm{Log}a\quad\forall z\int\mathbb C \)
 	 \end{itemize}
 	 κλπ.
-	 
+
 	 \subsection{Ασκήσεις}
 	 \paragraph{} ΝΔΟ
 	 η \( f(z)=\bar z \) ΔΕΝ είναι μιγαδικά παραγωγίσιμη \textbf{σε κανένα}
 	 σημείο του \( \mathbb C \).
-	 
+
 	 \begin{itemize}
 	 	\item \( \bar z = \overline{x+iy}=x-iy \), ορίζω
 	 	\( \left| \begin{array}{l}
@@ -948,52 +948,52 @@
 	 \begin{tikzpicture}[scale=1.5]
 	 \draw[->] (0,-1) -- (0,2) node[left] {$y$};
 	 \draw[->] (-0.5,0) -- (2,0) node[below] {$x$};
-	 
+
 	 \filldraw[green!50,
 	 path fading=north,postaction={pattern=north east lines,opacity=.5}]
 	 (0.5,1) rectangle ++(0.9,0.4);
 	 \draw (0.5,1) rectangle ++(0.9,0.4);
 	 \draw[->] (0.9,1.4) to[bend left] ++(0.3,0.4) node[above right] {$\dif z$};
-	 
+
 	 \filldraw (0.5,1) circle (1.5pt) node[below,xshift=5pt] {$z=x+iy$};
-	 
+
 	 \draw[thick,->] plot [smooth]
 	 coordinates {(2.1,0.7) (2.2,1) (3.3,0.9)};
-	 
+
 	 \begin{scope}[xshift=4cm]
 	 \draw[->] (0,-1) -- (0,2) node[left] {$v$};
 	 \draw[->] (-0.5,0) -- (2,0) node[below] {$u$};
-	 
+
 	 \filldraw[green!50,
 	 path fading=south,postaction={pattern=north west lines,opacity=.5}]
 	 (0.5,-1) rectangle ++(0.9,-0.4);
 	 \draw (0.5,-1) rectangle ++(0.9,-0.4) ;
 	 \draw (0.95,-1.4) node[below] {$\dif f(z)$};
-	 
+
 	 \filldraw (0.5,-1) circle (1.5pt);
 	 \end{scope}
-	 
+
 	 \draw (current bounding box.south) node[below]
-	 {$\dif f(z) = f'(z)\dif z = 
+	 {$\dif f(z) = f'(z)\dif z =
  	 	\underbrace{\left|f'(z)\right|}_{\mathclap{\raisebox{-1ex}{\scriptsize μεγέθυνση}}}
  	 	\underbrace{e^{i\arg f'(z)}}_{\mathclap{\text{περιστροφή}}}
  	 	\dif z
  	 	$};
 	 \end{tikzpicture}
-	 
+
 	 \begin{tikzpicture}[scale=1.3]
 	 \foreach \y in {-0.8,-0.4,...,2}
 	 \draw[gray] (-0.2,\y) -- (2,\y);
 	 \foreach \x in {0,0.4,...,1.8}
 	 \draw[gray] (\x,-1) -- (\x,2);
-	 
+
 	 \draw[thick,->] (0,-1) -- (0,2) node[left] {$y$};
 	 \draw[thick,->] (-0.5,0) -- (2,0) node[below] {$x$};
-	 
+
 	 \draw[very thick,->] (2.1,1) to[bend left=15]
 	 node[midway,above] {παραγωγίσιμη $f(z)$} (4.8,1);
-	 
-	 
+
+
 	 \begin{scope}[xshift=5.5cm]
 	 \begin{scope}[xshift=15pt,rotate=45,yshift=-15pt]
 	 \foreach \y in {-0.8,-0.4,...,2}
@@ -1001,12 +1001,12 @@
 	 \foreach \x in {0,0.4,...,1.8}
 	 \draw[gray] (\x,-1) -- (\x,2);
 	 \end{scope}
-	 
+
 	 \draw[thick,->] (0,-1) -- (0,2) node[left] {$y$};
 	 \draw[thick,->] (-0.5,0) -- (2,0) node[below] {$x$};
 	 \end{scope}
 	 \end{tikzpicture}
-	 
+
 	 \paragraph{}
 	 \begin{gather*}
 	 f(z)=e^z=e^x\cos y+ie^x\sin y \\
@@ -1016,41 +1016,41 @@
 	 \end{array}
 	 \right.
 	 \end{gather*}
-	 
+
 	 \begin{tikzpicture}[scale=1.3]
 	 \draw (-0.5,0) -- (2,0);
 	 \draw (0,-0.5) -- (0,2);
-	 
+
 	 \foreach \x in {0.2,0.5,...,1.8}
 	 \draw[green!50!black] (\x,-0.3) -- (\x,1.7);
-	 
+
 	 \foreach \y in {0.3,0.6,...,1.8}
 	 \draw[red!50!black] (-0.3,\y) -- (2,\y);
-	 
+
 	 \draw (1.7,0) node[below right] {$x=x_0$};
 	 \draw (0,1.5) node[above left] {$y=y_0$};
-	 
+
 	 \draw (current bounding box.south)
 	 node[below,yshift=-5pt] {$\frac{v}{u}=\tan y \implies \boxed{v=u\tan y}$};
-	 
+
 	 \draw[thick,->] (2.5,1)  to[bend left=20] node[midway,above] {$f$} (4,1);
-	 
+
 	 \begin{scope}[xshift=6cm]
 	 \draw (-2,0) -- (2,0);
 	 \draw (0,-2) -- (0,2);
-	 
+
 	 \foreach \x in {0.2,0.5,...,1.8}
 	 \draw[green!50!black] (0,0) circle (\x);
-	 
+
 	 \foreach \y in {0,29,...,360}
 	 \draw[red!50!black] (0,0) -- (\y:2);
 	 \end{scope}
 	 \end{tikzpicture}
-	 
+
 	 \paragraph{Άσκ. 2}
 	 Η συνάρτηση \( f(z)=|z| \) \textbf{ΔΕΝ} είναι μιγαδικά παραγωγίσιμη σε
 	 \textbf{ΚΑΝΕΝΑ} σημείο του \( \mathbb C  \).
-	 
+
 	 \begin{infobox}{}
 	 	Οι εξισώσεις C-R σε πολικές συντ/νες είναι οι εξής:
 	 	\[
@@ -1067,11 +1067,11 @@
 	 	     = u(\rho,\theta)+iv(\rho,\theta)
 	 	\end{align*}
 	 \end{infobox}
-	 
+
 	 \( f(z)=|z|=\rho \), άρα \( \begin{cases}
 	 u(\rho,\theta)=\rho \\ v(\rho,\theta)=0
 	 \end{cases} \)
-	 
+
 	 Οι \( u,v \) καλά ορισμένες και συνεχείς \( \forall \rho>0,
 	 \theta\in (-\pi,\pi]
 	  \) αλλά \[
@@ -1088,16 +1088,16 @@
 	\\ &\overset{|z|^2=z\bar z}{=} \frac{\bar z}{z\bar z}=\frac{1}{z}
 	\end{align*}
 	άρα η \( f \) είναι παραγωγίσιμη.
-	
+
 	\paragraph{Άσκ. 3} Υπολογίστε τα όρια:
 	\begin{enumgreekparen}
-		\item \( 
+		\item \(
 		\displaystyle \lim_{z\to0} \frac{e^{z^2}-1}{z^2}
 		 \)
-		\item \( 
+		\item \(
 		\displaystyle \lim_{z\to1} \frac{z^2-1}{\bar z^2-1}
 		 \)
-		\item \( 
+		\item \(
 		\displaystyle \lim_{z\to \infty} e^z
 		 \)
 	\end{enumgreekparen}
@@ -1107,29 +1107,29 @@
 	\subparagraph{}\begin{enumgreekparen}
 		\item
 		\begin{align*}
-		\lim_{z\to0} \frac{e^{z^2}-1}{z^2} 
+		\lim_{z\to0} \frac{e^{z^2}-1}{z^2}
 		&\underbrace{\overset{\left(\frac{0}{0}\right)}
 			{\underset{\text{L'Hospital}}{=}}}_{
 			\mathclap{\text{διότι $e^{z^2}-1$ και $z^2$ μιγ. παραγ.}}}
 		\lim_{z\to 0} \frac{2ze^{z^2}-0}{2z} = \lim_{z\to0}e^{z^2}=e^0=1
 		\end{align*}
-		
+
         \item
         Θα προσπαθήσω να αποδείξω ότι το όριο δεν υπάρχει, κάτι που φαντάζομαι
         επειδή μέσα στο όριο υπάρχει ο \( \bar z \).
-        
+
         \begin{center}
         \begin{tikzpicture}
         \draw (3,1) node {$\mathbb C$};
-        
+
         \draw[thick,orange!40!brown] (1,2) -- (1,-2);
         \draw[thick,green!40!teal,yshift=1pt] (-1.5,0) -- (1.95,0);
-        
+
         \draw[->] (-1.5,0) -- (2,0);
         \draw[->] (0,-2) -- (0,2);
-        
+
         \filldraw (1,0) circle (1pt) node[below right] {$1$};
-        
+
         \draw[->,yshift=2pt,xshift=-2pt] (1,0.5) -- (1,0);
         \draw[->,yshift=-2pt,xshift=-2pt] (1,-0.5) -- (1,0);
         \draw[->,yshift=3pt,xshift=-4pt] (0.5,0) -- (1,0);
@@ -1144,7 +1144,7 @@
         	      \textbf{Δηλ. } θεωρώ σημεία \( z \) της μορφής \[ z=x+i0 \quad
         	      (x\in\mathbb R )
         	      \]
-        	      
+
         	      Προφανώς για \( x\to 1 \), έχω: \( z\to z_0=1 \).\\
         	      Τότε \( \forall z=x \) έχω:
         	      \begin{align*}
@@ -1157,7 +1157,7 @@
                   \[
                   z=1+ix\quad (x\in\mathbb R )
                   \]
-                  
+
                   Προφανώς για \( x\to0 \), έχω \( z\to z_0=1 \), και
                   \begin{align*}
                   \lim_{z\to1} \frac{z^2-1}{\bar z^2-1}
@@ -1171,7 +1171,7 @@
                   \end{align*}
         \end{itemize}
         Εφόσον \( 1\neq -1 \) το όριο ΔΕΝ υπάρχει.
-        
+
         \item \( \lim\limits_{x\to\infty}e^x=? \)
         \begin{itemize}
         	\item Έστω \( z=x \quad (x<0) \), για \( x\to -\infty \), τότε
@@ -1184,14 +1184,14 @@
         	\), συνεπώς το \( \lim\limits_{z\to \infty}e^z \) ΔΕΝ υπάρχει.
         \end{itemize}
 	\end{enumgreekparen}
-	
+
 	\paragraph{Άσκ. 4}
 	Αν \( f(z)=u+iv \) είναι ακεραία (ολόμορφη στο \( \mathbb C \)) και αν
 	\[
 	au+bv =c
 	\] όπου \( a,b,c\in\mathbb R \) σταθερές όχι όλες ίσες με μηδέν, ΝΔΟ
 	\( f(z)=A, \ A\in\mathbb C \) σταθερά.
-	
+
 	\begin{itemize}
 		\item Έστω \underline{\( c=0 \)}, εξ' υποθέσεως \( a^2+b^2\neq 0 \)
 		\item Έστω \( c\neq 0 \), πάλι πρέπει \( a^2+b^2\neq 0 \)
@@ -1230,12 +1230,12 @@
     \end{matrix}\right| = u_x^2+u_y^2
     \end{gather*}
     και επειδή \( a^+b^2\neq 0 \), πρέπει \( u_x^2+u_y^2=0 \) για να έχει λύση
-    το σύστημα \( \implies u_x=0 \) και \( u_y=0 
+    το σύστημα \( \implies u_x=0 \) και \( u_y=0
     \xRightarrow{\text{C-R}} u_x=u_y=v_x=v_y=0 \ \forall (x,y)\in\mathbb R ^2
     \implies f(z) = A\in\mathbb C
     \) σταθερά.
-    
-	\paragraph{Άσκ.}    
+
+	\paragraph{Άσκ.}
 	Βρείτε τα σημεία ολομορφίας των συναρτήσεων:
 	\begin{enumgreekparen}
 		\item \( f(z)=\mathrm{Log}(z-i) \)
@@ -1247,13 +1247,13 @@
 		είναι μιγαδικά παραγ. στο \( \mathbb C ^*=\mathbb C-
 		\left\lbrace x+iy\quad x\leq 0 \text{ και } y = 0 \right\rbrace
 		 \).
-		 
+
 	    Έτσι η \( \mathrm{Log}(z-i) \) είναι μιγ. παραγ. στο σύνολο
 	    \begin{align*}
 	    &\mathbb C-\left\lbrace x+iy: \Re(z-i)\leq 0\text{ και }\Im(z-i)=1\right\rbrace
 	    \\ &\overset{\mathclap{z=x+iy}}{=}
 	    \mathbb C -\left\lbrace x+iy: x\leq 0 \text{ και }y-1=0 \right\rbrace
-	    \\ &= \mathbb C - \left\lbrace 
+	    \\ &= \mathbb C - \left\lbrace
 	    x+iy: x\leq 0 \text{ και } y = 1
 	     \right\rbrace
 	    \end{align*}
@@ -1261,23 +1261,23 @@
 	    \begin{tikzpicture}
 	    \fill[white,inner color=green!70!red,outer color=white]
 	    (0,0) circle (2);
-	    
+
 	    \draw[->] (0,-1.5) -- (0,1.5) node[right] {$\Im(z)$};
 	    \draw[->] (-2,0) -- (2,0) node[below] {$\Re(z)$};
 	    \draw[ultra thick,red,decorate,decoration={snake,amplitude=.6mm}]
 	    (-2,0.5) -- (0,0.5);
 	    \draw[red] (-2,0.5) -- (0,0.5);
-	    
+
 	    \filldraw[fill opacity=.1] (0,0.5)
 	    node[opacity=1,right,xshift=3pt] {$i$} circle (3pt);
-	    
+
 	    \end{tikzpicture}
-	    
+
 	    \item \( \tan z = \frac{\sin z}{\cos z} \), η \( g \) είναι ολόμορφη στο
 	    \( \mathbb C  \) εκτός των σημείων που μηδενίζουν τον παρονομαστή.
-	    
+
 	    \begin{itemize}
-	    	\item \( 
+	    	\item \(
 	    	\cos z = 0 \iff \cos(x+iy) = 0 \iff \cos x\cos(iy)-\sin x\sin(iy)=0
 	    	\xLeftrightarrow{\text{ορ. } \sin \text{ \& } \cos}
 	    	\cos x \cdot \frac{e^{-y}+e^y}{2}-\sin x\cdot\frac{e^{-y}-e^y}{2i}=0
@@ -1299,29 +1299,29 @@
 	    	\end{array}
 	    	\right., k\in\mathbb Z
 	    	 \).
-	    	 
+
             \begin{tikzpicture}
             \draw[->] (0,-1.5) -- (0,2);
             \draw[->] (-2,0) -- (2,0);
-            
+
             \draw[very thick,blue,mark position=0.7(c)]
             plot[variable=\x,samples=200,domain=-2:2] (\x,{  cosh(\x)*0.5  });
-            
+
             \draw (c) node[below right] {$\cosh y$};
-            
+
             \draw (0,0.5) node[below right] {$1$};
-            
+
             \begin{scope}[xshift=5cm]
             \draw[->] (0,-2) -- (0,2);
             \draw[->] (-2,0) -- (2,0);
-            
+
             \draw[very thick,blue,mark position=0.7(c)]
             plot[variable=\x,samples=200,domain=-2:2] (\x,{  sinh(\x)*0.5  });
-            
+
             \draw (c) node[below right] {$\sinh y$};
             \end{scope}
             \end{tikzpicture}
-	    	 
+
 	    	\textbf{Τελικά} \( \cos z \iff \boxed{z=k\pi+\frac{\pi}{2},\ k
 	    		\int\mathbb Z
 	    		}  \) και έτσι \( g \) είναι ολόμορφη στο
@@ -1330,9 +1330,9 @@
 	    		\]
 	    \end{itemize}
 
-	    
+
 	\end{enumgreekparen}
-	
+
 	\paragraph{Άσκ.}
 	Έστω \( f(x+iy) = (x^2+2y)+i(x^2+y^2) \)
 	\begin{enumroman}
@@ -1343,7 +1343,7 @@
 	\begin{enumroman}
 		\item \( x=\frac{z+\bar z}{2},\ y=\frac{z-\bar z }{2i} \) \\
 		\( \big(z=x+iy\big) \)
-		
+
 		\begin{align*}
 			f(z) &= \left(\frac{z+\bar z}{2}\right)^2+2\left(\frac{z-\bar z}{2i}\right)
 			+i\left(\left(\frac{z+\bar z}{2}\right)^2+\left(\frac{z-\bar z}{2i}\right)^2\right)
@@ -1355,7 +1355,7 @@
 			\right)
 		\end{align*}
 		\item Προφανώς
-		\( 
+		\(
 		\left|
 		\begin{array}{l}
 		\Re(f) := u(x,y) = x^2+2y \\
@@ -1368,7 +1368,7 @@
 		 	(x,y)\in\mathbb R^2
 		 	 \)
 		 	\item
-		 	\( 
+		 	\(
 		 	\begin{cases}
 		 	u_x=v_y \\ \quad\text{ΚΑΙ} \\ u_y=-v_x
 		 	\end{cases} \implies \begin{cases}
@@ -1387,10 +1387,10 @@
 		 \]
 		 \item ΔΕΝ υπάρχουν σημεία όπου η \( f \) είναι ολόμορφη.
 	\end{enumroman}
-	
+
 	\section{Μιγαδική ολοκλήρωση}
 	\paragraph{Εισαγωγή} \hspace{0pt}\\
-	
+
 	\begin{defn*}{}
         Καλούμε \textbf{καμπύλη} στο μιγαδικό επίπεδο κάθε \underline{συνεχή} συνάρτηση
         \[
@@ -1398,7 +1398,7 @@
         \]
         όπου \( x,y:[a,b]\to\mathbb R  \) συνεχείς πραγματικές συναρτήσεις.
 	\end{defn*}
-	
+
 	\subparagraph{Έτσι:} \( \gamma(t) \) καλείται
 	\begin{invitemize}
 		\item \textbf{ΑΠΛΗ} αν είναι 1-1 (δεν αυτοτέμνεται)
@@ -1413,35 +1413,35 @@
 		\item Κάθε τέτοια καμπύλη έχει ΠΡΟΣΑΝΑΤΟΛΙΣΜΟ (φορά διαγραφής) προς την
 		κατεύθυνση αύξησης του \( t \)
 		\subparagraph{π.χ.} \( \gamma(t)=e^{it},\ t\in(-\pi,\pi] \)
-		
+
 		\begin{tikzpicture}[scale=0.7]
 		\draw (0,-2) -- (0,2);
 		\draw (-2,0) -- (2,0);
-		
+
 		\draw[very thick,postaction={decorate},decoration={
 			markings,mark=at position 0.2 with {\arrow[ultra thick]{>}}}]
 		(0,0) circle (1.3);
 		\draw (current bounding box.south) node[below,align=center]
 		{μοναδιαίος κύκλος\\κέντρου $(0,0)$};
 		\end{tikzpicture}
-		
+
 		\( \gamma(t)=e^{-it},\ t\in(-\pi,\pi] \)
-		
+
 		\begin{tikzpicture}[scale=0.7]
 		\draw (0,-2) -- (0,2);
 		\draw (-2,0) -- (2,0);
-		
+
 		\draw[very thick,postaction={decorate},decoration={
 			markings,mark=at position -0.4 with {\arrow[ultra thick]{<}}}]
 		(0,0) circle (1.5);
 		\end{tikzpicture}
-		
+
 		\item Αν \( \gamma \) κλειστή λέω ότι είναι \underline{θετικά}
 		προσανατολισμένη αν η φορά διαγραφής είναι η αντιωρολογιακή
-		
+
 		\item \( -\gamma \): ίδιο ίχνος με τη \( \gamma \), αλλά
 		αντίθετη φορά διαγραφής
-		
+
 		\item \( \gamma_1+\gamma_2 \): \hspace{2pt} \begin{tikzpicture}[baseline]
 		\draw[very thick,draw=blue
 		,postaction={decorate}
@@ -1453,16 +1453,16 @@
 		plot [smooth,tension=1.6] coordinates {(1.5,1) (3,0.6) (4,1)}
 		;
 		\draw (3,0.6) node[above] {$\gamma_2$};
-		
+
 		\filldraw (0,0) circle (1pt) + (1.5,1) circle (1pt) + (4,1) circle (1pt);
-		
+
 		\draw (current bounding box.south west)
 		-- ++(0,-0.2) -- (current bounding box.south east)
 		node[midway,below] {$:=\gamma_1+\gamma_2$}
 		-- ++(0,0.2);
 		\end{tikzpicture}
 	\end{itemize}
-	
+
 	\begin{defn*}{}
 		Έστω \( f=f(z) \) ΣΥΝΕΧΗΣ μιγαδική συνάρτηση μιγαδικής μεταβλητής και
 		\( \gamma:[a,b]\to\mathbb C  \) λεία καμπύλη. Καλώ επικαμπύλιο ολοκλήρωμα
@@ -1478,9 +1478,9 @@
 		&=\dif x(t)+i\dif y(t) = \left( x'(t)+iy'(t) \right)\dif t \\
 		\Aboxed{\dif\gamma(t) &= \gamma'(t)\dif t}
 	\end{align*}
-	
+
 	Οι κλασικές ιδιότητες των επικαμπυλίων ολοκληρωμάτων έργου ισχύουν στους μιγαδικούς.
-	
+
 	Ενδεικτικά:
 	\begin{itemize}
 		\item \( \displaystyle\int_{-\gamma} f(z)\dif z = - \int_{-\gamma} f(z)\dif z \)
@@ -1497,19 +1497,19 @@
 	    \right| \leq \int_\gamma \left|f(z)\right|\dif z \leq
 	    M \cdot (\text{μήκος της } \gamma)
 	      \) όπου \( M \) μέγιστο της \( |f| \) επί της \( \gamma \)
-	    \item \( \displaystyle \int_\gamma |\dif z| = 
+	    \item \( \displaystyle \int_\gamma |\dif z| =
 	    \int_a^b \sqrt{\left(x'(t)\right)^2+\left(y'(t)\right)^2}\dif t
 	    := \text{ μήκος της καμπ. } \gamma
 	     \)
 	\end{itemize}
-    
+
     \paragraph{Πρόταση:}
     Έστω \( f(z)=f(x+iy)=u(x,y)+iv(x,y) \) συνεχής επί καμπύλης λείας
     \( \gamma(t)=x(t)+iy(t) \).
-    
+
     \textbf{Τότε:}
     \[
-    \int_\gamma f(z)\dif z = 
+    \int_\gamma f(z)\dif z =
     \underbrace{\left(\int_\gamma u\dif x-v\dif y\right)}%
     _{\mathclap{\begin{array}{l}
     	\text{επικαμπύλιο ολοκλ.}\\
@@ -1522,7 +1522,7 @@
     	\text{διαν. πεδίου στον } \mathbb R^2
     	\end{array}}}
     \]
-    
+
     \subparagraph{Απόδ.}
     \begin{align*}
     &\int_\gamma (u+iv)\dif(x+iy)\\
@@ -1538,9 +1538,9 @@
     \left(\int_{\gamma} u\dif x-v\dif y \right)
     +i\left( \int_\gamma u\dif y+v\dif x\right)
     \end{align*}
-    
+
     Ορίζω \( \bar f(z) = u(x,y)-iv(x,y) \)
-    
+
     \textbf{Τότε}
     \begin{align*}
     \int_\gamma u\dif x-v\dif y &\overset{\text{Λογ. II}}{:=}
@@ -1567,10 +1567,10 @@
 	Οι ακόλουθες συνθήκες είναι ισοδύναμες:
 	\begin{itemize}
 		\item Η \( f \) είναι ΜΟΝΑΔΙΚΗ αντιπαράγωγο \( F \) (με προσέγγιση σταθεράς)
-		\item \( 
+		\item \(
 		\displaystyle \oint_\gamma f(z)\dif z = 0,\) για ΚΑΘΕ κλειστή λεία
 			καμπύλη εντός του \(G\)
-		\item \( 
+		\item \(
 		\displaystyle \oint \int_\gamma f(z)\dif z\)
 			είναι ανεξάρτητο του δρόμου (δηλαδή εξαρτάται μόνον από το αρχικό
 			και τελικό σημείο της \(\gamma\) και όχι από τον τύπο της \(\gamma\))
@@ -1644,7 +1644,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 \[
 \int_\gamma f(z)\dif z =
 \underbrace{a}_{\mathclap{%
-		\raisebox{-1ex}{\scriptsize έργο του πεδίου $f$ κατά μήκος $ \gamma $}}} 
+		\raisebox{-1ex}{\scriptsize έργο του πεδίου $f$ κατά μήκος $ \gamma $}}}
 + i\overbrace{b}^{\mathclap{\text{ροή του πεδίου $\bar f$ διά μέσου της $\gamma$}}}
 \]
 
@@ -1663,18 +1663,18 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      \begin{tikzpicture}
      \draw (-3,0) -- (3,0);
      \draw (0,-2) -- (0,2.2);
-     
+
      \draw[very thick,postaction={decorate},decoration={markings,
         	mark=at position 0.1 with {\arrow[very thick]{>}}}]
      (0,0) circle (1.5);
-     
+
      \filldraw (1.5,0) circle (1pt) node[below right] {$1$};
      \filldraw (-1.5,0) circle (1pt) node[below left] {$-1$};
      \filldraw (0,1.5) circle (1pt) node[above right] {$i$};
      \filldraw (0,-1.5) circle (1pt) node[below right] {$-i$};
      \filldraw (0,0) circle (1pt) node[below left] {$0$};
-     
-     
+
+
      \draw (0,0) node[below left] {$0$};
      \end{tikzpicture}
 
@@ -1684,12 +1684,12 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     =\int_{0}^{2\pi} \frac{(e^{it})^2}{e^{it}}\dif t
     \\ &= \int_0^{2\pi} \frac{ie^{it}}{e^{it}} = \underline{2\pi i}
     \end{align*}
-    
+
     \begin{theorem*}[width=\textwidth]{Παραμόρφωση δρόμων}
     	Έστω \( f=f(z) \) είναι ολόμορφη σε τόπο \( G \) με σύνολο
     	\( \partial G = \gamma_1 \cup \gamma_2 \) όπου \( \gamma_1,\gamma_2 \)
     	απλές λειστές καμπύλες, λείες, με κοινό προσανατολισμό π.χ. όπως στο σχήμα.
-    	
+
     	\begin{center}
     	\begin{tikzpicture}[scale=1.5]
     	\def\c{plot[smooth cycle] coordinates
@@ -1700,12 +1700,12 @@ decoration={markings,mark=at position 0 with \arrow{<}}
    		{
    			(0,0.3) (1,-0.1) (0.5,-0.5) (-1,-0.2) (-1.7,-0.3) (-2,0.1) (-0.9,0.4)
    		}}
-   		
+
    		\begin{scope}
    		\clip (-3,0) rectangle (3.5,1.2);
    		\fill[red,opacity=.3,even odd rule] \c;
    		\end{scope}
-   		
+
    		\filldraw[very thick,fill=green,fill opacity=.3,postaction=decorate,name path=C,
    		postaction={pattern=north east lines,opacity=.3},
    		decoration={markings,
@@ -1714,21 +1714,21 @@ decoration={markings,mark=at position 0 with \arrow{<}}
    		},
    		even odd rule
    		] \c;
-   		
+
    		\draw (0,0.7) node[above] {$\gamma_1$};
    		\draw (0.6,-0.32) node {$\gamma_2$};
-   		
+
    		\path[name path=axis] (-3.1,0) -- (3.5,0);
-   		
+
    		\draw[thick,name intersections={of=C and axis},orange!50!black]
    		(intersection-3) -- (intersection-2) node[midway,below right] {$L_1$}
    		(intersection-4) -- (intersection-1) node[midway,below] {$L_2$}
    		;
-   		
+
    		\draw (1.6,-0.6) node {$G$};
    		\draw(-1,-0.5) node {$\mathsmaller{G_2}$};
    		\draw(0.4,0.5) node {$\mathsmaller{G_1}$};
-   		
+
    		\end{tikzpicture}
    		\end{center}
 
@@ -1736,12 +1736,12 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	= \oint_{\gamma_2} f(z)\dif z
     	 \)
     \end{theorem*}
-    
+
     \subparagraph{Απόδ.}
     Φέρνω δύο ευθ. τμήματα \( L_1 \) και \( L_2 \) που διαμερίζουν το \( G \) σε
     δύο χωρία έστω \( G_1,G_2 \). Τότε το θ. Cauchy ισχύει και στο \( G_1 \)
     και στο \( G_2 \).
-    
+
     \begin{tikzpicture}[scale=1.5]
     \def\c{plot[smooth cycle] coordinates
    	{
@@ -1751,12 +1751,12 @@ decoration={markings,mark=at position 0 with \arrow{<}}
    	{
    		(0,0.3) (1,-0.1) (-1,-0.3) (-1.7,-0.3) (-2,0.1) (-0.9,0.4)
    	}}
-   	
+
    	\begin{scope}
    	\clip (-3,0) rectangle (3.5,1.2);
    	\fill[red,opacity=.2,even odd rule] \c;
    	\end{scope}
-   	
+
    	\filldraw[very thick,fill=green,fill opacity=.3,postaction=decorate,name path=C,
    	postaction={pattern=north east lines,opacity=.3},
    	decoration={markings,
@@ -1765,13 +1765,13 @@ decoration={markings,mark=at position 0 with \arrow{<}}
    	},
    	even odd rule
    	] \c;
-   	
+
    	\draw (-1.5,0.7) node {$\gamma_1^+$};
    	\draw (0.6,-0.4) node {$\gamma_2$};
    	\draw (-0.5,0.2) node {$-\gamma_2$};
-   	
+
    	\path[name path=axis] (-3.1,0) -- (3.5,0);
-   	
+
    	\draw[thick,name intersections={of=C and axis},orange!50!black,
    	postaction={decorate},
    	decoration={markings,
@@ -1781,13 +1781,13 @@ decoration={markings,mark=at position 0 with \arrow{<}}
    	(intersection-2) -- (intersection-3) node[midway,below right] {$L_1$}
    	(intersection-4) -- (intersection-1) node[midway,below] {$L_2$}
    	;
-   	
+
    	\draw(0.4,0.5) node {$\mathsmaller{G_1}$};
    	\draw[->] (2.5,-0.35) -- ++(-0.5,0);
    	\end{tikzpicture}
-    
+
     \begin{itemize}
-    \item \( \displaystyle 
+    \item \( \displaystyle
     \int_{\gamma_1^+ + L_1 + \gamma_2^+ + L_2} f(z)\dif z = 0 \)
     \quad (θ. Cauchy για το χωρίο \( G_1 \))
     \item \( \displaystyle
@@ -1803,8 +1803,8 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \end{array}
     \right. \implies \oint_{\gamma_1}f(z)\dif z - \oint_{\gamma_2}f(z)\dif z = 0
     \]
-    
-    \paragraph{Πόρισμα (Γενικευμένο θεώρ. Cauchy)} 
+
+    \paragraph{Πόρισμα (Γενικευμένο θεώρ. Cauchy)}
     Έστω \( f=f(z) \) ολόμορφη σε τόπο \( G \) με σύνορο \( \partial G =
     \Gamma \cup \left( \gamma_1 \cup \cdots \cup \gamma_2 \right)
     \), όπου:
@@ -1816,7 +1816,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
        	\item Κάθε καμπύλη \( \gamma_j \quad j=1,\dots,n \) βρίσκεται εκτός των
        	υπόλοιπων
        	\( \gamma_1,\gamma_2,\dots,\gamma_{i-1},\gamma_{i+1},\dots,\gamma_n \)
-       	
+
        	\begin{tikzpicture}[scale=1.3]
        	\def\c{plot[smooth cycle,yscale=1.1] coordinates
        		{
@@ -1838,7 +1838,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
        			(0.5+0.05*rand,-0.2+0.02*rand) (0.1*rand,-0.1) (-0.5,0) (-0.5,0.3)
        		}
        	}
-       	
+
        	\filldraw[very thick,fill=green,fill opacity=.3,postaction=decorate,name path=C,
        	postaction={pattern=north east lines,opacity=.3},
        	decoration={markings,
@@ -1849,29 +1849,29 @@ decoration={markings,mark=at position 0 with \arrow{<}}
        	},
        	even odd rule
        	] \c;
-       	
+
        	\draw (0.9,0.1) node[scale=2] {$\cdots$};
-       	
+
        	\draw (-1.7,0.22) node[above] {$\gamma_1$};
        	\draw (0.2,0.52) node {$\gamma_2$};
        	\draw (2.2,0.5) node {$\gamma_n$};
        	\draw (-2.5,0.7) node[above] {$\Gamma$};
        	\end{tikzpicture}
-       	
-       	Τότε: \( 
+
+       	Τότε: \(
        	\displaystyle \oint_\Gamma f(z)\dif z= \sum_{j=1}^k \oint_{\gamma_1}f(z)
        	\dif z
        	\)
     \end{itemize}
-    
+
     \begin{theorem*}[width=.8\textwidth]{Ολοκληρωτικός τύπος Cauchy}
     	\vspace{25pt}
     	Έστω \( f=f(z) \) είναι ολόμορφη πάνω και στο εσωτερικό απλής, κλειστής,
     	τμημ. λείας και { \large ΘΕΤΙΚΑ ΠΡΟΣΑΝΑΤΟΛΙΣΜΕΝΗΣ  } καμπύλης \( \gamma \).
-    	
+
     	Τότε { \large ΓΙΑ ΚΑΘΕ } σημείο \( z_0 \) ΣΤΟ ΕΣΩΤΕΡΙΚΟ της \( \gamma \)
     	ισχύει:
-    	
+
     	\[
     	\boxed{
     		f(z_0) = \frac{1}{2\pi i}\oint_\gamma
@@ -1885,20 +1885,20 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \draw[very thick,draw=black,postaction={decorate}
     ,decoration={markings,mark=at position -0.1 with {\arrow[ultra thick,black]{<}}}] plot[smooth cycle]
     coordinates {(0,1) (1.7,0.4) (2,-0.5) (0.1,-0.3) (-1.5,-1) (-2,-0.7) (-1.3,0.7) (-1,0.6)};
-    
+
     \draw (0,1) node[above] {$\gamma$};
-    
+
     \filldraw[fill=green!40] (1,0.2) circle (0.35);
-    
-    \filldraw (1,0.2) circle (1pt) node[below,xshift=-1pt] {$\mathsmaller{z_0}$}; 
+
+    \filldraw (1,0.2) circle (1pt) node[below,xshift=-1pt] {$\mathsmaller{z_0}$};
     \draw (1,0.2) -- ++(30:0.35)
     node[above,midway,sloped,yshift=-2pt] {$\mathsmaller{r}$};
     \end{tikzpicture}
-    
+
     Έστω \( \left|z-z_0\right| =r \) κύκλος ακτίνας \( r \) κατάλληλης ώστε ο δίσκος
     \( \left|z-z_0\right| \leq r \) να βρίσκεται εξ' ολοκλήρου στο εσωτερικό της
     \( \gamma \).
-    
+
     Τότε από το θεώρημα παραμόρφ. δρόμων, εφ' όσον \( \frac{f(z)}{z-z_0} \) ολόμορφη
     στο γραμμοσκιασμένο χωρίο, έχουμε:
     \[
@@ -1907,7 +1907,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     = \underbrace{\oint_{\left|z-z_0\right|=r} \frac{f(z)-f(z_0)}{z-z_0}\dif z}_{I_2}
     +\underbrace{\oint_{\left|z-z_0\right|=r} \frac{f(z_0)}{z-z_0}\dif z}_{I_1}
     \]
-    
+
     Για το \( I_2 \) έχω:
     \begin{align*}
     I_2 &= \oint_{\left|z-z_0\right|=r} \frac{f(z_0)}{z-z_0}\dif z
@@ -1934,11 +1934,11 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\oint_\gamma \frac{f(z)}{z-z_0}\dif z -2\pi i f(z_0) = I_1
     	}
     \]
-    
+
     \begin{align*}
     \left|I_1\right| &\leq
     \oint_{\left|z-z_0\right|=r} \frac{\left|f(z)-f(z_0)\right|}{\left|z-z_0\right|}
-    \dif z \leq 
+    \dif z \leq
     M \cdot \oint_{\left|z-z_0\right|=r} \frac{1}{\left|z-z_0\right|}\dif z,
     \\ \intertext{όπου $
     	M=\max\left\lbrace \left|f(z)-f(z_0)\right|\ \forall
@@ -1951,23 +1951,23 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\mathclap{\text{μήκος καμπύλης}}}
     =\frac{2\pi M r}{r} = \underline{2\pi M}
     \end{align*}
-    
+
     Αλλά \( f \) ολόμορφη στο \( z_0 \), άρα \( f \) συνεχής στο \( z_0 \).
-    
+
     Εξ' ορισμού λοιπόν: \( \forall \epsilon>0\ \exists r_1>r>0:\
     \forall z: 0<\left|z-z_0\right|<r<r_1 \implies \left|f(z)-f(z_0)\right|<\epsilon
      \)
-     
-    Έτσι \( \forall \epsilon > 0 \) μπορώ να βρω ακτίνα 
+
+    Έτσι \( \forall \epsilon > 0 \) μπορώ να βρω ακτίνα
     \( r: \left|f(z)-f(z_0)\right|\ \forall z:\left|z-z_0\right|=r \), δηλ.
     \( M \leq \epsilon \) και τελικά \( \left|I_1\right| \leq 2\pi M \leq
     2\pi\epsilon\ \forall \epsilon>0 \implies I_1 = 0 \)
-    
+
     \begin{theorem*}{Ολοκληρ. τύπος Cauchy για παραγώγους}
     	\vspace{20pt}
     	Έστω \( f \) είναι ολόμορφη πάνω και στο εσωτερικό απλής, κλειστής, λείας
     	και θετικά προσανατολισμένης καμπύλης \( \gamma \).
-    	
+
     	Αν \( z_0 \) σημείο στο ΕΣΩΤΕΡΙΚΟ της \( \gamma \), τότε η \( f \)
     	ΕΧΕΙ ΠΑΡΑΓΩΓΟΥΣ \underline{ΚΑΘΕ ΤΑΞΗΣ} στο σημείο \( z_0 \) και μάλιστα:
     	\[
@@ -1975,16 +1975,16 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\frac{f(z)}{\left(z-z_0\right)^{n+1}}\dif z
     	\]
     \end{theorem*}
-    
+
     \begin{attnbox}{}
     	Ο Ατρέας θα δίνει τύπους σε τυπολόγιο:
     	\url{http://users.auth.gr/natreas/Efarmosmena/ΤΥΠΟΛΟΓΙΟ.pdf}
     \end{attnbox}
-    
+
     \subsection{Εφαρμογές}
     \begin{enumparen}
     	\item \textbf{Θεώρ. μέσης τιμής Gauss}
-    	
+
     	Αν \( f \) ολόμορφη πάνω και στο εσωτερικό θετικά προσανατολισμένου κύκλου
     	\( \left|z-z_0\right| = R \), τότε:
     	\[
@@ -2006,15 +2006,15 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	i\cancel{Re^{i\theta}}\dif\theta
     	\\ &= \text{ ζητούμενο}
     	\end{align*}
-    	
+
     	\item \textbf{Ανισότητα Cauchy}
     	Έστω \( f \) ολόμορφη πάνω και στο εσωτερικό θετικά προσανατολισμένου κύκλου
-    	\( \left|z-z_0\right| = R \) και \( M_R = \max \left\lbrace 
+    	\( \left|z-z_0\right| = R \) και \( M_R = \max \left\lbrace
     	\left|f(z)\right|,\ \forall z:\left|z-z_0\right|=R
     	 \right\rbrace \)
-    	 
+
     	\textbf{Τότε:} \[
-    	\left| f^{(n)}(z_0) \right| \leq \frac{n!M_R}{R^n},\ 
+    	\left| f^{(n)}(z_0) \right| \leq \frac{n!M_R}{R^n},\
     	n=1,2,3,\dots
     	\]
     	\subparagraph{Απόδ.}
@@ -2023,7 +2023,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\left|f^{(n)}(z_0)\right| &= \left|
     	\frac{n!}{2\pi i}\oint_{|z-z_0|=R} \frac{f(z)}{(z-z_0)^{n+1}}\dif z
     	\right|
-    	\\ &\leq \frac{n!}{2\pi} 
+    	\\ &\leq \frac{n!}{2\pi}
     	\oint_{|z-z_0|=R} \frac{\left|f(z)\right|}{\left|z-z_0\right|^{n+1}}|\dif z|
     	\\ &\leq \frac{n!}{2\pi} M_R \oint_{|z-z_0|=R}
     	\frac{1}{|z-z_0|^{n+1}}|\dif z|
@@ -2033,9 +2033,9 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\\ &= \frac{n!}{2\pi} M_R \frac{1}{R^{n+1}}\cdot 2\pi R
     	= \frac{n!M_R}{R^n}
     	\end{align*}
-    	
+
     	\item \textbf{Θεώρ. Liouville}
-    	
+
     	Κάθε \textbf{ακεραία} συνάρτηση (δηλ. ολόμορφη στο \( \mathbb C  \)) και φραγμένη
     	\( \boxed{\text{στο } \mathbb C}  \) είναι η σταθερή συνάρτηση.
     	\subparagraph{Απόδ.}
@@ -2044,36 +2044,36 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\left|f'(z)\right| \leq \frac{1!\ M_R}{R},\quad M_R = \max
     	\left\lbrace \left|f(z)\right|: |z-z_0|=R \right\rbrace
     	\]
-    	
+
     	Αφού \( f \) εξ' υποθέσεως είναι φραγμένη, άρα \( \exists \underline{M > 0}:
-    	\left|f(z)\right| \leq M \quad \forall z \in \mathbb C 
+    	\left|f(z)\right| \leq M \quad \forall z \in \mathbb C
     	 \)
-    	 
+
     	\textbf{Δηλ.} \(  \displaystyle
     	\left|f'(z)\right| \leq \frac{M_R}{R} \leq \frac{M}{R}
     	\xrightarrow[R\to \infty] 0
     	 \)
-    	 
+
         Τότε \( \left|f'(z)\right| = 0 \iff f'(z)=0 \forall z\in
-        \iff f(z) = c\in\mathbb C 
+        \iff f(z) = c\in\mathbb C
         \)
-        
+
         \item \textbf{Αρχή μεγίστου/ελαχίστου}
-        
+
         Έστω \( f \) ολόμορφη σε ανοικτό και συνεκτικό σύνολο \( G \) και μη σταθερή στο
         \( G \). Τότε η \( |f| \) \textbf{ΔΕΝ έχει μέγιστη τιμή} στο \( G \).
-        
+
         Αν μάλιστα \( f(z) \neq 0 \quad \forall z \in G \), τότε η \( |f| \)
         \textbf{ΔΕΝ έχει ελάχιστη τιμή στο \( \mathbf G \)}.
-        
+
         Ειδικά αν \( G \) είναι και \textbf{ΦΡΑΓΜΕΝΟ} και η \( f \) είναι συνεχής στο
         σύνορο του \( G \) (το οποίο είναι απλή, λεία καμπύλη), τότε η \( |f| \)
         \textbf{παίρνει ΜΕΓΙΣΤΗ ΤΙΜΗ ΠΑΝΩ στο σύνορο του \( \mathbf G \)}.
         Ομοίως αν \( f(z) \neq 0 \quad \forall z \in G \), τότε η \( |f| \)
         παίρνει ελάχιστη τιμή ΠΑΝΩ στο σύνορο του \( G \).
-    	
+
     \end{enumparen}
-    
+
     \paragraph{Άσκ.} Υπολογίστε το \( \int_\gamma \left( i\bar z - z \right)\dif z \)
     \\ όπου \( \gamma \) είναι η παραβολή \( y=2t^2+1 \) με αρχή το σημείο \( (1,3) \)
     και πέρας το σημείο \( 2,9 \).
@@ -2081,8 +2081,8 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     Γενικά, μπορώ να κινηθώ μέσω ορισμού, αντιπαραγώγου ή θεωρημάτων. Η \( \bar z \)
     δεν έχει παράγωγο, άρα δεν έχει αντιπαράγωγο (διαφορετικά από προηγούμενη εφαρμογή
     θα είχε άπειρες παραγώγους).
-    
-    \subparagraph{Έχουμε:} 
+
+    \subparagraph{Έχουμε:}
     \begin{align*}
     \int_\gamma (i\bar z - z)\dif z &=
     i\int_\gamma \bar z\dif z - \int_\gamma z\dif z = I_1+I_2
@@ -2119,13 +2119,13 @@ decoration={markings,mark=at position 0 with \arrow{<}}
         \\ &= i \left[ \frac{5t^2}{2} + 2t^4 \right]_1^2 - \left(2t^3+t\right)_1^2
         \\ &= A + B
     	\end{align*}
-    	
+
     	\textbf{Τελικά}
-    	
+
     \end{itemize}
-    
+
     Από εδώ και στο εξής, μέχρι νεωτέρας, όλοι μαζί, Τρίτη και Πέμπτη.
-    
+
     \paragraph{Άσκ.}
     Υπολογίστε τα επικαμπύλια ολοκληρώματα
     \begin{enumgreekparen}
@@ -2141,28 +2141,28 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	 \)
     \end{enumgreekparen}
     Όλες οι καμπύλες θεωρούνται προσανατολισμένες με τη θετική φορά.
-    
+
     \paragraph{}
-    
+
     \begin{enumgreekparen}
     	\item \begin{tikzpicture}[baseline]
     	\draw (-3,0) -- (3,0);
     	\draw (0,-2) -- (0,2.2);
-    	
+
     	\draw[very thick,postaction={decorate},decoration={markings,
     		mark=at position 0.1 with {\arrow[very thick]{>}}}]
     	(0.5,0) circle (1.5);
-    	
+
     	\filldraw (2,0) circle (1pt) node[below right] {$2$};
     	\filldraw (0.5,0) circle (1pt) node[below] {$\frac{1}{2}$};
     	\filldraw[fill=red] (-0.5,0) circle (1.5pt) node[below] {$\mathllap{-}\frac{1}{2}$};
     	\filldraw (-1,0) circle (1pt) node[below left] {$-1$};
     	\end{tikzpicture}
     	Θα χρησιμοποιήσω ολοκλ. τύπο Cauchy.
-    	
+
     	Έστω \( f(z)=z\cos z \), ολόμορφη στο \( \mathbb C  \) άρα και πάνω και στο
     	εσωτερικό του κύκλου \[ \left| z-\frac{1}{2} \right| =\frac{3}{2} \]
-    	
+
     	\textbf{Προφανώς:} \begin{align*}
     		&\ \oint_{\left| z-\frac{1}{2} \right|=\frac{3}{2}}
     		\frac{z\cos z}{2z+1}\dif z \\
@@ -2172,7 +2172,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	όπου \( z_0 = -\frac{1}{2} \ \in \) \underline{εσωτερικό} του κύκλου
     	\( \left|z-\frac{1}{2}\right| = \frac{3}{2} \), ο οποίος είναι
     	\underline{θετικά προσανατολισμένος}.
-    	
+
     	Τότε ικανοποιούνται όλες οι συνθήκες ώστε να έχω
     	\begin{align*}
     		&\ \frac{1}{2\pi i}\oint_{\left| z-\frac{1}{2} \right|=\frac{3}{2}}
@@ -2181,36 +2181,36 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		\oint_{\left| z-\frac{1}{2} \right|=\frac{3}{2}} \frac{z\cos z}{z+\frac{1}{2}}
     		\dif z = 2\pi \left(-\frac{1}{2}\right) \cos \left(-\frac{1}{2}\right)
     	\end{align*}
-    	
-    	\textbf{Τελικά:} \( 
+
+    	\textbf{Τελικά:} \(
     	\displaystyle \boxed{
     		\oint_\gamma \frac{z\cos z}{2z+1}\dif z = \frac{-\pi i}{2}
     		\cos\left(-\frac{1}{2}\right)
     		}
     	 \)
-    	 
-    	 \item 
+
+    	 \item
     	 \begin{tikzpicture}[baseline]
     	 \draw (-3,0) -- (3,0);
     	 \draw (0,-2) -- (0,2.2);
-    	 
+
     	 \draw[very thick,postaction={decorate},decoration={markings,
     	 	mark=at position 0.1 with {\arrow[very thick]{>}}}]
     	 (0,0) circle (1.5);
-    	 
+
     	 \filldraw (1.5,0) circle (1pt) node[below right] {$3$};
     	 \filldraw (-1.5,0) circle (1pt) node[below left] {$-3$};
     	 \filldraw (0,1.5) circle (1pt) node[above right] {$3i$};
     	 \filldraw (0,-1.5) circle (1pt) node[below right] {$-3i$};
     	 \filldraw[fill=red] (1.5/3*2,0) circle (1.5pt) node[below] {$2$};
-    	 
+
     	 \draw (0,0) node[below left] {$0$};
     	 \end{tikzpicture}
     	 Θα χρησιμοποιήσω τύπο Cauchy για παραγώγους με \( \mathbf{n=2} \).
-    	 
+
     	 Έστω \( g(z) = z^3+2 \), προφανώς ακεραία (ολόμορφη σε όλο το \( \mathbb C  \)),
     	 άρα ολόμορφη πάνω και στο εσωτερικό του κύκλου μας.
-    	 
+
     	 Επίσης, \( z_0 = 2 \ \in \ \) εσωτερικό του θετικά προσανατολισμένου κύκλου
     	 μας, άρα από τύπο Cauchy για παραγώγους έχουμε:
     	 \begin{align*}
@@ -2223,8 +2223,8 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	 	g''(z) &= 6z \\
     	 	g''(2) &= 12
     	 \end{align*}
-    	 
-    	 \textbf{Τελικά} \( 
+
+    	 \textbf{Τελικά} \(
     	 \displaystyle \oint_{|z|=3} \frac{z^3+2}{(z-2)^3} \dif z = 12\pi i
     	  \)
         \item
@@ -2237,20 +2237,20 @@ decoration={markings,mark=at position 0 with \arrow{<}}
         decoration={markings,mark=at position 0.1 with \arrow[thick]{>}}
         ] (-1.5/3,0) circle (10pt);
         \draw (-1.5/3,10pt) node[above] {$\mathsmaller{\gamma_2}$};
-        
+
         \draw (-3,0) -- (3,0);
         \draw (0,-2) -- (0,2.2);
-        
+
         \draw[very thick] (0,0) circle (1.5);
-        
+
         \filldraw (1.5,0) circle (1pt) node[below right] {$2$};
         \filldraw (-1.5,0) circle (1pt) node[below left] {$-2$};
         \filldraw (0,1.5) circle (1pt) node[above right] {$2i$};
         \filldraw (0,-1.5) circle (1pt) node[below right] {$-2i$};
-        
+
         \filldraw[fill=red] (1.5/3,0) circle (1.5pt) node[below] {$\mathsmaller{1}$};
         \filldraw[fill=red] (-1.5/3,0) circle (1.5pt) node[below] {$\mathsmaller{-1}$};
-        
+
         \end{tikzpicture}
 
         Χρησιμοποιώ κατ' αρχήν γενικευμένο θεώρημα Cauchy, και έχω:
@@ -2264,7 +2264,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
         + \left. 2\pi i \frac{e^z}{z-1} \right|_{z=-1}
         \\ &= \pi i e - \pi i e^{-1}
         \end{align*}
-        (διότι οι αριθμητές \( 
+        (διότι οι αριθμητές \(
         \left|
         \begin{array}{l}
         a(z) = \frac{e^z}{z+1} \\ b(z)=\frac{e^z}{z-1}
@@ -2274,20 +2274,20 @@ decoration={markings,mark=at position 0 with \arrow{<}}
          και \( \gamma_2 \) αντιστοίχως και \( z_0 = 1 \in \) εσωτερικό της \( \gamma_1 \)
          ενώ \( z_1 = -1 \in \) εσωτερικό \( \gamma_2 \))
     \end{enumgreekparen}
-    
+
     \paragraph{Θέμα:}
     Υπολογίστε το \( \displaystyle \oint_{|z|=R} \frac{1}{(z-i)^2} \dif z \)
     για όλες τις τιμές του \( R \), όπου \( R > 0 \) και \( R \neq 1 \)
     \subparagraph{} \hspace{0pt}
-    
+
     \begin{tikzpicture}
     \draw (-2,0) -- (2,0);
     \draw (0,-2) -- (0,2.2);
-    
+
     \draw[thick,dashed,red] (0,0) circle (1.5);
     \foreach \r in {0.25,0.7,...,1.49}
     \draw[thick] (0,0) circle (\r);
-    
+
     \filldraw (1.5,0) circle (1pt) node[below right] {$1$};
     \filldraw (0,1.5) circle (1pt) node[above right] {$i$};
     \filldraw (0,0) circle (1pt);
@@ -2295,72 +2295,72 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 
     \begin{enumgreekparen}
     	\item \( \underline{R < 1} \)
-    	
+
     	Τότε \( I = 0 \) από θεώρ Cauchy αφού ανωμαλία \( z_0 = i \) εκτός κύκλου
     	\( |z| = R \)
-    	
+
     	\item \( \underline{R>1} \)
-    	
+
     	Τότε \( z_0 = i \ \in \ \) εσωτερικό κύκλου \( |z| = R \) οπότε χρησιμοποιώ τύπο
     	Cauchy για παραγώγους και βρίσκω \[ I = 0. \]
     \end{enumgreekparen}
-    
-    \paragraph{Άσκ. }    
+
+    \paragraph{Άσκ. }
     Έστω \( f \) ολόμορφη πάνω και στο εσωτερικό κύκλου \( |z| = R \), με
     \( f(z) \neq 0\ \forall z \) στο εσωτερικό του κύκλου και \( f(z) = c \) για κάθε
     \( z \) πάνω στον κύκλο \( |z| = R \).
-    
+
     ΝΔΟ \( \left|f(z)\right| = A \geq 0 \ \forall z \) στο εσωτερικό του κύκλου.
-    
+
     \subparagraph{}
     Θα χρησιμοποιήσω αρχή μεγίστου/ελαχίστου, η οποία λέει ότι η \( \left|f(z)\right| \)
     παίρνει τόσο τη μέγιστη, όσο και την ελάχιστη τιμή της ΠΑΝΩ στον κύκλο \( |z|=R \).
-    
+
     Εφ' όσον όμως \( f(z) = c\ \forall z: |z| = R \) τότε \( \left|f(z)\right| = |c| = \)
     σταθερό \( \forall z \) πάνω στον κύκλο, όπου όμως η \( |f| \) παίρνει και μέγιστη και
     ελάχιστη τιμή. Άρα η \( \max |f| = \min |f| \ \forall z:|z| = R \), συνεπώς
     \( |f| =  \) σταθερά \( \forall z \) στο εσωτερικό του κύκλου.
-    
+
     \paragraph{Άσκ.}
     Έστω \( f \) ακεραία και \( \left|f(z)\right| \leq A|z| \forall z\in\mathbb C  \).
     ΝΔΟ \( f(z) = cz \), όπου \( c \in \mathbb C  \) σταθερά.
     \subparagraph{}
     Θα χρησιμοποιήσω ανισότητα Cauchy για \( n=2 \), προσπαθώντας να δείξω ότι:
     \[
-    \left|f''(z)\right| = 0 \quad \forall z \in \mathbb C 
+    \left|f''(z)\right| = 0 \quad \forall z \in \mathbb C
     \]
     τότε \( f'(z) = c \implies f(z) = cz+d \quad c,d\in\mathbb C  \). Από υπόθεση,
     για \( z=0 \) έχω \( \left|f(0)\right| \leq A \cdot 0 \implies f(0) = 0 \) άρα \(d = 0\).
-    
+
     Ανισότητα Cauchy
     \[
     \left|f^{(n)} (z_0)\right| \leq \frac{n! \cdot M_R}{R^n}
     \qquad n=1,2,3,\dots
     \]
     όπου \( M_R = \max\left\lbrace \left|f(z)\right| : |z-z_0|=R \right\rbrace \)
-    
+
     Έτσι για \( n=2 \) έχω για \( z_0 \in \mathbb C  \)
     \[
-    f''(z_0) \leq \frac{2! \cdot M_R}{R^2} = \frac{2MR}{R^2} 
+    f''(z_0) \leq \frac{2! \cdot M_R}{R^2} = \frac{2MR}{R^2}
     \]
-    
+
     Για \( |z-z_0| = R \) δηλ. για \( z = z_0 + Re^{i\theta} \) έχω
     \( \left|f(z)\right|
     \overset{\mathclap{\text{εξ' υποθέσεως}}}{\leq}
     A|z| = A \left|z_0+Re^{i\theta}\right| \leq A|z_0| + AR
      \)
-     
+
     \textbf{Τότε:}
     \[
       \left| f''(z_0) \right| \leq
       \frac{2\left(|z_0+R|\right)}{R^2}
-      \xrightarrow[R\to \infty] 0      
+      \xrightarrow[R\to \infty] 0
     \]
-    
+
     άρα \( \left|f''(z_0)\right| = 0\ \forall z_0\in\mathbb C  \), άρα
     \( f''(z_0) = 0\ \forall z_0 \in \mathbb C  \).
 
-	
+
 	\section{Ολοκληρωτικά υπόλοιπα και εφαρμογές}
 	\begin{defn*}{}
 		Έστω \( f = f(z) \) μιγαδική συνάρτηση. Ένα σημείο \( z_0 \in \mathbb C  \)
@@ -2382,30 +2382,30 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 		\item \( \displaystyle f(z) =
 		\frac{z^2+1}{z^2-1}
 		 \) \qquad (\( z_0=1,z_0=-1 \)) απομονωμένα ανώμαλα σημεία της \( f \)
-		 
+
 		 \begin{tikzpicture}[scale=1.3]
-		 		 	
+
 		 	\draw (-2,0) -- (2,0);
 		 	\draw (0,-1) -- (0,1);
-		 	
+
 		 	\filldraw[fill=red!70,fill opacity=.5] (-1,0) circle(0.3);
 		 	\filldraw[fill=red!70,fill opacity=.5] (1,0) circle(0.3);
-		 	
+
 		 	\draw (-1,-0.3) node[below] {$z=-1$};
 		 	\draw (1,-0.3) node[below] {$z=1$};
 		 \end{tikzpicture}
-		 
+
 		\item \( \displaystyle g(z) = \mathrm{Log} z
 		 \) (\( z_0 = 0 \) μη απομονωμένη ανωμαλία. Επίσης τα σημεία του αρνητικού
 		 ημιάξονα των πραγματικών είναι μη απομονωμένα ανώμαλα σημεία του λογάριθμου)
-		 
+
 		 \begin{tikzpicture}[scale=1.3]
-		 
+
 		 \draw (-2,0) -- (1.5,0);
 		 \draw (0,-1) -- (0,1);
-		 
+
 		 \filldraw[fill=red!70,fill opacity=.5] (0,0) circle(0.35);
-		 
+
 		 \draw[ultra thick, red!90, decorate,
 		 decoration={snake,amplitude=.3mm}
 		 ] (-2,0) -- (0,0);
@@ -2414,20 +2414,20 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 		\cos\left( \frac{1}{z} \right)
 		 \) (\( z_0 = 0 \) το μοναδικό μεμονωμένο σημείο)
 	\end{itemize}
-	
+
 	Έστω \( z_0 \) είναι \textbf{ΑΠΟΜΟΝΩΜΕΝΟ} ανώμαλο σημείο μιας συνάρτησης \( f \).
 	Τότε υπάρχει κάποιος δακτύλιος \[ 0 < |z-z_0| < R \] όπου η \( f \) είναι ολόμορφη
 	και η \( f \) αναπτύσσεται σε σειρά Laurent
 	\[
 	f(z) = \sum_{n=-\infty}^\infty a_n(z-z_0)^k,\quad \forall 0<|z-z_0|<R
 	\]
-	
+
 	\textbf{Δηλ.}
 	\[
 	f(z) = \dots + \frac{a{-n}}{(z-z_0)^n} + \dots + \frac{a_{-1}}{z-z_0}
 	+ a_0 + a_1(z-z_0) + \dots + a_n(z-z_0)^k + \dots
 	\]
-	
+
 	Θα λέμε ότι:
 	\begin{itemize}
 		\item Το \( z_0 \) είναι \textbf{ΑΠΑΛΕΙΨΙΜΗ ανωμαλία}, εάν:
@@ -2436,7 +2436,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 		\]
 		όπου \( a_n \in \mathbb C  \) οι συντελεστές του αναπτύγματος Laurent της \( f \)
 		"γύρω" από το \( z_0 \).
-		
+
 		\subparagraph{π.χ.}
 		\( \displaystyle f(z) = \frac{\sin z}{z} \quad z_0 = 0 \text{ (ανώμαλο σημείο)} \)
 		\begin{align*}
@@ -2450,13 +2450,13 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 		εάν \[
 		\boxed{a_n = 0 \quad \forall n < -k}
 		\]
-		
+
 		Τότε το ανάπτυγμα Laurent της \( f \) γίνεται:
 		\[
 		f(z) = \frac{a_{-k}}{(z-z_0)^k} + \frac{a_{-k+1}}{(z-z_0)^{k-1}}
 		+ \dots + a_0 + a_1(z-z_0) + \dots
 		\]
-		
+
 		Έτσι έχουμε:
 		\begin{align*}
 		f(z) &= \frac{1}{(z-z_0)^k} \underbrace{
@@ -2467,7 +2467,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 	    f(z) &= \frac{g(z)}{(z-z_0)^k} \quad \forall 0 < |z-z_0| < R
 		\end{align*}
 		όπου \( g=g(z) \) είναι ολόμορφη συνάρτηση στο \( z_0 \) με \( g(z_0) \neq 0 \).
-		
+
 		\textbf{Τελικά:} (εναλλακτικός ορισμός)
 		\begin{gather*}
 			z_0 \text{ πόλος της } f \text{ τάξης } k \in \mathbb{N} \\
@@ -2475,12 +2475,12 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 			f(z) = \frac{g(z)}{(z-z_0)^k} \text{ με $g$ κάποια ολόμορφη συνάρτηση στο $z_0$
 				για την οποία } \boxed{g(z_0) \neq 0}
 		\end{gather*}
-		
+
 		\item Το \( z_0 \) καλείται \textbf{ΟΥΣΙΩΔΗΣ ΑΝΩΜΑΛΙΑ} της \( f \), εάν υπάρχει
 		ΑΠΕΙΡΟ ΠΛΗΘΟΣ \underline{ΜΗ ΜΗΔΕΝΙΚΩΝ} όρων \( a_n \) στο ανάπτυγμα Laurent της
 		\( f \) ΜΕ ΔΕΙΚΤΕΣ \( n \) να είναι \underline{ΑΡΝΗΤΙΚΟΙ ΑΡΙΘΜΟΙ}.
 	\end{itemize}
-	
+
 	\paragraph{π.χ.}
 	Τι είδους ανωμαλία είναι το σημείο \( z_0 \) για τη συνάρτηση
 	\( f(z) = \displaystyle \frac{1}{z^2-1} \);
@@ -2499,13 +2499,13 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 	\\ \frac{1}{z^2-1} &= \frac{1}{2} \cdot \frac{1}{z-1} - \frac{1}{4}
 	+ \frac{1}{8} (z-1) - \frac{1}{16}(z-1)^2 + \dots \quad 0<\left|\frac{z-1}{2}\right|<1
 	\end{align*}
-	
+
 	Το \( z_0 = 1 \) είναι πόλος 1\textsuperscript{ης} τάξης εξ' ορισμού.
 
 
     \subsubsection*{}
     ΠΡΑΚΤΙΚΟΙ ΤΡΟΠΟΙ για ταξινόμηση ΑΠΟΜΕΝΩΜΕΝΩΝ ανώμαλων σημείων:
-    
+
     Έστω \( z_0 \) είναι απομονωμένο ανώμαλο σημείο της \( f \). Τότε:
     \begin{itemize}
     	\item \( z_0 \) είναι απαλείψιμη ανωμαλία \( \iff \) υπάρχει το
@@ -2521,7 +2521,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\item \( z_0 \) ουσιώδης ανωμαλία της \( f \iff \) Το \( \lim_{z \to z_0} f(z) \)
     	\underline{ΔΕΝ} υπάρχει
     \end{itemize}
-   \textbf{Τελικά:} 
+   \textbf{Τελικά:}
    \[
    \lim_{z\to z_0} f(z) = \begin{cases}
    = \lambda \in \mathbb C &\implies z_0 \text{ απαλείψιμη ανωμαλία} \\
@@ -2529,7 +2529,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
    \text{ΔΕΝ υπάρχει} &\implies z_0 \text{ ουσιώδης ανωμαλία}
    \end{cases}
    \]
-   
+
    \subsubsection{Πώς βρίσκουμε (κάποιες φορές) την τάξη ενός πόλου \( z_0 \)}
    \begin{theorem*}[title=Λήμμα]{Λήμμα}
    	Έστω \( f = f(z) \) ολόμορφη σε σημείο \( z_0 \). Τότε:
@@ -2558,7 +2558,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
    \( h(z_0) \neq 0 \). Παραγωγίζοτας \( k-1 \) φορές παίρνουμε \( f^{(j)}(z_0)=0
    \ \forall j=0,1,\dots,k-1
     \), ενώ \( f^{(k)}(z_0) \neq 0 \).
-    
+
     \paragraph{}
 
     \begin{itemize}
@@ -2574,48 +2574,48 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\end{cases}
     	\]
     \end{itemize}
-    
+
     \subsubsection{%
     	Υπολογισμός ολοκληρωτικού υπολοίπου σε απομονωμένο ανώμαλο σημείο \( z_0 \)}
-    
+
     \begin{defn*}{Ολοκληρωτικό υπόλοιπο}
     Σειρά Laurent της \( f \) στο \( z_0 \):
     \[
     f(z) = \cdots + \frac{a_{-k}}{(z-z_0)^k} + \dots + \frac{a_{-1}}{z-z_0} + a_0
     + a_1(z-z_0) + \cdots
     \]
-    
+
     Ο όρος \( \displaystyle a_{-1} = \oint_\gamma f(z)\dif z \) καλείται ολοκληρωτικό
     υπόλοιπο της \( f \) στο \( z_0 \), συμβολικά \( \Res(f,z_0) \).
     \end{defn*}
-    
+
     Έστω \( z_0 \) είναι απομονωμένο ανώμαλο σημείο συνάρτησης \( f \).
     \begin{itemize}
-    	\item Αν \( \mathbf{z_0} \) \textbf{απαλείψιμη ανωμαλία}, 
+    	\item Αν \( \mathbf{z_0} \) \textbf{απαλείψιμη ανωμαλία},
     	τότε το ολοκληρωτικό υπόλοιπο της \( f \) στο \( z_0 \)
     	\[
     	\Res(f,z_0) = 0
     	\]
-    	
+
     	\textbf{Τελικά:}
     	\[
     	\boxed{z_0 \text{ απαλείψιμο } \implies \Res (f,z_0) = 0}
     	\]
     \end{itemize}
-    
+
     \begin{itemize}
     	\item Αν \( z_0 \) είναι πόλος τάξης \( N \), τότε το \( \Res(f,z_0) \) βρίσκεται
     	ως εξής:
-    	
+
     	Εφόσον \( z_0 \) πόλος τάξης \( N \) έχουμε:
     	\[
     	f(z) = \frac{a_{-k}}{(z-z_0)^k} + \frac{a_{-k+1}}{(z-z_0)^{k-1}}
     	+ \dots + \frac{a_{-1}}{z-z_0} + a_0 + a_1(z-z_0) + \cdots
     	\]
-    	
+
     	\begin{align*}
     	& (z-z_0)^k f(z) = a_{-k}+a_{-k+1}(z-z_0) + \dots + a_{-1}(z-z_0)^{k-1}
-    	+ a_0(z-z_0)^k + \dots 
+    	+ a_0(z-z_0)^k + \dots
     	\\ \implies & \left(
     	(z-z_0)^k f(z)
     	\right)^{\underbrace{ \mathsmaller{(k-1)}}_{\mathclap{\text{παράγωγος}}}}
@@ -2628,18 +2628,18 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	 \left( (z-z_0)^k f(z) \right)^{(k-1)}
     	 \right]}
     	\end{align*}
-    	
+
     	\begin{attnbox}{} {
     		\large \textbf{Προσοχή!}
     	    Το \( ^{(k-1)} \) είναι \textbf{ΠΑΡΑΓΩΓΟΣ}!
     	}
     	\end{attnbox}
-    	
+
     	\item \( z_0 \) \textbf{ουσιώδης ανωμαλία}:
     	Τότε \textbf{αναγκαστικά} θα πρέπει να βρείτε το ανάπτυγμα Laurent της \( f \)
     	στο \( z_0 \) και μέσω αυτού να υπολογίσετε τον όρο \( a_{-1} = \Res(f,z_0) \)
     \end{itemize}
-    
+
     \paragraph{}
     \begin{theorem*}[colbacktitle=red!35!black]{Ολοκληρωτικών υπολοίπων}
     	Έστω \( f = f(z) \) είναι ολόμορφη πάνω και στο εσωτερικό απλής, κλειστής, τμημ.
@@ -2650,60 +2650,60 @@ decoration={markings,mark=at position 0 with \arrow{<}}
         \mathlarger{\oint_\gamma f(z) \dif z = 2\pi i \sum_{j=1}^n \Res(f,z_j)}
         \]
     \end{theorem*}
-    
+
     \begin{theorem*}[colbacktitle=red!35!black]{Αρχή ταυτισμού}
        	Έστω \( f = f(z) \) είναι ολόμορφη πάνω και στο εσωτερικό απλής, κλειστής, τμηματικά
        	λείας και θετικά προσανατολισμένης καμπύλης \( \gamma \).
-       	
+
        	Αν \( \left\lbrace z_\kappa \right\rbrace_{\kappa \in \mathbb Z} \) ακολουθία
        	σημείων στο εσωτερικό της \( \gamma \), με \( z_\kappa \neq z_\lambda \
        	\forall \kappa \neq \lambda \) και είναι τέτοια ώστε
        	\( \displaystyle
        	\lim_{\kappa \to \infty} z_\kappa = z_0\) ανήκει στο εσωτερικό της \( \gamma \).
-       	
+
        	Τότε, εάν \( f(z_\kappa) = 0 \ \forall \kappa \) ισχύει
        	\[
        	f(z) = 0 \quad \forall z \text{ στο εσωτερικό της } \gamma
        	\]
     \end{theorem*}
-    
+
     \paragraph{Άσκηση}
     Να ταξινομηθούν όλα τα ανώμαλα σημεία των συναρτήσεων
     \begin{enumlatin}
     	\item \( \displaystyle f(z) = \frac{1-\cos(z)}{z^2} \)
     	\item \( \displaystyle g(z) = \frac{e^z}{z^3} \)
-    	\item \( \displaystyle h(z) = 
+    	\item \( \displaystyle h(z) =
     	\frac{\cos\left(\sfrac{1}{2} \right)}{z} \)
     	\item \( \displaystyle k(z) = \frac{z}{e^z-1} \)
     \end{enumlatin}
     και να υπολογιστούν τα ολοκληρωτικά υπόλοιπα στα σημεία αυτά.
-    
+
     \begin{enumlatin}
     	\item
     	Ανώμαλα σημεία της \( f \) (σημεία όπου η \( f \)) "πιθανώς" δεν ορίζεται ή
     	αν ορίζεται δεν είναι μιγαδικά παραγωγίσιμη):
-    	
+
     	"Το μοναδικό ανώμαλο σημείο είναι αυτό που μηδενίζει τον παρονομαστή, δηλαδή
     	το \( \boxed{z_0=0} \)."
-    	
+
     	Προφανώς το \( z_0 = 0 \) μηδενίζει τον παρονομαστή της \( f \) δύο φορές, δηλαδή
     	το \( z_0 = 0 \) είναι διπλή ρίζα του παρονομαστή.
-    	
+
     	\textbf{Έστω}
     	\begin{align*}
     		a(z) &= \text{"αριθμητής"} = 1-\cos(z),\quad a(0) = 1-\cos(0)=0 \\
     		a'(z) &= \sin(z),\quad a'(0) = 0 \\
     		a''(z) &= \cos(z),\quad a''(0) = 1 \neq 0
     	\end{align*}
-    	
+
     	Άρα το \( z_0 = 0 \) είναι \textbf{διπλή} ρίζα του αριθμητή.
-    	
+
     	Επομένως, το \( z_0 = 0 \) είναι "απαλείψιμη ανωμαλία", διότι:
     	\[
     	\text{πολλαπλότητα ρίζας $z_0=0$ του αριθμητή $=2$ } \geq
     	\text{ πολλαπλότητα ρίζας $z_0=0$ του παρονομαστή $=2$}
     	\]
-    	
+
     	Αφού το \( z_0 = 0 \) είναι απαλείψιμη ανωμαλία:
     	\[
     	\boxed{\Res(f,0) = 0}
@@ -2721,7 +2721,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\text{πολλαπλότητα ρίζας $z_0=0$ του αριθμητή}
     	\end{array} \right\rbrace 3 - 0 = 3
     	\]
-    	
+
     	Τότε:
     	\begin{align*}
     		\Res(g,0) &= \frac{1}{2!} \lim_{z\to 0}
@@ -2737,18 +2737,18 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		είναι ακεραία, τότε το \( z_0 \) είναι ουσιώδης ανωμαλία για την \( g\cdot f \).
     	\end{attnbox}
     	Έτσι, με βάση τη σημείωση αυτή το \( z_0 \) είναι ουσιώδης ανωμαλία.
-    	
+
     	\textbf{Άρα}:
     	\[
     	\Res(h,0) \overset{\text{ορισμός}}{=} a_1
-    	\text{ (ο οποίος είναι συντελεστής του 
+    	\text{ (ο οποίος είναι συντελεστής του
     		$\frac{1}{z-z_0} \overset{z_0=0}{=} \frac{1}{2}$
     		), στο ανάπτυγμα Laurent της $h$ με κέντρο το $z_0 = 0$.}
     	\]
-    	
+
     	\textbf{Επομένως}:
     	\begin{align*}
-    	\cos(z) &\overset{\mathclap{\raisebox{1ex}{\scriptsize McLaurin}}}{=} 
+    	\cos(z) &\overset{\mathclap{\raisebox{1ex}{\scriptsize McLaurin}}}{=}
     	1 - \frac{z^2}{2} + \frac{z^4}{4!} - \dots \quad z \in \mathbb C \\
     	\cos\left(\frac{1}{z}\right) &= 1-\frac{1}{2z^2} + \frac{1}{24z^4} - \dots
     	\quad z \ in \mathbb C  - \left\lbrace 0 \right\rbrace \\
@@ -2756,34 +2756,34 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\frac{1}{z} - \frac{1}{2z^3} + \frac{1}{24z^3} - \dots \quad
     	z \in \mathbb C - \left\lbrace 0 \right\rbrace
     	\end{align*}
-    	
+
     	\textbf{Έτσι}:
     	\[
     	\Res(h,0) = \text{"συντελεστής του $\frac{1}{z}$ στο ανάπτυγμα Laurent
     		της $h$"} = 1.
     	\]
     	\item \( \displaystyle k(z) = \frac{z}{e^z-1} \)
-    	
-    	
+
+
     	Σημεία που μηδενίζουν παρονομαστή
     	\[
     	e^z = 1 \iff z = \log 1 = \ln 1 + i(0+2k\pi) = 2k\pi i\quad
     	(k \in \mathbb Z)
     	\]
-    	
+
     	Άρα τα σημεία \( z_k = 2k\pi i \quad (k \in \mathbb Z) \) ανώμαλα σημεία
     	της \( k(z) \).
-    	
+
     	\paragraph{}
     	Για \( n = 0 \) έχουμε \( z_0 = 0 \) ανώμαλο σημείο της \( k(z) \) που
     	μηδενίζει τον παρονομαστή και αριθμητή 1 φορά άρα απαλείψιμο.
     	\[
     	\Res(k,0) = 0
     	\]
-    	
+
     	Για \underline{\( n \neq 0 \)} έχουμε \( z_n = 2n\pi i \) μηδενίζουν μια
     	φορά παρονομαστή, καμία αριθμητή, άρα πόλοι 1\textsuperscript{ης} τάξης.
-    	
+
     	Έτσι:
     	\begin{align*}
     		\Res(k,z_n) &= \frac{1}{1} \lim_{z\to z_n} (z-z_n)k(z)
@@ -2792,11 +2792,11 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		= \frac{2n \pi i}{e^{2n\pi i}} = 2n\pi i
     	\end{align*}
     \end{enumlatin}
-    
-    
+
+
     \paragraph{(2)}
     Υπολογίστε το \( \displaystyle \oint_{|z| = 3} \frac{e^z}{\cosh z} \dif z \)
-    
+
    % \begin{wrapfigure}{h}{.5\textwidth}
     	\begin{infobox}{}
     		\begin{enumgreekparen}
@@ -2807,17 +2807,17 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		\end{enumgreekparen}
     	\end{infobox}
     %\end{wrapfigure}
-    
+
     \begin{enumgreekparen}
     \item 	Από θεωρία έχω:
-    	
+
     	\[
     	I = 2\pi i \sum_{j=1}^n \Res\left(
     	\frac{e^z}{\cosh h}, z_j
     	\right)
     	\]
     	όπου \( z_j \) ανώμαλα σημεία εντός κύκλου: \( |z|=3 \)
-    	
+
     	\item Ανώμαλα σημεία της \( \sfrac{e^z}{\cosh z} \):
     	\begin{align*}
     		\cosh z &= 0 \xLeftrightarrow{\text{ορ.}} \frac{e^z+e^{-z}}{2} = 0
@@ -2826,13 +2826,13 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		\iff e^{2z} = -1  \iff 2z = \log(-1) = \ln(-1) + i(\pi + 2i\pi)    		\\
    		 \implies \Aboxed{z &= \left(k\pi + \frac{\pi}{2}\right)i,\quad k\in\mathbb Z}
     	\end{align*}
-    	
-    	\( \displaystyle z = 
+
+    	\( \displaystyle z =
     	\frac{\pm \pi i}{2}, \frac{\pm 3\pi i}{2},\frac{\pm 5\pi i}{2}\) ανώμαλα σημεία
-    	
+
     	Άρα μένουν οι \( z_1 = \frac{\pi i}{2} \) και \( z_2 = \frac{-\pi i}{2} \)
     	βρίσκονται ΕΝΤΟΣ κύκλου \( |z| = 3 \).
-    	
+
     	Έτσι από θεώρημα ολοκλ. υπολοίπων έχουμε:
     	\[
     	I = 2\pi i \left(
@@ -2840,7 +2840,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	+\Res \left( \frac{e^z}{\cosh z}, \frac{-\pi i}{2} \right)
     	\right)
     	\]
-    	
+
     	\item Αλλά το \( z_1 = \frac{\pi i}{2} \) είναι πόλος 1\textsuperscript{ης} τάξης,
     	διότι
     	\begin{itemize}
@@ -2851,7 +2851,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     			A'(z) = \sinh z, &\quad \sinh\left(\frac{\pi i}{2}\right) \neq 0
     		\end{align*}
     		(τα μηδενικά του \( \sinh z \) είναι στα \( k\pi i \))
-    		
+
     		και προφανώς δε μηδενίζει καθόλου τον αριθμητή, αφού
     		\[
     		e^z \neq 0 \quad \forall z
@@ -2861,18 +2861,18 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\end{itemize}
     	\item Ακριβώς με την ίδια λογική, το \( z_1 = -\frac{\pi i}{2} \) είναι πόλος
     	1\textsuperscript{ης} τάξης.
-    	
+
     	\item \begin{align*}
     		\Res\left(\frac{e^z}{\cosh z},\frac{\pi}{2}\right)
     		&= \lim_{z\to\frac{\pi i}{2}} \left(
     		\left(z-\frac{\pi i}{2}\right)\frac{e^z}{\cosh z}
     		\right) \overset{\text{L' Hospital}}{=}
     		\\ &=
-    		\lim_{z\to \frac{\pi i}{2}} 
+    		\lim_{z\to \frac{\pi i}{2}}
     		\frac{e^z\left(z-\frac{\pi i}{2}\right)+e^z}{\sinh z}
     		\\ &= \frac{e^{z}}{\sinh\left(\frac{\pi i}{2}\right)}
     	\end{align*}
-    	
+
     	\begin{itemize}
     		\item \begin{align*}
     			\Res\left(\frac{e^z}{\cosh z},\frac{-\pi i}{2}\right)
@@ -2881,7 +2881,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     			\\ &= \frac{e^{\sfrac{-\pi i}{2} }}{\sinh\left(\sfrac{\pi i}{2} \right)}
     		\end{align*}
     	\end{itemize}
-    	
+
     	\item Τελικά
     	\[
     	I = 2\pi i \left(
@@ -2890,7 +2890,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\right)
     	\]
     \end{enumgreekparen}
-    
+
     \subsection{Εφαρμογές ολοκλ. υπολοίπων}
     \subsubsection[Λήμμα Jordan]{\attnboxed{\text{Λήμμα Jordan}}}
     Έστω \( f=f(z) \) είναι ολόμορφη στο διάτρητο δίσκο
@@ -2905,52 +2905,52 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \lim_{\rho\to 0^+} \int_{\gamma_\rho} f(z) \dif z
     = i\left(\theta_1 - \theta_0\right)\Res(f,z_0)
     \]
-    
+
     \paragraph{Απόδ.}
     \[
-    \int_{\gamma_\rho} f(z)\dif z = 
+    \int_{\gamma_\rho} f(z)\dif z =
     \int_{\gamma_\rho} \left(\frac{a_{-1}}{z-z_0} + h(z)\right) \dif z,\text{ όπου}
     \]
     \( h=h(z) \) ολόμορφη στο \( z_0 \), διότι το \( z_0 \) είναι \underline{απλός πόλος}
     της \( f \).
-    
+
     \begin{align*}
     	I_0 &= a_{-1} \int_{\gamma_\rho} \frac{1}{z-z_0}\dif z + \int_{\gamma_\rho}
     	h(z)\dif z \\ &= a_{-1} \int_{\theta_0}^{\theta_1} \frac{1}{\rho e^{i\theta}}
     	i\rho e^{i\theta}\dif \theta + \int_{\gamma_\rho} h(z) \dif z \\
     	I_0(\rho) &= \Res(f,z_0) \cdot i (\theta_1 - \theta_0) + \int_{\gamma_\rho} h(z)
     	\dif z
-    \end{align*}    
-    
+    \end{align*}
+
     Παίρνοντας όριο, \( \rho\to 0^+ \), έχουμε:
     \[
     \lim_{\rho\to 0^+} \int_{\gamma_rho} f(z)\dif z = i(\theta_1-\theta_0)\Res(f,z_0)
     + \lim_{\rho\to 0^+} \int_{\gamma_\rho} h(z)\dif z
     \]
-    
+
     Αρκεί ΝΔΟ \( \displaystyle \lim_{\rho\to 0^+} \int_{\gamma_\rho} h(z)\dif z = 0 \).
-    
+
     Αλλά \( h \) ολόμορφη στο \( z_0 \implies h \) συνεχής στο \( z_0 \implies h \)
     φραγμένη σε μία περιοχή του \( z_0 \). Έτσι:
-    
+
     \begin{align*}
     	\left| \int_{\gamma_\rho} \right|
-    	&\leq \int_{\gamma_\rho} \left|h(z)\right|\left|\dif z\right| 
+    	&\leq \int_{\gamma_\rho} \left|h(z)\right|\left|\dif z\right|
     	\leq M \cdot \int_{\gamma_\rho} \left|\dif z\right|
     	\\ &= (\theta_1 - \theta_0) \rho M \to 0,
     \end{align*}
     όπου \( M \) είναι άνω φράγμα της \( h \) σε μια περιοχή του \( z_0 \).
-    
+
     \begin{tikzpicture}
     \draw (0,0) -- (2,0);
     \draw (0,0) -- (0,2);
-    
+
     \filldraw[fill=white,fill opacity=0.9] (0,0) circle (2pt) node[below left] {$z_0$};
-    
+
     \draw[dashed] (0,0) -- (15:2);
     \draw (1,0) arc (0:15:1) node[yshift=-3pt,right]
     {$\mathsmaller{\theta_0}$};
-    
+
     \draw[dashed] (0,0) -- (105:2);
     \draw[thick,blue!20!black] (15:1.7) arc (15:105:1.7)
     node[above,midway] {$\gamma_\rho$};
@@ -2965,7 +2965,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		απομονωμένα ανώμαλα σημεία, και η \( f \) τέτοια ώστε \[
     		\lim_{z\to \infty} zf(z) = 0.
     		\]
-    		
+
     		Υποθέτουμε ότι η \( f \) έχει:
     		\begin{itemize}
     			\item ανώμαλα σημεία \( z_1,\dots,z_n \) ΣΤΟ ΑΝΩ ΗΜΙΕΠΙΠΕΔΟ \( \Im(z)>0 \)
@@ -2973,7 +2973,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     			\item \underline{ΠΟΛΟΥΣ 1\textsuperscript{ης} τάξης μόνον}
     			\( \zeta_1,\dots,\zeta_r \) πάνω στον ΠΡΑΓΜΑΤΙΚΟ ΑΞΟΝΑ.
     		\end{itemize}
-    		
+
     		Τότε:
     		\[
     		\lim_{R\to +\infty} \int_{-R}^{R} f(x) \dif x = 2\pi i
@@ -2982,7 +2982,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		\overbrace{\Res(f,z_\lambda)}^{%
     			\mathclap{\text{απλοί πόλοι πάνω σε πραγμ. άξονα}}}
     		\]
-    		
+
     		ή \textbf{ισοδύναμα}:
     		\[
     		\lim_{R\to +\infty} \int_{-R}^{R} f(x)\dif x =
@@ -2993,10 +2993,10 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     			\mathclap{\text{απλοί πόλοι πάνω σε πραγμ. άξονα}}}
     		\]
     	\end{theorem*}
-     
+
     \subsubsection{Ασκήσεις}
-    \paragraph{Άσκ.} Υπολογίστε το \( 
-    \displaystyle 
+    \paragraph{Άσκ.} Υπολογίστε το \(
+    \displaystyle
     \underbrace{\lim_{R\to + \infty} \int_{-R}^{R}}_{%
     	\mathclap{\text{τέτοια ολοκληρώματα καλούνται καταχρηστικά ή κατά Cauchy}}}
     \frac{\dif x}{(x+1)(x^2+4x+5)}
@@ -3007,23 +3007,23 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\[
     	 \int_{-\infty}^{+\infty} x\dif x = \lim_{N,M\to 0} \int_{N}^{M} x\dif x
     	\] που εξαρτάται από την διαδρομή που ακολουθούν τα \( M,N \).
-    	
+
     	\begin{tikzpicture}
     	    \fill[green!30] (-2,0) -- (-2,-2) -- (2,2) -- (2,0);
-    	
+
     		\draw (-2,0) -- (2,0);
     		\draw (0,-2) -- (0,2);
-    		
+
     		\draw[very thick,blue] (-2,-2) -- (2,2);
     	\end{tikzpicture}
     \end{attnbox}
     \begin{enumgreekparen}
-    	\item Θεωρώ \( f(z) = \frac{1}{(z+1)(z^2+4z+5)^2} \) 
+    	\item Θεωρώ \( f(z) = \frac{1}{(z+1)(z^2+4z+5)^2} \)
     	\item Ελέγχω αν ισχύει η συνθήκη
     	\[
     	\lim_{z\to \infty} zf(z) = 0
     	\]
-    	
+
     	\begin{align*}
     	\lim_{z\to \infty} \frac{z}{(z+1)(z^2+4z+5)^2} &=
     	\lim_{z\to \infty} \frac{z}{z^5} \cdot \frac{1}{\left(1+\frac{1}{z}\right)
@@ -3040,14 +3040,14 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		\\ \iff &
     		z_0 = -1 \text{ (απλή) \quad και } z_{1,2} = -2 \pm i \text{ (διπλές ρίζες)}
     	\end{align*}
-    	
+
     	\textbf{Έτσι:}
     	\begin{align*}
     		z_0 = -1 \quad& \text{(απλός πόλος στον πραγματικό άξονα)} \\
     		z_1 = -2+i \quad& \text{(διπλός πόλος στο άνω ημιεπίπεδο)} \\
     		z_2 = -2-i \quad& \text{(διπλός πόλος στο κάτω ημιεπίπεδο)}
     	\end{align*}
-    	
+
     	\item Τύπος:
     	\begin{align*}
     		\lim_{R\to +\infty} \int_{-R}^{R} f(x) \dif x &=
@@ -3055,11 +3055,11 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     			\mathclap{\text{ανώμαλο στο άνω ημιεπίπεδο}}}
     		+ \pi i \Res(f,-1)
     	\end{align*}
-    	
+
     	\item Υπολογισμός ολοκλ. υπολοίπου
     	\begin{itemize}
     		\item \( \displaystyle \Res(f,\ -1) = \lim_{z\to -1}(z+1)
-    		\frac{1}{(z+1)(z^2+4z+5)^2} = \frac{1}{4}. 
+    		\frac{1}{(z+1)(z^2+4z+5)^2} = \frac{1}{4}.
     		 \)
     		\item \( \displaystyle \Res(f,z_1) =
     		\lim_{z\to z_1} \left((z-z_1)^2 \frac{1}{(z+1)(z-z_1^2)(z-z_2)^2}\right)'
@@ -3074,7 +3074,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     			\\ &= \boxed{\frac{2i-1}{8}}
     		\end{align*}
     	\end{itemize}
-    	
+
     	\item Τελικό αποτέλεσμα
     	\begin{align*}
     		\lim_{R\to+\infty} \int_{-R}^{R} \frac{\dif x}{(x+1)(x^2+4x+5)^2}
@@ -3083,26 +3083,26 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		= - \frac{\pi}{2}
     	\end{align*}
     \end{enumgreekparen}
-    
+
     \paragraph{Άσκ.}
     Υπολογίστε το \( \displaystyle \oint_\gamma \frac{1}{z\left(z-z_1\right)^2}
     \dif z \), όπου \( \gamma \) είναι το τετράγωνο:
     \begin{tikzpicture}[baseline,scale=1.2]
     \draw (-1,0) -- (1.2,0);
     \draw (0,-0.7) -- (0,1.2);
-    
+
     \draw[thick,postaction={decorate},decoration={markings,
     	mark=between positions 0.15 and 1 step 0.25 with {\arrow[very thick]{>}}
     }]
     (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
-    
+
     \filldraw (0,0) circle (1pt) node[below left] {$0$};
     \filldraw (1,0) circle (1pt) node[below] {$1$};
     \filldraw (1,1) circle (1pt) node[right] {$1+i$};
     \filldraw (0,1) circle (1pt) node[left] {$i$};
-    
+
     \draw[dashed] (0.5,0) --(0.5,0.5) -- (0,0.5);
-    
+
     \filldraw (0.5,0.5) circle (1pt) node[above,scale=0.6]
     {$z_1\mathsmaller{=\frac{1}{2}+\frac{i}{2}}$};
     \end{tikzpicture}
@@ -3117,7 +3117,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		\Res(f,\!\overbrace{0}^{\mathclap{\text{πάνω στην καμπύλη}}})
     		}
     \end{align*}
-    
+
     \begin{itemize}
     	\item \( \displaystyle
     	\Res(f,0) \overset{z=0 \text{ απλός}}{\underset{\text{πόλος}}{=}}
@@ -3131,23 +3131,23 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\right)
     	 \)
     \end{itemize}
-    
+
     Αντικαθιστώντας παραπάνω προκύπτει το ζητούμενο αποτέλεσμα.
-    
+
     \subsubsection{Υπολογισμός ολοκληρωμάτων της μορφής \( \displaystyle
     \int_{0}^{2\pi} R(\sin\theta, \cos\theta) \dif\theta
     \)}
     όπου \( R \) είναι μια ρητή συνάρτηση των \( \sin\theta \) και \( \cos\theta \)
     \paragraph{Μεθοδολογία:}
     Θέτουμε \( z = e^{i\theta},\quad \theta \in [0,2\pi) \)
-    
+
     Τότε: \begin{align*}
     	\dif z &= \dif \left(e^{i\theta}\right) = ie^{i\theta}\dif\theta =
     	iz \dif\theta
     	\\ \text{άρα } \Aboxed{\dif z &= iz\dif\theta}
     \end{align*}
-    
-    Επίσης: \( 
+
+    Επίσης: \(
     \begin{cases}
     \cos\theta &= \frac{e^{i\theta+e^{-i\theta}}}{2} = \frac{z+z^{-1}}{2}
     = \frac{z^2+1}{2z} \\
@@ -3155,7 +3155,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     = \frac{z^2-1}{2iz}
     \end{cases}
      \)
-     
+
     Αντικαθιστούμε τα παραπάνω και παίρνουμε:
     \[
     \int_{0}^{2\pi} R(\sin\theta, \cos\theta) \dif\theta
@@ -3169,21 +3169,21 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \Res(K,z_j),
     \] όπου \( z_j, \mathsmaller{j=1,\dots,n} \) ανώμαλα σημεία της \( K \) εντός του
     μοναδιαίου κύκλου \( |z| = 1 \).
-    
+
     \paragraph{Παράδειγμα:}
     Υπολογίστε το
     \( \displaystyle \int_0^{2\pi} \frac{\cos 2\theta}{2+\sin\theta} \dif\theta \)
     \subparagraph{}
-    
+
     \begin{enumgreekparen}
     \item
     Θέτω \( z=e^{i\theta}, \theta \in [0,2\pi) \)
-    
+
     Τότε \begin{align*}
     \dif z &= \dif \left(e^{i\theta}\right) = ie^{i\theta}\dif\theta = iz\dif z \\
     \text{άρα } \Aboxed{\dif z &= iz\dif\theta}
     \end{align*}
-    
+
     \begin{itemize}
     	\item \( \displaystyle
     	\sin\theta = \frac{e^{i\theta} - e^{-i\theta}}{2i} = \frac{z-z^{-1}}{2i}
@@ -3194,14 +3194,14 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\frac{z^2+z^{-2}}{2} = \frac{z^4+1}{2z^2}
     	 \)
     \end{itemize}
-    
+
     \textbf{Τότε}
     \begin{align*}
     	I &= \oint_{|z| = 1} \frac{\frac{z^4+1}{2z^2}}{2+\frac{z^2-1}{2iz}}
     	\frac{\dif z}{iz}
     	\\ &=  \oint_{|z|=1} \frac{z^4+1}{z^2(z^2+4iz-1)} \dif z
     \end{align*}
-    
+
     \item Ανώμαλα σημεία:
     Εκείνα που μηδενίζουν τον παρονομαστή. Άρα
     \begin{gather*}
@@ -3209,26 +3209,26 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	z = 0 \text{ (διπλή)} \quad \text{ή} \quad z_{1,2} =
     	\frac{-4i \pm \sqrt{16i^2+4}}{2} = -2i \pm i\sqrt{3} = i\left(-2\pm\sqrt{3}\right)
     \end{gather*}
-    
+
     Από αυτά με ενδιαφέρουν μόνον τα ανώμαλα σημεία ΕΝΤΟΣ του μοναδιαίου κύκλου, δηλ.:
     \begin{align*}
     	z_0 &= 0 \text{ (διπλή)} \\
     	z_1 &= i\left(-2+\sqrt{3}\right)
     \end{align*}
-    
+
     \item Ταξινόμηση ανώμαλων σημείων και υπολογισμός ολοκληρωτικών υπολοίπων
     \begin{align*}
         z_0 &= 0 \text{ είναι πόλος 2\textsuperscript{ης} τάξης
         	(μηδενίζει δύο φορές τον παρονομαστή, καμία τον αριθμητή)}
         \\ z_1 &= i\left(-2+\sqrt{3}\right) \text{ πόλος 1\textsuperscript{ης} τάξης}
     \end{align*}
-    
+
     \begin{attnbox}{}
     	Ο τύπος \( \displaystyle \Res(f,z_0) = \frac{1}{(N-1)!}
     	\lim_{z\to z_0} \left( (z-z_0)^N f(z) \right)^{(N-1)}
     	 \) θα δίνεται
     \end{attnbox}
-    
+
     \textbf{και έτσι} αν \( f(z) = \sfrac{(z^4+1)}{z^2(z^2+4iz-1)}  \), τότε
     \begin{align*}
     	\Res(f,0) &= \lim_{z\to 0} \left(
@@ -3237,7 +3237,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\frac{4z^3(z^2+4iz-1) - (2z+4i)(z^4+1) }{(z^2+4iz-1)^2}
     	\\ &= -4i
     \end{align*}
-    
+
     Έστω \( z_1 = i\left(-2+\sqrt{3}\right) \) και \( z_2 = i\left(-2-\sqrt{3}\right) \).
     Τότε
     \begin{align*}
@@ -3248,7 +3248,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		\cdot i 2\sqrt{3}}
     	= i\frac{\left(\sqrt{3}-2\right)^4+1}{2\sqrt{3}\left(\sqrt{3}-2\right)^2}
     \end{align*}
-    
+
     \item Τελικά από θεώρημα ολοκλ. υπολοίπων έχω:
     \begin{align*}
     	I &= 2\pi i \left( -4i +i
@@ -3256,9 +3256,9 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\right) \\ &=
     	8\pi - \pi \cdot \frac{(\sqrt{3}-2)^4 + 1}{\sqrt{3}(\sqrt{3}-2)^2}
     \end{align*}
-    
+
     \end{enumgreekparen}
-    
+
     \subsubsection[Υπολογισμός μετασχηματισμού Fourier τοπικά
     ολοκληρώσιμης συνάρτησης f]{Υπολογισμός
     	μετασχηματισμού Fourier τοπικά ολοκληρώσιμης συνάρτησης \( f \)}
@@ -3266,14 +3266,14 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \hat f(\omega) = \lim_{R\to +\infty} \int_{-R}^{R} f(x) e^{-i\omega x}\dif x
     \]
     όπου \( x \in \mathbb R,\ \omega \in \mathbb R \)
-    
+
     \begin{theorem*}{}
     	Έστω \( f = f(z) \) είναι ολόμορφη στο \( \mathbb C  \) εκτός πεπερασμένου πλήθους
     	απομονωμένων ανώμαλων σημείων και η \( f \) έτσι ώστε:
     	\[
     	\lim_{z\to \infty} f(z) = 0
     	\]
-    	
+
     	Υποθέτουμε ότι:
     	\begin{enumgreekparen}
     		\item Η \( f \) έχει ανώμαλα σημεία \( z_1,\dots,z_n \) στο ΑΝΩ ΗΜΙΕΠΙΠΕΔΟ
@@ -3283,7 +3283,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		\item Η \( f \) έχει \textbf{ΑΠΛΟΥΣ ΠΟΛΟΥΣ} \( \zeta_1,\dots,\zeta_r \) πάνω
     		στον \textbf{πραγματικό άξονα}.
     	\end{enumgreekparen}
-    	
+
     	\textbf{Τότε}
     	\begin{enumlatin}
     		\item Αν \( \boxed{\omega < 0} \), έχουμε:
@@ -3292,10 +3292,10 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		\sum_{j=1}^n \Res\left( f(z) e^{-i\omega z}, z_j \right)
     		+ \pi i \sum_{\mu=1}^{r} \Res\left( f(z)e^{-i\omega z},\zeta_\mu \right)
     		\]
-    		
+
     		\item Αν \( \boxed{\omega > 0} \), έχουμε:
     		\[
-    		\hat f(\omega) = -2\pi i 
+    		\hat f(\omega) = -2\pi i
     		\sum_{\lambda=1}^{m} \Res\Big(f(z)e^{-\omega z},
     		\underset{\mathclap{\text{ημιεπ.}}}{\underset{\mathclap{\text{κάτω}}}{w_\lambda}}
     		\Big)
@@ -3518,23 +3518,23 @@ decoration={markings,mark=at position 0 with \arrow{<}}
    	\sqrt[n]{|a|}e^{\frac{i\theta+2\pi}{n}},\dots
    	\right.
    	\]
-   	
+
    	\begin{tikzpicture}
    		\draw (-4.5,0) -- (4.5,0);
    		\draw (0,-4.5) -- (0,4.5);
-   		
+
    		\draw (0,0) circle(4);
-   		
+
    		\draw[very thick,->,blue!50!black] (0,0) -- ++(25:4)
    		node[right,black,xshift=2mm] {$u_1= \sqrt[n]{|a|}e^\frac{i\theta+2\pi}{n} $};
-   		
+
    		\draw[very thick,->,blue!50!black] (0,0) -- ++(50:4)
    		node[right,black,xshift=2mm] {$u_0=\sqrt[n]{|a|}\cdot e^{\sfrac{i\theta}{n}}=
    			u_n=\sqrt[n]{|a|}e^\frac{i\theta+2k\pi}{n} $};
-   		
+
    		\draw (1,0) arc (0:25:1) node[midway,right] {$\sfrac{\theta}{n}$};
    		\draw[<->] ++(25:3) arc (25:50:3) node[midway,right] {$\sfrac{2\pi}{n}$};
-   		
+
    		\filldraw ++(-25:4) circle (.7mm) node[right,xshift=2mm]
    		{$u_{n-1}= \sqrt[n]{|a|}e^\frac{i\theta+2(n-1)\pi}{n} $};
    	\end{tikzpicture}
@@ -3548,7 +3548,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
    	\begin{tikzpicture}
    		\draw (-2,0) -- (2,0);
    		\draw (0,-2) -- (0,2);
-   		
+
    		\draw (0,0) circle (1.7);
    		\filldraw (1.7,0) circle (2pt) node[below right] {$u_0=1$};
    		\filldraw (-1.7,0) circle (2pt) node[below left] {$u_1$};
@@ -3564,14 +3564,14 @@ decoration={markings,mark=at position 0 with \arrow{<}}
    	\begin{tikzpicture}
    	\draw[->] (-2.3,0) -- (2.3,0);
    	\draw[->] (0,-2.3) -- (0,2.3);
-   	
+
    	\draw (0,0) circle (2);
    	\filldraw (2,0) circle (2pt) node[below right] {$u_0=1$};
    	\filldraw ++(120:2) circle (2pt) node[above left] {$u_1$};
    	\draw (0,0) -- ++(120:2);
    	\filldraw ++(240:2) circle (2pt) node[below left] {$u_2$};
    	\draw (0,0) -- ++(240:2);
-   	
+
    	\draw[->] (0.5,0)  arc(0:120:0.5) node[midway,right] {$\sfrac{2\pi}{3}$};
    	\draw[->] ++(120:0.4)  arc(120:240:0.4) node[midway,below left] {$\sfrac{2\pi}{3}$};
    	\draw[->] ++(240:0.7)  arc(240:360:0.7) node[midway,below right] {$\sfrac{2\pi}{3}$};
@@ -3593,11 +3593,11 @@ decoration={markings,mark=at position 0 with \arrow{<}}
    	\[
    	\left\lbrace u_09,u_1,\dots,u_{10} \right\rbrace
    	\]
-   	
+
    	\begin{tikzpicture}
 	   	\draw[->] (-2.3,0) -- (2.3,0);
 	   	\draw[->] (0,-2.3) -- (0,2.3);
-   	
+
    		\draw[very thick] (0:2) \foreach \x in {32.727,65.454,...,360} {
    			-- (\x:2)
    		} -- cycle (90:2) ;
@@ -3772,13 +3772,13 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		\filldraw[thick,red!80!blue,fill=white] (8,0) circle(4pt);
     	\end{tikzpicture}
     \end{enumparen}
-    
+
     \subsection{Λογαριθμική Συν.}
     \[
     w = \overbrace{\log(z)}^{\mathclap{\text{πλειότιμη}}}
     \iff z=\exp(w)
     \]
-    
+
     \begin{align*}
     	w &= \log(1+i) \\
     	1+i &= \sqrt{2}e^{i\left( \frac{\pi}{4}+2k\pi \right)}\\
@@ -3792,7 +3792,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\ln(\sqrt{2})-i\frac{17\pi}{4},\dots
     	\right\rbrace
     \end{align*}
-    
+
     \begin{align*}
     	\boxed{
     		\log(z)=\ln(r)+i\mathrm {arg}(z)
@@ -3802,44 +3802,44 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	} \leftarrow\ & \begin{array}{l}\text{μονότιμη}
     	\\ \text{ασυνεχής για } x\in(-\infty,0]\end{array}
     \end{align*}
-    
+
     \begin{tikzpicture}[scale=1.2]
     \fill[inner color=green!70!black,outer color=green!5,fill=white] (0,0) circle (2);
-    
+
     \draw[->] (0,-2) -- (0,2);
     \draw[->] (0,0) -- (2,0);
-    
+
     \draw[ultra thick, red!90, decorate,
     decoration={snake,amplitude=.3mm}
     ] (-2,0) -- (0,0);
-    
+
     \filldraw[fill=white] (0,0) circle (2pt);
-    
+
     \filldraw (0.5,0) circle (1pt);
     \draw[->] (0.4,0.1) to[bend right=60] (-0.4,0.1);
-    
+
     \draw (current bounding box.south) node
     {$\mathrm{Arg}(-1)=\pi \quad \mathrm{Log}(-1) = i\pi$};
-    
+
     \draw[->] (2,1) to[bend left]  node[pos=.5,above] {$\mathrm{Log}(\ )$} (3.8,1);
     \draw[<-] (2,-1) to[bend right]  node[pos=.5,below] {$\mathrm{exp}$} (3.8,-1);
-    
+
     \begin{scope}[xshift=6cm]
     \fill[green!50,postaction={pattern=north west lines,opacity=.2}]
     (-2,-1) rectangle (2,1);
-    
+
     \draw (-2,0) -- (2,0);
     \draw[->] (0,-2) -- (0,2);
-    
+
     \filldraw (0,0) circle (1.5pt);
-    
+
     \draw[blue!50!black,very thick]
     (-2,1) -- (2,1) node[midway,above right,black] {$\pi$}
     (-2,-1) -- (2,-1) node[midway,below left,black] {$-\pi$};
     \end{scope}
     \end{tikzpicture}
-    
-    
+
+
     \subsection{Μιγαδικές δυνάμεις}
     \begin{align*}
     z^c &= e^{\mathrm {log}(z^c)}
@@ -3850,7 +3850,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\ln\left(|z|\right)+i\mathrm{Arg}(z)
     	\right)}
     \end{align*}
-    
+
     \begin{align*}
     \underbrace{(1+i)^{2-i}}_{\mathclap{\begin{array}{l}
     		z=1+i\\ c=2-i
@@ -3877,7 +3877,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \right)
     \right]
     \end{align*}
-    
+
     \begin{align*}
     \sqrt{1+i} = (1+i)^{\sfrac{1}{2}} &= e^{\sfrac{1}{2}\cdot\log(1+i)} \\
     &= e^{\sfrac{1}{2}\left( \ln\left(\sqrt{2}\right)
@@ -3902,7 +3902,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	i\left( i(2k+1)\pi \right)
     	} = e^{-(2k+1)\pi}
     \end{align*}
-    
+
     \begin{align*}
     (1+i)^{\sqrt{2}} &= e^{\sqrt{2}\log(1+i)} = e^{\sqrt{2}\left(
     	\ln\left(\sqrt{2}\right)+i\left(\frac{\pi}{4}+2k\pi\right)
@@ -3920,17 +3920,17 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \frac{\sqrt{2}\pi}{4}+2k\sqrt{2}\pi+2m\pi \implies
     2k\sqrt{2}\pi=2m\pi\implies \sqrt{2}=\sfrac{m}{k}
     \end{align*}
-    
+
     \begin{gather*}
     (1+i)^{\sfrac{p}{q}}=\dots\\ m=\lambda q
     \end{gather*}
-    
+
     \paragraph{Παρ.}
     Να βρεθούν οι τιμές του \( n \) τ.ώ:
     \[
     c_n = \sum_{k=0}^n i^k \in \mathbb I
     \]
-    
+
     \subparagraph{}
     \[
     \begin{array}{r|l}
@@ -3940,33 +3940,33 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     5 & 1+i \\ 6 & i \\ \vdots & \vdots
     \end{array}
     \]
-    
+
     Αρα \( \forall_{n,m}: c_n=c_{n+4m} \)
-    
+
     Οι φανταστικές τιμές του \( c_n \) προκύπτουν για
     \begin{align*}
     	n =& 2,3, \\& 6,7, \\ & 10,11,
     \end{align*}
-    
+
     \begin{tikzpicture}   [scale=1.2]
     \draw[->] (0,-2) -- (0,2);
     \draw[->] (-2,0) -- (2,0);
-    
+
     \draw[ultra thick] (0,1.5) -- ++(1.5,0) -- ++(0,-1.5);
-    
+
     \filldraw (0,0) circle (1pt) node[below left] {$c_7=c_3=0$};
     \filldraw (1.5,0) circle (1pt) node[below right] {$1=c_0=c_4$};
     \filldraw (1.5,1.5) circle (1pt) node[above right] {$1+i=c_1=c_5$};
     \filldraw (0,1.5) circle (1pt) node[above right] {$i=c_2=c_6$};
-    
+
     \draw[red,opacity=.5] (0,0) ellipse (0.5 and 2.2);
     \end{tikzpicture}
-    \subparagraph{Απ.} \( 
+    \subparagraph{Απ.} \(
     n\in\left\lbrace m+4l: m\in\left\lbrace 2,3 \right\rbrace
     ,l\in \mathbb N_0
     \right\rbrace
      \)
-     
+
     \paragraph{Παρ.}
     Να λυθεί η \( (1+z)^{2n}=-(1-z)^{2n}\quad n\in\mathbb N \)
     \subparagraph{Λύση}
@@ -4013,121 +4013,121 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \\ z_k &= i\tan\left((2k+1)\frac{\pi}{4n}\right) \qquad
     k=0,1,\dots,2n-1
     \end{align*}
-    
+
     \subsection{}
     \subsubsection{Η γραμμική απεικόνιση}
     \paragraph{Τύπος:} \( f(z) = az+b,\quad a,b\in\mathbb C  \)
-    
+
     Προφανώς η \( w = f(z)=az+b \) είναι 1-1 συνάρτηση και εύκολα βρίσκουμε την
     αντίστροφή της λύνοντας την \( w=az+b \) ως προς \( z \).
-    
+
     Έτσι: \( f: \mathbb C \to \mathbb C : f(z)=az+b \) και μπορώ να την επεκτείνω
     στο \( \bar{\mathbb C}  \) με 1-1 τρόπο θέτοντας \[
     f(\infty) = \infty
     \]
-    
+
     \subparagraph{Γεωμετρική ερμηνεία}
     \hspace{0pt}
-    
+
     \begin{center}
     \begin{tikzpicture}[scale=1.7]
     \draw[->] (0,-0.5) -- (0,2);
     \draw[->] (-0.5,0) -- (2,0);
-    
+
     \filldraw (0,0) circle (1pt);
     \draw (0,0) -- (1,1);
     \filldraw (1,1) circle (1pt) node[above right] {$z=x+iy$};
-    
+
     \draw (1.5,0) node [below] {επίπεδο $z$};
-    
+
     \draw (1,2) node[above] {$z \in \mathbb C$};
     \draw[->] (1.8,2.2) -- ++(2,0) node[midway,above] {διαστολή};
-    
+
     \begin{scope}[xshift=4cm]
     \draw[->] (0,-0.5) -- (0,2);
     \draw[->] (-0.5,0) -- (2,0);
-    
+
     \filldraw (0,0) circle (1pt);
     \draw (0,0) -- (0.7,0.7);
     \filldraw (0.7,0.7) circle (1pt) node[above right] {$\zeta$};
-    
+
     \draw (1.5,0) node [below] {επίπεδο $\zeta$};
-    
+
     \draw (1,2) node[above] {$|a|z=\zeta \in \mathbb C$};
     \end{scope}
-    
+
     \begin{scope}[yshift=-4cm]
     \draw[->] (0,-1) -- (0,2);
     \draw[->] (-1,0) -- (2,0);
-    
+
     \filldraw (0,0) circle (1pt);
     \draw[dashed] (0,0) -- (0.7,0.7) node[above right] {$\zeta$};
     \filldraw (-0.7,0.7) circle (1pt) node[above left] {$\sigma$};
     \draw[->] (0,0) -- (-0.68,0.68);
-    
+
     \draw (45:0.3) arc(45:135:0.3) node[midway,above] {$\mathrm{Arg}\, a$};
-    
+
     \draw (1.5,0) node [below] {επίπεδο $\sigma$};
-    
+
     \draw[->] (-0.5,2.4) -- ++(1.7,0) node[midway,above] {στροφή}
     node[right] {$e^{i\mathrm{Arg}\, a} \zeta=\sigma = az$};
     \end{scope}
-    
+
     \begin{scope}[xshift=4cm,yshift=-4cm]
     \draw[->] (0,-1) -- (0,2);
     \draw[->] (-1,0) -- (2,0);
-    
+
     \filldraw (0,0) circle (1pt);
     \draw[->] (0,0) -- (30:1) node[above right] {$b$};
     \draw[->] (0,0) -- (-0.7,0.7) node[above left] {$\sigma$};
-    
+
     \draw[dashed,name path=A] (-0.7,0.7) -- ++(30:1);
     \draw[dashed,name path=D] (30:1) -- ++(-0.7,0.7);
-    
+
     \coordinate (F) at ({-0.7+cos(30)}, {0.7+sin(30)} );
     \draw[->] (0,0) -- ([xshift=-0.2pt,yshift=-1pt]F);
     \filldraw (F) circle (1pt) node[above right] {$\sigma+b$};
-    
+
     \draw (1.5,0) node [below] {επίπεδο $f(z)$};
-    
+
     \draw[->] (0,2.4) -- ++(1.7,0) node[midway,above] {παράλληλη μεταφορά}
     node[midway,below] {κατά $b$}
     node[right] {$\sigma+b = az+b$};
     \end{scope}
     \end{tikzpicture}
-    
+
     \begin{tikzpicture}
     \draw[gray,->] (0,-1.2) -- (0,1.2);
     \draw[gray,->] (-2.2,0) -- (2,0);
-    \draw [very thick, green!50!blue,yscale=0.9] plot[smooth cycle] coordinates 
+    \draw [very thick, green!50!blue,yscale=0.9] plot[smooth cycle] coordinates
     {(-2,0) (-0.6,0.8) (-0.4,1) (0.8,0.6) (1.1,1) (1.5,0.6) (1.8,0.5)
        	(1,-1) (-0.3,-0.5) (-0.5, -0.7)
     };
-    
+
     \draw[thick,->] (2.5,0) -- ++(1.5,0);
-    
+
     \begin{scope}[xshift=7cm,scale=1.5,rotate=10]
     \draw[gray,->] (0,-1.2) -- (0,1.2);
     \draw[gray,->] (-2.2,0) -- (2,0);
-    \draw [very thick, green!50!blue,yscale=0.9] plot[smooth cycle] coordinates 
+    \draw [very thick, green!50!blue,yscale=0.9] plot[smooth cycle] coordinates
     {(-2,0) (-0.6,0.8) (-0.4,1) (0.8,0.6) (1.1,1) (1.5,0.6) (1.8,0.5)
        	(1,-1) (-0.3,-0.5) (-0.5, -0.7)
     };
     \end{scope}
-    
+
     \end{tikzpicture}
     \end{center}
-    
+
     \begin{itemize}
     	\item Προφανώς, από τη δομή της, η γραμμική απεικόνιση απεικονίζει
     	ευθείες σε ευθείες και κύκλους σε κύκλους.
     \end{itemize}
     \paragraph{Ερώτηση}
     Έστω \( f(z) = az+b \).
-    
+
     Αν \( Ax+By+\Gamma = 0 \) ευθεία τυχαία, βρείτε πού αυτή απεικονίζεται
     μέσω της \( f(z) \).
-    
+
     \begin{align*}
     w &= u+iv = az+b \\
     &= u(x,y) + iv(x,y) = a(x+iy) + b
@@ -4146,31 +4146,31 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     y &= \frac{-a_1u+a_0v-(a_1b_0+a_0b_1)}{|a|^2}
     \end{align*}
     (μπορεί να είναι λάθος)
-    
+
     \begin{align*}
     & Ax+By+\Gamma = 0 \\ \iff &
     A\left( a_0u+a_1v - (a_0b_0)-(a_0b_0+a_1b_1 \right)
     + B\left( -a_1u+a_0v-(a_1b_0+a_0b_1) \right) +\Gamma|a|^2 = 0
     \end{align*}
-    
+
     \subsubsection{Αντιστροφή \( f(z)=\frac{1}{z} \quad (z \neq 0) \)}
     Προφανώς: \(  \mathbb C - \left\lbrace 0 \right\rbrace \to
     \mathbb C  : f(z) = \frac{1}{z}
      \) \\ και μορεί να επεκταθεί στο \( \bar{\mathbb C} \) θέτοντας
      \( f(0) = \infty \) και \( f(\infty) = 0 \).
-     
+
      Εννοείται ότι είναι 1-1 με \( w = \frac{1}{z} \iff \frac{1}{w} \)
      δηλ. για \( \begin{cases}
      w=u+iv \\ z = x+iy
      \end{cases} \) έχουμε: \begin{equation} \label{reveq}
      x+iy = \frac{u-iv}{u^2+v^2} \iff \left|\begin{array}{l}
-     x = \frac{u}{u^2+v^2} \\ y = \frac{-v}{u^2+v^2} 
+     x = \frac{u}{u^2+v^2} \\ y = \frac{-v}{u^2+v^2}
      \end{array} \right.
      \end{equation}
-     
+
      Έτσι φαίνεται ότι η συνάρτηση αυτή απεικονίζει ευθείες σε ευθείες ή κύκλους,
      και κύκλους σε ευθείες ή κύκλους.
-     
+
      Πράγματι, αν
      \( Ax+By+\Gamma = 0 \) τυχαία ευθεία στο επίπεδο του \( z \), τότε
      από \eqref{reveq}:
@@ -4180,22 +4180,22 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      	Au-Bv + \Gamma\left( u^2+v^2 \right) = 0
      	}
      \end{align*}
-     
+
      \begin{itemize}
-     	\item \( \underline{\Gamma = 0} \) τότε \( Au-By = 0 \) 
+     	\item \( \underline{\Gamma = 0} \) τότε \( Au-By = 0 \)
      	άρα ευθεία απεικον. σε ευθεία, ενώ:
-     	\item \( \underline{\Gamma \neq 0} \) τότε \( 
+     	\item \( \underline{\Gamma \neq 0} \) τότε \(
      	u^2+v^2+\frac{A}{\Gamma}u-\frac{B}{\Gamma}v = 0
      	 \) \textbf{δηλ.} κύκλος
      	 \[
      	 x^2+y^2+Ax+By+\Gamma = 0
      	 \]
      \end{itemize}
-     
+
      Η\( f(z) = \frac{1}{z} \) απεικονίζει το εσωτερικό μοναδιαίου κύκλου
      \( |z| = 1 \) με κέντρο το \( z=0 \), στο εξωτερικό του (με 1-1 τρόπο, και
      αντιστρόφως).
-     
+
      \textbf{Πράγματι:}
      \begin{align*}
      & z: |z| < 1, \text{ τότε } f(z) = \frac{1}{z} \text{ με } \left|f(z)\right|
@@ -4205,73 +4205,73 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      & z: |z| = 1, \text{ τότε } f(z) = \frac{1}{z} = \frac{\bar z}{z\bar z}
      = \frac{\bar z}{|z|^2} = \bar z
      \end{align*}
-     
+
      \subsubsection{Μετασχ. M\"obius}
      Καλούμε ρητογραμμικό μετασχηματισμό (M\"obius) κάθε συνάρτηση
      \[
      f(z) = \frac{az+b}{cz+d}\qquad (\text{με } ad-bc \neq 0)
      \]
-     
-     Προφανώς: \( f: \mathbb C - \left\lbrace - \sfrac{d}{c}  \right\rbrace 
+
+     Προφανώς: \( f: \mathbb C - \left\lbrace - \sfrac{d}{c}  \right\rbrace
      \to \mathbb C  - \left\lbrace \frac{a}{c} \right\rbrace
      \), αν \( c \neq 0 \)
      \\ ή \( f: \mathbb C \to \mathbb C \) \quad αν \( c = 0 \)
-    
+
      H \( f \) είναι 1-1 (εύκολο).
-     
+
      \begin{itemize}
      	\item
      	Αποδεικνύεται ότι ο μετασχ. M\"obius είναι σύνθεση \underline{διαστολής},
      	\underline{περιστροφής}, \underline{μετάθεσης} και \underline{αντιστροφής},
      	άρα απεικονίζει ευθείες σε ευθείες
      	ή κύκλους, και κύκλους σε ευθείες ή κύκλους.
-     	
+
      	\item
      	Ο μετασχ. M\"obius (στην περίπτωση ευθείας ή κύκλου) απεικονίζει
      	συμπληρωματικούς τόπους σε συμπληρωματικούς τόπους.
      	\subparagraph{π.χ.}
      	\hspace{0pt}
-     	
+
      	\begin{center}
      	\begin{tikzpicture}[scale=1.4]
-     	
+
      	\fill[green!40] (0,0) -- (0,2) -- (2,2) -- cycle;
      	\fill[blue!40] (0,0) -- (2,0) -- (2,2) -- cycle;
-     	
+
      	\draw (65:1.5) node {$G_1(\epsilon)$};
      	\draw (25:1.5) node {$G_2$};
-     	
+
      	\draw[->] (0,0) -- (0,2);
      	\draw[->] (0,0) -- (2,0);
-     	
+
      	\draw[very thick] (0,0) -- (2,2);
-     	
+
      	\draw (current bounding box.south)
      	node[below,rectangle,style={align=center}]
      	{$G_1,G_2$ συμπληρωματικοί τόποι \\ επειδή η συρραφή
    		τους \\ απεικονίζει όλο το επίπεδο};
-   		
-   		\draw[thick,->] (2.2,1) to[bend left] 
+
+   		\draw[thick,->] (2.2,1) to[bend left]
    		node[above,midway] {$f(z)=\frac{az+b}{cz+d}$} (4.8,1);
-   		
+
    		\begin{scope}[xshift=5cm]
    		\fill[red!40] (0,0) rectangle (2,2);
    		\filldraw[fill=yellow!40,draw=red!30!black,postaction={pattern=north east lines,opacity=.1}]
    		(1.2,1.3) node {$A_1$} circle(0.5);
    		\draw (45:0.8) node {$A_2$};
-   		
+
    		\draw[->] (0,0) -- (0,2);
    		\draw[->] (0,0) -- (2,0);
-   		
+
    		\draw (1,0) node[below] {$A_1,A_2$ συμπλ. τόποι};
    		\end{scope}
-   		
+
    		\draw (current bounding box.south east)
    		node[yshift=4,rectangle,draw,style={align=right}]
    		{Τότε $G_1 \to A_1$ ή $A_2$ \\ $G_2 \to A_2$ ή $A_1$};
    		\end{tikzpicture}
    		\end{center}
-     	
+
      	\item
      	Αποδεικνύεται ότι \underline{υπάρχει} ΜΟΝΑΔΙΚΟΣ μετασχ. M\"obius που
      	απεικονίζει ΤΡΙΑ σημεία \( z_1, z_2, z_3 \) σε ΤΡΙΑ ΑΛΛΑ σημεία
@@ -4281,59 +4281,59 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      	\frac{(z-z_1)(z_2-z_3)}{(z-z_3)(z_2-z_1)}.
      	\]
      \end{itemize}
-     
+
      \subsubsection{Τριγωνομετρικές και αντίστροφές τους}
-     
+
      \begin{itemize}
      	\item Η συνάρτηση
      	\[
      	\sin: \mathbb C \to \mathbb C : \sin z = \frac{e^{iz}-e^{-iz}}{2}
      	\] είναι 2\( \pi \)-περιοδική, άρα μη αντιστρέψιμη στο \( \mathbb C  \)
-     	
-     	Έστω \( 
-     	E_k = \left\lbrace 
+
+     	Έστω \(
+     	E_k = \left\lbrace
      	x+iy: \kappa \pi -\frac{\pi}{2}<x<\kappa\pi+\frac{\pi}{2},y\in\mathbb R
      	 \right\rbrace, k \in \mathbb Z
      	 \) είναι "κατακόρυφες λωρίδες". Για \underline{\( k=0 \)}, έχω:
-     	 
+
      	 \begin{center}
      	 \begin{tikzpicture}
      	 \fill[pattern=north east lines] (-1,-2) rectangle (1,2);
-     	 
+
      	 \draw[->] (0,-2) -- (0,2);
      	 \draw[->] (-2,0) -- (2,0);
-     	 
+
      	 \draw[very thick,dashed] (-1,-2) -- (-1,2);
      	 \draw[very thick,dashed] (1,-2) -- (1,2);
-     	 
+
      	 \filldraw (0,0) circle (1pt) node[below left] {$0$};
-     	 
+
      	 \draw (-1,0) node[below left] {$-\frac{\pi}{2}$};
      	 \draw (1,0) node[below right] {$\frac{\pi}{2}$};
-     	 
-     	 \draw[thick,->] (1.5,1) to[bend left] 
+
+     	 \draw[thick,->] (1.5,1) to[bend left]
      	 node[above,midway] {$u+iv=f(z)=\sin z$} (4.8,1);
-     	 
+
      	 \begin{scope}[xshift=8cm]
      	 \begin{axis}[
      	 anchor=origin,
      	 xmin=-5,xmax=5,
-     	 ymin=-5,ymax=5, 
+     	 ymin=-5,ymax=5,
      	 xlabel=$w$,ylabel=$v$,		axis lines=center,
      	 xtick={ -2.1,2.1 },xticklabels={$-1$, $1$},
      	 ytick={0}  ]
      	 \addplot [blue,very thick,domain=-2:2] ({cosh(x)}, {sinh(x)});
      	 \addplot [blue,very thick,domain=-2:2] ({-cosh(x)}, {sinh(x)});
-     	 
+
      	 \addplot [blue,very thick,domain=-2:2] ({cosh(x)/2}, {2*sinh(x)});
      	 \addplot [blue,very thick,domain=-2:2] ({-cosh(x)/2}, {2*sinh(x)});
-     	 
+
      	 \addplot [blue,very thick,domain=-2:2] ({cosh(x)/0.5}, {0.5*sinh(x)});
      	 \addplot [blue,very thick,domain=-2:2] ({-cosh(x)/0.5}, {0.5*sinh(x)});
-     	 
+
      	 \addplot [green,very thick,decorate,opacity=0.5,
      	 decoration={snake,amplitude=.3mm}] coordinates { (0,-5) (0,5)};
-     	 
+
      	 \addplot[red,very thick] coordinates {(2.1,0) (4.8,0) };
      	 \addplot[red,very thick] coordinates {(-2.1,0) (-58,0) };
      	 \end{axis}
@@ -4342,28 +4342,28 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      	 \end{scope}
      	 \end{tikzpicture}
      	 \end{center}
-     	 
+
      	 Τότε η \( \sin z \) γίνεται 1-1 με πεδίο τιμών το σύνολο
      	 \[
      	 A = \mathbb C - \left\lbrace u+iv: |u| \geq 1 \text{ και }
      	 v = 0
      	  \right\rbrace
      	 \]
-     	 
+
      	 Έτσι η \( \sin: E_k \to A \) είναι 1-1 (για κάθε συγκεκριμένο \( k\in
      	 \mathbb Z
      	  \)), άρα αντιστρέψιμη.
-     	  
+
      	  \begin{itemize}
      	  	\item Από \( w=\sin z \) παίρνω: \[
      	  	\left| \begin{array}{l}
      	  	u(x,y) = \sin x \cosh y \\ v(x,y) = \cos x\sinh y
      	  	\end{array} \right.
      	  	\]
-     	  	\item Για \( x=\frac{\pi}{2},\ y\in\mathbb R 
+     	  	\item Για \( x=\frac{\pi}{2},\ y\in\mathbb R
      	  	\xrightarrow[\text{απεικονίζεται}]{\sin z} (\cosh y,0 )
      	  	 \)
-     	  	 
+
      	  	 Αλλά \( \cosh y \) δεν είναι 1-1 \( \forall y \), επομένως η
      	  	 \( \sin z \) ΔΕΝ μπορεί να είναι 1-1 πάνω στην \( x=\frac{\pi}{2} \), η
      	  	 οποία εξαιρείται από το πεδίο ορισμού. Έτσι, από το πεδίο τιμών,
@@ -4380,19 +4380,19 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      	  	  \) και επειδή \( \sinh y \) 1-1 γν. αύξ. με πεδίο τιμών το
      	  	  \( \mathbb R \ \forall y \) η \( x = 0 \) απειον. στην \( u=0 \).
      	  	 \item Έστω \( x=a \quad (a \neq \pm \frac{\pi}{2}),\ a\neq 0 \).
-     	  	 
-     	  	 \textbf{Τότε: } \( 
+
+     	  	 \textbf{Τότε: } \(
      	  	 \left|
      	  	 \begin{array}{l}
      	  	 u = \sin a \cosh y \\ v = \cos a \sinh y
      	  	 \end{array}
      	  	  \right. \implies \boxed{ \frac{u^2}{\sin^2 a} - \frac{v^2}{\cos^2 a} = 1 }
-     	  	  \). Αν \( a \in \left( 0,\frac{\pi}{2} \right) \), τότε \( 
+     	  	  \). Αν \( a \in \left( 0,\frac{\pi}{2} \right) \), τότε \(
      	  	  \left| \begin{array}{l}
      	  	  u > 0 \\ v \in \mathbb R
      	  	  \end{array}  \right.
      	  	   \), και αντίστοιχα για \( a \in \left( -\frac{\pi}{2},0 \right) \).
-     	  	   
+
      	  	   Έτσι ορίζουμε:
      	  	   \[
      	  	   \mathrm{τοξημ } = \arcsin: E' \to E_k:
@@ -4408,9 +4408,9 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      	  	   	}
      	  	   \end{gather*}
      	  \end{itemize}
-     	  
+
      \end{itemize}
-     
+
      \begin{infobox}{}
      	\begin{itemize}
      		\item \textbf{Τρίτη 22/11} Ατρέας, 2 τμήματα
@@ -4418,14 +4418,14 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      		\item \textbf{Παρασκευή 25/11} Κεχαγιάς, 2 τμήματα
      	\end{itemize}
      \end{infobox}
-     
+
      \section{Ακολουθίες \& Σειρές\\(Μιγαδικών αριθμών/συναρτήσεων)}
      \begin{defn*}{}
      	Ακολουθία \(\displaystyle \left( u_n(z) \right)_{n=1}^\infty \)
      \end{defn*}
      \begin{defn*}{}
      	Λέμε ότι η \( u_n(z) \) τείνει σε \( u(z) \).
-     	
+
      	Γράφουμε \( \displaystyle \lim_{n\to \infty} u_n(z)=u(z) \)
      	\[
      	\forall z,\forall\epsilon > 0 \ \exists N_{\epsilon,z}:
@@ -4444,7 +4444,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      \end{align*}
      \begin{defn*}{}
      	Έστω ακολουθία \( \left(u_n(z)\right)_{n=1}^\infty \)
-     	
+
      	Ορίζω νέα ακολουθία \( \left( S_1(z) \right)_{n=1}^\infty \)
      	ως εξής: \( \begin{array}{l}
      		S_1(z) = u_1(z) \\
@@ -4452,12 +4452,12 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      		\qquad \cdots \qquad \\
      		S_n(z) = u_1(z)+u_2(z)+\dots+u_n(z)
      	\end{array} \)
-     	
+
      	Εάν \(\displaystyle \exists \lim_{n\to \infty} S_n(z) = S(z) \)
      	γράφω \( \displaystyle \sum_{n=1}^\infty u_n(z)=S(z) \) και το
      	ονομάζω \textbf{σειρά}.
      \end{defn*}
-     
+
      \paragraph{Παρ.}
      για \( n\in\mathbb N \) ορίζω \( u_n(z)=z^n\cdot (1-z) \). Τότε
      \begin{align*}
@@ -4468,16 +4468,16 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      \\ &\overset{\text{Θέτω } z=re^{i\theta}}{=} z-\lim_{N\to \infty} r^Ne^{iN\theta}
      \\ &= z \text{ όταν } |z|<1
      \end{align*}
-     
+
      Τελικά \[
      \sum_{n=1}^\infty z^n\cdot(1-z) = \begin{cases}
      z &\text{όταν } |z| < 1 \\
      \text{δεν ορίζεται } &\text{όταν } |z| \geq 1
      \end{cases}
      \]
-     
+
      (Για \( z=0 \),  \( \sum_{n=0}^\infty = 0^n(1-z) = 0 = z \))
-     
+
      Ισχύει \(\displaystyle |z|<1 \implies \lim_{N\to \infty} z^N = 0 \),
      διότι
      \begin{align*}
@@ -4487,13 +4487,13 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      \\ &\iff n\cdot\ln|z| < \ln e
      \\ &\iff n < \frac{\ln e}{\ln|z|}
      \end{align*}
-     
+
      \begin{defn*}{}
      	Λέω ότι η \( \displaystyle \sum_{n=1}^\infty u_n(z) \)
-     	\textbf{συγκλίνει απολύτως} ανν \(\displaystyle 
+     	\textbf{συγκλίνει απολύτως} ανν \(\displaystyle
      	\sum_{n=1}^\infty \left|u_n(z)\right| \) συγκλίνει.
      \end{defn*}
-     
+
      \begin{defn*}{}
      	Λέμε ότι η \( \displaystyle \left( u_n(z) \right)_{n=1}^\infty \)
      	\textbf{συγκλίνει ομοιόμορφα} στην \( u(z) \) ανν
@@ -4504,7 +4504,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      	u_n(z)-u(z)
      	\right| < \epsilon
      	\]
-     	
+
      	Παρόμοια πράγματα λέμε και για την \( \displaystyle \boxed{
      		\sum_{n=1}^\infty u_n(z)
      		} \)
@@ -4512,7 +4512,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      \paragraph{Παρ.}
      Η \( \sum_{n=1}^\infty z^n\cdot(1-z) \) συγκλίνει ομοιόμορφα για κάθε \( z \)
      με \( |z| \leq \frac{1}{z} \)
-     
+
      \textbf{Διότι}
      \[
      \lim_{N\to \infty}\sum_{n=1}^N z^n(1-z)=z-\lim_{N\to \infty}z^{N+1}
@@ -4522,7 +4522,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      \forall z,|z|\leq\frac{1}{2}, \forall \epsilon>0, \forall n \geq
      \frac{\ln \epsilon}{\ln|z|}+1\implies\left|z^{N+1}\right|<\epsilon
      \end{align*}
-     
+
      Ισχυρίζομαι ότι
      \begin{align*}
      \forall z,|z|\leq\frac{1}{z}, \forall \epsilon>0, \forall n \geq
@@ -4531,13 +4531,13 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      διότι \( \displaystyle
      |z| \leq \frac{1}{2}\implies
      \frac{\ln\epsilon}{\ln\frac{1}{2}} \geq \frac{\ln\epsilon}{\ln|z|} \)
-     
+
      \begin{theorem*}[width=.7\textwidth]{}
      	Έστω \( \left(u_n(z)\right)_{n=1}^\infty \) ακολουθία συνεχών συναρτήσεων
      	και \( \sum_{n=1}^\infty u_n(z)=u(z) \) ομοιόμορφα στο χωρίο \( \Delta \).
-     	
+
      	Τότε \(\displaystyle
-     	\int_c u(z)\dif z = \int_c \sum_{n=1}^\infty u_n(z)\dif z 
+     	\int_c u(z)\dif z = \int_c \sum_{n=1}^\infty u_n(z)\dif z
      	= \sum_{n=1}^\infty \int_c u_n(z)\dif z
      	\)
      \end{theorem*}
@@ -4549,14 +4549,14 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      	\od{u}{z}
      	\]
      \end{theorem*}
-     
+
      \begin{theorem*}{}
      	Αν συγκλίνει η \( \displaystyle \sum_{n=1}^\infty \left|u_n(z)\right| \),
      	τότε συγκλίνει και η \( \displaystyle_{n=1}^\infty u_n(z)\)
-     	
+
      	Το αντίστροφο δεν ισχύει πάντα.
      \end{theorem*}
-     
+
      \begin{theorem*}{}
      	Αν συγκλίνει η \( \displaystyle \sum_{n=1}^\infty \left|v_n(z)\right| \)
      	και \( \forall n,z:\left|u_n(z)\right| \leq \left|v_n(z)\right|\),
@@ -4564,7 +4564,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
         u_n(z)
         \right| \)
      \end{theorem*}
-     
+
      \begin{theorem*}{Κριτήριο του λόγου}
      	Έστω \( \displaystyle L(z) = \lim_{n\to \infty} \left|
      	\frac{u_{n+1}(z)}{u_n(z)}
@@ -4577,9 +4577,9 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      	\end{array}
      	\]
      \end{theorem*}
- 
+
       \begin{theorem*}{Κριτήριο της ρίζας}
-       	Έστω \( \displaystyle 
+       	Έστω \( \displaystyle
        	L(z) = \lim_{n\to \infty} \sqrt[n]{\left|u_n(z)\right|}. \). Τότε
        	\[
        	\begin{array}{ll}
@@ -4589,26 +4589,26 @@ decoration={markings,mark=at position 0 with \arrow{<}}
        	\end{array}
        	\]
       \end{theorem*}
-      
+
      \paragraph{Παρ.}
      Η \( \sum_{n=1}^\infty \frac{z^n}{n\cdot(n+1)} \) συγκλίνει όταν
      \( |z|\leq 1 \), δεν συγκλίνει όταν \( |z|>1 \)
-     
+
      \begin{align*}
      \text{Θέτω } L(z) &= \lim_{n\to \infty} \left|
      \frac{\sfrac{z^{n+1}}{(n+1)(n+2)} }{\sfrac{z^n}{n(n+1)} }
      \right| = \lim_{n\to \infty} |z|\frac{n}{n+2}=|z|
      \end{align*}
-     
+
      Όταν \( |z|=1 \), τότε
      \begin{align*}
      \sum_{n=1}^\infty \left| \frac{z^n}{n(n+1)} \right|
      = \sum_{n=1}^\infty \frac{|z|^n}{n(n+1)} = \sum_{n=1}^\infty \frac{1}{n(n+1)}
      = \sum_{n=1}^\infty \left( \frac{1}{n}-\frac{1}{n+1} \right)=1
      \end{align*}
-     
+
      Αφού συγκλίνει απολύτως, συγκλίνει (για κάθε \( z:|z|=1 \))
-     
+
      \paragraph{Παρ.} \( \sum_{n=1}^\infty z^n \) συγκλίνει όταν \( |z|<1 \)
      \begin{align*}
      \sum_{n=1}^N z^n &= z+z^2+z^3+\dots+z^N \\
@@ -4616,22 +4616,22 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      &= z\cdot\frac{1-z^N}{1-z} = \frac{z}{1-z}\left(1-z^N\right)
      \\ &= \frac{z}{1-z} \text{ για } N\to \infty \text{ όταν } |z| < 1
      \end{align*}
-     
+
      Για \( |z|>1 \) δεν συγκλίνει.
-     
+
      Για \( |z|=1 \) δεν συγκλίνει (τουλάιστον για κάποιες τιμές).
-     
+
      Εναλλακτικά, με κριτήριο ρίζας: \( L(z)=\lim_{n\to \infty}
      \sqrt[n]{\left|z^n\right|} = |z|
       \)
-      
+
      και κριτήριο λόγου: \( L(z) = \lim_{n\to\infty}\left|
      \frac{z^{n+1}}{z^n}\right| =|z| \)
-    
-     
+
+
      \paragraph{Παρ.}
      \( \sum_{n=1}^\infty \frac{(z+2)^n}{(n+1)^3 4^n} \)
-     
+
      \begin{align*}
      L(z) &= \lim_{n\to \infty}\frac{\frac{(z+2)^{n+1}}{(n+1)^3 4^n}}{
      	\frac{(z+2)^n}{(n+1)^3 4^n}
@@ -4643,15 +4643,15 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      	|z+2| > 4 & \text{δεν συγκλίνει}
      	\end{cases}
      \end{align*}
-     
-     Αν \( |z+2|= 4 \), ελέγχουμε αν συγκλίνει απολύτως: \[ 
+
+     Αν \( |z+2|= 4 \), ελέγχουμε αν συγκλίνει απολύτως: \[
      \sum_{n=1}^\infty \left| \frac{(z+2)^n}{(n+1)^3 4^n} \right|
      = \sum_{n=1}^\infty \frac{4^n}{(n+1) 4^n} = \sum_{n=1}^\infty
      \frac{1}{(n+1)^2} < \sum_{n=1}^\infty \frac{1}{n^3} < \infty
       \]
-   
+
    \paragraph{Παρ.} \( \sum_{n=1}^\infty n!z^n \)
-   
+
    \[
    L(z) = \lim_{n\to \infty} \frac{(n+1)!|z|^{n+1}}{n!|z|^n}
    = \lim_{n\to \infty}(n+1)|z|=\begin{cases}
@@ -4659,7 +4659,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
    0 \quad & |z| = 0
    \end{cases}
    \]
-   
+
   \begin{infobox}{}
      	\begin{itemize}
      		\item
@@ -4673,11 +4673,11 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      		\( \displaystyle \sum n!z^n \) συγκλίνει για \( |z| = 0 \)
      	\end{itemize}
   \end{infobox}
-  
+
   \begin{defn*}{}
   	Δυναμοσειρά: \( \displaystyle \sum_{n=0}^\infty a_n(z-z_0)^n \)
   \end{defn*}
-  
+
   \begin{theorem*}{}
   	Για κάθε δυναμοσειρά \( \displaystyle \sum_{n=0}^\infty a_n(z-z_0)^n \) υπάρχει
   	\( R \geq 0 \), τ.ώ:
@@ -4690,23 +4690,23 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   	Στο \( |z-z_0|=R \) η ΔΣ μπορεί να συγκλίνει σε κάποια σημεία και να μην
   	συγκλίνει σε άλλα. Αυτό παρατηρούμε και στα 4 παραπάνω παραδείγματα.
   \end{theorem*}
-  
+
   Όταν \( \displaystyle \sum_{n=0}^\infty a_n(z-z_0)^n \rightarrow \) σειρά Taylor.
-  
+
   Όταν \( \displaystyle \sum_{n=-\infty}^\infty a_n(z-z_0)^n \rightarrow \)
   σειρά Laurent.
-  
+
   Η σειρά Laurent περιλαμβάνει την Taylor ως ειδική περίπτωση.
-  
+
   Αν είναι "γνήσια" σειρά Laurent (\( a_n \neq 0 \) για κάποια αρνητικά \( n \)),
   τότε το \( z_0 \) λέγεται ανώμαλο σημείο της σειράς Laurent.
-  
+
   \begin{infobox}{}
   	Από την ΑΛΛΗ ΕΒΔΟΜΑΔΑ \\
   	ΤΡΙ \textbf{και} ΠΕ στον ΑΤΡΕΙΑ
   	\textbf{ΚΑΙ ΤΑ 2} τμήματα
   \end{infobox}
-  
+
   \begin{theorem*}{}
   	Για κάθε ΔΣ \( \displaystyle f(z) = \boxed{ \sum_{n=0}^\infty a_n (z-z_0)^n } \)
   	υπάρχει αριθμός \( R \geq 0 \) (ακτίνα σύγκλισης) \textbf{τ.ώ}
@@ -4722,24 +4722,24 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   		η ΔΣ μπορεί να συγκλίνει ή να αποκλίνει
   	\end{enumgreekparen}
   \end{theorem*}
-  
+
   \begin{theorem*}{}
     Για κάθε ΔΣ \( f(z) = \sum_{n=0}  a_n(z-z_0)^n \), \(\forall z \in D_R(z_0) \)
     ισχύουν:
     \begin{enumgreekparen}
-    	\item 
+    	\item
     	\[
-    	\frac{\dif\; f}{\dif z} = 
+    	\frac{\dif\; f}{\dif z} =
     	\sum_{n=0}^\infty n\cdot a_n \cdot (z-z_0)^{n-1}
     	\]
-    	
+
     	\item Για κάθε \( C \subseteq D_R(z_0) \)
     	\[
     	\int_C f(z) \dif z = \sum_{n=0}^\infty a_n \int_C (z-z_0)^n \dif z
     	\]
     \end{enumgreekparen}
   \end{theorem*}
-  
+
   \paragraph{}
   \begin{theorem*}{}
   	Έστω \( f(z) \) αναλυτική στο εσωτερικό κλειστής καμπύλης \( C \).
@@ -4752,21 +4752,21 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   		\right)(z-z_0)^n
   		}
   	\end{align*}
-  	
+
   	\begin{center}
   	\begin{tikzpicture}[scale=1.4]
-  	
+
   	\draw[very thick,blue] plot [smooth cycle,tension=1]
   	coordinates {(-0.2,-0.1) (-1,0.6) (-0.5,1) (0.4,0.5) (1,0) (0.4,-1)};
-  	
+
   	\filldraw (-0.2,0.3) circle (1pt) node[above left] {$z_0$};
   	\filldraw (0.4,0) circle(1pt) node[below] {$z$};
-  	
+
   	\end{tikzpicture}
   	\end{center}
-  	
+
   \end{theorem*}
-  
+
   \paragraph{ΠΑΡ.}
   Να βρεθεί η σειρά Taylor της \( f(z) = \sin z \), γύρω από το \( z_0 = 0 \).
   \subparagraph{ΛΥΣΗ}
@@ -4783,7 +4783,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   + \frac{0}{2!}(z-\cancelto{0}{z_0})^2 + \frac{1}{3!}(z-\cancelto{0}{z_0})^3+\dots
   \\ \sin(z) &= z - \frac{z^3}{3!} + \frac{z^5}{5!} + \dots
   \end{align*}
-  
+
   \paragraph{ΠΑΡ.}
   Να βρεθεί η σειρά Taylor
   \subparagraph{Α' τρόπος}
@@ -4798,7 +4798,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   \]
   \subparagraph{Β' τρόπος}
   \( u = z-\sfrac{\pi}{3} \implies z=u+\sfrac{\pi}{3}   \)
-  
+
   \begin{align*}
   \sin(z) = \sin(u+\sfrac{\pi}{3} ) &=
   \sinh \cancelto{\sfrac{1}{2} }{\cos\frac{\pi}{3}}
@@ -4813,7 +4813,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   \\ &= \frac{\sqrt{3}}{2}+\frac{1}{2}\left( z-\frac{\pi}{3} \right)
   -\frac{\sqrt{3}}{2\cdot 2!} \left( z-\frac{\pi}{3} \right)^2 - \dots
   \end{align*}
-  
+
   \paragraph{ΠΑΡ.}
   Να βρεθεί η σειρά Taylor της \( f(z) = \frac{1}{1-z} \) γύρω από το \( z_0 = 2 \)
   \subparagraph{ΛΥΣΗ}
@@ -4828,7 +4828,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   |z-2| < 1 : \frac{1}{1-z} &= -1 + (z-2) - (z-2)^2 + (z-2)^3
   \end{align*}
   (για \( z=3,\ f(z)=-1+1-1+1-\dots \))
-  
+
 	\begin{tikzpicture}[scale=0.8]
 	\begin{scope}[xshift=-0.2cm]
 	\filldraw[fill=green!50,very thick] (2,0) circle (1);
@@ -4838,7 +4838,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 	\draw[->] (0,-2) -- (0,2);
 	\draw[->] (-3,0) -- (3,0);
 	\end{tikzpicture}
-  
+
   \paragraph{ΠΑΡ.}
   Να βρεθεί η σειρά Taylor της \( f(z) = \frac{z}{z^2-2z-3} \) γύρω από το \(z_0 = 0\)
   \begin{align*}
@@ -4851,7 +4851,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   \\ &= -\frac{1}{3}z+\frac{8}{36}z^2+\dots
   \end{align*}
   \( |z|<1 \quad \left|\frac{z}{3}\right|<1 \implies |z| < 3 \)
-  
+
   \subparagraph{}
   \begin{align*}
   \frac{1}{z^2-2z-3} &= \frac{1}{(z-1)^2 - 4} = -\frac{1}{4}\cdot
@@ -4860,64 +4860,64 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   1+\left(\frac{z-1}{2}\right)^2+\left(\frac{z-1}{2}\right)
   -\left(\frac{z-1}{2}\right)^6+\dots
   \right) \\ |z-1|<2 : \quad \frac{1}{z^2-2z-3}
-  &= -\frac{1}{4} -\frac{\left(\frac{z-1}{2}\right)^2}{4} 
+  &= -\frac{1}{4} -\frac{\left(\frac{z-1}{2}\right)^2}{4}
   - \frac{\left( \frac{z-1}{z} \right)}{4}
   \end{align*}
-  
+
   \paragraph{}
-  
+
   \begin{theorem*}{}
   	Έστω \( R_2 < R_1,\ \begin{array}{l}
   	C_1 = \left\lbrace z:|z-z_0| = R_1 \right\rbrace \\
-  	C_2 = \left\lbrace z:|z-z_0| = R_2 \right\rbrace 
+  	C_2 = \left\lbrace z:|z-z_0| = R_2 \right\rbrace
   	\end{array} \)
-  	
+
   	\begin{align*}
-  	A_{R_2,R_1}(z_0) &= \left\lbrace 
+  	A_{R_2,R_1}(z_0) &= \left\lbrace
   	z:\ R_1 < |z-z_0| < R_2
   	 \right\rbrace \qquad \text{δακτύλιος χωρίς σύνορο} \\
-  	\bar A_{R_2,R_1}(z_0) &= \left\lbrace 
+  	\bar A_{R_2,R_1}(z_0) &= \left\lbrace
   	z:\ R_1 \leq | z - z_0 | \leq R_2
   	 \right\rbrace \qquad \text{δακτύλιος με σύνορο}
   	\end{align*}
-  	
+
    \begin{tikzpicture}[scale=1.2]
    \filldraw[draw=blue!40!black,very thick,fill=blue!40,even odd rule]
    (0.8,0.8) circle (0.4)  (0.8,0.8) circle (1.2);
-   
+
    \draw[->] (0,-1.5) -- (0,2);
    \draw[->] (-1.5,0) -- (2,0) ;
-   
+
    \filldraw (0.8,0.8) circle (1pt) node[above left,xshift=3,yshift=-2] {$z_0$};
    \draw[->] (0.8,0.8) -- ++(45:1.2) node[above,pos=.7,sloped] {$R_1$};
    \draw[->] (0.8,0.8) -- ++(-40:0.4) node[right] {$R_2$};
    \end{tikzpicture}
-  	
+
   	Έστω \( f(z) \) αναλυτική στο \( \bar A_{R_2,R_1}(z_0) \). Τότε \( \forall z
   	\in A_{R_1,R_2}(z_0) \) ισχύει \[
   	f(z) = \sum_{n=-\infty}^\infty a_0 (z-z_0)^n
   	\]
-  	
+
   	Αυτή λέγεται σειρά Laurent (Λοράντ) της \( f(z) \) γύρω από το \( z_0 \).
-  	
+
   	\[
   	\forall n \in \mathbb Z: \quad a_n=\frac{1}{2\pi i}\oint_C
   	\frac{f(z)}{(z-z_0)^{n+1}}\dif z
   	\] (η \( C \) εντός του \( A_{R_2,R_1}(z_0) \))
   \end{theorem*}
-  
+
   \paragraph{ΠΑΡ.}
   Βρείτε την σειρά Laurent της \( f(z) = \frac{\sin z}{z^2} \) γύρω από το
   \( z_0 = 0 \).
   \subparagraph{Λύση}
   \begin{align*}
-  \frac{\sin z}{z^2}&=\frac{1}{z^2}\cdot \sin z 
+  \frac{\sin z}{z^2}&=\frac{1}{z^2}\cdot \sin z
   \\ &= \frac{1}{z^2}\left( z-\frac{z^3}{3!}+\frac{z^5}{5!}-\dots \right)
   \\ \forall z: 0<|z|<\infty: \quad \frac{\sin z}{z^2} &= \frac{1}{z}-\frac{z}{3!}
   +\frac{z}{5!}-\dots
   \end{align*}
   Το \( z_0 = 0 \) είναι \textbf{πόλος} πρώτης τάξης.
-  
+
   \begin{tikzpicture}
   \fill[inner color=green!50!black, outer color=green!5,fill=white]
   (0,0) circle (2);
@@ -4925,17 +4925,17 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   \draw[->] (-2,0) -- (2,0) ;
   \filldraw[fill=white] (0,0) circle (2pt);
   \end{tikzpicture}
-  
+
   \paragraph{ΠΑΡ} \( \frac{\sin z}{z} \)
   \[
   0<|z|<\infty:\quad \frac{\sin z}{z} = 1-\frac{z^2}{3!}+\frac{z^4}{5!}-\dots
   \]
   Το \( z_0 = 0 \) είναι απαλείψιμο ανώμαλο σημείο.
-  
+
   \paragraph{ΠΑΡ}
   Να βρεθεί η σειρά Laurent της \( f(z) = \frac{e^{2z}}{(z+1)^2} \) γύρω
   από το \( z_0 = -1 \)
-  
+
   \subparagraph{Λύση}
   \begin{align*}
   \frac{e^{2z}}{(z+1)^2} &= \frac{e^{-2}}{(z+1)^2} \cdot e^{2(z+1)}
@@ -4946,7 +4946,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   \cdot (z+1)+\dots
   \end{align*}
   Παρατηρώ ότι \( z_0=-1 \) είναι πόλος 2\textsuperscript{ης} τάξης
-  
+
   \begin{align*}
   \oint \frac{e^{2z}}{(z+1)^2} \dif z &=
   \cancelto{0}{\oint_C \frac{e^{-2}}{(z+1)^2}}\dif z
@@ -4954,13 +4954,13 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   +\cancelto{0}{\oint_C \frac{4e^{-2}}{3}(z+1)\dif z} + \dots \\
   \Aboxed{\oint \frac{e^{2z}}{(z+1)^2} &= 2e^{-2}2\pi i}
   \end{align*}
-  
+
   \begin{defn*}{}
   	Έστω \( \displaystyle f(z) = \sum_{n=-\infty}^\infty a_n(z-z_0)^n \).
-  	
+
   	Έστω \( n_1 \) ο ελάχιστος \( n \) τ.ώ. \( a_n \neq 0 \). \\
   	(αν δεν υπάρχει το ελάχιστο, θέτω \( n_1=-\infty \))
-  	
+
   	\begin{enumgreek}
   		\item Αν \( -n_1 = 0 \), τότε το \( z_0 \) είναι απαλείψιμο ανώμαλο
   		σημείο (πόλος μηδενικής τάξης)
@@ -4970,21 +4970,21 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   		σημείο (πόλος \( \infty \) τάξης)
   	\end{enumgreek}
   \end{defn*}
-  
+
   Η \( f(z) = e^{\sfrac{1}{z} } \) έχει το \( z_0 = 0 \) πόλο άπειρης τάξης.
-  
+
   \subsection{Δέκα Σειρές Laurent}
   \begin{enumerate}
   	\item \( f(z) = (z-2)\sin(z-1) \) γύρω από το \( z_0 = 1 \)
   	\subparagraph{Λύση}
   	\begin{align*}
   		f(z) &= (z-1)\sin(z-1) - \sin(z-1)
-  		\\ &= (z-1)^2 - \frac{(z-1)^4}{3!} + \frac{(z-1)^6}{5!} - \dots 
+  		\\ &= (z-1)^2 - \frac{(z-1)^4}{3!} + \frac{(z-1)^6}{5!} - \dots
   		-\left( z-1-\frac{(z-1)^3}{3!} + \frac{(z-1)^5}{5!} - \dots \right)
   		\\ &= -(z-1)+(z-1)^2+\frac{(z-1)^3}{3!} - \frac{(z-1)^4}{3!} + \dots
   	\end{align*}
   	Ισχύει \( \forall z \in \mathbb C  \)
-  	
+
   	\item \( f(z) = \frac{1}{z^2+3z+2},\quad z_0=-2 \)
   	\subparagraph{Λύση}
   	\begin{align*}
@@ -4993,27 +4993,27 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   		g_1(z) &= -\frac{1}{z+1} = - \frac{1}{z+2-1}
   		= \frac{1}{1-(z+2)} = 1 + (z+2) + (z+2)^2+\dots \qquad
   		0<|z+2|<1 \\
-  		f(z) &= g_2(z)+g_1(z) \\ &= 
-  		\frac{2}{z+2} + 1 + (z+2) + (z+2)^2+\dots 
+  		f(z) &= g_2(z)+g_1(z) \\ &=
+  		\frac{2}{z+2} + 1 + (z+2) + (z+2)^2+\dots
 	\end{align*}
-	
+
 	\begin{tikzpicture}[scale=0.8]
-	
+
 	\begin{scope}[xshift=0.2cm]
-	
+
 	\filldraw[fill=green!50,very thick] (-2,0) circle (1);
-	
+
 	\draw (-3,0) node[below left] {$-3$};
 	\draw (-2,0) node[below] {$-2$};
 	\draw (-1,0) node[below right] {$-1$};
-	
+
 	\end{scope}
-	
+
 	\draw[->] (0,-2) -- (0,2);
 	\draw[->] (-3,0) -- (3,0);
-	
+
 	\end{tikzpicture}
-	
+
 	\subparagraph{}
 	Σε δυνάμεις της \( (z+2) \) αλλά μακριά από το \( z_0=-2 \)
 	(δηλ. \( |z+2|>1 \))
@@ -5024,17 +5024,17 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 		= - \frac{1}{z+2} \left(1+\frac{1}{z+2}+\frac{1}{(z+2)^2}+\dots\right) \\
 		f(z) &= \frac{1}{z+2} - \frac{1}{(z+2)^2} - \frac{1}{(z+2)^3} - \dots
 	\end{align*}
-	
+
 	Το \( z_0 = -2 \) είναι πόλος 1\textsuperscript{ης} τάξης.
-	
+
 	\item Η ίδια σειρά, γύρω και κοντά στο \( z_0 = -1 \)
 	\begin{align*}
 	f(z) &= -\frac{1}{z+1} + \frac{2}{z+2} \\
-	g_2(z) &= \frac{2}{z+2} = \frac{2}{1+(z+1)} = 
+	g_2(z) &= \frac{2}{z+2} = \frac{2}{1+(z+1)} =
 	2\cdot\left( 1-(z+1)+(z+1)^2-(z+1)^3+\dots \right) \\
 	f(z) &= -\frac{1}{z+1} +2 -2\cdot(z-1)+2(z+1)^2-2(z+1)^3+\dots
 	\end{align*}
-	
+
 	\subparagraph{}
 	\begin{align*}
 		\Aboxed{-\frac{1}{z+1} +2 -2\cdot(z-1)+2(z+1)^2-2(z+1)^3+\dots &=
@@ -5044,29 +5044,29 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 			\frac{z}{z^2+3z+2}
 		} \boxed{0<|z+2|<1} \\
 	\end{align*}
-	
+
 	\begin{tikzpicture}[scale=0.8]
-	
+
 	\begin{scope}[xshift=0.2cm]
-	
+
 	\begin{scope}
 	\clip  (-2,0) circle (1);
 	\filldraw[fill=green!50,very thick,even odd rule] (-1,0) circle(1);
 	\end{scope}
-	
+
 	\draw[blue!30!black,very thick,even odd rule] (-1,0) circle(1)  (-2,0) circle(1);
-	
-	
+
+
 	\filldraw (-2,0) circle(1pt) node[below left] {$-2$};
 	\filldraw (-1,0)  circle (1pt) node[below right] {$-1$};
-	
+
 	\end{scope}
-	
+
 	\draw[->] (0,-2) -- (0,2);
 	\draw[->] (-3,0) -- (2,0);
-	
+
 	\end{tikzpicture}
-	
+
 	Θα επιβεβαιώσω ότι οι δύο αυτές σειρές είναι ίσες μεταξύ τους και με την τιμή της
 	συνάρτησης.
 	\begin{alignat*}{2}
@@ -5076,8 +5076,8 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 	\\
 	f_2\left(-\sfrac{3}{2} \right) &= 4 + 1 + \frac{1}{2} + \frac{1}{4} + \dots &&= 6
 	\end{alignat*}
-	
-	
+
+
   \item \( f(z) = \frac{1}{z^2\cdot(z-1)^2} \) γύρω από το \( z_0 = 0 \)
   \subparagraph{Λύση}
   \begin{align*}
@@ -5090,7 +5090,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   \\ f_2(z) &= 1+2z+3z^2+\dots \\
   f(z) &= f_1f_2 = \frac{1}{z^2} + \frac{2}{z} + 3 + 4z + 5z^2 + \dots
   \end{align*}
-  
+
   \item \( f(z) = \frac{1}{z^2\cdot(z-1)^2},\quad z_0 = 1 \)
   \begin{align*}
   f_2(z) &= \frac{1}{(z-1)^2} \\
@@ -5099,12 +5099,12 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   \frac{1}{z^2} &= 1-2(z-1)+3(z-1) + \dots \\
   f(z) &= \frac{1}{(z-1)^2} - \frac{2}{(z-1)} + 3 - 4(z-1) + \dots
   \end{align*}
-  
+
   \subparagraph{}
   \[
   \frac{1}{(1+u)^2} = \frac{1}{1+2u+u^2}
   \]
-  
+
   \[
   \begin{array}{l|l}
   1 & 1+2u+u^3 + \dots \\ \hline
@@ -5112,7 +5112,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   -2u-u^2 & \\ -2u-4u^2-2u^3 & \\ 3u^2+2u^3
   \end{array}
   \]
-  
+
   Ομοίως, τη σειρά της \( \frac{1}{z^2+3z+2} \) γύρω από το \( z_0 = -1 \) μπορώ
   να την βρω αντικαθιστώντας:
   \[
@@ -5124,7 +5124,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   -u &
   \end{array}
   \]
-  
+
   \item \( f(z) = \frac{1}{z\cdot(z-1)} \) γύρω από το \( z_0 = 0 \)
   \subparagraph{Λύση}
   \begin{align*}
@@ -5132,7 +5132,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   &= -\frac{1}{z} - 1 - z - \dots
   \end{align*}
   για \( 0<|z|<1 \)
-  
+
   \item \( f(z) = \frac{1}{z(z-1)} \) γύρω από το \( z_0 = 0 \) για \( |z|>1 \)
   \subparagraph{Λύση}
   \( f(z) = f_1(z)f_2(z) \)
@@ -5144,42 +5144,42 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   \right) \\
   f(z) &= \frac{1}{z^2} + \frac{1}{z^3} + \frac{1}{z^4} + \dots
   \end{align*}
-  
+
   \item \( f(z) = \frac{2z+1}{z^2+z-2} \), να βρεθούν όλες οι δυνατές σειρές Laurent γύρω
   από το \( z_0 = 0 \).
   \subparagraph{Λύση} Τα ΑΣ (ανώμαλα σημεία) είναι \( z_1 = 1 \) και \( z_2 = -2 \).
   Οπότε     \begin{tikzpicture}[baseline]
-  
+
   \fill[inner color=green!50!black, outer color=green!20,even odd rule]
   (0,0) circle (1.5) -- (0,0) circle (2.5);
-  
+
   \fill[red!40,postaction={pattern=north east lines,opacity=.3}] (0,0) circle(0.8);
   \fill[blue!40,even odd rule] (0,0) circle (0.8) -- (0,0) circle (1.5);
-  
+
   \draw[->] (0,-2) -- (0,2);
   \draw[->] (-2,0) -- (2,0) ;
-  
+
   \draw[blue,very thick] (0,0) circle (0.8) -- (0,0) circle (1.5);
-  
+
   \filldraw[fill=white] (0,0) circle (2pt);
-  
+
   \draw (1.5,0) node[below right] {$2$};
   \end{tikzpicture}
-  
+
   Αυτή είναι η άσκηση που θα πέσει στις εξετάσεις αν δεν έχει κέφι ο Κεχαγιάς.
-  
+
   \textbf{1η σειρά:} \( |z|<1 \)
-  
+
   \textbf{2η σειρά:} \( 1<|z|<2 \)
-  
+
   \textbf{3η σειρά:} \( 2<|z| \)
-  
+
   \begin{align*}
   f(z) &= \underbrace{\ \frac{1}{z-1}\ }_{f_1(z)\ }
   +\underbrace{\ \frac{1}{z+2}\ }_{f_2(z)}
   = f_1(z) + f_2(z)
   \end{align*}
-  
+
   \subparagraph{1η σειρά} \( |z|<1 \)
   \begin{align*}
   	f_1(z) &= -(1+z+z^2+\dots) \\
@@ -5189,7 +5189,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 	\intertext{άρα για $\forall z: |z| < 1$}
 	f(z) &= f_1(z) + f_2(z) = -\frac{1}{2} - \frac{5z}{4} - \frac{7z^2}{8} - \dots
   \end{align*}
-  
+
   \subparagraph{2η σειρά} \( 1 < |z| < 2 \)
   με \( u = \sfrac{1}{z}  \)
   \begin{align*}
@@ -5200,7 +5200,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   	\intertext{Τελικά:}
   	f(z) &= \dots - \sfrac{1}{z^2}  - \sfrac{1}{2} -\sfrac{z}{4}  + \sfrac{z^2}{8}  + \dots
   \end{align*}
-  
+
   \subparagraph{3η σειρά} \( 2 < |z| \)
   \begin{align*}
   f_1(z) &= \frac{1}{z} + \frac{1}{z^2} + \frac{1}{z^3} + \dots \\
@@ -5209,7 +5209,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   \\f_2(z) &= \frac{1}{z} - \frac{2}{z^2} + \frac{4}{z^3} - \dots
   \\ f(z) &= f_1+f_2 = \frac{2}{z} - \frac{1}{z^2} + \frac{5}{z^3}
   \end{align*}
-  
+
   \end{enumerate}
 
 	\section{Αρμονικές συναρτήσεις}
@@ -5226,14 +5226,14 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 			\right)
 		\end{align*}
 	\end{theorem*}
-	
+
 	\paragraph{Παρ.}
 	\( f(z) = z^3 = (x+iy)^3 \)
 	\begin{align*}
 		&= x^3+3x^2iy+3xi^2y^2+(iy)^3 \\
 		&= (x^3-3xy^2) + i \cdot (3x^2y-y^3)
 	\end{align*}
-	\underline{Δηλ.} \( 
+	\underline{Δηλ.} \(
 	\begin{array}{l}
 	u=x^3-3xy^2 \\ v=3x^2y-y^3
 	\end{array} \quad \begin{array}{l}
@@ -5241,7 +5241,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 	u_y = -6xy = - v_x
 	\end{array}
 	 \)
-	 
+
 	\begin{defn*}{}
 		Λέμε την \( u(x,y) \) \textbf{αρμονική} στο χωρίο \( D \) ανν \( \forall (x,y)\in D\):
 		\begin{enumgreekparen}
@@ -5251,7 +5251,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 			\]
 		\end{enumgreekparen}
 	\end{defn*}
-	
+
 	\begin{theorem*}{}
 		Αν η \( f(z) = u(x,y)+iv(x,y) \) είναι \textbf{αναλυτική στο \( \mathbf D \)}, τότε
 		οι \( u(x,y),\ v(x,y) \) είναι αρμονικές στο \( D \)
@@ -5267,10 +5267,10 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 		u_{xx} = - u_{yy} \implies u_{xx}+u_{yy} = 0
 			\end{gather*}
 		Ομοίως δείχνεται \( v_{xx} + v_{yy} = 0 \).
-	
+
 	\paragraph{Παρ.}
 	\( f(z) = z^3 = (x^3-3xy^2)+i(3x^2y-y^3) \)
-	
+
 	Θα δείξω ότι οι \( u,v \) αρμονικές
 	\subparagraph{Λύση}
 	\begin{align*}
@@ -5281,7 +5281,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 		v_{yy} &= (v_y)_y = (3x^2-3y^2)_y = -6y \\
 		v_{xx} + v_{yy} &= 0 \quad \text{άρα η $v$ αρμ.}
 	\end{align*}
-	
+
 	\paragraph{}
 	\begin{defn*}{}
 		Αν η \( f(z) = u(x,y) + iv(x,y) \) είναι αναλυτική, λέμε ότι οι \( u,v \) είναι
@@ -5299,7 +5299,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 	\( v(x,y) = 2xy +c,\ f(z) = \underbrace{x^2-y^2}_{u} + \underbrace{i2xy}_v + \tilde c
 	= (x+iy)^2 + \tilde c = \boxed{z^2+\tilde c = f(z)}
 	 \)
-	 
+
 	 \paragraph{Παρ.} Να βρεθεί η συζυγής αρμονική της \( u = e^x\cos y \)
 	 \subparagraph{Λύση} Με το μάτι \( f(z) = e^z,\ v(x,y)=e^x\sin y \)
 	 \subparagraph{Αλλιώς} \( u = e^x\cos y,\ u_x=e^x\cos y = v_y \implies v = e^x\sin y+c
@@ -5309,7 +5309,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 	  	f(z) &= e^x\cos y + ie^x\sin y + \tilde c \\ &=e^x(\cos y+i\sin y) + \tilde c
 	  	\\ &= e^x = e^x e^{iy} + \tilde c = e^z + \tilde c = f(z)
 	  \end{align*}
-	  
+
 	  \subsubsection{Τι σημαίνει/σε τι χρησιμεύει/τι είναι η εξίσωση του Laplace;}
 	  Η λύση της Εξ. Laplace περιγράφει προβλήματα όπως
 	  \begin{enumparen}
@@ -5317,40 +5317,40 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 	  	\item ροή ρευστών \item πυκνότητα ηλ. φορτίου
 	  	\item δυναμικό μέσα σε έναν αγωγό
 	  \end{enumparen}
-	  
+
 	  \begin{tikzpicture}
 	  \filldraw[fill=blue!10,draw=blue,very thick] plot [smooth cycle] coordinates
 	  {(0,0) (-0.7,1) (0.5,2) (2,1.5) (0.5,0.5) (1.9,-1) (1.5,-1.8) (0.8, -1.7) (-0.5,-1.8)};
-	  
+
 	  \draw (0.5,1.3) node {$\mathlarger{D}$};
 	  \end{tikzpicture}
-	  
+
 	  Η εξ. Laplace \( \displaystyle \pd[2]{u}{x} + \pd[2]{u}{y} = 0 \) είναι διαφορική
 	  εξίσωση με μερικές παραγώγους. Αν αυτή ισχύει σε κάποιο χωρίο \( D \) και την εφοδιάσω
-	  με \textbf{οριακές συνθήκες} (τιμές της \( u(x,y) \) στο \( \partial D \) - 
+	  με \textbf{οριακές συνθήκες} (τιμές της \( u(x,y) \) στο \( \partial D \) -
 	  σύνορο του \( D \)), τότε έχω μοναδική λύση στο πρόβλημα Dirichlet:
 	  \begin{enumparen}
-	    \item \( \forall (x,y) \in D : \pd[2]{u}{x} + \pd[2]{u}{y} = 0 \)	
+	    \item \( \forall (x,y) \in D : \pd[2]{u}{x} + \pd[2]{u}{y} = 0 \)
 	    \item \( \forall (x,y) \in \partial D : u(x,y) = F(x,y) \)
       \end{enumparen}
-      
+
       \paragraph{Παρ.} Ένα μεταλλικό τετράγωνο έλασμα \( D \) έχει σταθερές θερμοκρασίες
-      στα άκρα του, όπως φαίνεται στο σχήμα. 
-      
+      στα άκρα του, όπως φαίνεται στο σχήμα.
+
       \begin{tikzpicture}
       \draw[->] (0,0) -- (0,3);
       \draw[->] (0,0) -- (3,0);
-      
+
       \draw[thick,blue!50!black] (2,0) node[black, below] {$1$}
       -- (2,2) -- (0,2) node[black,left] {$1$};
-      
+
       \draw (1,1) node {$D$};
       \draw (0,1) node[left] {$0^\circ\, \mathrm C$};
       \draw (1,0) node[below] {$0^\circ\, \mathrm C$};
       \draw (1,2) node[above] {$0^\circ\, \mathrm C$};
       \draw (2,1) node[right] {$100^\circ\, \mathrm C$};
       \end{tikzpicture}
-      
+
       Η θερμοκρασία του ελάσματος δίνεται από τη λύση του:
       \begin{enumparen}
       	\item \( \forall (x,y) : \begin{array}{l}
@@ -5360,50 +5360,50 @@ decoration={markings,mark=at position 0 with \arrow{<}}
       	u(x,0) = 0 \\ u(x,1) = 0 \\ u(0,y) = 0 \\ u(1,y) = 100
       	\end{array} \)
       \end{enumparen}
-      
+
       Τι σχέση έχουν όλα αυτά με \begin{enumparen}
       	\item Μιγαδικές συναρτήσεις;
       	\item Λογισμό II;
       \end{enumparen}
-      
+
       Τι ασκήσεις μπαίνουν στις εξετάσεις;
-      
+
       Τι σημαίνει η εξ. Laplace;
-      
+
       \paragraph{Διακριτοποίηση εξίσωσης Laplace}
       \hspace{0pt}
-      
+
       \begin{tikzpicture}
-      
+
       \filldraw[fill=blue!50!green!20!white,draw=blue,very thick,name path=D]
       plot [smooth cycle] coordinates
       { (-1.5,1.2) (-1.7,1.9) (0,3) (0.8,2.5) (1.5,2.2) (1.6,1.2) (2,0) (2.2,-0.8)
       	(2.5,-1.8) (1.4,-2.7) (0.4,-2.8) (-0.4,-3) (-2,-0.8)   }
       node[left,black] {$n$};
-      
+
       \begin{scope}
       \clip plot [smooth cycle,scale=0.99] coordinates
       { (-1.5,1.2) (-1.7,1.9) (0,3) (0.8,2.5) (1.5,2.2) (1.6,1.2) (2,0) (2.2,-0.8)
       	(2.5,-1.8) (1.4,-2.7) (0.4,-2.8) (-0.4,-3) (-2,-0.8)   }
       node[left,black] {$n$};
-      
+
       \foreach \x in {-2,-1.25,...,2}
       \draw[gray] (\x,-3.2) -- (\x,3);
-      
+
       \foreach \y in {-2,-1.25,...,2}
       \draw[gray] (-2,\y) -- (2.5,\y);
       \end{scope}
-      
+
       \draw (-1,0) node {$\mathlarger{D}$};
       \draw (0,-3.1) node[below] {$m$};
-      
+
       \filldraw (-0.1, 1.5) circle (1pt) node[above right] {$(m\delta,n\delta)$};
-      
+
       \end{tikzpicture}
-      			
+
       \begin{gather*}
       \forall (x,y) \in D: u_{xx} + u_{yy} = 0 \\
-      \forall (x,y) \in \partial D: 
+      \forall (x,y) \in \partial D:
       u(x,y) = \underbracket[1pt][1pt]{F(x,y)}_{\mathclap{\text{δεδομένη συνάρτηση}}} \\
       u_x (m\delta, n\delta) \simeq
       \frac{u\left((m+1)\delta,n\delta\right)-u(m\delta,n\delta)}{\delta} \\
@@ -5430,17 +5430,17 @@ decoration={markings,mark=at position 0 with \arrow{<}}
       		+u\left(m\delta,(n-1)\delta\right)
       		}{4}
       \end{gather*}
-      
+
       Παρατηρούμε δηλαδή ότι η εξίσωση Laplace δηλώνει ότι η τιμή σε κάθε σημείο είναι ο
       μέσος όρος της τιμής των 4 γειτονικών σημείων.
-      
+
       	\paragraph{Παρ.}
       	Στο προηγούμενο πρόβλημα:
-      	
+
       	\begin{tikzpicture}
-      	
+
       	\fill[green!20] (-1,-1) rectangle (1,1);
-      	
+
       	\draw (-1,0) -- (1,0);
       	\draw (0,-1) -- (0,1);
       	\filldraw[fill=white] (0,0) circle(2pt);
@@ -5448,55 +5448,55 @@ decoration={markings,mark=at position 0 with \arrow{<}}
       	\draw (-1.5,-1) -- (1.5,-1) node[below,midway] {$0 \si{\degreeCelsius}$};
       	\draw (1,-1.5) -- (1,1.5) node[right,midway] {$100 \si{\degreeCelsius}$};
       	\draw (-1,-1.5) -- (-1,1.5) node[left,midway] {$0 \si{\degreeCelsius}$};
-      	
+
       	\filldraw (1,1) circle (1pt) node[above right] {$1,1$};
       	\filldraw (-1,1) circle (1pt) node[above left] {$1$};
       	\filldraw (-1,-1) circle (1pt) node[below left] {$0$};
       	\filldraw (1,-1) circle (1pt) node[below right] {$1$};
-      	
+
       	\draw[->] (2.3pt,2.3pt) to[bend left] (0.5,0.5) node[right,xshift=-2] {$25$};
       	\end{tikzpicture}
-      	
-      	\begin{align*} u\left(\sfrac{1}{2},\sfrac{1}{2}  \right) 
-      	&= \frac{1}{4} \left( u\left(\sfrac{1}{2},0 \right) 
+
+      	\begin{align*} u\left(\sfrac{1}{2},\sfrac{1}{2}  \right)
+      	&= \frac{1}{4} \left( u\left(\sfrac{1}{2},0 \right)
       	+ u \left(\sfrac{1}{2}, 1 \right) + u \left(0,\sfrac{1}{2} \right)
       	+ u \left(1,\sfrac{1}{2} \right)
       	\right) \\
       	\implies u\left(\sfrac{1}{2},\sfrac{1}{2}  \right) &=
       	\frac{1}{4} (0 + 0 + 0 + 100) \\ &= 25
       	\end{align*}
-      	
+
       	\begin{tikzpicture}
-      	
+
       	\foreach \x in {-1,-0.5,...,1}
       	\draw (\x,-1) -- (\x,1);
-      	
+
       	\foreach \y in {-1,-0.5,...,1}
       	\draw (-1,\y) -- (1,\y);
-      	
+
       	\foreach \x in {-1,-0.5,...,1}
       	\foreach \y in {-1,-0.5,...,1}
       	\filldraw (\x,\y) circle (1pt);
-      	
+
       	\draw (0,0) circle(3pt);
-      	
+
       	\end{tikzpicture}
-      	
+
       	Τότε θα μπορούσαμε να βρούμε τη λύση λύνοντας ένα σύστημα 9x9, ή με υπολογιστική
       	προσέγγιση.
 
     \begin{tikzpicture}
     \filldraw[fill=blue!10,draw=blue,very thick] plot [smooth cycle] coordinates
     {(0,0) (-0.7,1) (0.5,2) (2,1.5) (0.5,0.5) (1.9,-1) (1.5,-1.8) (0.8, -1.7) (-0.5,-1.8) };
-    
+
     \draw (0.5,1.3) node {$\mathlarger{D}$};
-    
+
     \filldraw (0.7,-0.7) circle (1pt) node[below] {$z_0$};
     \end{tikzpicture}
-    
+
     \begin{gather*}
     \forall (x,y) \in D: u_{xx} + u_{yy} = 0 \\
-    \forall (x,y) \in \partial D: 
+    \forall (x,y) \in \partial D:
     u(x,y) = \underbracket[1pt][1pt]{F(x,y)}_{\mathclap{\text{δεδομένη συνάρτηση}}}
     \end{gather*}
     \begin{gather*}
@@ -5514,14 +5514,14 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \\
     v(x_0,y_0) &= \frac{1}{2\pi} \int_0^{2\pi} v(x_0+r\cos\theta,y_0+r\sin\theta)\dif\theta,
     \end{align*} δηλαδή σε κάθε σημείο η τιμή είναι ο μέσος όρος των γειτόνων.
-    
+
     \paragraph{}
     Αυτά που μπαίνουν στις εξετάσεις είναι: Να βρεθεί η συζυγής αρμονική, και να λυθεί η
     εξίσωση Laplace, κάτι που θα μάθουμε τις επόμενες Παρασκευές.
-    
+
     \subsection{Αρμονικές στην εξίσωση Laplace}
     \paragraph{Παρ.} Δίνεται το χωρίο \( D = \left\lbrace z: a<\Re(z)<b \right\rbrace \)
-    
+
     Να βρεθεί \( u(x,y) \) τ.ώ \( \begin{array}{ll}
     \forall (x,y) \in D &: u_{xx} + u_{yy} = 0 \\
     \forall y &: u(a,y) = u_1 \\
@@ -5529,29 +5529,29 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \end{array} \)
     \subparagraph{Λύση}
     \hspace{0pt}
-    
+
     \begin{tikzpicture}
-    
+
     \fill[green!30] (0.5,2) rectangle (1.5,-1.5);
-    
+
     \draw[->] (0,-1.5) -- (0,2);
     \draw[->] (-1.5,0) -- (2,0) ;
-    
+
     \draw[blue,very thick] (0.5,2) -- ++(0,-3.5);
     \draw[blue,very thick] (1.5,2) -- ++(0,-3.5);
-    
+
     \draw (0.5,0) node[below left] {$a$};
     \draw (1.5,0) node[below right] {$b$};
-    
+
     \draw[<-] (0.48,1) to[bend left=10] (-0.2,1) node[left,xshift=2] {$u=u_1$};
     \draw[<-] (1.52,1) to[bend left=10] (2,1.2) node[right] {$u=u_2$};
-    
+
     \end{tikzpicture}
-    
+
     Λόγω συμμετρίας υποθέτω ότι \( u(x,y) = u(x) \) οπότε \( 0 = u_{xx}+u_{yy} = u_{xx}
     \implies u_x = k \implies u = kx+\lambda
      \)
-     
+
     Χρησιμοποιώντας τις οριακές συνθήκες:
     \[
     \left. \begin{array}{l}
@@ -5560,35 +5560,35 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \end{array} \right| \implies
     \boxed{u(x,y) = \frac{u_1-u_2}{a-b}x + \underset{u_1}{?} }
     \]
-    
+
     \begin{gather*}
     	u = kx+\lambda \\ v= 0 \\ u_y=-v_x\implies 0 =-v_x\implies v=c(y) \\
     	\implies v_y = \od{c}{y} = u_x= k \implies v(y) = ky+c' \\ \implies f(x,y)
     	= u+iv = kx+\lambda +i(ky+c') \\ \implies f(z) = kz+c''
     \end{gather*}
-    
+
     \paragraph{Παρ.}
     \hspace{0pt}
-    
+
     \begin{tikzpicture}[scale=1.5]
-    
+
     \fill[green!30,transform canvas={rotate=25},path fading=east]
     (0.5,2) (0,0) -- (2,0) -- (2,{2*tan(40)}) -- (0,0);
-    
+
     \draw[->] (0,-1.5) -- (0,2);
     \draw (-1.5,0) -- (2,0) ;
-    
+
     \draw (45:1.5) node[rotate=45] {$\nabla^2 u = 0$};
-    
+
     \draw[very thick] (0,0) -- (25:2.2) node[below,pos=.7,sloped] {$u(x,y)=k_1$};
     \draw[very thick] (0,0) -- (65:2.2) node[above,pos=.7,sloped] {$u(x,y)=k_2$};
-    
+
     \draw (0.4,0) arc (0:25:0.4) node[right,midway] {$\mathsmaller{\theta_1}$};
     \draw (0.2,0) arc (0:65:0.2)
     node[above right,midway,xshift=-3] {$\mathsmaller{\theta_2}$};
-    
+
     \end{tikzpicture}
-    
+
     \begin{gather*}
     	\hat u(,\rho,\theta) = u(\theta) \\
     	D = \left\lbrace (\rho,\theta): \theta_1 < \theta < \theta_2 \right\rbrace \\
@@ -5596,102 +5596,102 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	u(z) = u_1 \text{ όταν } \arg(z) = \theta_1 \\
     	u(z) = u_2 \text{ όταν } \arg(z) = \theta_2
     \end{gather*}
-    
+
     Παρατηρώ ότι \( \arg(z) = \Im\left(\mathrm{Log}(z)\right) \)
-    
+
     Άρα με \( f(z) = \mathrm{Log}(z) \), η \( \arg(z) \) είναι αρμονική όπως και η
     \( u(z) = k\cdot\arg(z) + \lambda \), ισοδύναμα
     \( \boxed{u(x,y) = k\cdot\arctan(y,x) + \lambda} \)
-    
+
     Σημείωση: \( \arctan(y,x) = \arg(x+iy) \)
-    
+
     \( \boxed{u(x,y) = \frac{u_1-u_2}{\theta_1-\theta_2} \arctan(y,x) + \lambda} \)
-    
+
     \paragraph{Παρ.}
     \hspace{0pt}
-    
+
     \begin{tikzpicture}
-    
+
     \fill[blue!20,even odd rule] (0,0) circle (0.8) -- (0,0) circle (1.5);
-    
+
     \draw[->] (0,-2) -- (0,2);
     \draw[->] (-2,0) -- (2,0) ;
-    
+
     \draw[blue,very thick] (0,0) circle (0.8) -- (0,0) circle (1.5);
-    
-    
+
+
     \draw[<-] (240:1.52) to[bend left=10] (-1.7,-1.5) node[left,xshift=2] {$u=u_2$};
     \draw[<-] (40:0.85) to[bend left=10] (1.7,1.2) node[right] {$u=u_1$};
-    
+
     \draw (230:1.05) node[rotate=-40] {$\nabla^2 u = 0$};
-    
+
     \end{tikzpicture}
-    
+
     \( u(x,y) = g(r) \)
-    
-    Παρατηρώ ότι \( 
-    f(z) = \underbrace{\mathrm{Log}(z)}_{\mathclap{\text{αναλυτική}}} = 
+
+    Παρατηρώ ότι \(
+    f(z) = \underbrace{\mathrm{Log}(z)}_{\mathclap{\text{αναλυτική}}} =
     \underbrace{\ln r}_{\mathclap{\text{αρμονική}}} + i\arg(z)
      \)
-     
+
     Άρα υποθέτω λύση της μορφής:
     \begin{align*}
     	u(x,y) &= k\ln r + \lambda \implies \dots \\
     	u(x,y) &= \frac{u_1-u_2}{R_1-R_2} \ln(r) + c
     \end{align*}
-    
+
     \paragraph{Παρ.}
     \hspace{0pt}
-    
+
     \begin{tikzpicture}
     \fill[outer color=green!5,inner color=green] (-2,-2) rectangle (2,2);
-    
+
     \draw (-2,0) -- (2.1,0);
     \draw (0,-2) -- (0,2) ;
-    
+
     \draw (-1,1) node {$D$};
     \draw (1,1.2) node {$\nabla^2 u = 0$};
-    
+
     \draw (-1,0) node[below] {$\mathsmaller{u(x,0)=1}$};
     \draw (1,0) node[below] {$\mathsmaller{u(x,0) = 0}$};
-    
+
     \draw (-1,-1.3) node {$(x <0)$};
     \draw (1,-1.3) node {$(x>0)$};
-    
+
     \draw[fill=white,fill opacity=0.3] (0,0) circle (2pt);
     \end{tikzpicture}
-    
+
     \begin{gather*}
     	u(x,y) = \frac{u_2-u_1}{\theta_2-\theta_1}\arctan(y,x) + u_1
         = \boxed{\frac{1}{\pi} \arctan(y,x) = u(x,y)} \\
         x<0: u(x,0) = \frac{1}{\pi} \arctan(0,x) = \frac{\pi}{\pi} = 1 \\
         x>0: u(x,0) = \frac{1}{\pi} \arctan(0,x) = \frac{0}{\pi} = 0
     \end{gather*}
-    
+
     \paragraph{Παρ.}
     \hspace{0pt}
-    
+
     \begin{tikzpicture}
-    
+
     \fill[green!50] (-2,0) rectangle (2,1.7);
     \fill[green!50,path fading=north] (-2,1.7) rectangle (2,2);
-    
-    \draw (-2,0) node[below right] {$\mathsmaller{u=1}$} 
-    -- (2,0) node[below left] {$\mathsmaller{u=0}$}; 
+
+    \draw (-2,0) node[below right] {$\mathsmaller{u=1}$}
+    -- (2,0) node[below left] {$\mathsmaller{u=0}$};
     \draw (0,-1.5) -- (0,2) ;
-    
+
     \draw (1,1.2) node {$\nabla^2 u = 0$};
-    
+
     \fill (0.7,0) circle (1pt) node[below,xshift=-5] {$\leftarrow x_0$}
     node[above right] {$\rightarrow$};
     \end{tikzpicture}
-    
+
     \( u(x,y) = \frac{1}{\pi} \arctan(y,x-x_0) \)
-    
+
     \begin{tikzpicture}
     \draw[->] (-2,0) -- (2,0) node[right] {$u_N$};
     \draw (0,-1.5) -- (0,2) ;
-    
+
     \draw (1,1.2) node {$\nabla^2 u = 0$};
     \foreach \n in {0,...,3} {
        	\def\x{-2 + \n*0.5}
@@ -5702,12 +5702,12 @@ decoration={markings,mark=at position 0 with \arrow{<}}
        	\def\x{-2 + \n*0.5}
        	\fill (\x,0) circle (1pt) node[below] {$\mathsmaller{x_\n}$};
     }
-    
+
     \draw[thick,blue!50!black,opacity=0.9] (0.7,0.1) -- (1.1,0.1) node[above,midway]
     {$\mathsmaller{u_N}$};
     \fill (0.65,0) circle (1pt) node[below] {$\mathsmaller{x_N}$};
     \end{tikzpicture}
-    
+
     \[
     u(x,0) = \begin{cases}
     u_0 &\quad x<x_1 \\
@@ -5717,7 +5717,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     u_n &\quad x_N < x
     \end{cases}
     \]
-    
+
     \begin{align*}
     u(x,y) &= \frac{1}{\pi} \sum_{n=1}^{N} \left(u_n-u_{n-1}\right) \arctan(y,x_n-x)
     + u_0
@@ -5725,49 +5725,49 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     &= \frac{1}{\pi} \sum_{n=1}^{N-1} \left( u_{n-1} - u_n \right) \arctan(y,x-x_n)
     + u_{N-1}
     \end{align*}
-    
+
     \subsection{Επίλυση προβλήματος Dirichlet σε άλλα χωρία}
     \[
     w = \frac{az+b}{cz+d} = f(z)
     \]
     Μετασχηματισμός M\"obius
-    
+
     \begin{tikzpicture}
-    
+
     \draw[->] (0,-1.5) -- (0,1.5) node[right] {$y$};
     \draw[->] (-1.5,0) -- (1.5,0) node[below] {$x$};
-    
+
     \draw[very thick,blue!50] (0,0) circle(1);
     \fill (0.75,0.75) circle (1pt) node[right] {$z=x+iy$};
-    
+
     \draw[->] (1.5,1.2) to[bend left] node[above,midway] {$f$} (6.5,1.2);
-    
+
     \begin{scope}[xshift=7cm]
     \draw[->] (0,-1.5) -- (0,1.5) node[right] {$v$};
     \draw[->] (-2,0) -- (2,0) node[below] {$u$};
-    
+
     \draw[very thick,blue!50] (-2,0.7) -- (2,0.7);
     \fill (0.95,0.35) circle (1pt) node[right] {$w=u+iv$};
-    
+
     \end{scope}
     \end{tikzpicture}
-    
+
     Απεικονίζει (\underline{κύκλους} και \underline{ευθείες}) σε
     (\underline{κύκλους} και \underline{ευθείες})
-    
+
     \paragraph{Παρ.}
     Ο Μ/Σ \( \displaystyle \left( \frac{i-z}{i+z} \right) \)
     απεικονίζει την ευθεία \( \left\lbrace (x,0): x\in \right\rbrace \)
     στον κύκλο \( \left\lbrace (u,v):u^2+v^2=1 \right\rbrace \)
-    
+
     \textbf{διότι} \( w=\frac{i-x}{i+x} \implies |w| = \frac{|i-x|}{|i+x|} = 1 \)
-    
-    Επίσης απεικονίζει το \underline{άνω ημιεπίπεδο} \( \left\lbrace 
+
+    Επίσης απεικονίζει το \underline{άνω ημιεπίπεδο} \( \left\lbrace
     (x,y) : x \in \mathbb R,\ y > 0
-     \right\rbrace \) στον \underline{δίσκο} \( \left\lbrace 
+     \right\rbrace \) στον \underline{δίσκο} \( \left\lbrace
      (u,v) : u^2+v^2 < 1
       \right\rbrace \)
-      
+
     \textbf{διότι}
     \(  \displaystyle
     |w|^2 = \left|
@@ -5781,44 +5781,44 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	B &= \left|x+i(y+1)\right|^2 = x^2 + (1+y)^2
     \end{align*}
     Βλέπω ότι \( (1-y)^2 < (1+y)^2 \quad \forall y<0 \) διότι \( \forall y>0:A<B \)
-    
+
     Τι σχέση έχουν αυτά με τις αρμονικές συναρτήσεις και με το πρόβλημα Dirichlet;
     Μπορούν να χρησιμοποιηθούν για λύση του προβλήματος σε χωρία πέρα του άνω ημιεπιπέδου.
-    
+
     \paragraph{Παρ.}
     Να λυθεί αυτό:
-    
+
     \begin{tikzpicture}[scale=1.2]
     \fill[green!20] (0,0) circle (1);
-    
+
     \draw (0.4,-0.4) node[rotate=45] {$\mathsmaller{\nabla^2 \Phi = 0}$};
-    
+
     \draw[->] (0,-1.5) -- (0,1.5) node[right] {$y$};
     \draw[->] (-1.5,0) -- (1.5,0) node[below] {$x$};
-    
+
     \draw[very thick,blue] (1,0) arc (0:180:1) node[pos=.65,above,sloped] {$\Phi=1$};
     \draw[very thick,cyan!50!green] (1,0) arc (360:180:1)
     node[pos=.35,below,sloped] {$\Phi=0$};
-    
-    
+
+
     \begin{scope}[xshift=5cm,xscale=1.2]
     \fill[green!50] (-2,0) rectangle (2,0.7);
     \fill[green!50,path fading=north] (-2,0.7) rectangle (2,2);
-    
+
     \draw[->] (-2,0) -- (2.1,0) node[below] {$u$};
     \draw[->] (0,-0) -- (0,2) node[right] {$v$};
-    
+
     \draw (-1,1) node {$\nabla^2 \Psi = 0$};
     \draw (1,1.2) node {$\Psi(u,v)$};
-    
+
     \draw[very thick, cyan!50!green] (-2,0) -- (0,0)
     node[black,midway,below] {$\mathsmaller{\Psi(u,0) = 0}$};
     \draw[very thick, blue] (0,0) -- (2,0)
     node[black,midway,below] {$\mathsmaller{\Psi(u,0) = 1}$};
-    
-    
+
+
     \end{scope}
-    
+
     \fill (1,0) circle (1pt);
     \fill (5,0) circle (1pt);
     \draw[dashed,gray,->] (1.1,-0.1) to[bend right] (4.9,-0.1);
@@ -5835,38 +5835,38 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     0: & \pi<\theta = \arctan(y,x) < 2\pi
     \end{cases}
     \]
-    
+
     Θα χρησιμοποιήσουμε τον παραπάνω μετασχηματισμό M\"obius για να μετατρέψουμε το πρόβλημα
     του κυκλικού δίσκου σε πρόβλημα ημιεπιπέδου. Γι' αυτό πρέπει να βρούμε τις οριακές
     συνθήκες του ημιεπιπέδου, χρησιμοποιώντας τις οριακές συνθήκες του Laplace:
-    
+
     \begin{align*}
     1&=\frac{i-w}{i+w} \implies i+w = i-w \implies w=-w \implies w = 0 \\
     -1 &= \frac{i-w}{i+w} \implies -i-w=i-w \implies w = \infty \\
     i &= \frac{i-w}{i+w} \implies iw-1 = i-w \implies w = 1 \\
     -i &= \frac{i-w}{i+w} \implies \cdots \implies w=-1
     \end{align*}
-    
+
     Στο επίπεδο \( uw \) το πρόβλημα \( \nabla^2 \Psi = 0 \) στο
-    \( \left\lbrace (u,v): v>0 \right\rbrace \), \( 
+    \( \left\lbrace (u,v): v>0 \right\rbrace \), \(
     \begin{cases}
     1 \quad & \forall (u,0):u>0 \\
     0 \quad & \forall (u,0):u<0
     \end{cases}
      \)
-    
+
     \[
     \Psi = 1 - \frac{1}{\pi}\arctan(v,u)
     \]
     οπότε \( \Phi(x,y) = 1-\frac{1}{\pi} \arctan\left( v(x,y),\ u(x,y) \right)  \)
-    
+
     \begin{gather*}
     	x+iy = \frac{i-(u+iv)}{i+(u+iv)} = \underbrace{\dots}_{\mathclap{\text{πραγμ.}}}
     	+ i\underbrace{\dots}_{\mathclap{\text{φαντ.}}} \implies \dots \\
     	\dots \implies u=\frac{2y}{(1+x)^2+y^2},\ v=\frac{1-(x^2+y^2)}{(1+x)^2+y^2}
     \end{gather*}
-    
-    οπότε τελικά: 
+
+    οπότε τελικά:
     \[
     \boxed{
     	\Phi(x,y) = 1 -\frac{1}{\pi}
@@ -5875,7 +5875,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\right)
     	}
     \]
-    
+
     % Sage code:
     % var('x y')
     % psi(u,v) = 1 - 1/pi * arctan2(v,u)
@@ -5884,12 +5884,12 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \begin{center}
        	\includegraphics[width=0.8\linewidth]{graphics/sage0}
     \end{center}
-    
+
     \paragraph{Παρ.} \hspace{0pt}
-    
+
     \begin{tikzpicture}[scale=1.1]
     \fill[green!50,path fading=north] (-0.8,0) rectangle (0.8,2);
-    
+
     \draw[->] (0,-0.1) -- (0,2)  node[midway,rotate=45] {$\nabla^2 \Phi = 0$};;
     \draw[->] (-2,0) -- (2,0);
 
@@ -5897,19 +5897,19 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     {$0$};
     \draw[ultra thick, blue!50!black] (-0.8,2) -- ++(0,-2) node[midway,left,black] {$5$};
     \draw[ultra thick, blue!70!black] (0.8,2) -- ++(0,-2) node[midway,right,black] {$10$};
-    
+
     \draw[->] (2,1) to[bend left]  node[pos=.5,above] {$z=g(w)$} (3.8,1);
     \draw[->,gray!50] (3.8,0.8) to[bend right] (2,0.8);
-    
+
     \begin{scope}[xshift=6cm]
     \fill[green!50] (-2,0) rectangle (2,0.7);
     \fill[green!50,path fading=north] (-2,0.7) rectangle (2,2);
-    
+
     \draw (-2,0) -- (2,0);
     \draw[->] (0,-.1) -- (0,2);
-    
+
     \draw (1,1) node {$\nabla^2 \Psi = 0$};
-    
+
     \draw[very thick, blue!50!black] (-2,0) -- (-0.5,0)
     node[black,midway,below] {$5$};
     \draw[very thick, blue!50!cyan] (-0.5,0) -- (0.5,0)
@@ -5922,7 +5922,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	w = f(z) &= \sin(\pi z) \\
     	z = g(z) &= \frac{1}{\pi} \arcsin(w)
     \end{align*}
-    
+
     Υπενθυμίζουμε ότι
     \begin{align*}
     	w &= \sin(\phi) = \sin(a+ib) =
@@ -5930,7 +5930,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\\ &= \sin a \cosh b +i\sinh b \cos a \\
     	w &= \sin(\pi z) = \sin(\pi x) \cosh(\pi y) +i\sinh(\pi y)\cos(\pi x)
     \end{align*}
-    
+
     Και η λύση προκύπτει:
     \begin{align*}
     \Aboxed{
@@ -5947,7 +5947,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\end{array}}
     }
     \end{align*}
-    
+
     % Sage code:
     % var('x y')
     % psi(u,v) = 5/pi*arctan2(v,u+1) - 10/pi*arctan2(v,u-1) + 10
