@@ -613,10 +613,10 @@
        	holomorphic/analytic)
        	\textbf{στο σημείο \( \mathbf{z_0} \)}, εάν η \( f \) είναι μιγαδικά
        	παραγωγίσιμη \textbf{ΣΕ ΚΑΘΕ ΣΗΜΕΙΟ} του ανοικτού δίσκου
-       	\begin{tikzpicture}[scale=0.4]
+       	\begin{tikzpicture}[scale=0.4,baseline]
        	\filldraw[dashed,fill=green!30] (0,0) circle(1);
-       	\draw (0,0) -- ++(135:1) node[midway,above,sloped] {$\epsilon$};
-       	\filldraw (0,0) circle(1pt) node[above right] {$z_0$};
+       	\draw (0,0) -- ++(135:1) node[pos=.3,above,sloped] {$\epsilon$};
+       	\filldraw (0,0) circle(1pt) node[below] {$\mathsmaller{z_0}$};
        	\end{tikzpicture}
        	\[
        	D_\epsilon(z_0) = \left\lbrace 
@@ -776,7 +776,58 @@
        		& f'(z_0)=\frac{\dif f(z_0)}{\dif z}
        		\\ \implies & \boxed{\dif f(z_0)=f'(z_0)\dif z}
        		\end{align*}
-       		%TODO Atreas Graph 07
+
+       		\begin{tikzpicture}[scale=1.2]
+       		\draw[->] (0,-1.5) -- (0,2) node[right] {$y$};
+       		\draw[->] (-1.5,0) -- (2,0) node[below] {$x$};
+       		
+       		\fill[fill=green!40,postaction={pattern=north west lines,opacity=.5}]
+       		(0.5,0.7) rectangle (1.2,1.7);
+       		
+       		\draw[thick] (0.5,0) node[below] {$x_0$} -- (0.5,1.7);
+       		\draw[thick] (1.2,0) node[below] {$\dif x$} -- (1.2,1.7);
+       		
+       		\draw[thick] (0,0.7) node[left] {$y_0$} -- (1.2,0.7);
+       		\draw[thick] (0,1.7) node[left] {$\dif y$} -- (1.2,1.7);
+       		
+       		\draw[thick,->] (2,1) to[bend left=20] node[above] {$f=u+iv$} (4,1);
+       		
+       		\begin{scope}[xshift=5cm]
+       		\draw[->] (0,-1.5) -- (0,2) node[left] {$y$};
+       		\draw[->] (-1.5,0) -- (2,0) node[right] {$x$};
+       		
+       		\def\a{plot[smooth,tension=1.5]
+       			coordinates {(-0.2,0.6) (0.7,1.2) (1.5,1.5)}}
+       		\def\b{plot[smooth,tension=1.3]
+       			coordinates {(0.3,0.3)  (1.2,0.6) (2,1.7)}}
+       		\def\c{plot[smooth,tension=1.5]
+       			coordinates { (0.3,2) (1.3,1) (1.7,-0.3) }}
+       		\def\d{plot[smooth,tension=1.5]
+       			coordinates {(0.2,1.5) (0.8,1) (1.2,0.2)}}
+       		
+       		\begin{scope}
+       		\clip \a --(2,0) -- (1,0);
+       		\clip \b --(2,2) -- (0,2);
+       		\clip \c --(0,0) -- (0,2);
+       		\clip \d --(2,0) -- (2,2);
+       		\fill[fill=green!40,postaction={pattern=north west lines,opacity=.5}]
+       		(0,0) rectangle (2,2);
+       		\end{scope}
+       		
+       		\draw[thick] \a;
+       		\draw[thick,name path=b] \b;
+       		\draw[thick] \c;
+       		\draw[thick,name path=d] \d;
+       		
+       		\path[name intersections={of=b and d,by=m}];
+       		
+       		\draw[dashed,gray] (m -| 0,0) -- (m) -- (m |- 0,0);
+       		\filldraw (m) circle (1pt)
+       		node[below right,yshift=1pt,xshift=2pt,scale=0.5] {$f(z_0)$};
+     		
+       		\end{scope}
+       		\end{tikzpicture}
+
        		\[
        		\dif z := \begin{array}{l}
        		\text{στοιχειώδης όγκος} \\
@@ -966,7 +1017,35 @@
 	 \right.
 	 \end{gather*}
 	 
-	 %TODO Atreas Graph 10
+	 \begin{tikzpicture}[scale=1.3]
+	 \draw (-0.5,0) -- (2,0);
+	 \draw (0,-0.5) -- (0,2);
+	 
+	 \foreach \x in {0.2,0.5,...,1.8}
+	 \draw[green!50!black] (\x,-0.3) -- (\x,1.7);
+	 
+	 \foreach \y in {0.3,0.6,...,1.8}
+	 \draw[red!50!black] (-0.3,\y) -- (2,\y);
+	 
+	 \draw (1.7,0) node[below right] {$x=x_0$};
+	 \draw (0,1.5) node[above left] {$y=y_0$};
+	 
+	 \draw (current bounding box.south)
+	 node[below,yshift=-5pt] {$\frac{v}{u}=\tan y \implies \boxed{v=u\tan y}$};
+	 
+	 \draw[thick,->] (2.5,1)  to[bend left=20] node[midway,above] {$f$} (4,1);
+	 
+	 \begin{scope}[xshift=6cm]
+	 \draw (-2,0) -- (2,0);
+	 \draw (0,-2) -- (0,2);
+	 
+	 \foreach \x in {0.2,0.5,...,1.8}
+	 \draw[green!50!black] (0,0) circle (\x);
+	 
+	 \foreach \y in {0,29,...,360}
+	 \draw[red!50!black] (0,0) -- (\y:2);
+	 \end{scope}
+	 \end{tikzpicture}
 	 
 	 \paragraph{Άσκ. 2}
 	 Η συνάρτηση \( f(z)=|z| \) \textbf{ΔΕΝ} είναι μιγαδικά παραγωγίσιμη σε
@@ -1038,7 +1117,26 @@
         \item
         Θα προσπαθήσω να αποδείξω ότι το όριο δεν υπάρχει, κάτι που φαντάζομαι
         επειδή μέσα στο όριο υπάρχει ο \( \bar z \).
-        %TODO Atreas Graph 11
+        
+        \begin{center}
+        \begin{tikzpicture}
+        \draw (3,1) node {$\mathbb C$};
+        
+        \draw[thick,orange!40!brown] (1,2) -- (1,-2);
+        \draw[thick,green!40!teal,yshift=1pt] (-1.5,0) -- (1.95,0);
+        
+        \draw[->] (-1.5,0) -- (2,0);
+        \draw[->] (0,-2) -- (0,2);
+        
+        \filldraw (1,0) circle (1pt) node[below right] {$1$};
+        
+        \draw[->,yshift=2pt,xshift=-2pt] (1,0.5) -- (1,0);
+        \draw[->,yshift=-2pt,xshift=-2pt] (1,-0.5) -- (1,0);
+        \draw[->,yshift=3pt,xshift=-4pt] (0.5,0) -- (1,0);
+        \draw[->,yshift=3pt,xshift=4pt] (1.5,0) -- (1,0);
+        \end{tikzpicture}
+        \end{center}
+
         \begin{itemize}
         	\item Θεωρώ την "κίνηση κατά μήκος του οριζόντιου άξονα" που διέρχεται
         	      από το \( z_0 =1 \).
@@ -1202,7 +1300,27 @@
 	    	\right., k\in\mathbb Z
 	    	 \).
 	    	 
-            %TODO Atreas Graph 13
+            \begin{tikzpicture}
+            \draw[->] (0,-1.5) -- (0,2);
+            \draw[->] (-2,0) -- (2,0);
+            
+            \draw[very thick,blue,mark position=0.7(c)]
+            plot[variable=\x,samples=200,domain=-2:2] (\x,{  cosh(\x)*0.5  });
+            
+            \draw (c) node[below right] {$\cosh y$};
+            
+            \draw (0,0.5) node[below right] {$1$};
+            
+            \begin{scope}[xshift=5cm]
+            \draw[->] (0,-2) -- (0,2);
+            \draw[->] (-2,0) -- (2,0);
+            
+            \draw[very thick,blue,mark position=0.7(c)]
+            plot[variable=\x,samples=200,domain=-2:2] (\x,{  sinh(\x)*0.5  });
+            
+            \draw (c) node[below right] {$\sinh y$};
+            \end{scope}
+            \end{tikzpicture}
 	    	 
 	    	\textbf{Τελικά} \( \cos z \iff \boxed{z=k\pi+\frac{\pi}{2},\ k
 	    		\int\mathbb Z
@@ -1295,9 +1413,28 @@
 		\item Κάθε τέτοια καμπύλη έχει ΠΡΟΣΑΝΑΤΟΛΙΣΜΟ (φορά διαγραφής) προς την
 		κατεύθυνση αύξησης του \( t \)
 		\subparagraph{π.χ.} \( \gamma(t)=e^{it},\ t\in(-\pi,\pi] \)
-		%TODO Atreas Graph 14
 		
-		\( \gamma(t)=e^{-it},\ t\in(-\pi,\pi] \) %TODO Atreas Graph 15
+		\begin{tikzpicture}[scale=0.7]
+		\draw (0,-2) -- (0,2);
+		\draw (-2,0) -- (2,0);
+		
+		\draw[very thick,postaction={decorate},decoration={
+			markings,mark=at position 0.2 with {\arrow[ultra thick]{>}}}]
+		(0,0) circle (1.3);
+		\draw (current bounding box.south) node[below,align=center]
+		{μοναδιαίος κύκλος\\κέντρου $(0,0)$};
+		\end{tikzpicture}
+		
+		\( \gamma(t)=e^{-it},\ t\in(-\pi,\pi] \)
+		
+		\begin{tikzpicture}[scale=0.7]
+		\draw (0,-2) -- (0,2);
+		\draw (-2,0) -- (2,0);
+		
+		\draw[very thick,postaction={decorate},decoration={
+			markings,mark=at position -0.4 with {\arrow[ultra thick]{<}}}]
+		(0,0) circle (1.5);
+		\end{tikzpicture}
 		
 		\item Αν \( \gamma \) κλειστή λέω ότι είναι \underline{θετικά}
 		προσανατολισμένη αν η φορά διαγραφής είναι η αντιωρολογιακή
@@ -1305,7 +1442,25 @@
 		\item \( -\gamma \): ίδιο ίχνος με τη \( \gamma \), αλλά
 		αντίθετη φορά διαγραφής
 		
-		\item \( \gamma_1+\gamma_2 \): %TODO Atreas Graph 16
+		\item \( \gamma_1+\gamma_2 \): \hspace{2pt} \begin{tikzpicture}[baseline]
+		\draw[very thick,draw=blue
+		,postaction={decorate}
+		,decoration={markings,
+			mark=at position 0.2 with {\arrow[very thick,black]{>}},
+			mark=at position 0.7 with {\arrow[very thick,black]{>}}
+		}
+		] (0,0) to[bend left=10] node[midway,above left] {$\gamma_1$} (1.5,1)
+		plot [smooth,tension=1.6] coordinates {(1.5,1) (3,0.6) (4,1)}
+		;
+		\draw (3,0.6) node[above] {$\gamma_2$};
+		
+		\filldraw (0,0) circle (1pt) + (1.5,1) circle (1pt) + (4,1) circle (1pt);
+		
+		\draw (current bounding box.south west)
+		-- ++(0,-0.2) -- (current bounding box.south east)
+		node[midway,below] {$:=\gamma_1+\gamma_2$}
+		-- ++(0,0.2);
+		\end{tikzpicture}
 	\end{itemize}
 	
 	\begin{defn*}{}
@@ -1396,7 +1551,6 @@
     \\
      \end{align*}
 
-%TODO A LOT OF STUFF MISSING
 \subsection{Αντιπαράγωγος και ανεξαρτησία δρόμου}
 \begin{defn*}{}
 	Έστω \( f=f(z) \) είναι μια συνεχής μιγαδική συνάρτηση (μιγαδικής μεταβλητής)
@@ -1414,17 +1568,12 @@
 	\begin{itemize}
 		\item Η \( f \) είναι ΜΟΝΑΔΙΚΗ αντιπαράγωγο \( F \) (με προσέγγιση σταθεράς)
 		\item \( 
-		\displaystyle \oint_\gamma f(z)\dif z = 0, \text{ για ΚΑΘΕ κλειστή λεία
-			καμπύλη εντός του $G$
-		}
-		\)
+		\displaystyle \oint_\gamma f(z)\dif z = 0,\) για ΚΑΘΕ κλειστή λεία
+			καμπύλη εντός του \(G\)
 		\item \( 
-		\displaystyle \oint \int_\gamma f(z)\dif z \text{
+		\displaystyle \oint \int_\gamma f(z)\dif z\)
 			είναι ανεξάρτητο του δρόμου (δηλαδή εξαρτάται μόνον από το αρχικό
-			και τελικό σημείο της $\gamma$ και όχι από τον τύπο της $\gamma$
-			)
-		}
-		\)
+			και τελικό σημείο της \(\gamma\) και όχι από τον τύπο της \(\gamma\))
 	\end{itemize}
 \end{theorem*}
 
@@ -1433,21 +1582,33 @@
 \int z^n\dif z = \frac{z^{n+1}}{n+1}+c, \forall z\in\mathbb C,n\in\mathbb N\\
 \int \frac{1}{z}\dif z= \mathrm{Log} z +c, \forall z \in \mathbb C^{*} \\
 \int z^{-n}\dif z = \frac{z^{-n+1}}{-n+1}+c,\forall n\in\mathbb N-
-\left\lbrace 1 \right\rbrace,c\in\mathbb C \text{ στάθερα} \\
+\left\lbrace 1 \right\rbrace,c\in\mathbb C \text{ σταθερά} \\
 \int \sin z \dif z = -\cos z+c \\
 \int \cos z \dif z = \sin z +c \\
 \qquad \text{ κλπ. }
 \end{gather*}
 
-%TODO here
+\paragraph{π.χ.}
+Υπολογίστε το \( \displaystyle \int_\gamma ze^z \dif z \) επί της καμπύλης \( \gamma \)
+με τύπο \( \gamma = \gamma(t) \) και αρχή \(  \gamma(a) = 1+i \) και πέρας \( \gamma(b)
+= 1 -i \)
+\[
+\int ze^z\dif z = ze^z - \int e^z \dif z = \underline{ze^z-e^z}
+\]
+οπότε: \begin{align*}
+\int_\gamma ze^z \dif z &= \big[ ze^z-e^z \big]_{z_0=1+i}^{z_1=1-i}
+\\ &= e^{1-i} (1+i-1) - e^{1+i}(1+i-1)
+\end{align*}
 
 \subsection{Θεώρημα Cauchy}
-Έστω \( f=f(z) \) είναι \textbf{ολόμορφη} συνάρτηση \textbf{πάνω} και στο
+\begin{theorem*}[colbacktitle=red!35!black]{Cauchy}
+	Έστω \( f=f(z) \) είναι \textbf{ολόμορφη} συνάρτηση \textbf{πάνω} και στο
 \textbf{εσωτερικό} \textbf{απλής}, κλειστής και λείας καμπύλης \( \gamma \).
 
 Τότε: \[
 \oint_\gamma f(z)\dif z = 0
 \]
+\end{theorem*}
 
 \paragraph{Απόδ.}
 Έστω \( f = u+iv \), όπου \( u=u(x,y) \) και \( v=v(x,y) \) έχουν συνεχείς
@@ -1456,7 +1617,7 @@
 \oint_\gamma f(z)\dif z &= \left(
 \oint_\gamma u\dif x-v\dif y
 \right) + i\left( \oint u\dif y+v\dif x \right)
-\\ &\overset{\mathclap{\text{Θεώρ.}}}{\underset{\mathclap{\text{Green}}}{=}}
+\\ &\overset{\mathllap{\text{Θεώρ.}}}{\underset{\mathllap{\text{Green}}}{=}}
 \iint_R (-v_x-u_y)\dif x \dif y + i\iint_R (u_x-v_y)\dif x\dif y
 \end{align*}
 και επειδή η \( f \) ολόμορφη ικανοποιούνται οι συνθήκες Cauchy-Riemann
@@ -1467,12 +1628,29 @@
 \iint_R 0\dif x\dif y+i\iint_\gamma 0\dif x \dif y = 0
 \]
 
+\begin{tikzpicture}[scale=0.6]
+\filldraw[very thick,fill=green!30,postaction=decorate,
+postaction={pattern=north east lines,opacity=.3},
+decoration={markings,mark=at position 0 with \arrow{<}}
+] plot[smooth cycle] coordinates
+{(0,1) (1,1.1) (2.5,0.8) (3,0.7) (2.9,-0.9) (2,-0.7) (0.5,-1.1) (-1,-1) (-2,-0.7) (-3,-0.3)
+	(-2.8,0.4) (-1.5,1) };
+
+\draw (0,0) node {$R$};
+\draw (0,1) node[above] {$\gamma$};
+\end{tikzpicture}
+
 \paragraph{}
 \[
 \int_\gamma f(z)\dif z =
-\underbrace{a}_{\mathclap{\text{έργο του πεδίου $f$ κατά μήκος $ \gamma $}}} 
+\underbrace{a}_{\mathclap{%
+		\raisebox{-1ex}{\scriptsize έργο του πεδίου $f$ κατά μήκος $ \gamma $}}} 
 + i\overbrace{b}^{\mathclap{\text{ροή του πεδίου $\bar f$ διά μέσου της $\gamma$}}}
 \]
+
+(
+\( \vec f \to \) ασυμπίεστο, αστρόβιλο \quad ικανοποιούν εξίσωση Laplace \( u_{xx}+v_{yy}=0\)
+)
 
 \paragraph{ΣΗΜΕΙΩΣΗ:}
 Αν υπάρχει έστω και ένα σημείο όπου η \( f \) δεν είναι μιγαδικά
@@ -1481,21 +1659,79 @@
 
 \subparagraph{π.χ} \( \displaystyle \oint_{|z|=1\text{ με θετική φορά}}
 \frac{\dif z}{z} \)
-%TODO Atreas Graph 17
+
+     \begin{tikzpicture}
+     \draw (-3,0) -- (3,0);
+     \draw (0,-2) -- (0,2.2);
+     
+     \draw[very thick,postaction={decorate},decoration={markings,
+        	mark=at position 0.1 with {\arrow[very thick]{>}}}]
+     (0,0) circle (1.5);
+     
+     \filldraw (1.5,0) circle (1pt) node[below right] {$1$};
+     \filldraw (-1.5,0) circle (1pt) node[below left] {$-1$};
+     \filldraw (0,1.5) circle (1pt) node[above right] {$i$};
+     \filldraw (0,-1.5) circle (1pt) node[below right] {$-i$};
+     \filldraw (0,0) circle (1pt) node[below left] {$0$};
+     
+     
+     \draw (0,0) node[below left] {$0$};
+     \end{tikzpicture}
 
     \begin{align*}
     \oint_{|z|=1} \frac{\dif z}{z} & \overset{\gamma(t)=e^{it}}{\underset{t\in[0,2\pi)}{=}}
     \\ &\overset{\text{ορ.}}{=}\int_{0}^{2\pi}\frac{\dif\, \left(e^{it}\right)}{e^{it}}
     =\int_{0}^{2\pi} \frac{(e^{it})^2}{e^{it}}\dif t
-    \\ &= \int_0^{2\pi} \frac{ie^{it}}{e^{it}} = 2\pi i
+    \\ &= \int_0^{2\pi} \frac{ie^{it}}{e^{it}} = \underline{2\pi i}
     \end{align*}
     
     \begin{theorem*}[width=\textwidth]{Παραμόρφωση δρόμων}
-    	\vspace{25pt}
     	Έστω \( f=f(z) \) είναι ολόμορφη σε τόπο \( G \) με σύνολο
     	\( \partial G = \gamma_1 \cup \gamma_2 \) όπου \( \gamma_1,\gamma_2 \)
-    	απλές λειστές καμπύλες, λείες, με κοινό προσανατολισμό π.χ. όπως στο σχήμα
-    	%TODO Atreas Graph 18
+    	απλές λειστές καμπύλες, λείες, με κοινό προσανατολισμό π.χ. όπως στο σχήμα.
+    	
+    	\begin{center}
+    	\begin{tikzpicture}[scale=1.5]
+    	\def\c{plot[smooth cycle] coordinates
+   		{
+   			(0,0.7) (2.5,0.7) (2.9,0.2) (3,-0.3) (0.5,-1) (-3,0)
+   		}
+   		plot[smooth cycle] coordinates
+   		{
+   			(0,0.3) (1,-0.1) (0.5,-0.5) (-1,-0.2) (-1.7,-0.3) (-2,0.1) (-0.9,0.4)
+   		}}
+   		
+   		\begin{scope}
+   		\clip (-3,0) rectangle (3.5,1.2);
+   		\fill[red,opacity=.3,even odd rule] \c;
+   		\end{scope}
+   		
+   		\filldraw[very thick,fill=green,fill opacity=.3,postaction=decorate,name path=C,
+   		postaction={pattern=north east lines,opacity=.3},
+   		decoration={markings,
+   			mark=at position 0.45 with \arrow{<},
+   			mark=at position 0.9 with \arrow{<}
+   		},
+   		even odd rule
+   		] \c;
+   		
+   		\draw (0,0.7) node[above] {$\gamma_1$};
+   		\draw (0.6,-0.32) node {$\gamma_2$};
+   		
+   		\path[name path=axis] (-3.1,0) -- (3.5,0);
+   		
+   		\draw[thick,name intersections={of=C and axis},orange!50!black]
+   		(intersection-3) -- (intersection-2) node[midway,below right] {$L_1$}
+   		(intersection-4) -- (intersection-1) node[midway,below] {$L_2$}
+   		;
+   		
+   		\draw (1.6,-0.6) node {$G$};
+   		\draw(-1,-0.5) node {$\mathsmaller{G_2}$};
+   		\draw(0.4,0.5) node {$\mathsmaller{G_1}$};
+   		
+   		\end{tikzpicture}
+   		\end{center}
+
     	Τότε \( \displaystyle \oint_{\gamma_1}f(z)\dif z
     	= \oint_{\gamma_2} f(z)\dif z
     	 \)
@@ -1505,6 +1741,50 @@
     Φέρνω δύο ευθ. τμήματα \( L_1 \) και \( L_2 \) που διαμερίζουν το \( G \) σε
     δύο χωρία έστω \( G_1,G_2 \). Τότε το θ. Cauchy ισχύει και στο \( G_1 \)
     και στο \( G_2 \).
+    
+    \begin{tikzpicture}[scale=1.5]
+    \def\c{plot[smooth cycle] coordinates
+   	{
+   		(0,0.7) (2.5,0.7) (3,-0.3) (0.5,-1) (-3,0)
+   	}
+   	plot[smooth cycle,xshift=0.5cm] coordinates
+   	{
+   		(0,0.3) (1,-0.1) (-1,-0.3) (-1.7,-0.3) (-2,0.1) (-0.9,0.4)
+   	}}
+   	
+   	\begin{scope}
+   	\clip (-3,0) rectangle (3.5,1.2);
+   	\fill[red,opacity=.2,even odd rule] \c;
+   	\end{scope}
+   	
+   	\filldraw[very thick,fill=green,fill opacity=.3,postaction=decorate,name path=C,
+   	postaction={pattern=north east lines,opacity=.3},
+   	decoration={markings,
+   		mark=at position 0.75 with \arrow{<},
+   		mark=at position 0.9 with \arrow{>}
+   	},
+   	even odd rule
+   	] \c;
+   	
+   	\draw (-1.5,0.7) node {$\gamma_1^+$};
+   	\draw (0.6,-0.4) node {$\gamma_2$};
+   	\draw (-0.5,0.2) node {$-\gamma_2$};
+   	
+   	\path[name path=axis] (-3.1,0) -- (3.5,0);
+   	
+   	\draw[thick,name intersections={of=C and axis},orange!50!black,
+   	postaction={decorate},
+   	decoration={markings,
+   		mark=at position 0.25 with \arrow{>},
+   		mark=at position 0.75 with \arrow{>}
+   	}]
+   	(intersection-2) -- (intersection-3) node[midway,below right] {$L_1$}
+   	(intersection-4) -- (intersection-1) node[midway,below] {$L_2$}
+   	;
+   	
+   	\draw(0.4,0.5) node {$\mathsmaller{G_1}$};
+   	\draw[->] (2.5,-0.35) -- ++(-0.5,0);
+   	\end{tikzpicture}
     
     \begin{itemize}
     \item \( \displaystyle 
@@ -1536,7 +1816,47 @@
        	\item Κάθε καμπύλη \( \gamma_j \quad j=1,\dots,n \) βρίσκεται εκτός των
        	υπόλοιπων
        	\( \gamma_1,\gamma_2,\dots,\gamma_{i-1},\gamma_{i+1},\dots,\gamma_n \)
-       	%TODO Atreas Graph 19
+       	
+       	\begin{tikzpicture}[scale=1.3]
+       	\def\c{plot[smooth cycle,yscale=1.1] coordinates
+       		{
+       			(0,0.7) (2.5,0.7) (3.2,0.2) (3,-0.3) (2,-0.5) (0.5,-0.7) (-3,0) (-2,0.5)
+       		}
+       		plot [smooth cycle,xshift=2mm] coordinates
+       		{
+       			(-2+0.02*rand,0.2+0.02*rand) (-1.5+0.02*rand,0.3+0.02*rand)
+       			(-1.5+0.02*rand,-0.2+0.02*rand) (-2,-0.1) (-2.5,0) (-2.5,0.3)
+       		}
+       		plot [smooth cycle,xshift=-3mm] coordinates
+       		{
+       			(0.1*rand,0.4+0.1*rand) (0.5+0.02*rand,0.3+0.02*rand)
+       			(0.5+0.05*rand,-0.2+0.02*rand) (0.1*rand,-0.1) (-0.5,0) (-0.5,0.3)
+       		}
+       		plot [smooth cycle,xshift=2cm] coordinates
+       		{
+       			(0.1*rand,0.2+0.1*rand) (0.5+0.02*rand,0.3+0.02*rand)
+       			(0.5+0.05*rand,-0.2+0.02*rand) (0.1*rand,-0.1) (-0.5,0) (-0.5,0.3)
+       		}
+       	}
+       	
+       	\filldraw[very thick,fill=green,fill opacity=.3,postaction=decorate,name path=C,
+       	postaction={pattern=north east lines,opacity=.3},
+       	decoration={markings,
+       		mark=at position 0.45 with \arrow{<},
+       		mark=at position 0.65 with \arrow{<},
+       		mark=at position 0.85 with \arrow{<},
+       		mark=at position 0.9 with \arrow{<}
+       	},
+       	even odd rule
+       	] \c;
+       	
+       	\draw (0.9,0.1) node[scale=2] {$\cdots$};
+       	
+       	\draw (-1.7,0.22) node[above] {$\gamma_1$};
+       	\draw (0.2,0.52) node {$\gamma_2$};
+       	\draw (2.2,0.5) node {$\gamma_n$};
+       	\draw (-2.5,0.7) node[above] {$\Gamma$};
+       	\end{tikzpicture}
        	
        	Τότε: \( 
        	\displaystyle \oint_\Gamma f(z)\dif z= \sum_{j=1}^k \oint_{\gamma_1}f(z)
@@ -1559,8 +1879,21 @@
     		}
     	\]
     \end{theorem*}
-    \subparagraph{Απόδειξη}
-    %TODO Atreas Graph 20
+    \subparagraph{Απόδειξη} \hspace{0pt}
+
+    \begin{tikzpicture}
+    \draw[very thick,draw=black,postaction={decorate}
+    ,decoration={markings,mark=at position -0.1 with {\arrow[ultra thick,black]{<}}}] plot[smooth cycle]
+    coordinates {(0,1) (1.7,0.4) (2,-0.5) (0.1,-0.3) (-1.5,-1) (-2,-0.7) (-1.3,0.7) (-1,0.6)};
+    
+    \draw (0,1) node[above] {$\gamma$};
+    
+    \filldraw[fill=green!40] (1,0.2) circle (0.35);
+    
+    \filldraw (1,0.2) circle (1pt) node[below,xshift=-1pt] {$\mathsmaller{z_0}$}; 
+    \draw (1,0.2) -- ++(30:0.35)
+    node[above,midway,sloped,yshift=-2pt] {$\mathsmaller{r}$};
+    \end{tikzpicture}
     
     Έστω \( \left|z-z_0\right| =r \) κύκλος ακτίνας \( r \) κατάλληλης ώστε ο δίσκος
     \( \left|z-z_0\right| \leq r \) να βρίσκεται εξ' ολοκλήρου στο εσωτερικό της
@@ -1797,7 +2130,7 @@
     Υπολογίστε τα επικαμπύλια ολοκληρώματα
     \begin{enumgreekparen}
     	\item \( \displaystyle
-    	\oint_{\left|z-\frac{1}{z}\right|=\frac{3}{2}}
+    	\oint_{\left|z-\frac{1}{2}\right|=\frac{3}{2}}
     	\frac{z\cos z}{2z+1}\dif z
     	 \)
     	\item \( \displaystyle
@@ -1812,8 +2145,19 @@
     \paragraph{}
     
     \begin{enumgreekparen}
-    	\item 
-    	%TODO Atreas Graph 21
+    	\item \begin{tikzpicture}[baseline]
+    	\draw (-3,0) -- (3,0);
+    	\draw (0,-2) -- (0,2.2);
+    	
+    	\draw[very thick,postaction={decorate},decoration={markings,
+    		mark=at position 0.1 with {\arrow[very thick]{>}}}]
+    	(0.5,0) circle (1.5);
+    	
+    	\filldraw (2,0) circle (1pt) node[below right] {$2$};
+    	\filldraw (0.5,0) circle (1pt) node[below] {$\frac{1}{2}$};
+    	\filldraw[fill=red] (-0.5,0) circle (1.5pt) node[below] {$\mathllap{-}\frac{1}{2}$};
+    	\filldraw (-1,0) circle (1pt) node[below left] {$-1$};
+    	\end{tikzpicture}
     	Θα χρησιμοποιήσω ολοκλ. τύπο Cauchy.
     	
     	Έστω \( f(z)=z\cos z \), ολόμορφη στο \( \mathbb C  \) άρα και πάνω και στο
@@ -1846,7 +2190,22 @@
     	 \)
     	 
     	 \item 
-    	 %TODO Atreas Graph 22
+    	 \begin{tikzpicture}[baseline]
+    	 \draw (-3,0) -- (3,0);
+    	 \draw (0,-2) -- (0,2.2);
+    	 
+    	 \draw[very thick,postaction={decorate},decoration={markings,
+    	 	mark=at position 0.1 with {\arrow[very thick]{>}}}]
+    	 (0,0) circle (1.5);
+    	 
+    	 \filldraw (1.5,0) circle (1pt) node[below right] {$3$};
+    	 \filldraw (-1.5,0) circle (1pt) node[below left] {$-3$};
+    	 \filldraw (0,1.5) circle (1pt) node[above right] {$3i$};
+    	 \filldraw (0,-1.5) circle (1pt) node[below right] {$-3i$};
+    	 \filldraw[fill=red] (1.5/3*2,0) circle (1.5pt) node[below] {$2$};
+    	 
+    	 \draw (0,0) node[below left] {$0$};
+    	 \end{tikzpicture}
     	 Θα χρησιμοποιήσω τύπο Cauchy για παραγώγους με \( \mathbf{n=2} \).
     	 
     	 Έστω \( g(z) = z^3+2 \), προφανώς ακεραία (ολόμορφη σε όλο το \( \mathbb C  \)),
@@ -1869,7 +2228,31 @@
     	 \displaystyle \oint_{|z|=3} \frac{z^3+2}{(z-2)^3} \dif z = 12\pi i
     	  \)
         \item
-        %TODO Atreas Graph 23
+        \begin{tikzpicture}[baseline]
+        \filldraw[fill=green!30,postaction=decorate,
+        decoration={markings,mark=at position 0.7 with \arrow[thick]{>}}
+        ] (1.5/3,0) circle (10pt);
+        \draw (1.5/3,-10pt) node[below] {$\mathsmaller{\gamma_1}$};
+        \filldraw[fill=green!30,postaction=decorate,
+        decoration={markings,mark=at position 0.1 with \arrow[thick]{>}}
+        ] (-1.5/3,0) circle (10pt);
+        \draw (-1.5/3,10pt) node[above] {$\mathsmaller{\gamma_2}$};
+        
+        \draw (-3,0) -- (3,0);
+        \draw (0,-2) -- (0,2.2);
+        
+        \draw[very thick] (0,0) circle (1.5);
+        
+        \filldraw (1.5,0) circle (1pt) node[below right] {$2$};
+        \filldraw (-1.5,0) circle (1pt) node[below left] {$-2$};
+        \filldraw (0,1.5) circle (1pt) node[above right] {$2i$};
+        \filldraw (0,-1.5) circle (1pt) node[below right] {$-2i$};
+        
+        \filldraw[fill=red] (1.5/3,0) circle (1.5pt) node[below] {$\mathsmaller{1}$};
+        \filldraw[fill=red] (-1.5/3,0) circle (1.5pt) node[below] {$\mathsmaller{-1}$};
+        
+        \end{tikzpicture}
+
         Χρησιμοποιώ κατ' αρχήν γενικευμένο θεώρημα Cauchy, και έχω:
         \begin{align*}
         I_{\text{ζητούμενο}} &= \oint_{\gamma_1} \frac{e^z \dif z}{(z-1)(z+1)}
@@ -1895,7 +2278,21 @@
     \paragraph{Θέμα:}
     Υπολογίστε το \( \displaystyle \oint_{|z|=R} \frac{1}{(z-i)^2} \dif z \)
     για όλες τις τιμές του \( R \), όπου \( R > 0 \) και \( R \neq 1 \)
-    \subparagraph{}
+    \subparagraph{} \hspace{0pt}
+    
+    \begin{tikzpicture}
+    \draw (-2,0) -- (2,0);
+    \draw (0,-2) -- (0,2.2);
+    
+    \draw[thick,dashed,red] (0,0) circle (1.5);
+    \foreach \r in {0.25,0.7,...,1.49}
+    \draw[thick] (0,0) circle (\r);
+    
+    \filldraw (1.5,0) circle (1pt) node[below right] {$1$};
+    \filldraw (0,1.5) circle (1pt) node[above right] {$i$};
+    \filldraw (0,0) circle (1pt);
+    \end{tikzpicture}
+
     \begin{enumgreekparen}
     	\item \( \underline{R < 1} \)
     	
@@ -1905,7 +2302,7 @@
     	\item \( \underline{R>1} \)
     	
     	Τότε \( z_0 = i \ \in \ \) εσωτερικό κύκλου \( |z| = R \) οπότε χρησιμοποιώ τύπο
-    	Cauchy για παραγώγους και βρίσκω \[ I = 0 \].
+    	Cauchy για παραγώγους και βρίσκω \[ I = 0. \]
     \end{enumgreekparen}
     
     \paragraph{Άσκ. }    
@@ -2544,13 +2941,25 @@
     \end{align*}
     όπου \( M \) είναι άνω φράγμα της \( h \) σε μια περιοχή του \( z_0 \).
     
-    \paragraph{}
-    \begin{enumgreekparen}
-    	\item Υπολογισμός περίπλοκων ολοκληρωμάτων της μορφής
-    	\[
-    	\lim_{R\to +\infty} \int_{-R}^{R} f(x)\dif x
-    	\]
-    	\paragraph{}
+    \begin{tikzpicture}
+    \draw (0,0) -- (2,0);
+    \draw (0,0) -- (0,2);
+    
+    \filldraw[fill=white,fill opacity=0.9] (0,0) circle (2pt) node[below left] {$z_0$};
+    
+    \draw[dashed] (0,0) -- (15:2);
+    \draw (1,0) arc (0:15:1) node[yshift=-3pt,right]
+    {$\mathsmaller{\theta_0}$};
+    
+    \draw[dashed] (0,0) -- (105:2);
+    \draw[thick,blue!20!black] (15:1.7) arc (15:105:1.7)
+    node[above,midway] {$\gamma_\rho$};
+    \draw[thick,blue!20!black] (0:0.7) arc (0:105:0.7)
+    node[above,midway] {$\theta_1$};
+    \end{tikzpicture}
+
+    \subsubsection{Υπολογισμός περίπλοκων ολοκληρωμάτων της μορφής
+    	\( \displaystyle \lim_{R\to +\infty} \int_{-R}^{R} f(x)\dif x \)}
     	\begin{theorem*}{}
     		Έστω \( f=f(z) \) ολόμορφη στο \( \mathbb C  \) εκτός από πεπερασμένου πλήθους
     		απομονωμένα ανώμαλα σημεία, και η \( f \) τέτοια ώστε \[
@@ -2584,7 +2993,6 @@
     			\mathclap{\text{απλοί πόλοι πάνω σε πραγμ. άξονα}}}
     		\]
     	\end{theorem*}
-     \end{enumgreekparen}
      
     \subsubsection{Ασκήσεις}
     \paragraph{Άσκ.} Υπολογίστε το \( 
@@ -2676,10 +3084,28 @@
     	\end{align*}
     \end{enumgreekparen}
     
-    \paragraph{(2)}
+    \paragraph{Άσκ.}
     Υπολογίστε το \( \displaystyle \oint_\gamma \frac{1}{z\left(z-z_1\right)^2}
     \dif z \), όπου \( \gamma \) είναι το τετράγωνο:
-    %TODO Atreas Graph 27
+    \begin{tikzpicture}[baseline,scale=1.2]
+    \draw (-1,0) -- (1.2,0);
+    \draw (0,-0.7) -- (0,1.2);
+    
+    \draw[thick,postaction={decorate},decoration={markings,
+    	mark=between positions 0.15 and 1 step 0.25 with {\arrow[very thick]{>}}
+    }]
+    (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+    
+    \filldraw (0,0) circle (1pt) node[below left] {$0$};
+    \filldraw (1,0) circle (1pt) node[below] {$1$};
+    \filldraw (1,1) circle (1pt) node[right] {$1+i$};
+    \filldraw (0,1) circle (1pt) node[left] {$i$};
+    
+    \draw[dashed] (0.5,0) --(0.5,0.5) -- (0,0.5);
+    
+    \filldraw (0.5,0.5) circle (1pt) node[above,scale=0.6]
+    {$z_1\mathsmaller{=\frac{1}{2}+\frac{i}{2}}$};
+    \end{tikzpicture}
     με θετική φορά.
     \subparagraph{}
     Εφαρμόζω θεώρ. ολοκλ. υπολοίπων
@@ -2688,7 +3114,7 @@
     	\text{στα ανώμαλα σημεία} \\ \text{\textbf{ΕΝΤΟΣ} τετραγώνου}
     	\end{array}\right) \mathlarger{\mathlarger{\mathlarger{\mathlarger{+}}}
     		i\frac{\pi}{2}
-    		\Res(f,\!\!\overbrace{0}^{\mathclap{\text{πάνω στην καμπύλη}}}\!\!)
+    		\Res(f,\!\overbrace{0}^{\mathclap{\text{πάνω στην καμπύλη}}})
     		}
     \end{align*}
     
