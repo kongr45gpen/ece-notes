@@ -5956,4 +5956,226 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \begin{center}
     \includegraphics[width=0.8\linewidth]{graphics/sage1}
     \end{center}
+    
+    \subsection{Τύποι του Poisson}
+    \begin{attnbox}{Εκτός ύλης}
+    	\textbf{\large Εκτός ύλης}
+    \end{attnbox}
+    
+    \subsubsection{Τύπος του Poisson για ημιεπίπεδο}
+    
+    Αν η \( f(z) \) φραγμένη και τμηματικά συνεχής και αρμονική στο άνω ημιεπίπεδο
+    \( \forall z_0 \):
+    
+    \[
+    f(z_0) = \frac{1}{\pi} \int_{-\infty}^{\infty}
+    \frac{y_0f(x)}{(x-x_0)^2+y^2} \dif x
+    \]
+    
+    και αν \( f(z) = u(x,y) + iv(x,y) \):
+    \[
+    \left.
+    u(x_0,y_0) = \frac{1}{\pi} \int_{-\infty}^{\infty}
+    \frac{y_0u(x,0)}{(x-x_0)^2 + y_0^2}\dif x 
+    \ \right|
+    v(x_0,y_0) = \cdots
+    \]
+    
+    %TODO Kehagias Graph 23
+    
+    \paragraph{Απόδ.}
+    %TODO Kehagias Graph 25
+    Έστω \( z_0 \in \tilde{D} \), \( \bar{z_0} \notin \tilde{D} \).
+    \begin{align*}
+    	f(z_0) &= \frac{1}{2\pi} \oint_C \frac{f(z)}{z-z_0}\dif z \\
+    	0 &= \frac{1}{2\pi} \oint_C \frac{f(z)}{z-\overline{z_0}}
+    \end{align*}
+    \begin{align*}
+    	f(z) &= \frac{1}{2\pi} \oint_C \left(
+    	\frac{1}{z-z_0}-\frac{1}{z-\overline{z_0}}
+    	\right) f(z)\dif z
+    	\\ &= \frac{1}{2\pi} \oint_C 
+    	\frac{z_0 - \overline{z_0}}{(z-z_0)(z-\overline{z_0})} f(z)\dif z
+    	\\ &= \frac{1}{\pi} \oint_C \frac{y_0 f(z)}{z^2+|z_0|^2-2x_0z}\dif z
+    	\\ &= \frac{1}{\pi} \int\limits_{[-R,R]}
+    	\frac{y_0f(x)}{x^2+x_0^2+y_0^2-2x_0x}\dif x + \frac{1}{\pi}\int_{\Gamma}
+    	\frac{y_0f(z)}{z^2+\left|z_0\right|^2+2x_0z}\dif z \\
+    	\implies f(z_0) &= \lim_{R\to \infty}
+    	\int_{-R}^{R} \frac{y_0f(x)}{(x-x_0)^2+y_0^2} \dif x
+    	+ \frac{1}{\pi} \underbrace{\lim_{R\to \infty} \int_\Gamma
+    	\frac{y_0f(z)}{z^2+\left|z_0\right|^2+2x_0z}\dif z}_{\mathclap{=0 \text{ (λήμμα Jordan)}}}
+   	\end{align*}
+   	
+    \paragraph{Παρ.}
+    Να λυθεί το πρόβλημα
+    %TODO Kehagias Graph 26
+    
+    \begin{align*}
+    u(x_0,y_0) &= \frac{1}{\pi}
+    \int_{-\infty}^{\infty} \frac{y_0u(x,0)}{(x-x_0)^2+y_0^2}\dif x
+    \\ &= \frac{1}{\pi} \int_{-1}^{1} \frac{y_0\cdot 1}{(x-x_0^2)+y_0^2}\dif x
+    \\ &= \frac{1}{\pi}
+    \arctan(y_0,x_0-1)-\frac{1}{\pi}\arctan(y_0,x_0+1)
+    \end{align*}
+    
+    
+    \subsubsection{Τύπος του Poisson για δίσκο}
+    Αν η \( f(z) \) φραγμένη, τμηματικά συνεχής και αρμονική στον δίσκοι
+    \( D_R(0) \), τότε:
+    \[
+    f(z_0) = \int_0^{2\pi}
+     \frac{(R^2-r^2)\,f\!\left(Re^{i\phi}\right)}{R^2-2Rr\cos(\theta-\phi)+r^2}\dif\phi
+    \]
+    \begin{align*}
+    u(r,\theta) &= \frac{1}{2\pi}
+    \int_{0}^{2\pi}
+    \frac{\left(R^2-r^2\right)u(r,\phi)}{R^2+r^2-2Rr\cos(\theta-\pi)}\dif\phi
+    \end{align*}
+    
+    %TODO Kehagias Graph 24
+    
+    \paragraph{Απόδ.}
+    \[
+    \zeta = Re^{i\phi}
+    \]
+    \[
+    Z = \frac{\zeta\bar\zeta}{\bar\zeta}
+    \qquad |Z| = \left| \frac{\zeta\bar\zeta}{\bar z} \right| = 
+    \frac{\left|\zeta\right|^2}{|z|} = \frac{R^2}{|z|} > R,
+    \qquad \text{άρα όταν $z\in D_0(R)$, τότε $z\notin D_0(R)$}
+    \]
+    \begin{align*}
+    	f(z) &= \frac{1}{2\pi} \oint \frac{\zeta f(\zeta)}{\zeta - z_0}\dif\zeta
+    	\\ 0 &= \frac{1}{2\pi} \oint \frac{f(\zeta)}{\zeta - Z}\zeta \dif\phi
+    \end{align*}
+    \begin{align*}
+    	\frac{\zeta}{\zeta-Z} &= \frac{\zeta}{\zeta - \frac{\zeta\bar\zeta}{\bar z}}
+    	= \frac{z\bar z}{\zeta \bar z - \zeta\bar\zeta}=\frac{\bar z}{\bar z -\bar\zeta}
+    	\\
+    	\zeta &= Re^{i\phi} \\
+    	\od{\zeta}{\phi} &= Rie^{i\phi} = \zeta i \\
+    	\dif \zeta &= i\zeta\dif\phi
+        \\
+        \frac{\zeta}{\zeta-z}+\frac{\bar z}{\bar\zeta -\bar z}
+        &= \frac{\zeta(\bar \zeta)+\bar\zeta(\zeta-z)}{\left|\zeta-z\right|^2}
+        = \frac{R^2-r^2}{R^2+r^2-2Rr\cos(\phi-\theta)}
+    \end{align*}
+    %TODO Kehagias Graph 27
+    \begin{align*}
+    \implies f(z) &= \frac{1}{2\pi} \oint
+    \left( \frac{\zeta}{\zeta - z} - \frac{\zeta}{\zeta - z} \right) f(\zeta)\dif\zeta
+    \\ \implies f(z) &= \frac{1}{2\pi} \oint_C \left(
+    \frac{\zeta}{\zeta-z}-\frac{\bar z}{\bar z - \bar\zeta}
+    \right)
+    \\ \implies f(z) &= \frac{1}{2\pi} \oint_C 
+    \frac{\left(R^2-r^2\right) f\left(Re^{i\phi}\right)}{R^2+r^2-2Rr\cos(\theta-\phi)}
+    \end{align*}
+    
+    \paragraph{Παρ.}
+    Να λυθεί το πρόβλημα:
+    %TODO Kehagias Graph 29
+    
+    \begin{align*}
+    	u(r,\theta) &= \frac{1}{2\pi} \int_{0}^{\pi}
+    	\frac{\left(1-r^2\right)100}{1^2+r^2-2r\cos(\theta-\phi)}\dif\phi
+    	\\
+    	u(r,\theta) &= \frac{2\cdot 50}{\pi} \arctan\left(r^2-1,2r\sin\theta\right)
+    \end{align*}
+    
+    \subsubsection{}
+    \begin{gather*}
+    	\frac{\zeta}{\zeta-z} + \frac{\bar z}{\bar \zeta - \bar z}
+    	= \frac{\left|\zeta\right|^2-|z|^2}{\left|\zeta-z\right|^2} \\
+        \frac{\zeta+z}{\zeta - z} 
+        = \frac{\zeta+z}{\zeta - z}\cdot\frac{\bar\zeta-\bar z}{\bar \zeta - \bar z}   
+        = \frac{\zeta\bar\zeta-z\bar z +i \cdot \big( \cdots
+        	 \big)}{\left|\zeta^2-z\right|^2} 	\\
+        \Re\left(\frac{\zeta+z}{\zeta-z}\right)
+        =\frac{\zeta}{\zeta - z} + \frac{\bar z}{\bar\zeta - \bar z}
+        \\
+        \frac{\zeta + z}{\zeta - z} = \frac{1+\frac{z}{\zeta}}{1-\frac{z}{\zeta}}
+        = \left(1+\frac{z}{\zeta}\right)\left(1+\frac{z}{\zeta}
+        +\left(\frac{z}{\zeta}\right)^2+\dots
+        \right)
+        = \Re\left(
+        1+2\frac{z}{\zeta}+2\left(\frac{z}{\zeta}\right)^2
+        +2\left(\frac{z}{\zeta}\right)^3
+        \right)
+        \\
+        z=re^{i\theta}, \quad \zeta = Re^{i\phi} \\
+        \frac{z}{\zeta} = \frac{r}{R} e^{i(\theta-\phi)} \\
+        \left(\frac{z}{\zeta}\right)^2 = \frac{r^2}{R^2}
+        e^{iR(\theta-\phi)} \\
+        \Re\left(\frac{z}{\zeta}\right)^n
+        = \Re\left(
+        \frac{r^n}{R^n}e^{in(\theta-\phi)}
+        \right) = \frac{r^n}{R^n}\cos\left(n(\theta-\phi)\right)
+        \\
+        u(r,\theta) = \frac{1}{2\pi}
+        \left(
+        \sum_{n=0}^\infty \left(\frac{r}{R}\right)^n
+        \cos n(\theta-\phi)
+        \right) u(R,\phi)\dif\phi
+        = \frac{1}{2\pi} \sum_{n=0}^{\infty} \left(\frac{r}{R}\right)^n
+        \int_0^{2\pi} \left(\cos n\theta\cos n\phi + \sin n\theta\sin n\phi
+        \right) u(R,\phi)\dif \phi
+        \\ \hphantom{u(r,\theta)} =
+        \sum_{n=0}^{\infty} \left(\frac{r}{R}\right)^n
+        \left[\cos n\theta \frac{1}{2\pi}
+        \int_{0}^{2\pi} u(R,\phi) \cos n\phi \dif\phi
+        + \sin n\theta \frac{1}{2\pi} \int_{0}^{2\pi}
+        u(R,\phi) \sin n\phi \dif\phi
+        \right]
+        \\ \hphantom{u(r,\theta)} = 
+        \sum_{n=0}^{\infty} \left( \frac{r}{R} \right)^n
+        (
+        a_n\cos n\theta +b_n\sin n\theta
+        ) = u(r,\theta)
+        \\
+        a_n = \frac{1}{2\pi} \int_{0}^{2\pi} u(R,\phi) \cos n\phi\dif\phi,
+        \quad
+        b_n = \frac{1}{2\pi} \int_{0}^{2\pi} u(R,\phi) \sin n\phi\dif\phi
+    \end{gather*}
+    
+    \subsubsection[Επίλυση της εξ. Laplace με χωρισμό μεταβλητών %
+    σε πολικές συντεταγμένες]{%
+    	Επίλυση της \( \nabla^2 u \) με χωρισμό μεταβλητών σε πολικές συντεταγμένες}
+    
+    \[
+    u_{rr} + \frac{1}{r} u_r + \frac{1}{r^2}u_{\theta\theta} = 0
+    \]
+    
+    Υποθέτω ότι η λύση είναι της μορφής \( u(r,\theta) = R(r)\Theta(\theta) \), οπότε:
+    \begin{align*}
+    & R_{rr}\Theta + \frac{1}{r}R_r\Theta+\frac{1}{r^2}R\Theta_{\theta\theta} = 0
+    \\ \xRightarrow{\frac{r^2}{\Theta}} & r^2R_{rr} + rR_r +
+     R\frac{\Theta_{\theta\theta}}{\Theta} = 0
+    \\ \xRightarrow{\frac{1}{\theta}} &
+    \underbrace{\frac{r^2R_{rr}}{R} + \frac{rR_r}{R}}_{k^2}
+    + \underbrace{\frac{\Theta_{\theta\theta}}{\Theta}}_{-k^2} = 0
+    \\ \implies & r^2R_{rr} + rR_r -k^2R = 0 \\
+    & \Theta_{\theta\theta} + k^2\Theta = 0
+    \end{align*}
+    Λύσεις: \( \Theta(\theta) = A_k\cos k\theta + B_k \sin k\theta \)
+    
+    Για να έχει περίοδο \( 2\pi \), πρέπει \( k \in \mathbb N \).
+    
+    Τελικά όλες οι \( \Theta_n(\theta) = A_n\cos n\theta+B_n\sin n\theta \) είναι λύσεις
+    της εξίσωσης \\
+    και αντίστοιχα λύσεις \( R_n(r) \).
+    
+    Οπότε έχω λύσεις \( u_n(r,\theta) = R_n(r)\Theta_n(\theta) \)
+    και επίσης η \( u(r,\theta) = \sum_{n=0}^\infty u_n(r,\theta)
+    = \sum_{n=0}^{\infty} R_n(r) \Theta_n(\theta)
+     \)
+    
+    \underline{Δηλ.}
+    \[
+    \boxed{
+    	u(r,\theta) = \sum_{n=0}^{\infty} R_n(r)
+    	\left(
+    	A_n\cos n\theta + B_n\sin n\theta
+    	\right) 
+    	}
+    \]
 \end{document}
