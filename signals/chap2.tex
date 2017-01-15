@@ -1,5 +1,6 @@
 \section{Ανάλυση Fourier}
-    \subsubsection{Περιοδικές συναρτήσεις με περίοδο $T$}
+    \subsubsection[Περιοδικές συναρτήσεις με περίοδο T]{%
+    	Περιοδικές συναρτήσεις με περίοδο $T$}
     \begin{gather*}
     x_k =\sqrt{\frac{2}{T}} \cos(k\omega t)\qquad \omega = \frac{2\pi}{T}
     \text{ θεμελιώδης κυκλική συχνότητα}
@@ -88,7 +89,7 @@
             F_0 = \sfrac{a_0}{2} \\ F_n = \sfrac{1}{2} (a_n-jb_n)
         \end{array}\)
          \\
-        \hline {\small Τριγωνομετρική} Α  & \(
+        \hline Τριγ. Α  & \(
         \displaystyle f(t)=\frac{a_0}{2}+\sum_{n=1}^\infty a_n\cos(n\omega t)
         +b_n\sin(n\omega t)
          \)  & \(
@@ -106,7 +107,7 @@
          \)
          \\
         \hline
-        {\small Τριγωνομετρική} Β
+        Τριγ. Β
         & \(
         f(t) = A_0 + \sum_{n=1}^\infty A_n\cos(n\omega t+\phi_n)
         \) & &
@@ -646,9 +647,10 @@
      \mathrm u(-t) &\to \pi\delta(\omega)-\frac{1}{j\omega }
      \end{align*}
 
-     \subsubsection{Kramer's Kronig Relations}
+     \subsubsection{Kramers - Kronig Relations}
      Από ηλεκτρομαγνητικό πεδίο: \[
-       \underbrace{\vec D}_{\mathclap{\text{πυκνότητα ροής}}} =
+       \underbrace{\vec D}_{\mathclap{\text{πυκνότητα ροής}}}
+       \qquad = \qquad
        \overbrace{\epsilon }^{\mathclap{\text{διηλεκτρική σταθερά}}}
        \underbrace{\vec E}_{\mathclap{\text{ένταση πεδίου}}}
      \]
@@ -812,7 +814,7 @@
 
      \begin{align*}
      F(\omega ) &= \int_{-\infty}^{\infty} f(t)e^{-j\omega t}\dif t
-     = A \int_{-\sfrac{\tau}{2} }^{\sfrac{\tau}{den} }e^{-j\omega t}\dif t
+     = A \int_{-\sfrac{\tau}{2} }^{\sfrac{\tau}{2} }e^{-j\omega t}\dif t
      \\ &= A\frac{1}{-j\omega }
      \left. e^{-j\omega t}\right|_{\sfrac{\tau}{2}}^{\sfrac{\tau}{2}}
      =\frac{A}{-j\omega }\left[ e^{-j\omega \sfrac{\tau}{2} }

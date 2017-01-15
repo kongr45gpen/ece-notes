@@ -1,10 +1,22 @@
-\documentclass[11pt,a4paper,titlepage,fleqn]{article}
+\documentclass[11pt,a4paper,notitlepage,fleqn,final]{article}
 
 \input{preamble.tex}
 
-\title{Θεωρία Σημάτων και Γραμμικών Συστημάτων - Σημειώσεις}
-\date{2016}
-\author{\textlatin{\csuse{no\greek @numbers}\selectlanguage{english} \url{https://github.com/kongr45gpen/ece-notes}}}
+\title{Θεωρία Σημάτων και Γραμμικών Συστημάτων
+	\\
+	{
+	\normalsize Σημειώσεις από τις παραδόσεις
+	}}
+\date{2016
+	\\
+	{
+	\small Τελευταία ενημέρωση: \today	
+	}
+	}
+\author{
+	Για τον κώδικα σε \LaTeX, ενημερώσεις και προτάσεις:
+\\
+ \url{https://github.com/kongr45gpen/ece-notes}}
 
 \setmainfont{Linux Libertine O}
 \setsansfont{Ubuntu}
@@ -15,10 +27,15 @@
 
 
 \begin{document}
+	\maketitle
+	
+	\tableofcontents
+
 	\include{signals/chap0}
     \include{signals/chap1}
 	\include{signals/chap2}
 	\include{signals/chap3}
+
 
     \section{Θεώρημα Δειγματοληψίας}
     \begin{gather*}
@@ -73,7 +90,9 @@
 
     Αν κάπου δειγματοληπτώ, στον άλλο χώρο είναι περιοδικότητα
 
-    \subsubsection{Συνάρτηση ορθογωνικού παραθύρου μήκους \( T \) στον κόσμο \( t \)}
+    \subsubsection
+    [Συνάρτηση ορθογωνικού παραθύρου μήκους T στον κόσμο t]{%
+    	Συνάρτηση ορθογωνικού παραθύρου μήκους \( T \) στον κόσμο \( t \)}
     \[
     W_T(t) = \begin{cases}
     1 \quad & |t| <  \sfrac{T}{2}  \\
@@ -132,7 +151,7 @@
 
         \end{tikzpicture}
 
-    \subsubsection{}
+    \subsubsection{Δειγματοληψία}
     \begin{tikzpicture}
     \draw[thick] (0,0) circle(0.15);
     \fill[thick] (0,0) circle (0.03);
@@ -290,7 +309,7 @@
     \]
 
     \[
-    \text{\Large Nyquist's Criterion:} \quad \boxed{ \hspace{100pt}
+    \text{\Large Nyquist's Criterion:} \quad \boxed{ \hspace{120pt}
     	\mathlarger{\mathlarger{\mathlarger{\mathlarger{\mathlarger{
     	\underbrace{F_p}_{\mathclap{\text{συχνότητα δειγματοληψίας}}} >
     	2\overbrace{\sigma}^{\mathclap{\text{max frequency}}}
@@ -376,7 +395,7 @@
     \end{scope}
     \end{tikzpicture}
 
-    \subsubsection{Άσκηση για το σπίτι}
+    \paragraph{Άσκηση για το σπίτι}
     \[
     \phi_n^{F,T_s}(t) = \sinc\left(  F(t-nF_p) \right)
     \]
@@ -669,7 +688,7 @@
     έρθει πιο κοντά στο σημείο ασυνέχειας). Αυτό είναι το φαινόμενο Gibbs.
 
     Εάν όμως το \( \sigma \) δεν τείνει στο \( \infty \), το αποτέλεσμα στο \( 0 \) δεν είναι
-    απαραίτητα το ημιάθροισμά των \( x(0^+) \) και \( x(0^-) \).
+    απαραίτητα το ημιάθροισμα των \( x(0^+) \) και \( x(0^-) \).
 
     \subsection*{}
     Ευσταθές ονομάζεται ένα σύστημα όταν πεπερασμένη (φραγμένη στο πλάτος) είσοδος
@@ -686,7 +705,7 @@
     Ένα σύστημα είναι ευσταθές όταν \( \forall  \) είσοδο \( x(t) \in BF \) η έξοδος του
     συστήματος είναι επίσης φραγμένη (\( y(t) \in BF \)).
     (
-    Αν το σύστημά μας είναι γραμμικό και ΑΚΜ (αμετάβλητο κατά τη μετατόπισης)
+    Αν το σύστημά μας είναι γραμμικό και ΑΚΜ (Αμετάβλητο Κατά τη Μετατόπιση)
     \[
     \exists h(t) \text{ κρουστική απόκριση }\quad y(t) = h(t)*x(t) = \int_{-\infty}^{\infty}
     h(\tau)x(t-\tau)\dif\tau
@@ -843,7 +862,7 @@
    	\text{\small ΞΕΡΩ} \\ \text{\small Γραμμικό} \\ \text{\small Χρον. Αμετάβλητο}
    	\end{matrix}\right] \rightarrow h(t) = 0 \quad \forall t < 0 \)
    	\item \underline{Ευσταθές} \qquad
-   	Για κάθε φραγμένει είσοδο, η έξοδος είναι φραγμένη
+   	Για κάθε φραγμένη είσοδο, η έξοδος είναι φραγμένη.
 
    	\( \left[\begin{matrix}
    	\text{\small ΞΕΡΩ} \\ \text{\small Γραμμικό} \\ \text{\small Χρον. Αμετάβλητο}
@@ -864,7 +883,7 @@
    	\item Συγκεντρωμένο
    \end{enumerate}
 
-   \subsection{}
+   \subsection{Περιγραφή συστήματος με διαφορική εξίσωση}
    \[
    \sum_{i=0}^{n} a_i \od[i]{}{t} y(t) = \sum_{l=0}^m b_l \od[l]{}{t}x(t) \qquad
    t \geq 0
@@ -987,7 +1006,7 @@
    	{\mathclap{\text{μεταβατική λύση}}}
    \end{align*}
 
-    \subsection{dB}
+    \subsection{Decibels (dB)}
     Έστω
     \begin{align*}
     	x_A(t) &= A\sin(\omega_1 t) \\
@@ -1477,7 +1496,7 @@
     	\\ &= (2\pi)^2 \int_{-\infty}^{\infty} x(\tau_1)2\pi \delta(\tau_1+t)\dif\tau_1
     	= (2\pi)^3 \int_{-\infty}^{\infty} x(\tau_1)\delta(\tau_1+t)\dif\tau_1 =
     	(2\pi)^3 x(-t) \\
-    	Y_2(\omega) &= (2\pi)^3 X(-\omega)
+    	Y_2(\omega) &= (2\pi)^3 X(-\omega) \\
     	y_3(t) &= \left. 2\pi Y_2(-\omega ) \right|_{\omega =t}
     	= \left. (2\pi)^3 X(\omega ) \right|_{\omega = t} \\ &= (2\pi)^4 X(t)
     \end{align*}
@@ -1486,5 +1505,4 @@
     	Στις εξετάσεις θα κουβαλήσουμε ένα δικό μας μαθηματικό τυπολόγιο
     	(π.χ. Schaum's Tables \& Formulas)
     \end{attnbox}
-
 \end{document}

@@ -304,15 +304,15 @@
     \paragraph{Ex. 1}
     \( x(t)= e^{-at}\mathrm ut() \)
 
-    \( \displaystyle
-    X(s) = \int_{0^-}^\infty x(t)e^{-st}\dif t
+    \begin{align*}
+    X(s) &= \int_{0^-}^\infty x(t)e^{-st}\dif t
     =\int_{0^-}^\infty e^{-at}e^{-st}\dif t
     = \int_{0^-}^\infty e^{-(a+s)t}\dif t
     =\left. \frac{e^{-(a+s)t}}{-(a+s)}\right|_0^\infty
-    = \frac{\cancelto{0}{e^{-(a+s)\infty}} -\cancelto{1}{e^{-(a+s)0}} }{-(a+s)}
+    \\ &= \frac{\cancelto{0}{e^{-(a+s)\infty}} -\cancelto{1}{e^{-(a+s)0}} }{-(a+s)}
     = \boxed{\frac{1}{s+a} \quad
         \Re\left\lbrace s \right\rbrace > \Re\left\lbrace a \right\rbrace}
-     \)
+    \end{align*}
 
 
    \paragraph{Ex. 2}
@@ -456,7 +456,7 @@
 
     \subsubsection*{}
     \paragraph{Ex. 1}
-    \hfill[0pt]
+    \hspace{0pt}
 
     \begin{tikzpicture}[scale=1.2]
 
@@ -606,7 +606,10 @@
     s^3F - \cancel{s^2f_0 - sf_0' -f_0''}
     +6 \left[ s^2F-\cancel{sf_0-f_0} \right]
      + 11 \left[ sF - \cancel{f_0} \right] + 6F
-    &= \frac{1}{s} \\
+    &= \frac{1}{s} 
+    \end{align*}
+    \vspace{-27pt}
+    \begin{align*}
     F(s^3+6s^2+11s+6)&= \frac{1}{s}
     \implies F(s) = \frac{1}{s(s+1)(s+2)(s+3)}
     \\ F(s) &= \frac{\sfrac{1}{6} }{s}
