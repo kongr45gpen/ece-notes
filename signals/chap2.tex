@@ -561,12 +561,10 @@
         \end{scope}
         \end{tikzpicture}
 
-     \end{enumgreekpar}
-
-     \subsubsection{}
-     \[
+	\item
+     \( \displaystyle
      \mathrm{sgn}(t) = \frac{|t|}{t}
-     \]
+     \)
 
      \begin{tikzpicture}
      \draw[->] (0,-2) -- (0,2);
@@ -593,10 +591,10 @@
      \\ &= \frac{2}{j\omega }\in\mathbb I
      \end{align*}
 
-     \paragraph{}
+     \item \( \displaystyle \mathrm u(t) \)
      \begin{align*}
-     u(t) &\xrightarrow{\text{F.T.}} \\
-     u(t) &= \frac{1}{2}+\frac{1}{2}\mathrm{sgn}(t)
+     \mathrm u(t) &\xrightarrow{\text{F.T.}} \\
+     \mathrm u(t) &= \frac{1}{2}+\frac{1}{2}\mathrm{sgn}(t)
      \xrightarrow{\text{F.T.}} \pi\delta(\omega ) +\frac{1}{j\omega }
      \end{align*}
 
@@ -609,7 +607,7 @@
      \draw (1,-1) node[right] {$X(0) \to$ εκφράζει το D.C};
      \end{tikzpicture}
 
-     \subsubsection{}
+     \paragraph{}
      \begin{align*}
      \mathrm u(t) &\xrightarrow{\text{F.T.}} \pi\delta(\omega )+\frac{1}{j\omega }\\
      f(t) &\xrightarrow{\text{F.T.}} F(\omega ) \\
@@ -618,7 +616,7 @@
      G(\omega ) &= F(\omega )\cdot\left[ \pi\delta(\omega )+\frac{1}{j\omega } \right]
      \end{align*}
 
-     \subsubsection{}
+     \paragraph{}
      \begin{align*}
      \delta(t) &\to 1 \quad \text{άρτια} \\
      \delta^{(1)}(t)=\od{}{t}\delta(t) &\to j\omega \\
@@ -629,7 +627,9 @@
      t^n \to 2\pi j^n\delta^{(n)}(\omega )
      \end{align*}
 
-     \subsubsection{}
+	 \end{enumgreekpar}
+
+     \paragraph{}
      \paragraph{Παρ.}
      \begin{align*}
      f(t)&=|t| = t\mathrm u(t) - t\mathrm u(-t)\\
