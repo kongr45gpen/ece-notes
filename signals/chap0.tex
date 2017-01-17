@@ -97,11 +97,13 @@
 	\end{itemize}
 
 	\paragraph{}
+	Υποστηρίζω ότι κάθε συνάρτηση μπορεί να γραφεί σαν άθροισμα μιας άρτιας και μιας περιττής:
+
 	\( \forall x(t) \quad \exists\ x_0(t), x_e(t): x(t) = x_e(t)+x_0(t) \)
 	\subparagraph{Απόδ.}
 	\begin{align*}
 		x_e(t) &= \frac{x(t)+x(-t)}{2} \\
-		x_o(t) &= \frac{x(t)-x(-t)}{2}
+		x_o(t) &= \frac{x(t)-x(-t)}{2}.
 	\end{align*}
 
 	\paragraph{}
@@ -293,18 +295,18 @@
     απόκριση \( h(t) \).
     \subparagraph{Απόδ.} Από παραπάνω, γνωρίζουμε ότι
     \(
-    x(t) = \int_{-\infty}^\infty x(t)\delta(t-\tau)\dif t
+    x(t) = \int_{-\infty}^\infty x(t)\delta(t-\tau)\dif \tau
     \)
     \begin{align*}
-    y(t) &= \mathscr L \left\lbrace y(t) \right\rbrace =
+    y(t) &= \mathscr L \left\lbrace x(t) \right\rbrace =
     \mathscr L \left\lbrace \int_{-\infty}^{\infty} x(t)\delta(t-\tau) \dif \tau
      \right\rbrace
      \\ & \overset{\text{linearity}}{=} \int_{-\infty}^{\infty} \mathscr L
-     \left\lbrace x(\tau)\delta(t-\tau) \right\rbrace
+     \left\lbrace x(t)\delta(t-\tau) \right\rbrace \dif\tau
      \\ &= \int_{-\infty}^{\infty} x(\tau) \mathscr L \left\lbrace
      \delta(t-\tau)
       \right\rbrace \dif \tau
-      \\ & \underset{TSI}{\overset{\text{ΑΚΜ}}{=}}
+      \\ & \underset{\underbrace{\text{TSI}}_{\text{Time shift invariant}}}{\overset{\text{ΑΚΜ}}{=}}
        \int_{-\infty}^{\infty} x(\tau) h(t-\tau)\dif \tau
        \\ y(t) &= \int_{-\infty}^{\infty}
         x(\tau)
@@ -482,7 +484,7 @@
     	\]
 
     	Αν περιοδική τότε \begin{align*}
-    	\bar x(t) &= \frac{1}{T} = \int_0^T x(t)\dif t \\
+    	\bar x(t) &= \frac{1}{T} \int_0^T x(t)\dif t \\
     	&= \frac{1}{T} \int_{t_0}^{t_0+T} x(t)\dif t
     	\end{align*}
     	\item \textbf{Ενεργός τιμή (Root Mean Square Value)}
@@ -536,7 +538,7 @@
     \[ h(t)=\mathscr L\left\lbrace \delta(t) \right\rbrace \]
     \[ y(t) = \int_{-\infty}^{\infty} x(\tau)h(t-\tau)\dif\tau
     = \underbrace{x(t)}_{\mathclap{\text{είσοδος}}}
-    \underbrace{*}_{\text{συνέλιξη}}
+    \overset{\substack{\text{συνέλιξη}\\\uparrow}}{*}
     \underbrace{h(t) }_{\mathclap{\text{κρουστική απόκριση}}}\]
 
     \paragraph{Συνέλιξη - Convolution}
