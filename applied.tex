@@ -3303,8 +3303,213 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		\]
     	\end{enumlatin}
     \end{theorem*}
+    
+    \paragraph{Άσκ.}
+    Υπολογίστε το \( \displaystyle \int_{-\infty}^{\infty} \frac{\cos(kx)}{x^2+1} \dif x
+    \quad (k \in \mathbb Z^*)\)
+    
+    \subparagraph{}
+    Σκέφτομαι να χρησιμοποιήσω \( e^{-ikx} \) και μετασχηματισμό Fourier.
+    
+    \begin{itemize}
+    	\item Ορίζω \( \displaystyle f(z) = \frac{1}{z^2+1} \)
+    	\item Προφανώς: \( 
+    	\displaystyle
+    	\lim_{z\to \infty} \frac{1}{z^2+1} = \lim_{z\to \infty}\frac{1}{z^2}
+    	\cdot \frac{1}{1+\frac{1}{z^2}} = 0\cdot 1 = 0
+    	 \)
+    	\item Ανώμαλα σημεία της \( f \): αυτά που μηδενίζουν παρονομαστή, άρα:
+    	\[
+    	z^2+1 = 0 \iff \boxed{z = \pm i},
+    	\]
+    	τα οποία είναι προφανώς απλοί πόλοι.
+    	\item Χωρίς περιορισμό γενικότητας, εργάζομαι μόνον για \( k>0 \) (διότι λόγω
+    	\( \cos \) που είναι άρτια συνάρτηση ισχύει \( I_{-k} = I_k \quad (k>0) \)).
+    	
+    	\subparagraph{}
+    	Τότε, από θεωρία:
+    	\begin{align*}
+    	\lim_{R\to \infty} \int_{-R}^{R} f(x) e^{-ikx} \dif x &=
+    	-2\pi i \cdot Res\left(
+    	f(z)e^{-ikz}
+    	, -i \right)
+    	\end{align*}
+    	
+    	\item Αλλά:
+    	\begin{align*}
+    	\Res \left(
+    	f(z)e^{-ikz},-i
+    	\right) &= \lim_{z\to -i} (z+i)\frac{e^{-ikz}}{z^2+1}
+    	\\ &= \lim_{z\to -i} \frac{e^{-ikz}}{z-i} = \frac{e^{-k}}{-2i} = i\frac{e^{-k}}{2}
+    	 \end{align*}
+    \end{itemize}
+    
+    \textbf{Τελικά}:
+    \begin{align*}
+    & \lim_{R\to \infty} \int_{-R}^{R} f(x)e^{-ikx} \dif x = -2\pi i\cdot i\frac{e^{-k}}{2}
+    = \underline{\pi e^{-k}}
+    \\ \implies & \lim_{R\to + \infty} \int_{_R}^{R} f(x) \cos(kx)\dif x
+    - i \lim_{R\to +\infty} \int_{_R}^{R} f(x)\sin(kx)\dif x
+    = \pi e^{-k} - 0
+    \\ \implies & \lim_{R\to +\infty} \int_{-R}^{R} f(x)\cos(kx)\dif x = \pi e^{-k}
+    \quad (k > 0)
+    \end{align*}
+
+    Εφόσον \( I_{-k} = I_k \), τελικά:
+    \[
+    \int_{\mathbb{R}} f(x)\cos(kx)\dif x = \pi e^{-k} \ \forall k\in\mathbb{Z}^*
+    \]
+    
+    Αν ήθελα να υπολογίσω το \( \int_{\mathbb R} \left(\frac{\cos(kx)}{x^2+1}\right) \), με
+    \( f(z) = \frac{\cos(kz)}{z^2+1} \), παρατηρώ ότι \( \displaystyle \lim_{z\to \infty}
+    zf(z) \neq 0
+     \).
+     
+    \subsubsection{Αντίστροφος μετασχηματισμός Laplace}
+    Είναι γνωστό ότι αν \( f:[0,+\infty) \to \mathbb C \) είναι
+    τμηματικά συνεχής στο \( [0,b] \ \forall b>0 \) και εκθετικής
+    τάξης \( a \in \mathbb R \), δηλ.
+    \[
+    \left| f(t) \right| \leq Ce^{at} \quad \forall t>b,
+    \]
+    όπου \( b,c > 0 \), τότε ορίζεται ο μετασχηματισμός Laplace ως εξής:
+    \[
+    L\big(f\big)(z) = \int_{0}^{+\infty} f(t) e^{-zt}\dif t
+    \qquad \forall z: |z|>a
+    \]
+    
+    \textbf{Τότε}:
+     \( \displaystyle \lim_{z\to \infty} F(z) = 0 \)
+
+    \begin{theorem*}{Αντιστροφή Laplace}
+    	Έστω \( F = F(z) \) είναι ο μετασχ. Laplace συνάρτησης \( f \), και έστω ότι η
+    	\( F \) είναι ολόμορφη στο \( \mathbb C  \), εκτός πεπερασμένου πλήθους απομονωμένων
+    	ανώμαλων σημείων \( z_1,\dots,z_n \) (και φυσικά \( \lim_{z\to \infty} F(z) = 0 \)).
+
+    	Τότε για οποιοδήποτε \( \gamma \in \mathbb R \), τέτοιο ώστε όλα τα ανώμαλα σημεία
+    	της \( F \) βρίσκονται στα αριστερά της κατακόρυφης ευθείας \( \gamma+it, \ t
+    	\in \mathbb R
+    	 \), έχουμε:
+    	\begin{align*}
+    	f(t) &= \frac{1}{2\pi i} \lim_{R\to \infty} \int_{\gamma-iR}^{\gamma+iR}
+    	F(z) e^{zt}\dif z \qquad \mathsmaller{\mathsmaller{(t \geq 0)}} \\
+    	&= \sum_{j=1}^{n} \Res\left( F(z)e^{zt}, z_j \right)
+    	\end{align*}
+    \end{theorem*}
+    
+    \paragraph{π.χ.}
+    Βρείτε τον αντίστροφο μετασχ. Laplace της \( \displaystyle F(z)= \frac{z}{(z+4)(z-1)}
+    \quad \left(|z|>1\right)
+     \)
+    
+    \begin{itemize}
+    	\item Προφανώς \( \displaystyle \lim_{z\to \infty} = 0 \)
+    	\item Έχω δύο ανώμαλα σημεία \( z=-4,\ z=1 \) που είναι απλοί πόλοι
+    	
+    	Τότε:
+    	\[
+    	f(t) = \Res\left(F(z)e^{zt},-4\right) + \Res\left(F(z)e^{zt},1\right)
+    	\]
+    	
+    	\item \textbf{Αλλά}:
+    	\begin{itemize}
+    		\item \( 
+    		\displaystyle
+    		\Res\left(F(z)e^{zt},4\right) =
+    		\lim_{z\to -4} \frac{\cancel{(z-4)}e^{zt}\cdot z}{\cancel{(z+4)}(z-1)}
+    		= \frac{4e^{-4t}}{5}
+    		 \)
+    		\item \( 
+    		\displaystyle
+    		\Res\left(F(z)e^{zt},1\right) =
+    		\lim_{z\to 1} \cancel{(z-1)} \frac{e^{zt}\cdot z}{(z+4)\cancel{(z-1)}}
+    		= \frac{e^t}{5}
+    		\)
+    	\end{itemize}
+    	\item \textbf{Τελικά:}
+    	\[
+    	f(t) = \frac{e^t}{5} + \frac{4e^{-4t}}{5}
+    	\]
+    \end{itemize}
+    
+    \paragraph{Άσκ.}
+    Αν \underline{\( z_0 \) πόλος} της \( f=f(z) \) τάξης \( N \),
+    ΝΔΟ \underline{\( z_0 \) πόλος} της \( f' \) τάξης \( N+1 \)
+
+    \subparagraph{}
+    \begin{attnbox}{}
+    	Θα χρειαστούμε τον ορισμό του πόλου.
+    \end{attnbox}
+    Αφού \( z_0 \) πόλος της \( f \) τάξης \( N \), τότε,
+    εξ' ορισμού:
+    \begin{align*}
+    	f(z) &= \frac{h(z)}{(z-z_0)^N}, \ \text{όπου $h(z)$ ολόμορφη στο $z_0$
+    		με $h(z_0) \neq 0$} \\
+    	f'(z) &= \frac{h'(z)(z-z_0)^N-N(z-z_0)^{N-1}h(z)}{(z-z_0)^{2N}}
+    	\\ &= \frac{h'(z)(z-z_0) - Nh(z)}{(z-z_0)^{N+1}},
+    \end{align*}
+    άρα \( z_0 \) πόλος τάξης \( N+1 \) της \( f' \), διότι μηδενίζει \( N+1 \) φορές
+    παρονομαστή (το \( z_0 \)) ενώ δε μηδενίζει αριθμητή, εφόσον
+    \[
+    h'(z_0)\, (z_0-z_0) - Nh(z_0) = -Nh(z_0) \neq 0
+    \]
+    (αφού \( h(z_0) \neq 0 \))
+    
+    \paragraph{Άσκ.}
+    Υπολογίστε το \( \displaystyle \mathsmaller{I=}
+    \int_{|z+2|=1} (z-3)\sin\left( \frac{1}{z+2} \right)\dif z
+     \)
+    
+    \subparagraph{}
+    \begin{attnbox}{}
+    	Επειδή το ολοκλήρωμα δεν είναι στο \( \infty \), δεν χρησιμοποιώ Fourier/Laplace,
+    	απλώς το θεώρημα ολοκληρωτικών υπολοίπων.
+    \end{attnbox}
+    
+    \begin{itemize}
+    	\item Από θεωρ. υπολοίπων:
+    	\begin{align*}
+    		I &= 2\pi i \sum_{j=1}^{n} \Res\left(
+    		f, z_j \text{όλα τα ανώμαλα εντός κύκλου}
+    		\right)
+    		\\ &= 2\pi i \Res\left(f,-2\right),
+    	\end{align*}
+    	διότι \( -2 \) ανήκει στον κύκλο \( |z+2|=1 \).
+    	
+    	\item Ταξινόμηση του \( z_0 = -2 \).
+    	
+    	Το \( z_0 = -2 \) ουσιώσης ανωμαλία (σύνθεση ολόμορφης - της \( \sin z \) - με την
+    	\(\frac{1}{z+2}\) που έχει απλό πόλο. Εμπειρικά τότε η
+    	\( \sin\left(\frac{1}{z+2}\right) \)
+    	έχει ουσιώδη ανωμαλία στο \( z_0=-2 \))
+
+        \item Υπολογισμός υπολοίπου
+        Αφού \( z_0 = -2 \) ουσιώδες ανώμαλο σημείο της
+        \( (z-3)\sin\left(\frac{1}{z+2}\right) \), αναπτύσσω σε σειρά Laurent.
+        
+        Θέτω \( z+2 = u \), τότε: \( \displaystyle
+        (z-2)\sin\left(\frac{1}{z+2}\right) = (u-5)\sin\left(\frac{1}{u}\right)
+        \overset{\text{τύπος}}{=} (u-5)\left(
+        \frac{1}{u} - \frac{1}{3!u^3} + \frac{1}{5!u^5} - \dots
+        \right) = 1-\frac{1}{3!u^2}+\frac{1}{5!u^4} - \dots
+        - \frac{5}{u} + \frac{5}{6u^3} - \frac{1}{24u^5} + \dots
+        = 1 \boxed{-\frac{5}{u}} -\frac{1}{6u^2} - \dots = 1-\frac{5}{z+2} - \dots
+         \)
+         
+        \begin{infobox}{}
+        	Θα δίνονται τύποι μερικών γνωστών σειρών McLaurin στο τυπολόγιο.
+        \end{infobox}
+
+        \textbf{Εξ' ορισμού:} \( \Res(f,-z) = -5 \).
+        
+        Τελικά: \[
+        I = 2\pi i(-5) = -10\pi i
+        \]
+    \end{itemize}
+
 
 	\newpage
+
 
 	\part{Κεχαγιάς}
 	Σπιτεργασίες λιγότερες από πέρσι, για 1 βαθμό, αφορούν μόνο το μέρος του Κεχ.
