@@ -338,7 +338,7 @@
     \[
     \int_{-\infty}^{\infty} \mathrm u(t)\phi(t)\dif t =
     \mathscr N_{\mathrm u}\left\lbrace \phi(t) \right\rbrace =
-    \int_0^\infty \underbrace{\phi(t)}_{\mathclap{\text{number}}}\dif t
+    \underbrace{ \int_0^\infty \phi(t)\dif t}_{\mathclap{\text{number}}}
     \]
     \begin{tikzpicture}
     \begin{axis}[%
@@ -721,11 +721,15 @@
     \end{tikzpicture}
 
     \subparagraph{Αναλυτική μέθοδος}
+    \hspace{0pt}
+
     Παρατηρώ ότι: \[
-    \int_{-\infty}^{\infty} f(t,\tau) \mathrm u(t-\xi)\mathrm u(\phi-\tau)\dif\tau
+    \int_{-\infty}^{\infty} f(t,\tau) \mathrm u(\tau-\xi)\mathrm u(\phi-\tau)\dif\tau
     = \int_{\xi}^\phi f(t,\tau)\dif\tau\mathrm u(\phi-\xi)
     \]
 
+	{
+	\setlength{\mathindent}{-10cm}
     \begin{align*}
     f(t) &= \int_{-\infty}^{\infty}
     \underbrace{2(1-\tau)}_{\mathclap{x(\tau)}}\left[\mathrm u(\tau)-\mathrm u(\tau+1) \right]\left[
@@ -740,19 +744,18 @@
     -\int_0^{t-2}x(\tau)\dif\tau \mathrm u(t-2)
     +\int_1^{t-2}x(\tau)\dif\tau\mathrm u(t-3)
     \\ &=
-    \mathsmaller{\mathsmaller{
     (2t-t^2)\mathrm u(t) - \left[2t-t^2-1\right]\mathrm u(t-1)
     - \left[ 2(t-2)-(t-2)^2 \right] \mathrm u(t-2)+
     \left[
     2(t-2)-(t-2)^2-1
     \right] \mathrm u(t-3)
-	}}
     \end{align*}
+	}
 
     \paragraph{Ex}
     \begin{align*}
     f_1(t) &= e^t\mathrm u(-t) \\
-    f_2(t) &= \mathrm u(t+2)-u(t+1) \\
+    f_2(t) &= \mathrm u(-t+2) \\
     f &= f_1*f_2
     \end{align*}
     \begin{align*}
@@ -852,7 +855,7 @@
 	+\left[ e^{t+1}-1 \right]\mathrm u(t+1)
 	\end{align*}
 
-
+	\vspace{1cm}
 	\paragraph{}
 	\( \exists h(t) \) ανν LTI
 	\begin{align*}
