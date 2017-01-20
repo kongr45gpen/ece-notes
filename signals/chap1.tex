@@ -125,7 +125,7 @@
     \draw[dashed] (X) -- ++(50:3.4);
     \draw[dashed] (Y) -- ++(2.5,0);
 
-    \draw (5,0.5) node {$\hat x \not\perp \hat y$};
+    \draw (5,0.5) node {$\hat x \nperp \hat y$};
     \end{tikzpicture}
 
     \begin{gather*}
@@ -207,7 +207,8 @@
     \begin{gather*}
     2\vec{a_i}-2\int_{\Delta} f(t)\phi(t)\dif t = 0 \implies
     \vec{a_i} = \overbrace{\int_\Delta
-    \underbrace{f(t)}_{\mathclap{\text{προβολή του διανύσματος στο μοναδιαίο}}}
+    \underset{\substack{\downarrow\\\mathclap{\raisebox{-1ex}{\text{\scriptsize%
+    			προβολή του διανύσματος στο μοναδιαίο}}}}}{f(t)}
     \phi_i(t)\dif t}^{\mathclap{\text{όπως το } k=\vec a \cdot \vec x}} = a_i
     \end{gather*}
 
@@ -222,7 +223,7 @@
     \[
     \left\langle f,\phi_i \right\rangle = \left\langle
     \sum_{n=0}^{+\infty}a_n\phi_n,\phi_i\right\rangle
-    = \sum_{n=0}^{+\infty} a_n\left\langle \phi_nm\phi_i \right\rangle
+    = \sum_{n=0}^{+\infty} a_n\left\langle \phi_n,\phi_i \right\rangle
     = a_i \quad \text{όπως στα διανύσματα}
     \]
 
