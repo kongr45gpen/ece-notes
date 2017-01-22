@@ -344,7 +344,7 @@
      \right)(\cos\omega t -j\sin \omega t)\dif t
      \\ &= \cancel{\int_{-\infty}^{\infty} f_o\cos\omega t\dif t}
      + \int_{-\infty}^{\infty} f_e\cos\omega t\dif t
-     - j\int_{-\infty}^{\infty} \sin\omega t\dif t
+     - j\int_{-\infty}^{\infty} f_o(t) \sin\omega t\dif t
      - j \cancel{\int_{-\infty}^{\infty} f_e\sin\omega t\dif t }
      \end{align*}
 
@@ -352,8 +352,8 @@
      \( \Re\left\lbrace F(\omega ) \right\rbrace \) είναι άρτια \\
      \( \Im\left\lbrace F(\omega ) \right\rbrace \) είναι περιττή \\
      \( A(\omega)=\left|F(\omega )\right| =
-     \sqrt{\Re^2\left\lbrace F(\omega ) \right\rbrace}
-     +\Im^2\left\lbrace F(\omega) \right\rbrace
+     \sqrt{\Re^2\left\lbrace F(\omega ) \right\rbrace
+     +\Im^2\left\lbrace F(\omega) \right\rbrace}
       \) είναι άρτια\\
       \( \Phi(\omega) =\arctan
       \frac{\Im\left\lbrace F(\omega) \right\rbrace}%
@@ -443,7 +443,7 @@
 
      \paragraph{Τι συμβαίνει με τη συνέλιξη}
      \begin{align*}
-     g(t) &= x(t)*h(t) \\
+     y(t) &= x(t)*h(t) \\
      x(t)&\to X(\omega )\\
      h(t)&\to H(\omega )\\
      y(t)&\to Y(\omega) = X(\omega)H(\omega)
@@ -570,7 +570,7 @@
      \draw[->] (0,-2) -- (0,2);
      \draw[->] (-2,0) -- (2,0) node[below] {$t$};
 
-     \draw[ultra thick,blue] (-2,-1) -- ++(2,0) node[right] {$-1$};
+     \draw[ultra thick,blue] (-2,-1) -- ++(2,0) node[right] {$1$};
      \draw[ultra thick,blue] (2,1) -- ++(-2,0) node[left] {$-1$};
      \end{tikzpicture}
 
