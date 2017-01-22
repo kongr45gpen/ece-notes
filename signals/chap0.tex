@@ -765,7 +765,8 @@
     \mathrm u\left( -(t-\tau)+2 \right)\dif\tau
     \\&= \int_{-\infty}^{\infty} e^\tau \mathrm u(-\tau)
     \mathrm u(\tau-t+2)\dif\tau
-    \\&= \int_{t-2}^0 e^\tau\dif\tau\mathrm u(t-2)
+    \\ &= \int_{-\infty}^{\infty} e^\tau \mathrm u(\tau)\mathrm u(-t+2-\tau)\dif\tau
+    \\&= \int_{t-2}^0 e^\tau\dif\tau\mathrm u(2-t)
     \\&= \left. e^\tau \right|_{t-2}^0\mathrm u(2-t)
     \\&=\left[ 1-e^{t-2} \right]\mathrm u(2-t)
     \end{align*}
