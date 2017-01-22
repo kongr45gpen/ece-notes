@@ -31,9 +31,13 @@
 
 % Fix long xleft(right)arrow
 %FIXME: Fails for long arrows
-\patchcmd{\arrowfill@}{-2mu}{-10mu}{}{}
-\patchcmd{\arrowfill@}{-2mu}{-10mu}{}{}
-\patchcmd{\arrowfill@}{-7mu}{-5mu}{}{}
-\patchcmd{\arrowfill@}{-7mu}{-5mu}{}{}
+%\patchcmd{\arrowfill@}{-2mu}{-10mu}{}{}
+%\patchcmd{\arrowfill@}{-2mu}{-10mu}{}{}
+%\patchcmd{\arrowfill@}{-7mu}{-5mu}{}{}
+%\patchcmd{\arrowfill@}{-7mu}{-5mu}{}{}
+  \patchcmd{\arrowfill@}{-7mu}{-14mu}{}{}
+  \patchcmd{\arrowfill@}{-7mu}{-14mu}{}{}
+  \patchcmd{\arrowfill@}{-2mu}{-4mu}{}{}
+  \patchcmd{\arrowfill@}{-2mu}{-4mu}{}{}
 \makeatother
 
