@@ -338,7 +338,7 @@
     \end{center}
     \begin{gather*}
     W_F(f): \sigma < \sfrac{F}{2}  < F_p-\sigma \\
-    \underbrace{F_p = W_F(f)\cdot G^S(f)}_{\downarrow FT}
+    \underbrace{F_p = W_F(f)\cdot G^S(f)}_{\downarrow ΙFT} \\
     F_p g(t) = \mathscr F^{-1} \left\lbrace W_F(f) \right\rbrace
     * \mathscr F^{-1} \left\lbrace G^S(f) \right\rbrace
     \end{gather*}
@@ -857,17 +857,16 @@
    	Η αντίσταση είναι ένα στιγμιαίο σύστημα, ενώ ο πυκνωτής και το πηνίο δεν είναι.
    	\item \underline{Αιτιατό} \qquad
    	Η έξοδος δεν εξαρτάται από μελλοντικές τιμές της εισόδου
-
-   	\( \left[\begin{matrix}
+   	\[ \left[\begin{matrix}
    	\text{\small ΞΕΡΩ} \\ \text{\small Γραμμικό} \\ \text{\small Χρον. Αμετάβλητο}
-   	\end{matrix}\right] \rightarrow h(t) = 0 \quad \forall t < 0 \)
+   	\end{matrix}\right] \implies h(t) = 0 \quad \forall t < 0 \]
+
    	\item \underline{Ευσταθές} \qquad
    	Για κάθε φραγμένη είσοδο, η έξοδος είναι φραγμένη.
-
-   	\( \left[\begin{matrix}
+   	\[ \left[\begin{matrix}
    	\text{\small ΞΕΡΩ} \\ \text{\small Γραμμικό} \\ \text{\small Χρον. Αμετάβλητο}
-   	\end{matrix}\right] \rightarrow \int_{-\infty}^{\infty} \left|h(t)\right|\dif t
-   	< \infty \)
+   	\end{matrix}\right] \implies \int_{-\infty}^{\infty} \left|h(t)\right|\dif t
+   	< \infty \]
 
    	\item \underline{Συγκεντρωμένο και Κατανεμημένο}
    	\qquad Συγκεντρωμένο λέγεται όταν μοναδική ελεύθερη μεταβλητή είναι ο χρόνος \( t \).
@@ -877,7 +876,7 @@
    \begin{enumerate}[itemsep=-1mm]
    	\item Μη γραμμικό
    	\item Χρονοαμετάβλητο
-   	\item Δυναμικό
+   	\item Στατικό (στιγμιαίο)
    	\item Αιτιατό
    	\item Ευσταθές
    	\item Συγκεντρωμένο
