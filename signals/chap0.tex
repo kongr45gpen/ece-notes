@@ -246,11 +246,13 @@
 
 	\paragraph{}
 	\begin{tikzpicture}[scale=0.8]
-	\draw (-1,1) rectangle (3,-1) node[midway] {system};
+	\draw (-1,1) rectangle (3,-1) node[midway,style={align=center}] {system\\$\mathscr L$};
 
 	\draw[->] (-5,0) -- (-1,0) node[midway,above] {$x(t)$} node[midway,below] {input signal};
 	\draw[->] (3,0) -- (7,0) node[midway,above] {$y(t)$} node[midway,below] {output signal};
 	\end{tikzpicture}
+
+	Έστω \( \mathscr{L} \) το παραπάνω σύστημα (όχι ο μετασχηματισμός Laplace!), και:
 	\begin{gather*}
 		y(t) = \mathscr{L}\left\lbrace x(t) \right\rbrace \\
 		\forall x_1(t)\ x_n(t)\\
