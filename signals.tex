@@ -43,7 +43,7 @@
     	x(t) = \int_{-\infty}^{\infty} X(f) e^{j2\pi f t}\dif t\\
     	x_1(t) x_2(t) \xrightarrow{\mathscr F} X_1(f)*X_2(f)\\
     	X_1(f) X_2(f) \xrightarrow{\mathscr F^{-1}} x_1(t)*x_2(t)\\
-    	\mathrm{sinc} (t) = \frac{\sin(\pi t)}{t}
+    	\mathrm{sinc} (t) = \frac{\sin(\pi t)}{\pi t}
     \end{gather*}
 
     Συνάρτηση δειγματοληψίας: \(
@@ -279,7 +279,7 @@
 
     \draw[dashed] (2.5,1.5) -- ++(0,-1.5) node[below] {$F_P$};
     \draw[->] (1.5,-0.05) -- (1.5,-0.4) node[below] {$\mathsmaller{F_P-\sigma}$};
-    \draw[->] (3.5,-0.05) -- (3.5,-0.4) node[below] {$\mathsmaller{F_P-\sigma}$};
+    \draw[->] (3.5,-0.05) -- (3.5,-0.4) node[below] {$\mathsmaller{F_P+\sigma}$};
 
     \draw[green!50!black,very thick] (-1.3,0) -- ++(0,0.7)
     node[above,rotate=45,xshift=15pt,yshift=-1mm] {$W_F(f)$}
@@ -738,7 +738,7 @@
     \end{tikzpicture}
 
     \[
-    W_F(f) \xrightarrow{\text{IFT}} h(t) = F\sinc (Ft) = F \frac{\sinc(\pi Ft)}{\pi Ft}
+    W_F(f) \xrightarrow{\text{IFT}} h(t) = F\sinc (Ft) = F \frac{\sin(\pi Ft)}{\pi Ft}
     \]
 
     \begin{tikzpicture}[scale=1.2]
