@@ -361,6 +361,8 @@
     g(t) = \sum_n g(nT_s) \sinc\left( \frac{1}{T_s} (t-nT_s) \right)
     \]
 
+	\paragraph[Δειγματοληψία όταν Fp=2σ]{Δειγματοληψία όταν \(F_p=2\sigma\)} \hspace{0pt}
+
     \begin{tikzpicture}
 
     \draw[very thick,blue] plot[variable=\x,domain=-2:3,smooth,samples=50]
@@ -394,6 +396,9 @@
     \end{scope}
     \end{scope}
     \end{tikzpicture}
+
+    Παρατηρούμε ότι οι \( \delta \) αφαιρούνται μεταξύ τους, οπότε \( G^S(f) = 0 \not\leftarrow
+    \sin \), επομένως δεν μπορούμε να έχουμε \( F_p = 2\sigma \).
 
     \paragraph{Άσκηση για το σπίτι}
     \[

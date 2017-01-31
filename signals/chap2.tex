@@ -501,7 +501,7 @@
         \begin{align*}
         W = \int_{-\infty}^{\infty} \left| f(t) \right|^2\dif t
         =\frac{1}{2\pi}\int_{-\infty}^{\infty} \left|F(\omega )\right|^2
-        \dif \omega = \int_{-\infty}^{\infty} A^2(\omega )\dif \omega
+        \dif \omega =\frac{1}{2\pi} \int_{-\infty}^{\infty} A^2(\omega )\dif \omega
         \end{align*}
 
         όπου \( \displaystyle F(\omega ) = A(\omega )e^{j\varPhi(\omega )} \)
@@ -688,9 +688,9 @@
 
      \begin{align*}
      \Aboxed{ H_I(\omega ) &= -\frac{1}{\pi} \int_{-\infty}^{\infty}
-     \frac{H_R(\omega)}{\omega -\omega'}\dif \omega ' } \\
+     \frac{H_R(\omega')}{\omega -\omega'}\dif \omega ' } \\
      \Aboxed{ H_R(\omega ) &= \frac{1}{\pi} \int_{-\infty}^{\infty}
-     \frac{H_I(\omega )}{\omega -\omega'}\dif \omega' }
+     \frac{H_I(\omega' )}{\omega -\omega'}\dif \omega' }
      \end{align*}
 
      \paragraph{Άσκ.}
