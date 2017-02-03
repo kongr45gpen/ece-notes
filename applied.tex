@@ -6188,7 +6188,16 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     v(x_0,y_0) = \cdots
     \]
     
-    %TODO Kehagias Graph 23
+    \begin{tikzpicture}
+    \draw[->] (0,-1.5) -- (0,2);
+    \draw[->] (-2,0) -- (2,0);
+    
+    \filldraw (1,1) circle(1pt) node[above] {$z_0$};
+    
+    \draw[red,ultra thick] (-2,0) -- (1,0);
+    \filldraw[draw=red,fill=white,thick] (-2,0) circle (2pt) (1,0) circle (2pt);
+    
+    \end{tikzpicture}
     
     \paragraph{Απόδ.}
     %TODO Kehagias Graph 25
@@ -6227,7 +6236,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     
     
     \subsubsection{Τύπος του Poisson για δίσκο}
-    Αν η \( f(z) \) φραγμένη, τμηματικά συνεχής και αρμονική στον δίσκοι
+    Αν η \( f(z) \) φραγμένη, τμηματικά συνεχής και αρμονική στον δίσκο
     \( D_R(0) \), τότε:
     \[
     f(z_0) = \int_0^{2\pi}
@@ -6239,7 +6248,18 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \frac{\left(R^2-r^2\right)u(r,\phi)}{R^2+r^2-2Rr\cos(\theta-\pi)}\dif\phi
     \end{align*}
     
-    %TODO Kehagias Graph 24
+    \begin{tikzpicture}
+    \draw[->] (0,-2) -- (0,2);
+    \draw[->] (-2,0) -- (2,0)
+    node[right,style={align=right}] {$z_0=re^{i\theta}$\\$z=Re^{i\phi}$}
+    ;
+    
+    \draw[very thick] (0,0) circle(1.5);
+    \draw[->] (0,0) -- (45:1.5) node[midway,above,sloped] {$R$};
+    
+    \filldraw (-0.7,0.7) circle (1pt) node[below] {$z_0$};
+    
+    \end{tikzpicture}
     
     \paragraph{Απόδ.}
     \[
