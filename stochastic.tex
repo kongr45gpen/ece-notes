@@ -44,7 +44,17 @@
     
     \paragraph{Ντετερμινιστικό σήμα}
     \( A_c\cos(2\pi f t + \sfrac{\pi}{2}) \)
-    %TODO Dimakis Graph 1
+    
+    \begin{tikzpicture}[scale=1.2]
+    
+    
+    \draw (0,-1) -- (0,1);
+    \draw[->] (-0.5,0) -- (2.6,0);
+    
+    \draw[very thick,xscale=0.5,yscale=0.7,samples=50,domain=0:5,smooth,variable=\x,blue]
+    plot ({\x},{sin(pi*\x r)});
+    \end{tikzpicture}
+    
     Για κάθε χρόνο \(t\) μπορούμε να βρούμε την τιμή του
     σήματος.
     
@@ -87,7 +97,25 @@
     προβλεφθεί ακριβώς η έξοδος}.
 
 	\paragraph{Ορισμός Πιθανότητας από Laplace}
-	%TODO Dimakis Graph 2
+	    \begin{tikzpicture}[scale=1.2]
+	    
+	    \filldraw[fill=green!20,draw=black!70!green,very thick] plot [smooth cycle]
+	    coordinates {(0.8,1) (1.5,1.7) (2,1.5) (2.6,1.5) (2.5,0.8) (1.9, 0.6) (1.6,0.3) (1.2,0.2) (0.6, 0.7)};
+	    
+	    \draw (0,0) rectangle (2.7,2.2) node[below left] {$N$};
+	    \filldraw (1,1) circle(1pt) node[above right] {$1$};
+	    \filldraw (1.5,1.2) circle(1pt) node[above right] {$2$};
+	    \filldraw (0.2,0.4) circle(1pt) node[above right] {$3$};
+	    \filldraw (2,1.1) circle(1pt) node[above right] {$4$};
+	    \filldraw (1.3,0.3) circle(1pt) node[above right] {$5$};
+	    \filldraw (2.1,0.4) circle(1pt) node[below right] {$6$};
+	    \filldraw (0.3,1.7) circle(1pt) node[above right] {$7$};
+	    \filldraw (0.5,1.1) circle(1pt) node[above right] {$8$};
+	    
+	    \draw[->,blue!30!black] (0.2,1.7) to[bend left=45] (-0.5, 2.2) node[above] {ισοπίθανα ενδεχόμενα};
+	    \draw[->,green!30!black] (0.8,0.35) to[bend right=85] (0.5, -1) node[right] {γεγονός};
+	    
+	    \end{tikzpicture}
 	\[
 	P(A) = \frac{N_A}{N}
 	\]
@@ -97,8 +125,7 @@
 		\item Είναι κυκλικός (ορίζει την πιθανότητα με βάση
 		ισο\underline{πίθανα} ενδεχόμενα)
 	\end{itemize}
-	\paragraph{Ορισμός Πιθανότητας %TODO
-	}
+	\paragraph{Ορισμός Πιθανότητας von Mises}
 	Εκτελούμε ένα πείραμα τύχης με \(N\) επαναλήψεις. Αν ένα
 	γεγονός συμβεί \(N_A\) φορές, τότε
 	\[
