@@ -36,6 +36,7 @@
 \usetikzlibrary{intersections}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{calc}
+\usetikzlibrary{matrix}
 
 \tikzset{cross/.style={cross out, draw,
         minimum size=2*(#1-\pgflinewidth),
@@ -45,6 +46,8 @@
         postaction={
             decorate,
             decoration={
+            	post length=1mm, % ??? Magic to fix "Dimension
+            	pre length=1mm, % ???  too large" errors.
                 markings,
                 mark=at position #1 with \coordinate (#2);
             }

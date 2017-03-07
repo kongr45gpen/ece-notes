@@ -78,8 +78,46 @@
 		
 		Σε έναν σταθμό διοδίων μετράω πόσα αυτοκίνητα περνάν το κάθε λεπτό (π.χ. το
 		11\textsuperscript{ο} λεπτό περνάν 4, το 12\textsuperscript{ο} περνάν 7, κλπ.)
+
+		\begin{center}
+		\begin{tikzpicture}[scale=1]
+		\matrix (values) [matrix of nodes,
+		nodes={align=center,text width=0.7cm}
+		] {
+			11 & 12 & 13 & 14 & 15 \\
+			4 & 7 & 11 & 1 & 22 \\
+		};
+		\draw (values-1-1.south west)--(values-1-5.south east);
+		\draw (values-1-1.north west) -- (values-2-1.south west);
+		\foreach \x in {1,2,...,5}
+		\draw (values-1-\x.north east) -- (values-2-\x.south east);
 		
-		%TODO Papalamprou Graph 1
+		\draw[thick,->] (4,0) -- ++(1.7,0);
+		
+		
+		\begin{scope}[xshift=7cm,yshift=-1cm]
+		\draw (-0.5,0) -- (2,0);
+		\draw (0,-0.5) -- (0,2);
+		
+		\begin{scope}[yshift=2mm,xshift=3mm,yscale=.5,xscale=.5]
+		
+		\coordinate (A) at (0,1);
+		\coordinate (B) at (1,2);
+		\coordinate (C) at (2,3);
+		\coordinate (D) at (3,0.3);
+		\coordinate (E) at (4,4);
+		
+		\draw[thick,blue]
+		plot [smooth] coordinates { (A) (B) (C) (D) (E) };
+		
+		\foreach \p in {(A),(B),(C),(D),(E)}
+		\filldraw \p circle (2pt);
+		
+		\end{scope}
+		\end{scope}
+		
+		\end{tikzpicture}
+		\end{center}
 		
 		Θέλω να βρω ένα πολυώνυμο που να συνδέει όλα τα σημεία μεταξύ τους (θα αποδείξουμε
 		ότι τέτοιο πολυώνυμο πάντα υπάρχει), ή ένα πολυώνυμο (αρκετά χαμηλού βαθμού, ώστε
@@ -144,7 +182,32 @@
 	\subsection{Μέθοδος Διχοτόμησης}
 	Θα χρησιμοποιήσω θεώρημα Bolzano (\( \mathsmaller{f(a) \cdot f(b) < 0} \))
 	
-	%TODO Papalamprou Graph 2
+	\begin{center}
+		\begin{tikzpicture}[scale=1.9]
+		\draw (0,-0.5) -- (0,2);
+		\draw (-1,0) -- (3,0);
+		
+		\draw[thick, orange,
+		mark position=0.5(c),
+		mark position=0.3(a),
+		mark position=0.8(b),
+		mark position={0.55}(c1),
+		mark position={(0.55/2+0.8/2)}(c2),
+		mark position={(0.55/4+0.8/4+0.55/2)}(c3)
+		] plot[smooth,tension=0.7]
+		coordinates {(-0.5,0.7) (0.5,1.5)  (2.2,-0.7) (3.2,-0.9)};
+		\draw[orange!90!black] (c) node[above] {$f$};
+		
+		\draw[dashed] (a) -- (a |- 0,0) node[below] {$a$};
+		\draw[dashed] (b) -- (b |- 0,0) node[above] {$b$};
+		\draw[thick,gray!50!blue] (c1) -- (c1 |- 0,0) node[below] {$c_1$};
+		\draw[thick,gray!35!blue] (c2) -- (c2 |- 0,0) node[above] {$c_2$};
+		\draw[thick,gray!20!blue!60!green] (c3) -- (c3 |- 0,0) node[below] {$\mathsmaller{c_3}$};
+		
+		\draw (1,-1.5) node {$\displaystyle c_1 = \frac{a+b}{2}$};
+		\draw (1,-2) node {$\displaystyle c_2 = \frac{c_1+b}{2}$};
+		\end{tikzpicture}
+	\end{center}
 	
 	Ξεκινάω από μία αρχική προσέγγιση/διάστημα (η μέθοδος διχοτόμησης δεν δίνει λύση
 	συγκεκριμένη, αλλά διάστημα - τη λύση την παίρνω σαν το μέσο του διαστήματος).
@@ -201,7 +264,24 @@
 	
 	Παρατηρείται ότι αυτή η μέθοδος συγκλίνει γρηγορότερα.
 	
-	%TODO Papalamprou Graph 03
+	\begin{tikzpicture}[scale=2]
+	\draw (0,-0.2) -- (0,2);
+	\draw (-0.5,0) -- (3,0);
+	
+	\draw[dashed] (2.7,1.7) node [right] {$\left(b_1,f(b_1)\right)$}
+	-- (2.7,0);
+	
+	\draw[very thick, blue!50!magenta] plot[smooth,tension=1]
+	coordinates {(0.5,-0.4) (2,0.3) (2.7,1.7)};
+	\draw[blue!50!magenta] (2.11,0.2) node {$f$};
+	
+	\draw[dashed] (0.5,-0.4) node[below left] {$\left(a_1,f(a_1)\right)$} -- (0.5,0) node[above] {$a_1$};
+	\draw[cyan,thick] (0.5,-0.4) -- (2.7,1.7);
+	\draw[dashed] (0.93,-0.3) node[below,yshift=-2mm] {$\left(a_2,f(a_2)\right)$} -- (0.93,0) node[above] {$a_2$};
+	\draw [cyan,thick] (0.93,-0.3) -- (2.7,1.7);
+	\draw[dashed] (1.2,0) -- (1.2,-0.2);
+	\draw [cyan,thick] (1.2,-0.2) -- (2.7,1.7);
+	\end{tikzpicture}
 	
 	Πρέπει να βρούμε τη ρίζα εντός του διαστήματος \( (a_1,b_1) \).
 	\begin{itemize}
@@ -246,7 +326,23 @@
 	είναι γρηγορότερη από τη μέθοδο διχοτόμησης.
 	
 	\subsection{Μέθοδος Μεταβαλλόμενης Χορδής}
-	%TODO Papalamprou Graph 04
+	\begin{tikzpicture}[scale=2]
+	\draw (0,-0.2) -- (0,2);
+	\draw (-0.5,0) -- (3,0);
+	
+	\draw[dashed] (2.7,1.7) node [right] {$\left(b_1,f(b_1)\right)$}-- (2.7,0);
+	
+	\draw[very thick, blue!50!magenta] plot[smooth,tension=1]
+	coordinates {(0.5,-0.4) (2,0.3) (2.7,1.7)};
+	
+	\draw[dashed] (0.5,-0.4) -- (0.5,0) node[above] {$a_1$};
+	\draw[draw=cyan,thick] (0.5,-0.4) -- (2.7,1.7);
+	\draw[dashed] (0.93,-0.3) -- (0.93,0) node[above,yshift=1mm] {$a_2$};
+	\draw [draw=cyan,thick] (0.93,-0.3) -- (2.7,0.85)
+	node[right]  {$ \left(b_1,\frac{f(b_1)}{2}\right)$};
+	\draw (1.4,0) node[above] {$a_3$} -- (1.4,-0.12);
+	\end{tikzpicture}
+	
 	Όπως η μέθοδος χορδής, αλλά μεταβάλλουμε την κλίση
 	της χορδής γρηγορότερα, ώστε να φτάσει πιο κοντά
 	στη ρίζα.
@@ -496,6 +592,13 @@
 	\[
 	\mathlarger{f(x) = x^{10} -1} \qquad (0,1.3)
 	\]
+	
+	\begin{tikzpicture}[scale=.7]
+		\begin{axis}[samples=30,very thick,domain=0:1.3,no marks]
+		\addplot+{x^10-1};
+		\end{axis}
+	\end{tikzpicture}
+	
 	\subparagraph{Λύση με διχοτόμηση}
 	Με τη μέθοδο της διχοτόμησης έχουμε:
 	\[

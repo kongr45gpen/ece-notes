@@ -1,0 +1,51 @@
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{snakes}
+\usetikzlibrary{fadings}
+\usetikzlibrary{intersections}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+\usetikzlibrary{matrix}
+
+\tikzset{cross/.style={cross out, draw,
+        minimum size=2*(#1-\pgflinewidth),
+        inner sep=0pt, outer sep=0pt}}
+\tikzset{
+    mark position/.style args={#1(#2)}{
+        postaction={
+            decorate,
+            decoration={
+                markings,
+                mark=at position #1 with \coordinate (#2);
+            }
+        }
+    }
+}
+
+
+\begin{tikzpicture}[scale=1.9]
+\draw (0,-0.5) -- (0,2);
+\draw (-1,0) -- (3,0);
+
+\draw[thick, orange,
+	mark position=0.5(c),
+	mark position=0.3(a),
+	mark position=0.8(b),
+	mark position={0.55}(c1),
+	mark position={(0.55/2+0.8/2)}(c2),
+	mark position={(0.55/4+0.8/4+0.55/2)}(c3)
+] plot[smooth,tension=0.7]
+coordinates {(-0.5,0.7) (0.5,1.5)  (2.2,-0.7) (3.2,-0.9)};
+\draw[orange!90!black] (c) node[above] {$f$};
+
+\draw[dashed] (a) -- (a |- 0,0) node[below] {$a$};
+\draw[dashed] (b) -- (b |- 0,0) node[above] {$b$};
+\draw[thick,gray!50!blue] (c1) -- (c1 |- 0,0) node[below] {$c_1$};
+\draw[thick,gray!35!blue] (c2) -- (c2 |- 0,0) node[above] {$c_2$};
+\draw[thick,gray!20!blue!60!green] (c3) -- (c3 |- 0,0) node[below] {$\mathsmaller{c_3}$};
+
+\draw (1,-1.5) node {$\displaystyle c_1 = \frac{a+b}{2}$};
+\draw (1,-2) node {$\displaystyle c_2 = \frac{c_1+b}{2}$};
+\end{tikzpicture}
