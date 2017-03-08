@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper,notitlepage,fleqn]{article}
+\documentclass[11pt,a4paper,notitlepage,fleqn,draft]{article}
 
 \input{preamble.tex}
 
@@ -667,5 +667,207 @@
 	\end{array}
 	\]
 	
+	\section{Παρεμβολή}
+	\subsection{Το πρόβλημα}
 	
+	Έστω μια άγνωστη \( f(x) \) ορισμένη στο \( [a,b] \) και οι τιμές
+	\( x_i\ (i=0,\dots,n-1) \). Επίσης, έστω μια \( p(x) \) που
+	παρεμβάλλει την \( f(x) \), δηλαδή:
+	\[
+	p(x_i) = f(x_i).
+	\]
+	
+	Θα ψάξω να βρω την \( p(x) \) με βάση τις τιμές \( p(x_i) \).
+	
+	Όταν ψάχνω να βρω μια προσέγγιση για κάποια τιμή \( \bar x \
+	(\bar x \in \left[x_0,x_{n-1}\right]) \) με βάση την \( p(x) \) που
+	προκύπτει με δεδομένες τιμές για \( x_i \), λέγεται ότι κάνω
+	\textbf{intrapolation}. \\
+	Για \( \bar x \neq \left[x_0,x_{n-1}\right] \) (πιο επικίνδυνη
+	περίπτωση), ονομάζεται \textbf{extrapolation}.
+	
+	\begin{theorem}{}{Weierstrass}
+		Για οποιαδήποτε συνάρτηση, υπάρχει ένα πολυώνυμο που την
+		παρεμβάλλει, δηλαδή:
+		\[
+		\lim_{n\to \infty} P_n(x) = f(x)
+		\]
+	\end{theorem}
+	%TODO Papalamprou Graph 5
+	
+	Και μάλιστα:
+	\[
+	\left|P_n(x)-f(x)\right| \leq \epsilon \quad
+	\text{\epsilon δεδομένη ακρίβεια}
+	\]
+	
+	Όσο το \( \epsilon \) μικραίνει, ο βαθμός του \( P_n(x) \) αυξάνεται.
+	
+	Για παράδειγμα, αν έχουμε μερικά σημεία της \( f \):
+	\[
+	\begin{array}{c|c|c|c|c}
+	x_i & 1 & 2 & 3 & 4 \\ \hline
+	f(x_i) & 7 & 12 & 21 & 20
+	\end{array}
+	\]
+	ψάχνω ένα πολυώνυμο (κάποιου βαθμού) που να περνάει από αυτά τα
+	σημεία.
+	%TODO Papalamprou Graph 6
+	
+	Αν έχω δύο σημεία, το ζητούμενο πολυώνυμο είναι μια ευθεία, δηλαδή
+	ένα πολυώνυμο 1\textsuperscript{ου} βαθμού. Για τρία σημεία, θα
+	χρειαστώ πολυώνυμο 2\textsuperscript{ου} βαθμού, και γενικά έχω
+	ένα μοναδικό
+	πολυώνυμο \( n \) βαθμού για \( n+1 \) διακριτά σημεία,
+	όπως θα δούμε αργότερα.
+	%TODO Papalamprou Graph 7
+	
+	%TODO Papalamprou Graph 8
+	Η πραγματική συνάρτηση μπορεί να έχει διαφορετική συμπεριφορά
+	ανάμεσα στα σημεία της τα οποία γνωρίζουμε.
+	
+	Στο επόμενο κεφάλαιο θα μάθουμε την προσέγγιση, δηλαδή την εύρεση
+	ενός πολυωνύμου συγκεκριμένου βαθμού που να φτάνει κοντά στην
+	\( f \), έτσι ώστε να είναι πιο εύκολα υπολογίσιμο αν π.χ. έχουμε
+	300 σημεία της συνάρτησης.
+	
+	\subsection{Μορφές Αναπαράστασης Πολυωνύμου}
+	\paragraph{Εκθετική μορφή}
+	\( 
+	\displaystyle P_n(x) = a_0 + a_1x+a_2x^2 + \dots + a_nx^n
+	 \)
+	\paragraph{Μορφή κέντρων}
+	\( 
+	\displaystyle P_n(x) = b_0 + b_1(x-c) + b_2(x-c)^2 + \dots
+	+ b_n(x-c)^n
+	 \)
+	\paragraph{Μορφή Newton}
+	\( 
+	\displaystyle P_n(x) = a_0 + a_1(x-c_1) + a_2(x-c_1)(x-c_2)
+	+ \dots + a_n(x-c_1)(x-c_2)\cdots(x-c_n)
+	= a_0 + \sum_{k=1}^{n} a_k \prod_{i+1}^{k} (x-c_i)
+	 \)
+	\paragraph{Φωλιασμένη μορφή Newton}
+	\begin{align*}
+	P_n(x) &= a_0 + (x-c_1)\left[a_1
+	+ a_2(x-c_2) + a_3(x-c_2)(x-c_3) + \dots + a_n(x-c_2)\cdots(x-c_n)
+	\right] = \dots \\ &= a_0 + (x-c_1)\left[a_0+(x-c_2)
+	\left[a_2+ (x-c_3)\left[a_3+\dots + (x-c_{n-1})\left[
+	a_{n-1}+(x-c_n)a_n
+	\right]\right]\right]
+	\right]
+	 \end{align*}
+	 
+	 \paragraph{Μορφή Lagrange}
+	 Δεδομένων \( n+1 \) σημείων \( x_0,x_1,\dots,x_n \), έχουμε 
+	 τα πολυώνυμα:
+	 
+	 \[
+	 l_j(x) = \frac{
+	 	(x-x_0)(x-x_1)\cdots(x-x_{j-1})(x-x_{j+1})\cdots(x-x_n)
+	 	}{
+	 	(x_j-x_0)(x_j-x_1)\cdots(x_j-x_{j-1})(x_j-x_{j+1})
+	 	\cdots (x_j-x_n)
+	 	}
+	 \]
+	 για \( j=0,1,\dots,n \) ονομάζονται \textbf{πολυώνυμα Lagrange} (ο
+	 παρονομαστής σταθερός).
+	 
+	 Παρατηρούμε ότι:
+	 \[
+	 l_j(x_i) = \begin{cases}
+	 0 & \quad i \neq j \\
+	 1 & \quad i = j
+	 \end{cases} \ = \delta_{ij}
+	 \]
+	 
+	 Άρα για σταθερές \( a_0,a_1,\dots,a_n \) και σημεία \( x_0,x_1,
+	 \dots,x_n \), το πολυώνυμο \[
+	 P_n(x) = a_0l_0(x) + a_1l_1(x) + \dots + a_nl_n(x)
+	 \]
+	 ονομάζεται \textbf{πολυώνυμο σε μορφή Lagrange}.
+	 
+	 \subsection{Μέθοδοι Παρεμβολής}
+	 \begin{gather*}
+	    P(x_i) = f(x_i) \\
+	 	P(x_i) = \sum_{k=0}^{n} a_kl_k(x_i) = a_i \\[.3ex]
+	 	\boxed{P(x) = \sum_{k=0}^n f(x_k)l_k(x)}
+	 \end{gather*}
+	 
+	 \paragraph{Παράδειγμα}
+	 Έχουμε τη συνάρτηση:
+	 \[
+	 \begin{array}{r|c|c|c}
+	 i & 0 & 1 & 2 \\ \hline
+	 x_i & -1 & 9 & 1 \\ \hline
+	 f(x_i) & 1 & 1 & 2
+	 \end{array}
+	 \]
+	 
+	 Αναζητώ πολυώνυμο που να παρεμβάλλει την \( f \) σε
+	 \begin{enumgreekpar}
+	 	\item μορφή Lagrange
+	 	\item εκθετική μορφή
+	 \end{enumgreekpar}
+	 
+	 \subparagraph{Λύση}
+ 	\begin{align*}
+ 		l_0(x) &=
+ 		\frac{(x-0)(x-1)}{(-1-0)(-1-1)} = \frac{x(x-1)}{2} \\
+ 		l_1(x) &=
+ 		\frac{(x+1)(x-1)}{(0+1)(0-1)} = 1-x^2 \\
+ 		l_2(x) &= \frac{(x+1)(x-0)}{(1+1)(1-0)} = \frac{x(x+1)}{2} \\
+ 		\Aboxed{P(x) &= 1l_0(x)+1l_1(x)+2l_2(x)}
+ 		\quad \leftarrow \text{ μορφή Lagrange}
+ 		\\ &= \frac{1}{2}x^2 + \frac{1}{2}x + 1
+ 		\quad \leftarrow \text{ εκθετική μορφή}
+ 	\end{align*}
+ 	
+ 	Ένας άλλος τρόπος θα ήταν να θεωρήσουμε πολυώνυμο
+ 	2\textsuperscript{ου} βαθμού με 3 άγνωστους συντελεστές, και να λύσω
+ 	το σύστημα για να τους βρω, κάτι που θα χρησιμεύει αργότερα στην
+ 	προσέγγιση:
+ 	\begin{align*}
+ 	    P(x) &= a_0 + a_1x + a_2x^2 \\
+ 	    P(-1) &= a_0 - a_1 + a_2 = 1 \\
+ 	    P(0) &= a_0 = 1 \\
+ 	    P(1) &= a_0 + a_1 + a_2 = 2
+ 	\end{align*}
+ 	
+ 	\subsubsection{Μέθοδος διηρημένων διαφορών}
+ 	Η ιδέα είναι να ξεκινάμε από τον μικρό βαθμό, και να χτίζουμε το
+ 	ζητούμενο πολυώνυμο βαθμό-βαθμό.
+ 	\begin{align*}
+ 	P_{k+1}(x) &=
+ 	\underbrace{a_0+a_1(x-x_0)+\dots+a_k(x-x_0)\cdots(x-x_{k-1})}_{%
+ 		P_k(x)} + a_{k+1} (x-x_0)\cdots(x-x_k) \\[.4ex]
+ 	f(x_{k+1}) &= P_{k+1}(x_{k+1})
+ 	= P_k(x_{k+1}) + a_{k+1}\prod_{i=0}^{k} \left(x_{k+1}-x_i\right) \\
+ 	a_{k+1} &= \frac{f(x_{k+1}) - P_k(x_{k+1})}{
+ 		\prod_{i=0}^{k} \left(x_{k+1}-x_i\right)
+ 		}
+ 	\end{align*}
+ 	
+ 	Για να διευκολύνω τις πράξεις ορίζω:
+ 	\begin{defn}{}{Πρώτη Διηρεμένη Διαφορά}
+ 		\[
+ 		\mathlarger{
+ 		f\left[x_i,\ x_{i+1}\right] =
+ 		\frac{f(x_{i+1})-f(x_i)}{x_{i+1}-x_i}
+ 	    }
+ 		\]
+ 	\end{defn}
+ 	
+ 	Η \( k \)-οστή Διηρεμένη Διαφορά είναι:
+ 	\begin{defn}{}{k-οστή Διηρεμένη Διαφορά}
+ 		\[
+ 		\mathlarger{
+ 			f\left[x_i,\ x_{i+1}, \dots,\ x_{i+k}\right] =
+ 			\frac{
+ 				f[x_{i+1},x_{i+2},\dots,x_{i+k}]
+ 				- f[x_i,x_{i+1},\dots,x_{i+k-1}]
+ 				}{x_{i+k}-x_i}
+ 		}
+ 		\]
+ 	\end{defn}
 \end{document}
