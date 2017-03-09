@@ -97,6 +97,8 @@
     προβλεφθεί ακριβώς η έξοδος}.
 
 	\paragraph{Ορισμός Πιθανότητας από Laplace}
+	\hspace{0pt}
+
 	    \begin{tikzpicture}[scale=1.2]
 	    
 	    \filldraw[fill=green!20,draw=black!70!green,very thick] plot [smooth cycle]
@@ -169,4 +171,108 @@
 		\item αν \( A \cap B = 0 \), τότε \( P(A \cup B)
 		= 0 \)
 	\end{enumroman}
+	
+	Ο ορισμός αυτός δεν μας δίνει συγκεκριμένη τεχνική υπολογισμού
+	πιθανοτήτων, επομένως μπορούμε να χρησιμοποιήσουμε οποιαδήποτε
+	τεχνική (π.χ. Laplace) θέλουμε.
+	
+	
+	\def\boundingbox{(-2cm,-2cm) rectangle (4cm,2cm)}
+	\colorlet{circle edge}{blue!50}
+	\colorlet{circle area}{blue!20}
+	\tikzset{filled/.style={fill=circle area, draw=circle edge, thick},
+		outline/.style={draw=circle edge, thick}}
+	
+	\paragraph{Ιδιότητες}
+	\begin{enumpar}
+		\item \( A = B \implies P(A)=P(B) \) \\
+		\item \( P(\emptyset) = 0 \)
+		\item Αν \( A\cdot\bar A = \emptyset \quad
+		A+\bar A = S \), τότε:
+		\begin{align*}
+			P(A+\bar A) = P(S) = 1 & \quad P(\bar A) = 1 - P(A) \\
+			P(A) + P(\bar A) = 1
+		\end{align*}
+		\item Αν \( A \cdot B \neq \emptyset \), τότε
+		\[
+		P(A+B) = P(A) + P(B) - P(A\cdot B) \leq 1
+		\]
+		\begin{tikzpicture}
+		\def\firstcircle{(0,0) circle (1.5cm)}
+		\def\secondcircle{(0:2cm) circle (1.5cm)}
+		\begin{scope}
+		\clip \firstcircle;
+		\fill[filled] \secondcircle;
+		\end{scope}
+		\draw[outline] \firstcircle node {$A$};
+		\draw[outline] \secondcircle node {$B$};
+		\draw \boundingbox;
+		\draw (1,0) node {$A\cap B$};
+		\end{tikzpicture}
+		
+		
+		\subparagraph{Απόδειξη}
+		\begin{align*}
+			A+B &= A+ \bar A \cdot B \\
+			B &= A\cdot B + \bar A \cdot B \\
+			P(A+B) &= P(A) + P(\bar A \cdot B) \\
+			P(B) &= P(A\cdot B) + P(\bar A \cdot B)\\
+			P(A+B) &= P(B)+P(A) -P(AB)
+		\end{align*}
+		\item \( A \subseteq B \implies P(A) \leq P(B) \)
+
+		\begin{tikzpicture}[scale=.7]
+		\draw[outline] (1,0) circle (1.5cm) node {$A$};
+		\draw[outline] (0.5,-0.75) circle (0.4cm) node {$B$};
+		\draw \boundingbox;
+		\end{tikzpicture}
+		
+		\begin{align*}
+			B &= A + \bar A \cdot B \\
+			P(B) &= P(A) + P(\bar A\cdot B) \geq P(A)
+		\end{align*}
+		
+		\item Υπό συνθήκη πιθανότητα
+		\[
+		P(A/B) = \frac{P(AB)}{P(B)}
+		\]
+		
+		%TODO Dimakis Graph 3
+		
+		\item %TODO Dimakis Graph 4
+		Έστω ένας διαμερισμός του δειγματικού χώρου και ένα
+		ενδεχόμενο \( B \) αυτού, δηλαδή:
+		\begin{gather*}
+			A_1+A_2+A_3+A_4 = S \\
+			A_i A_j = \emptyset \\[.3ex]
+			(B \cdot A_i) \cdot (B \cdot A_j)
+		\end{gather*}
+		
+		Τότε:
+		\begin{align*}
+			B &= B\cdot S = B(A_1+A_2+A_3+A_4) \\
+			B &= B\cdot A_1 + B\cdot A_2 + B\cdot A_3 + B\cdot A_4 \\
+			P(B) &= P(BA_1) + P(BA_2) + P(BA_3) + P(BA_4)
+			\intertext{\( P(B/A_i) = \frac{P(B)\cdot A_i}{P(A_i)} \)}
+			\intertext{\( P(BA_i) = P(B/A_i)\cdot P(A_i) \)}
+			P(B) &= P(B/A_1)P(A_1)+P(B/A_2)P(A_2)+P(B/A_3)P(A_3)
+			+P(B/A_4)P(A_4)
+		\end{align*}
+		
+		Το παραπάνω (\textbf{θεώρημα ολικής πιθανότητας})
+		εκφράζεται γενικά ως εξής:
+		\[
+		P(B) = \sum_{i=1}^{m} P(A_i)P(B/A_i)
+		\]
+		\item
+		Από την παραπάνω ιδιότητα έχουμε:
+		\begin{align*}
+			P(A_iB) &= P(B)P(A_i/B) = P(A_i)P(B/A_i) \\
+			P(A_i/B) &= \frac{P(B/A)P(A_i)}{P(B)} \\
+			\Aboxed{
+     			P(A_i/B) &=
+     			\frac{P(B/A_i)P(A_i)}{\sum_{i=1}^{n}P(A_i)P(B/A_i)}
+     		} \qquad \text{\textbf{Θεώρημα Bayes}}
+		\end{align*}
+	\end{enumpar}
 \end{document}
