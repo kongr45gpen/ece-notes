@@ -39,6 +39,7 @@ graphs/wip*
 # algorithms
 *.alg
 *.loa
+*.notes
 
 # achemso
 acs-*.bib

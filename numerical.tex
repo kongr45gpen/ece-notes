@@ -849,7 +849,7 @@
  	\end{align*}
  	
  	Για να διευκολύνω τις πράξεις ορίζω:
- 	\begin{defn}{}{Πρώτη Διηρεμένη Διαφορά}
+ 	\begin{defn}{Πρώτη Διηρεμένη Διαφορά}{}
  		\[
  		\mathlarger{
  		f\left[x_i,\ x_{i+1}\right] =
@@ -859,7 +859,7 @@
  	\end{defn}
  	
  	Η \( k \)-οστή Διηρεμένη Διαφορά είναι:
- 	\begin{defn}{}{k-οστή Διηρεμένη Διαφορά}
+ 	\begin{defn}{k-οστή Διηρεμένη Διαφορά}{}
  		\[
  		\mathlarger{
  			f\left[x_i,\ x_{i+1}, \dots,\ x_{i+k}\right] =
@@ -870,4 +870,329 @@
  		}
  		\]
  	\end{defn}
+ 	
+ 	Για διευκόλυνσή μας, αντί να χρησιμοποιούμε τους τύπους, μπορούμε
+ 	να χρησιμοποιήσουμε τον Πίνακα Διηρημένων Διαφορών.
+ 	
+ 	\paragraph{Πίνακας ΔΔ}
+ 	%TODO Convert matrix to tikz
+ 	\[
+ 	\begin{array}{llllll}
+ 	 & & 1^{\text{η}} & 2^\text{η} & 3^\text{η} & 4^\text{η}\\
+ 	x_0 & f(x_0) & f[x_0,x_1] & = \frac{f(x_1)-f(x_2)}{x_1-x_2} & \\
+ 	x_1 & f(x_1) & f[x_1,x_2] & f[x_0,x_1,x_2] & =
+ 	\frac{f[x_1,x_2,x_3]-f[x_0,x_1,x_2]}{x_3-x_0} \\
+ 	x_2 & f(x_2) & f[x_2,x_3] & f[x_1,x_2,x_3] & f[x_0,x_1,x_2,x_3]\\
+ 	x_3 & f(x_3) & f[x_3,x_4] & f[x_2,x_3,x_4] & f[x_1,x_2,x_3,x_4]
+ 	& f[x_0,x_1,x_2,x_3,x_4]
+ 	\\
+ 	x_4 & f(x_4) & &
+ 	\end{array}
+ 	\]
+ 	
+ 	Τότε το πολυώνυμο θα είναι:
+ 	\begin{align*}
+ 		P_k(x) &= f(x_0) + f[x_0,x_1](x-x_0) +
+ 		f[x_0,x_1,x_2](x-x_0)(x-x_1)
+ 		\\ & + \dots +
+ 		f[x_0,x_1,\dots,x_k](x-x_0)(x-x_1)\cdots(x-x_{k+1})
+ 	\end{align*}
+ 	
+ 	\paragraph{Παράδειγμα}
+ 	\hspace{0pt}
+ 	
+ 	\begin{tabular}{|c|c|c|c|c|}
+ 		\hline 
+ 		\(i\) & 0 & 1 & 2 & 3 \\ 
+ 		\hline 
+ 		\(x_i\) & 0 & 1 & 2 & 4 \\ 
+ 		\hline 
+ 		\(f(x_i)\) & 1 & 1 & 2 & 5 \\ 
+ 		\hline 
+ 	\end{tabular}
+ 	
+ 	Πίνακας ΔΔ:
+ 	%TODO Papalamprou Graph 9
+ 	
+ 	Άρα:
+ 	\begin{align*}
+ 	P_3(x) &= 1 + 0(x-0) + \frac{1}{2}(x-0)(x-1)-\frac{1}{12}
+ 	(x-0)(x-1)(x-2) \\ &= \frac{1}{12} (-x^3+9x^2-8x+12)
+ 	\end{align*}
+ 	%TODO Plot that?
+ 	
+ 	\subsubsection{Μέθοδος πεπερασμένων διαφορών}
+ 	Για τη μέθοδο αυτή, θεωρούμε ότι τα σημεία της \( f \)
+ 	που έχουμε ισαπέχουν μεταξύ τους:
+ 	\begin{gather*}
+ 		x_0,x_1,\dots,x_n \ \in [a,b] \\
+ 		x_i = x_0 + ih \quad \text{όπου } h=\frac{b-a}{n}
+ 		\\[.4ex]
+ 		f\left[x_i,x_{i+1}\right] =
+ 		\frac{f(x_{i+1})-f(x_i)}{h}
+ 	\end{gather*}
+ 	
+ 	Ορίζω συμβολισμούς για ευκολία:
+ 	\begin{align*}
+ 		\Delta^0 f(x_i) &= f(x_i) \\
+ 		\Delta^1 f(x_i) &=
+ 		f(x_{i+1}) - f(x_i) = f(x_i+h) - f(x_i) \\
+ 		\vdots \\
+ 		\Delta^k f(x_i) &=
+ 		\Delta \left(\Delta^{k-1}\left(f(x_i)\right)\right)
+ 		= \Delta^{k-1} f(x_{i+1}) - \Delta^{k-1} f(x_i)
+ 	\end{align*}
+ 	
+ 	\begin{defn}{k-οστή πεπερασμένη διαφορά}{}
+ 		\[
+ 			f\left[x_i,x_{i+1},\dots,x_{i+k}\right]
+ 			= \frac{\Delta^k f(x_i)}{k! h^k}
+ 			\qquad \text{προκύπτει μετά από πράξεις}
+ 		\]
+ 	\end{defn}
+ 	
+ 	Άρα το πολυώνυμο γίνεται:
+ 	\begin{align*}
+ 	P_n(x) &= f(x_0) + f[x_0,x_1](x-x_0) + \dots
+ 	\\ & \quad \dots +
+ 	f[x_0,x_1,\dots,x_n](x-x_0)(x-x_1)\dots(x-x_{n-1})
+ 	\\ &= f(x_0) + \frac{\Delta^1 f(x_0)}{1!h^1}(x-x_0)
+ 	+ \frac{\Delta^2 f(x_0)}{2!h^2}(x-x_0)(x-x_1) + \dots \\
+ 	& \quad \dots + \frac{\Delta^n f(x_n)}{n!h^n}
+ 	(x-x_0)(x-x_1)\cdots
+ 	(x-x_{n-1})
+ 	\end{align*}
+ 	
+ 	Θα βρούμε μια διαδικασία ώστε να υπολογίζουμε το πολυώνυμο
+ 	γρηγορότερα. Αν \( x = x_0+rh \), αποδεικνύεται πως
+ 	(οι πράξεις υπάρχουν στο βιβλίο):
+ 	\[
+ 	\mathlarger{
+ 		\boxed{
+ 			P_n(x_0+rh) = \sum_{i=0}^{n}
+ 			\left(\begin{matrix}
+ 			r\\i
+ 			\end{matrix}\right)
+ 			\Delta^i f(x_0)
+ 			}
+ 		}
+ 	\]
+ 	όπου \( \displaystyle \binom{r}{i} =
+ 	\frac{r(r-1)\cdots\left(r-(i-1)\right)}{i!} \)
+ 	
+ 	\paragraph{Παράδειγμα}
+ 	
+ 	\begin{tabular}{|c|c|c|c|c|c|}
+ 		\(i\) & 0 & 1 & 2 & 3 & 4\\ 
+ 		\hline 
+ 		\(x_i\) & 1 & 2 & 3 & 4 & 5\\ 
+ 		\hline 
+ 		\(f(x_i)\) & 1 & -1 & 1 & -1 & 1
+ 	\end{tabular}
+ 	
+ 	%TODO Papalamprou Graph 10
+ 	
+ 	\begin{align*}
+ 		P_4(1+r) &= 1-2\binom{r}{1}+4\binom{r}{2}-8\binom{r}{3}
+ 		+6\binom{r}{4}
+ 		\intertext{όπου \( x = x_0+rh \implies
+ 			r=1.5 \text{ για } x = 2.5 \)}
+ 		\\
+ 		P(2.5) &= 1 -2 \binom{1.5}{1} + 4\binom{1.5}{2}
+ 		-8\binom{1.5}{3} + 16\binom{1.5}{4}
+ 	\end{align*}
+ 	
+ 	\subsubsection{Μέθοδος Aitken}
+ 	Έστω \( p,q \) δύο πολυώνυμα παρεμβολής μικρότερου
+ 	βαθμού (για \( m+2 \) σημεία),
+ 	και \( r \) το πολυώνυμο παρεμβολής για όλα
+ 	τα σημεία (\( m+3 \) σημεία) \( \qquad x_0,x_1,\dots,
+ 	x_m,y,z \), και γνωρίζω:
+ 	\begin{itemize}
+ 		\item \( p(x_i)=q(x_i)=r(x_i)=f(x_i)
+ 		\text{ για } i=0,1,\dots,m \)
+ 		\item \( p(y) = r(y) = f(y) \)
+ 		\item \( q(z) = r(z) = f(z) \)
+ 	\end{itemize}
+ 	
+ 	Τότε η \( r(x) \) που είναι η συνάρτηση που θέλω να
+ 	παρεμβάλλει την \( f \) είναι:
+ 	\[
+ 	\boxed{
+ 	r(x) = \frac{(y-x)q(x) - (z-x)p(x)}{y-z}
+    }
+ 	\]
+ 	
+ 	\paragraph{}
+ 	Έστω \( A_{k,r} \) η τιμή στο \( \bar x \) του πολυωνύμου
+ 	παρεμβολής της \( f(x) \) στα σημεία \( x_0,x_1,
+ 	\dots,x_{r-1},x_r \):
+ 	\begin{align*}
+ 	A_{k,r} &= f[x_0] + f[x_0,x_1](\bar x-x_0)
+ 	+ f[x_0,x_1,x_2](\bar x-x_0)(\bar x-x_1) + \dots
+ 	\\ &\quad \dots + f[x_0,x_1,\dots,x_k](\bar x-x_0)
+ 	(\bar x-x_1)\cdots(\bar x-x_{k-1}) \\
+ 	A_{k,r} &= \frac{(x_{k-1}-\bar x)A_{k-1,r}
+ 		-(x_r-\bar x)A_{k-1,k-1}}{x_{r-1}-x_r}
+	\end{align*}
+	%TODO Papalamprou Graph 12
+	\paragraph{π.χ.}
+	\begin{align*}
+		A_{2,3} &=
+		\frac{(x_1-\bar x)A_{1,3}-(x_3-\bar x)A_{1,1}}{x_1-x_3}
+	\end{align*}
+	
+	\subsection{Ασκήσεις}
+	\paragraph{Άσκηση}
+	Να βρεθεί πολυώνυμο Lagrange που να παρεμβάλλει την
+	\( \mathlarger{f(x)=e^x} \) στα σημεία \( x_0=-1,\ x_1=0,\ x_2=1 \).
+	\subparagraph{Λύση}
+	Θυμόμαστε ότι το πολυώνυμο Lagrange δίνεται από τους τύπους:
+	\begin{align*}
+	P_n(x) &= l_0f(x)+l_1(x)f(x_1)+l_2(x)f_2(x) \\
+	l_0(x) &= \frac{(x-x_1)(x-x_2)}{(x_0-x_1)(x_0-x_2)}
+	= \frac{(x-0)(x-1)}{(-1)(-2)} = \frac{1}{2}(x^2 - x) \\
+	l_1(x) &= \frac{(x-x_0)(x-x_2)}{(x_1-x_0)(x_1-x_2)}
+    = \frac{(x+1)(x-1)}{1\cdot (-1)} = -x^2+1 \\
+    l_2(x) &= \frac{(x-x_0)(x-x_1)}{(x_2-x_0)(x_2-x_1)} = \frac{1}{2}
+    (x^2+x)
+    \intertext{Άρα}
+    P_2(x) &= \frac{1}{2e}(x^2-x)+ (-x^2+1) + \frac{e}{2}(x^2+x)
+    \\ &=
+    \left(1+\frac{e}{2}+\frac{1}{2e}\right)x^2
+    +\left(\frac{e}{2}-\frac{1}{2e}\right)x -1
+    \qquad \text{(δεν είναι απαραίτητο να το φτάσουμε μέχρι εδώ)}
+	\end{align*}
+	
+	%TODO Add labels and points
+	\begin{tikzpicture}[scale=.7]
+	\begin{axis}[samples=30,very thick,domain=-1.5:1.5,no marks]
+	\addplot+{e^x};
+	\addplot+{(x^2-x)/(2*e) + (1-x^2) + (e/2)*(x^2+x) };
+	\end{axis}
+	\end{tikzpicture}
+	
+	\paragraph{Άσκηση}
+	Να βρεθεί πολυώνυμο Newton που να παρεμβάλλει την παρακάτω \( f \)
+	με τη μέθοδο διηρημένων διαφορών:
+	\[
+	f(-1) = 1,\quad f(1) = 2 \quad \text{και} \quad f(2)=-1
+	\]
+	\subparagraph{Λύση}
+	%TODO Graph 14
+	\[
+	P_2(x) = 1 + \frac{1}{2}(x+1) - \frac{7}{6}(x+1)(x-1)
+	\]
+	
+	\paragraph{Άσκηση}
+	Να γίνει βρεθεί η τιμή \( f(0.5) \) (intrapolation)
+	χρησιμοποιώντας τη μέθοδο πεπερασμένων διαφορών. Δίνεται ο πίνακας
+	τιμών της \( f \)
+	\[
+	\begin{array}{r|c|c|c|c|c}
+	x_i & 0 & 1 & 2 & 3 & 4 \\ \hline
+	f(x_i) & 1 & 0 & -1 & 1 & 2
+	\end{array}
+	\]
+	\subparagraph{Λύση}
+	Οι τύποι για τις \( k \)-οστές διαφορές θα δίνονται στις εξετάσεις,
+	αλλά είναι πιο κομψό και εύκολο να χρησιμοποιήσουμε τον πίνακα:
+	%TODO Graph 15
+	\begin{align*}
+	P_4(\overset{\mathclap{\substack{x=x_0+rh\\\uparrow}}}{x}) &=
+	    f(x_0) + \binom{r}{1}\Delta f(x_0) + \binom{r}{2}\Delta^2 f(x_0)
+	    + \binom{r}{3}\Delta^3 f(x_0) + \binom{r}{4} \Delta^4 f(x_0)
+	\intertext{\( 0.5 = 0 + r\cdot 1 \implies r=0.5 \)}
+    &= 1-\binom{0.5}{1}+0\binom{0.5}{2}+3\binom{0.5}{3}-7\binom{0.5}{4}
+    = 0.9609375
+    \intertext{όπου
+    	\( \binom{r}{k} = \frac{r(r-1)\cdots\left(r-(k-1)\right)}{k!} \)
+    	}
+	\end{align*}
+	
+	\paragraph{Άσκηση}
+	Να βρεθεί η τιμή του πολυωνύμου παρεμβολής \( P(5) \) για τα σημεία
+	\( x_i \) και τις αντίστοιχες τιμές της συνάρτησης \( f(x_i) \) που
+	δίνονται στον πίνακα με τη μέθοδο Aitken:
+	\[
+	\begin{array}{r|cccc}
+	x_i & 2 & 4 & 6 & 8 \\ \hline
+	f(x_i) & 1 & -2 & 3 & 5
+	\end{array}
+	\]
+	\subparagraph{Λύση}
+	\begin{align*}
+		x_i - \underbrace{\bar x}_{5} & \\
+		2-5 &= -3 \\ 4-5 &= -1 \\ 6-5 &= 1 \\ 8-5 &= 3
+	\end{align*}\
+	%TODO Graph 16
+	Άρα \( P(5) = \frac{3}{16} \), λύση που φαίνεται λογική, αφού
+	βρίσκεται ανάμεσα στο -2 και το 3.
+	
+	
+	\section{Προσέγγιση}
+	Η προσέγγιση μοιάζει με την παρεμβολή, με τη διαφορά ότι δεν
+	επιθυμούμε το πολυώνυμο που βρούμε να περνάει από όλα τα σημεία της
+	αρχικής συνάρτησης, αλλά να έχει την ελάχιστη απόσταση από αυτά. Το
+	κέρδος μας με αυτόν τον τρόπο είναι ότι το πολυώνυμο που θα βρούμε
+	είναι μικρότερου βαθμού.
+	%TODO Graph 13
+	
+	\paragraph{}
+	Έστω οι τιμές μιας συνάρτησης:
+	\[
+	\begin{array}{r|c|c|c|c}
+	x_i & x_0 & x_1 & \dots & x_{m-1} \\ \hline
+	f(x_i) & f(x_0) & f(x_1) & \dots & f(x_{m-1})
+	\end{array}
+	\]
+	%TODO Graph 17
+	
+	Αν ζητάμε η προσέγγιση \( P(x) \) να είναι μια ευθεία, τότε στην
+	ιδανική περίπτωση:
+	\[
+	P(x_i) = a_0 + a_1x_i = f(x_i) \quad \forall x_i
+	\]
+	τότε έχουμε ένα σύστημα:
+	\[
+	\left[
+	\begin{matrix}
+	1 & x_0 \\ 1 & x_1 \\ 1 & x_2 \\ \vdots & \vdots \\ 1 & x_{m-1}
+	\end{matrix}
+	\right] \left[
+	\begin{matrix}
+	a_0 \\ a_1
+	\end{matrix}
+	\right] = \left[
+	\begin{matrix}
+	f(x_0) \\ f(x_1) \\ f(x_2) \\ \vdots \\ f(x_{m-1})
+	\end{matrix}
+	\right]
+	\]
+	που είναι σύστημα 2 αγνώστων αλλά \( m \) εξισώσεων, κάτι που μάλλον
+	θα είναι αδύνατο.
+	
+	Επομένως αντί να λύσω την εξίσωση:
+	\[
+	Ax = b
+	\]
+	θα λύσω την:
+	\[
+	A\bar x \simeq b
+	\]
+	με σκοπό να ελαχιστοποιήσω την απόσταση (υπόλοιπο):
+	\[
+	A\bar x -b.
+	\]
+	
+	Η παραπάνω σχέση όμως δεν εκφράζει έναν αριθμό, αλλά έναν πίνακα!
+	Για να "ελαχιστοποιήσουμε" αυτόν τον πίνακα θα ορίσουμε κάποια
+	μεγέθη.
+	
+	\subsection{Στοιχεία Αριθμητικής Γραμμικής Άλγεβρας}
+	\subsubsection{Μήκος - Νόρμα (norm) διανύσματος}
+	Ως νόρμα μπορούμε να επιλέξουμε οποιαδήποτε συνάρτηση που καλύπτει
+	κάποια αξιώματα (για παράδειγμα, νόρμα ενός διανύσματος μπορεί να
+	είναι το μέγιστο στοιχείο ενός διανύσματος).
+	
 \end{document}
