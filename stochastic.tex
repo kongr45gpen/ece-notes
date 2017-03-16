@@ -354,4 +354,218 @@
 	\( \alpha, \beta, \gamma \) ή \( \delta \). Όπως και πριν, κάθε
 	είσοδος αντιστοιχεί με διαφορετική πιθανότητα σε κάθε έξοδο:
 	%TODO Graph 7
+	
+	\paragraph{Ανεξαρτησία}
+	Δύο γεγονότα λέγονται ανεξάρτητα ανν:
+	\[
+	P(A\cdot B) = P(A)P(B)
+	\]
+	
+	Ομοίως ορίζεται η ανεξαρτησία για περισσότερα ενδεχόμενα, ανν:
+	\[
+	P(A_1A_2\cdots A_n) = P(A_1)P(A_2)\cdots P(A_m)
+	\]
+	
+	\subsubsection{Πιθανοτικό Μοντέλο}
+	Ένας δειγματικός χώρος \( S \) έχει μεγάλο αριθμό δυνατών υποσυνόλων,
+	και στο καθένα από αυτά αντιστοιχεί μία πιθανότητα. Για εμάς μπορεί
+	να είναι εύκολο/δυνατό να βρούμε την πιθανότητα μόνο για μερικά
+	από αυτά τα υποσύνολα, επομένως ονομάζουμε αυτά γεγονότα, και τα
+	τοποθετούμε σε μια τάξη συνόλων \( \mathcal F \), που θα ικανοποιούν:
+	
+	\begin{enumroman}
+		\item \( \emptyset \in \mathcal F,\
+		S \in \mathcal{F}
+		 \)
+		\item \( A \in \mathcal F \) και το \( \bar A \in \mathcal F \)
+		\item \( A \in \mathcal F \) και \( B \in \mathcal F \)
+		\( \implies A + B \in \mathcal F \) \quad
+		(τότε θα έχουμε και \( A\cdot B,\ A-B \in \mathcal F \))
+	\end{enumroman}
+	
+	Τότε προκύπτει, αν \( A_1,A_2,\dots,A_n \in \mathcal F \):
+	\begin{gather*}
+		A_1+A_2+\dots +A_n \in \mathcal F \\
+		A_1\cdot A_2 \cdots A_n \in \mathcal F
+	\end{gather*}
+	
+	Το πεδίο \( \mathcal F \) ονομάζεται \textbf{πεδίο Borel}.
+	
+	Αν έχουμε τα \( \mathlarger{\mathlarger{(S,\mathcal F,P)}} \),
+	δηλαδή το
+	δειγματικό χώρο, ένα πεδίο Borel, και τις αντίστοιχες πιθανότητές
+	του, τότε έχουμε ένα πλήρες πιθανοτικό μοντέλο.
+	
+	\paragraph{Σύνολο με πεπερασμένο αριθμό γεγονότων}
+	\begin{align*}
+		S &= \left\lbrace J_1,J_2,\dots,J_n \right\rbrace \\
+		P_i \to \quad A_1 &= 
+		\left\lbrace J_i \right\rbrace \in \mathcal F \\
+		& P_1+P_2+\dots+P_N = 1 \\
+		A &= \left\lbrace J_{k_1},J_{k_2},\dots,J_{k_i} \right\rbrace
+		\quad i \leq n \qquad \text{(επιλέγουμε μερικά
+			απλά ενδεχόμενα από τον χώρο ) S} \\
+		P(A) &= P\left\lbrace J_{k_1} \right\rbrace +
+		P\left\lbrace J_{k_2} \right\rbrace + \dots +
+		P\left\lbrace J_{k_i} \right\rbrace \\ &=
+		P_{k_1} + P_{k_2} + \dots + P_{k_n}
+	\end{align*}
+	
+	\paragraph{Σύνολο με πραγματικούς αριθμούς}
+	Όταν, για παράδειγμα, περιμένουμε το λεωφορείο στη στάση, ο χρόνος
+	\( t \) που πρέπει να περιμένουμε μέχρι να έρθει είναι πραγματικός
+	αριθμός:
+	\begin{gather*}
+		t_1 \leq t \leq t_2 \\ t_1,t_2 \in [0,+\infty)
+	\end{gather*}
+	
+	Θα προσπαθήσω να δώσω μια πιθανότητα της μορφής 
+	\( P(0 \leq t \leq t_1) \)
+	\\σε κάθε διάστημα.
+	
+	Έστω λοιπόν μια \underline{\( f(t) \)} με \( f(t) \leq 0 \) και
+	\( \displaystyle \int_0^\infty f(t) = 1 \). Τότε μπορώ να ορίσω:
+	\[
+	P\left\lbrace 0 \leq t \leq t_1 \right\rbrace =
+	\int_0^{t_1} f(t)\dif t.
+	\]
+	
+	Με αυτόν τον τρόπο μπορώ να ορίσω και πιθανότητες για \( t \) που
+	δεν ξεκινούν από το 0, παρατηρώντας ότι:
+	\begin{align*}
+	0 \leq t \leq t_2 &= 0 \leq t \leq t_1 \ + \ t_1\leq t \leq t_2 \\
+	P\left\lbrace 0\leq t \leq t_2 \right\rbrace &=
+	P\left\lbrace 0 \leq t \leq t_1 \right\rbrace + P\left\lbrace 
+	t_1 \leq t \leq t_2 \right\rbrace \\
+	\int_0^{t_2} f(t)\dif t - \int_0^{t_1} f(t)|dif t &=
+	P\left\lbrace t_1 \leq t \leq t_2 \right\rbrace \\
+	P\left\lbrace t_1<t\leq t_2 \right\rbrace =
+	\int_{t_1}^{t_2} f(t)\dif t
+	\end{align*}
+	
+	Η \( f(t) \) επομένως είναι μια συνάρτηση γραμμικής πυκνότητας.
+	
+	\subparagraph{Πιθανότητα στιγμής}
+	Πόση είναι η πιθανότητα για μια στιγμή, "μηδενικής" διάρκειας;
+	
+	\begin{align*}
+		\lim_{\epsilon\to 0} P(t_2-\epsilon < t \leq t_2) &=
+		\lim_{\epsilon\to 0} \int_{t_2-\epsilon}^{t_2} f(t)\dif t
+		\\ &= \int_{t_2}^{t_2} f(t)\dif t = 0.
+	\end{align*}
+	
+	\paragraph{Πιθανότητα πολλαπλών πειραμάτων}
+	Έχουμε δύο πειράματα με διαφορετικούς δειγματικούς χώρους:
+	\begin{align*}
+		S_A &= \left\lbrace a_1,a_2,\dots,a_n \right\rbrace \\
+		S_B &= \left\lbrace \beta_1,\beta_2,\dots,\beta_n \right\rbrace
+	\end{align*}
+	
+	Αν πραγματοποιήσουμε και τα δύο πειράματα, παίρνουμε έναν δειγματικό
+	χώρο που είναι το καρτεσινό γινόμενο του καθενός, το οποίο
+	αποτελείται από διατεταγμένα ζεύγη γεγονότων:
+	\[
+	S = S_A \times S_B = \left\lbrace 
+	(a_1,\beta_1),(a_1,\beta_2),\dots,(a_2,\beta_1),(a_2,\beta_2),\dots,
+	(a_n,\beta_n)
+	 \right\rbrace
+	\]
+	με παρόμοιο αποτέλεσμα αν τα \( S_A,S_B \) είναι σύνολα πραγματικών
+	αριθμών.
+	
+	Για παράδειγμα, έχουμε:
+	\begin{align*}
+		A_i &= \left\lbrace a_1,a_2 \right\rbrace \in S_A \\
+		B_j &= \left\lbrace \beta_3 \right\rbrace \in S_B \\
+		C &= A_i \times B_j = \left\lbrace
+		(a_1,\beta_3),(a_2,\beta_3) \right\rbrace \in S = S_A \times S_B
+	\end{align*}
+	
+	Το ερώτημα που προκύπτει είναι, αν γνωρίζουμε τις πιθανότητες
+	\( P(A_i), P(B_i) \), πώς μπορούμε να υπολογίσουμε την πιθανότητα
+	των γεγονότων του \( C \).
+	
+	Αν τα δύο πειράματα είναι \textit{ανεξάρτητα}, τότε έχουμε:
+	\[
+	P(A_i,B_j) = P(A_i, B_j)
+	\]
+	
+	Στην περίπτωση που δεν υπάρχει ανεξαρτησία, θα πρέπει να μελετηθεί
+	εκ νεου ο δειγματικός χώρος \( S \) των δύο πειραμάτων. Αν όμως
+	γνωρίζουμε τις πιθανότητες του \( S \), μπορούμε να υπολογίσουμε
+	τις αρχικές (marginal) πιθανότητες:
+	\begin{align*}
+		P(A_i) &= \sum_j P(A_i, B_j) \\
+		P(B_j) &= \sum_i P(A_i, B_j) \\
+		P(A_i/B_j) &= \frac{P(A_iB_j)}{P(B_j)}
+	\end{align*}
+	
+	\section{Τυχαίες Μεταβλητές}
+	\subsection{Ορισμός}
+	Ας κάνουμε ένα πείραμα. Στο πείραμα έχουμε τρία κουτιά. Σε κάθε
+	κουτί υπάρχει μια άσπρη και μια μαύρη μπάλα, και τραβάω μία από
+	κάθε κουτί.
+	%TODO Graph 9
+	\begin{align*}
+		S_A &= \left\lbrace \varLambda, M \right\rbrace
+		= \left\lbrace J_{A_1},J_{A_2} \right\rbrace \\
+		S_B &= \left\lbrace \varLambda, M \right\rbrace
+		= \left\lbrace J_{B_1},J_{B_2} \right\rbrace \\
+		S_\varGamma &= \left\lbrace \varLambda, M \right\rbrace
+		= \left\lbrace J_{\varGamma_1},J_{\varGamma_2} \right\rbrace
+	\end{align*}
+	\begin{align*}
+		S &= S_A \times S_B \times S_\varGamma \\
+		&= \left\lbrace \varLambda\varLambda\varLambda,
+		\varLambda\varLambda M,\dots,MMM \right\rbrace
+		\\ &= \left\lbrace J_1,J_2,\dots,J_8 \right\rbrace
+	\end{align*}
+	
+	\[
+	P(J_i) = P(J_{A_i}) P(J_{B_i}) P(J_{\varGamma_i})
+	\]
+	
+	Έστω ότι αυτό είναι ένα παιγνίδι με πόντους, όπου οι λευκές μπάλες
+	δίνουν 1 πόντο, ενώ οι μαύρες αφαιρούν 1.
+	
+	\[
+	\begin{array}{c|c|c|r}
+		i &              J_i               &  P(J_i)  & 3 \\ \hline
+		1 & \varLambda\varLambda\varLambda &   p^3    & 1 \\ \hline
+		2 &     \varLambda\varLambda M     & p^2(1-p) & 1 \\ \hline
+		3 &    \varLambda M \varLambda     & p^2(1-p) & 1 \\ \hline
+		4 &     M\varLambda\varLambda      & p^2(1-p) & -1 \\ \hline
+		5 &         \varLambda M M         & p(1-p)^2 & -1 \\ \hline
+		6 &         M \varLambda M         & p(1-p)^2 & -1 \\ \hline
+		7 &    \varLambda M \varLambda     & p(1-p)^2 & -1 \\ \hline
+		8 &             M M M              & (1-p)^3  & -3 \\ \hline
+	\end{array}
+	\]
+	
+	Αν σε ένα πείραμα τύχης αποκαταστήσουμε μια σχέση που αντιστοιχεί
+	το αποτέλεσμα σε έναν αριθμό (ακέραιο, πραγματικό, \dots), τότε
+	έχουμε μία τυχαία μεταβλητή.
+	
+	\paragraph{2\textsuperscript{ο} Παράδειγμα}
+	Σε ένα κουτί υπάρχουν αντιστάσεις \( R= 100\, \Omega \)
+	με ανοχή \( 0.1\% \).
+	
+	Αυτό είναι ένα πείραμα τύχης με δειγματικό χώρο
+	\( S = \left\lbrace J_1,\dots,J_n \right\rbrace \), και το εύρος
+	της τιμής για κάθε αντίσταση είναι \( x=x(J_i), \quad
+	99,9 \leq x(J_i) \leq 100.1 \), δηλαδή \( x \in [99.9,\ 100.1] \).
+	
+	\paragraph{Τυχαία μεταβλητή} ονομάζεται μία συνάρτηση \( X \)
+	που αντιστοιχεί κάθε ένα αποτέλεσμα \( J \in S \) του πειράματός μας
+	σε έναν αριθμό \( X=X(J) \).
+	
+	\paragraph{}
+	Για παράδειγμα, στο αρχικό παιχνίδι μπορώ να γράψω:
+	\begin{align*}
+		C &= \left\lbrace \varLambda\varLambda\varLambda,
+		\varLambda\varLambda M, \varLambda M \varLambda,
+		M\varLambda\varLambda \right\rbrace
+		\\ &= \left\lbrace 1 \leq x \leq 3 \right\rbrace
+	\end{align*}
+	
 \end{document}
