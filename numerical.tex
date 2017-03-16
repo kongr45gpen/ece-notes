@@ -1190,9 +1190,225 @@
 	μεγέθη.
 	
 	\subsection{Στοιχεία Αριθμητικής Γραμμικής Άλγεβρας}
+	\subsubsection{Εσωτερικό γινόμενο}
+	\textit{Εσωτερικό γινόμενο} σε χώρο \( V \) είναι μια \textbf{πράξη}
+	για κάθε \( x,y \in V \) 
+	(συμβολίζεται με \( (x,y) \) ή \( \langle x,y \rangle \))
+	ορίζει έναν \textbf{αριθμό} που ικανοποιεί:
+	\begin{enumroman}
+		\item \( (x,x) \geq 0 \), ισότητα μόνο αν \( x=0 \)
+		\item \( (x,y) = (y,x) \quad \forall x,y\in V \)
+		\item \( (ax+by,z) = a(x,z)+b(y,z) \)
+	\end{enumroman}
+	
+	Πιο συγκεκριμένα, για κάποιους χώρους ορίζουμε:
+	\begin{align*}
+	\mathbb R^n &: \ (x,y) = x^{\mathrm T}y \quad
+	\text{για } x,y \in \mathbb R^n
+	\\
+	\mathbb R^{m\times n} &: (A,B) =
+	\sum_{i=1}^{m}\sum_{j=1}^{n} a_{ij}b_{ij}
+	\end{align*}
+	
+	Για συναρτήσεις, έχουμε \( (f,g) = \int f(x)g(x)\dif x \)
+	
+	Δύο διανύσματα \( x,y \in V \) λέγονται \textbf{ορθογώνια} όταν
+	\( (x,y) = 0\), και γράφουμε \( x \perp y \).
+	
 	\subsubsection{Μήκος - Νόρμα (norm) διανύσματος}
 	Ως νόρμα μπορούμε να επιλέξουμε οποιαδήποτε συνάρτηση που καλύπτει
 	κάποια αξιώματα (για παράδειγμα, νόρμα ενός διανύσματος μπορεί να
 	είναι το μέγιστο στοιχείο ενός διανύσματος).
 	
+	Ένας χώρος \( V \) είναι εφοδιασμένος με \textbf{μήκος} ή
+	\textbf{νόρμα} αν για κάθε \( x \in V \) υπάρχει αριθμός
+	\( \Vert x\Vert \) που ικανοποιεί:
+	
+	\begin{enumroman}
+		\item \( \Vert x\Vert > 0 \) με ισότητα μόνο εάν \( x=0 \)
+		\item \( \Vert ax\Vert = |a|\,\Vert x\Vert \) για κάθε σταθερά \( a \)
+		\item \( \Vert x+y\Vert \leq \Vert x\Vert+\Vert y\Vert \ \forall x,y\in V  \)
+	\end{enumroman}
+	
+	\paragraph{Είδη νορμών}
+	Για ένα διάνυσμα \( x=(x_1,x_2,\dots,x_n)^{\mathrm T} \)
+	\begin{align*}
+		l_{\infty} &: \Vert x\Vert _{\infty} = \max_{1\leq i \leq n}|x_i|
+		\qquad \text{ (άπειρη νόρμα)}
+		\\
+		l_p &: \Vert x\Vert _{p} =
+		\left(\sum_{i=1}^n |x_i|^p\right)^{\frac{1}{p}}
+		\quad \text{ ($p$-οστή νόρμα)}
+		\\
+		l_2 &: \Vert x\Vert _2 = \sqrt{x^{\mathrm T}x} =
+		\sqrt{x_1^2 + \dots + x_n^2}
+		\quad \text{ (ευκλείδια νόρμα)}
+	\end{align*}
+	
+	\paragraph{Απόσταση}
+	μεταξύ διανυσμάτων \( x,y \in \mathbb R  \) είναι ο αριθμός:
+	\[
+    \mathlarger{\Vert x-y\Vert }
+	\]
+	
+	\paragraph{Θεωρήματα}
+	\[
+	\Vert x+y\Vert ^2 = \Vert x\Vert ^2 + \Vert y\Vert ^2
+	\]
+	
+	Cauchy-Schwartz:
+	\[
+	\left\Vert(x,y)\right\Vert \leq \Vert x\Vert \,\Vert y\Vert 
+	\]
+	
+	\subsubsection{Ορθογώνιοι Υποχώροι}
+	\begin{defn}{Ορθογώνιοι Υποχώροι}{}
+		Δύο υποχώροι \( X,Y \) του  \( \mathbb R^n \) λέγονται
+		\textbf{ορθογώνιοι}, αν \( x^{\mathrm T}y = 0 \) \textbf{για
+		κάθε} \( x \in X \) και \( y \in Y \).
+	
+	    Γράφουμε: \( \mathlarger{X \perp Y} \)
+	\end{defn}
+	\begin{defn}{Ορθογώνιο Συμπλήρωμα}{}
+		Το σύνολο:
+		\[
+		\mathlarger{
+			Y^\perp
+			} = \left\lbrace 
+			x \in \mathbb R^n : x^{\mathrm T}y = 0 \quad
+			\forall y \in Y
+			 \right\rbrace
+		\]
+		είναι το \textbf{ορθογώνιο συμπλήρωμα} του \( Y \).
+		
+		Για παράδειγμα, το ορθογώνιο συμπλήρωμα του πίνακα στην αίθουσα
+		Α3 είναι ο κάθετος τοίχος.
+	\end{defn}
+	\begin{defn}{}{}
+		Για \( A \in \mathbb R^{m \times n} \):
+		\begin{itemize}
+			\item \textbf{Μηδενοχώρος} του \( A \):
+			\( \mathrm N(A) = \left\lbrace x\in\mathbb R^n: Ax=0
+			 \right\rbrace \)
+			\item \textbf{Χώρος των στηλών} του \( A \):
+			\( \mathrm R(A)  = \left\lbrace
+			b \in \mathbb R^m: b = Ax \text{ για }
+			x \in \mathbb R^n \right\rbrace
+			\)
+			\item \textbf{Χώρος των γραμμών} του \( A \):
+			\( \mathrm R(A^{\mathrm T}) = \left\lbrace 
+			y \in \mathbb R^n: y = A^{\mathrm T}x \text{ για }
+			x \in \mathbb R^m
+			 \right\rbrace \)
+		\end{itemize}
+	\end{defn}
+	\begin{theorem}{Θεμελιώδες Θεώρημα Γραμμικής Άλγεβρας}{}
+		\begin{align*}
+			\mathlarger{N(A)} &\mathlarger{= R(A^{\mathrm T})^\perp}
+			\\
+			\mathlarger{N(A^{\mathrm T})} &\mathlarger{= R(A)^\perp}
+		\end{align*}
+	\end{theorem}
+
+    \subsection{Πίσω στο αρχικό πρόβλημα}
+    Ορίζω:
+    \begin{align*}
+    \text{διαφορά } r(x) &= b - Ax \\
+    \left\Vert r(x)\right\Vert &= \Vert b-Ax\Vert
+    \end{align*}
+    
+    %TODO Graph 18
+    
+    Το διάνυσμα \( r(x) \) ανήκει στο ορθογώνιο συμπλήρωμα του χώρου
+    των στηλών, άρα στο μηδενοχώρο του \( A^{\mathrm T} \) (από το
+    Θεμελιώδες Θεώρημα Γραμμικής Άλγεβρας), επομένως:
+    
+    \begin{align*}
+    	A^{\mathrm T} r(x) &= 0 \\
+    	A^{\mathrm T} (b-A\bar x) &= 0
+    \end{align*}
+    
+    Άρα: \[
+    \boxed{
+    \mathlarger{\mathlarger{\mathlarger{
+    		Α^{\mathrm T}Ax = A^{\mathrm T}b
+    	}}}} \quad \xleftarrow{\hspace{5pt}} \text{ κανονικές εξισώσεις}
+    \]
+    
+    \paragraph{Παράδειγμα}
+    Να προσεγγιστεί η \( f(x) \) με πολυώνυμο πρώτου βαθμού, όπου:
+    \[
+    \begin{array}{r|ccc}
+    x_i & 0 & 3 & 6 \\ \hline
+    f(x_i) & 1 & 4 &  5
+    \end{array}
+    \]
+    
+    \subparagraph{Λύση}
+    \[
+    A = \left[ \begin{matrix}
+    1 & 0 \\ 1 & 3 \\ 1 & 6
+    \end{matrix} \right], \quad x = \left[ \begin{matrix}
+    a_0 \\ a_1
+    \end{matrix}\right], \quad b = \left[\begin{matrix}
+    1 \\ 4 \\ 5
+    \end{matrix} \right]
+    \]
+    
+    \begin{align*}
+    	A^{\mathrm T} A &= \left[\begin{matrix}
+    	3 & 9 \\ 9 & 45
+    	\end{matrix} \right] \\
+    	A^{\mathrm T} b &= \left[ \begin{matrix}
+    	10 \\ 42
+    	\end{matrix} \right]
+    \end{align*}
+    
+    Άρα πρέπει να λύσουμε το σύστημα:
+    \[
+    \left[\begin{matrix}
+    3 & 9 \\ 9 & 45
+    \end{matrix}\right] \left[\begin{matrix}
+    a_0 \\ a_1
+    \end{matrix}\right] = \left[\begin{matrix}
+    10 \\ 42
+    \end{matrix}\right]
+    \]
+    \( a_0 = \sfrac{4}{3},\ a_1 = \sfrac{2}{3}  \)
+    
+    Επομένως \( \displaystyle P_1(x) = \frac{4}{3} + \frac{2}{3}x \).
+    
+    \paragraph{Άσκηση}
+    Να προσεγγιστούν τα παρακάτω σημεία με μία παραβολή, χρησιμοποιώντας
+    τη μέθοδο ελαχίστων τετραγώνων:
+    \[
+    \begin{array}{r|ccccc}
+    x_i & 0 & 1 & 2 & 3 & 4 \\ \hline
+    f(x_i) & 1 & 2 & 2 & 4 & 5
+    \end{array}
+    \]
+    
+    \begin{align*}
+    	A &= \left[\begin{matrix}
+   	    1 & 0 & 0 \\ 1 & 1 & 1 \\ 1 & 2 & 4 \\ 1 & 3 & 9 \\ 1 & 4 & 1
+    	\end{matrix}\right] \\
+    	x &= \left[\begin{matrix}
+    	a_0 \\ a_1 \\ a_2
+    	\end{matrix}\right] \qquad P(x) = a_0+a_1x+a_1x^2 \\
+    	b &= \left[
+    	\begin{matrix}
+    	1 \\ 2 \\ 2 \\ 4 \\ 5
+    	\end{matrix}
+    	\right]
+    \end{align*}
+    \[
+    \left[
+    A^{\mathrm T}
+    \right] \left[ A \right]\left[
+    \begin{matrix}
+    a_0 \\ a_1 \\ a_2
+    \end{matrix}
+    \right] = \left[A^{\mathrm T}\right] \left[b\right]
+    \]
+    
 \end{document}
