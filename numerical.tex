@@ -1,4 +1,8 @@
-\documentclass[11pt,a4paper,notitlepage,fleqn,draft]{article}
+\ifx\ispublic
+    \documentclass[11pt,a4paper,notitlepage,fleqn]{article}
+\else
+    \documentclass[11pt,a4paper,notitlepage,fleqn,draft]{article}
+\fi
 
 \input{preamble.tex}
 
@@ -693,7 +697,7 @@
 		\lim_{n\to \infty} P_n(x) = f(x)
 		\]
 	\end{theorem}
-	%TODO Papalamprou Graph 5
+	\todo{Graph 5}
 	
 	Και μάλιστα:
 	\[
@@ -712,7 +716,7 @@
 	\]
 	ψάχνω ένα πολυώνυμο (κάποιου βαθμού) που να περνάει από αυτά τα
 	σημεία.
-	%TODO Papalamprou Graph 6
+	\todo{Graph 6}
 	
 	Αν έχω δύο σημεία, το ζητούμενο πολυώνυμο είναι μια ευθεία, δηλαδή
 	ένα πολυώνυμο 1\textsuperscript{ου} βαθμού. Για τρία σημεία, θα
@@ -720,9 +724,9 @@
 	ένα μοναδικό
 	πολυώνυμο \( n \) βαθμού για \( n+1 \) διακριτά σημεία,
 	όπως θα δούμε αργότερα.
-	%TODO Papalamprou Graph 7
+	\todo{Graph 7}
 	
-	%TODO Papalamprou Graph 8
+	\todo{Graph 8}
 	Η πραγματική συνάρτηση μπορεί να έχει διαφορετική συμπεριφορά
 	ανάμεσα στα σημεία της τα οποία γνωρίζουμε.
 	
@@ -875,7 +879,7 @@
  	να χρησιμοποιήσουμε τον Πίνακα Διηρημένων Διαφορών.
  	
  	\paragraph{Πίνακας ΔΔ}
- 	%TODO Convert matrix to tikz
+ 	\todo{Convert matrix to tikz}
  	\[
  	\begin{array}{llllll}
  	 & & 1^{\text{η}} & 2^\text{η} & 3^\text{η} & 4^\text{η}\\
@@ -912,14 +916,14 @@
  	\end{tabular}
  	
  	Πίνακας ΔΔ:
- 	%TODO Papalamprou Graph 9
+ 	\todo{Graph 9}
  	
  	Άρα:
  	\begin{align*}
  	P_3(x) &= 1 + 0(x-0) + \frac{1}{2}(x-0)(x-1)-\frac{1}{12}
  	(x-0)(x-1)(x-2) \\ &= \frac{1}{12} (-x^3+9x^2-8x+12)
  	\end{align*}
- 	%TODO Plot that?
+ 	\todo{Plot this?}
  	
  	\subsubsection{Μέθοδος πεπερασμένων διαφορών}
  	Για τη μέθοδο αυτή, θεωρούμε ότι τα σημεία της \( f \)
@@ -990,7 +994,7 @@
  		\(f(x_i)\) & 1 & -1 & 1 & -1 & 1
  	\end{tabular}
  	
- 	%TODO Papalamprou Graph 10
+ 	\todo{Graph 10}
  	
  	\begin{align*}
  		P_4(1+r) &= 1-2\binom{r}{1}+4\binom{r}{2}-8\binom{r}{3}
@@ -1035,7 +1039,7 @@
  	A_{k,r} &= \frac{(x_{k-1}-\bar x)A_{k-1,r}
  		-(x_r-\bar x)A_{k-1,k-1}}{x_{r-1}-x_r}
 	\end{align*}
-	%TODO Papalamprou Graph 12
+	\todo{Graph 12}
 	\paragraph{π.χ.}
 	\begin{align*}
 		A_{2,3} &=
@@ -1064,7 +1068,7 @@
     \qquad \text{(δεν είναι απαραίτητο να το φτάσουμε μέχρι εδώ)}
 	\end{align*}
 	
-	%TODO Add labels and points
+	\todo{Add labels and points}
 	\begin{tikzpicture}[scale=.7]
 	\begin{axis}[samples=30,very thick,domain=-1.5:1.5,no marks]
 	\addplot+{e^x};
@@ -1079,7 +1083,7 @@
 	f(-1) = 1,\quad f(1) = 2 \quad \text{και} \quad f(2)=-1
 	\]
 	\subparagraph{Λύση}
-	%TODO Graph 14
+	\todo{Graph 14}
 	\[
 	P_2(x) = 1 + \frac{1}{2}(x+1) - \frac{7}{6}(x+1)(x-1)
 	\]
@@ -1097,7 +1101,7 @@
 	\subparagraph{Λύση}
 	Οι τύποι για τις \( k \)-οστές διαφορές θα δίνονται στις εξετάσεις,
 	αλλά είναι πιο κομψό και εύκολο να χρησιμοποιήσουμε τον πίνακα:
-	%TODO Graph 15
+	\todo{Graph 15}
 	\begin{align*}
 	P_4(\overset{\mathclap{\substack{x=x_0+rh\\\uparrow}}}{x}) &=
 	    f(x_0) + \binom{r}{1}\Delta f(x_0) + \binom{r}{2}\Delta^2 f(x_0)
@@ -1125,7 +1129,7 @@
 		x_i - \underbrace{\bar x}_{5} & \\
 		2-5 &= -3 \\ 4-5 &= -1 \\ 6-5 &= 1 \\ 8-5 &= 3
 	\end{align*}\
-	%TODO Graph 16
+	\todo{Graph 16}
 	Άρα \( P(5) = \frac{3}{16} \), λύση που φαίνεται λογική, αφού
 	βρίσκεται ανάμεσα στο -2 και το 3.
 	
@@ -1136,7 +1140,7 @@
 	αρχικής συνάρτησης, αλλά να έχει την ελάχιστη απόσταση από αυτά. Το
 	κέρδος μας με αυτόν τον τρόπο είναι ότι το πολυώνυμο που θα βρούμε
 	είναι μικρότερου βαθμού.
-	%TODO Graph 13
+	\todo{Graph 13}
 	
 	\paragraph{}
 	Έστω οι τιμές μιας συνάρτησης:
@@ -1146,7 +1150,7 @@
 	f(x_i) & f(x_0) & f(x_1) & \dots & f(x_{m-1})
 	\end{array}
 	\]
-	%TODO Graph 17
+	\todo{Graph 17}
 	
 	Αν ζητάμε η προσέγγιση \( P(x) \) να είναι μια ευθεία, τότε στην
 	ιδανική περίπτωση:
@@ -1317,7 +1321,7 @@
     \left\Vert r(x)\right\Vert &= \Vert b-Ax\Vert
     \end{align*}
     
-    %TODO Graph 18
+    \todo{Graph 18}
     
     Το διάνυσμα \( r(x) \) ανήκει στο ορθογώνιο συμπλήρωμα του χώρου
     των στηλών, άρα στο μηδενοχώρο του \( A^{\mathrm T} \) (από το
