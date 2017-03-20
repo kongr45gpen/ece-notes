@@ -297,7 +297,18 @@
 	\end{enumpar}
 	
 	\paragraph{Παράδειγμα}
-	%TODO Graph 5
+	\hspace{0pt}
+	
+	\begin{tikzpicture}[every node/.style={scale=0.8}]
+	\draw (0,0) rectangle node[midway] {Πομπός} (2,1);
+	\draw (2.5,0.2) rectangle node[midway] {Κανάλι} ++(1.2,0.6);
+	\draw (4.2,0) rectangle node[midway] {Δέκτης} ++(2,1);
+	
+	\draw[->] (2,0.5) --++ (0.5,0);
+	\draw[->] (3.7,0.5) --++ (0.5,0);
+	
+	\draw (0,-0.5) node[right] {$A=\lbrace A_1,A_2,A_3,A_4\rbrace$};
+	\end{tikzpicture}
 	
 	Η είσοδος μπορεί να είναι ένα αλφάβητο \( A \):
 	\begin{align*}
@@ -500,7 +511,19 @@
 	P\left\lbrace t_1<t\leq t_2 \right\rbrace =
 	\int_{t_1}^{t_2} f(t)\dif t
 	\end{align*}
+
+	\begin{tikzpicture}
+	\draw[->] (-0.2,0) -- (3,0);
 	
+	\filldraw (0,0) circle (1pt) node[below] {$0$};
+	\filldraw (1,0) circle (1pt) node[below] {$t_1$};
+	\filldraw (2,0) circle (1pt) node[below] {$t_2$};
+	
+	\draw[thick,black!70!blue] (0,0) -- (0.25,0.3) -- (0.75,0.3) -- (1,0);
+	\draw[thick,black!70!blue] (1,0) -- (1.25,0.3) -- (1.75,0.3) -- (2,0);
+	\draw[thick,black!60!blue] (0,0) -- (0,0.5) -- (2,0.5) -- (2,0);
+	\end{tikzpicture}
+
 	Η \( f(t) \) επομένως είναι μια συνάρτηση γραμμικής πυκνότητας.
 	
 	\subparagraph{Πιθανότητα στιγμής}
