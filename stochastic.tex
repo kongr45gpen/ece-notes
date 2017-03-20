@@ -81,7 +81,7 @@
     	πιθανότητα.
     \end{itemize}
     
-    \subsubsection{Θεωρία Πιθανοτήτων}
+    \section{Θεωρία Πιθανοτήτων}
     Ασχολείται με τυχαία γεγονότα, δηλαδή γεγονότα το αποτέλεσμα
     των οποίων:
     \begin{itemize}
@@ -197,7 +197,7 @@
 		\[
 		P(A+B) = P(A) + P(B) - P(A\cdot B) \leq 1
 		\]
-		\begin{tikzpicture}
+		\begin{tikzpicture}[scale=0.65]
 		\def\firstcircle{(0,0) circle (1.5cm)}
 		\def\secondcircle{(0:2cm) circle (1.5cm)}
 		\begin{scope}
@@ -207,7 +207,7 @@
 		\draw[outline] \firstcircle node {$A$};
 		\draw[outline] \secondcircle node {$B$};
 		\draw \boundingbox;
-		\draw (1,0) node {$A\cap B$};
+		\draw (1,0) node[scale=0.6] {$A\cap B$};
 		\end{tikzpicture}
 		
 		
@@ -521,7 +521,7 @@
 	
 	\draw[thick,black!70!blue] (0,0) -- (0.25,0.3) -- (0.75,0.3) -- (1,0);
 	\draw[thick,black!70!blue] (1,0) -- (1.25,0.3) -- (1.75,0.3) -- (2,0);
-	\draw[thick,black!60!blue] (0,0) -- (0,0.5) -- (2,0.5) -- (2,0);
+	\draw[thick,black!80!blue] (0,0) -- (0,0.5) -- (2,0.5) -- (2,0);
 	\end{tikzpicture}
 
 	Η \( f(t) \) επομένως είναι μια συνάρτηση γραμμικής πυκνότητας.
@@ -648,5 +648,171 @@
 		M\varLambda\varLambda \right\rbrace
 		\\ &= \left\lbrace 1 \leq x \leq 3 \right\rbrace
 	\end{align*}
+	
+	\paragraph{}
+	
+	Η συνάρτηση \( X \) επομένως αντιστοιχεί κάθε ενδεχόμενο του \( S \)
+	σε έναν αριθμό (φυσικό αν έχουμε αριθμήσιμα αποτελέσματα, πραγματικό
+	αν είναι μη αριθμήσιμα):
+	\todo{Graph 10}
+	
+	\subsection[Συνάρτηση Κατανομής Πιθανότητας]{
+		Συνάρτηση Κατανομής Πιθανότητας \\ (Probability Distribution
+		Function - PDF)}
+	\( \mathlarger{F(x)} \)
+	
+	\begin{defn}{Συνάρτηση κατανομής πιθανότητας}{}
+	Ως συνάρτηση κατανομής πιθανότητας για μία τυχαία μεταβλητή \( X \)
+	ορίζεται η συνάρτηση που ικανοποιεί:
+	\[
+	P\left\lbrace X \leq x \right\rbrace = F_X(x)
+	\]
+	\end{defn}
+	
+	Δηλαδή μας δίνει την πιθανότητα η τυχαία μεταβλητή να είναι 
+	μικρότερη από έναν αριθμό:
+	\todo{Graph 11}
+	
+	\paragraph{Ιδιότητες}
+	Η συνάρτηση αυτή ικανοποιεί μερικές ιδιότητες:
+	\begin{enumroman}
+		\item \( F_X(-\infty) = 0 \qquad
+		\mathsmaller{P\left\lbrace X\leq-\infty \right\rbrace = 0} \)
+		\item \( F_X(+\infty) = 1 \qquad 
+		\mathsmaller{P\left\lbrace X\leq+\infty \right\rbrace = P(S)}\)
+		\item \( F_X(x_1) \leq F_X(x_2) \text{ ανν } x_1 \leq x_2 \)
+		(δηλαδή είναι \textbf{αύξουσα}, όχι όμως απαραίτητα γνησίως αύξουσα)
+		\item Απαιτούμε να είναι \textbf{συνεχής από τα δεξιά}, δηλαδή
+		\( F_X(x^+) = F_X(x) \)
+		\todo{Graph 12}
+	\end{enumroman}
+	
+	\paragraph{Παράδειγμα για την ιδιότητα (iv)}
+	\begin{align*}
+		F_X(x^+) &= \underset{\epsilon\to 0}{P}
+		\left\lbrace X \leq x+\epsilon \right\rbrace
+		\\ &= P\left\lbrace X \leq x \right\rbrace
+		+ \underset{\epsilon\to 0}{P}\left\lbrace x<X\leq x+\epsilon
+		 \right\rbrace
+	\end{align*}
+	\todo{?}
+	
+	\paragraph{}
+	Από τη στιγμή που έχουμε την συνάρτηση αυτή, μπορούμε να υπολογίσουμε
+	τις πιθανότητες οποιουδήποτε διαστήματος. Το πιο συχνό διάστημα είναι
+	το:
+	\[
+	\left\lbrace x < X \leq x_2 \right\rbrace,
+	\]
+	του οποίου συχνά καλούμαστε να υπολογίσουμε την πιθανότητα, ενώ θα
+	έχουμε την συνάρτηση κατανομής \( F_X(x) \).
+	
+	Για να την υπολογίσουμε έχουμε:
+	\todo{Graph 14}
+	\begin{align*}
+		\left\lbrace X \leq x_2 \right\rbrace &=
+		\left\lbrace X \leq x_1 \right\rbrace +
+		\left\lbrace x_1 < X \leq x_2 \right\rbrace \\
+		P\left\lbrace X \leq x_2 \right\rbrace &=
+		P\left\lbrace X \leq x_1 \right\rbrace +
+		P \left\lbrace x_1 < X \leq x_2 \right\rbrace \\
+		\Aboxed{
+		F_X(x_2) - F_X(x_1) &= P \left\lbrace x_1<X\leq x_2 \right\rbrace
+	}
+	\end{align*}
+	
+	Ένα αποτέλεσμα του παραπάνω είναι:
+	\begin{align*}
+	\underset{\epsilon\to 0}{P} \left\lbrace x-\epsilon < X \leq x
+	\right\rbrace = F_X(x) - \underset{\epsilon\to 0}{F_X}(x-\epsilon)
+	&= F_X(x^+)-F_X(x^-) \\ &= \begin{cases}
+	0 & \quad \text{αν είναι συνεχής} \\
+	\text{η διαφορά των ορίων} & \quad \text{αν δεν είναι συνεχής}
+	\end{cases} \\ &= \mathlarger{P\left\lbrace X=x \right\rbrace}
+	\end{align*}
+	
+	Παρατηρούμε ότι:
+	\begin{align*}
+		\text{συνεχής} &\implies P\left\lbrace X=x \right\rbrace = 0\\
+		\text{ασυνεχής} &\implies P\left\lbrace X=x \right\rbrace\neq 0
+	\end{align*}
+	δηλαδή με "πηδήματα" της συνάρτησης κατανομής πιθανότητας, μπορούμε
+	να προσδώσουμε πιθανότητα σε σημείο.
+	
+	\subsection{Συνάρτηση Πυκνότητας Πιθανότητας}
+	\begin{defn}{Συνάρτηση Πυκνότητας Πιθανότητας}{}
+		Ως συνάρτηση πυκνότητας πιθανότητας \( f_X(x) \) ορίζουμε:
+		\[
+		f_X(x) = \od{F_X(x)}{x}
+		\]
+	\end{defn}
+	\paragraph{Ιδιότητες}
+	\begin{enumroman}
+		\item \( f_X(x) \geq 0 \)
+		\item \( \displaystyle
+		\int_{-\infty}^{\infty} f_X(x) \dif x = 1\)
+		\item \( \displaystyle
+		F_X(x) = \int_{-\infty}^{\infty} f_X(x)\dif x \)
+		\item \( \displaystyle
+		P\left\lbrace x_1 < X \leq x_2 \right\rbrace 
+		= \int_{x_1^+}^{x_2^+} f(x)\dif x \quad
+		\mathsmaller{=\ F_X(x_2) - F_X(x_1)}
+		\)
+	\end{enumroman}
+	
+	\begin{center}
+	\todo{Graph 15}
+	\end{center}
+	
+	Παρατηρούμε ότι η συνάρτηση πυκνότητας πιθανότητας μοιάζει π.χ. με
+	συνάρτηση πυκνότητας γραμμικής μάζας, και για να λάβουμε την
+	πιθανότητα μεταξύ δύο τιμών, απλώς παίρνουμε το εμβαδόν της
+	συναρτησης.
+	
+	Μεταξύ των \( f_X(x) \) και \( F_X(x) \) επιλέγουμε αυτήν που μας
+	βολεύει περισσότερο, με βάση την ευκολία υπολογισμών. Για
+	παράδειγμα, η κανονική κατανομή \( f_X(x) =
+	\frac{1}{\sqrt{2\sigma^2\pi} } \; e^{ -\frac{(x-\mu)^2}{2\sigma^2} } 
+	\) έχει αναλυτική έκφραση, αλλά όχι η αντίστοιχη \( F_X(x) \), για
+	την οποία χρειαζόμαστε πίνακες ή υπολογιστή.
+	
+	\subsection{Πολλαπλές τυχαίες μεταβλητές}
+	Ηχογραφούμε την φωνή μας να λέει την ίδια λέξη κάθε ένα λεπτό. Σε
+	κάθε ηχογράφηση παίρνουμε ένα διαφορετικό σήμα:
+	\todo{Graph 16}
+	Παίρνουμε αυθαίρετα 4 χρονικές στιγμές \( t_1,t_2,t_3,t_4 \). Σε κάθε
+	μία από αυτές, η τιμή της έντασης του ήχου για την κάθε ηχογράφηση
+	είναι διαφορετική. Για την πρώτη στιγμή, για παράδειγμα, έχουμε μια
+	τυχαία μεταβλητή \( X(t_1) \) που εκφράζει την ένταση του ήχου εκείνη
+	τη στιγμή, και άλλες 3 αντίστοιχες τυχαίες μεταβλητές για τις \( 
+	t_2,t_3,t_4 \).
+	
+	Τις 4 στιγμές τις επιλέξαμε αυθαίρετα, αλλά το πραγματικό σήμα έχει
+	άπειρες τυχαίες μεταβλητές, μία για κάθε στιγμή. Είναι αυτές μεταξύ
+	τους ανεξάρτητες;
+	
+	\paragraph{Παράδειγμα \#2}
+	Έχουμε ένα σύστημα που δέχεται μία μόνο είσοδο \( X \), και παράγει
+	μια έξοδο \( Υ \) (που εξαρτάται μόνο από την \( X \)):
+	\begin{align*}
+		X &= X(J) \\
+		Y &= Y(J)
+	\end{align*}
+	
+	Έστω το ενδεχόμενο \( A \) για το οποίο:
+	\[
+	A = \left\lbrace X\leq x, Y \leq y \right\rbrace
+	= \left\lbrace X \leq x \right\rbrace \cdot
+	\left\lbrace Y \leq y \right\rbrace
+	\]
+	
+	Τότε ορίζουμε μία κοινή πιθανότητα μεταξύ τους (joint probability distribution function):
+	\[
+	F_X(x,y) = P\left\lbrace X \leq x,\ Y \leq y \right\rbrace
+	\]
+	
+	
+	
+	
 	
 \end{document}
