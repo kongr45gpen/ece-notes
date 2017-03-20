@@ -239,7 +239,27 @@
 		
 		%TODO Dimakis Graph 3
 		
-		\item %TODO Dimakis Graph 4
+		\item \begin{tikzpicture}[baseline=(current bounding box.north)]
+		\draw (0,0) rectangle (4,2);
+		
+		\draw[orange,fill=orange!50!white] (2,1) circle (0.8cm);
+		
+		\draw plot [smooth,tension=1] coordinates {(0.6,2) (1.5,1.6) (2,1.3) (2.5,1.6) (3.4,2)};
+		\draw plot[smooth,tension=1.5] coordinates {(0.4,0) (2,0.9) (3.6,0)};
+		\draw plot[smooth,tension=2] coordinates {(2,1.3) (2.1,1.1) (2,0.9)};
+		
+		\draw[brown!50!black] (0,1.7) arc (270:360:0.3);
+		\draw[brown!50!black] (0.12,1.87) node {$\mathsmaller{S}$};
+		
+		\draw (2,1.7) node {$A_1$};
+		\draw (3.4,1.1) node {$A_2$};
+		\draw (2,0.4) node {$A_3$};
+		\draw (0.8,1.1) node {$A_4$};
+		
+		\draw[orange!70!black] (2.85,0.35) node {$B$};
+		
+		\end{tikzpicture}
+
 		Έστω ένας διαμερισμός του δειγματικού χώρου και ένα
 		ενδεχόμενο \( B \) αυτού, δηλαδή:
 		\begin{gather*}
@@ -353,8 +373,46 @@
 	και κάθε μία από αυτές να την αντιστοιχούμε σε μία τιμή εξόδου,
 	\( \alpha, \beta, \gamma \) ή \( \delta \). Όπως και πριν, κάθε
 	είσοδος αντιστοιχεί με διαφορετική πιθανότητα σε κάθε έξοδο:
-	%TODO Graph 7
+	\begin{center}
+	\begin{tikzpicture}[xscale=1.3]
+	\coordinate (a) at (2,6);
+	\coordinate (b) at (2,4);
+	\coordinate (c) at (2,2);
+	\coordinate (d) at (2,0);
+	\coordinate (1) at (0,6);
+	\coordinate (2) at (0,4);
+	\coordinate (3) at (0,2);
+	\coordinate (4) at (0,0);
 	
+	\draw[green!50!blue!50!white,->] (1.7,6.02) to[bend left] (3.5,7)
+	node[right] {$P(1/a)$};
+	
+	\draw[green!50!blue!50!white,->] (1.58,5.65) to[bend right] (3.2,6)
+	node[right] {$P(2/a)$};
+	
+	\draw[green!50!blue!50!white,->] (1.20,4.56) to[bend left=20] (3,5.2)
+	node[right] {$P(3/a)$};
+	
+	\draw[green!50!blue!50!white,->] (1.36,4.37) to[bend right=20] (3,4.4)
+	node[right] {$P(4/a)$};
+	
+	\foreach \x in {2,3,4}
+	\foreach \y in {a,b,c,d}
+	\draw (\x)  to[bend left={5-\x}] (\y);
+	\draw (1) to[bend left=4] node[midway,above] {$P(a/1)$} (a);
+	\draw (1) to[bend left=4] node[midway,above,sloped] {$P(\beta/1)$}(b);
+	\draw (1) to[bend left=4] node[midway,above,sloped] {$\cdots$} (c);
+	\draw (1) to[bend left=4] (d);
+	
+	\foreach \x in {1,2,3,4}
+	\fill (\x) circle (2pt) node[left] {$P_\x \qquad \x$};
+	\fill (a) circle (2pt) node[right] {$a$};
+	\fill (b) circle (2pt) node[right] {$\beta$};
+	\fill (c) circle (2pt) node[right] {$\gamma$};
+	\fill (d) circle (2pt) node[right] {$\delta$};
+	\end{tikzpicture}
+		\end{center}
+
 	\paragraph{Ανεξαρτησία}
 	Δύο γεγονότα λέγονται ανεξάρτητα ανν:
 	\[
