@@ -700,12 +700,22 @@
 		\lim_{n\to \infty} P_n(x) = f(x)
 		\]
 	\end{theorem}
-	\todo{Graph 5}
+	\begin{tikzpicture}
+	
+	\draw (-1,0) -- (3,0);
+	\draw (0,0) -- (0,3);
+	
+	\draw[green!50!black,very thick] plot[smooth] coordinates {(-0.7,0.8) (-0.5,1) (1,1) (2,1.2) (2.5,1.3)}
+	node[below right] {$f(x)$};
+	\draw[cyan!50!black,very thick] plot[smooth] coordinates {(-0.8,0.9) (-0.5,1.2) (1,1.1) (2,1.3) (2.5,1.7)}
+	node[right] {$p(x)$};
+	
+	\end{tikzpicture}
 	
 	Και μάλιστα:
 	\[
 	\left|P_n(x)-f(x)\right| \leq \epsilon \quad
-	\text{\epsilon δεδομένη ακρίβεια}
+	\text{$\epsilon$ δεδομένη ακρίβεια}
 	\]
 	
 	Όσο το \( \epsilon \) μικραίνει, ο βαθμός του \( P_n(x) \) αυξάνεται.
@@ -719,7 +729,21 @@
 	\]
 	ψάχνω ένα πολυώνυμο (κάποιου βαθμού) που να περνάει από αυτά τα
 	σημεία.
-	\todo{Graph 6}
+
+	\begin{tikzpicture}
+	\draw (-1,0) -- (3,0);
+	\draw (0,-0.5) -- (0,2);
+
+	\filldraw[cyan] (0.5,0.5) circle (2.5pt)
+	(0.9,1) circle (2.5pt)
+	(1.5,1.5) circle (2.5pt)
+	(2.4,0.7) circle (2.5pt);
+	
+	\draw[green!30!black,very thick] plot[smooth,tension=0.7]
+	coordinates {(0.1,0,1) (0.5,0.5) (0.9,1) (1.5,1.5) (2.4,0.7) (2.6, 0.2)}
+	node[right,scale=0.6] {$p(x)$};						;
+	
+	\end{tikzpicture}
 	
 	Αν έχω δύο σημεία, το ζητούμενο πολυώνυμο είναι μια ευθεία, δηλαδή
 	ένα πολυώνυμο 1\textsuperscript{ου} βαθμού. Για τρία σημεία, θα
@@ -727,9 +751,33 @@
 	ένα μοναδικό
 	πολυώνυμο \( n \) βαθμού για \( n+1 \) διακριτά σημεία,
 	όπως θα δούμε αργότερα.
-	\todo{Graph 7}
+
+	\begin{tikzpicture}[scale=1.3]
+	\draw (-1,0) -- (1,0);
+	\draw (0,-0.5) -- (0,1.5);
 	
-	\todo{Graph 8}
+	
+	\filldraw[cyan!50!blue] (-0.5,1) circle (2pt)
+	(0,0) circle (2pt)
+	(0.5,1) circle (2pt);
+	
+	\draw[red!90!blue,very thick] (0,0) -- (0.5,1) --(0.7,1.4);
+	
+	\draw[green!30!black,very thick] plot[smooth,tension=0.7]
+	coordinates {(-0.5,1) (0,0) (0.5,1)};
+	
+	\begin{scope}[xshift=2.5cm]
+	\draw (-0.2,0) -- (2,0);
+	\draw (0,-0.5) -- (0,1.5);
+	
+	\draw[red!90!blue,very thick] (0.1,-0.2) -- (2.2,2.2);
+	
+	\draw[green!70!black,thick] plot[smooth,tension=0.7]
+	coordinates {(0.25,0) (0.5,0.25) (0.75,1.2)  (1.25,0.8) (1.5,1.45) (2,2)};
+	\filldraw[green!50!red] (0.5,0.25) circle (1pt) (1.5,1.45) circle (1pt);
+	\end{scope}
+	\end{tikzpicture}
+	
 	Η πραγματική συνάρτηση μπορεί να έχει διαφορετική συμπεριφορά
 	ανάμεσα στα σημεία της τα οποία γνωρίζουμε.
 	
@@ -919,7 +967,17 @@
  	\end{tabular}
  	
  	Πίνακας ΔΔ:
- 	\todo{Graph 9}
+ 	\[
+ 	\begin{array}{ccccc}
+ 	0 & 1 \searrow & & &  \\
+ 	& & \frac{1-1}{1-0} \searrow & & \\
+ 	1 & 1 \nesearrow & & \frac{1}{2} \searrow & \\
+ 	& & 1 \nesearrow & & \frac{1}{12} \\
+ 	2 & 2 \nesearrow & & \frac{1}{6} \nearrow & \\
+ 	& & \frac{3}{2} \nearrow & & \\
+ 	4 & 5 \nearrow & & &
+ 	\end{array}
+ 	\]
  	
  	Άρα:
  	\begin{align*}
