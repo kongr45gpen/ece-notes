@@ -1,4 +1,4 @@
-\ifx\ispublic
+\ifcsname ispublic\endcsname
     \documentclass[11pt,a4paper,notitlepage,fleqn]{article}
 \else
     \documentclass[11pt,a4paper,notitlepage,fleqn,draft]{article}
@@ -29,6 +29,9 @@
 \usepackage{polyglossia}
 \newfontfamily\greekfont[Script=Greek,Scale=0.95]{GFS Artemisia}
 
+\hypersetup{
+	pdftitle = {Αριθμητική Ανάλυση}
+}
 
 \begin{document}
 	\maketitle
@@ -1484,7 +1487,7 @@
     	πολλά διαστήματα της \( f \).
     \end{itemize}
     
-    \section{Κανόνας Παραλληλογράμμου}
+    \subsection{Κανόνας Παραλληλογράμμου}
     \( \mathsmaller{(n = 0)} \)
     
     \todo{Graph 20}
@@ -1557,7 +1560,7 @@
     	\max_{1<z<2} \left|3z^2\right| = 0.75
     \end{align*}
     
-    \section{Κανόνας Τραπεζίου}
+    \subsection{Κανόνας Τραπεζίου}
     \( \mathsmaller{(n = 1)} \)
     
     Παρεμβάλλω την \( f \) σε δύο σημεία για να πάρω ένα πολυώνυμο
