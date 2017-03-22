@@ -1429,5 +1429,243 @@
     \end{matrix}
     \right] = \left[A^{\mathrm T}\right] \left[b\right]
     \]
+
+    \section{Αριθμητική Ολοκλήρωση}
+    Πολλές φορές δεν μπορούμε να υπολογίσουμε αναλυτικά ένα ολοκλήρωμα,
+    ή αυτός ο υπολογισμός είναι υπολογιστικά δύσκολος, επομένως σε αυτό το
+    κεφάλαιο θα αναπτύξουμε τεχνικές για αριθμητική ολοκλήρωση.
     
+    \begin{gather*}
+    	f(x) \quad [a,b] \\
+    	\mathlarger{\int_a^b f(x) \dif x}
+    \end{gather*}
+    \todo{Graph 19}
+    
+    Ο πιο απλός τρόπος να υπολογίσουμε το ολοκλήρωμα μιας συνάρτησης
+    είναι να πάρουμε τον εμβαδόν της συνάρτησης μεταξύ δύο σημείων
+    (κατά Riemann).
+    
+    Σε αυτό το κεφάλαιο η γενική ιδέα είναι να παρεμβάλλουμε την \( f \)
+    με ένα πολυώνυμο \( p \):
+    \[
+    f \rightarrow p
+    \]
+    και να υπολογίσουμε το ολοκλήρωμα του \( p \). Κάτι τέτοιο έχει
+    νόημα επειδή το ολοκλήρωμα είναι μια γραμμική διαδικασία:
+    \begin{align*}
+    	I(f) &= \int_{a}^{b} f(x)\dif x\\
+    	I\left(f(x)+g(x)\right) &= I\left(f(x)\right)+I\left(g(x)\right)
+    	\\ I\left(af(x)\right) &= aI\left(f(x)\right)
+    \end{align*}
+    
+    Επίσης θα υπολογίζουμε το σφάλμα (ή πιο συγκεκριμένα, το μέγιστο
+    σφάλμα) της προσέγγισής μας:
+    \begin{align*}
+    	f(x) &= p(x) + \overbrace{e(x)}^{\mathclap{\text{σφάλμα}}}
+    	\\
+    	I\left(f(x)-p(x)\right) &= I\left(e(x)\right)
+    \end{align*}
+    
+    \paragraph{}
+    Για πολυώνυμα σε μορφή Lagrange έχουμε:
+    \begin{align*}
+    	P_n(x) &= \sum_{k=0}^{n} f(x_k) \cdot l_k(x) \\
+    	I\left(p_n(x)\right) &= I\left(\sum_{k=0}^{n}f(x_k)l_k(x)\right)
+    	= \sum_{k=0}^n f(x_k) \cdot I\left(l_k(x)\right) \\
+    	I(f) &= \int_{a}^{b} f(x) \dif x \simeq
+    	 \sum_{k=0}^n f(x_k) \cdot I\left(l_k(x)\right)
+    \end{align*}
+    
+    Γενικά θα χρησιμοποιούμε πολυώνυμα το πολύ 2\textsuperscript{ου}
+    βαθμού:
+    \begin{itemize}
+    	\item \( n=0,1,2,\dots \rightarrow \) \textbf{απλός κανόνας}
+    	\item \textbf{Σύνθετος κανόνας:} Εφαρμόζουμε τον απλό κανόνα σε
+    	πολλά διαστήματα της \( f \).
+    \end{itemize}
+    
+    \section{Κανόνας Παραλληλογράμμου}
+    \( \mathsmaller{(n = 0)} \)
+    
+    \todo{Graph 20}
+    
+    \paragraph{Απλός κανόνας παραλληλογράμμου/ορθογωνίου}
+    Για να εφαρμόσω τον κανόνα του παραλληλογράμμου, θα παρεμβάλλω την
+    \( f \) σε ένα σημείο.
+    
+    Ας υποθέσω ότι παρεμβάλλω την \( f \) στο σημείο \( \left(a,f(a)
+    \right) \):
+    \begin{align*}
+    	p_0(x) &= f(a) \\
+    	I\left(p_0(x)\right) &= \int_{a}^{b} f(a)\dif x \\
+    	&= (b-a)f(a) = I_{\mathrm R \ \leftarrow \text{Rectangle}}
+    \end{align*}
+    \begin{align*}
+    	\text{Σφάλμα } E_{\mathrm R} &= I\left(f(x)\right) -
+    	I_{\mathrm R}
+    	\\ &= \frac{(b-a)^2}{2} f'(z) \quad \text{(με βάση πράξεις του
+    		βιβλίου, για κάποιο $z: a<z<b$)}
+    \end{align*}
+    
+    Για να φράξω το σφάλμα (να βρω την μέγιστη δηλαδή τιμή του):
+    \begin{align*}
+    |E_\mathrm{R}| = \frac{(b-a)^2}{2} \left|f'(z)\right| &\leq
+    \frac{(b-a)^2}{2} \max_{a<z<b} \left|f'(z)\right|
+    \end{align*}
+    
+    \paragraph{Σύνθετος κανόνας παραλληλογράμμου}
+    Ο σύνθετος κανόνας λειτουργεί σαν τον απλό, με τη διαφορά ότι
+    διαμερίζει το διάστημα ολοκλήρωσης \( [a,b] \) σε \( N \) ίσα
+    τμήματα:
+    \begin{align*}
+    \overset{\substack{\mathclap{\text{απόσταση}}\\\uparrow}}{h} =
+    \frac{b-a}{N}
+    \hspace{70pt}
+    I_{\mathrm R, N} &= hf(x_0) + hf(x_1) + \dots + hf(x_{N-1}) =
+    \\ &= h \sum_{i=0}^{N-1} f(x_i)
+    \end{align*}
+
+    Για το σφάλμα απλά αθροίζουμε το σφάλμα του κάθε ορθογωνίου:
+    \begin{align*}
+    E_{\mathrm R, N} &= \frac{h^2}{2} f'(z_1) + \frac{h^2}{2} f'(z_2)
+    + \dots + \frac{h^2}{2} f'(z_N) =
+    \\ &= \frac{h^2}{2} \sum_{i=1}^{N} f'(z_i)
+    \\ &= \frac{h^2}{2} N f'(z) \quad \mathsmaller{\left(
+    	\text{\small όπου } f'(z) = \frac{\sum f'(z_i)}{N},
+    	\text{\small δηλ. ο μέσος όρος} \right)}
+    \\ &= \frac{h}{2}(b-a)f'(z)\\
+    \left|E_{\mathrm R,N}\right| &\leq \frac{h}{2} (b-a)
+    \max_{a<z<b} \left|f'(z)\right|
+    \end{align*}
+    
+    \paragraph{Παράδειγμα}
+    Να υπολογιστεί το ολοκλήρωμα της \( \mathlarger{f(x)=x^3} \) στο
+    διάστημα \( \mathlarger{[1,2]} \) για \( N=1 \text{ και } N=8 \).
+    \subparagraph{Λύση για \( N=1 \)}
+    \begin{align*}
+    	I_R &= f(a)\big(b-a\big) = f(1)\big(2-1\big) = 1\cdot 1 = 1 \\
+    	E_R &= \frac{(z-1)^2}{2} f'(z) \quad 1<z<2 \\
+    	\left|E_R\right| &\leq \frac{1}{2}\max_{1<z<2} 3z^2 =
+    	\frac{1}{2} \cdot 3 \cdot 2^2 = 6
+    \end{align*}
+    \subparagraph{Λύση για \( N=8 \)}
+    \begin{align*}
+    	I_{R,8} &= hf(x_0) + h_1f(x_1) + \dots + hf(x_7) =
+    	\\ &= \frac{1}{8}f(1) + \frac{1}{8}f\left(\sfrac{9}{8} \right)
+    	+ \dots + \frac{1}{8}\left(\sfrac{15}{8}\right) = 3.32
+    	\\ \left|E_{R,8}\right| &\leq \frac{1}{8}\cdot\frac{1}{2}\cdot 1
+    	\max_{1<z<2} \left|3z^2\right| = 0.75
+    \end{align*}
+    
+    \section{Κανόνας Τραπεζίου}
+    \( \mathsmaller{(n = 1)} \)
+    
+    Παρεμβάλλω την \( f \) σε δύο σημεία για να πάρω ένα πολυώνυμο
+    1\textsuperscript{ου} βαθμού:
+    \todo{Graph 21}
+    
+    \paragraph{Απλός κανόνας τραπεζίου}
+    
+    \[x_0 = a \hspace{50pt} x_1=b \]
+    \begin{align*}
+    	p_1(x) &= f(a)l_0(x) + f(b)l_1(x) \qquad
+    	\text{($l_i$ πολυώνυμα Lagrange)} \\
+    	&= \frac{(x-b)}{a-b} + f(b)\frac{x-a}{b-a} \\
+    	I\left(p_1(x)\right) &= \int_{a}^{b} p_1(x)
+    	\\ &= \dots = \frac{b-a}{2}\left(f(a)-f(b)\right) =
+    	I_{\mathrm T \ \leftarrow \text{Trapezoid}}
+    \end{align*}
+
+    Για το σφάλμα έχουμε:
+    \begin{align*}
+    	E_{\mathrm T} &= I\left(f(x)\right) - I\left(p_1(x)\right)
+    	= \dots \\ &=
+    	-\frac{(b-a)^3}{12}f''(z) \qquad a<z<b \\
+    	\left|E_{\mathrm T}\right| &\leq \frac{(b-a)^3}{12}
+    	\max_{a<z<b} f''(z)
+    \end{align*}
+    
+    \paragraph{Σύνθετος κανόνας τραπεζίου}
+    Όπως και προηγουμένως, διαμερίζουμε το τραπέζιο σε \( N \) τμήματα,
+    και εφαρμόζουμε τον απλό κανόνα σε καθ' ένα από αυτά:
+    \begin{gather*}
+    	h = \frac{b-a}{N} \\
+    	a = x_0,x_1,\dots,x_N=b
+    \end{gather*}
+    
+    \begin{align*}
+    	I_{\mathrm T,N} &= \frac{h}{2} \left(f(x_0)+f(x_1)\right)
+    	+ \frac{h}{2} \left(f(x_1)+f(x_2)\right) + \dots + \frac{h}{2}
+    	\left(f(X_{N-1})+f(x_N)\right)
+    	\\ &= \frac{h}{2} \left[
+    	f(x_0)+2f(x_1)+2f(x_2)+\dots+2f(x_{N-1})+f(x_N)
+    	\right]
+    \end{align*}
+    
+    Αντίστοιχα με παραπάνω, για το σφάλμα θα αθροίσω τα επιμέρους
+    σφάλματα:
+    \begin{align*}
+    	E_{\mathrm T,N} &= \sum_{i=1}^{N} -\frac{h^3}{12} f''(z_i)
+    	\qquad x_{i-1} < z_i < x_i
+    	\\ &= - \frac{h^3}{12} N f''(z) \qquad a<z<b
+    	\\ &= -\frac{h^2}{12}(b-a)f''(z) \\
+    	|E_{\mathrm T,N}| &\leq \frac{h^2}{12}(b-a)\max_{a<z<b}
+    	\left|f''(z)\right|
+    \end{align*}
+    
+    \paragraph{Παράδειγμα}
+    Να υπολογιστεί με τον κανόνα τραπεζίου για \( N=4,\ 8 \) το
+    ολοκλήρωμα:
+    \[
+    \mathlarger{\int_{1}^{2} x^3\dif x}
+    \]
+    \subparagraph{Λύση για \( N=4 \)}
+    \begin{align*}
+    	I_{T,4} &= \frac{h}{2} \left[
+    	f(x_0)+2f(x_1)+2f(x_2)+2f(x_3)+f(x_4)
+    	\right] \\ &= \frac{\sfrac{1}{4} }{2}\left[
+    	f(1)+2f\left(\sfrac{5}{4}\right)+2f\left(\sfrac{6}{4}\right)
+    	+2f\left(\sfrac{7}{4}\right)+f\left(\sfrac{8}{4}\right)
+    	\right]
+    	\\ &= ??? \\[3ex]
+    	E_{T,4} &= -\frac{h^2}{12}(2-1)f''(z) \qquad 1<z<2 \\
+    	&= - \frac{\sfrac{1}{16} }{12} \cdot 6z = -\frac{1}{32}z
+    	\\ \left|E_{T,4}\right| &\leq \frac{1}{32}\cdot 2
+    	=\frac{1}{16} = 0.0625
+    \end{align*}\todo{Find result}
+    
+    \subparagraph{Λύση για \( N=8 \)}
+    \begin{align*}
+        I_{T,8} &= \frac{h}{2} \left[
+        f(x_0)+2f(x_1)+2f(x_2)+\dots+2f(x_7)+f(x_8)
+        \right] \\ &= \frac{\sfrac{1}{8} }{2}\left[
+        f(1)+2f\left(\sfrac{9}{8}\right)+2f\left(\sfrac{10}{8}\right)
+        +\dots+f\left(\sfrac{15}{8}\right)
+        \right]
+        \\ &= 3.7617 \\[3ex]
+    	E_{T,8} &= -\frac{h^2}{12}(2-1)f''(z) \qquad 1<z<2 \\
+    	&= -\frac{\sfrac{1}{8^2} }{12}\cdot 6z=-\frac{1}{128}z \\
+    	|E_{T,8}| &\leq \frac{1}{128}z=\frac{1}{64}=0.01562
+    \end{align*}
+    
+    \subsection{Κανόνας Simpson}
+    \( \mathsmaller{(n = 2)} \)
+    \todo{Graph 22}
+    
+    \paragraph{Απλός κανόνας Simpson}
+    \begin{align*}
+    	P_2(x) &= f(a)l_0(x) +f\left(\frac{a+b}{2}\right)l_1(x)+f(b)
+    	l_2(x) \\ &= f(a) \frac{(x-x_1)(x-x_2)}{(x_0-x_1)(x_0-x_2)}
+    	+ f\left(\frac{a+b}{2}\right)
+    	\frac{(x-x_0)(x-x_2)}{(x_1-x_0)(x_1-x_2)}
+    	+ f(b) \frac{(x-x_0)(x-x_1)}{(x_2-x_0)(x_2-x_1)}
+    	\\[3ex]
+    	I_{\mathrm S} &= \int_a^b P_2(x)\dif x
+    	\\ &= \dots = \frac{b-a}{6} \left[
+    	f(a)+4f\left(\frac{a+b}{2}\right)+f(b) \right] \\[3ex]
+    	E_{\mathrm S} &= I\left(f(x)\right)-I\left(P_2(x)\right) = \dots
+    	\\ &= -\frac{\left(\frac{b-a}{2}\right)^5}{90} f^{(4)}(z) \\
+    	\left|E_{\mathrm S}\right| &\leq
+    	\frac{\left(\frac{b-a}{2}\right)^5}{90}\max_{a<z<b}f^{(4)}(z)
+    \end{align*}
 \end{document}
