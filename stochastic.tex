@@ -817,8 +817,190 @@
 	F_X(x,y) = P\left\lbrace X \leq x,\ Y \leq y \right\rbrace
 	\]
 	
+	\paragraph{Ιδιότητες}
+	\begin{enumroman}
+		\item \( F(-\infty,y) = F(x,-\infty) = F(-\infty,-\infty) 
+		= 0 \)
+		επειδή:
+		\begin{gather*}
+			\left\lbrace X=-\infty, Y \leq y \right\rbrace
+			\subset \left\lbrace X=-\infty \right\rbrace, \text{ αλλά }
+			P\left\lbrace X=-\infty \right\rbrace = 0.
+		\end{gather*}
+		
+		\item \( F(+\infty,+\infty) = 1 \)
+		\item \( F(x,y) \, \uparrow \) αύξουσα ως προς \( x,\ y,\ x \)
+		και \( y \) (όχι απαραίτητα γνησίως)
+		
+		Για \( x_1<x_2 \), έχουμε:
+		\begin{align*}
+			P\left\lbrace X\leq x_2,Y\leq y \right\rbrace
+			&= P\left\lbrace X\leq x_1, Y \leq y \right\rbrace
+			+ P\left\lbrace x_1<X\leq x_2,Y \leq y \right\rbrace\\
+			\Aboxed{P\left\lbrace x_1<X\leq x_2,Y\leq y \right\rbrace
+			&= F(x_2,y)  - F(x_1,y) \leq 0 \implies F(x_2,y)\geq 
+			F(x_1,y)}
+		\end{align*}
+		
+		Με τον παραπάνω τύπο μπορούμε να υπολογίσουμε την πιθανότητα
+		μιας κομμένης λωρίδας, όπως φαίνεται στο διάγραμμα:
+		\todo{Graph 18}
+		
+		\item \( 0 \leq F(x,y) \leq 1 \)
+		\item \( F_{XY}(+\infty,y) = F_Y(y) \) \\
+		\( F_{XY}(x,+\infty) = F_X(x) \) επειδή
+		\begin{align*}
+			\left\lbrace X\leq x, Y \leq +\infty \right\rbrace &=
+			\left\lbrace X\leq x \right\rbrace\cdot
+			\cancelto{S}{\left\lbrace Y \leq +\infty \right\rbrace}
+			\\ &\rightarrow P\left\lbrace X\leq x \right\rbrace
+		\end{align*}
+	\end{enumroman}
+	
+	\paragraph{Υπολογισμός πιθανότητας}
+	Ποιά είναι η πιθανότητα
+	\( \left\lbrace x_1<X\leq x_2,\
+	y_1<Y\leq y_2 \right\rbrace \)
+	να βρεθούμε μέσα στο ορθογώνιο του σχήματος;
+	\todo{Graph 19}
+	
+	Έχουμε:
+	\begin{align*}
+	\left\lbrace x_1<X\leq x_2,Y\leq y_2 \right\rbrace
+	&= \left\lbrace x_1<X\leq x_2, Y\leq y_1 \right\rbrace
+	+ \left\lbrace x_1<X\leq x_2,y_1<Y\leq y_2 \right\rbrace
+	\\
+	P\left\lbrace x_1<X\leq x_2,Y\leq y_2 \right\rbrace
+	&= P\left\lbrace x_1<X\leq x_2, Y\leq y_1 \right\rbrace
+	+ P \left\lbrace x_1<X\leq x_2,y_1<Y\leq y_2 \right\rbrace
+	\end{align*}
+	Άρα:
+	\[
+	\mathlarger{
+		P \left\lbrace x_1<X\leq x_1,\ y_1<Y\leq y_2 \right\rbrace
+		= F(x_2,y_2) - F(x_1,y_1) - F(x_2,y_1) + F(x_1,y_1)
+	}
+	\]
+	Δηλαδή μπορούμε να βρούμε την πιθανότητα να "πέσουμε" μέσα στο
+	ορθογώνιο (άρα και σε κάθε χωρίο), χρησιμοποιώντας τις 
+	πιθανότητες από τις άκρες.
+	
+	\subsubsection{Συνάρτηση πυκνότητας πιθανότητας (από κοινού)}
+	\[
+	\mathlarger{f_{XY}(x,y)
+			= \frac{\partial^2 F_{XY}(x,y)}{\partial x\,\partial y}
+			}
+	\]
+	
+	\paragraph{Ιδιότητες}
+	\begin{enumroman}
+		\item \( f(x,y) \leq 0 \)
+		\item \( \displaystyle
+		\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y)\dif x
+		\dif y = 1
+		 \)
+		\item \( \displaystyle
+		F(x,y) = \int_{-\infty}^{x}\int_{-\infty}^{y} f(x,y)\dif x\dif y
+		 \)
+		\item \( \displaystyle
+		f_X(x) = \int_{-\infty}^{\infty} f(x,y)\dif y \) \\
+		\( \displaystyle
+		f_Y(y) = \int_{-\infty}^{\infty} f(x,y)\dif x \)
+		\item \( \displaystyle
+		P\left\lbrace x_1<X\leq x_2,\ y_1<Y\leq y_2 \right\rbrace
+		= \int_{x_1^+}^{x_2^+} \int_{y_1^+}^{y_2^+} f(x,y)\dif x\dif y
+		 \)
+	\end{enumroman}
+	
+	Επομένως για να βρούμε την πιθανότητα ενός χωρίου, αρκεί να
+	ολοκληρώσουμε τη συνάρτηση πυκνότητας πιθανότητας σε αυτό.
+	
+	\textbf{Παράδειγμα:} Η κανονική κατανομή (καμπάνα)
+	για δύο μεταβλητές
+	
+	\begin{tikzpicture}
+	\begin{axis}[
+	no markers, domain=0:8, samples=50,
+	axis lines*=left, xlabel=$x$, ylabel=$y$,
+	every axis y label/.style={at=(current axis.above origin),anchor=south},
+	every axis x label/.style={at=(current axis.right of origin),anchor=west},
+	height=6cm, width=7cm,
+	xtick=\empty, ytick=\empty,
+	enlargelimits=false, clip=false, axis on top,
+	grid = major
+	]
+	\addplot [very thick,cyan!50!black] {gauss(4,1.5)};
+	\end{axis}
+	
+	\begin{axis}[xshift=8cm]
+	\addplot3[surf,domain=-4:4,domain y=-4:4] 
+	{exp(-( (x-0)^2 + (y-0)^2)/3 )};
+	\node[circle,inner sep=1pt,fill=blue,pin=90:$\mu$] 
+	at (axis cs:0,0,1) {};
+	\end{axis}
+	\end{tikzpicture}
+	
+	Η κανονική κατανομή δεν μπορεί να ολοκληρωθεί με αναλυτική έκφραση,
+	επομένως χρησιμοποιούμε πίνακες ολοκληρωμάτων ή υπολογιστές.
+	
+	\paragraph{}
+	Τελικά, η συνάρτηση πυκνότητας πιθανότητας είναι μία επιφάνεια,
+	η οποία αν ολοκληρωθεί σε κάποιο χωρίο για να λάβουμε τον όγκο που
+	καλύπτει, θα πάρουμε την πιθανότητα του χωρίου (μοιάζει με συνάρτηση
+	πυκνότητας μάζας).
+	
+	\subsection{Συνάρτηση κατανομής υπό συνθήκη πιθανότητας}
+	Έστω:
+	\[
+	A = \left\lbrace X \leq x \right\rbrace
+	\qquad
+	B = \left\lbrace X \leq x_2 \right\rbrace
+	\]
+	
+	Τότε:
+	\[
+	P(A/B) = \frac{P(A\cdot B)}{P(B)}
+	\]
+	Επομένως μπορούμε να ορίσουμε μια συνάρτηση:
+	\[
+	\boxed{
+		F_X(x/B) = P\left\lbrace X\leq x/B \right\rbrace
+		= \frac{P\left\lbrace X\leq x, B \right\rbrace}{P(B)}
+		}
+	\]
+	
+	για την οποία ισχύουν οι ιδιότητες, αντίστοιχα με προηγουμένως:
+	\todo{Itemize}
+	\begin{gather*}
+		F_X(+\infty/B) = 1, \quad F(-\infty/B) = 0 \\[3ex]
+		P\left\lbrace x_1<X\leq x_2\ /B \right\rbrace
+		=\frac{P\left\lbrace x_1 < X\leq x_2,\ B \right\rbrace}{P(B)}
+		=F(x_2/B) - F(x_1/B)
+		\\[3ex]
+		f_X(x/B) = \frac{\dif F_X(x/B)}{\dif x} \\
+		f_X(x/B) \leq 0 \ \forall x \\
+		\int_{-\infty}^{\infty} f_x(x/B) \dif x = F_X(\infty/B)
+		- F_X(-\infty/B) = 1 \\
+		F_X(x_1/B) = \int_{-\infty}^{x_1} f_x(x/B)\dif x
+		\\[3ex]
+		P \left\lbrace x_1<X\leq x_2\ /B \right\rbrace
+	    = \int_{x_1^+}^{x_2^+} f_X(x/B)\dif x
+	\end{gather*}
+	
+	\todo{Graph 20}
+	Επίσης έχουμε:
+	\begin{align*}
+		F_X(x/B) &= \begin{cases}
+		\frac{F_X(x)}{F_X(x_2)} &\quad x<x_2 \\
+		1 &\quad x\leq x_2
+		\end{cases} \\
+		f_X(x/B) &= \begin{cases}
+		\frac{f_X(x)}{\int_{-\infty}^{x^2} f_X(x) \dif x}
+		&\quad x<x_2 \\ 0 &\quad x \geq x_2
+		\end{cases}
+	\end{align*}
 	
 	
-	
+
 	
 \end{document}
