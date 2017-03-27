@@ -1000,7 +1000,190 @@
 		\end{cases}
 	\end{align*}
 	
+	\subsubsection{Υπό συνθήκη πιθανότητα με δύο τυχαίες μεταβλητές}
 	
+	\paragraph{Έστω} ότι \( A=\left\lbrace X \leq x \right\rbrace 
+	\qquad B = \left\lbrace Y \leq y \right\rbrace
+	\)
+	\[
+	\boxed{F_X(x/B)
+		= \frac{F_{XY}(x,y)}{F_Y(y)}} 
+	\]
+	
+	Για τη συνάρτηση πυκνότητας πιθανότητας:
+	\begin{align*}
+		\pd{F_{XY}(x,y)}{x} &= \pd{}{x} \left[
+		\int_{-\infty}^{y} \int_{-\infty}^{x} f_{XY} (x,y)\dif x\dif y
+		\right] \\ &=
+		\int_{-\infty}^{y} \left[\pd{}{x}\int_{-\infty}^{x}f(x,y)
+		\dif x\right]\dif y = \int_{-\infty}^{y} f_{XY}(x,y)\dif y
+	\end{align*}
+	
+	Άρα:
+	\begin{align*}
+		f_X (x,\ Y \leq y) &= \frac{1}{F_Y(y)}\pd{F_{XY}(x,y)}{x} \\
+		&= \frac{\int_{-\infty}^{y}f_{XY}(x,y)\dif y}{
+			\int_{-\infty}^{\infty} \int_{-\infty}^{y}
+			f(x,y)\dif y\dif x}
+	\end{align*}
 
+    \paragraph{Έστω όμως} ότι
+    \( B = \left\lbrace y_1 < Y \leq y_2 \right\rbrace \)
+    
+    \begin{align*}
+    	F_X(x/\ y_1 < Y \leq y_2) &=
+    	\frac{P\left\lbrace x\leq x,\ y_1 < Y \leq y_2\right\rbrace}{
+    		P\left\lbrace y_1 < Y \leq y_2 \right\rbrace}
+    	\\ &= \frac{F_{XY}(x,y_2) - F_{XY}(x,y_2)}{
+    		F_Y(y_2)-F_Y(y_1)}
+    	\\ &= \frac{\int_{y_1}^{y_2} f_{XY}(x,y)\dif y}{
+    		\int_{-\infty}^{\infty} \int_{y_1}^{y_2} f_{XY}(x,y)
+    		\dif y\dif x}
+    \end{align*}
+    
+    \paragraph{Έστω ότι \( B = \left\lbrace Y=y \right\rbrace \)}
+    \begin{align*}
+    	F_X(Y=y) &= \frac{
+    		\sfrac{\partial F_{XY}(x,y)}{\partial\. y} }{
+    		\sfrac{\dif }{den} }
+    \end{align*}
+    
+    \subsection{Ανεξαρτησία Τυχαίων Μεταβλητών}
+    Ο γνωστός ορισμός της ανεξαρτησίας είναι:
+    \[
+    P(A\cdot B) = P(A) \cdot P(B)
+    \]
+    
+    Επομένως, για δύο τυχαίες μεταβλητές \( X,Y \) και τα αντίστοιχα
+    ενδεχόμενα \( A=\left\lbrace X\leq x \right\rbrace \) και
+    \( B = \left\lbrace Y \leq y \right\rbrace \), έχουμε:
+    \begin{align*}
+    	P\left\lbrace X\leq x,\ Y\leq y \right\rbrace &=
+    	P\left\lbrace X \leq x \right\rbrace \cdot
+    	P\left\lbrace Y \leq y \right\rbrace \\
+    	F_{XY}(x,y) &= F_X(x) \cdot F_Y(y) \\
+    	\xRightarrow{\frac{\partial^2 F(x,y)}{\partial x\,\partial y}}
+    	f_{XY}(x,y) &= f_X(x)\cdot f_Y(y)
+    \end{align*}
+    
+    Επομένως, για δύο ανεξάρτητες τυχαίες μεταβλητές έχουμε:
+    \begin{align*}
+    	F_X(x/\ Y\leq y) = \frac{P\left\lbrace X\leq x,\ Y\leq y
+    		 \right\rbrace}{P\left\lbrace Y\leq y \right\rbrace}
+        = P\left\lbrace X\leq x \right\rbrace = F_X(x)
+    \end{align*}
+    
+    \subsection{Ντετερμινιστική σχέση μεταξύ τυχαίων ματαβλητών}
+    \[ \mathlarger{\left(X,f_X(x)\right)
+    \xrightarrow{\qquad} \left(Y,f_Y(y)\right)}
+    \]
+    
+    Έστω ότι υπάρχει μία \textit{ντετερμινιστική} σχέση \( g(\cdot) \)
+    που συνδέει τις
+    \textit{τυχαίες} μεταβλητές \( X,Y \):
+    \[
+    \mathlarger{Y=g(X)}
+    \]
+    
+    Ομοίως μπορεί να έχουμε:
+    \( 
+    (X,Y,f_{XY}(x,y)) \to (Z,W,f_{ZW}(z,w))
+     \)
+     
+    \( Z =g(X,Y)\)
+    
+    \( W=h(X,Y) \)
+    
+	\todo{Graph 21}
+	\todo{Graph 22}
 	
+	\[
+	f_Y(y)\dif y = P\left\lbrace y<Y\leq y+\dif y \right\rbrace
+	= P\left\lbrace x_1<X\leq x_1+\dif x_1 \right\rbrace
+	+ P\left\lbrace x_2<X\leq x_2+\dif x_2 \right\rbrace
+	+ P\left\lbrace x_3<X\leq x_3+\dif x_3 \right\rbrace
+	\]
+	
+	Άρα:
+	\begin{align*}
+		f_Y(y) &=  f_X(x_1) \frac{|\dif x_1|}{\dif y}
+		+ f_X(x_2)\frac{|\dif x_2|}{\dif y}
+		+ f_X(x_3)\frac{|\dif x_3|}{\dif y} \\
+		\Aboxed{ f_Y(y) &= \frac{f_X(x_1)}{\left|g'(x_1)\right|}
+		+ \frac{f_X(x_2)}{\left|g'(x_2)\right|}
+		+ \frac{f_X(x_3)}{\left|g'(x_3)\right|}}
+	\intertext{και γενικότερα}
+	    \Aboxed{
+	    	f_Y(y) &= \sum_{i=1}^{m} \left.
+	    	 \frac{f_X(x)}{\left|g'(x)\right|}
+	    	\right|_{x=x_i}
+	    	}
+	\end{align*}
+	
+	\paragraph{Για δύο ζευγάρια τυχαίων μεταβλητών}
+	προκύπτει ότι, για \( z=g(x_i,y_i) \) και \( w=h(x_i,y_i) \):
+	\[
+	\boxed{
+		f_{ZW}(z,w) = \sum_{i=1}^{n} \left.
+		\frac{f_{XY}(x,y)}{\left|\mathrm J(x,y)\right|}
+		\right|_{\scriptsize \begin{matrix}
+			x=x_i \\ y=y_i
+			\end{matrix}}
+		}
+	\]
+	
+	όπου \( \mathrm J \) η ιακωβιανή ορίζουσα \( 
+	\mathrm J = \left|\begin{matrix}
+	\pd{g(x,y)}{x} & \pd{g(x,y)}{y} \\
+	\pd{h(x,y)}{x} & \pd{h(x,y)}{y}
+	\end{matrix}\right|.
+	 \)
+	 
+	\paragraph{Παράδειγμα}
+	Έστω ότι έχουμε ένα μοντέλο \( \left(X,Y,f_{XY}\right) \), και τις
+	τυχαίες μεταβλητές:
+	\begin{align*}
+		Z &= g(X,Y) \leftrightarrow f_Z(z) \\
+		W &= X = h(X,Y)
+	\end{align*}
+	
+	Τότε έχουμε:
+	\begin{align*}
+	    f_Z(z) &= \int_{-\infty}^{\infty} f_{ZW}(z,w)\dif w\\
+		f_{ZW}(z,w) &= \sum_{i=1}^{n} \left.
+		\frac{f_{XY}(x,y)}{\left|J(x,y)\right|} \right|_{x=x_i,\ y=y_i}
+	\end{align*}
+	
+	\paragraph{Παράδειγμα}
+	Έστω μοντέλο \( \left(X,Y,f_{XY}\right) \) και οι:
+	\begin{align*}
+		Z &= X+Y \\
+		W &= X
+	\end{align*}
+	
+	Αν λύσουμε το παραπάνω σύστημα, έχουμε:
+	\begin{align*}
+		y_1 &= z-w \\
+		x_1 &= w
+	\end{align*}
+	
+	Επομένως:
+	\begin{align*}
+		J(x) &= \left|\begin{matrix}
+		1 & 1 \\ 1 & 0
+		\end{matrix}\right| = -1\\
+		f_{ZW}(z,w) &= \left. \frac{f_{XY}(x,y)}{|-1|}
+		\right|_{x_1=w,\ y_1=z-w} \\ &= f_{XY}(w,\ z-w)
+	\end{align*}
+	
+	Έχει ενδιαφέρον όταν οι \( X \) και \( Y \) είναι ανεξάρτητες,
+	οπότε:
+	\begin{align*}
+		f_{XY}(x,y) &= f_X(x) \cdot f_Y(y) \\
+		f_{ZW}(z,w) &= \left. \frac{f_X(x)f_Y(y)}{|-1|}\right|_{
+			x_1=w,\ y_1=z-w} \\ 
+		f_Z(z) &= \int_{-\infty}^{\infty} f_X(w)f_Y(z-w)
+		= f_X(z) * f_Y(z)
+	\end{align*}
+	\todo{Note convolution}
 \end{document}
