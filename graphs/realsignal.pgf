@@ -1,0 +1,57 @@
+\begin{tikzpicture}
+\fill[cyan!40,path fading=north] (-1,1.125) rectangle (8,2);
+\fill[cyan!40,path fading=south] (-1,-1.125) rectangle (8,-2);
+\fill[green,opacity=.15] (-1,1.125) rectangle (8,0);
+\fill[yellow,opacity=.2] (-1,-1.125) rectangle (8,0);
+
+\draw[dashed] (-1,1.125) -- (8,1.125);
+\draw[dashed] (-1,-1.125) -- (8,-1.125);
+
+\draw (-1,0) -- (7.2,0);
+\draw (0,-2) -- (0,2);
+\def\1{1.5};
+\def\2{0.75}
+\def\3{-0.75}
+\def\4{-1.5}
+
+\draw (-0.1,\1) node[left,scale=.7] {$1$} -- (0.1,\1);
+\draw (-0.1,\2) node[left,scale=.7] {$2$} -- (0.1,\2);
+\draw (-0.1,\3) node[left,scale=.7] {$3$} -- (0.1,\3);
+\draw (-0.1,\4) node[left,scale=.7] {$4$} -- (0.1,\4);
+
+\draw (-1.5,\1) node {$a$};
+\draw (-1.5,\2) node {$b$};
+\draw (-1.5,\3) node {$c$};
+\draw (-1.5,\4) node {$d$};
+\draw (-0.8,\1) node[scale=.6] {$\mathtt{11}$};
+\draw (-0.8,\2) node[scale=.6] {$\mathtt{10}$};
+\draw (-0.8,\3) node[scale=.6] {$\mathtt{01}$};
+\draw (-0.8,\4) node[scale=.6] {$\mathtt{00}$};
+
+\draw[very thick,black] plot [const plot] coordinates
+{(0,\2) (1,\4) (2,\1) (3,\2) (4,\3) (5,\2) (6,\4) (7,\1) (8.1,\1)}
+node[above right] {αρχικό σήμα};
+
+\foreach \x in {1,2,3,...,5} {
+\draw[draw=gray] (\x,-0.1) -- (\x,0.1) node[midway,below left,scale=.6] {$\x T$};
+}
+\draw (6,0) node[below left,scale=.6] {$\cdots$};
+
+\draw[very thick,orange!70!brown] plot [smooth,tension=.2] coordinates
+{(0,0) (0.15,0.4) (0.3,1.05) (0.4,1.1) (0.5,1) (0.6,1.10)
+(0.7,1+rand/5) (1,rand/10) (1.2,-1.5+rand/3) (1.4,-1.5+rand/4) (1.5,-1.5+rand/5)
+(1.6,-1.5+rand/4) (1.8,-1.5+rand/2) (1.9,-0.75+rand/2) (2,rand/5) (2.1,0.7+rand/3)
+(2.2,1.2+rand/3) (2.4,1.5+rand/5) (2.6,1.5+rand/5) (2.7,1.2+rand/6) (2.9,1+rand/5)
+(3.1, 0.7+rand/4) (3.3, 0.8+rand/5) (3.4, 0.8+rand/4) (3.6,0.5+rand/3) (3.8,0.9+rand/4)
+(4,1+rand/4) (4.1,rand/4) (4.2, 0.4+rand/4) (4.3, -0.3+rand/3) (4.4, -0.5+rand/4)
+(4.5,-0.5+rand/5) (4.6,-0.5+rand/6) (4.8,-0.3+rand/4) (5,0+rand/4) (5.2,0.3+rand/4)
+(5.4,0.6+rand/4) (5.6,1+rand/4) (5.8,0.8+rand/4) (5.9,rand/4) (6,rand/7)
+(6.2,-0.2+rand/4) (6.4,-1.3+rand/4) (6.6, -0.5+rand/5) (6.8,0.5+rand/3)
+(7,1+rand/3) (7.2,2+rand/4) (7.4,1.6+rand/4) (7.6,1.3+rand/6) (7.8,1.3+rand/8)
+(8,1.3)} node[below right] {σήμα με θόρυβο};
+
+\draw[very thick,green!50!black] plot [smooth] coordinates
+{(0,0) (0.3,1) (0.7,1) (1.5,-1.5) (2.5,1.5) (3.6,0.6) (3.9,0.8)
+(4.6,-0.5) (5.6,0.85) (6.4,-1.2) (7.1,1.7) (7.7,1.5) (8,1.4)}
+node[right] {σήμα χωρίς υψηλές συχνότητες};
+\end{tikzpicture}
