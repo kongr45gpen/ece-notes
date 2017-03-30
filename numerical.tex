@@ -2114,7 +2114,7 @@
     Επειδή \( k\to \infty \) και μπορεί να εμφανιστούν πολύ μεγάλοι ή
     πολύ μικροί αριθμοί, θα κανονικοποιήσω το \( v_k \).
     
-    \subsection{Αλγόριθμος}
+    \subsubsection{Αλγόριθμος}
     \textbf{Είσοδος:} \( A \in \mathbb R^{n\times n},
     u_0 \in \mathbb R^n \):
     
@@ -2196,4 +2196,305 @@ HAH^{-1} = \left[ \begin{array}{c|ccccc}
 	\Aboxed{Hx_1 &= e_1}
 \end{align*}
 κάτι που θα μου δώσει ο Householder.
+
+\subsection{Παραγοντοποίηση QR (Εισαγωγή)}
+Μετατρέπω έναν πίνακα \( A \) σε γινόμενο 2 πινάκων \( Q \) και
+\( R \), όπου ο \( Q \) και ο \( R \) άνω τριγωνικός:
+\[
+A = 
+\underset{\substack{\downarrow\\\mathclap{\text{ορθογώνιος}}}}{Q}
+\cdot
+\overset{\substack{\mathclap{\text{άνω τριγωνικός}}\\\uparrow}}{R}
+\]
+
+Για κάποιες επαναλήψεις:
+\[
+A_0 = A
+\]
+\[
+\begin{cases}
+A_0 = Q_1R_1, &\quad \text{θέτω } A_1 = R_1Q_1 \\
+A_1 = Q_2R_2, &\quad \text{θέτω } A_2 = R_2Q_2 \\
+\quad \vdots &\quad \quad \vdots \\
+A_{k-1} = Q_kR_k, &\quad \text{θέτω } A_k = R_kQ_k \\
+\end{cases}
+\]
+
+Η μέθοδος αυτή συγκλίνει σε έναν ημιτριγωνικό πίνακα (τον
+\( A_k \)). Από τον \( A_0 \) ξεκινώ, τον παραγοντοποιώ σε
+\( Q_1R_1 \) και βρίσκω τον \( A_1 = R_1Q_1 \). Παραγοντοποιώ τον
+\( A_1 \) σε γινόμενο \( QR \) κ.ό.κ.
+
+\textbf{Για έναν ημιτριγωνικό πίνακα:}
+\[ \left[
+\begin{matrix}
+\circ & & & & \\
+& \circ & & & \\
+& & \Box & & \\
+& & & \Box & \\
+& & & & \ddots
+\end{matrix} \right]
+\]
+
+Ο πίνακας αυτός είναι άνω τριγωνικός, απλά σε κάποιες θέσεις στη
+διαγώνιο έχει \( 2\times 2 \) πίνακες.
+
+\paragraph{Παράδειγμα}
+Να βρεθούν οι ιδιοτιμές του πίνακα \( A \) με παραγοντοποίηση
+\( QR \):
+\[
+A = \left[\begin{matrix}
+1&2&3 \\ 0 & 1 & 5 \\ 0 & -3 & 2
+\end{matrix}\right]
+\]
+\subparagraph{Λύση}
+Ο \( A \) είναι ήδη ημιτριγωνικός (ουσιαστικά είναι ο \( A_k \)):
+\[
+A = \left[\begin{matrix}
+1 & \\ 0 & \boxed{B}
+\end{matrix}
+\right] \quad \text{όπου } B = \left[
+\begin{matrix}
+1 & 5 \\ -3 & 2
+\end{matrix}\right]
+\]
+
+Η μία ιδιοτιμή είναι το \( \lambda_1 = 1 \).
+
+Οι μιγαδικές ιδιοτιμές θα προκύψουν από τον πίνακα \( B \):
+\begin{align*}
+	\det(B-\lambda I) = 0 \implies
+	\left|\begin{matrix}
+	1-\lambda & 5 \\ -3 & 2-\lambda
+	\end{matrix}
+	\right| = 0 \implies \lambda^2 -3\lambda + 17
+	\implies \lambda_{2,3} =\frac{3}{2} \pm i\frac{\sqrt{59}}{2}
+\end{align*}
+
+\paragraph{Παράδειγμα}
+Να βρεθούν οι ιδιοτιμές του \( A \) με τη μέθοδο παραγοντοποίησης
+\( QR \):
+\[
+A = \left[\begin{matrix}
+6&-1& 5 \\ -3 & 2 & -1 \\ 2 & 4 & 2
+\end{matrix}
+\right]
+\]
+\subparagraph{Λύση}
+Σύμφωνα με τη μέθοδο:
+\begin{gather*}
+	A = A_0 \\
+	A_0 = Q_1R_1 = \left[\begin{matrix}
+	0.85&-0.11&0.50\\
+	-0.42&0.38&0.81\\
+	0.28&0.91&-0.28
+	\end{matrix}\right] \cdot \left[\begin{matrix}
+	7&-0.57&5.28\\
+	0&4.54&6.88\\
+	0&0&1.13
+	\end{matrix}
+	\right]
+	\intertext{(Θα δούμε αργότερα πώς βρίσκουμε τους \( Q_1R_1 \))}
+	A_1=R_1Q_1 = \left[\begin{matrix}
+	7.75&5.83&1.55\\-1.69&2.56&3.46\\0.32&1.03&-0.31
+	\end{matrix}\right]
+\end{gather*}
+
+Τώρα παραγοντοποιώ τον \( A_1 \) σε γινόμενο QR:
+\[
+A_1 = Q_2R_2 \implies A_2 = R_2Q_2
+\]
+
+Μετά από 6 επαναλήψεις προκύπτει:
+\[
+A_6 = \left[\begin{matrix}
+6.06 & 5.30 & 1.05 \\
+-0.17 & 5.07 & -2.63 \\
+0 & 0 & -1.13
+\end{matrix}\right]
+\]
+
+Ο πίνακας \( A_6 \) είναι ημιτριγωνικός. Στην διαγώνιο βρισκουμε
+ότι \( \lambda_3 = -1.13 \). Ύστερα μέσω του \( B = \left[
+\begin{matrix}
+6.06&5.30 \\ -0.17&5.07
+\end{matrix}
+\right] \)
+θα βρω τις
+\( \lambda_{1,2} \):
+\[
+\det(B-\lambda I) = 0 \implies \lambda_{1,2} = 5.57
+\pm i0.81
+\]
+
+\subsection{Παραγοντοποίηση QR}
+\paragraph{Το πρόβλημα}
+Δεδομένου ενός πίνακα \( A \), να βρεθούν 2 πίνακες
+\( Q \) (ορθογώνιος), \( R \) (άνω τριγωνικός), έτσι ώστε:
+\[
+\mathlarger{A = Q \cdot R}
+\]
+
+\subsubsection{Εισαγωγή}
+Ένα σύνολο διανυσμάτων \( \left\lbrace x_1,x_2,\dots,
+x_n \right\rbrace \) του χώρου \( V \) λέγονται ορθογώνια αν ανά
+2 μεταξύ τους είναι κάθετα:
+\[
+(x_i,x_j) = 0 \quad \forall i \neq j
+\]
+
+Τα διανύσματα \( x_1,x_2,\dots, x_n \) λοιπόν είναι μεταξύ τους
+γραμμικά ανεξάρτητα. Εάν σε αυτά τα διανύσματα προσθέσω (εκτός
+της ορθογωνιότητας) την ιδιότητα της
+\textbf{μοναδιαίας νόρμας/μήκους/μέτρου}, ονομάζω τα \( x_1,x_2,
+\dots, x_n \) \textbf{ορθοκανονικά}. Τότε ισχύει και η παρακάτω
+ιδιότητα:
+
+\paragraph{Kroenecker Delta}
+
+Όταν έχω μία σχέση μεταξύ δύο αντικειμένων:
+\begin{align*}
+	(x_i,x_j) &= 0 \quad \text{για } i \neq j \\
+	          &= 1 \quad \text{για } i = j
+\end{align*}
+αυτή αναπαριστά το δέλτα του Kroenecker:
+\[
+(x_i,x_j) = \delta_{ij}
+\]
+
+Για να μετατρέψω το ορθογώνιο σύστημα σε ορθοκανονικό, αρκεί
+να πάρω κάθε διάνυσμα βάσης, και να το "μειώσω" ώστε να έχει
+μέτρο τη μονάδα (\textbf{κανονικοποίηση}):
+\[
+x_i := \frac{x_i}{\Vert x_i \Vert}
+\]
+
+Για παράδειγμα, αν \( x_i=\left[\begin{matrix}
+x_1\\x_2\\x_3
+\end{matrix}\right] \), τότε:
+\begin{align*}
+	\Vert x_i \Vert^2 &= x_1^2+x_2^2+x_3^2 \\
+	\Vert x_i \Vert &= \sqrt{x_1^2+x_2^2+x_3^2} \\
+	x_i &= \left[
+	\begin{matrix}
+	\frac{x_1}{\sqrt{x_1^2+x_2^2+x_3^2}} \\
+	\frac{x_2}{\sqrt{x_1^2+x_2^2+x_3^2}} \\
+	\frac{x_3}{\sqrt{x_1^2+x_2^2+x_3^2}}
+	\end{matrix}
+	\right]
+\end{align*}
+
+\paragraph{}
+Ας υποθέσουμε ότι έχουμε \( n \) ορθοκανονικά διανύσματα βάσης
+σε έναν χώρο διάστασης \( n \):
+\[
+\left\lbrace x_1,x_2,\dots,x_n \right\rbrace
+\]
+
+Επομένως κάθε διάνυσμα \( X \) του χώρου γράφεται σαν γραμμικός
+συνδυασμός των διανυσμάτων βάσης:
+\[
+X = \sum_{i=1}^{n} c_i x_i
+\]
+και επειδή η βάση είναι ορθοκανονική, αποδεικνύεται ότι οι
+συντελεστές \( c_i \) προκύπτουν από το εσωτερικό γινόμενο:
+\[
+c = (x_i,x)
+\]
+
+\textit{Πράγματι:}
+\begin{align*}
+	\left(x_i,x\right) &= \left(
+	x_i, \sum_{j=1}^{n} c_j x_j \right)
+	\intertext{Από ιδιότητα του εσωτερικού γινομένου
+		\( (ax+by,z)=a(x,y)+b(y,z) \)}
+	&= \sum_{j=1}^{n} c_j(x_i,x_j)
+	\\ &= \sum_{j=1}^{n} c_i \cdot \delta_{ij} = c_i.
+\end{align*}
+
+\subsubsection{Ορθογώνιος πίνακας}
+Έστω ότι στον χώρο \( \mathbb R^n \) έχουμε \( n \) ορθοκανονικά
+διανύσματα \( q_1,q_2,\dots,q_n \).
+
+Τον πίνακα που φτιάχνουμε με αυτά τα διανύσματα:
+\[
+Q = \left[\begin{matrix}
+& & & \\ q_1 & q_2 & \dots & q_n \\ & & &
+\end{matrix}\right]
+\]
+τον ονομάζουμε \textbf{ορθογώνιο} πίνακα.
+
+Για αυτόν προκύπτει αν δούμε τις πράξεις:
+\[
+\boxed{Q^{\mathrm T}Q = I},
+\]
+δηλαδή ο \textit{ανάστροφός του} είναι ο \textit{αντίστροφός} του:
+\[
+Q^{-1} = Q^{\mathrm T}
+\]
+
+\paragraph{Εσωτερικά γινόμενα}
+Θα δείξουμε ότι το εσωτερικό δύο διανυσμάτων \( x,y \) ενός χώρου
+δεν αλλάζει αν τα πολλαπλασιάσουμε με τον \( Q \), δηλαδή
+\( \mathlarger{(Qx,Qy) = (x,y)} \):
+\begin{align*}
+	(Qx,Qy) &= (Qx)^{\mathrm T}Qy \\
+	&= x^{\mathrm T} \underbrace{Q^{\mathrm T}Q}_{I} y\\
+	&= x^T \, y = (x,y).
+\end{align*}
+
+Επομένως, παρατηρώ ότι:
+\[
+\left\Vert Qx \right\Vert^2
+= (Qx,Qx) = (x,x) = \left\Vert x \right\Vert^2
+\]
+
+\paragraph{Συγκεντρωτικά οι ιδιότητες του \( Q \in \mathbb
+	 R^{n\times n} \)}
+\begin{enumerate}
+	\item Στήλες \( Q \) είναι μια ορθοκανονική βάση του
+	\( \mathbb R  \)
+	\item \( Q^{\mathrm T} Q = I \)
+	\item \( Q^{-1} = Q^{\mathrm T} \)
+	\item \( (Qx,Qy) = (x,y) \)
+	\item \( \left\Vert Qx \right\Vert = \Vert x\Vert \)
+\end{enumerate}
+
+\subsection{Μετασχηματισμοί Householder}
+Ο μετασχηματισμός Householder είναι ένας πίνακας που μετασχηματίζει
+ένα διάνυσμα, ώστε π.χ. να έχει ίδια κατεύθυνση αλλά διαφορετικό
+μέτρο.
+
+\paragraph{Το πρόβλημα}
+Δεδομένου ενός διανύσματος \( x \in \mathbb R^n \) και σταθεράς
+\( k \in \left\lbrace 1,2,\dots,n \right\rbrace \), να βρεθεί ένας
+\underline{πίνακας} \( H \), τέτοιος ώστε οι τελευταίες \( n-k \)
+συνιστώσες του διανύσματος \( Hx \) να είναι μηδέν.
+
+Δηλαδή οι τιμές του \( Hx \), κάτω από μία θέση που θέλω εγώ, να
+είναι μηδενικές.
+
+Αυτό το πρόβλημα θα λύσουν οι μετασχηματισμοί Householder:
+\begin{defn}{}{}
+Για κάποιο διάνυσμα \( u \in \mathbb R^n \) με
+\underline{μοναδιαίο} μήκος (\( \Vert u\Vert_2 = 1 \)), ο πίνακας
+\[
+\boxed{H = I - 2uu^{\mathrm T}}
+\]
+ονομάζεται \textbf{μετασχηματισμός Householder}.
+\end{defn}
+
+Παρατηρούμε ότι (και προκύπτει με πράξεις), ότι ο \( H \) είναι
+συμμετρικός.
+
+Θα αποδείξουμε ότι ο \( H \) είναι ορθογώνιος!
+\begin{align*}
+	HH^{\mathrm T} &=
+	(I-2uu^{\mathrm T})(I-2uu^{\mathrm T})^T \\
+	&= (I-2uu^{\mathrm T})(I-2uu^{\mathrm T}) \\
+	&= I-4uu^{\mathrm T} + 
+	\underbrace{4u\underbrace{u^{\mathrm T} u}_1
+	u^{\mathrm T}uu^{\mathrm T}}_1 \\
+	&= I
+\end{align*}
 \end{document}
