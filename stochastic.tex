@@ -1309,7 +1309,243 @@
 		f_{ZW}(z,w) &= \left. \frac{f_X(x)f_Y(y)}{|-1|}\right|_{
 			x_1=w,\ y_1=z-w} \\ 
 		f_Z(z) &= \int_{-\infty}^{\infty} f_X(w)f_Y(z-w)
-		= f_X(z) * f_Y(z)
+		= f_X(z)
+\underset{\substack{\downarrow\\\mathclap{\text{συνέλιξη}}}}{*}
+		 f_Y(z)
 	\end{align*}
-	\todo{Note convolution}
+
+\subsection{Χρήση γενικευμένων συναρτήσεων}
+Οι συναρτήσης κατανομής και πυκνότητας πιθανότητας που
+χρησιμοποιούμε μπορεί να μην είναι συνεχείς ή παραγωγίσιμες:
+\todo{Graph 23}
+
+\begin{align*}
+	P(X=x_i) &= p_i = F_X(x_i) - F_X(x_i^-) \\
+	\sum_i p_i &= \cancelto{1}{F_X(+\infty)} -
+	 \cancelto{0}{F_X(-\infty)} = 1 \\
+	F_X(x) &= \sum_i P \left\lbrace X=X_i \right\rbrace
+\end{align*}
+
+Απ' ό,τι βλέπουμε, η συνάρτηση πυκνότητας πιθανότητας στο
+παραπάνω σχήμα δεν είναι πεπερασμένη, αλλά περιέχει τέσσερις
+\textbf{ώσεις}, δηλαδή συναρτήσεις \( \delta(t) \):
+\[
+f_X(x) = \sum_i p_i \delta(x-x_i)
+\]
+
+Αυτή ήταν μία συνάρτηση που περιείχε μόνο ώσεις. Αντίστοιχα,
+μπορούμε να έχουμε μικτές συναρτήσεις:
+\todo{Graph 24}
+
+\section{Ροπές}
+Έχουμε το μοντέλο:
+\[
+\left(\mathlarger{\mathlarger{X,f_X(x)}}\right)
+\]
+
+Αν γνωρίζουμε την \( f_X(x) \), μπορούμε να κάνουμε όποιον
+υπολογισμό θέλουμε για την τυχαία μεταβλητή, αλλά συχνά είναι
+πολύ δύσκολο να βρούμε τη συνάρτηση αυτή. Τότε χρησιμοποιούμε
+προσεγγίσεις που προκύπτουν από τις ροπές, που θα δούμε παρακάτω.
+
+Οι ροπές είναι μεγέθη (μέσος όρος, τυπική απόκλιση κλπ.) που
+προκύπτουν από στατιστικά δεδομένα.
+
+\begin{defn}{Χαρακτηριστική συνάρτηση τυχαία μεταβλητής}{}
+	\[
+	\Phi(\omega ) = \int_{-\infty}^{\infty} f_X(x) e^{j\omega x}
+	\dif x
+	\]
+\end{defn}
+Παρατηρούμε ότι ουσιαστικά είναι ένας αντίστροφος μετασχηματισμός
+Fourier, και ότι η αντίστροφη διαδικασία είναι:
+\[
+f_X(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty}
+\underline{\Phi(\omega )} e^{-j\omega x}\dif \omega 
+\]
+
+\paragraph{Ιδιότητες}
+\begin{enumpar}
+	\item \( \displaystyle \Phi(0)
+	= \int_{-\infty}^{\infty} f(x)\dif x = 1 \)
+	\item \( \displaystyle \left| \Phi(\omega ) \right| = \left|
+	\int_{-\infty}^{\infty} e^{-j\omega x}\dif x
+	\right| 
+	\leq \left|\int_{-\infty}^{\infty} f(x)\dif x\right| = 1
+	\implies \underline{\left|\Phi(\omega )\right|=1}
+	\)
+	
+	Γενικά, αν \( \omega \neq 0 \), τότε \( \left|
+	\Phi(\omega ) < 1
+	\right| \) (με μία εξαίρεση)
+	\item \( F_X(x) \leftarrow \Phi(\omega ) \):
+	
+	\begin{align*}
+		P\left\lbrace x_1 < x \leq x_2 \right\rbrace
+		&= \boxed{F_X(x_2) - F_X(x_1)}
+		\\ &= \int_{x_1}^{x_2} f_X(x)\dif x
+		\\ &= \frac{1}{2\pi} \int_{x_1}^{x_2}
+		\int_{-\infty}^{\infty} \Phi(\omega )e^{-j\omega x}
+		\dif \omega \dif x = \boxed{
+			\frac{1}{2\pi} \int_{-\infty}^{\infty}
+			\frac{e^{j\omega x_2}-e^{j\omega x_1}}{-j\omega }
+			\dif \omega 
+			}
+	\end{align*}
+\end{enumpar}
+
+Μέχρι στιγμής έχουμε μια συνάρτηση που μπορεί να μας οδηγήσει στην
+\( f_X(x) \). Πώς μπορούμε να την βρούμε;
+
+\begin{align*}
+	e^{j\omega x} &= \sum_{k=-\infty}^{\infty}
+	\frac{(j\omega x)^k}{k!} \\
+	\Phi(\omega ) &= \int_{-\infty}^{\infty} f_X(x)
+	\sum_{k=0}^{\infty} \frac{(j\omega x)^k}{k!}\dif x
+	= \sum_{k=0}^{\infty} \frac{(j\omega x)^k}{k!}
+	f_X(x)\dif x
+	\\ &= \sum_{k=0}^{\infty} \frac{(j\omega )^k}{k!}
+	\left[
+	\int_{-\infty}^{k} x^k f_X(x)\dif x
+	\right]
+\end{align*}
+
+\begin{defn}{Ροπή}{}
+	Ονομάζουμε \( \mathbf{k} \)\textbf{-οστή ροπή} τον αριθμό:
+	\[
+	\mathlarger{m_k
+	= \int_{-\infty}^{\infty} x^K f_X(x)\dif x
+	}
+	\]
+\end{defn}
+
+Τότε:
+\[
+\boxed{\mathlarger{
+		\Phi(\omega ) = \sum_{k=0}^{\infty}
+		\frac{(j\omega )^k}{k!} \cdot m_k
+		}}
+\]
+
+Παρατηρούμε ότι η ροπή με \( k=1 \) είναι η \textit{μέση τιμή} μιας
+μεταβλητής. Επίσης παρατηρούμε ότι για να βρούμε τις συναρτήσεις
+πυκνότητας \& κατανομής πιθανότητας, χρειαζόματε τον άπειρο
+αριθμό ροπών, αλλά με μεγάλο \( k \), αυξάνεται ο παρονομαστής,
+και μετράν όλο και λιγότερο στο τελικό αποτέλεσμα.
+
+Δηλαδή:
+\begin{align*}
+\Phi(\omega ) &= 1 + j\omega m_1
++ \frac{(j\omega )^2}{2!}m_2 + \dots +
+\frac{(j\omega )^k}{k!}m_k + \dots \\
+\od{\Phi(\omega )}{\omega } &= jm_1 + \frac{2(j\omega )j}{2!}m_2
++ \dots + \frac{k(j\omega )^{k-1}j^k}{k!}m_k + \dots\\
+\left.\od{\Phi(\omega )}{\omega }\right|_{\omega =0}&=jm_1
+\intertext{Και γενικότερα:}
+\left.\Phi^{(k)}(\omega )\right|_{\omega = 0} &= j^k m_k
+\end{align*}
+
+Δηλαδή μπορούμε από την \( k \)-οστή παράγωγο της χαρακτηριστικής
+συνάρτησης στο \( \omega = 0 \) να βρούμε την \( k \)-οστή ροπή.
+
+\subsection{Μέση τιμή}
+\subsubsection{Σε μία μεταβλητή}
+
+\paragraph{Διακριτή \( f_X \)}
+Έστω ότι η \( f_X \) είναι διακριτή, δηλαδή προκύπτει από ώσεις.
+\[
+m_1 = \int_{-\infty}^{\infty} xf-X(x)\dif x
+\]
+
+Την πρώτη ροπή ονομάζουμε μέσο όρο:
+\[
+m_1 = E[x] = \sum_{i} x_i f_X(x_i)
+\]
+
+\paragraph{Παράδειγμα - ηλικίες}
+\begin{tabular}{cccc}
+	Πατέρας & Μητέρα & Παιδί 1 & Παιδί 2 \\ 
+	40 & 28 & 5 & 3 \\ 
+	\end{tabular}
+\begin{align*}
+\text{Μ.Ο } &= \frac{40+28+5+3}{4} = 19
+\\ &= \frac{1}{4}40 + \frac{1}{4}28 + \frac{1}{4}5
++ \frac{1}{4}3
+\end{align*}
+
+Όμως δεν υπάρχει στην οικογένεια άτομο με ηλικία (κοντά στα) 19 έτη!
+
+Αν παρομοιάσουμε το παραπάνω με ένα πείραμα τύχης με δειγματικό
+χώρο:
+\[
+S = \left\lbrace \varPi, M, \varPi_1, \varPi_2 \right\rbrace
+\]
+όπου η τυχαία μεταβλητή \( x \) είναι η ηλικία και έχουμε ίδια
+πιθανότητα \( f(x_i) = \frac{1}{4} \) να επιλέξουμε ένα άτομο,
+έχουμε:
+\[
+E[x] = \sum_{i=1}^{4} x_if_X(x) = \frac{1}{4}40 + \frac{1}{4}28 + \frac{1}{4}5 + \frac{1}{4}3
+\]
+\paragraph{Μία ενδιαφέρουσα ιδιότητα}
+\todo{Graph 25}
+Το εμβαδόν μιας συνάρτησης σε ένα διάστημα είναι ίσο με το ορθογώνιο
+που έχει ύψος τη μέση τιμή της συνάρτησης στο διάστημα αυτό.
+
+\subsubsection{Σε πολλές μεταβλητές}
+Αν μία τυχαία μεταβλητή \( Y \) εξαρτάται από την \( X \):
+\[
+Y = g(X)
+\]
+τότε προκύπτει:
+\begin{align*}
+E[y] &= \int_{-\infty}^{\infty} yf_Y(y)\dif y \\
+E[y] &= \bar y = \int_{-\infty}^{\infty} g(X)\dif x
+\end{align*}
+δηλαδή προκύπτει με απλή ολοκλήρωση της \( g \).
+
+\subsubsection{Ιδιότητες}
+\begin{enumparen}
+	\item \( E[C] = C \)
+	\item \( E[Cx] = CE[x] \)
+	\item \( E\left[g_1(x)+g_2(x)+\dots+g_n(x)\right] 
+	= E\left[g_1(x)\right] + E\left[g_2(x)\right]
+	\)
+\end{enumparen}
+
+\subsection{Δεύτερη ροπή}
+\begin{align*}
+	m_2 &= \int_{-\infty}^{\infty} x^2 f_X(x) \dif x\\
+	m_2 &= E[x^2] = \overline{x^2}
+\end{align*}
+
+Αν η τυχαία μεταβλητή μας είναι το ρεύμα ή η ένταση, η ροπή αυτή
+μπορεί να αναπαριστά ισχύ (επειδή υψώνεται η τυχαία μεταβλητή
+στο τετράγωνο).
+
+\subsection{Κεντρική ροπή}
+\begin{defn}{Κεντρική ροπή}{}
+	\begin{align*}
+	\mathlarger{\mu_k}
+	 = \int_{-\infty}^{\infty} (x-\bar x)^k f_X(x)\dif x
+	\end{align*}
+	\( y=(x-\bar x)^k \)
+\end{defn}
+(οι προηγούμενες ροπές που μελετήσαμε λέγονταν κανονικές)
+\todo{Graph 26}
+
+Παρατηρούμε ότι:
+\[
+E\left[(x-\bar x)^k\right] = \mu_k
+\]
+
+Αν έχουμε ένα "τραίνο ώσεων", δηλαδή η τυχαία μεταβλητή μας είναι
+διακριτή (ή θεωρήσουμε πως είναι διακριτή):
+\begin{align*}
+	\mu_k &= \sum_i (x_i-\bar x)^k f_X(x_i) \\
+	\mu_k &= E\left[(x-\bar x)^k\right]
+	= E\left[\sum_{\tau = 0}^{k}
+	\binom{k}{\tau} (-1)^\tau (\bar x)^\tau x^{k-\tau}
+	\right] = \sum_{\tau = 0}^{k} \binom{k}{\tau}
+	(-1)^\tau (\bar x)^\tau \cancelto{m_{k-\tau}}{E[x^{k-\tau}]}
+\end{align*}
 \end{document}
