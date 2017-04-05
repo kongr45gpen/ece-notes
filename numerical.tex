@@ -2485,9 +2485,9 @@ Q^{-1} = Q^{\mathrm T}
 \end{defn}
 
 Παρατηρούμε ότι (και προκύπτει με πράξεις), ότι ο \( H \) είναι
-συμμετρικός.
+\textbf{συμμετρικός}.
 
-Θα αποδείξουμε ότι ο \( H \) είναι ορθογώνιος!
+Θα αποδείξουμε ότι ο \( H \) είναι \textbf{ορθογώνιος}!
 \begin{align*}
 	HH^{\mathrm T} &=
 	(I-2uu^{\mathrm T})(I-2uu^{\mathrm T})^T \\
@@ -2497,4 +2497,251 @@ Q^{-1} = Q^{\mathrm T}
 	u^{\mathrm T}uu^{\mathrm T}}_1 \\
 	&= I
 \end{align*}
+
+\paragraph{}
+Έχω:
+\begin{gather*}
+	Hx =y \text{ όπου για τον $y$, από την $k$ θέση και κάτω,
+		μηδενικά} \\
+	Hx = (I-2uu^{\mathrm T}) x = x-2uu^{\mathrm T}x=x-2(u^{\mathrm T}x)u
+\end{gather*}
+
+Όμως, το \( u^{\mathrm T}x \) είναι η προβολή του \( x \) στο \( u \).
+Όπως ξέρω, η προβολή του διανύσματος \( \vec b \) πάνω στο διάνυσμα
+\( \vec a \) γράφεται:
+\[
+\vec \rho = \frac{a^{\mathrm T}b}{a^{\mathrm T} a}\vec a
+\]
+Άρα για εμάς:
+\[
+\vec \rho = \frac{u^{\mathrm T}x}{\cancelto{1 \text{ αφού μοναδιαίο}}{
+		u^{\mathrm T}u}} = (u^{\mathrm T}x)u
+\]
+
+Για να βρω τον \( Η \) ψάχνω το \( u \) στη σχέση
+\( I-2uu^{\mathrm T} \).
+
+Ορίζω το διάνυσμα \( y \) με την ίδια νόρμα (ευκλείδια) με το \( x \):
+\[
+\Vert x \Vert_2 = \Vert y \Vert_2
+\]
+
+Έτσι, ορίζω ακόμα το μοναδιαίο (κανονικοποιημένο) διάνυσμα \( u \) ως:
+\[
+u = \frac{x-y}{\Vert x-y \Vert}
+\]
+
+Θα δείξω ότι αυτό το \( u \) είναι μια πάρα πολύ καλή επιλογή:
+\[
+(I-2uu^{\mathrm T})x = y
+\]
+\subparagraph{Θέλω}
+\[
+x=\left[\begin{matrix}
+x_1\\x_2\\ \vdots \\ x_k \\ \vdots \\ x_n
+\end{matrix}\right]
+\rightarrow
+y=\left[\begin{matrix}
+x_1 \\ x_2 \\ \vdots \\ x_{k-1}
+\\ \pm \sqrt{x_k^2+x_{k+1}^2+\dots + x_n^2} \\
+0 \\ 0 \\ \vdots \\ 0
+\end{matrix}\right] \quad \text{(από το $k+1$ και κάτω, 0)}
+\]
+
+Αυτό γίνεται με το:
+\[
+u = \frac{x-y}{\Vert x-y \Vert}
+\]
+
+Θα βρω ακριβώς το \( u \):
+\begin{gather*}
+	(x-y) = \left[\begin{matrix}
+	0 \\ 0 \\ \vdots \\ \mathsmaller{x_k -
+	 \left(-\sgn(x_k)\cdot\sqrt{x_k^2+x_{k+1}^2+\dots + x_n^2} \right)
+	}
+	 \\ x_{k+1} \\ \vdots \\ \vdots \\ x_n
+	 \end{matrix}
+	\right]
+\end{gather*}
+Για ευκολία θέτω: \[
+		\boxed{s=\sqrt{x_k^2+x_{k+1}^2+\dots + x_n^2}
+			}\]
+\begin{align*}
+	\Vert x-y \Vert &= \sqrt{
+		\left(x_k+\sgn(x_k)s\right)+x_{k+1}^2+\dots + x_n^2
+		} \\ &= \sqrt{2s\left(s+|x_k|\right)}
+\end{align*}
+
+Τελικά: \begin{equation}
+	u = \frac{1}{\sqrt{2s\left(s+|x_k|\right)}} \left[
+	\begin{matrix}
+	0 \\ 0 \\ \vdots \\ \mathsmaller{x_k -
+		\left(-\sgn(x_k)\cdot\sqrt{x_k^2+\dots + x_n^2} \right)
+	}
+	\\ x_{k+1} \\ \vdots \\ \vdots \\ x_n
+	\end{matrix}
+	\right]
+	\label{u_matrix}
+\end{equation}
+
+\paragraph{Παράδειγμα}
+Επιθυμώ το παρακάτω \( x \) να έχει μηδέν στην 3\textsuperscript{η}
+συνιστώσα: \[
+x = \left[\begin{matrix}
+7\\4\\3
+\end{matrix}\right]
+\]
+\subparagraph{Επίλυση}
+Είναι \( k=2 \). Θα χρησιμοποιήσω την \( \eqref{u_matrix} \):
+\begin{gather*}
+	s = \sqrt{x_2^2+x_3^2} = \sqrt{4^2+3^2} = 5\\
+	\Vert u \Vert = \Vert x-y \Vert = \sqrt{2\cdot 5
+		\left(s+|x_k|\right)}= \sqrt{10(5+4)} = \sqrt{80}
+	\intertext{$\sgn(x_k) = {\color{green} +}$}
+	u = \frac{1}{\sqrt{90}} \left[\begin{matrix}
+	0\\4 + {\color{green} + } 5 \\3
+	\end{matrix}\right] = \frac{1}{\sqrt{90}} \left[\begin{matrix}
+	0\\9\\3
+	\end{matrix}\right]
+\end{gather*}
+
+Άρα:
+\begin{align*}
+	H &= I-2uu^{\mathrm T} = I - \frac{2}{90}\left[\begin{matrix}
+	0\\9\\3
+	\end{matrix}\right]\left[\begin{matrix}
+	0&9&3
+	\end{matrix}\right] = I-\frac{2}{90}\left[\begin{matrix}
+	0&0&0\\0&81&27\\0&27&9
+	\end{matrix}\right] \\ &= \left[\begin{matrix}
+	1&0&0\\0&1&0\\0&0&1
+	\end{matrix}\right] - \frac{2}{90}\left[\begin{matrix}
+	0&0&0\\0&81&27\\0&27&9
+	\end{matrix}\right] = \frac{1}{5}\left[\begin{matrix}
+	5&0&0\\0&-4&-3\\0&-3&4
+	\end{matrix}\right] \\
+	H\cdot x &= \dots = \left[\begin{matrix}
+	7\\-5\\0
+	\end{matrix}\right] \quad \text{(επαλήθευση)}
+\end{align*}
+
+\paragraph{}
+Για να γράψω έναν πίνακα \( A \) με μορφή:
+\[
+A = Q \cdot R
+\]
+λειτουργώ ως εξής:
+\begin{gather*}
+	H_1 \cdot A = \left[\begin{matrix}
+	H_1a_1 & H_1a_2 & \dots & H_1 a_n
+	\end{matrix}\right] = \left[\begin{matrix}
+	* & * & * & \hdots & * \\
+	0 & * & * & \hdots & * \\
+	0 & * & * & \hdots & * \\
+	\vdots & \vdots & \vdots & \ddots & \vdots \\
+	0 & * & * & \hdots & *
+	\end{matrix}\right] = A_1.
+	\intertext{Βρίσκω τον $A_1$, από αυτόν υπολογίζω τον $H_2$, και
+		ύστερα βρίσκω το γινόμενο $H_2\cdot A_1$}
+	H_2 \cdot A_1 = \left[\begin{matrix}
+	* & * & * & * & \hdots & * \\
+	0 & * & * & * & \hdots & * \\
+	0 & 0 & * & * & \hdots & * \\
+	0 & 0 & 0 & * & \hdots & * \\
+	\vdots & & \vdots & \vdots & \vdots & \ddots & \vdots \\
+	0 & 0 & 0 & 0 & \hdots & 0
+	\end{matrix}\right] = A_2 \\
+	H_{n-1}A_{n-2} = \left[\begin{matrix}
+	* & * & * & * & \hdots & * \\
+	0 & * & * & * & \hdots & * \\
+	0 & 0 & * & * & \hdots & * \\
+	0 & 0 & 0 & * & \hdots & * \\
+	\vdots & & \vdots & \vdots & \vdots & \ddots & \vdots \\
+	0 & 0 & 0 & 0 & \hdots & 0
+	\end{matrix}\right] = A_{n-1} = R
+\end{gather*}
+
+Τελικά δηλαδή:
+\[
+\boxed{H_{n-1}H_{n-2}\cdots H_1\, A = R}
+\]
+
+\[
+H \begin{matrix}
+\nearrow \text{ \small συμμετρικός} \\ \searrow \text{\small ορθογώνιος}
+\end{matrix}
+\]\[
+H^{\mathrm T} = H^{-1}
+\]\begin{align*}
+	A &= H_1^{\mathrm T} H_2^{\mathrm T}\dots
+	H_{n-1}^{\mathrm T}R \\
+	A &= \underbrace{H_1H_2\dots H_{n-1}}_QR
+	\intertext{Δηλαδή φτάνουμε στο πολυπόθητο:}
+	\Aboxed{A &= QR} \\
+	\underset{m\times n}{A} &= \underset{m\times m}{Q} \times
+	\underset{m\times n}{R} \rightarrow 
+	\left[\begin{matrix}
+	n\times n \text{ άνω τριγωνικός }  \\ \hline
+	\underset{\text{$m\times n$ γραμμές}}{0}
+	\end{matrix}\right]
+\end{align*}
+
+\paragraph{Άσκηση}
+Δίνεται ο πίνακας \( \mathlarger{X=\left[\begin{matrix}
+	-3\\4\\12 \end{matrix}
+	\right]} \). Να βρεθεί πίνακας \( H \) ώστε ο \( Hx \) να έχει μηδέν
+τις τελευταίες 2 συνιστώσες.
+\subparagraph{Λύση}
+\begin{gather*}
+	k=1 \\ s=\sqrt{x_1^2+x_2^2+x_3^2} = \sqrt{(-3)^2+4^2+12^2} = 13
+	\\ u = \frac{1}{\sqrt{2\cdot 13\cdot (13+3)}}\left[
+	\begin{matrix}
+	x_1+\mathrm{sgn}(x_1)\cdot s\\ x_2 \\ x_3
+	\end{matrix}\right] \overset{\cdots}{=} \frac{1}{\sqrt{26}} \left[
+	\begin{matrix}
+	-4\\1\\3
+	\end{matrix}\right] \\
+	H = I-2uu^{\mathrm T} = \left[\begin{matrix}
+	1&0&0\\0&1&0\\0&0&1
+	\end{matrix}\right] - 2\frac{1}{\sqrt{26}}\left[\begin{matrix}
+	-4\\1\\3
+	\end{matrix}\right]\frac{1}{\sqrt{26}}\left[\begin{matrix}
+	-4&1&3
+	\end{matrix}\right]
+	= \frac{1}{13}\left[\begin{matrix}
+	-3&4&12\\4&12&-3\\12&-3&4
+	\end{matrix}\right]
+\end{gather*}
+Όντως, για επαλήθευση παρατηρούμε ότι:
+\[
+Hx = \left[\begin{matrix}
+13\\0\\0
+\end{matrix}\right]
+\]
+
+\paragraph{Άσκηση}
+Να παραγοντοποιηθεί/γραφεί σε μορφή \( QR \) ο πίνακας \( A =
+\left[\begin{matrix}
+1&5&6\\2&-4&-5\\2&3&17
+\end{matrix}\right] \).
+\subparagraph{Λύση}
+Στην πρώτη στήλη:
+\begin{gather*}
+	a_1 = \left[\begin{matrix}
+	1\\2\\2
+	\end{matrix}\right] \qquad k=1 \\
+	s=\sqrt{1^2+2^2+2^2}=3 \\
+	u_1 = \frac{1}{\sqrt{25(5+1x_1)}}\left[\begin{matrix}
+	x_1+5\\x_2\\x_3
+	\end{matrix}\right] = \frac{1}{\sqrt{24}}\left[\begin{matrix}
+	4\\2\\2
+	\end{matrix}\right] \\
+	H_1 = I-2u_1u_1^{\mathrm T} \overset{\cdots}{=}
+	\frac{1}{3}\left[\begin{matrix}
+	-1&-2&-2\\-2&2&-1\\-2&-1&2
+	\end{matrix}\right] = Q \\
+	H_1A = \left[\begin{matrix}
+	-3&-1&-10\\0&-7&-13\\0&0&9
+	\end{matrix}\right] = R
+\end{gather*}
 \end{document}
