@@ -1737,4 +1737,153 @@ f_{XY}(x,y) = \frac{1}{4\pi^2} \int_{-\infty}^{\infty}
     \sum_{k=0}^{\infty}\sum_{r=0}^{\infty}
     \frac{j^{kr}\omega_1^k\omega_2^r}{k!r!}m_{kr}
 \end{align*}
+
+\subsubsection{Ανακεφαλαίωση}
+\[
+\left(X,Y,f_X(x),f_Y(y),f_{XY}(x,y)\right)
+\]
+\begin{itemize}
+	\item Ανεξάρτητες \( \iff \boxed{
+		f_{XY}(x,y) = f_X(x) f_Y(y)
+		} \)
+    \item Ασυσχέτιστες \( \rho = 0 \qquad \mathrm{cov}[X,Y]=0 
+    \iff E\left[xy\right] = E[x]E[y]  \qquad E\left[(x-\bar x)
+    (y-\bar y)\right] = E[xy] - E[x]E[y]\)
+    \item Αν επιπλέον \( Ε[ΧΥ] = 0 \), τότε καλούνται
+    \textbf{ορθογώνιες}.
+\end{itemize}
+
+\subsubsection{Θεωρήματα}
+\begin{enumerate}
+	\item Αν \( X,Y \) είναι στατιστικά ανεξάρτητες, και
+	έχουμε δύο συναρτήσεις \[ z=g(x) \quad w=h(y) \] τότε:
+	\[
+	f_{ZW}(z,w) = f_Z(z)f_W(w)
+	\]
+	\item \( X,Y \) στατ. ανεξάρτητες \( \xrightarrow{\hspace{15pt}}\)
+	στατ. ασυσχέτιστες (εν γένει δεν συμβαίνει το ανάποδο)
+	\begin{align*}
+	E[XY] &= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty}
+	x\cdot y \cdot \cancelto{f_X(x)f_Y(y)}{f(x,y)}\dif x\dif y
+	= \int xf_X(x)\dif x \cdot \int y f_Y(y)\dif y = E[x]E[y] \\
+	E\left[
+	\overset{z}{g(x)} \overset{w}{h(y)}
+	\right] &= E\left[g(x)\right]E\left[h(x)\right]
+	\quad \text{ (παραπάνω θεώρημα)}
+	 \end{align*}
+	\item \( x,y \) ασυσχέτιστες \( \implies \)
+	\( x-\bar x,\ y-\bar y \) ορθογώνιες:
+	\begin{align*}
+		E\left[(x-\bar x)(y-\bar y)\right] &=
+		E\left[xy-x\bar y-\bar x y +\bar x\bar y\right]
+		= E[xy] - \bar x -\bar y = 0
+	\end{align*}
+	
+	Στο παρακάτω σήμα, έχουμε αρχικά έναν DC όρο \( s \), άρα το σήμα
+	έχει ισχύ. Αν τον αφαιρέσουμε, έχει μέση τιμή 0, άρα και μέση ισχύ
+	0. Δύο μεταβλητές μπορεί να είναι ασυσχέτιστες, κάτι που όμως
+	μπορούμε να το δούμε αν αφαιρέσουμε από αυτές την μέση τους τιμή.
+	\todo{Graph 27}
+	
+	\item
+	Αν \( X,Y \) ασυσχέτιστες \( \rightarrow \) μια καινούρια
+	μεταβλητή \[
+	z = x+y
+	\] τότε: 
+	\begin{align*}
+	\sigma_{x+y}^2 &= \sigma_x^2+\sigma_y^2
+	\end{align*}
+	διότι: \begin{align*}
+	\bar z &= \bar x + \bar y \\
+	\sigma_z^2 &= E\left[(z-\bar z)\right] = E\left[
+	\left((x+y)-(\bar x+\bar y)\right)^2
+	\right]
+	= E\left[
+	\left((x-\bar x)+(y-\bar y)\right)^2
+	\right] \\ &=
+	\cancelto{\sigma_x^2}{E\left[(x-\bar x)^2\right]}
+	+ 2\cancelto{0}{E\left[(x-\bar x)(y-\bar y)\right]}
+	+ \cancelto{\sigma_y^2}{E\left[(y-\bar y)^2\right]}
+	\end{align*}
+	\item Αν \( x,y \) ορθογώνιες:
+	\[
+	E\left[(x+y)^2\right] = E[x^2]+E[y^2]
+	\] αφού γίνεται \( x^2+2xy+y^2 \), αλλά \( E[xy]=0 \)
+	\item \( \displaystyle
+	E\left[x-\bar x\right] = \cancelto{\bar x}{E[x]} - \bar x
+	= 0
+	\)
+\end{enumerate}
+
+\subsubsection{Εφαρμογές}
+
+\paragraph{Y=aX}
+Για δύο τυχαίες μεταβλητές \( Υ,Χ \) έχουμε:
+\[
+\underline{Y= aX}
+\]
+\begin{align*}
+	\mathrm{cov}[X,Y] &= E\left[(x-\bar x)(y-\bar y)\right]
+	= E\left[\overset{xy}{ax^2}\right] - \bar x \bar y
+	= aE[x^2]-a(\bar x)^2 = a\left[E[x^2]-(\bar x)^2\right]
+	= a\sigma_x^2 \\
+	\bar{y} &= E\left[ aX \right] = a \bar{X} \\
+	\sigma_y^2 &= E\left[ Y^2 \right] - \left( \bar{Y} \right)^2
+	= a^2 E \left[ \bar{x^2} \right] - a^2\left(\bar{x}\right) 
+	\\ &= a^2\left[E\left[x^2\right]\right] = a^2\sigma_x^2 \\
+	\sigma_y &= |a|\cdot\sigma_x \\
+	\rho &= \frac{a\sigma_x^2}{|a|\sigma_x^2} = \frac{a}{|a|} = \pm 1
+\end{align*}
+
+\paragraph{Ανισότητα Cauchy}
+\[
+\mathlarger{\left[E\left[XY\right]\right]^2 \leq
+E[x^2]E[y^2]}
+\]
+
+Για τη μεταβλητή \( (x-\lambda y)^2,\quad \lambda \in \mathbb R  \)
+έχουμε:
+\begin{gather*}
+    0 \leq E\left[(x-\lambda y)^2\right] =
+    \lambda^2 E\left[y^2\right] - 2\lambda E[xy]+E[x^2] \\
+    E\left[(x-\lambda y)^2\right]_{\min} =
+    \frac{\left(E[xy]\right)^2}{\left(E[y^2]\right)^{\cancel{2}}}
+    \cancel{E[y^2]} - 2\frac{\left(E[xy]\right)^2}{E[y^2]}+E[x^2]
+    = E[x^2] - \frac{\left(E[xy]\right)}{E[y^2]} \geq 0
+\end{gather*}
+
+\section{Κατανομές}
+\[
+\mathlarger{X,f_X(x)}
+\]
+Τα τυχαία σήματα με τα οποία ασχολούμαστε μεταβάλλονται
+\textit{στον χρόνο}, π.χ. \( E(t), I(t), H(t), B(t), U(t) \) που μπορεί
+π.χ. να είναι ίσα με \(U_0(t)\cos\left(2\pi f(t) t + \phi(t)\right) \).
+
+\todo{Graph 28}
+
+Το σήμα δεν είναι ντετερμινιστικό, αλλιώς δεν θα μετέφερε καμία
+πληροφορία.
+Η τυχαία μεταβλητή είναι το πλάτος του σήματος. Η πιθανότητα που
+μας ενδιαφέρει είναι η πιθανότητα να βρεθούμε ετός μιας περιοχής:
+\[
+P \left\lbrace x < X \leq x+\dif x \right\rbrace = f_X(x)\Delta x
+\]
+την οποία βρίσκουμε μέσω μίας κατανομής \( f_X \):
+\todo{Graph 29}
+
+Τον χρόνο που το σήμα μας έχει πλάτος που βρίσκεται εντός των τιμών
+που θέλουμε τον αποκαλούμε \( T_X \):
+\[
+T_X = \sum_i \Delta t_i
+\]
+και έχουμε:
+\[
+f_X(x)\Delta x = \frac{\cancelto{T_X}{\sum_i \Delta t_i}}{T}
+\qquad
+f_X(x) = \lim_{\substack{\Delta x\to 0 \\ T\to \infty}}
+ \frac{T_X}{T\Delta x}
+\]
+όπου \( T \) είναι ο χρόνος όλου του σήματος.
+
 \end{document}
