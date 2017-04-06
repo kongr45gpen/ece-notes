@@ -37,6 +37,7 @@
 	\maketitle
 
 	\tableofcontents
+	
 
 	\vspace{50pt}
 
@@ -2744,4 +2745,300 @@ Hx = \left[\begin{matrix}
 	-3&-1&-10\\0&-7&-13\\0&0&9
 	\end{matrix}\right] = R
 \end{gather*}
+
+\paragraph{Άσκηση}
+Να βρεθεί η παραγοντοποίηση QR του πίνακα \( A \):
+\[
+A = \left[\begin{matrix}
++1&+2&3\\+2&9&2\\+2&2&1
+\end{matrix}\right]
+\]
+\subparagraph{Λύση}
+\begin{itemize}
+	\item Για \( k=1 \) Householder:
+	\begin{gather*}
+		Q_1 = \left[\begin{matrix}
+		1\\2\\2
+		\end{matrix}\right] \\
+		H_1 = \frac{1}{3} \left[\begin{matrix}
+		-1&-2&-2\\-2&2&-1\\&2&-1&2
+		\end{matrix}\right] \\
+		A_1 = H_1A = \left[\begin{matrix}
+		-3 & -8 & -3 \\ 0 &4 & -1 \\ 0 & -3 & -2
+		\end{matrix}\right]
+	\end{gather*}
+	\item Για \( k=2 \) Householder:
+	\begin{gather*}
+		Q_2' = \left[\begin{matrix}
+		-8 \\ 4 \\ -3
+		\end{matrix}\right] \quad s=\sqrt{x_2^2+x_3^2}=
+		\sqrt{4^2+(-3)^2}=5
+	\end{gather*}
+	Προκύπτει:
+	\begin{gather*}
+		H_2 = I-2uu^{\mathrm T} = \left[\begin{matrix}
+		1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1
+		\end{matrix}\right] -2\frac{1}{\sqrt{10}} \left[\begin{matrix}
+		0\\3\\-1
+		\end{matrix}\right]\frac{1}{\sqrt{10}}\left[\begin{matrix}
+		0&3&-1
+		\end{matrix}\right] = \frac{1}{5}\left[\begin{matrix}
+		5&0&0\\0&-4&3\\0&3&4
+		\end{matrix}\right] \\
+		A_2 = H_2A_1 = \left[\begin{matrix}
+		-3&-8&-3\\0&-5&-\sfrac{2}{5} \\0&0&-\sfrac{11}{5} 
+		\end{matrix}\right] \mathlarger{= R} \\
+		Q = H_1H_2 = \frac{1}{15} \left[\begin{matrix}
+		-1&-2&-2\\-2&2&-1\\-2&-1&2
+		\end{matrix}\right]\left[\begin{matrix}
+		5&0&0\\0&-4&3\\0&3&4
+		\end{matrix}\right] = \frac{1}{15}\left[\begin{matrix}
+		-5&2&-14\\-10&-11&2\\-10&10&5
+		\end{matrix}\right]
+	\end{gather*}
+\end{itemize}
+
+\todo{Missing Notes}
+\paragraph{Άσκηση}
+Να παραγοντοποιηθεί ο πίνακας:
+\[
+A = \left[\begin{matrix}
+1&1\\2&4\\2&-3
+\end{matrix}\right]
+\]
+\subparagraph{Λύση}
+\[
+\underset{\substack{\downarrow\\\mathclap{\text{ορθογώνιος}}}}{Q}
+\cdot
+\overset{\substack{\mathclap{\text{άνω τριγωνικός}}\\\uparrow}}{R}
+\xrightarrow{\hspace{20pt}}
+\left[\begin{matrix}
+n\times n \text{ άνω τριγωνικός }  \\ \hline
+\underset{\text{$m\times n$ γραμμές}}{0}
+\end{matrix}\right]
+\]
+
+Στον πίνακα: \( \left[\begin{matrix}
+1\\2\\2
+\end{matrix}\right] \) εφαρμόζω Householder για \( k=1 \).
+\begin{gather*}
+	H_1 = \frac{1}{3} \left[\begin{matrix}
+	-1&-2&-2\\-2&2&-1\\-2&-1&2
+	\end{matrix}\right] \\
+	A_1 = H_1A = \left[\begin{matrix}
+	-3&-1\\0&3\\0&-4
+	\end{matrix}\right]
+\end{gather*}
+
+Householder στον \( \left[\begin{matrix}
+-1\\3\\4
+\end{matrix}\right] \) για \( k=2 \):
+\begin{gather*}
+	s=\sqrt{3^2+4^2}=5 \\
+	u_2 = \frac{1}{\sqrt{10\cdot 8}}\left[\begin{matrix}
+	0\\8\\=4
+	\end{matrix}\right] = \frac{1}{\sqrt{5}}\left[\begin{matrix}
+	0\\2\\-1
+	\end{matrix}\right] \\
+	H_2 = I -2u_2u_2^{\mathrm T} = \left[\begin{matrix}
+	1&0&0\\0&1&0\\0&0&1
+	\end{matrix}\right] - \frac{2}{5}\left[\begin{matrix}
+	0&0&0\\0&4&-2\\0&-2&1
+	\end{matrix}\right] = \left[\begin{matrix}
+	1 & 0 & 0 \\ 0 & \frac{-3}{5} & \frac{4}{5} \\
+	0 & \frac{4}{5} & \frac{3}{5}
+	\end{matrix}\right] \\
+	H_2A_1 = \left[\begin{matrix}
+	-3 & -1 \\ 0 & -5 \\ \hline 0 & 0
+	\end{matrix}\right] = R \\
+	Q = H_1H_2 = \dots
+\end{gather*}
+
+\section{Επίλυση Γραμμικών Συστημάτων}
+Η μέθοδος Cramer βρίσκει λύσεις στα γραμμικά συστήματα, αλλά λόγω του
+υπολογισμού ορίζουσας είναι πολύ αργή. Γι' αυτό μπορούμε να
+χρησιμοποιήσουμε την απαλοιφή Gauss και παραλλαγές της για να βρούμε
+ακριβείς λύσεις στο σύστημα.
+
+Για την επίλυση γραμμικών συστημάτων μπορούμε να χρησιμοποιήσουμε
+\textbf{δύο είδη μεθόδων:}
+\begin{itemize}
+	\item Ακριβείς Μεθόδους
+	\item Επαναληπτικές Μεθόδους
+\end{itemize}
+Γενικά οι μέθοδοι αυτές προσπαθούν να μας οδηγήσουν σε ένα ισοδύναμο
+τριγωνικό σύστημα (\( A_1x=b_1 \sim A_2x=b_2 \)):
+\begin{align*}
+	a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n &= b_1 \\
+	a_{22}x_2 + \dots + a_{2n}x_n &= b_2 \\
+	\ddots \qquad  &=\ \vdots \\
+	a_{nn}x_n &= b_n
+\end{align*}
+επειδή τότε η λύση μπορεί να βρεθεί ως εξής:
+\begin{align*}
+	x_n &= \frac{b_n}{a_{nn}} \\
+	x_{n-1} &= \frac{b_{n-1}-a_{n-1,\ n}x_n}{a_{n-1,\ n-1}} \\
+	\vdots &= \vdots
+\end{align*}
+και αναδρομικά έχω:
+\[
+x_k = \frac{b_k - \sum_{j=k+1}^{n} a_{kj}x_j}{a_{kk}}
+\] με \( k=n,\ n-1,\ \dots,\ 1 \).
+
+\subsection{Ακριβής επίλυση με παραγοντοποίηση QR}
+Η λύση με παραγοντοποίηση QR δίνει ένα ακριβές αποτέλεσμα, αλλά είναι
+\textit{ακριβή} σε χρόνο, οπότε χρησιμοποιείται αν έχουμε έτοιμη την
+παραγοντοποίηση, οπότε:
+\begin{align*}
+	Ax &= b \\
+	QRx &= b \\
+	\underset{\substack{\downarrow\\\mathclap{\text{άνω τριγωνικός}}}}{R}
+	x = Q^{\mathrm T} b
+\end{align*}
+
+\subsection{Ακριβής επίλυση με απαλοιφή Gauss}
+\subsubsection{Στοιχειώδεις πράξεις}
+\begin{itemize}
+	\item \textbf{Ανταλλαγή} δύο γραμμών \( R_i \) και \( R_j \).
+	
+	Θα το συμβολίζουμε:
+	\[
+	R_i := R_j \text{ ή } R_i \leftarrow R_j
+	\]
+	\item \textbf{Πολλαπλασιασμός} γραμμής \( R_i \) με μια σταθερά
+	\( a\in
+	\mathbb R  \).
+	
+	Θα το συμβολίζουμε:
+	\[
+	R_i := aR_i \text{ ή } R_i \leftarrow aR_i
+	\]
+	
+	\item \textbf{Πρόσθεση} σε μια γραμμή \( R_i \) το γινόμενο της
+	γραμμής
+	\( R_j \) με μια σταθερά \( a \in \mathbb R  \).
+	
+	Θα το συμβολίζουμε:
+	\[
+	R_i := R_i + aR_j \text{ ή } R_i \leftarrow R_i + aR_j
+	\]
+	
+	\subsubsection{Κλιμακωτή Μορφή}
+	
+	\paragraph{Παράδειγμα}
+	Αν έχουμε το σύστημα:
+	\begin{align*}
+		x_1+2x_2-4x_3 &= -4 \\
+		5x_1+11x_2-21x_3 &= -22 \\
+		3x_1 - 2x_2 + 3x_3 &= 11
+	\end{align*}
+	\subparagraph{Λύση}
+	Τοποθετώ τους συντελεστές σε έναν πίνακα ώστε να μην γράφω συνέχεια
+	τα ονόματα των μεταβλητών:
+	\[
+	\left[\begin{array}{ccc|c}
+	1 & 2 & -4 & -4 \\ 5 & 11 & -21 & -22 \\ 3 & -2 & 3 & 11
+	\end{array}\right]
+	\]
+	και προσπαθώ να τον φέρω σε \textbf{κλιμακωτή μορφή},
+	εκτελώντας τις παραπάνω γραμμοπράξεις.
+	
+	\begin{defn}{Κλιμακωτή μορφή ενός ΠΙΝΑΚΑ}{}
+		\begin{enumerate}
+			\item Το πρώτο μη μηδενικό στοιχείο κάθε μη μηδενικής γραμμής
+			να είναι 1.
+			\item Εάν η γραμμή \( k \) έχει μη μηδενικά στοιχεία, τα
+			αρχικά μηδενικά στοιχεία της γραμμής \( k+1 \) να είναι
+			περισσότερα από αυτά της γραμμής \( k \).
+			\item Αν υπάρχουν μηδενικές γραμμές, αυτές να βρίσκονται στο
+			τέλος του πίνακα.
+		\end{enumerate}
+		\tcblower
+		\paragraph{Παράδειγμα}
+		\[
+		\left[\begin{matrix}
+		1 & & & & \\0 & 0 & 1 & & \\
+		0 & 0 & 0 & 0 & 1 \\
+		0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 & 0
+		\end{matrix}\right]
+		\]
+	\end{defn}
+	\[
+	\left[\begin{array}{c|c}
+	A & b\end{array}
+	\right]
+	 \xrightarrow{\text{Απαλοιφή Gauss}} \left[\begin{array}{c|c}
+	\bar A & \bar b
+	\end{array}
+	\right]
+	\]
+	\begin{defn}{Πρωτεύουσες \& Δευτερεύουσες Μεταβλητές}{}
+		\[
+		\left[\begin{array}{ccccccc|c}
+		\boxed{1}&x&x&x&\hdots &x&x&x \\
+		0 & 0 & \boxed{1} & x & \hdots & x & x & x \\
+		0 & 0 & 0 & \boxed{1} & \hdots & x & x & x \\
+		0 & 0 & 0 & 0 & \hdots & 0 & \boxed{1} & x
+		\end{array}\right]
+		\]
+		\tcblower
+		Στον παραπάνω κλιμακωτό πίνακα, οι στήλες αναπαριστούν τους
+		συντελεστές της κάθε μεταβλητής, ενώ οι γραμμές την κάθε
+		εξίσωση.
+	\end{defn}
+	\begin{defn}{Ανηγμένη Κλιμακωτή μορφή πίνακα}{}
+		\begin{enumerate}
+			\item Είναι κλιμακωτή μορφή
+			\item Το πρώτο μη μηδενικό στοιχείο κάθε γραμμής είναι και το
+			μοναδικό μη μηδενικό στοιχείο στη στήλη
+		\end{enumerate}
+	\end{defn}
+	\paragraph{Παράδειγμα}
+	\begin{align*}
+		\left[\begin{array}{ccccc|c}
+		1&1&1&1&1&2\\0&0&0&1&1&1\\0&0&0&0&1&-1
+		\end{array}\right] &\xrightarrow[R_1:=R_1-R_3]{R_2:=R_2-R_3}
+		\left[\begin{array}{ccccc|c}
+		1&1&1&1&0&3\\0&0&0&1&0&2\\0&0&0&0&1&-1
+		\end{array}\right] \\&\xrightarrow{R_1:=R_1-R_2}
+		\left[\begin{array}{ccccc|c}
+		1&1&1&0&0&1\\0&0&0&1&0&2\\0&0&0&0&1&-1
+		\end{array}\right]
+	\end{align*}
+	
+	Η επίλυση συστήματος με ανηγμένη κλιμακωτή μορφή ονομάζεται
+	απαλοιφή Gauss-Jordan
+	
+	\subsubsection{Ομογενή Συστήματα}
+	\begin{defn}{Ομογενές Σύστημα}{}
+		\[
+		Ax = 0
+		\]
+		(είναι και ο μηδενοχώρος του \( A \), δηλ. \( N(A) \))
+	\end{defn}
+	Τα ομογενή συστήματα μπορεί να έχουν:
+	\begin{itemize}
+		\item Μια μοναδική λύση \( x=0 \) (τετριμμένη λύση) ή
+		\item Άπειρες λύσεις
+	\end{itemize}
+	
+	\subsubsection{Στοιχειώδεις Πίνακες}
+	Κάθε μία από τις στοιχειώδεις γραμμοπράξεις αντιστοιχεί σε έναν
+	στοιχειώδη πίνακα, δηλαδή έναν πίνακα που τον πολλαπλασιάζουμε με
+	τον πίνακα του συστήματος από τα αριστερά, ώστε να έχουμε το ίδιο
+	αποτέλεσμα με την εφαρμογή της γραμμοπράξης:
+	\begin{align*}
+		R_1 := R_2 &\qquad E_1 = \left[\begin{matrix}
+		0&1&0\\1&0&0\\0&0&1
+		\end{matrix}\right] \\
+		R_2 := aR_2 &\qquad E_2 = \left[\begin{matrix}
+		1&0&0\\0&a&0\\0&0&1
+		\end{matrix}\right] \\
+		R_1 : R_1+aR_3 &\qquad E_3=\left[\begin{matrix}
+		1&0&a\\0&1&0\\0&0&1
+		\end{matrix}\right]
+	\end{align*}
+\end{itemize}
+
 \end{document}
