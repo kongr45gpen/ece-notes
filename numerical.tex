@@ -1100,9 +1100,38 @@
  	\\ &\quad \dots + f[x_0,x_1,\dots,x_k](\bar x-x_0)
  	(\bar x-x_1)\cdots(\bar x-x_{k-1}) \\
  	A_{k,r} &= \frac{(x_{k-1}-\bar x)A_{k-1,r}
- 		-(x_r-\bar x)A_{k-1,k-1}}{x_{r-1}-x_r}
+ 		-(x_r-\bar x)A_{k-1,k-1}}{x_{k-1}-x_r}
 	\end{align*}
-	\todo{Graph 12}
+	
+	
+	\begin{tikzpicture}
+	\begin{scope}[yscale=-0.6,xscale=1]
+	\foreach \i in {0,1,...,4} {
+		\draw (0,\i) node {$x_\i$};
+		\draw (1,\i) node {$A_{0,\i}$};
+		\draw (7,\i) node {$x_\i - \bar x$};
+	}
+	
+	\foreach \i in {1,...,4} {
+		\draw (2,\i-0.5) node {$A_{1,\i}$};
+	}
+	
+	\foreach \i in {2,...,4} {
+		\draw (3,\i-1) node {$A_{2,\i}$};
+	}
+	
+	\foreach \i in {3,...,4} {
+		\draw (4,\i-1.5) node {$A_{3,\i}$};
+	}
+	
+	\foreach \i in {4,...,4} {
+		\draw (5,\i-2) node {$A_{4,\i}$};
+	}
+	
+	\end{scope}
+	\end{tikzpicture}
+	
+	
 	\paragraph{π.χ.}
 	\begin{align*}
 		A_{2,3} &=
