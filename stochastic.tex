@@ -1886,4 +1886,233 @@ f_X(x) = \lim_{\substack{\Delta x\to 0 \\ T\to \infty}}
 \]
 όπου \( T \) είναι ο χρόνος όλου του σήματος.
 
+\subsection{Gaussιανή Κατανομή}
+Gaussιανή ή Κανονική κατανομή
+
+\[ \mathlarger{
+f_X(x) = \frac{1}{\sigma_x \sqrt{2\pi}}\exp\left[
+-\frac{(x-\bar x)^2}{2\sigma_x^2}
+\right] }
+\]
+
+\todo{Graph 30}
+
+Με μέση τιμή \( \bar x \) και τυπική απόκλιση \( \sigma_x \).
+
+Σε ένα διάστημα \( \bar x - 3\sigma_x \) μέχρι \( \bar x + 3\sigma_x \)
+συγκεντρώνεται πάνω από το 99\% των ενδεχομένων.
+
+Έχει \textbf{συνάρτηση κατανομής πιθανότητας}:
+\[
+F_X(x) = \cdots
+\]
+
+\todo{Graph 31}
+
+\subsubsection[Συνάρτηση Y=aX+b]{Συνάρτηση \( Y=aX+b \)}
+Αν έχουμε μια συνάρτηση για την τυχαία μεταβλητή \( X \):
+\[
+Y = aX+b
+\]
+
+Γνωρίζουμε ότι: \[
+f_Y(y) = \left. \frac{f_X(x)}{\od{y}{x}}\right|_{x=y_1}
+\]
+
+Το \( x \) λύνεται ως εξής:
+\[
+x_1 = \frac{y-b}{a}
+\]
+και επειδή η σχέση είναι γραμμική:
+\[
+\od{y}{x} = a
+\]
+άρα:
+\begin{align*}
+f_Y(y) = \left. \frac{f_X(x)}{\od{y}{x}}\right|_{x=y_1}
+&= \frac{1}{a\sigma_x \sqrt{2\pi}} \exp\left[
+-\frac{(y-b-\bar{x_a})^2}{2a^2\sigma_x^2}
+\right] \intertext{
+	με αντικατάσταση \( \sigma_y^2=a^2\sigma_x^2 \)
+	και \( \bar y = a\bar x + b \):
+	}
+	&= \frac{1}{\sigma_y \sqrt{2\pi}}\exp \left[
+	-\frac{(y-\bar y)^2}{2\sigma_y^2}
+	\right]
+\end{align*}
+
+Δηλαδή αν εφαρμόσουμε μια \textbf{γραμμική συνάρτηση}
+σε μια \textbf{γκαουσιανή κατανομή},
+θα πάρουμε πάλι γκαουσιανή κατανομή.
+
+\subsubsection{Συνάρτηση Κατανομής Πιθανότητας}
+\begin{align*}
+	F_X(x) &= \int_{-\infty}^{x} f_X(u)\dif u \\
+	&= \frac{1}{\sigma_x \sqrt{2\pi}} \int_{-\infty}^{x} \exp \left[
+	-\frac{(u-\bar u)}{2\sigma_x^2}
+	\right] \dif u
+	\\ &=
+	\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\frac{x-\bar x}{\sigma_x}}
+	\exp\left[\frac{u^2}{2}\right] \dif y
+\end{align*}
+
+Το παραπάνω ολοκλήρωμα δεν μπορεί να εκφραστεί αναλυτικά, επομένως πρέπει
+να καταφύγουμε σε \textbf{πίνακες}.
+
+Για να βρούμε την πιθανότητα:
+\[
+P \left\lbrace X \leq x_1 \right\rbrace
+\]
+ψάχνουμε στους πίνακες την τιμή:
+\[
+\boxed{\frac{x_1-\bar x}{\sigma_x}}
+\]
+η οποία είναι η μεταβλητή \( X \), αλλά κανονικοποιημένη, ώστε να έχει
+μέση τιμή \( \bar y = 0 \) και τυπική απόκλιση \( \sigma_y = 1 \), άρα
+εκφράζεται από τη συνάρτηση \[
+\phi(x) = \frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{x} \exp\left[-\frac{y^2}{2}\right]\dif y
+ \]
+
+Για ευκολία, ορίζουμε τη συνάρτηση:
+\[
+\boxed{
+	\erf(x) = \frac{1}{\sqrt{2\pi}}
+	\int_{0}^{x} \exp\left[-\frac{y^2}{2}\right]\dif y
+	} \qquad \text{(error function)}
+\]
+επομένως:
+\[
+\phi(x) = \frac{1}{2} + \erf(x)
+\]
+(αφού η \( \erf \) ολοκληρώνει από το \( 0 \), όχι το
+\( -\infty \)).
+
+\paragraph{Ιδιότητες}
+\begin{gather*}
+	\phi(-x) = 1-\phi(x) \\
+	\erf(-x) = -\erf(x) \\
+	\erf(+\infty) = \frac{1}{2}
+\end{gather*}
+
+\subsubsection{Χαρακτηριστική συνάρτηση}
+Η χαρακτηριστική της γκαουσιανής είναι:
+\[
+\Phi(\omega ) = \exp\left[
+j\omega \bar X - \frac{\omega^2\sigma_x^2}{2}
+\right]
+\]
+
+\subsubsection{Από κοινού Gaussιανή κατανομή}
+Έχουμε δύο μεταβλητές, με τα δικά τους \( \begin{matrix}
+\sigma_x,\sigma_y \\ \bar x,\bar y
+\end{matrix} \) και συντελεστή συσχέτισης \( \rho \). Τότε:
+\[
+	f_{XY}(x,y) = \frac{1}{2\pi \sigma_x \sigma_y \sqrt{1-\rho^2}}
+	\exp\left\lbrace 
+	-\frac{1}{2(1-\rho^2)}\left[
+	\left[
+	\frac{x-\bar x}{\sigma_x}
+	\right]^2 - 2\rho\left[\frac{x-\bar x}{\sigma_x}\right]\left[
+	\frac{y-\bar y}{\sigma_y}
+	\right] + \left[\frac{y-\bar y}{\sigma_y}\right]^2
+	\right]
+	 \right\rbrace
+\]
+
+Αντίστοιχα υπάρχουν εκφράσεις με πίνακες για \( n \) τυχαίες μεταβλητές.
+
+\paragraph{}Αν \( \rho = 0 \) (ασυσχέτιστες):
+\begin{align*}
+f_{XY}(x,y) &= \frac{1}{2\pi \sigma_x\sigma_y}\exp \left\lbrace 
+-\frac{1}{2}\frac{(x-\bar x)^2}{\sigma_x^2}
+-\frac{1}{2}\frac{(y-\bar y)^2}{\sigma y^2}
+ \right\rbrace \\ &=
+ \frac{1}{\sqrt{2\pi} \sigma_x}\exp\left[
+ -\frac{(x-\bar x)^2}{2\sigma_x^2}\right]
+ \cdot\frac{1}{\sqrt{2\pi}\sigma_y}\exp\left[
+ -\frac{(y-\bar y)^2}{2\sigma_y^2}\right]
+ \\ &= f_X(x) \, f_Y(y)
+\end{align*}
+
+Δηλαδή \textbf{δύο Gaussian μεταβλητές που είναι ασυσχέτιστες, είναι και
+	ανεξάρτητες} (δεν ισχύει απαραίτητα το αντίστροφο).
+
+\subsubsection{Θεώρημα κεντρικού ορίου}
+Έχουμε δύο τυχαίες μεταβλητές, κατανεμημένες κατά Gauss:
+\begin{align*}
+	f_X(x) &= \frac{1}{\sigma_x \sqrt{2\pi}}
+	e^{-\sfrac{(x-\bar x)^2}{2\sigma_x^2} } \\
+	f_Y(y) &= \frac{1}{\sigma_y\sqrt{2\pi}}
+	e^{-\sfrac{(y-\bar y)^2}{2\sigma_y^2} }
+\end{align*}
+και μία τρίτη, που είναι το άθροισμα των πρώτων δύο:
+\[
+\underline{Z=X+Y}
+\]
+
+τότε:
+\[
+\boxed{
+\mathlarger{f_Z(z) = f_X(z) * f_Y(z)}
+}
+\]
+
+Εφαρμόζοντας τον μετασχηματισμό Fourier \( F \):
+\begin{align*}
+	F\left[f_Z(z)\right] &= F\left[f_X(z)\right]
+	F\left[f_Y(z)\right] = 
+	e^{\frac{-(\sigma_x^2+\sigma_y^2)\omega^2}{2}}
+	e^{j\omega (\bar x+\bar y)}
+	\\
+	F\left[f_X(x)\right] &= e^{\frac{-(\omega\sigma_x)^2}{2}}
+	e^{j\omega \bar x}
+	\\
+	F\left[f_Y(y)\right] &= e^{\frac{-(\omega \sigma_y)^2}{2}}
+	e^{j\omega \bar y}
+	\\[2ex]
+	f_Z(z) &= \frac{1}{2\pi\sqrt{\sigma_x^2+\sigma_y^2}}
+	e^{\displaystyle \sfrac{
+		-\left[z-(\bar x+\bar y)\right]
+	}{2(\sigma_x^2+\sigma_y^2)}
+		}
+\end{align*}
+
+Αν το αποτέλεσμα αυτό το επεκτείνουμε σε \( n \) ανεξάρτητες Τ.Μ.
+(τυχαίες μεταβλητές) Gauss:
+\begin{align*}
+	\sigma_z^2 &= \sigma_1^2+\sigma_2^2+\dots+\sigma_n^2 \\
+	\bar z &= \bar{x_1} + \bar{x_2} + \dots + \bar{x_n}
+\end{align*}
+και η \( z \) θα είναι και αυτή Gaussιανή.
+
+\paragraph{}
+Σύμφωνα με το Κεντρικό Οριακό Θεώρημα, αν προσθέσουμε άπειρες τυχαίες
+μεταβλητές, με οποιαδήποτε κατανομή, διαφορετική για την κάθε μία, το
+αποτέλεσμα θα είναι μια Gaussιανή κατανομή.
+
+Για παράδειγμα, αν έχουμε ηλεκτρόνια να κινούνται σε ένα μέταλλο, και
+προσθέσουμε το αποτέλεσμα του καθενός από τα δισεκατομμύρια ηλεκτρόνια
+που κινούνται με διαφορετική κατανομή, το αποτέλεσμα θα είναι μια
+Gaussιανή κατανομή του θορύβου που θα εμφανιστεί στην τάση.
+
+\paragraph{}
+Έστω \( X_1,X_2,\dots,X_n \) (η κάθε μία μεταβλητή έχει τη δικιά της
+οποιαδήποτε - μη Gaussian - κατανομή), και \( Z = X_1+X_2+\dots+X_n \) με
+\( n\to \infty \), άρα \( f_Z(z)
+= \frac{1}{\sigma_z\sqrt{2\pi}} e^{\sfrac{-(z-\bar z)^2}{2\sigma_2^2} }
+\)
+
+Έστω
+\( Z = \frac{1}{\sqrt{n}} \left[X_1+X_2+\dots+X_n\right]\).
+
+Αν \( \sigma_1^2+\sigma_2^2+\dots+\sigma_n^2 \to \infty \), και
+\( n\to \infty \), και \( a \) μια σταθερά \( >2 \), τότε:
+\[
+\int_{-\infty}^{\infty} z^a f(z) < C = \text{ σταθερά.}
+\]
+
+\section{Στοχαστικό Σήμα}
+
 \end{document}
+
