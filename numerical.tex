@@ -3070,4 +3070,186 @@ x_k = \frac{b_k - \sum_{j=k+1}^{n} a_{kj}x_j}{a_{kk}}
 	\end{align*}
 \end{itemize}
 
+\subsubsection{Επίλυση}
+Υπάρχει η άμεση μέθοδος της απαλοιφής Gauss, και διάφορες επαναληπτικές
+μέθοδοι. Όπως έχουμε πει, οι στοιχειώδεις πίνακες υλοποιούν τις
+γραμμοπράξεις, αφού πολλαπλασιάζουν τον αρχικό πίνακα από αριστερά,
+παραγοντοποιώντας μία από τις 3 γραμμοπράξεις. Ένα σύστημα που προκύπτει
+μετά από γραμμοπράξεις είναι ισοδύναμο με το αρχικό (ίδια λύση). Εμείς
+θέλουμε να καταλήξουμε σε ένα τριγωνικό σύστημα, του οποίου η λύση
+μπορεί να βγει κατ' ευθείαν.
+
+Αποδεικνύεται ότι ένα σύστημα \( Ax=b \) μετά από γραμμοπράξεις
+έρχεται στη μορφή \( LUx = b \).
+
+\paragraph{Παράδειγμα}
+\[
+[A|b] = \left[\begin{array}{ccc|c}
+1&2&-4&-4\\5&11&-21&-22\\3&-2&3&11
+\end{array}\right]
+\xrightarrow{\text{κλιμακωτή μορφή}}
+\left[\begin{matrix}
+1&2&-4&-4\\0&1&-1&-2\\0&0&7&7
+\end{matrix}\right] = [U|\bar b]
+\]
+
+Συνολικά 3 γραμμοπράξεις. Πολλαπλασίασα το σύστημα \( [A|b] \) με το
+\( E_3E_2E_1 \):
+\[
+E_3\cdot E_2 \cdot E_1 \cdot A = U
+\]
+με:
+\[
+E_3\cdot E_2 \cdot E_1 = \left[\begin{matrix}
+1&0&0\\-5&1&0\\-3&8&1
+\end{matrix}\right]
+\]
+Άρα:
+\[
+E_3\cdot E_2\cdot E_1\cdot A = U
+\implies
+A = (E_3\cdot E_2 \cdot E_1)^{-1}U
+\]
+
+Όμως, αποδεικνύεται ότι το γινόμενο των στοιχειωδών πινάκων που οδηγούν
+ένα σύστημα σε κλιμακωτή μορφή είναι κάτω τριγωνικός πίνακας:
+\begin{align*}
+A &= {\underbrace{(E_3\cdot E_2\cdot E_1)}_{
+		\mathclap{\text{κάτω τριγ.}}}^L}^{-1} \cdot
+	\underbrace{U}_{\mathclap{\text{κλιμακωτός}}} = L\cdot U
+	\\
+	L &= \left[\begin{matrix}
+	1&0&0\\5&1&0\\3&-8&1
+	\end{matrix}\right]
+\end{align*}
+Έτσι λοιπόν το σύστημα:
+\[
+Ax=b \implies L \underbrace{U x}_{y}=b \implies Ly=b
+\]
+
+Λύνω το σύστημα ως προς \( y \) εύκολα, αφού είναι τριγωνικό, και τελικά
+βρίσκω το \( x \) μέσω της:
+\[
+Ux = y \qquad \text{(τριγωνικό)}
+\]
+
+\begin{align*}
+L \underbrace{U x}_{y} &= b \\
+(1) \quad Ly &= b \quad \text{τριγωνικό} \\
+(2) \quad Ux &= y \quad \text{τριγωνικό}
+\end{align*}
+
+\paragraph{Παράδειγμα}
+Να παραγοντοποιηθεί ο παρακάτω πίνακας σε γινόμενο \( LU \), και να
+λυθεί το σύστημα:
+\[
+A = \left[\begin{matrix}1&2&1\\3&4&2\\2&5&1\end{matrix}\right]
+\]
+όπου \( b = \left[\begin{matrix}
+3\\2\\4
+\end{matrix}\right] \)
+
+\subparagraph{Λύση}
+\begin{align*}
+	\left[\begin{matrix}
+	1&2&1\\3&4&2\\2&5&1
+	\end{matrix}\right] &\xrightarrow[R_3=R_3-2R_1]{R_2=R_2-3R_1}
+	\left[\begin{matrix}
+	1&2&1\\0&-2&-1\\0&1&-1
+	\end{matrix}\right] \xrightarrow{R_3:=R_3+\frac{1}{2}R_2}
+	\left[\begin{matrix}
+	1&2&1\\0&-2&-1\\0&0&-\sfrac{3}{2} 
+	\end{matrix}\right] = U \\
+	L &= \left[\begin{matrix}
+	1&0&0 \\ 3&1&0 \\ 2 & -\frac{1}{2} & 1
+	\end{matrix}\right]
+	\qquad \text{(από τις γραμμοπράξεις)}
+\end{align*}
+\subparagraph{Επίλυση συστήματος}
+\begin{itemize}
+	\item \( Ly = b \)
+	\begin{align*}
+		y_1 &= 3 \\ 3y_1+y_2 &= 2 \\ 2y_1-\sfrac{1}{2} y_2+y_3 &= 4
+	\end{align*}
+	\begin{align*}
+		y_1 &= 3 \\ y_2 &= -7 \\ y_3 &= -\frac{11}{2}
+	\end{align*}
+	\item \( Ux=y \)
+	\begin{align*}
+		x_1+2x_2+x_3 &= 3\\
+		-2x_2-x_3 &= -7\\
+		\sfrac{-3}{2} x_3 &= \sfrac{-11}{2} 
+	\end{align*}
+	\begin{align*}
+		x_1&=-4\\x_2&=\sfrac{5}{3}\\x_3&=\sfrac{11}{2}
+	\end{align*}
+\end{itemize}
+
+\subsection{Ακριβής επίλυση με LU χρησιμοποιώντας άλλες μεθόδους}
+\subsubsection{Μερική οδήγηση}
+Η μέθοδος της μερικής οδήγησης προσθέτει πράξεις, αλλά μειώνει τα
+σφάλματα στρογγυλοποίησης και αποκοπής που μπορεί να προκύψουν.
+
+Για οδηγό χρησιμοποιούμε γενικά το μεγαλύτερο κατά απόλυτη τιμή στοιχείο.
+
+Μετασχηματίζουμε τον πίνακα \( A \) σε κάποιον πίνακα \( A'=PA \),
+ώστε \( A' = LU \):
+\[
+A \to A' = LU
+\]
+
+Για παράδειγμα, αν έχουμε έναν πίνακα \( A \) με
+διαστάσεις 5x5, και θέλουμε να εναλλάξουμε την 1\textsuperscript{η}
+με την 2\textsuperscript{η} και την 3\textsuperscript{η} με την
+4\textsuperscript{η} γραμμή, πολλαπλασιάζουμε αριστερά με τον:
+\[
+P=\left[\begin{matrix}
+0&1&0&0&0\\
+1&0&0&0&0\\
+0&0&0&1&0\\
+0&0&1&0&0\\
+0&0&0&0&1
+\end{matrix}\right]
+\]
+(αντίστοιχα, για εναλλαγή στηλών, πολλαπλασιάζουμε από δεξιά και έχουμε
+\( A' = AP^{\mathrm T} \)).
+
+\paragraph{Παράδειγμα}
+\begin{align*}
+A &= \left[\begin{matrix}
+1&2&1\\4&16&2\\3&2&5
+\end{matrix}\right]
+\rightarrow \left[\begin{matrix}
+1&2&1\\0&8&-2\\0&\boxed{-4}&2
+\end{matrix}\right] \xrightarrow[\text{του οδηγού στον υποπίνακα \(
+\left[
+\begin{matrix}
+8&-2\\-4&2
+\end{matrix}
+\right]\)}
+]{\text{γραμμοπράξεις ώστε να
+		μηδενίσω τα στοιχεία της στήλης}}
+\left[\begin{matrix}
+1&2&1\\0&0&2\\0&-4&2
+\end{matrix}\right] = \bar U \\
+\bar L &= \left[\begin{matrix}
+1&0&0\\4&-2&1\\3&1&0
+\end{matrix}\right] \\
+x_P A &= (x_P \bar L)(x_P \bar U)\\
+x_P A &= L \quad \cdot \quad U
+\end{align*}
+
+Επειδή εναλλάξαμε την 2\textsuperscript{η} με την 3\textsuperscript{η}
+γραμμή:
+\begin{align*}
+	x_P &= \left[\begin{matrix}
+	1&0&0\\0&0&1\\0&1&0
+	\end{matrix}\right] \\
+	x_P A &= \left[\begin{matrix}
+	1&2&1\\3&2&5\\4&16&2
+	\end{matrix}\right]
+\end{align*}
+
+
+
 \end{document}
