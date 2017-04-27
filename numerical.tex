@@ -3250,6 +3250,243 @@ x_P A &= L \quad \cdot \quad U
 	\end{matrix}\right]
 \end{align*}
 
+\subsubsection{Ειδικοί τύποι πινάκων}
+\paragraph{Σε συμμετρικούς πίνακες}
 
+Έχουμε έναν συμμετρικό πίνακα:
+\begin{align*}
+\left[\begin{matrix}
+2&4&6&4\\4&7&8&2\\6&8&5&4\\4&2&4&3
+\end{matrix}\right]
+\xrightarrow[R_4:=R_4-2R_1]{\stackrel{R_2:=R_2-2R_1}{R_3:=R_3-3R_1}}
+\left[\begin{matrix}
+2&4&6&4\\0&-1&-4&-6\\0&-4&-11&-8\\0&-6&-8&-5
+\end{matrix}\right]
+\xrightarrow[R_4:=R_4+6R_2]{R_3:=R_3+4R_2}\left[\begin{matrix}
+2&4&6&4\\0&-1&-4&-6\\0&0&5&16\\0&0&16&31
+\end{matrix}\right]
+\end{align*}
+
+Παρατηρούμε ότι, ακόμα και μετά τις γραμμοπράξεις, οι πίνακες
+παρμένυν συμμετρικοί.
+
+Θυμόμαστε ότι:
+\[
+A \qquad \text{\textbf{θετικά ορισμένος}} \qquad \text{ανν }
+x^TAx > 0
+\]
+για κάθε διάνυσμα \( x\neq 0 \), και ο \( A \) σπάει σε γινόμενο:
+\[
+A = \underset{\substack{\downarrow\\\mathclap{\text{
+				άνω τριγ. με θετική διαγώνιο}}}}{H^{\mathrm T}}
+			H
+\]
+
+Αν δηλαδή ο \( A \) είναι συμμετρικός και θετικά ορισμένος,
+γίνεται γινόμενο \( LU \):
+\begin{align*}
+	A &= H^{\mathrm T}H \\
+	\left[\begin{matrix}
+	a_{11}&a_{12}&\hdots&a_{1n} \\
+	a_{21}&a_{22}&\hdots&a_{2n}\\
+	\vdots&\vdots&\ddots&\vdots\\
+	a_{n1}&a_{n2}&\hdots&a_{nn}
+	\end{matrix}\right] &= \left[\begin{matrix}
+	h_{11}&0&\hdots&0\\
+	h_{12}&h_{22}&\hdots&0\\
+	\vdots&\vdots&\ddots&\vdots\\
+	h_{n1}&h_{n2}&\hdots&h_{nn}
+	\end{matrix}\right]\left[\begin{matrix}
+	h_{11}&h_{12}&\hdots&h_{1n}\\
+	0&h_{22}&\hdots&h_{2n}\\
+	\vdots & \vdots & \ddots & \vdots \\
+	0 & 0 & \hdots & h_{nn}
+	\end{matrix}\right]
+\end{align*}
+
+Για \( k=1,2,\dots,n \):
+\begin{align*}
+	h_{kk} &= \sqrt{a_{kk}-\sum_{s=1}^{k-1} h_{ks}^2 }\\
+	h_{ik} &= \frac{1}{h_{kk}}\left(a_{ik}-\sum_{s=1}^{k-1}
+h_{is}h_{ks}\right)
+\end{align*}
+για \( i=k+1,\dots,n \).
+
+Αυτή η μέθοδος ονομάζεται \textbf{μέθοδος Cholesky}.
+
+\paragraph{Παράδειγμα}
+Να παραγοντοποιηθεί ο παρακάτω συμμετρικός \& θετικά ορισμένος
+πίνακας με την παραγοντοποίηση Cholesky:
+\[
+A = \left[\begin{matrix}
+5&-1&3\\-1&2&-2\\3&-2&3
+\end{matrix}\right]
+\]
+\subparagraph{Λύση}
+(Με τη σχέση \( x^{\mathrm T}Ax \) θα μπορούσαμε να ελέγξουμε αν
+ο πίνακας είναι θετικά ορισμένος).
+
+Από τους παραπάνω τύπους, έχουμε:
+\begin{align*}
+	\boxed{k=1} \qquad
+	h_{11} &= \sqrt{5-0} = 5 \\
+	h_{21} &= \frac{1}{\sqrt{5}} \left(a_{21}-0\right)=
+	-\frac{1}{\sqrt{5}} \\
+	h_{31} &= \frac{1}{\sqrt{5}} (a_{31}-0)=\frac{3}{\sqrt{5}} \\
+	\boxed{k=2} \qquad h_{22} &= \sqrt{a_{22}-h_{21}^2}
+	= \sqrt{2-\frac{1}{5}} = \frac{3}{\sqrt{5}}
+	\\ h_{32} &= \frac{1}{h_{22}}(a_{32}-h_{31}h_{21})
+	=\frac{\sqrt{5}}{3}\left(
+	-2+\frac{3}{\sqrt{5}}\frac{1}{\sqrt{5}}\right)
+	= -\frac{7}{3\sqrt{5}}
+	\\ \boxed{k=3} \qquad h_{33} &=
+	\sqrt{a_{33}-h_{31}^2-h_{32}^2}=
+	\sqrt{3-\left(\frac{3}{\sqrt{5}}\right)^2
+	-\left(-\frac{7}{3\sqrt{5}}\right)^2} = \frac{1}{3}.
+\end{align*}
+
+\paragraph{Σε ταινιοειδείς τριδιαγώνιους πίνακες}
+\hspace{0pt}
+
+\begin{defn}{}{}
+	Ταινιοειδής λέγεται ο πίνακας, που έχει μη μηδενικά στοιχεία
+	μόνο σε έναν αριθμό διαγωνίων κάτω και πάνω από την κύρια
+	διαγώνιο:
+	%\todo{Graph 27}
+	
+	Αν έχει μη μηδενικά στοιχεία στην κύρια διαγώνιο, στην
+	υπερδιαγώνιο ακριβώς επάνω από την κύρια, και στην υποδιαγώνιο
+	κάτω από την κύρια, λέγεται \textbf{τριδιαγωνικός}:
+	\[
+	\left[\begin{matrix}
+	1&-2&0&0\\-3&4&1&0\\0&-6&2&3\\0&0&-1&4
+	\end{matrix}\right]
+	\]
+\end{defn}
+
+\paragraph{Παράδειγμα}
+\begin{align*}
+	\left[\begin{matrix}
+	1&-2&0&0\\-3&4&1&0\\0&-6&2&3\\0&0&-1&4
+	\end{matrix}\right]
+	&\xrightarrow{R_2:=R_2+3R_1}
+	\left[\begin{matrix}
+	1&-2&0&0\\0&-2&1&0\\0&-6&2&3\\0&0&-1&4
+	\end{matrix}\right] \xrightarrow{R_3:=R_3-3R_2}\left[
+	\begin{matrix}
+	1&-2&0&0\\0&-2&1&0\\0&0&-1&3\\0&0&-1&4
+	\end{matrix}
+	\right]
+	\xrightarrow{R_4:=R_4-R-3}\left[\begin{matrix}
+	1&-2&0&0\\0&-2&1&0\\0&0&-1&3\\0&0&0&1
+	\end{matrix}\right] = U
+\end{align*}
+\[
+L=\left[\begin{matrix}
+1&0&0&0\\-3&1&0&0\\0&3&1&0\\0&0&1&1
+\end{matrix}\right]
+\]
+\subparagraph{Παρατηρήσεις}
+\begin{enumerate}
+	\item Σε κάθε βήμα απαλοιφής αντιστοιχεί μόνο ένας
+	πολλαπλασιαστής.
+	\item Τα στοιχεία της υπερδιαγωνίου του \( A \) παραμένουν
+	αμετάβλητα.
+	\item \( U \) και \( L \) ταινιοειδείς.
+\end{enumerate}
+
+\paragraph{}
+\begin{align*}
+	A &= L U \\
+	\left[\begin{matrix}
+	a_{11}&a_{12}&0&\hdots & 0\\
+	a_{21}&a_{22}&a_{23}&\hdots&0\\
+	0&a_{32}&a_{33}&\hdots & 0 \\
+	\vdots & \vdots & \vdots & \ddots & \vdots \\
+	0&0&0&\hdots & a_{nn}
+	\end{matrix}\right] &=
+	\left[\begin{matrix}
+	1&0&0&\hdots&0\\
+	\beta_2&1&0&\hdots&0\\
+	0&\beta_3&1&\hdots&0\\
+	\vdots&\vdots&\vdots&\ddots&\vdots\\
+	0&0&0&\hdots&1
+	\end{matrix}\right]\left[\begin{matrix}
+	a_1 & a_{12} & 0 & \hdots & 0 \\
+	0 & a_2 & a_{23} & \hdots & 0 \\
+	\vdots & \vdots &\vdots &\ddots&\vdots \\
+	0 & 0 & 0 & \hdots & a_n
+	\end{matrix}\right]
+\end{align*}
+όπου:
+\[
+a_1=a_{11},\ \beta_i=\frac{a_{i,\ i-1}}{a_{i-1}},\
+a_i=a_{ii}-\beta_{i}a_{i-1,\ i}
+\quad \text{για } i =2,\dots,n
+\]
+
+Η μέθοδος αυτή ονομάζεται \textbf{μέθοδος Thomas}.
+
+\subsection{Επαναληπτική μέθοδος Jacobi}
+
+Η ιδέα είναι, αν έχουμε μία προσέγγιση \( x^{(k)} \) για τη
+λύση του συστήματος, να βρούμε έναν τρόπο να αποκτήσουμε μία
+καλύτερη προσέγγιση \( x^{(k+1)} \), και η ακολουθία
+\( \left\lbrace x^{(k)} \right\rbrace \) να συγκλίνει στην
+πραγματική λύση.
+
+\paragraph{Μέθοδος Jacobi σε 3x3 σύστημα}
+\begin{align*}
+	a_{11}x_1+a_{12}x_2+a_{13}x_3 &= b_1 \\
+	a_{21}x_1+a_{22}x_2+a_{23}x_3 &= b_2 \\
+	a_{31}x_1+a_{32}x_2+a_{33}x_3 &= b_3
+\end{align*}
+Λύνω ως προς \( x_1,x_2,x_3 \) την 1\textsuperscript{η},
+2\textsuperscript{η} και 3\textsuperscript{η} αντίστοιχα
+εξίσωση:
+\begin{align*}
+	x_1&=\frac{1}{a_{11}}\left(b_1
+	- a_{12}x_2-a_{13}x_3\right) \\
+	x_2 &= \frac{1}{a_{22}}\left(b_2
+	-a_{21}x_1-a_{23}x_3\right) \\
+	x_3 &= \frac{1}{a_{33}}\left(b_3
+	-a_{31}x_1-a_{32}x_2\right)
+\end{align*}
+
+Επομένως, για να εφαρμόσουμε επαναληπτική διαδικασία, αρκεί να
+πάρουμε:
+\begin{align*}
+x_1^{(k+1)}&=\frac{1}{a_{11}}\left(b_1
+- a_{12}x_2^{(k)}-a_{13}x_3^{(k)}\right) \\
+x_2^{(k+1)} &= \frac{1}{a_{22}}\left(b_2
+-a_{21}x_1^{(k)}-a_{23}x_3^{(k)}\right) \\
+x_3^{(k+1)} &= \frac{1}{a_{33}}\left(b_3
+-a_{31}x_1^{(k)}-a_{32}x_2^{(k)}\right)
+\end{align*}
+
+\paragraph{Γενικός τύπος}
+\[
+\mathlarger{
+x_i^{(k+1)} = \frac{1}{a_{ii}}\left(b_i
+- \sum_{j=1}^{i-1} a_{ij}x_j^{(k)}
+- \sum_{j=i+1}^{n} a_{ij}x_j^{(k)}
+\right)
+}
+\]
+
+\paragraph{}
+Θεωρούμε ότι:
+\[
+A = L + D + U
+\]
+όπου \( D \) ο πίνακας που αποτελείται μόνο από τα στοιχεία
+της διαγωνίου του \( A \), ο \( L \) (lower) αυτός που αποτελείται
+από τα στοιχεία κάτω από τη διαγώνιο, και \( U \) (upper) πάνω
+από τη διαγώνιο.
+
+τότε:
+\[
+x^{(k+1)} = -D^{-1}(L+U)x^{(k)} + D^{-1}b
+\]
 
 \end{document}
