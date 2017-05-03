@@ -3489,11 +3489,71 @@ A = L + D + U
 x^{(k+1)} = -D^{-1}(L+U)x^{(k)} + D^{-1}b
 \]
 
-\todo{Missing Notes}
+\paragraph{Γενική μορφή}
+\begin{gather*}
+	A = M +N \implies \\
+	(M+N)x = b \implies Mx = -Nx + b\\
+	\boxed{x = -M^{-1}Nx + M^{-1}b } \\
+	x^{(k+1)} = -\underset{\substack{\downarrow\\D}}{M^{-1}}
+	\underset{\substack{\downarrow\\LU}}{N} x^{(k)}
+	+ \underset{\substack{\downarrow\\D}}{M^{-1}} b
+\end{gather*}
+
+\paragraph{Παράδειγμα}
+\begin{align*}
+5x_1-x_2 &= 3 \\
+-x_1+10x_2 &= 19
+\end{align*}
+
+\subparagraph{Λύση}
+\begin{align*}
+	A &= M + N \\
+	\left[ \begin{matrix}
+	5 & -1 \\ -1 & 10
+	\end{matrix} \right] &= \left[\begin{matrix}
+	5 & 0 \\ 0 & 10
+	\end{matrix}\right] + \left[\begin{matrix}
+	0 & -1 \\ -1 & 0
+	\end{matrix}\right] \\
+	M^{-1} &= \left[\begin{matrix}
+	\sfrac{1}{5} & 0 \\ 0 & \sfrac{1}{10} 
+	\end{matrix}\right] \\
+	M^{-1}N &= \left[\begin{matrix}
+	0 & \sfrac{-1}{5} \\ \sfrac{-1}{10}  & 0
+	\end{matrix}\right] \\
+	M^{-1}b &= \left[\begin{matrix}
+	\sfrac{3}{5} \\ \sfrac{19}{10} 
+	\end{matrix}\right]
+\end{align*}
+\begin{gather*}
+	\left[\begin{matrix}
+	x_1\\x_2
+	\end{matrix}\right]^{(k+1)} = -\left[\begin{matrix}
+	0 & \sfrac{-1}{5} \\ \sfrac{-1}{10} & 0
+	\end{matrix}\right] \left[\begin{matrix}
+	x_1\\x_2
+	\end{matrix}\right]^{(k)} + \left[\begin{matrix}
+	\sfrac{3}{5} \\ \sfrac{19}{10} 
+	\end{matrix}\right] \\
+	x^{(0)} = \left[\begin{matrix}
+	0\\0
+	\end{matrix}\right],\ x^{(1)}=\left[\begin{matrix}
+	\sfrac{3}{5} \\ \sfrac{19}{10} 
+	\end{matrix}\right],\ x^{(2)}=\left[\begin{matrix}
+	0.98\\1.96
+	\end{matrix}\right],\dots,\ x^{(6)}=\left[\begin{matrix}
+	0.99\\1.99
+	\end{matrix}\right] \simeq \left[\begin{matrix}
+	1 \\ 2
+	\end{matrix}\right]
+\end{gather*}
+
+\paragraph{Παράδειγμα}
 \begin{align*}
 	-x_1+10x_2 &= 19 \\
 	5x_1-x_2 &= 3
 \end{align*}
+\subparagraph{Λύση}
 \[
 A = M + N
 \]
@@ -3503,11 +3563,33 @@ A = M + N
 0&10\\5&0
 \end{matrix}\right] \)
 
-\begin{gather*}
-	M^{-1} = \left[\begin{matrix}
+\begin{align*}
+	M^{-1} &= \left[\begin{matrix}
 	-1&0\\0&-1
 	\end{matrix}\right] \\
-	M^{-1}N 
+	M^{-1}N &= \left[\begin{matrix}
+	0&-10\\-5&0
+	\end{matrix}\right] \\
+	M^{-1}b &= \left[\begin{matrix}
+	-19\\-3
+	\end{matrix}\right]
+\end{align*}
+\begin{gather*}
+	\left[\begin{matrix}
+	x_1\\x_2
+	\end{matrix}\right]^{(k+1)}
+	= \left[\begin{matrix}
+	0&-10\\-5&0
+	\end{matrix}\right]\left[\begin{matrix}
+	x_1\\x_2
+	\end{matrix}\right]^{(k)}+\left[\begin{matrix}
+	-19\\-3
+	\end{matrix}\right] \\
+	x^{(1)} = \left[\begin{matrix}
+	11\\98
+	\end{matrix}\right],\ \dots,\ x^{(6)} = \left[\begin{matrix}
+	2061\\240198
+	\end{matrix}\right]
 \end{gather*}
 \todo{Missing notes}
 
