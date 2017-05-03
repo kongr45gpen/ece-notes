@@ -3489,4 +3489,140 @@ A = L + D + U
 x^{(k+1)} = -D^{-1}(L+U)x^{(k)} + D^{-1}b
 \]
 
+\todo{Missing Notes}
+\begin{align*}
+	-x_1+10x_2 &= 19 \\
+	5x_1-x_2 &= 3
+\end{align*}
+\[
+A = M + N
+\]
+όπου \( M = \left[\begin{matrix}
+-1&0\\0&-1
+\end{matrix}\right] \) και \( N=\left[\begin{matrix}
+0&10\\5&0
+\end{matrix}\right] \)
+
+\begin{gather*}
+	M^{-1} = \left[\begin{matrix}
+	-1&0\\0&-1
+	\end{matrix}\right] \\
+	M^{-1}N 
+\end{gather*}
+\todo{Missing notes}
+
+Παρατηρούμε δηλαδή ότι η παραπάνω μέθοδος αρχίζει να αποκλίνει για κάποιες
+αρχικές λύσεις!
+
+Θα δούμε μία μέθοδο για να βρούμε ποιές αρχικές λύσεις συγκλίνουν πάντα
+στην πραγματική.
+
+\begin{defn}{Σφάλμα στην k-οστή επανάληψη}{}
+	\[
+	\mathlarger{
+	e^{(k)} = x-x^{(k)}
+    }
+	\]
+\end{defn}
+
+Κάνοντας πράξεις παίρνουμε:
+\begin{gather*}
+	e^{(k+1)} = x-x^{(k+1)} = -M^{-1}Nx+M^{-1}b-\left(
+	-M^{-1}Nx^{(k)}+M^{-1}b
+	\right) = -M^{-1}N\left(x-x^{(k)}\right) \\
+	e^{(k+1)} = -M^{-1}Ne^{(k)}
+\end{gather*}
+Πρέπει το \( e^{(k)} \) να γίνεται μικρότερο για κάθε επανάληψη.
+
+Επειδή έχουμε πίνακες, για να τους συγκρίνουμε μεταξύ τους θα
+χρησιμοποιήσουμε νόρμες, και πιο συγκεκριμένα την άπειρη νόρμα
+(το μεγαλύτερο άθροισμα των στοιχείων κάθε γραμμής):
+\[
+\left\Vert A \right\Vert_{\infty}
+= \max_{1\leq i \leq m} \left\lbrace \sum_{j=1}^{n} 
+\left|a_{ij}\right| \right\rbrace
+\]
+που έχει την ιδιότητα:
+\[
+\left\Vert Ax \right\Vert_{\infty} \leq \Vert A \Vert_{\infty}
+\Vert x \Vert_{\infty}
+\]
+επομένως, από την τελευταία σχέση, πρέπει:
+\begin{align*}
+	\left\Vert e^{(k+1)} \right\Vert &=
+	\left\Vert -M^{-1}Ne^{(k)} \right\Vert_{\infty}
+	\\ &\leq \left\Vert -M^{-1}N \right\Vert_{\infty}
+	\left\Vert e^{(k)} \right\Vert_{\infty}
+\end{align*}
+δηλαδή:
+\[
+\left\Vert -M^{-1}N\right\Vert_{\infty} < 1
+\]
+για να έχουμε σύγκλιση για οποιαδήποτε αρχική προσέγγιση.
+
+Για παράδειγμα:
+\begin{itemize}
+	\item \textbf{σύγκλιση} \( 
+	M^{-1} = \left[\begin{matrix}
+	\sfrac{1}{5} & 0 \\
+	0 & \sfrac{1}{10} 
+	\end{matrix}\right],\ N = \left[\begin{matrix}
+	0&-1\\-1&0
+	\end{matrix}\right],
+	\quad M^{-}N = \left[\begin{matrix}
+	0 & \sfrac{-1}{5} \\ \sfrac{-1}{10} & 0
+	\end{matrix}\right] \implies
+	\left\Vert M^{-1}N\right\Vert_{\infty} = \max \left\lbrace 
+	\frac{1}{5},\frac{1}{10} \right\rbrace = \frac{1}{5}
+	 \)
+	\item \textbf{μη σύγκλιση} \( 
+	M^{-1} = \left[\begin{matrix}
+	-1 & 0 \\
+	0 & -1
+	\end{matrix}\right],\ N = \left[\begin{matrix}
+	0&10\\5&0
+	\end{matrix}\right],
+	\quad M^{-}N = \left[\begin{matrix}
+	0 & -10 \\ -5 & 0
+	\end{matrix}\right] \implies
+	\left\Vert M^{-1}N\right\Vert_{\infty} = \max \left\lbrace 
+	5,10 \right\rbrace = 10
+	\)
+\end{itemize}
+
+\paragraph{}
+Θα μάθουμε για τους διαγώνια δεσπόζοντες πίνακες, οι οποίοι
+συγκλίνουν πάντα:
+\begin{defn}{Διαγώνια Δεσπόζων/Διαγώνια Κυρίαρχος (Dominant) πίνακας}{}
+	Σε κάθε γραμμή υπάρχει ένα στοιχείο που ανήκει στην κύρια διαγώνιο.
+	
+	Αν η απόλυτη τιμή αυτού του στοιχείου είναι μεγαλύτερη από
+    το άθροισμα των απόλυτων τιμών των υπόλοιπων στοιχείων της γραμμής,
+    τότε ο πίνακας λέγεται \textbf{διαγώνια δεσπόζων}.
+    
+    Δηλαδή πρέπει:
+    \[
+    \mathlarger{
+        \left|a_{ii}\right| > \sum_{\substack{j=1\\j\neq i}}^{n}
+        \left|a_{ij}\right|
+}   \qquad i=1,2,\dots,n
+    \]
+\end{defn}
+
+Αν ένας πίνακας \( A \) είναι διαγώνια δεσπόζων, τότε η μέθοδος Jacobi
+συγκλίνει για το \( Ax = b \), επειδή:
+\begin{align*}
+	\left\Vert M^{-1}N \right\Vert &=
+	\left\Vert D^{-1} (L+U) \right\Vert_{\infty} \\
+	&= \max_i \sum_{\substack{j=1\\j\neq i}}^{n}
+	 \left|\frac{a_{ij}}{a_ii}\right| < 1
+\end{align*}
+
+\subsection{Επαναληπτική μέθοδος Gauss-Seidel}
+Η επαναληπτική μέθοδος Gauss-Seidel λειτουργεί με βάση την Jacobi, αλλά
+με βελτιωμένο ρυθμό σύγκλισης.
+
+\todo{Missing notes}
+
+
 \end{document}
