@@ -2329,7 +2329,7 @@ M(t_1),\ M(t_2),\ \sigma^2(t_1),\ \sigma^2(t_2)
 Πρακτικά, η στασιμότητα σημαίνει ότι τα σήματα
 \textbf{δεν αλλάζουν στατιστικά χαρακτηριστικά στο χρόνο}.
 
-\begin{defn}{Ασθενικά στάσιμο}
+\begin{defn}{Ασθενικά στάσιμο}{}
 	Ασθενικά στάσιμο (στάσιμο με την ευρεία έννοια, Wide Sense
 	Stationary) λέγεται ένα τυχαίο σήμα όταν:
 	\begin{enumroman}
@@ -2345,6 +2345,223 @@ M(t_1),\ M(t_2),\ \sigma^2(t_1),\ \sigma^2(t_2)
 Εάν ένα σήμα είναι αυστηρά, τότε από τις ολοκληρώσεις προκύπτει
 \( \implies \) ότι είναι και στάσιμο με την ευρεία έννοια. Το
 αντίστροφο δεν ισχύει εν γένει.
+
+\begin{defn}{Αυτοσυσχέτιση}{}
+	Όταν αναφερόμαστε στη συσχέτιση ενός σήματος με τον εαυτό του,
+	θα την αποκαλούμε \textbf{αυτοσυσχέτιση}.
+\end{defn}
+
+\paragraph{}
+Προκύπτει το ερώτημα, αν γνωρίζουμε την τιμή του σήματος σε ένα
+σημείο στο χρόνο, μπορούμε να προβλέψουμε τις επόμενες τιμές του;
+
+Αν έχουμε ένα σήμα, μπορούμε να γνωρίζουμε τη μέση του τιμή και την
+αυτοσυσχέτισή του, αντίστοιχα:
+\begin{align*}
+	\widehat{x_1(t)} &= \lim_{T\to \infty} \frac{1}{T}
+	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } x_1(t)\dif t
+	\\
+	\mathcal{R}_x(\tau) &= \lim_{T\to \infty}
+	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } x_1(t)x_1(t+\tau)\dif t
+\end{align*}
+
+\begin{defn}{Εργοδικό ως προς τη μέση τιμή σήμα}{}
+	Ένα σήμα ονομάζεται \textbf{εργοδικό} ως προς τη μέση τιμή, όταν:
+	\begin{enumparen}
+		\item Οι \textbf{χρονικές} μέσες τιμές κάθε ενδεχομένου σήματος
+		είναι ίσες μεταξύ τους \textbf{και ίσες} με
+		\item Τη στατιστική μέση τιμή κάθε χρονικής στιγμής.
+	\end{enumparen}
+\end{defn}
+
+\begin{defn}{Εργοδικό ως προς την αυτοσυσχέτιση σήμα}{}
+	Ένα σήμα ονομάζεται \textbf{εργοδικό} ως προς την αυτοσυσχέτιση,
+	όταν:
+	\begin{enumparen}
+		\item Οι \textbf{χρονικές} συναρτήσεις αυτοσυσχέτισης
+		κάθε ενδεχομένου σήματος
+		είναι ίδιες μεταξύ τους \textbf{και}
+		\item είναι ίσες με τη \textbf{στατιστική αυτοσυσχέτιση}.
+	\end{enumparen}
+\end{defn}
+
+\begin{defn}{Εργοδικό ως προς n-ροπή}{}
+	\[
+	E\left[\left(x(t)\right)^n\right] =
+	\int\limits_{x(t)} \left(x(t)\right)^n
+	f\left(x(t)\right) \dif\left(x(t)\right)
+	= \lim_{T\to \infty} \frac{1}{T}
+	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
+	\left(x_J(t)\right)^n \dif t
+	\]
+\end{defn}
+
+Σχέση ανάμεσα σε στασιμότητα και εργοδικότητα:
+Τα μη στάσιμα σήματα δεν είναι εργοδικά.
+
+\subsection{Δύο στοχαστικά σήματα}
+Η πιο συχνή περίπτωση είναι να έχουμε ένα σήμα πληροφορίας, και ένα
+σήμα θορύβου:
+\[
+x(t) + n(t)
+\]
+και μας ενδιαφέρει να διώξουμε τον θόρυβο, και να εξάγουμε την
+πληροφορία.
+
+\paragraph{}
+Έστω ότι έχουμε δύο σήματα:
+\[
+\big\lbrace x(t) \big\rbrace \quad
+\big\lbrace y(t) \big\rbrace
+\]
+
+Για να τα περιγράψουμε πλήρως (πλήρες μοντέλο),
+χρειαζόμαστε τη συνάρτηση από κοινού πυκνότητας πιθανότητας:
+\[
+f_{XY} \left(
+x(t_1),x(t_2),\dots x(t_n),\dots,
+y(t_1),y(t_2),\dots,y(t_n),\dots
+\right)
+\]
+ή, αν τα σήματα είναι ανεξάρτητα:
+\[
+f_X\left(x(t_1),x(t_2),\dots,x(t_n)\right)
+f_Y\left(y(t_1),y(t_2),\dots,y(t_n)\right)
+\]
+
+\paragraph{}
+Ένα πιο απλό μοντέλο περιγραφής των δύο σημάτων περιλαμβάνει:
+\begin{enumroman}
+	\item \( E\left[x(t)\right] = M_x(t)
+	\qquad E\left[ y(t) \right] = M_y(t)
+	 \) (\textbf{μέση τιμή})
+	\item \( R_x(t_1,t_2)\qquad \mathcal{R}_y(t_1,t_2) \)
+	(\textbf{αυτοσυσχέτιση})
+	\item \( E\left[x(t_1)y(t_2)\right] \)
+	(\textbf{ετεροσυσχέτιση} \( \mathcal{R}_{xy}(t_1,t_2)=
+	E\left[x(t_1)y(t_2)\right] \) )
+\end{enumroman}
+
+Τα δύο σήματα είναι στάσιμα, ως γνωστόν, όταν:
+\[
+\begin{cases}
+M_x(t) &= M_x \\
+M_y(t) &= M_y \\
+R_x(t_1,t_2) &= R_x(\tau) \\
+R_y(t_1,t_2) &= R_y(\tau)
+\end{cases}
+\]
+όπου \( \tau = t_1-t_2 \)
+
+Για να τα αποκαλέσουμε κοινά στάσιμα, πρέπει να πληρούν και την ιδιότητα:
+\[
+R_{xy}(t_1,t_2) = R_{xy}(\overbrace{t_1-t_2}^{\tau}) = R_{xy}(\tau)
+\]
+
+\begin{defn}{Κοινά στάσιμα}{}
+	\textbf{Κοινά στάσιμα} (με την ευρεία έννοια) λέγονται δύο σήματα
+	όταν:
+	\begin{enumparen}
+		\item Είναι στάσιμα από μόνα τους, και
+		\item Ικανοποιούν την ιδιότητα:
+		\[
+		R_{xy}(t_1,t_2) = R_{xy}(\overbrace{t_1-t_2}^{\tau}) = R_{xy}(\tau)
+		\]
+	\end{enumparen}
+\end{defn}
+
+\begin{defn}{Στατιστικά ανεξάρτητα σήματα}{}
+	Δύο σήματα ονομάζονται στατιστικά ανεξάρτητα, ανν:
+	\[
+	E\left[x(t_1)y(t_2)\right]
+	= E\left[x(t_1)\right]E\left[y(t_2)\right]
+	= M_xM_y
+	\]
+\end{defn}
+
+Ισχύει:
+\[
+\text{Ασυσχέτιστα} \implies \text{Ανεξαρτησία}
+\]
+(εν γένει όχι και το αντίθετο)
+
+\begin{defn}{Εργοδικά ως προς την ετεροσυσχέτιση σήματα}{}
+	Δύο σήματα ονομάζονται \textbf{εργοδικό} ως προς την ετεροσυσχέτιση,
+	όταν:
+	\begin{enumparen}
+		\item Οι \textbf{χρονικές} συναρτήσεις αυτοσυσχέτισης
+		κάθε ενδεχομένου σήματος
+		είναι ίσες \textbf{και}
+		\item είναι ίσες με τη \textbf{στατιστική ετεροσυσχέτιση}.
+	\end{enumparen}
+\end{defn}
+
+Για τη χρονική ετεροσυσχέτιση θυμόμαστε ότι:
+\[
+\mathcal{R}_{xy}(\tau) = \lim_{T\to \infty}
+\frac{1}{T} \int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
+X_n(t)Y_m(t+\tau)\dif t
+\]
+
+
+\subsection{Ιδιότητες}
+\paragraph{Ιδιότητες αυτοσυσχέτισης}
+\begin{align*}
+	R_x(t_1,t_2) &= E\left[x(t_1)x(t_2)\right] \\
+	&= E\left[x(t_2+\tau)x(t_2)\right] \qquad
+	\mathsmaller{t_1-t_2=\tau \implies t_1=t_2+\tau}
+	\\ &= R_x(t_1-t_2) = R_x(\tau)
+	\intertext{δηλαδή}
+	\Aboxed{R_x(\tau) &= E\left[x(t+\tau)x(t)\right]}
+\end{align*}
+Επίσης:
+\[
+R_x(-\tau) = -E\underset{t'=t-\tau}{\left[x(t-\tau)x(t)\right]}
+= E\left[x(t')x(t'+\tau)\right] = R_x(\tau)
+\]
+
+Άρα μερικές ιδιότητες της αυτοσυσχέτισης είναι:
+\begin{enumerate}
+	\item \( R_x(0) = E\left[x(t)x(t)\right] = E\left[x^2(t)\right] \)
+	\item \( R_x(\tau) = R_x(-\tau) \)
+	\item \( \left\vert R_x(\tau) \right\vert \leq R_x(0) \)
+	\subparagraph{Απόδειξη}
+	\begin{gather*}
+		E\left[\left(x(t+\tau)\pm x(t)\right)^2\right]=
+		E\left[x^2(t+\tau)\pm 2x(t+\tau)x(t)+x^2(t)\right] \geq 0
+		\\
+		E\left[x^2(t+\tau)\right]+E\left[x^2(t)\right]
+		\leq \pm 2 E\left[x(t)x(t+\tau)\right] = \pm 2 R_x(\tau)\\
+		\cancel{2}R_x(0) \geq \pm \cancel{2}R_x(t) \\
+		R_x(0) \geq \left|R_x(t)\right|
+	\end{gather*}
+	\item Αν η τυχαία μεταβλητή έχει μέση τιμή \( M_x \neq 0 \), τότε
+	η αυτοσυσχέτιση περιέχει μια σταθερή ποσότητα.
+	\paragraph{Απόδειξη}
+	\begin{align*}
+		N(t) &= X(t) - M_x \qquad x(t) = M_x+N(t) \\
+		R_x(\tau) &= E\left[X(t+\tau)X(t)\right]
+		= E\left[\left(M_x+N(t+\tau)\right)
+		\left(M_x+N(t)\right)
+		\right]\\ &= E\left[
+		M_x^2 + M_xN(t) + M_xN(t+\tau)+N(t+\tau)N(t)
+		\right] \\ &= M_x^2 + M_x\cancelto{0}{E\left[N(t)\right]}
+		+ M_x\cancelto{0}{E\left[N(t+\tau)\right]} + R_N(t) \\
+		&= M_x^2 + R_N(\tau)
+	\end{align*}
+	\item Αν \( X(t) \) περιοδική \( X(t+nT) \), τότε και η αυτοσυσχέτιση
+	περιοδική \( R_x(\tau) = R_x(\tau + NT) \)
+	\paragraph{Απόδειξη}
+	\begin{align*}
+		R_x(\tau) &= E\left[X(t)X(t+\tau)\right]
+		\\ &= E\left[X(t)X(t+\tau+NT)\right]
+		\\ &= R_x(\tau+NT)
+	\end{align*}
+	(με ανάλογο αποτέλεσμα και αν η περίοδος μεταβάλλεται ελαφρά)
+	\item \( \displaystyle
+	\lim_{\tau\to \infty} = M_x^2
+	 \)
+\end{enumerate}
 
 \end{document}
 
