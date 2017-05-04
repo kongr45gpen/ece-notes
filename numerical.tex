@@ -3704,7 +3704,159 @@ A = M + N
 Η επαναληπτική μέθοδος Gauss-Seidel λειτουργεί με βάση την Jacobi, αλλά
 με βελτιωμένο ρυθμό σύγκλισης.
 
-\todo{Missing notes}
+\[
+x_i^{(k+1)} = \frac{1}{a_{ii}}\left(
+b_i - \sum_{j=1}^{i-1}a_{ij}x_i^{(k+1)}
+- \sum_{j=i+1}^{n} a_{ij}x_j^{(k)}
+\right)
+\]
+
+\begin{align*}
+	Dx^{(k+1)} &= -ax^{(k+1)} - Ux^{(k)}+b \\
+	(D+L)x^{(k+1)} &= -Ux^{(k)}+b \\
+	x^{(k+1)} &= (D+L)^{-1}Ux^{(k)}+(D+L)^{-1}b
+\end{align*}
+
+\paragraph{}
+Έστω το σύστημα \( Ax=b \):
+
+Αν \( A \) θετικά ορισμένος (\( \mathsmaller{x\neq0, x^{\mathrm T}Ax>0}
+ \)), η μέθοδος Gauss-Seidel συγκλίνει.
+ 
+\subsection{Μέθοδος SOR}
+Στον τύπο της μεθόδου Gauss-Seidel προσθαφαιρώ το \( x_i^{(k)} \):
+\begin{align*}
+	x_i^{(k+1)}
+	&= x_i^{(k)} + \frac{1}{a_{ii}}
+	\left(
+	b_i - \sum_{j=1}^{i-1} a_{ij}x_j^{(k+1)}
+	- \sum_{j=i}^{n} a_{ij}x_j^{(k)}
+	\right) \\
+	x_i^{(k+1)} &= x_i^{(k)} +\delta_i^{(k)}
+\end{align*}
+
+Για πιο γρήγορη σύγκλιση, τοποθετώ ένα \( \omega \)
+(\textbf{συντελεστής υπερχαλάρωσης}) στην παραπάνω σχέση:
+\[
+x_i^{(k+1)} = x_i^{(k)} + \omega \delta_i^{(k)}
+\]
+
+Για αυτό η μέθοδος αυτή λέγεται και μέθοδος "Διαδοχικής Υπερχαλάρωσης":
+\[
+x_i^{(k+1)} = \omega\frac{1}{a_{ii}}\left(
+b_i - \sum_{j=1}^{i-1} a_{ij}x_j^{(k+1)}
+- \sum_{j=i+1}^{n} a_{ij}x_j^{(k)}
+\right) + (1-\omega ) x_i^{(k)}
+\]
+
+Αν ισχύουν οι συνθήκες:
+\begin{enumroman}
+	\item οι ιδιοτιμές
+	\( \underbrace{-D^{-1}(L+U)}_{J} \) είναι πραγματικές
+	\item Η φασματική ακτίνα (μέγιστη κατ' απόλυτη τιμή ιδιοτιμή)
+	\( 0 < \rho(J) < 1 \)
+\end{enumroman}
+
+Τότε η βέλτιστη τιμή του \( \omega \) είναι:
+\[
+\mathlarger{
+\omega = \frac{2}{1+\sqrt{1-\rho^2(J)}}
+}
+\]
+
+\paragraph{Παράδειγμα}
+\begin{align*}
+	5x_1-x_2 &=3\\
+	-x_1+10x_2&=19
+\end{align*}
+\subparagraph{Λύση}
+\begin{gather*}
+	J = \left[\begin{matrix}
+	0 & \sfrac{1}{5} \\ \sfrac{1}{10}  & 0
+	\end{matrix}\right] \\
+	p(\lambda) = \det(J-\lambda I)=\lambda^2-\frac{1}{50}
+	\intertext{\( \lambda_{1,2} = \pm \frac{1}{5\sqrt{2}} \)}
+	\omega = \frac{2}{1+\sqrt{1-\frac{1}{50}}} \simeq 1.005 \\[3ex]
+	x^{(1)} = \left[\begin{matrix}
+	0.603\\1.969
+	\end{matrix}\right] \ \cdots \ x^{(5)} = \left[\begin{matrix}
+	1\\2
+	\end{matrix}\right]
+\end{gather*}
+
+\subsection{Μέθοδος Doolittle-Crout}
+Θυμόμαστε την παραγοντοποίηση του \( A \) σε \( LU \):
+\begin{align*}
+	LU &= A \\
+	\left[\begin{matrix}
+	a_{11} & a_{12} & a_{13} \\
+	a_{21} & a_{22} & a_{23} \\
+	a_{31} & a_{32} & a_{33}
+	\end{matrix}\right] &= \left[\begin{matrix}
+	l_{11} & 0 & 0 \\
+	l_{21} & l_{22} & 0 \\
+	l_{31} & l_{32} & l_{33}
+	\end{matrix}\right]\left[\begin{matrix}
+	u_{11} & u_{12} & u_{13} \\
+	0 & u_{22} & u_{23} \\
+	0 & 0 & u_{33}
+	\end{matrix}\right]
+\end{align*}
+
+	Παρατηρούμε ότι, αν κάνουμε τις πράξεις, μία από τις εξισώσεις
+που θα προκύψουν είναι π.χ. (\( αν a_{11} = 4 \)):
+\[
+l_{11}u_{11} = 4
+\]
+που είναι μία μη γραμμική εξίσωση.
+
+Για να διευκολύνουμε τη λύση της, αυθαίρετα θεωρούμε \( l_{11} \).
+Αυτή είναι η ιδέα των μεθόδων Doolittle - Crout.
+
+Για συστήματα 3x3:
+\begin{align*}
+	u_{11} &= a_{11} \\
+	u_{12} &= a_{12} \\
+	u_{13} &= a_{13} \\[3ex]
+	l_{21} &= \frac{a_{21}}{u_{11}} \\
+	l_{31} &= \frac{a_{31}}{u_{11}} \\[3ex]
+	u_{22} &= a_{22} - l_{21}u_{12} \\
+	u_{23} &= a_{23} - l_{21}u_{13} \\[3ex]
+	l_{32} &= \frac{a_{32}-l_{31}u_{12}}{u_{22}} \\
+	u_{33} &= a_{33} - l_{31}u_{13} - l_{32}u_{23}
+\end{align*}
+
+\paragraph{Γενικοί τύποι}
+\begin{align*}
+	\mathlarger{u_{kj}} &=
+	\mathlarger{a_{kj}-\sum_{s=1}^{k-1} l_{ks}u_{sj} }
+	\qquad j=k,k+1,\dots,n \\
+	\mathlarger{l_{ik}} &=
+	\mathlarger{
+	\frac{1}{u_{kk}} \left(a_{ik}-\sum_{s=1}^{k-1}
+	l_{is}u_{sk}\right)
+    }\qquad i=k+1,\dots,n
+\end{align*}
+
+\subsection{Σφάλματα}
+\[
+Ax = b
+\]
+\[
+\underset{\substack{\downarrow\\\mathclap{\text{σφάλμα}}}}{e}
+=
+\overset{\substack{\mathclap{\text{πραγματική λύση}}\\\downarrow}}{x}
+-
+\underset{\substack{\downarrow\\\mathclap{\text{προσέγγιση}}}}{\bar x}
+\]
+\begin{gather*}
+	\underset{\substack{\downarrow\\\mathclap{\text{διαφορά}}}}{r}
+	=
+	Ax - A\bar x = b - A \bar x
+\end{gather*}
+
+Θα ορίσουμε ένα μέγεθος που ονομάζεται \textbf{Δείκτης κατάστασης}, και
+δείχνει πόσο ευάλωτο είναι το σύστημα με αλλαγές στο \( b \).
 
 
 \end{document}
