@@ -1048,6 +1048,7 @@
  	\frac{r(r-1)\cdots\left(r-(i-1)\right)}{i!} \)
  	
  	\paragraph{Παράδειγμα}
+ 	\hspace{0pt}
  	
  	\begin{tabular}{|c|c|c|c|c|c|}
  		\(i\) & 0 & 1 & 2 & 3 & 4\\ 
@@ -1057,7 +1058,35 @@
  		\(f(x_i)\) & 1 & -1 & 1 & -1 & 1
  	\end{tabular}
  	
- 	\todo{Graph 10}
+ 	\[
+ 		\begin{array}{|c|c|c|c|c|c|}
+ 			\hline
+ 			 x_0   & f(x_0) \searrow &                 &                 &                 &  \\ \hline
+ 			       &        & \Delta^1 f(x_0) \searrow &                 &                 &  \\ \hline
+ 			 x_1   & f(x_1) \nesearrow &                 & \Delta^2 f(x_0) \searrow &                 &  \\ \hline
+ 			       &        & \Delta^1 f(x_1) \nesearrow &                 & \Delta^3 f(x_0) \searrow &  \\ \hline
+ 			 x_2   & f(x_2) \nesearrow &                 & \Delta^2 f(x_1) \nesearrow &                 & \Delta^4 f(x_0) \\ \hline
+ 			       &        & \Delta^1 f(x_2) \nesearrow &                 & \Delta^3 f(x_1) \nearrow &  \\ \hline
+ 			 x_3   & f(x_3) \nesearrow &                 & \Delta^2 f(x_2) \nearrow &                 &  \\ \hline
+ 			       &        & \Delta^1 f(x_3) \nearrow &                 &                 &  \\ \hline
+ 			 x_4   & f(x_4) \nearrow &                 &                 &                 &  \\ \hline
+ 			\vdots &        &                 &                 &                 &  \\ \hline
+ 		\end{array}
+ 	\]
+ 	
+ 	\[
+ 	\begin{array}{cccccc}
+ 		\cellcolor{blue!25}1 & \cellcolor{blue!25} 1 \searrow &                                 &                                &                                &  \\
+ 		                     &                                & \cellcolor{blue!25} -2 \searrow &                                &                                &  \\
+ 		         2           &         -1 \nesearrow          &                                 & \cellcolor{blue!25} 4 \searrow &                                &  \\
+ 		                     &                                &          2 \nesearrow           &                                & \cellcolor{blue!25}-8 \searrow &  \\
+ 		         3           &          1 \nesearrow          &                                 &         -4 \nesearrow          &                                & \cellcolor{blue!25}1 \\
+ 		                     &                                &          -2 \nesearrow          &                                &           8 \nearrow           &  \\
+ 		         4           &         -1 \nesearrow          &                                 &           4 \nearrow           &                                &  \\
+ 		                     &                                &           2 \nearrow            &                                &                                &  \\
+ 		         5           &           1 \nearrow           &                                 &                                &                                &
+ 	\end{array}
+ 	\]
  	
  	\begin{align*}
  		P_4(1+r) &= 1-2\binom{r}{1}+4\binom{r}{2}-8\binom{r}{3}
@@ -1175,7 +1204,16 @@
 	f(-1) = 1,\quad f(1) = 2 \quad \text{και} \quad f(2)=-1
 	\]
 	\subparagraph{Λύση}
-	\todo{Graph 14}
+    \[
+    \begin{array}{cccc}
+    x_i&f(x_i)&1\textsuperscript{η}&2\textsuperscript{η} \\
+    -1 & 1 \searrow & &  \\
+    & & \frac{1}{2} \searrow & \\
+    1 & 2 \nesearrow & & \frac{-3-\sfrac{1}{2}}{2-(-1)} = -\frac{7}{6} \\
+    & & -3 \nearrow & \\
+    2 & -1 \nearrow
+    \end{array}
+    \]
 	\[
 	P_2(x) = 1 + \frac{1}{2}(x+1) - \frac{7}{6}(x+1)(x-1)
 	\]
@@ -1193,7 +1231,22 @@
 	\subparagraph{Λύση}
 	Οι τύποι για τις \( k \)-οστές διαφορές θα δίνονται στις εξετάσεις,
 	αλλά είναι πιο κομψό και εύκολο να χρησιμοποιήσουμε τον πίνακα:
-	\todo{Graph 15}
+	
+	\[
+	\begin{array}{cccccc}
+		x_i & f(x_i) & & & & \\
+		\cellcolor{blue!25}0 & \cellcolor{blue!25} 1 \searrow & &     &     &\\
+		&     & \cellcolor{blue!25} -2 \searrow &     & &\\
+		1   &   0 \nesearrow& & \cellcolor{blue!25} 0 \searrow & &\\
+		& &-1 \nesearrow   & & \cellcolor{blue!25}3 \searrow &\\
+		2   &-1 \nesearrow& &   3 \nesearrow&& \cellcolor{blue!25}-7 \\	
+		&&2 \nesearrow&&   -4 \nearrow   &\\
+		3   &   1 \nesearrow& &   -1 \nearrow   &&\\
+		&&   1 \nearrow&&&\\
+		4   &   2 \nearrow   & &&&
+	\end{array}
+    \]
+
 	\begin{align*}
 	P_4(\overset{\mathclap{\substack{x=x_0+rh\\\uparrow}}}{x}) &=
 	    f(x_0) + \binom{r}{1}\Delta f(x_0) + \binom{r}{2}\Delta^2 f(x_0)
@@ -1531,7 +1584,28 @@
     	f(x) \quad [a,b] \\
     	\mathlarger{\int_a^b f(x) \dif x}
     \end{gather*}
-    \todo{Graph 19}
+    \begin{tikzpicture}
+    
+    \begin{scope}[scale=1.4]
+    \clip plot [smooth,tension=1]
+    coordinates {(0.2,2)  (1.5,1.7)  (2.8,2.2)}
+    -- (2.8,0) -- (0,0) -- (0,2);
+    
+    \fill[green!30,postaction={pattern=north east lines,opacity=.15}] (0.7,0) rectangle (2,2.2);
+    
+    \draw[dashed] (0.7,0) -- ++(0,2.2);
+    \draw[dashed] (2,0) -- ++(0,2.2);
+    \end{scope}
+    \draw (0.7,0) node[below] {$\vphantom{b}a$};
+    \draw (2,0) node[below] {$b$};
+    
+    \draw (-0.5,0) -- (3,0);
+    \draw (0,-0.2) -- (0,2.5);
+    
+    \draw[very thick,draw=blue] plot [smooth,tension=1]
+    coordinates {(0.2,2)  (1.5,1.7)  (2.8,2.2)} node[above right] {$f(x)$};
+    \end{tikzpicture}
+    
     
     Ο πιο απλός τρόπος να υπολογίσουμε το ολοκλήρωμα μιας συνάρτησης
     είναι να πάρουμε τον εμβαδόν της συνάρτησης μεταξύ δύο σημείων
@@ -1579,7 +1653,32 @@
     \subsection{Κανόνας Παραλληλογράμμου}
     \( \mathsmaller{(n = 0)} \)
     
-    \todo{Graph 20}
+    \begin{tikzpicture}[scale=1.5]
+    
+    \begin{scope}
+    \clip plot [smooth,tension=1]
+    coordinates {(0.2,2)  (1.5,2)  (2.2,3)}
+    -- (2.8,0) -- (0,0) -- (0,2);
+    
+    \fill[yellow!40] (0.7,0) rectangle (2,2.5);
+    
+    \draw[dashed] (0.7,0) -- ++(0,3);
+    \draw[dashed] (2,0) -- ++(0,3);
+    \end{scope}
+    
+    \filldraw[fill=yellow!80!black,fill opacity=.5,postaction={pattern=north east lines,opacity=.15}]
+    (0.7,0) rectangle (2,1.89);
+    \draw[dashed] (0.7,1.89) -- ++(-0.7,0) node[left] {$f(a)$};
+    
+    \draw (0.7,0) node[below] {$\vphantom{b}a$};
+    \draw (2,0) node[below] {$b$};
+    
+    \draw (-0.5,0) -- (3,0);
+    \draw (0,-0.2) -- (0,2.5);
+    
+    \draw[very thick,draw=blue!50!black] plot [smooth,tension=1]
+    coordinates {(0.2,2)  (1.5,2)  (2.2,3)} node[above right] {$f(x)$};
+    \end{tikzpicture}
     
     \paragraph{Απλός κανόνας παραλληλογράμμου/ορθογωνίου}
     Για να εφαρμόσω τον κανόνα του παραλληλογράμμου, θα παρεμβάλλω την
@@ -1654,7 +1753,31 @@
     
     Παρεμβάλλω την \( f \) σε δύο σημεία για να πάρω ένα πολυώνυμο
     1\textsuperscript{ου} βαθμού:
-    \todo{Graph 21}
+    
+    \begin{tikzpicture}[scale=1.8]
+    
+    \filldraw[fill=yellow!80!black,fill opacity=.9,postaction={pattern=north east lines,opacity=.15}]
+    (0.7,0) -- (0.7,1.89) node[above]{$a$} -- (2,2.5) node[above,xshift=-1mm] {$b$} -- (2,0) -- cycle;
+    \draw[dashed] (0.7,1.89) -- ++(-0.7,0);
+    
+    \begin{scope}
+    \clip plot [smooth,tension=1]
+    coordinates {(0.2,2)  (1.5,2)  (2.2,3)}
+    -- (2.8,0) -- (0,0) -- (0,2);
+    
+    \fill[yellow!40,opacity=.5] (0.7,0) rectangle (2,2.5);
+    
+    \draw[dashed] (0.7,0) -- ++(0,3);
+    \draw[dashed] (2,0) -- ++(0,3);
+    \end{scope}
+    
+    \draw (-0.5,0) -- (3,0);
+    \draw (0,-0.2) -- (0,2.5);
+    
+    \draw[very thick,draw=blue!50!black] plot [smooth,tension=1]
+    coordinates {(0.2,2)  (1.5,2)  (2.2,3)} node[above right] {$f(x)$};
+    \end{tikzpicture}
+    
     
     \paragraph{Απλός κανόνας τραπεζίου}
     
@@ -1742,7 +1865,19 @@
     
     \subsection{Κανόνας Simpson}
     \( \mathsmaller{(n = 2)} \)
-    \todo{Graph 22}
+    
+    \begin{tikzpicture}
+    
+    \draw[dashed] (0.7,0) node[below] {$\vphantom{b}a$} -- ++(0,1.6);
+    \draw (1.35,0) node[below] {$\frac{a+b}{2}$};
+    \draw[dashed] (2,0) node[below] {$b$} -- ++(0,2.24);
+    \draw (-0.5,0) -- (3,0);
+    \draw (0,-0.2) -- (0,3);
+    
+    \draw[very thick] plot [smooth,tension=0.7]
+    coordinates {(0.3,1) (0.7,1.6) (1.5,1.7) (2.2,2.5) (2.5,2.7)};
+    \end{tikzpicture}
+    
     
     \paragraph{Απλός κανόνας Simpson}
     \begin{align*}
@@ -1764,7 +1899,7 @@
     \paragraph{Σύνθετος κανόνας Simpson}
     Το αρχικό διάστημα χωρίζεται σε \( 2N \) τμήματα:
     
-    \begin{tikzpicture}[scale=.7]
+    \begin{tikzpicture}[scale=.7,xscale=1.4]
     \draw (0,0) -- (0,-1) node[below] {$x_0$};
     \draw (0.5,0) -- ++(0,-0.7) node[below] {$x_1$};
     \draw (1,0) -- ++(0,-1) node[below] {$x_2$};
@@ -1899,7 +2034,21 @@
     		\right| = 2\) για $x=0$}
     	&= \frac{1}{24}\cdot 2 = 0.0833
     \end{align*}
-    \todo{Graph 25}
+    
+    \begin{tabular}{c|c|c}
+    	Τύπος & Τιμή & Σφάλμα \\ 
+    	\begin{tikzpicture}[scale=0.3]
+    	\draw (0,0) -- (0.3,0.7) -- (1.3,0.7) -- (1,0) -- cycle;
+    	\draw (1.2,0.35) node[right] {$N=1$};
+    	\end{tikzpicture}&  1 & 0.5  \\ 
+    	\hline 
+    	\begin{tikzpicture}[scale=0.3]
+    	\draw (0,0) -- (0.3,0.7) -- (1.3,0.7) -- (1,0) -- cycle;
+    	\draw (1.2,0.35) node[right] {$N=10$};
+    	\end{tikzpicture}& 0.7188 & 0.05  \\ 
+    	\hline 
+    	Μέσου Σημείου & 0.6667  & 0.0833 \\ 
+    \end{tabular} 
     
     \paragraph{Άσκηση}
     Να υπολογιστεί το ολοκλήρωμα
