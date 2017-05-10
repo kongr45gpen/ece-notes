@@ -1203,11 +1203,14 @@
     \qquad \text{(δεν είναι απαραίτητο να το φτάσουμε μέχρι εδώ)}
 	\end{align*}
 	
-	\todo{Add labels and points}
-	\begin{tikzpicture}[scale=.7]
-	\begin{axis}[samples=30,very thick,domain=-1.5:1.5,no marks]
-	\addplot+{e^x};
-	\addplot+{(x^2-x)/(2*e) + (1-x^2) + (e/2)*(x^2+x) };
+	\begin{tikzpicture}[scale=.8]
+	\begin{axis}[samples=30,very thick,domain=-1.5:1.5,no marks,grid=both,axis lines = middle,clip=false]
+	\addplot+{e^x} node[above right] {$e^x$};
+	\addplot+{(x^2-x)/(2*e) + (1-x^2) + (e/2)*(x^2+x) }
+	node[above right] {$P_2(x)$};
+	
+	\filldraw [fill=red!50!gray!30, draw=black, thick, fill opacity=.7]
+	(axis cs:-1,1/e) circle [radius=3pt] (axis cs:0,1) circle [radius=3pt] (axis cs:1,e) circle [radius=3pt];
 	\end{axis}
 	\end{tikzpicture}
 	
@@ -1929,12 +1932,12 @@ node[below left,scale=.7] {$\cdot 1$};
     	f(1)+2f\left(\sfrac{5}{4}\right)+2f\left(\sfrac{6}{4}\right)
     	+2f\left(\sfrac{7}{4}\right)+f\left(\sfrac{8}{4}\right)
     	\right]
-    	\\ &= ??? \\[3ex]
+    	\\ &= 3.7969 \\[3ex]
     	E_{T,4} &= -\frac{h^2}{12}(2-1)f''(z) \qquad 1<z<2 \\
     	&= - \frac{\sfrac{1}{16} }{12} \cdot 6z = -\frac{1}{32}z
     	\\ \left|E_{T,4}\right| &\leq \frac{1}{32}\cdot 2
     	=\frac{1}{16} = 0.0625
-    \end{align*}\todo{Find result}
+    \end{align*}
     
     \subparagraph{Λύση για \( N=8 \)}
     \begin{align*}
@@ -2884,6 +2887,7 @@ u = \frac{x-y}{\Vert x-y \Vert}
 \end{align*}
 
 Τελικά: \begin{equation}
+	\label{u_matrix}
 	u = \frac{1}{\sqrt{2s\left(s+|x_k|\right)}} \left[
 	\begin{matrix}
 	0 \\ 0 \\ \vdots \\ \mathsmaller{x_k -
@@ -2892,7 +2896,6 @@ u = \frac{x-y}{\Vert x-y \Vert}
 	\\ x_{k+1} \\ \vdots \\ \vdots \\ x_n
 	\end{matrix}
 	\right]
-	\label{u_matrix}
 \end{equation}
 
 \paragraph{Παράδειγμα}
@@ -4125,7 +4128,7 @@ b_i - \sum_{j=1}^{i-1} a_{ij}x_j^{(k+1)}
 \end{align*}
 
 	Παρατηρούμε ότι, αν κάνουμε τις πράξεις, μία από τις εξισώσεις
-που θα προκύψουν είναι π.χ. (\( αν a_{11} = 4 \)):
+που θα προκύψουν είναι π.χ. (αν \( a_{11} = 4 \)):
 \[
 l_{11}u_{11} = 4
 \]
