@@ -931,7 +931,6 @@
  	να χρησιμοποιήσουμε τον Πίνακα Διηρημένων Διαφορών.
  	
  	\paragraph{Πίνακας ΔΔ}
- 	\todo{Convert matrix to tikz}
  	\[
  	\begin{array}{llllll}
  	 & & 1^{\text{η}} & 2^\text{η} & 3^\text{η} & 4^\text{η}\\
@@ -986,7 +985,22 @@
  	P_3(x) &= 1 + 0(x-0) + \frac{1}{2}(x-0)(x-1)-\frac{1}{12}
  	(x-0)(x-1)(x-2) \\ &= \frac{1}{12} (-x^3+9x^2-8x+12)
  	\end{align*}
- 	\todo{Plot this?}
+ 	
+ 	\begin{tikzpicture}
+ 	\begin{axis}[grid=both,ymin=0,ymax=10,xmax=7,xmin=-3,xticklabel=\empty,yticklabel=\empty,
+ 	minor tick num=1,axis lines = middle,xlabel=$x$,ylabel=$y$,label style =
+ 	{at={(ticklabel cs:1.1)}}]
+ 	\addplot[blue,thick,samples=50,domain=-3:7] {1/12*(-x^3+9*x^2-8*x+12)};
+ 	
+ 	\filldraw [fill=gray!30, draw=black, thick] (axis cs:0,1) circle [radius=3pt];
+ 	\filldraw [fill=gray!30, draw=black, thick] (axis cs:1,1) circle [radius=3pt];
+ 	\filldraw [fill=gray!30, draw=black, thick] (axis cs:2,2) circle [radius=3pt];
+ 	\filldraw [fill=gray!30, draw=black, thick] (axis cs:4,5) circle [radius=3pt];
+ 	
+ 	% nice node: node [label={[inner sep=1pt, fill=white,text=black, fill opacity=0.75, text opacity=1]above left:$(65, 35)$}] {};
+ 	
+ 	\end{axis}
+ 	\end{tikzpicture}
  	
  	\subsubsection{Μέθοδος πεπερασμένων διαφορών}
  	Για τη μέθοδο αυτή, θεωρούμε ότι τα σημεία της \( f \)
@@ -1273,8 +1287,57 @@
 	\begin{align*}
 		x_i - \underbrace{\bar x}_{5} & \\
 		2-5 &= -3 \\ 4-5 &= -1 \\ 6-5 &= 1 \\ 8-5 &= 3
-	\end{align*}\
-	\todo{Graph 16}
+	\end{align*}
+
+\begin{tikzpicture}[scale=1]
+\def\fs{22pt}
+\draw (0,0) node{$8$};
+\draw (0,\fs) node {$6$};
+\draw (0,2*\fs) node {$4$};
+\draw (0,3*\fs) node {$2$};
+
+\draw[green!70!black] (0,3*\fs) circle (7pt);
+\draw[green!70!black] (0,2*\fs) circle (7pt);
+\draw[thick,cyan!70!black] (0,2*\fs) circle (9pt);
+\draw[thick,cyan!70!black] (0,1*\fs) circle (8pt);
+
+\draw (0.9,0) node {$5$};
+\draw (0.9,1*\fs)
+node[thick,draw=cyan!70!black,shape=rectangle] {$-3$};
+\draw (0.9,2*\fs) node[draw=green!70!black,minimum width=6mm,shape=rectangle] {$-2$};
+\draw (0.9,2*\fs)
+node[thick,draw=cyan!70!black,minimum width=9mm,minimum height=7mm,shape=rectangle] {$\phantom{-2}$};
+\draw (0.9,3*\fs) node[draw=green!70!black,minimum width=6mm,shape=rectangle] {$1$};
+
+\draw[->,green!70!black] (1.2,3*\fs+2mm) -- ++(1.5,0) node[right,scale=.7] {$\cdot (-3)$} -- ++(0,-2.5mm);
+\draw[->,green!70!black] (1.3,2*\fs+2mm) -- ++(0,0.4) -- ++(0.7,0)
+node[above left,scale=.6,yshift=-1mm] {$\cdot(-1)$};
+\draw[->,cyan!70!black] (1.35,2*\fs+2mm) -- ++(0.3,0) -- ++(0,-0.4)
+node[below,scale=.6,xshift=1mm] {$\cdot(-1)$} -- ++(0.35,0);
+\draw[->,cyan!70!black] (0.9,1*\fs-3mm) -- ++(0,-2mm) -- ++(1.1,0)
+node[below left,scale=.7] {$\cdot 1$};
+
+\draw (2.5,2.5*\fs) node[right,xshift=-5mm,scale=0.5] {$\frac{(-2)(-3)-(-1)\cdot1}{2-4}=$};
+\draw (3.8,2.5*\fs) node {$-\frac{7}{2}$};
+\draw (2.5,1.5*\fs) node[right,xshift=-2mm,scale=0.5] {$\frac{3\cdot(-3)-(1)\cdot1}{2-6}=$};
+\draw (3.8,1.5*\fs) node {$\frac{5}{2}$};
+\draw (2.5,0.5*\fs) node[right,xshift=0mm,scale=0.5] {$\frac{5\cdot(-3)-1\cdot3}{2-8}=$};
+\draw (3.8,0.5*\fs) node {$3$};
+\draw (2,2.1*\fs) rectangle (4.2,2.9*\fs);
+\draw (2,1.1*\fs) rectangle (4.2,1.9*\fs);
+\draw (2,0.1*\fs) rectangle (4.2,0.9*\fs);
+
+\draw (5.2,1*\fs) node[draw,rectangle,minimum width=12mm,yshift=-1mm] {$-\frac{1}{2}$};
+\draw (5.2,2*\fs) node[draw,rectangle,minimum width=12mm,yshift=1mm] {$-\frac{15}{8}$};
+
+\draw (6.2,1.5*\fs) node[right,scale=0.5,xshift=1mm,yshift=1mm]
+{$\frac{-\frac{15}{8}\cdot1-\left(-\frac{1}{2}\right)\cdot3}{6-8}=$};
+\draw (7.9,1.5*\fs) node {$\frac{3}{16}$};
+\draw (6.2,1.1*\fs) rectangle (8.2,1.9*\fs);
+
+\draw[->] (9,-0.2) node[below] {Λύση $p(5)$} -- (8,0.7);
+\end{tikzpicture}
+
 	Άρα \( P(5) = \frac{3}{16} \), λύση που φαίνεται λογική, αφού
 	βρίσκεται ανάμεσα στο -2 και το 3.
 	
@@ -1309,7 +1372,24 @@
 	f(x_i) & f(x_0) & f(x_1) & \dots & f(x_{m-1})
 	\end{array}
 	\]
-	\todo{Graph 17}
+	
+	\begin{tikzpicture}[scale=1]
+	\draw (-0.5,0) -- (3,0);
+	\draw (0,-0.5) -- (0,3);
+	
+	\draw[thick,blue!50!black,mark position=0.8(a)] (-1,2) -- ++(15:4);
+	\draw[thick,blue!50!black,mark position=0.1(b)] (0.5,-0.5) -- ++(70:3);
+	\draw[thick,blue!50!black,mark position=0.9(c)] (-1,-0.5) -- ++(30:5);
+	
+	\draw[<-,cyan] (a) -- ++(-40:0.5) node[below,rotate=30] {κακή προσέγγιση};
+	\draw[<-,cyan] (b) -- ++(-40:0.5) node[below,rotate=20] {μέτρια προσέγγιση};
+	\draw[<-,cyan] (c) -- ++(-40:0.5) node[below,rotate=30] {καλύτερη προσέγγιση};
+	
+	\filldraw (0.3,0.3) circle (1pt) (0.4,0.5) circle (1pt) (0.8,0.6) circle (1pt)
+	(rand,rand) circle (1pt) (0.7,2) circle (1pt) (1,1.5) circle (1pt)
+	(1.5,1) circle (1pt) (2,1.2) circle (1pt) (2.5,1) circle (1pt);
+	
+	\end{tikzpicture}
 	
 	Αν ζητάμε η προσέγγιση \( P(x) \) να είναι μια ευθεία, τότε στην
 	ιδανική περίπτωση:
@@ -1480,7 +1560,14 @@
     \left\Vert r(x)\right\Vert &= \Vert b-Ax\Vert
     \end{align*}
     
-    \todo{Graph 18}
+    \begin{tikzpicture}
+    \filldraw[fill=gray!30] (0,0) -- (1,3) -- (6,3) -- (5,0) -- cycle;
+    
+    \draw[thick,cyan!50!blue] (3,1.5) --++(0,1) node[midway,right] {$b-A\bar x=r(x)$};
+    \draw[->] (2,1.5) -- ++(0:1) node[below] {$A\bar x$};
+    \draw[->] (2,1.5) -- ++(1,1) node[left] {$b$};
+    \end{tikzpicture}
+    
     
     Το διάνυσμα \( r(x) \) ανήκει στο ορθογώνιο συμπλήρωμα του χώρου
     των στηλών, άρα στο μηδενοχώρο του \( A^{\mathrm T} \) (από το
@@ -3546,7 +3633,49 @@ A = \left[\begin{matrix}
 	Ταινιοειδής λέγεται ο πίνακας, που έχει μη μηδενικά στοιχεία
 	μόνο σε έναν αριθμό διαγωνίων κάτω και πάνω από την κύρια
 	διαγώνιο:
-	%\todo{Graph 27}
+	
+	\begin{tikzpicture}
+	
+	\def\bo{2mm}
+	
+	\draw (\bo,-2) -- (0,-2) -- (0,2) -- (\bo,2);
+	\draw (4cm-\bo,-2) -- (4cm,-2) -- (4,2) -- (4cm-\bo,2);
+	\foreach \x in {-1.8,-1.4,...,1.8}
+	\draw (\x+2,-\x) node {$/$};
+	\foreach \x in {-1.7,-1.3,...,1}
+	\draw (\x+2,-\x-1) node[scale=.9] {$/$};
+	\foreach \x in {-0.7,-0.5,...,1.7}
+	\draw (\x+2,-\x+1) node[scale=.9] {$/$};
+	
+	\path[mark position=0.33(a),mark position=0.66(b)] (2,2) -- ++(-45:3);
+	\path[mark position=0.55(c)] (2.7,2) -- ++(-45:1.8);
+	
+	\draw (a) node[scale=.9] {$0$};
+	\draw (b) node[scale=.9] {$0$};
+	\draw (c) node[scale=.7] {$0$};
+	\draw (3.65,1.6) node[rotate=45,scale=.7] {$\hdots$};
+	
+	\begin{scope}[rotate around={180:(2,0)}]
+	\path[mark position=0.33(a),mark position=0.66(b)] (2,2) -- ++(-45:3);
+	\path[mark position=0.55(c)] (2.7,2) -- ++(-45:1.8);
+	
+	\draw (a) node[scale=.9] {$0$};
+	\draw (b) node[scale=.9] {$0$};
+	\draw (c) node[scale=.7] {$0$};
+	\draw (3.65,1.6) node[rotate=45,scale=.7] {$\hdots$};
+	\end{scope}
+	
+	\draw[rotate around={-45:(2.5,0.5)},mark position=0.1(d)] (2.5,0.5) ellipse (2cm and 4mm);
+	\draw[rotate around={-45:(2,0)},blue!40!black] (2,0) ellipse (2.8cm and 3mm);
+	\draw[rotate around={-45:(1.5,-0.5)},mark position=0.9(f)] (1.5,-0.5) ellipse (2cm and 4mm);
+	
+	\draw[->] (d) to[bend left=40] ++(2,1) node[right] {υπερδιαγώνιος};
+	\draw[->] (f) to[bend right=40] ++(1,-1) node[right] {υποδιαγώνιος};
+	
+	\draw[->] (4,-1.4) to[bend left=20] ++(1,0.3)
+	node[right,rectangle,align=center] {τριδιαγώνιος πίνακας\\(η υπερδιαγώνιος ακριβώς από επάνω\\ \&
+		η υποδιαγώνιος ακριβώς από κάτω)};
+	\end{tikzpicture}
 	
 	Αν έχει μη μηδενικά στοιχεία στην κύρια διαγώνιο, στην
 	υπερδιαγώνιο ακριβώς επάνω από την κύρια, και στην υποδιαγώνιο
