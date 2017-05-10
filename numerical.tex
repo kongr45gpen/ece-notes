@@ -4052,5 +4052,171 @@ Ax = b
 Θα ορίσουμε ένα μέγεθος που ονομάζεται \textbf{Δείκτης κατάστασης}, και
 δείχνει πόσο ευάλωτο είναι το σύστημα με αλλαγές στο \( b \).
 
+Ορίζουμε:
+
+\textbf{Διαφορά:} \( r= Ax - A\bar x = b-A\bar x \)
+
+Έστω, για παράδειγμα, το σύστημα:
+\begin{align*}
+	x_1+x_2 &= 2\\
+	0.999x_1 + x_2 &= 1.999
+\end{align*}
+με προφανή πραγματική λύση \( x=\left[\begin{matrix}
+1\\1
+\end{matrix}\right] \)
+
+Έστω ότι, αν το λύσουμε προσεγγιστικά, θα είχαμε μια προσέγγιση:
+\[
+\bar x = \left[\begin{matrix}
+2 \\ 0
+\end{matrix}\right]
+\]
+Τότε:
+\begin{gather*}
+	r = Ax - A\bar x
+    = \left[\begin{matrix}
+    2\\1.999
+    \end{matrix}\right]-\left[\begin{matrix}
+    2 \\ 1.998
+    \end{matrix}\right] = \left[\begin{matrix}
+    0 \\ 0.001
+    \end{matrix}\right] \qquad \Vert r\Vert_{\infty}=0.001
+    \\
+	e = x-\bar x = \left[\begin{matrix}
+	1\\1
+	\end{matrix}\right]-\left[\begin{matrix}
+	2\\0
+	\end{matrix}\right] = \left[\begin{matrix}
+	-1\\1
+	\end{matrix}\right] \qquad \Vert e \Vert_{\infty}=1
+\end{gather*}
+Δηλαδή το σφάλμα είναι 1000 φορές μεγαλύτερο από τη διαφορά.
+
+\subsubsection{Συμβατά μήκη}
+\begin{defn}{Συμβατό μήκος}{}
+	Ένα μήκος \( \Vert \quad \Vert_M \) στον χώρο
+	\( \mathbb R^{m\times n}   \) λέγεται \textbf{συμβατό} με ένα
+	μήκος \( \Vert \quad \Vert_\nu \) στον \( \mathbb R^n \), αν
+	για κάθε πίνακα \( A \in \mathbb R^{m\times n} \) και κάθε
+	διάνυσμα \( x\in\mathbb R^n \) έχουμε:
+	\[
+	\Vert Ax\Vert_\nu \leq \Vert A \Vert_M \Vert x \Vert_\nu
+	\]
+\end{defn}
+
+Το άπειρο μήκος είναι συμβατό, επειδή έχουμε δείξει ότι:
+\[
+\Vert Ax \Vert_{\infty} \leq \Vert A \Vert_{\infty}
+\Vert x \Vert_{\infty}
+\]
+
+\subsubsection{Δείκτης κατάστασης}
+\begin{align*}
+	x &= A^{-1}(Ax) \\
+	\Vert x \Vert &= \left\Vert
+	A^{-1}(Ax)\right\Vert \leq \Vert A^{-1} \Vert
+	\Vert Ax \Vert \\
+	\frac{\Vert x \Vert}{\Vert A^{-1}\Vert}
+	&\leq \Vert Ax \Vert \leq \Vert A \Vert \Vert x \Vert \\
+	r &= A(x-\bar x) = Ae \\
+	e &= A^{-1}r \\
+	\text{Μήκος } \Vert e\Vert &= \Vert A^{-1}\Vert r \leq
+	\Vert A^{-1} \Vert \Vert r \Vert \\
+	\Vert A^{-1} \Vert r &\geq \frac{\Vert r\Vert}{\Vert A \Vert} \\
+	\frac{\Vert r\Vert}{\Vert A \Vert} &\leq \Vert e \Vert
+	\leq \Vert A^{-1} \Vert \Vert r \Vert
+\end{align*}
+Δηλαδή φράξαμε το μέγεθος του σφάλματος σε σχέση με τη διαφορά.
+Θα συνεχίσουμε προσπαθώντας να φράξουμε το σχετικό σφάλμα σε σχέση με τη
+σχετική διαφορά.
+
+\begin{align*}
+	\frac{\Vert r \Vert}{\Vert A \Vert \Vert x \Vert}
+	&\leq \frac{\Vert e \Vert}{\Vert x \Vert}
+	\leq \frac{\Vert A^{-1} \Vert \Vert r \Vert}{\Vert x \Vert} \\
+	\frac{\Vert r\Vert}{\Vert A\Vert \left\lVert A^{-1} b\right\rVert}
+	&\leq \frac{\Vert e \Vert}{\lVert x\rVert}
+	\leq \frac{\lVert A^{-1} \rVert \lVert r\rVert}{\lVert x\rVert}
+	\intertext{Επειδή \( \Vert A^{-1}b\Vert \leq \Vert A^{-1}
+		\Vert\Vert b\Vert \) και \( 
+		\Vert b\Vert = \Vert Ax \Vert \leq \Vert A \Vert \Vert x\Vert
+		\implies \frac{1}{\Vert x\Vert} \leq \frac{\Vert A \Vert}{
+		\Vert b \Vert}
+		 \)}
+	 \frac{1}{\lVert A\rVert\lVert A^{-1}\rVert}
+	 \underbrace{\frac{\Vert r\Vert}{\Vert b\Vert}
+	  }_{\mathclap{\text{σχετική διαφορά}}} \qquad
+	 &\leq \qquad
+	 \underbrace{\frac{\Vert e\Vert}{\Vert
+	 		 x\Vert}}_{\mathclap{\text{σχετικό σφάλμα}}}
+    \leq \Vert A^{-1}\Vert \Vert A\Vert \frac{\Vert r\Vert}{\Vert b\Vert}
+\end{align*}
+
+Παρατηρούμε ότι και στα δύο μέλη εμφανίζεται ο όρος
+\( \lVert A\rVert\lVert A^{-1}\rVert \), που επηρεάζει το πόσο
+εύρος τιμών έχουμε για το σχετικό σφάλμα.
+
+Επομένως:
+
+\begin{defn}{Δείκτης ευαισθησίας}{}
+	Για έναν \textbf{μη ιδιόμορφο πίνακα} \( A \) (δηλαδή πίνακα
+	που έχει αντίστροφο), η ποσότητα:
+	\[
+	\kappa(A) = \left\lVert A^{-1} \right\rVert
+	\left\lVert A \right\rVert
+	\]
+	ονομάζεται \textbf{δείκτης ευαισθησίας} του \( A \).
+\end{defn}
+
+Έχουμε:
+\[
+1 = \lVert I \rVert = \left\lVert A^{-1} A \right\rVert 
+\leq \lVert A^{-1} \rVert \lVert A\rVert
+\]
+επομένως: \( \kappa(A) \geq 1 \).
+
+Από την προτελευταία σχέση, συμπεραίνουμε πως μεγάλοι δείκτες
+ευαισθησίας σημαίνουν πολύ μεγάλες αποκλίσεις μεταξύ διαφοράς
+και σφάλματος.
+
+\paragraph{}
+Ας βρούμε τον δείκτη κατάστασης στο προηγούμενο πρόβλημα:
+\begin{gather*}
+	A = \left[\begin{matrix}
+	1 & 1 \\ 0.999 & 1
+	\end{matrix}\right], \quad A^{-1}=\left[\begin{matrix}
+	1000 & -1000 \\ -999 & 1000
+	\end{matrix}\right] \\
+	\kappa (A) = \lVert A^{-1} \rVert_{\infty}\lVert A\rVert_{\infty}
+	= 2 \times 2000 = \underline{4000}
+\end{gather*}
+που είναι ένας πολύ μεγάλος δείκτης ευαισθησίας, άρα ακόμα και αν η
+διαφορά μεταξύ της προσεγγιστικής και της πραγματικής λύσης είναι μικρή,
+το σφάλμα μπορεί να είναι πολύ μεγάλο.
+
+\paragraph{}
+Αν έχουμε ένα σύστημα:
+\[
+Ax = b
+\]
+με μεγάλο δείκτη ευαισθησίας:
+\[
+k(A) \ggg 1
+\]
+τότε μία μικρή αλλαγή στις παραμέτρους του συστήματος μπορεί να
+σημαίνει μεγάλη αλλαγή στις ρίζες του συστήματος. Αυτό είναι αντικείμενο
+του sensitivity analysis.
+
+\subsubsection{Βελτίωση Λύσεων}
+\begin{gather*}
+	Ax = b \\
+	\bar x \text{ προσέγγιση}\\
+	r = b- A\bar x\\
+	A=LU\\
+	\bar L\bar U = A +\epsilon(A)\\
+	\bar L \bar U e = r\\
+	\bar e \text{ προσέγγιση} \\
+	x = \bar x + \bar e
+\end{gather*}
 
 \end{document}
