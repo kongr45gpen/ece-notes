@@ -2467,10 +2467,10 @@ f_Y\left(y(t_1),y(t_2),\dots,y(t_n)\right)
 	\item \( E\left[x(t)\right] = M_x(t)
 	\qquad E\left[ y(t) \right] = M_y(t)
 	 \) (\textbf{μέση τιμή})
-	\item \( R_x(t_1,t_2)\qquad \mathcal{R}_y(t_1,t_2) \)
+	\item \( R_x(t_1,t_2)\qquad R_y(t_1,t_2) \)
 	(\textbf{αυτοσυσχέτιση})
 	\item \( E\left[x(t_1)y(t_2)\right] \)
-	(\textbf{ετεροσυσχέτιση} \( \mathcal{R}_{xy}(t_1,t_2)=
+	(\textbf{ετεροσυσχέτιση} \( R_{xy}(t_1,t_2)=
 	E\left[x(t_1)y(t_2)\right] \) )
 \end{enumroman}
 
@@ -2537,7 +2537,7 @@ X_n(t)Y_m(t+\tau)\dif t
 
 
 \subsection{Ιδιότητες}
-\paragraph{Ιδιότητες αυτοσυσχέτισης}
+\subsubsection{Ιδιότητες αυτοσυσχέτισης}
 \begin{align*}
 	R_x(t_1,t_2) &= E\left[x(t_1)x(t_2)\right] \\
 	&= E\left[x(t_2+\tau)x(t_2)\right] \qquad
@@ -2594,6 +2594,200 @@ R_x(-\tau) = -E\underset{t'=t-\tau}{\left[x(t-\tau)x(t)\right]}
 	\lim_{\tau\to \infty} = M_x^2
 	 \)
 \end{enumerate}
+\subsubsection{Ιδιότητες ετεροσυσχέτισης}
+Θυμόμαστε για την ετεροσυσχέτιση:
+\begin{gather*}
+	\big\lbrace x(t) \big\rbrace,\quad
+	\big\lbrace y(t) \big\rbrace \\
+	R_{xy}(t) = E\left[X(t_1)\ Y(t_1+\tau)\right]
+	\qquad \text{όπου } t_2-t_1=\tau
+\end{gather*}
+
+\begin{enumerate}
+	\item \( R_{xy}(0) = R_{yx}(0) \)
+	\item \( R_{xy}(\tau) = R_{yx}(-\tau) \), επειδή:
+	\begin{align*}
+		R_{yx}(\tau) &= E\left[Y(t_1)X(t_1+\tau)\right] \\
+		R_{yx}(-\tau) &= E\left[X(t_1-\tau)Y(t_1)\right] \\
+		R_{yx}(-\tau) &= E\left[X(t_2)Y(t_2+\tau)\right]
+	\end{align*} (\( t_1-\tau = t_2 \))
+	\item \( \left| R_{xy}(\tau) \right| 
+	\leq \left[ R_x(0) R_y(0) \right]^{\sfrac{1}{2}}
+	\)
+	\item Για \textbf{ανεξάρτητα} και στάσιμα σήματα:
+	\begin{align*}
+	\underline{R_{xy}(\tau) } &= E\left[X(t_1)Y(t_1+\tau)\right]
+	= E\left[X(t_1)\right]E\left[Y(t_1+\tau)\right] = 
+	\underline{M_xM_y = R_{yx}(\tau)}
+ί	\end{align*}
+	
+	Στην περίπτωση που:
+	\[
+	R_{xy}(\tau) = 0,
+	\]
+	έχουμε την περίπτωση \textbf{ορθογωνικών σημάτων}. Αυτό σημαίνει ότι
+	μπορούμε εύκολα να ξεχωρίσουμε το ένα σε σχέση με το άλλο.
+\end{enumerate}
+
+\subsection{Αυτοσυσχέτιση}
+Αν έχουμε ένα συμβατικό αναλογικό σήμα, \( x(t) \), ο μετασχηματισμός
+Fourier του \( \mathscr{F}\big\lbrace x(t) \big\rbrace \) εκφράζει το
+πλάτος της κάθε συχνότητας που συμμετέχει στη δημιουργία του σήματος.
+
+Αν όμως πάρουμε την αυτοσυσχέτισή του, \( \mathcal{R}_x(t) \), ο
+μετασχηματισμός Fourier της \( \mathscr{F}
+\big\lbrace \mathcal{R}_x(\tau) \big\rbrace = S_{\mathrm P_{x}}\)
+εκφράζει την πυκνότητα της φασματικής ισχύος.
+
+Δηλαδή, αν πάρουμε το εμβαδόν ενός εύρους συχνοτήτων στο
+\(  S_{\mathrm P_{x}} \), θα βρούμε την ισχύ που συνεισφέρουν στο
+σήμα αυτές οι συχνότητες:
+\todo{Graph 37}
+
+\paragraph{}
+Αν σε ένα στοχαστικό σήμα προσπαθήσουμε να πάρουμε τον μετασχηματισμό
+Fourier, θα προκύψουν άπειρες συναρτήσεις για κάθε δυνατό σήμα:
+\begin{align*}
+	x_1(t) \xrightarrow{\quad} & X_1(f) \\
+	x_2(t) \xrightarrow{\quad} & X_2(f) \\
+	\vdots\ \xrightarrow{\quad} & \ \vdots \\
+	x_n(t) \xrightarrow{\quad} & X_n(f)
+\end{align*}
+
+Κάτι που δεν είναι χρήσιμο, γιατί πρέπει να αναλύσουμε άπειρες
+συναρτήσεις.
+
+Μπορούμε όμως να εκμεταλλευτούμε (θυμόμαστε ότι τα στοχαστικά σήματα
+είναι σήματα ισχύος) το προηγούμενο συμπέρασμα, χρησιμοποιώντας τη συνάρτηση \( \mathcal{R}_x(\tau) \) για ένα στοχαστικό σήμα,
+και να πάρουμε τον μετασχηματισμό Fourier αυτής, ως εξής:
+
+\subsubsection{Εργοδικό}
+Έστω: \( x_L(t) \qquad \text{με } \mathcal{R}_x(\tau) \), όπου
+\( \displaystyle \mathcal{R}_x(\tau) 
+= \lim_{T\to \infty} \frac{1}{T}
+\int_{-\sfrac{T}{2} }^{\sfrac{T}{2} }x(t)\left(x(t+\tau)\right)\dif t
+\)
+
+Τότε \( \mathcal{R}_x(\tau)
+\xrightarrow{\text{FT}} S_{\mathrm px}(\omega ) \)
+(psd - power spectral density - φασματική πυκνότητα ισχύος)
+
+Όμως, επειδή το σήμα είναι εργοδικό:
+\[
+R_x(\tau) = \mathcal R_x(\tau)
+\]
+άρα:
+\[
+R_x(\tau) \xleftrightarrow{\mathrm{FT}} S_{\mathrm{p}x}(\omega )
+\]
+που σημαίνει:
+\[
+S_{\mathrm p x}(\omega ) = \int_{-\infty}^{\infty}
+R_x(\tau)e^{-j\omega \tau}\dif\tau
+\]
+
+\subsubsection{Στάσιμο μη εργοδικό}
+Έχουμε πολλές συναρτήσεις \( \mathcal{R}_{x_i}(\tau)
+\xleftrightarrow{\text{F.T.}} S_{\mathrm p x}
+ \) που οδηγούν σε άπειρα φάσματα \\
+\( \displaystyle \boxed{S_{\mathrm p x_i}(\omega ) =
+	 \int_{-\infty}^{\infty}
+\mathcal{R}_{x_i}(\tau) e^{-j\omega \tau}\dif \tau} \), οπότε δεν
+έχουμε λύσει το αρχικό πρόβλημα.
+
+Από τη θεωρία αναλογικού σήματος ισχύει:
+\[
+\boxed{
+S_{\mathrm p x_i}(\omega ) = \lim_{T\to \infty}
+\frac{\left|F\left[x_{i_T}\right]\right|^2}{T}
+}
+\]
+όπου:
+\[
+F\left[x_{iT}(t)\right]
+= \int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
+x_{i_T}(t) e^{-j\omega t}\dif t
+\]
+και
+\[
+x_{iT}(t) = x_i(\tau)\left[
+\mathrm u\left(t+\sfrac{T}{2} \right)
+-\mathrm u\left(t-\sfrac{T}{2} \right)
+\right]
+\]
+
+\todo{Graph 38}
+
+Οι δύο τύποι συνδέονται από το θεώρημα Wiener-Khintchine.
+
+Συνεχίζουμε να έχουμε άπειρες συναρτήσεις που μπορούν να μετασχηματιστούν
+κατά Fourier. Για να ξεπεράσουμε αυτό το πρόβλημα, θα χρησιμοποιήσουμε
+ροπές:
+\begin{align*}
+	\left|F\left[X_T(t)\right]\right|^2
+	&= F\left[x_T(t)\right]F^*\left[X_T(t)\right]
+	= \int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
+	x(t_1)e^{j\omega t_1}\dif t_1
+	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }x(t_2)e^{-j\omega t_2}
+	\dif t_2
+	\\ &= 	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
+		\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } x(t_1)x(t_2)
+	e^{-j\omega (t_2-t_1)}\dif t_2\dif t_1
+	\intertext{Άρα:}
+	E\left[ S_{\mathrm p x} \right] &= E\left[
+	\lim_{T\to \infty} 	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
+	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } x(t_1)x(t_2)
+	e^{-j\omega (t_2-t_1)} \dif t_2\dif t_1
+	\right]
+	\\ &= \lim_{T\to \infty}	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
+	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
+	\cancelto{R_x(t_2-t_1)}{E\left[x(t_1)x(t_2)\right]}
+	e^{-j\omega (t_2-t_1)}\dif t_2\dif t_1\\
+	&= \lim_{T\to \infty}	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
+	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
+	\cancelto{R_x(\tau)}{R_x(t_2-t_1)}
+	e^{-j\omega \cancelto{\tau}{(t_2-t_1)}}\dif t_2\dif t_1
+	\intertext{Θέτουμε \( 
+		\varphi(\overbrace{t_2-t_1}^{\tau}) =
+		R_x(\overbrace{t_2-t_1}^{\tau}) e^{-j\omega
+			(\overbrace{t_2-t_1}^{\tau})}
+		 \)}
+	 &= \lim_{T\to \infty}	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
+	 \int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } \varphi(t_2-t_1)\dif t_2
+	 \dif t_1
+\end{align*}
+
+Το ολοκλήρωμα αυτό μπορεί να υπολογιστεί γραφικά:
+\todo{Graph 39}
+
+Άρα, για ένα μικρό κομμάτι:
+\[
+E=(T-|\tau|)\dif \tau
+\]
+
+Επομένως:
+\begin{align*}
+	E\left[S_{\mathrm p x}\right] &=
+	\lim_{T\to \infty} \frac{1}{T} \int_{-T}^{T}
+	\phi(\tau) (T-|\tau|) \dif\tau \\
+	&= \lim_{T\to \infty}
+	\int_{-T}^{T} \phi(\tau)\left(1-\frac{|\tau|}{T}\right)\dif\tau
+	\\ &= \lim_{T\to \infty}
+	\int_{-T}^{T} \phi(\tau)\dif\tau =
+	\int_{-\infty}^{\infty} R_x(\tau)e^{-j\omega \tau}
+	\dif\tau
+\end{align*}
+
+Δηλαδή η μέση τιμή βγαίνει σταθερή και ίση με το μετασχηματισμό
+Fourier των πυκνοτήτων φασματικής ισχύος που έχει το σήμα.
+
+\paragraph{}
+Παρατηρούμε πως η ποσότητα
+\[
+\int_{-\infty}^{\infty} R_x(\tau)e^{-j\omega t}\dif\tau,
+\] δηλαδή ο μετασχηματισμός Fourier της συνάρτησης αυτοσυσχέτισης,
+εκφράζει την πυκνότητα φασματικής ισχύος στα εργοδικά σήματα, και τη
+μέση τιμή των πυκνοτήτων στα στάσιμα σήματα.
+
 
 \end{document}
-
