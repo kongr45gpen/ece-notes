@@ -4349,4 +4349,313 @@ k(A) \ggg 1
 	x = \bar x + \bar e
 \end{gather*}
 
+\subsection{Ασκήσεις}
+\paragraph{Άσκηση}
+Να παραγοντοποιηθεί ο πίνακας \( A=\left[\begin{matrix}
+9&3&6\\4&6&1\\1&1&7
+\end{matrix}\right] \) σε γινόμενο \( LU \):
+\subparagraph{Λύση}
+\begin{align*}
+	A &= \left[\begin{matrix}
+	9&3&6\\4&6&1\\1&1&7
+	\end{matrix}\right]
+	\xrightarrow[R_3=R_3-\frac{1}{9}R_1]{R_2=R_2-\frac{4}{9}R_1}
+	\left[\begin{matrix}
+	9&3&6\\0&\sfrac{14}{3}&\sfrac{-5}{3}\\
+	0&\sfrac{2}{3} &\sfrac{19}{3}
+	\end{matrix}\right]
+	\xrightarrow{R_3=R_3-\frac{1}{7}R_2}\left[\begin{matrix}
+	9&3&6\\0&\sfrac{14}{3} &\sfrac{-5}{3} \\
+	0&0&\sfrac{46}{7} 
+	\end{matrix}\right] = U \\
+	L &= \left[\begin{matrix}
+	1&0&0\\ \boxed{\sfrac{4}{9} } & 1 & 0 \\
+	\boxed{\sfrac{1}{9} } & \boxed{\sfrac{1}{7} } & 1
+	\end{matrix}\right]
+\end{align*}
+
+\paragraph{Άσκηση}
+Να παραγοντοποιηθεί ο πίνακας
+\(
+A=\left[\begin{matrix}
+1&2&4\\4&5&6\\7&8&9
+\end{matrix}\right]
+\) σε μορφή \( PA=LU \), όπου \( P \) είναι ένας πίνακας μετάθεσης
+(μεταθετικός πίνακας) με χρήση της
+\textbf{απαλοιφής Gauss με μερική οδήγηση}.
+
+Αν δίνεται ότι \( b=\left[\begin{matrix}
+1\\2\\3
+\end{matrix}\right] \), να λυθεί το σύστημα.
+
+\subparagraph{Λύση}
+Σαν οδηγό διαλέγουμε στην πρώτη στήλη το μέγιστο κατ' απόλυτη τιμή
+στοιχείο (δηλαδή το 7):
+\todo{Change orientation}
+\begin{alignat*}{5}
+	A&=\left[\begin{matrix}
+	1&2&4\\4&5&6\\7&8&9
+	\end{matrix}\right] &&\rightarrow \left[\begin{matrix}
+	7&8&9\\4&5&6\\1&2&4
+	\end{matrix}\right]
+	 &&\xrightarrow[R_2=R_2-\frac{4}{7}R_1]{R_3=R_3-\frac{1}{7}R_1}
+	 \left[\begin{matrix}
+	 7&8&9 \\ 0 & \sfrac{3}{7}  & \sfrac{6}{7}  \\
+	 0 & \sfrac{6}{7}  & \sfrac{9}{7} 
+	 \end{matrix}\right] 
+	 &&\xrightarrow[\text{αντιμετάθεση γραμμών
+	 }]{\text{οδηγός το } \sfrac{6}{7} }
+	 \left[\begin{matrix}
+	 7&8&9 \\  0 & \sfrac{6}{7}  & \sfrac{9}{7}   \\
+	0 & \sfrac{3}{7}  & \sfrac{6}{7}
+	 \end{matrix}\right] &&\xrightarrow{R_3=R_3-\frac{1}{2}R_2}
+	 \left[\begin{matrix}
+	 7&8&9 \\ 0 & \sfrac{6}{7}  & \sfrac{19}{2} \\ 0 & 0 & -\sfrac{1}{2} 
+	 \end{matrix}\right]
+	\\
+	P=I&=\left[\begin{matrix}
+	1&0&0\\0&1&0\\0&0&1
+	\end{matrix}\right] &&\rightarrow \left[\begin{matrix}
+	0&0&1\\ 0&1&0 \\ 1&0&0
+	\end{matrix}\right] &&\rightarrow %&&\rightarrow 
+	\left[\begin{matrix}
+	0&0&1\\1&0&0\\0&1&0
+	\end{matrix}\right] \\
+	&\text{Πολλαπλασιαστές: } &&
+	m_{21}=\frac{4}{7},\ m_{31}=\frac{1}{7}
+	&& && m_{32}=\frac{1}{2}
+\end{alignat*}
+Άρα: \[
+L = \left[\begin{matrix}
+1 & 0 & 0 \\
+\sfrac{4}{7}  & 1 & 0 \\
+\sfrac{1}{7}  & \sfrac{1}{2} & 1
+\end{matrix}\right]
+\]
+\subparagraph{}
+\[
+d = Pb = \left[\begin{matrix}
+3\\1\\2
+\end{matrix}\right]
+\]
+\begin{enumerate}
+	\item
+	\[
+	Ly = d \implies
+	\left[\begin{matrix}
+	1&0&0\\\sfrac{4}{7} &1&0\\\sfrac{1}{7} &\sfrac{1}{2} & 1
+	\end{matrix}\right]\left[\begin{matrix}
+	y_1\\y_2\\y_3
+	\end{matrix}\right] = \left[\begin{matrix}
+	3\\1\\2
+	\end{matrix}\right]
+	\]
+	\( y_1 = 3,\ y_2 = \frac{4}{7},\ y_3=0 \)
+	
+	\item \[
+	Ux = y \left[\begin{matrix}
+	7&8&9\\0& \sfrac{6}{7}  & \sfrac{19}{7}  \\
+	0 & 0 & \sfrac{-1}{2} 
+	\end{matrix}\right]\left[\begin{matrix}
+	x_1\\x_2\\x_3
+	\end{matrix}\right] = \left[\begin{matrix}
+	3&\sfrac{4}{7}  & 0
+	\end{matrix}\right]
+	\]
+	\( x_3=0,\ x_2=\sfrac{2}{3},\ x_1 = \sfrac{-1}{3}   \)
+\end{enumerate}
+
+\paragraph{Άσκηση}
+Να λυθεί προσεγγιστικά με τη μέθοδο Jacobi το σύστημα:
+\begin{align*}
+	4x_1+x_2-x_3 &= 3 \\
+	2x_1+7x_2+x_3 &= 19 \\
+	x_1-3x_2+12x_3 &= 31
+\end{align*}
+\subparagraph{Λύση}
+\begin{gather*}
+	Ax = b \\
+	\left[\begin{matrix}
+	4&1&-1 \\
+	2&7&1 \\
+	1&-3&12
+	\end{matrix}\right] \quad \text{που είναι διαγώνια δεσπόζων}
+\end{gather*}
+
+\begin{align*}
+	x_1^{(k+1)} &= -\frac{1}{4}x_2^{(k)}+\frac{1}{4}x_3^{(k)}+\frac{3}{4}
+	\\ x_2^{(k+1)} &= -\sfrac{2}{7} x_1^{(k)}-\sfrac{1}{7} x_3^{(k)}
+	+ \sfrac{19}{7} \\
+	x_3^{(k+1)} &= -\sfrac{1}{12} x_1^{(k)} + \sfrac{1}{4} x_2^{(k)}
+	+\frac{31}{12}
+\end{align*}
+
+Αφού ο \( A \) είναι διαγώνια δεσπόζων, για οποιαδήποτε αρχική τιμή,
+η λύση θα συγκλίνει.
+
+Ξεκινάω από τη λύση \( x_1^{0},\ x_2^{(0)},\ x_3^{(0)}= 0 \):
+\[
+\begin{array}{cccc}
+k & x_1^{(k)} & x_2^{(k)} & x_3^{(k)} \\ \hline
+0 & 0 & 0 & 0 \\
+1 & 0.75 & 2.71 & 2.58 \\
+2 & 0.72 & 2.13 & 3.20 \\
+3 & 1.02 & 2.05 & 3.06 \\
+4 & 1.00 & 1.99 & 3.01 \\
+5 & 1.01 & 2.00 & 3.00
+\end{array}
+\]
+
+\paragraph{Άσκηση}
+Να λυθεί με τη μέθοδο Gauss - Seidel το σύστημα:
+\begin{align*}
+4x_1+x_2-x_3 &= 3 \\
+2x_1+7x_2+x_3 &= 19 \\
+x_1-3x_2+12x_3 &= 31
+\end{align*}
+
+\subparagraph{Λύση}
+\begin{align*}
+x_1^{(k+1)} &= -\frac{1}{4}x_2^{(k)}+\frac{1}{4}x_3^{(k)}+\frac{3}{4}
+\\ x_2^{(k+1)} &= -\frac{2}{7} x_1^{(k+1)}-\frac{1}{7} x_3^{(k)}
++ \frac{19}{7} \\
+x_3^{(k+1)} &= -\frac{1}{12} x_1^{(k+1)} + \frac{1}{4} x_2^{(k+1)}
++\frac{31}{12}
+\end{align*}
+
+Ξεκινάμε από τη λύση:
+\( x_1^{(0)}=0,\ x_2^{(0)}=0,\ x_3^{(0)}=0 \)
+\[
+\begin{array}{cccc}
+k & x_1^{(k)} & x_2^{(k)} & x_3^{(k)} \\ \hline
+0 & 0 & 0 & 0 \\
+1 & 0.75 & 2.50 & 3.15 \\
+2 & 0.91 & 2.00 & 3.01 \\
+3 & 1.00 & 2.00 & 3.00 \\
+4 & 1.00 & 2.00 & 3.00
+\end{array}
+\]
+Παρατηρούμε δηλαδή ότι η μέθοδος Gauss-Seidel συγκλίνει πιο γρήγορα από
+την Jacobi.
+
+\paragraph{Άσκηση}
+Να επιλυθεί με τη μέθοδο διαδοχικής υπερχαλάρωσης (SOR) το σύστημα:
+\begin{align*}
+	4x_1+x_2 &= 11 \\
+	x_1+5x_2 &= 17
+\end{align*}
+\subparagraph{Λύση}
+\( A= L+D+U \) όπου:
+\begin{enumroman}
+	\item Οι ιδιοτιμές \( -D^{-1}(L+U) = J \) να είναι πραγματικές
+	\item Η φασματική ακτίνα \( 0 < P(J) < 1 \)
+\end{enumroman}
+\[
+\omega = \frac{2}{1+\sqrt{1-P^2(J)}}
+\]
+
+Άρα εμείς πρέπει να ελέγξουμε αν ισχύουν οι παραπάνω 2 ιδιότητες, να
+υπολογίσουμε το \( \omega \), και να εφαρμόσουμε την μέθοδο SOR.
+
+\begin{infobox}{}
+	Θυμόμαστε ότι για να αντιστρέψουμε έναν διαγώνιο πίνακα:
+	\[
+	D = \left[\begin{matrix}
+	4&0\\0&5
+	\end{matrix}\right]
+	\]
+	απλά αντιστρέφουμε τα στοιχεία της διαγωνίου του:
+	\[
+	D^{-1} = \left[\begin{matrix}
+	\sfrac{1}{4} & 0 \\ 0 & \sfrac{1}{5} 
+	\end{matrix}\right]
+	\]
+\end{infobox}
+
+\begin{align*}
+	J = -D^{-1} (L+U) = -\left[\begin{matrix}
+	-\sfrac{1}{4}  & 0 \\ 0 & \sfrac{1}{5} 
+	\end{matrix}
+	\right]\left(\left[\begin{matrix}
+	0&0\\1&0
+	\end{matrix}\right] + \left[\begin{matrix}
+	0 & 1 \\ 0 & 0
+	\end{matrix}\right]\right) = \left[\begin{matrix}
+	0 & \sfrac{1}{4}  \\ \sfrac{-1}{5} & 0
+	\end{matrix}\right]
+\end{align*}
+με ιδιοτιμές \( \lambda_{1,2} = \pm \sqrt{\frac{1}{20}} \).
+
+\[
+\omega = \frac{2}{1+\sqrt{1-\frac{1}{20}}} = \underline{1.013}
+\]
+
+Άρα:
+\begin{align*}
+	x_1 &= \frac{1}{4} (11-x_2) \\
+	x_2 &= \frac{1}{5} (17-x_1) \\[3ex]
+	x_1^{(k+1)} &= \frac{\omega }{4} \left(11-x_2^{(k)}\right)
+	+ (1-\omega )x_1^{(k)} \\
+	x_2^{(k+1)} &= \frac{\omega }{5} \left(17-x_1^{(k+1)}\right)
+	+ (1-\omega )x_2^{(k)}
+\end{align*}
+
+\[
+\begin{array}{ccc}
+	k & x_1^{(k)} & x_2^{(k)} \\ \hline
+	0 &     0     &     0     \\
+	1 &  2.78575  & 2.8798907 \\
+	2 & 2.020227  & 2.997465  \\
+	3 & 2.000379  & 2.999956
+\end{array}
+\]
+
+\paragraph{Άσκηση}
+Δίνεται ο \( n\times n \) πίνακας:
+\[
+A_n = \left[\begin{matrix}
+1 & -1 & -1 & \hdots & -1 \\
+0 & 1 & -1 & \hdots & -1 \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \hdots & 1 & -1 \\
+0 & 0 & \hdots & 0 & 1
+\end{matrix}\right]
+\]
+
+Να αποδείξετε ότι \( A_{n}^{-1} \) είναι ο πίνακας
+\( \left[ A_n^{-1} \right]_{i,j} = \begin{cases}
+2^{j-i-1}, \quad & i<j\leq n \\
+1, \quad & i=j \\
+0,\quad & \text{διαφορετικά}
+\end{cases} \), και να υπολογιστεί ο δείκτης ευαισθησίας του.
+
+\subparagraph{Λύση}
+Μας ζητείται να αποδείξουμε ότι:
+\[
+A_n^{-1} = \left[\begin{matrix}
+1 & 1 & 2 & 2^2 & 2^3 & \hdots & 2^{n-2} \\
+0 & 1 & 1 & 2 & 2^2 & \hdots & 2^{n-3} \\
+0 & 0 & 1 & 1 & 2 & \hdots & 2^{n-4} \\
+\vdots & \vdots & \vdots & \vdots &\vdots &\ddots & \vdots \\
+\vdots & \vdots & \vdots & \vdots &\vdots &\vdots & \vdots
+\end{matrix}\right]
+\]
+
+Αν κάνουμε τις πράξεις, θα δούμε ότι \( A_nA_n^{-1} = I \). Εμείς
+ενδιαφερόμαστε για το 2\textsuperscript{ο} μέρος της άσκησης:
+
+\begin{align*}
+	\kappa(A_n) &= \lVert A_n^{-1} \rVert \lVert A_n \rVert
+	\intertext{Στον \( A^{-1} \), τα μεγαλύτερα στοιχεία βρίσκονται
+		στην πρώτη γραμμή, άρα:}
+	\lVert A^{-1} \rVert_{\infty} &= 1+1+2+2^2+\dots+2^{n-2}
+	= 1 +\sum_{0}^{n-2}2^{i} = \frac{2^{n-1}-1}{1}+1=2^{n-1}
+	\\
+	\lVert A_n \rVert_{\infty} = n
+\end{align*}
+
+Άρα
+\[
+k(A_n) = \lVert A_n^{-1} \rVert \lVert A_n \rVert = n2^{n-1}
+\]
 \end{document}
