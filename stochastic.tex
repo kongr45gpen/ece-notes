@@ -2789,5 +2789,86 @@ Fourier των πυκνοτήτων φασματικής ισχύος που έ�
 εκφράζει την πυκνότητα φασματικής ισχύος στα εργοδικά σήματα, και τη
 μέση τιμή των πυκνοτήτων στα στάσιμα σήματα.
 
+\todo{Missing notes}
+
+\subsection{}
+Έστω \( \big\lbrace X(t) \big\rbrace \) με \( E\left[x(t)\right] = M \),
+και:
+\[
+Y(t) = \int_{0}^{\infty} x(t-\lambda)h(\lambda)\dif\lambda
+\]
+Τότε:
+\begin{align*}
+	E\left[y(t)\right] &=
+	E\left[\int_{0}^{\infty} x(t-\lambda) h(\lambda) \dif\lambda\right]
+\end{align*}
+\begin{align*}
+	E\Bigg[
+	\int_{t_1}^{t_2}
+	\overset{\substack{\mathclap{\text{στοχαστικό}}\\\uparrow}}{x(t)}
+	\underset{\substack{\downarrow\\\mathclap{\text{συνάρτηση}}}}{f(t)}
+	\dif t
+	\Bigg] \int_{t_1}^{t_2} E\left[x(t)\right]f(t)\dif t
+\end{align*}
+
+\begin{enumerate}
+	\item \( \displaystyle
+	\int_{t_1}^{t_2} E\left[\left|x(t)\right|\right]f(t)\dif t
+	< \infty
+	 \)
+	\item \( x(t)\quad [t_1,t_2] \) πεπερασμένη
+\end{enumerate}
+
+\begin{align*}
+	E\left[Y^2(t)\right] &= E\left[
+	\int_{-\infty}^{\infty} (t-\lambda_1)h(\lambda_1)\dif\lambda_1
+	\int_{-\infty}^{\infty} (t-\lambda_2)h(\lambda_2)\dif\lambda_2
+	\right]
+	\\ &= \left[
+	\int_{0}^{\infty} \left[
+	        E\left[
+	            x(t-\lambda_1)x(t-\lambda_2)
+	        \right] h(\lambda_1)h(\lambda_2)\dif\lambda_2
+	    \right] \dif\lambda_1
+	\right]
+\end{align*}
+
+\begin{align*}
+	R_y(t_1,t_2) &= E\left[y(t_1)y(t_2)\right]
+	\\ &= E\left[\int_{0}^{\infty}
+	x(t_1-\lambda_1)h(\lambda_1)\dif\lambda_1
+	\cdot
+	\int_{0}^{\infty} x(t_2-\lambda_2)h(\lambda_2)\dif\lambda_2
+	\right]
+	\\ &= \int_{0}^{\infty}
+	h(\lambda_1)\left[\int_{0}^{\infty}
+	E\left[x(t_1-\lambda_1)x(t_2-\lambda_2)
+	\right]h(\lambda_2)\dif\lambda_2
+	\right]\dif\lambda_1 \\
+	R_x(\tau) &= \boxed{
+	    \int_{0}^{\infty}
+	    \int_{0}^{\infty}
+	    h(\lambda_1)h(\lambda_2)
+	    R_x(\tau+\lambda_2-\lambda_1)\dif\lambda_1\dif\lambda_2
+    }
+\end{align*}
+
+\subsubsection{Ετεροσυσχέτιση εξόδου-εξόδου}
+\begin{align*}
+	R_{xy}(t) &= E\left[x(t)Y(t+\tau)\right]
+	E\left[x(t)
+	\int_{0}^{\infty} x(t+\tau - \lambda)h(t)\dif\lambda
+	\right]
+	\\ &= E\left[
+	\int_{0}^{\infty} x(t) x(t+\tau-\lambda)
+	\right] h(\lambda)\dif\lambda
+	\\ &= \int_{0}^{\infty} E\left[
+	x(t)x(t+\tau - \lambda)
+	\right] h(\lambda) \dif\lambda
+	\\ &= \int_{0}^{\infty}
+	R_x (\tau - \lambda)h(t)\dif\lambda
+	\\
+	\Aboxed{R_{xy}(\tau) &= R_x(\tau) * h(\lambda)}
+\end{align*}
 
 \end{document}
