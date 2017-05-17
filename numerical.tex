@@ -4658,4 +4658,167 @@ A_n^{-1} = \left[\begin{matrix}
 \[
 k(A_n) = \lVert A_n^{-1} \rVert \lVert A_n \rVert = n2^{n-1}
 \]
+
+\section{Κανονικές Διαφορικές Εξισώσεις}
+Μία συνήθης ή κανονική ΔΕ περιέχει πλήρεις παραγώγους:
+\[
+F\left(x,y,y',\dots,y^{(k)}\right) = 0
+\]
+όπου \( y=y(x) \).
+
+Η γενική λύση μιας κανονικής διαφορικής εξίσωσης έχει τη μορφή:
+\[
+y= f(x,c_1,c_2,\dots,c_k)
+\]
+
+Θα μάθουμε:
+\begin{itemize}
+	\item Αριθμητικής μεθόδους
+	\item Σφάλματα
+	\item Συστήματα ΚΔΕ
+\end{itemize}
+
+\paragraph{Προβλήματα Αρχικών Τιμών}
+Δεδομένης μιας ΚΔΕ (κανονικής διαφορικής εξίσωσης)
+\[
+F(x,y,y',\dots,y^{(k)}) = 0
+\]
+θέλουμε μερική λύση που αντιστοιχεί τις \textbf{αρχικές τιμές}
+\( x=a, y(a)=\beta_0, y'(a)=\beta_1,\dots, y^{(k+1)}(a)=\beta_n \).
+
+Για \(y' = \od{x}{y} = f(x,y) \), βρίσκουμε πρώτα τιμή για \( y(a)=y_0 
+\quad a \leq x \leq b
+\). Μία προσέγγιση για τη λύση \( y(x) \) της ΔΕ μπορούμε να την βρούμε
+με:
+\begin{itemize}
+	\item Προσέγγιση \( y(x) \) σε \( N \) σημεία στο \( [a,b] \), και
+	στη συνέχεια
+	\item Παρεμβολή
+\end{itemize}
+
+\subsection{Μέθοδος Euler}
+Χωρίζουμε το \( (a,b] \) σε \( N \) τμήματα, και θεωρούμε
+\[
+h=\frac{b-a}{N} \qquad x=a+ih,\ i=0,\dots,N
+\]
+
+Από το ανάπτυγμα Taylor
+\[
+y(x_i+1) = y(x_i)
++ (x_{i+1}-x_i)\overbrace{y'(x_i)}^{f(x_i,y_i)}
++ \underbrace{\frac{(x_{i+1}-x_i)^2}{2}
+}_{\mathclap{\text{σφάλμα (Taylor)}}}
+y''(\xi_i)
+\]
+για \( x_i < \xi_i < x_{i+1} \)
+
+Επομένως η μέθοδος Euler αναπτύσσεται ως εξής:
+
+\[
+\boxed{\begin{array}{lrl}
+	\text{1.} & y_0 &= y(x_0) \\
+	\text{2.} & y_{i+1} &= y_i + hf(x_i,y_i)
+	\end{array} }
+\]
+
+
+\paragraph{Παράδειγμα}
+\( \displaystyle
+\od{y}{x} = \overbrace{-y+x+1}^{f(x_i,y_i)}
+ \) \\ \( y(0)=1 \qquad x_i=0.1i \)
+ 
+Λύνουμε για \( 0\leq x\leq 1 \) και \( N=10 \) τμήματα.
+
+Η μέθοδος Euler εφαρμόζεται ως εξής:
+\begin{align*}
+	y_0 &= y(0) = 1 \\
+	y_{i+1} &= y_i + h(-y_i+x_i+1) \\
+	y_{i+1} &= 0.9y_i + 0.01i + 0.1
+\end{align*}
+
+\[
+\begin{array}{|c|cc|c}
+	  i    &  x_i   &  y_i   & y(x_i) \text{ (πραγμ.)} \\ \hline
+	  0    &   0    &   1    & 1                       \\
+	  1    &  0.1   &   1    & 1.004                   \\
+	  2    &  0.2   &  1.01  & 1.018                   \\
+	  3    &  0.3   & 1.029  & 1.040                   \\
+	\vdots & \vdots & \vdots & \vdots                  \\
+	  9    &  0.9   & 1.287  & 1.306                   \\
+	  10   &  1.0   & 1.347  & 1.367
+\end{array}
+\]
+
+\paragraph{}
+Η μέθοδος Euler είναι πολύ απλή, αλλά παρατηρούμε πως έχει αρκετά μεγάλο
+σφάλμα.
+
+\subsection{Σφάλματα}
+\begin{defn}{Τάξη μεθόδου}{}
+	Μία μέθοδος προσέγγισης είναι \textbf{τάξης} \( \mathbf n \),
+	εάν υπάρχει σταθερά \( M \) ανεξάρτητη από το βήμα, τέτοια ώστε:
+	\[
+	\left|y(x_i)-y_i\right| < Mh^n
+	\]
+	όπου \( h = \frac{b-a}{N} \) και \( y_i \) η προσέγγιση της
+	πραγματικής \( y(x_i) \).
+\end{defn}
+
+Επειδή συνήθως \( h<1 \), γενικά μιλώντας, όσο μεγαλύτερο το \( n \),
+είναι πιο ακριβής και η μέθοδος.
+
+\begin{itemize}
+	\item Η μέθοδος Euler είναι \textbf{1\textsuperscript{ης} τάξης}.
+\end{itemize}
+
+\subsection{Μέθοδος βελτιωμένου Euler}
+Κανονικά:
+\[
+y_{i+1} = y_i + hf(x_i,y_i)
+\]
+
+Μπορούμε να θεωρήσουμε ένα επόμενο σημείο για το \( f(x_i,y_i) \):
+\begin{align*}
+	k_0 &= hf(x_i,y_i) \\
+	k_1 &= hf(x_i+h,\ y_i+k_0)
+\end{align*}
+
+Επομένως η μέθοδος είναι:
+\[
+\boxed{\begin{array}{rl}
+	k_0 &= f(x_i,y_i) \\
+	k_1 &= f(x_i+h,\ y_i+k_0) \\
+	y_{i+1} &= y_i + h \left(\frac{k_0+k_1}{2}\right)
+	\end{array}}
+\]
+
+\subsection{Μέθοδος Μέσου Σημείου}
+\[
+\boxed{\begin{array}{rl}
+	k_0 &= f(x_i,y_i) \\
+	k_1 &= f(x_i+\sfrac{h}{2} ,\ y_i+\frac{1}{2}k_0) \\
+	y_{i+1} &= y_i + k_1
+	\end{array}}
+\]
+
+\subsection{Μέθοδοι Runge-Kutta}
+Οι γενικές μέθοδοι Runge-Kutta είναι:
+\begin{align*}
+	y_{i+1} &= y_i +\sum_{i=0}^{r-1}w_ik_i \\
+	\sum_{i=0}^{r-1} w_i &= 1
+\end{align*}
+όπου \( w_i \) βάρη που επιλέγουμε.
+
+Εμείς θα ασχοληθούμε με τη μέθοδο Runge-Kutta 4\textsuperscript{ης}
+τάξης (κλασική/κανονική):
+\[
+\boxed{\begin{array}{rl}
+	k_0 &= hf(x_i,y_i) \\
+	k_1 &= hf(x_i+\frac{1}{2}h,\ y_i + \frac{1}{2}k_0) \\
+	k_2 &= hf(x_i+\frac{1}{2}h,\ y_i+\frac{1}{2}k_1) \\
+	k_3 &= hf(x_i+h,\ y_i+k_2) \\
+	y_{i+1} &= \boxed{y_i+\frac{1}{6}\left(k_0+2k_1+2k_2+k_3\right)}
+	\end{array}}
+\]
+
 \end{document}
