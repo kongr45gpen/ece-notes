@@ -17,6 +17,9 @@
 \usepackage[greek]{babel}
 %\usepackage{color}
 \usepackage[active,pdftex,tightpage]{preview}
+
+\pgfplotsset{compat=1.14}
+
 \PreviewEnvironment[]{tikzpicture}
 \PreviewEnvironment[]{pgfpicture}
 \DeclareSymbolFont{symbolsb}{OMS}{cmsy}{m}{n}
@@ -28,7 +31,22 @@
         \ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%
     }
 
-
+\tikzset{cross/.style={cross out, draw,
+        minimum size=2*(#1-\pgflinewidth),
+        inner sep=0pt, outer sep=0pt}}
+\tikzset{
+    mark position/.style args={#1(#2)}{
+        postaction={
+            decorate,
+            decoration={
+                post length=1mm, % ??? Magic to fix "Dimension
+                pre length=1mm, % ???  too large" errors.
+                markings,
+                mark=at position #1 with \coordinate (#2);
+            }
+        }
+    }
+}
 
 \begin{document}
 <>
