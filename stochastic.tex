@@ -2789,9 +2789,74 @@ Fourier των πυκνοτήτων φασματικής ισχύος που έ�
 εκφράζει την πυκνότητα φασματικής ισχύος στα εργοδικά σήματα, και τη
 μέση τιμή των πυκνοτήτων στα στάσιμα σήματα.
 
-\todo{Missing notes}
+\subsubsection{Ιδιότητες πυκνότητας φασματικής ισχύος}
+\begin{enumpar}
+	\item
+	\( 
+	\underset{\mathclap{\text{(εργοδικό)}}}{S_{\mathrm p x} \geq 0}
+	 \) και
+	\( 
+	\underset{\mathclap{\text{(στάσιμο)}}}{E\left[S_{\mathrm p x}
+		\right] \geq 0}
+	\)
+	\item \( 
+	R_x(\tau)
+	 \) άρτια, τότε:
+	 \[
+	 S_{\mathrm p x}(\omega ) = \int_{-\infty}^{\infty}
+	 R_x(\tau)\cos(\omega \tau)\dif \tau
+	 = 2 \int_{0}^{\infty} R_x(\tau)\cos(\omega \tau)\dif\tau
+	 \]
+	\item Η συνάρτηση αυτοσυσχέτισης δίνεται από τη σχέση:
+	\[
+	R_x(\tau) = \frac{1}{2\pi}
+	\int_{-\infty}^{\infty} S_{\mathrm p x}(\omega )
+	\cos(\omega \tau)\dif\omega =
+	\frac{1}{\pi} \int_{0}^{\infty}
+	S_{\mathrm p}x(\omega )\cos(\omega \tau)\dif \omega 
+	\]
+	\item Η συνολική ισχύς είναι:
+	\[
+	P = \frac{1}{2\pi} \int_{-\infty}^{\infty}
+	S_{\mathrm p x}(\omega )\dif\omega
+	\]
+	\item \( 
+	P=R_x(0)
+	 \)
+\end{enumpar}
 
-\subsection{}
+\subsubsection{Πυκνότητα φάσματος ετεροισχύος}
+\begin{defn}{Πυκνότητα φάσματος ετεροισχύος}{}
+	Είναι η ποσότητα \( \underline{S_{\mathrm p x y}} \) όπου:\[
+	R_{xy}(\tau) \xrightarrow{\quad \mathrm{FT} \quad} S_{\mathrm p x y}
+	(\omega )
+	\]
+\end{defn}
+
+\section{Απόκριση γραμμικού συστήματος σε στοχαστική είσοδο}
+
+Έστω ένα γραμμικό σύστημα με \textbf{κρουστική απόκριση} \( h(t) \):
+\begin{center}
+	\begin{tikzpicture}[scale=2]
+	\draw[->] (0,0) node[left] {$x(t)$} -- (1,0) ;
+	\draw (1,0.25) rectangle (2.3,-0.25) node[midway] {$h(t)$};
+	\draw[->] (2.3,0) -- (3.3,0) node[right] {$y(t)$};
+	\end{tikzpicture}
+\end{center}
+που θεωρούμε ότι είναι χρονοαμετάβλητο, αιτιατό και ευσταθές, δηλαδή:
+\begin{enumpar}
+	\item \( h(t) = 0, \quad \forall t < 0 \)
+	\item \( \displaystyle
+	\int_{-\infty}^{\infty} \left|h(t)\right|\dif t < \infty
+	 \)
+	\item \(  \displaystyle
+	y(t) = x(t)*h(t) = \int_{0}^{\infty}
+	x(t-\lambda)h(\lambda)\dif\lambda
+	= \int_{-\infty}^{t}
+	x(\lambda)h(t-\lambda)\dif\lambda
+	 \)
+\end{enumpar}
+
 Έστω \( \big\lbrace X(t) \big\rbrace \) με \( E\left[x(t)\right] = M \),
 και:
 \[
