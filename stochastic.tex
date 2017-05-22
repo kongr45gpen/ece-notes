@@ -2936,4 +2936,226 @@ Y(t) = \int_{0}^{\infty} x(t-\lambda)h(\lambda)\dif\lambda
 	\Aboxed{R_{xy}(\tau) &= R_x(\tau) * h(\lambda)}
 \end{align*}
 
+\subsection{Περιγραφή στο πεδίο της συχνότητας}
+\begin{center}
+	\begin{tikzpicture}[scale=1.5]
+	\draw[->] (0,0) -- (1,0) node[midway,above] {$x(t)$};
+	\draw (1,0.25) rectangle (2.3,-0.25) node[midway] {$h(t)$};
+	\draw (0.5,0.35) node[above] {$X(f)$};
+	\draw (1.65,0.35) node[above] {$H(f)$};
+	\draw (2.8,0.35) node[above] {$Y(f)$};
+	\draw[->] (2.3,0) -- (3.3,0) node[midway, above] {$y(t)$};
+	\end{tikzpicture}
+\end{center}
+Είναι γνωστό ότι στο πεδίο της συχνότητας η συνέλιξη μεταφράζεται
+σε πολλαπλασιασμό:
+\[
+X(f) = X(f)H(f)
+\]
+
+Γνωρίζουμε επίσης τη σχέση της πυκνότητας φασματικής ισχύος με τον
+μετασχηματισμό Fourier:
+\[
+S_{\mathrm p x}  = \mathscr F \left[ R_x(\tau) \right]
+\]
+
+Σε ένα σύστημα με είσοδο \( \Big\lbrace x(t) \Big\rbrace \) και
+\textbf{έξοδο \( \Big\lbrace y(t) \Big\rbrace \)}, η
+\textbf{πυκνότητα φασματικής ισχύος της εξόδου} είναι:
+\begin{align*}
+	S_{\mathrm p y} &= \mathscr F \left[R_y(\tau)\right]
+	\\ &= \int_{-\infty}^{\infty} \left[
+	\int_{0}^{\infty}
+	\int_{0}^{\infty}
+	R_x(\tau + \lambda_2 - \lambda_1)h(\lambda_1)h(\lambda_2)
+	\dif\lambda_1 \dif\lambda_2
+	\right]e^{-j\omega \tau}\dif \tau
+	\\ &=
+	\int_{0}^{\infty}
+	\int_{0}^{\infty} h(\lambda_1)h(\lambda_2)
+	\left[
+	\int_{-\infty}^{\infty}
+	R_x \underbrace{(\tau+\lambda_2-\lambda_1)}_{t}
+	\right] e^{-j\omega \tau} \dif\tau
+	\\ &= \int_{0}^{\infty} \int_0^{\infty} h(\lambda_1)
+	h(\lambda_2)S_{\mathrm p x}(\omega )
+	e^{-j\omega (\lambda_2-\lambda_1)}
+	\dif\lambda_2
+	\\ &= S_{\mathrm p x}(\omega )
+	\int_{0}^{\infty} h(\lambda_1)e^{j\omega \lambda_1}
+	\dif\lambda_1 \int_{0}^{\infty}
+	h(\lambda_2)e^{-j\omega \lambda_2}\dif\lambda_2 \\
+	&= S_{\mathrm p x}(\omega ) H(-\omega ) H(\omega )
+	= S_{\mathrm p x} (\omega ) \big| H(\omega ) \big|^2
+\end{align*}
+
+Δηλαδή τελικά:
+\[
+\boxed{
+S_{\mathrm p y} (\omega ) =
+\big\lvert H(\omega ) \big\rvert^2 S_{\mathrm p x}(\omega )
+}
+\]
+
+Η συνάρτηση \( \big\lvert H(\omega ) \big\rvert^2 \) ονομάζεται
+\textbf{συνάρτηση μεταφοράς ισχύος}.
+
+\subsubsection{Σχέση μέσης τετραγωνικής τιμής και σφάλματος ισχύος}
+\begin{align*}
+	R_x(0) &= \frac{1}{2\pi} \int_{-\infty}^{\infty}
+	S_{\mathrm p x}(\omega )
+	\cancel{e^{-j\omega 0}}\dif \omega \\
+	R_x(0) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} S_{\mathrm p x}
+	(\omega ) \dif (\omega ) \\
+	R_x(\tau) &= E\big[ x(t)x(t+\tau) \big] \\
+	R_x(0) &= E\big[ x(t)x(t) \big] = E\big[ x^2(\tau) \big] =
+	\boxed{P}
+\end{align*}
+
+\todo{Graph 40}
+
+\subsection{Χαρακτηριστικά στοχαστικά σήματα}
+Έστω ένα στοχαστικό σήμα \( \bigg\lbrace x(t) \bigg\rbrace \) με
+τυχαίες μεταβλητές \( X(t_1),\ X(t_2),\ \dots, X(t_n) \)
+
+\subsubsection{Gaussian από κοινού κατανομή}
+Δίνεται από τη σχέση:
+\[
+f_{x(t_1),x(t_2),\dots,x(t_n)}\big(
+x(t_1),x(t_2),\dots,x(t_n)
+\big) = \frac{1}{(2\pi)^{\sfrac{n}{2}\sqrt{|k|}}}
+\exp\left[
+-\frac{1}{2|k|} \sum_{i=1}^{n} \sum_{j=1}^{n}
+\Delta_{ij} \left(
+x(t_i)-\overline{x(t_i)}
+\right)\left(
+x(t_j)-\overline{x(t_j)}
+\right)
+\right]
+\]
+όπου \( |k| \) σημαίνει η ορίζουσα του \textbf{πίνακα συμμεταβλητότητας}:
+\[
+k = \left[
+\begin{matrix}
+k_{11} & k_{12} & \hdots & k_{1n} \\
+k_{21} & k_{22} & \vdots & k_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+k_{n1} & k_{n2} & \hdots & k_{nn}
+\end{matrix}
+\right]
+\]
+με στοιχεία:
+\begin{align*}
+	k_{ij} &= \cov\left[ x(t_i),x(t_j) \right]
+	= E\left[
+	\left(
+	x(t_i)-\overline{x(t_i)}
+	\right)\left(
+	x(t_j)-\overline{x(t_j)}
+	\right)
+	\right] \\ &= R_x(t_i,t_j) - \overline{X(t_i)}\,\overline{X(t_j)}
+	\intertext{Αν οι μέσες τιμές είναι μηδέν, φτάνουμε στον πιο απλό 
+	τύπο:}
+    &= R_x(t_i,t_j)
+\end{align*}
+και \( \Delta_{ij} \) είναι η \textbf{προσημασμένη ελλάσονα} του
+\( k_{ij} \) στον παραπάνω πίνακα, δηλαδή η ορίζουσα του
+\( n-1 \ \times \ n-1 \) πίνακα που προκύπτει αν από τον \( k \)
+αφαιρέσουμε την γραμμή και τη στήλη του \( k_{ij} \) στοιχείου,
+πολλαπλασιασμένη με \( (-1)^{i+j} \):
+\[
+\text{Αν}
+k = \left[\begin{matrix}
+k_{11} & k_{12} & {\color{red} k_{13}} \\
+{\color{red} k_{21}} & {\color{red} k_{22}} & {\color{red} k_{23}} \\
+k_{31} & k_{32} & {\color{red} k_{33}}
+\end{matrix}\right], \text{ τότε } \quad
+\Delta_{23} = (-1)^{2+3}\cdot\left|\begin{matrix}
+k_{11} & k_{12} \\ k_{31} & k_{32}
+\end{matrix}\right|
+\]
+
+\subsubsection{Gaussian στάσιμο στοχαστικό σήμα}
+Αν το σήμα είναι στάσιμο με την ευρεία έννοια, δηλαδή
+\( \overline{X(t_i)} =  \) σταθερό και \( R_x(t_i,t_j) 
+= R_x(t_i-t_j)
+\):
+
+Παρατηρούμε ότι το στάσιμο γκαουσιανό σήμα δεν μεταβάλλεται όταν
+μετατοπίζεται στο χρόνο, επομένως είναι και στάσιμο με την αυστηρή
+έννοια. Όταν επίσης ένα gaussian στοχαστικό σήμα είναι είσοδος σε
+ένα γραμμικό σύστημα, η έξοδός του είναι επίσης gaussian. Τα γκαουσιανά
+σήματα είναι χρήσιμα επειδή με αυτά συχνά μοντελοποιούμε τον θόρυβο.
+
+\subsubsection{Λευκός θόρυβος}
+AWGN (Additive White Gaussian Noise) - προέρχεται από την κίνηση
+των ηλεκτρονίων στους ηλεκτροφόρους αγωγούς, εμφανίζεται σε διόδους
+p-n, κεραίες, στον κοσμικό θόρυβο, \dots
+
+Χαρακτηριστικό του είναι η πυκνότητα φασματικής ισχύος, που είναι
+σταθερή από το \( -\infty \) μέχρι το \( \infty \):
+\[
+\underline{S_{\mathrm p x}(\omega ) = S_0}
+\]
+
+\todo{Graph 41}
+
+Αυτό σημαίνει ότι όλες οι συχνότητες συμμετέχουν με το ίδιο μερίδιο
+ισχύος στην κατασκευή του σήματος (το όνομα "\emph{λευκός}"
+παραπέμπει στο φάσμα του Νεύτωνα, και στην ανάμιξη όλων των χρωμάτων,
+που δίνει λευκό φως).
+
+Ισχύει:
+\[
+E\left[x^2(t)\right] = \frac{1}{2\pi}
+\int_{-\infty}^{\infty} S_{\mathrm p x}(\omega )
+\dif \omega = \infty
+\]
+Δηλαδή ο ιδανικός θόρυβος έχει άπειρη ενέργεια! (Στην πραγματικότητα
+η πυκνότητα φασματικής ενέργειας αρχίζει και μειώνεται μετά τα
+\( 2000 \si{\giga\hertz} \), και δεν μπορεί να κατασκευαστεί συσκευή
+με μεγάλο εύρος φάσματος ώστε να παράξει άπειρη ισχύ).
+
+Για τη συνάρτηση αυτοσυσχέτισης ισχύει:
+\[
+R_{x}(\tau) = S_0\delta(\tau)
+\]
+
+\todo{Graph 42}
+
+Αυτό σημαίνει ότι η τιμή του σήματος κάθε στιγμή, δεν εξαρτάται καθόλου
+από οποιαδήποτε άλλη τιμή, δηλαδή το σήμα είναι εντελώς τυχαίο.
+
+\todo{Graph 43}
+
+\subsubsection{Εφαρμογή}
+Αν τον προηγούμενο με άπειρο εύρος μπάντας λευκό θόρυβο τον περάσουμε
+μέσα από ένα πεπερασμένου εύρους συχνοτήτων σύστημα:
+\todo{Graph 44}
+\[
+S_{\mathrm p x}(\omega )\left|H(\omega )\right|^2
+\]
+και έχουμε την έξοδο:
+\todo{Graph 45}
+\[
+S_{\mathrm p y}(\omega ) = \begin{cases}
+S_0' \quad & |\omega | \leq \omega_0 \\
+0 \quad & \text{αλλού}
+\end{cases}
+\]
+που δεν είναι λευκός θόρυβος, αλλά έχει "\emph{χρωματιστεί}", η
+συνάρτηση αυτοσυσχέτισης είναι (\( \mathscr F^{-1} \)):
+\[
+R_x(\tau) = \frac{\omega_0 S_0'}{\pi}
+\underbrace{\frac{\sin(\omega_0\tau)}{\omega_0\tau}}_{
+	\sinc(\omega_0 t)}
+\]
+\todo{Graph 46}
+δηλαδή στην πραγματικότητα, οι εναλλαγές στον θόρυβο είναι ομαλές,
+και δεν μπορούν να παίρνουν οποιεσδήποτε τιμές.
+
+\todo{Graph 47}
+Όσο μικραίνει το εύρος ζώνης και τείνει στο 0 (ώση), ο
+\( \mathscr F^{-1} \)
+γίνεται ένα συνημίτονο, δηλαδή αυξάνεται η αυτοσυσχέτιση.
 \end{document}
