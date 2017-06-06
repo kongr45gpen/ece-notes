@@ -5181,7 +5181,22 @@ x_2 \leq 6
 \end{align*}
 
 \subparagraph{\( \mathbb R^2 \) γραφική επίλυση}
-\todo{Graph 1}
+\hspace{0pt}
+
+\begin{tikzpicture}[scale=.6]
+\fill[opacity=.5, green!80!cyan] (0,0) -- (0,6) -- (3,6) -- (8,3.5) -- (8,0) -- cycle;
+\fill[opacity=.5, brown!80!green] (0,0) -- (0,6) -- (6,6) -- (8,2) -- (8,0) -- cycle;
+
+\draw[->] (-0.5,0) -- (10,0) node[below] {$x_1$};
+\draw[->] (0,-0.5) -- (0,8) node[left] {$x_2$};
+\draw (-0.5,6) node[above,xshift=1mm] {$6$} -- (8.5,6);
+\draw (8,-0.5) node[below] {$8$}-- (8,6.5);
+
+\draw[very thick, blue!50!black] (-1,8) -- (9,3) node[midway,sloped,above] {$x_1+2x_2=15$} ;
+\draw[very thick, blue!50!black] (4,10) -- (9.5,-1) node[pos=.2,sloped,above] {$2x_1+x_2=18$} ;
+\filldraw[fill=green!50!white, draw=black,fill opacity=.7] (7,4) circle (2.5mm);
+
+\end{tikzpicture}
 
 Παρατηρούμε ότι η βέλτιστη λύση βρίσκεται σε ακραίο σημείο.
 
@@ -5214,6 +5229,18 @@ x_2 \leq 6
 	x_1-x_2 \leq 1 \\
 	x_1,x_2 \geq 0
 \end{gather*}
+
+\begin{tikzpicture}[scale=1.2]
+\fill[opacity=.5, green!80!cyan,path fading=north] (0,0) -- (1,0) -- (3.5,2.5) -- (0,2.5) -- cycle;
+
+\draw[->,black!80!green,thick] (0.5,-0.7) node[below] {$x_1 \geq 0 $} to[bend left] (0.7,0.5);
+
+\draw[->] (-0.5,0) -- (3,0) node[below] {$x_1$};
+\draw[->] (0,-0.5) -- (0,3) node[left] {$x_2$};
+
+\draw [very thick, blue!50!black] (0.8,-0.2) -- (3.5,2.5) node[midway,below,sloped] {$x_1-x_2=1$};
+\end{tikzpicture}
+
 Σε αυτήν την περίπτωση έχουμε μη φραγμένο σύνολο (κάτι που δηλώνει ότι έχουμε κάνει λάθος και
 δεν λάβαμε υπόψιν κάποιον περιορισμό).
 
@@ -5313,7 +5340,7 @@ x_5     & 0 &  3  &  0  &  0 & -\sfrac{1}{3}  &  \sfrac{1}{3}   &         2     
 \]
 
 \section{Ποιες σχέσεις θα δίνονται;}
-\todo{Ποιες σχέσεις θα δίνονται;}
+\todo{check}
 
 Τα κεφάλαια όπως υπάρχουν στο βιβλίο:
 \newcommand{\nlc}{\displaybreak[2] \\[3ex]}
