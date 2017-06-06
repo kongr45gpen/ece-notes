@@ -4391,40 +4391,73 @@ A=\left[\begin{matrix}
 \subparagraph{Λύση}
 Σαν οδηγό διαλέγουμε στην πρώτη στήλη το μέγιστο κατ' απόλυτη τιμή
 στοιχείο (δηλαδή το 7):
-\todo{Change orientation}
-\begin{alignat*}{5}
-	A&=\left[\begin{matrix}
-	1&2&4\\4&5&6\\7&8&9
-	\end{matrix}\right] &&\rightarrow \left[\begin{matrix}
-	7&8&9\\4&5&6\\1&2&4
-	\end{matrix}\right]
-	 &&\xrightarrow[R_2=R_2-\frac{4}{7}R_1]{R_3=R_3-\frac{1}{7}R_1}
-	 \left[\begin{matrix}
-	 7&8&9 \\ 0 & \sfrac{3}{7}  & \sfrac{6}{7}  \\
-	 0 & \sfrac{6}{7}  & \sfrac{9}{7} 
-	 \end{matrix}\right] 
-	 &&\xrightarrow[\text{αντιμετάθεση γραμμών
-	 }]{\text{οδηγός το } \sfrac{6}{7} }
-	 \left[\begin{matrix}
-	 7&8&9 \\  0 & \sfrac{6}{7}  & \sfrac{9}{7}   \\
-	0 & \sfrac{3}{7}  & \sfrac{6}{7}
-	 \end{matrix}\right] &&\xrightarrow{R_3=R_3-\frac{1}{2}R_2}
-	 \left[\begin{matrix}
-	 7&8&9 \\ 0 & \sfrac{6}{7}  & \sfrac{19}{2} \\ 0 & 0 & -\sfrac{1}{2} 
-	 \end{matrix}\right]
-	\\
-	P=I&=\left[\begin{matrix}
-	1&0&0\\0&1&0\\0&0&1
-	\end{matrix}\right] &&\rightarrow \left[\begin{matrix}
-	0&0&1\\ 0&1&0 \\ 1&0&0
-	\end{matrix}\right] &&\rightarrow %&&\rightarrow 
-	\left[\begin{matrix}
-	0&0&1\\1&0&0\\0&1&0
-	\end{matrix}\right] \\
-	&\text{Πολλαπλασιαστές: } &&
-	m_{21}=\frac{4}{7},\ m_{31}=\frac{1}{7}
-	&& && m_{32}=\frac{1}{2}
-\end{alignat*}
+\todo{check}
+\[
+\begin{array}{c|c|c}
+\text{Πίνακας } A & \text{Πίνακας } P & \text{Πολλαπλασιαστές} \\ \hline
+\left[\begin{matrix}
+1&2&4\\4&5&6\\\boxed{7}&8&9
+\end{matrix}\right] &
+I=\left[\begin{matrix}
+1&0&0\\0&1&0\\0&0&1
+\end{matrix}\right] &
+\\
+\downarrow &
+\downarrow &
+\\
+\left[\begin{matrix}
+7&8&9\\4&5&6\\1&2&4
+\end{matrix}\right] &
+\left[\begin{matrix}
+0&0&1\\ 0&1&0 \\ 1&0&0
+\end{matrix}\right] &
+\\
+\downarrow & \downarrow &
+\\
+\substack{R_2=R_2-\frac{4}{7}R_1 \\ R_3=R_3-\frac{1}{7}R_1} & &
+\\[1ex]
+\left[\begin{matrix}
+7&8&9 \\ 0 & \sfrac{3}{7}  & \sfrac{6}{7}  \\
+0 & \boxed{\sfrac{6}{7}}  & \sfrac{9}{7} 
+\end{matrix}\right] &
+\left[\begin{matrix}
+0&0&1\\ 0&1&0 \\ 1&0&0
+\end{matrix}\right] &
+\substack{\displaystyle
+	m_{21} = \frac{4}{7} \\[1ex] \displaystyle
+	m_{31} = \frac{1}{7}
+	}
+\\
+\downarrow & \downarrow &
+\\
+\substack{\text{οδηγός το } \sfrac{6}{7}\\ \text{αντιμετάθεση γραμμών}} & &
+\\[1ex]
+\left[\begin{matrix}
+7&8&9 \\  0 & \sfrac{6}{7}  & \sfrac{9}{7}   \\
+0 & \sfrac{3}{7}  & \sfrac{6}{7}
+\end{matrix}\right] &
+\left[\begin{matrix}
+0&0&1\\ 1&0&0 \\ 0&1&0
+\end{matrix}\right] &
+\\
+\downarrow & \downarrow &
+\\
+\substack{R_3=R_3-\frac{1}{2}R_2} & &
+\\[1ex]
+\left[\begin{matrix}
+7&8&9 \\ 0 & \sfrac{6}{7}  & \sfrac{19}{2} \\ 0 & 0 & -\sfrac{1}{2} 
+\end{matrix}\right]
+& \left[\begin{matrix}
+0&0&1\\1&0&0\\0&1&0
+\end{matrix}\right]
+&
+{\displaystyle m_{32} = \frac{1}{2}}
+\\
+\rotatebox{90}{$\,=$} & \rotatebox{90}{$\,=$} &
+\\[-1ex]
+U & P &
+\end{array}
+\]
 Άρα: \[
 L = \left[\begin{matrix}
 1 & 0 & 0 \\
@@ -4432,7 +4465,7 @@ L = \left[\begin{matrix}
 \sfrac{1}{7}  & \sfrac{1}{2} & 1
 \end{matrix}\right]
 \]
-\subparagraph{}
+\subparagraph{Λύση συστήματος}
 \[
 d = Pb = \left[\begin{matrix}
 3\\1\\2
