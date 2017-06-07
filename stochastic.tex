@@ -431,7 +431,7 @@
 	\draw[dashed] (-1,1.125) -- (8,1.125);
 	\draw[dashed] (-1,-1.125) -- (8,-1.125);
 	
-	\draw (-1,0) -- (7.2,0);
+	\draw (-1,0) -- (8,0);
 	\draw (0,-2) -- (0,2);
 	\def\1{1.5};
 	\def\2{0.75}
@@ -1015,7 +1015,25 @@
 	\( \left\lbrace x_1<X\leq x_2,\
 	y_1<Y\leq y_2 \right\rbrace \)
 	να βρεθούμε μέσα στο ορθογώνιο του σχήματος;
-	\todo{Graph 19}
+	
+	\begin{tikzpicture}[scale=1.2]
+	\fill[green!50!white,path fading=south,opacity=.6] (1,0.4) rectangle (1.5,1);
+	\fill[green!50!white] (1,1) rectangle (1.5,1.5);
+	
+	\draw[->] (-0.5,0) -- (2,0) node[below right] {$x$};
+	\draw[->] (0,-0.5) -- (0,2) node[left] {$y$};
+	
+	\draw (1,-0.5) node[above left] {$x_1$} -- (1,2);
+	\draw (1.5,-0.5) node[above right] {$x_2$}-- (1.5,2);
+	
+	\draw (-0.5,1) node[below] {$y_1$} -- (2,1);
+	\draw (-0.5,1.5) node[above] {$y_2$} -- (2,1.5);
+	
+	\filldraw[fill opacity=.1] (1,1.5) circle (2.5pt);
+	\filldraw[fill opacity=.8] (1.5,1.5) circle (2.5pt);
+	\filldraw[fill opacity=.8] (1,1) circle (2.5pt);
+	\filldraw[fill opacity=.1] (1.5,1) circle (2.5pt);
+	\end{tikzpicture}
 	
 	Έχουμε:
 	\begin{align*}
@@ -1123,35 +1141,64 @@
 	\]
 	
 	για την οποία ισχύουν οι ιδιότητες, αντίστοιχα με προηγουμένως:
-	\todo{Itemize}
-	\begin{gather*}
-		F_X(+\infty/B) = 1, \quad F(-\infty/B) = 0 \\[3ex]
+
+	\begin{itemize}
+		\item \( F_X(+\infty/B) = 1, \quad F(-\infty/B) = 0 \)
+		\item \( \displaystyle
 		P\left\lbrace x_1<X\leq x_2\ /B \right\rbrace
 		=\frac{P\left\lbrace x_1 < X\leq x_2,\ B \right\rbrace}{P(B)}
-		=F(x_2/B) - F(x_1/B)
-		\\[3ex]
-		f_X(x/B) = \frac{\dif F_X(x/B)}{\dif x} \\
-		f_X(x/B) \leq 0 \ \forall x \\
+		=F(x_2/B) - F(x_1/B) \)
+		\item \( \displaystyle f_X(x/B) = \frac{\dif F_X(x/B)}{\dif x} \)
+		\item \( f_X(x/B) \leq 0 \ \forall x \)
+		\item \( \displaystyle
 		\int_{-\infty}^{\infty} f_x(x/B) \dif x = F_X(\infty/B)
-		- F_X(-\infty/B) = 1 \\
-		F_X(x_1/B) = \int_{-\infty}^{x_1} f_x(x/B)\dif x
-		\\[3ex]
-		P \left\lbrace x_1<X\leq x_2\ /B \right\rbrace
-	    = \int_{x_1^+}^{x_2^+} f_X(x/B)\dif x
-	\end{gather*}
-	
-	\todo{Graph 20}
+		- F_X(-\infty/B) = 1 \)
+		\item \( \displaystyle F_X(x_1/B) = \int_{-\infty}^{x_1} f_x(x/B)\dif x \)
+		\item \( \displaystyle P \left\lbrace x_1<X\leq x_2\ /B \right\rbrace
+		= \int_{x_1^+}^{x_2^+} f_X(x/B)\dif x \)
+	\end{itemize}
+
 	Επίσης έχουμε:
 	\begin{align*}
 		F_X(x/B) &= \begin{cases}
 		\frac{F_X(x)}{F_X(x_2)} &\quad x<x_2 \\
-		1 &\quad x\leq x_2
+		1 &\quad x\geq x_2
 		\end{cases} \\
 		f_X(x/B) &= \begin{cases}
 		\frac{f_X(x)}{\int_{-\infty}^{x^2} f_X(x) \dif x}
 		&\quad x<x_2 \\ 0 &\quad x \geq x_2
 		\end{cases}
 	\end{align*}
+
+	\begin{tikzpicture}[scale=1]
+	\draw[->] (-1,0) -- (2.5,0);
+	\draw[->] (0,-1) -- (0,2.5);
+	
+	\draw[very thick,blue!50!black] plot[smooth] coordinates {(-0.7,0.3) (-0.2,0.2) (1,1.5) (2,1.8)} node[below right] {$F_X(x)$};
+	\draw[very thick,green!50!black] plot[smooth] coordinates {(-0.7,0.4) (-0.2,0.6) (0.7,1.6) (1,1.8)} -- (2.5,1.8) node[above] {$F_X(x/B)$};
+	
+	\draw[dashed] (1,0) node[below] {$x_2$} -- (1,1.5) -- (0,1.5) node[left] {$F_X(x_2)$};
+	\draw[dashed] (1.7,0) node[below] {$x$} -- (1.7,1.8) -- (0,1.8) node[left] {$1$};
+	
+	\begin{scope}[yshift=-4cm]
+	\draw[->] (-1,0) -- (2.5,0);
+	\draw[->] (0,-1) -- (0,2.5);
+	
+	\draw[very thick,blue!50!black] plot[smooth] coordinates {(-0.7,0.2) (1,1.5) (2,0.4) (2.5,0.3)} node[above right] {$f_X(x)$};
+	\draw[very thick,green!50!black] plot[smooth,tension=1] coordinates {(-0.7,0.5) (0,1.45) (1,2)} -- (1,0) -- (2.4,0) node[below] {$f_X(x/B)$};
+	
+	\draw[dashed] (1,0) node[below] {$x_2$} -- (1,1.5);
+	
+	\filldraw[green!70!black,opacity=.4] (1,2) circle (2pt);
+	\filldraw[green!70!black,opacity=.4] (1,0) circle (2pt);
+	
+	\begin{scope}
+	\clip (1,0) rectangle (2.5,2);
+	\fill[red!70!black,path fading=east] plot[smooth] 
+	coordinates {(-0.7,0.2) (1,1.5) (2,0.4) (2.5,0.3)} -- (2.5,0) -- (-0.7,0);
+	\end{scope}
+	\end{scope}
+	\end{tikzpicture}
 	
 	\subsubsection{Υπό συνθήκη πιθανότητα με δύο τυχαίες μεταβλητές}
 	
@@ -1194,6 +1241,7 @@
     		\dif y\dif x}
     \end{align*}
     
+    \todo{fix}
     \paragraph{Έστω ότι \( B = \left\lbrace Y=y \right\rbrace \)}
     \begin{align*}
     	F_X(Y=y) &= \frac{
@@ -1247,15 +1295,69 @@
     
     \( W=h(X,Y) \)
     
-	\todo{Graph 21}
-	\todo{Graph 22}
+	\begin{tikzpicture}[scale=1.1]
+	\begin{scope}
+	\clip plot[smooth] coordinates {(-0.7,0.2) (1,1.5) (3,0.4) (3.7,0.2)} -- (3.7,0) -- (-0.7,0);
+	\fill[orange,postaction={pattern=north east lines,opacity=.3},fill opacity=.5] (1,0) rectangle ++(0.4,2);
+	\draw[dashed] (1,0) -- ++(0,2) (1+0.4,0) -- ++(0,2);
+	\end{scope}
 	
-	\[
-	f_Y(y)\dif y = P\left\lbrace y<Y\leq y+\dif y \right\rbrace
-	= P\left\lbrace x_1<X\leq x_1+\dif x_1 \right\rbrace
+	\draw[->] (-1,0) -- (2.5,0) node[below right] {$x$};
+	\draw[->] (0,-1) -- (0,2.5);
+	
+	\draw[thick,blue!40!black] plot[smooth] coordinates {(-0.7,0.2) (1,1.5) (3,0.4) (3.7,0.2)} node[right] {$f_X$};
+	\draw[dashed] (1,1.5) -- (0,1.5) node[left] {$f_X(x)$};
+	
+	\draw (current bounding box.south) node[below,align=center] {
+		$f_X(x_0)\dif x = P\big\{ x_0<x<x_0+\dif x\big\}$ \\
+		$f_Y(y)\dif x = P\big\{ y<Y<y+\dif y\big\}$
+	};
+	\draw (current bounding box.south east) node[above right,scale=.7] {$\big(y=g(x)\big)$};
+	
+	\end{tikzpicture}
+
+	\begin{tikzpicture}[scale=1.7,xscale=1.5]
+	\begin{scope}
+	\clip plot[smooth] coordinates {(-1.5,0.4) (-0.3,2) (1.2,1) (1.6,2) (2.2,1.6) (3,3)} -- (3,-1) -- (-1.5,-1);
+	\fill[cyan,postaction={pattern=north east lines,opacity=.3},fill opacity=.5]
+	(-0.65,0) rectangle ++(0.4,3)
+	(1.64,0) rectangle ++(0.32,3)
+	(2.3,0) rectangle ++(0.2,3)
+	;
+	\draw[dashed,every node/.style={scale=.5}]
+	(-0.65,0) node[below] {$x_1+\dif x_1$} -- ++(0,3)
+	(-0.65+0.4,0) node[below] {$\vphantom{\dif}x_1$} -- ++(0,3)
+	(1.64,0) node[below] {$\vphantom{\dif}x_2$} -- ++(0,3)
+	(1.64+0.32,0) node[below] {$x_2+\dif x_2$} -- ++(0,3)
+	(2.3,0) node[below] {$x_3+\dif x_3$} -- ++(0,3)
+	(2.3+0.2,0) node[below] {$\vphantom{\dif}x_3$} -- ++(0,3)
+	;
+	\end{scope}
+	
+	\draw[->] (-2,0) -- (3,0) node[below right] {$x$};
+	\draw[->] (0,-1) -- (0,2.5) node[left] {$y$};
+	
+	\draw[thick,blue!40!black] plot[smooth] coordinates {(-1.5,0.4) (-0.3,2) (1.2,1) (1.6,2) (2.2,1.6) (3,3)} node[above] {$y=g(x)$};
+	
+	\draw[dashed] (-0.2,2) -- (2.5,2);
+	\draw[dashed] (-0.65,1.7) -- (2.3,1.7);
+	
+	\filldraw[green!50!cyan!90!black,thin,fill opacity=.4]
+	(-0.65,1.7) circle (1pt)
+	(-0.65+0.4,2) circle (1pt)
+	(1.64,2) circle (1pt)
+	(1.64+0.32,1.7) circle (1pt)
+	(2.3,1.7) circle (1pt)
+	(2.3+0.2,2) circle (1pt)
+	;
+	\end{tikzpicture}
+	
+	\begin{align*}
+	f_Y(y)\dif y &= P\left\lbrace y<Y\leq y+\dif y \right\rbrace \\
+	&= P\left\lbrace x_1<X\leq x_1+\dif x_1 \right\rbrace
 	+ P\left\lbrace x_2<X\leq x_2+\dif x_2 \right\rbrace
 	+ P\left\lbrace x_3<X\leq x_3+\dif x_3 \right\rbrace
-	\]
+	\end{align*}
 	
 	Άρα:
 	\begin{align*}
@@ -2712,7 +2814,21 @@ x_{iT}(t) = x_i(\tau)\left[
 \right]
 \]
 
-\todo{Graph 38}
+\begin{tikzpicture}[scale=1]
+\begin{axis}[
+no markers, domain=-3:3, samples=40,
+axis lines*=center,
+height=2.5cm, width=6cm,
+xtick=\empty, ytick=\empty,
+enlargelimits=false, clip=false, axis on top,
+grid = major, ymax=0.4
+]
+\addplot+[black,const plot, no marks,very thick] coordinates {(-1.5,0) (-1.5,0.25) (1.5,0)} 
+node[pos=0,below,scale=.7] {$-\sfrac{T}{2}$} 
+node[pos=1,below,scale=.7] {$\sfrac{T}{2}$};
+\addplot [very thick,cyan!50!black] {gauss(0,1.5)+rand/70}  node[pos=.5,black,scale=.7,above right] {$1$};;
+\end{axis}
+\end{tikzpicture}
 
 Οι δύο τύποι συνδέονται από το θεώρημα Wiener-Khintchine.
 
@@ -2754,7 +2870,57 @@ x_{iT}(t) = x_i(\tau)\left[
 \end{align*}
 
 Το ολοκλήρωμα αυτό μπορεί να υπολογιστεί γραφικά:
-\todo{Graph 39}
+
+\begin{tikzpicture}[scale=1]
+\filldraw[green,draw=green!50!black,fill opacity=.4] (-2,0.5) -- (-0.5,2) -- (-0.5,0.5) -- cycle;
+\fill[red!70!yellow!90!green,opacity=.6] (-2,0.5) -- (-2,1.1) -- (-1.1,2) -- (-0.5,2) -- cycle;
+\fill[green!50!black,opacity=.5] (-1.1,2) -- (-0.5,2.6) -- (-0.5,2) -- cycle;
+
+\draw[->] (-4,0) -- (3,0) node[right] {$t_1$};
+\draw[->] (0,-2.7) -- (0,4) node[above] {$t_2$};
+
+\draw (-2,2) rectangle (2,-2);
+
+\fill[every node/.style={scale=.8}]
+(0,-2) circle (1.5pt) node[below left] {$-\sfrac{T}{2}$}
+(0,2) circle (1.5pt) node[above right] {$\sfrac{T}{2}$}
+(2,0) circle (1.5pt) node[below right] {$\sfrac{T}{2}$}
+(-2,0) circle (1.5pt) node[above right] {$-\sfrac{T}{2}$}
+;
+
+\draw[blue!50!cyan,very thick] (-3.6,-0.5) --++(45:6);
+\filldraw[blue!50!cyan,fill opacity=.4,every node/.style={scale=.8}]
+(-3.1,0) circle (2pt) node[above left,opacity=1] {$\tau-\dif\tau$}
+(0,3.1) circle (2pt) node[right,opacity=1] {$\tau+\dif\tau$};
+\draw[blue!90!black,very thick] (-3,-0.5) --++(45:5);
+\filldraw[blue!90!black,fill opacity=.4]
+(-2.5,0) circle (2pt) node[below,opacity=1,xshift=2mm] {$-\tau$}
+(0,2.5) circle (2pt) node[left,opacity=1] {$\tau$};
+\draw[blue!90!black] (-2.5+0.3,0) arc [start angle=0,end angle=45,radius=0.3] node[midway,scale=.5,xshift=3mm,yshift=1mm] {$45\degree$};
+
+\draw[green!50!black,very thick] (-0.5,0) -- (-0.5,3.2);
+\fill[green!30!black,every node/.style={scale=.8}]
+(-2,0) circle (1pt) node[below right] {$A$}
+(-0.5,0) circle (1pt) node[below] {$B$} node[yshift=-4mm,scale=.8,below] {$x_B$}
+;
+
+\draw[red!70!yellow!90!green,->] (-2.5,2.7)
+node[above,align=center,scale=.7,xshift=-1mm] {περίπου ίσο εμβαδόν το\\τραπέζιο \& το παραλληλόγραμμο}
+to[bend right] (-1.7,1.7);
+
+\draw (8,2) node {$t_2=t_1+\tau\implies\tau=t_2-t_1$};
+\draw[<-] (8,1.8) -- (8,1.2) node[below,align=center] {
+	πάνω σε αυτήν την\\
+	ευθεία το $\varphi$ είναι σταθερό \\
+	$\varphi_x(t_2-t_1)=\varphi_x(\tau)=R_x(\tau)e^{-j\omega\tau}$\\[1ex]
+	$\color{blue!50!cyan} \varphi_x(\tau+\dif\tau)$
+};
+
+\draw (current bounding box.south) node[below] {
+	$(AB) = t_1-\left(\sfrac{-T}{2}\right) = \frac{T}{2}-t+\frac{T}{8}=T-\tau$
+};
+
+\end{tikzpicture}
 
 Άρα, για ένα μικρό κομμάτι:
 \[
