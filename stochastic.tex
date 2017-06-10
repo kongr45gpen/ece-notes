@@ -688,7 +688,51 @@
 	Ας κάνουμε ένα πείραμα. Στο πείραμα έχουμε τρία κουτιά. Σε κάθε
 	κουτί υπάρχει μια άσπρη και μια μαύρη μπάλα, και τραβάω μία από
 	κάθε κουτί.
-	%TODO Graph 9
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+		\def\sphere#1#2#3{
+			\begin{scope}
+			\clip {#1} circle (#2);
+			\draw [fill=black!70] {#1}  circle (#2);
+			\begin{scope}%[transform canvas={rotate=45}]
+			\shade [ball color={#3},yshift={#2*0.6}] {#1} ellipse (#2*1.8 and #2*1.6);
+			\end{scope}
+			\end{scope}
+		}
+		\def\cr{1.7mm}
+		\def\js{0.8cm}
+		\begin{scope}[]
+		\sphere{(0,0)}{\cr}{white}
+		\sphere{(0.5,0)}{\cr}{black}
+		\draw (-0.3,0.3) rectangle (0.5+0.3,-0.3);
+		\end{scope}
+		\begin{scope}[xshift=2cm]
+		\sphere{(0,0)}{\cr}{white}
+		\sphere{(0.5,0)}{\cr}{black}
+		\draw (-0.3,0.3) rectangle (0.5+0.3,-0.3);
+		\end{scope}
+		\begin{scope}[xshift=4cm]
+		\sphere{(0,0)}{\cr}{white}
+		\sphere{(0.5,0)}{\cr}{black}
+		\draw (-0.3,0.3) rectangle (0.5+0.3,-0.3);
+		\end{scope}
+		
+		\draw[->,thick] (0.3,-0.5) to[bend left=20] (\js+1cm,-1);
+		\draw[->,thick] (2.3,-0.5) to[bend left=20] (\js+1.6cm,-1);
+		\draw[->,thick] (4.3,-0.5) to[bend right=30] (\js+2.2cm,-1);
+		
+		\begin{scope}[yshift=-1.5cm,xshift=\js]
+		\draw (0,0) node {$J_1=$};
+		
+		\draw (0.3,0) node[right,scale=1] {$\bigg\{$};
+		\sphere{(1,0)}{\cr}{white}
+		\sphere{(1.6,0)}{\cr}{black}
+		\sphere{(2.2,0)}{\cr}{white}
+		\draw (2.9,0) node[left,scale=1] {$\bigg\}$};
+		\end{scope}
+		\end{tikzpicture}
+	\end{center}
 	\begin{align*}
 		S_A &= \left\lbrace \varLambda, M \right\rbrace
 		= \left\lbrace J_{A_1},J_{A_2} \right\rbrace \\
@@ -756,7 +800,19 @@
 	Η συνάρτηση \( X \) επομένως αντιστοιχεί κάθε ενδεχόμενο του \( S \)
 	σε έναν αριθμό (φυσικό αν έχουμε αριθμήσιμα αποτελέσματα, πραγματικό
 	αν είναι μη αριθμήσιμα):
-	\todo{Graph 10}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=.8]
+		\draw (-1.2,0) node[left] {$S$};
+		\draw (0,0)  ellipse (1 and 1.3);
+		\draw[->,thick] (1,0) to[bend left=10] node[midway,above] {$X(J)$} (4-1.1,0);
+		\draw (4,0) ellipse (1.1 and 1.27);
+		\node at ($(4,0)+(70:1.1 and 1.27)$)[above right] {$\mathbb C$};
+		\node at ($(4,0)+(30:1.1 and 1.27)$)[above right] {$\mathbb R$};
+		\node at ($(4,0)+(-10:1.1 and 1.27)$)[above right] {$\mathbb N$};
+		\node at ($(4,0)+(-40:1.2 and 1.3)$)[right] {$\mathbb X = X(J)$};
+		\end{tikzpicture}
+	\end{center}
 	
 	\subsection[Συνάρτηση Κατανομής Πιθανότητας]{
 		Συνάρτηση Κατανομής Πιθανότητας \\ (Probability Distribution
@@ -773,7 +829,20 @@
 	
 	Δηλαδή μας δίνει την πιθανότητα η τυχαία μεταβλητή να είναι 
 	μικρότερη από έναν αριθμό:
-	\todo{Graph 11}
+	
+	\begin{tikzpicture}[scale=.8]
+	\draw[thick] (-2,0) -- (2,0);
+	\draw (-1,0) -- (-1,0.7) -- ++(2,0) -- (1,0);
+	\filldraw (-1,0) circle (2pt) node[below] {$x_1$};
+	\filldraw (1,0) circle (2pt) node[below] {$x_2$};
+	
+	\draw (current bounding box.north) node[above,yshift=5mm]
+	{$\big\{ x_1 < x \leq x_2 \big\}$};
+	
+	\draw (current bounding box.south) node[below,align=left,yshift=-3mm]
+	{$P\big\{ x = -\infty\big\} = 0$\\
+		$P\big\{ x = +\infty\big\} = 0$};
+	\end{tikzpicture}
 	
 	\paragraph{Ιδιότητες}
 	Η συνάρτηση αυτή ικανοποιεί μερικές ιδιότητες:
@@ -785,8 +854,18 @@
 		\item \( F_X(x_1) \leq F_X(x_2) \text{ ανν } x_1 \leq x_2 \)
 		(δηλαδή είναι \textbf{αύξουσα}, όχι όμως απαραίτητα γνησίως αύξουσα)
 		\item Απαιτούμε να είναι \textbf{συνεχής από τα δεξιά}, δηλαδή
-		\( F_X(x^+) = F_X(x) \)
-		\todo{Graph 12}
+		\( F_X(x^+) = F_X(x) \):
+		
+		\begin{tikzpicture}[scale=.6,every node/.style={scale=.8},yscale=.9]
+		\draw (-2,0) -- (2,0);
+		\draw (1.2,0) -- ++(0,0.5) --++(-2,0);
+		\draw (0.5,0) -- ++(0,1) --++(-2,0);
+		\draw (-0.5,0) -- ++(0,1.5) --++(-1.5,0);
+		\filldraw (-0.5,0) circle (2pt) node[below] {$x_1$};
+		\filldraw (0.5,0) circle (2pt) node[below] {$x_2$};
+		\filldraw (1.2,0) circle (2pt) node[below] {$x_3$};
+		\filldraw (-1.6,0) circle (1.5pt) node[below] {$0$};
+		\end{tikzpicture}
 	\end{enumroman}
 	
 	\paragraph{Παράδειγμα για την ιδιότητα (iv)}
@@ -844,6 +923,27 @@
 	\end{cases} \\ &= \mathlarger{P\left\lbrace X=x \right\rbrace}
 	\end{align*}
 	
+	\begin{tikzpicture}[scale=1.2]
+	\draw (-4,0) -- (4,0);
+	\draw (0,-0.7) -- (0,4);
+	\draw (0,0) node[below left] {$0$};
+	
+	\draw[dashed] (0.7,0) node[below] {$x$} -- (0.7,1) -- (0,1) node[left] {$F_x(x^-)$};
+	\draw[dashed] (0.7,2) -- (0,2) node[left] {$F_x(x^+)$};
+	
+	\draw[very thick,blue!50!black] plot[smooth] coordinates {(-3,0.5) (-0.2,0.5) (0.7,1)};
+	\draw[very thick,blue!50!black] plot[smooth,tension=1] coordinates {(0.7,2) (2.2,3.1) (3.5,3.55)};
+	\draw[thick,fill=white] (0.7,1) circle (3pt);
+	\draw[thick,fill=black!70!blue] (0.7,2) circle (3pt);
+	
+	\begin{scope}[yshift=-4cm]
+	\draw (-4,0) -- (4,0);
+	\draw (0,-1) -- (0,3);
+	
+	\draw[thick,black!70!blue] plot[const plot] coordinates {(-4,0) (.7*1,.7*1) (.7*2,.7*2) (.7*3,.7*3) (.7*4,.7*4) (.7*5,.7*4)};
+	\end{scope}
+	\end{tikzpicture}
+	
 	Παρατηρούμε ότι:
 	\begin{align*}
 		\text{συνεχής} &\implies P\left\lbrace X=x \right\rbrace = 0\\
@@ -874,7 +974,25 @@
 	\end{enumroman}
 	
 	\begin{center}
-	\todo{Graph 15}
+	\begin{tikzpicture}[scale=1.6]
+	\draw[dashed] (1.8,0) -- ++(0,2.5) (1.8+0.4,0) -- ++(0,2.5);
+	\draw[<->] (1.8,2.3) -- ++(0.4,0) node[midway,above,scale=.8] {$\dif x$};
+	\begin{scope}
+	\clip plot[smooth,tension=.6] coordinates {(-1,0.04) (-0.5,0.3) (1.3,2) (3,0.3) (3.4,0.03)} |- (0,0) -- (-1,0) -- cycle;
+	\fill[orange,postaction={pattern=north east lines,opacity=.3},fill opacity=.5] (-1,0) rectangle (0.4,2);
+	\fill[orange,postaction={pattern=north east lines,opacity=.3},fill opacity=.5] (1.8,0) rectangle ++(0.4,2);
+	\draw (0.4,0) -- ++(0,2);
+	\draw (1.8,0) -- ++(0,2) (1.8+0.4,0) -- ++(0,2);
+	\end{scope}
+	\draw (0.4,0) node[below] {$x_1$};
+	\draw (1.8,0) node[below,scale=.7] {$\vphantom{\dif}x$};
+	\draw (1.8+0.4,0) node[below,scale=.7] {$x+\dif x$};
+	
+	\draw (-1,0) -- (3.5,0);
+	\draw (0,-0.2) -- (0,2.5) node[left] {$f_x(x)$};
+	
+	\draw[thick,blue!40!black] plot[smooth,tension=.6] coordinates {(-1,0.04) (-0.5,0.3) (1.3,2) (3,0.3) (3.4,0.03)};
+	\end{tikzpicture}
 	\end{center}
 	
 	Παρατηρούμε ότι η συνάρτηση πυκνότητας πιθανότητας μοιάζει π.χ. με
@@ -1313,7 +1431,6 @@
 		$f_Y(y)\dif x = P\big\{ y<Y<y+\dif y\big\}$
 	};
 	\draw (current bounding box.south east) node[above right,scale=.7] {$\big(y=g(x)\big)$};
-	
 	\end{tikzpicture}
 
 	\begin{tikzpicture}[scale=1.7,xscale=1.5]
@@ -1446,7 +1563,39 @@
 \subsection{Χρήση γενικευμένων συναρτήσεων}
 Οι συναρτήσης κατανομής και πυκνότητας πιθανότητας που
 χρησιμοποιούμε μπορεί να μην είναι συνεχείς ή παραγωγίσιμες:
-\todo{Graph 23}
+\begin{center}
+	\begin{tikzpicture}[scale=1.2,xscale=1.1]
+	\draw[->] (-1,0) -- (4,0);
+	\draw[->] (0,-1) -- (0,4) node[left] {$F_X(x)$};
+	
+	\draw[very thick,black!60!blue] plot[const plot] coordinates
+	{(-1,0) (.7*1,.3+.7*1) (.7*2,.3+.7*2) (.7*3,.3+.7*3) (.7*4,.3+.7*4) (.7*5,.3+.7*4)};
+	
+	\def\x{1}
+	\draw (0.7*\x,0) node[below] {$x_1$};
+	\draw[fill=white] (0.7*\x,{1*(\x-1)}) circle (2pt);
+	\draw[fill=black!70!blue] (0.7*\x,{1*(\x)}) circle (2pt);
+	\foreach \x in {2,3,4} {
+		\draw[dashed] (0.7*\x,0) node[below] {$x_\x$} -- (0.7*\x,{.3+0.7*(\x-1)});
+		\draw[fill=white] (0.7*\x,{.3+0.7*(\x-1)}) circle (2pt);
+		\draw[fill=black!70!blue] (0.7*\x,{.3+0.7*(\x)}) circle (2pt);
+	}
+	
+	\draw[dashed] (2.8,3.1) -- (0,3.1) node[left] {$1$};
+	
+	\begin{scope}[yshift=-3.5cm]
+	\draw[->] (-1,0) -- (4,0);
+	\draw[->] (0,-1) -- (0,2) node[left] {$f_X(x)$};
+	
+	\draw[very thick,black!60!blue] plot[const plot] coordinates {(-1,0) (3.7,0)};
+	\def\x{1}
+	\draw[very thick,black!50!blue,->] (0.7*\x,0) node[below,black] {$x_\x$} -- ++(0,1) node[above] {$P_\x$};
+	\foreach \x in {2,3,4} {
+		\draw[very thick,black!50!blue,->] (0.7*\x,0) node[below,black] {$x_\x$} -- ++(0,.7) node[above] {$P_\x$};
+	}
+	\end{scope}
+	\end{tikzpicture}
+\end{center}
 
 \begin{align*}
 	P(X=x_i) &= p_i = F_X(x_i) - F_X(x_i^-) \\
@@ -1464,7 +1613,44 @@ f_X(x) = \sum_i p_i \delta(x-x_i)
 
 Αυτή ήταν μία συνάρτηση που περιείχε μόνο ώσεις. Αντίστοιχα,
 μπορούμε να έχουμε μικτές συναρτήσεις:
-\todo{Graph 24}
+
+\begin{tikzpicture}[scale=1.5]
+\draw[->] (-1,0) -- (4,0);
+\draw[->] (0,-1) -- (0,4) node[left] {$F_X(x)$};
+
+
+\draw[dashed] (1,1) --  (1,0) node[below] {$x_1$};
+\draw[dashed] (1.5,2.55) --  (1.5,0) node[below] {$x_2$};
+
+
+\draw[very thick,blue!50!black] plot[smooth] coordinates {(-1,0.4) (-0.2,0.5) (1,1)};
+\draw[very thick,blue!50!black] plot[smooth,tension=1] coordinates {(1,2) (1.2,2.3) (1.5,2.55)};
+\draw[very thick,blue!50!black] plot[smooth,tension=1] coordinates {(1.5,3) (2.3,3.4) (3.7,3.53)};
+\draw[blue!50!black] (1,1) -- (1,2) (1.5,2.55) -- (1.5,3);
+\draw[thick,fill=white] (1,1) circle (2pt);
+\draw[thick,fill=black!70!blue] (1,2) circle (2pt);
+\draw[thick,fill=white] (1.5,2.55) circle (2pt);
+\draw[thick,fill=black!70!blue] (1.5,3) circle (2pt);
+
+
+\draw[dashed] (3.7,3.6) -- (0,3.6) node[left] {$1$};
+
+\begin{scope}[yshift=-3.5cm]
+\draw[->] (-1,0) -- (4,0);
+\draw[->] (0,-1) -- (0,2) node[left] {$f_X(x)$};
+
+\draw[very thick,black!60!blue,->] (1,0) -- ++(0,0.7);
+\draw[very thick,black!60!blue,->] (1.5,0) -- ++(0,0.7);
+
+\draw[very thick,black!60!blue,mark position=0.5(a),mark position={(1+1)/(1+4)}(b)]
+plot[smooth,tension=.6] coordinates {(-1,0.04) (-0.5,0.3) (1.4,2) (3,0.3) (3.7,0.03)};
+
+\draw[dashed] (1,1.84) --  (1,0) node[below] {$x_1$};
+\draw[dashed] (1.5,2.00) --  (1.5,0) node[below] {$x_2$};
+\draw[thick,fill=white] (1,1.84) circle (2.5pt);
+\draw[thick,fill=white] (1.5,2.00) circle (2.5pt);
+\end{scope}
+\end{tikzpicture}
 
 \section{Ροπές}
 Έχουμε το μοντέλο:
@@ -3226,7 +3412,7 @@ k_{n1} & k_{n2} & \hdots & k_{nn}
 αφαιρέσουμε την γραμμή και τη στήλη του \( k_{ij} \) στοιχείου,
 πολλαπλασιασμένη με \( (-1)^{i+j} \):
 \[
-\text{Αν}
+\text{Αν }
 k = \left[\begin{matrix}
 k_{11} & k_{12} & {\color{red} k_{13}} \\
 {\color{red} k_{21}} & {\color{red} k_{22}} & {\color{red} k_{23}} \\
@@ -3250,6 +3436,15 @@ k_{11} & k_{12} \\ k_{31} & k_{32}
 σήματα είναι χρήσιμα επειδή με αυτά συχνά μοντελοποιούμε τον θόρυβο.
 
 \subsubsection{Λευκός θόρυβος}
+\begin{center}
+	\begin{tikzpicture}[scale=1]
+	\draw[gray,->] (0,0) -- (7.2,0) node[below right] {$t$};
+	\draw[gray,->] (0,-2) -- (0,2);
+	
+	\draw[black] plot[domain=0.01:7,smooth,tension=.1,samples=100] (\x,rand);
+	\end{tikzpicture}
+\end{center}
+
 AWGN (Additive White Gaussian Noise) - προέρχεται από την κίνηση
 των ηλεκτρονίων στους ηλεκτροφόρους αγωγούς, εμφανίζεται σε διόδους
 p-n, κεραίες, στον κοσμικό θόρυβο, \dots
@@ -3260,7 +3455,16 @@ p-n, κεραίες, στον κοσμικό θόρυβο, \dots
 \underline{S_{\mathrm p x}(\omega ) = S_0}
 \]
 
-\todo{Graph 41}
+\begin{tikzpicture}[scale=1]
+\draw (-3,0) -- (3,0) node[below right] {$\omega$};
+\draw[->] (0,-1) -- (0,2) node[left] {$S_{\mathrm p x}(\omega)$};
+\fill[orange,postaction={pattern=north east lines,opacity=.3},fill opacity=.5] (1,0) rectangle ++(0.4,1);
+\draw (1,0) -- ++(0,1) (1.4,0) -- ++(0,1) (1.2,0) node[below] {$\dif x$};
+
+\draw[very thick,green!60!black,blur shadow,shadow xshift=0cm,shadow yshift=-0.3mm] (-3,1) -- (3,1);
+
+\draw (0,1) node[above right] {$S_0$};
+\end{tikzpicture}
 
 Αυτό σημαίνει ότι όλες οι συχνότητες συμμετέχουν με το ίδιο μερίδιο
 ισχύος στην κατασκευή του σήματος (το όνομα "\emph{λευκός}"
@@ -3283,22 +3487,54 @@ E\left[x^2(t)\right] = \frac{1}{2\pi}
 R_{x}(\tau) = S_0\delta(\tau)
 \]
 
-\todo{Graph 42}
+\begin{tikzpicture}[scale=1]
+\draw[->] (-1.5,0) -- (1.5,0) node[below left] {$\tau$};
+\draw[->] (0,-0.5) -- (0,2) node[left] {$R_x(\tau)$};
+
+\draw[very thick,magenta!60!blue,->,blur shadow,shadow xshift=0.3mm,shadow yshift=-0.3mm] (0,0) -- (0,1) node[right] {$S_0$};
+\end{tikzpicture}
 
 Αυτό σημαίνει ότι η τιμή του σήματος κάθε στιγμή, δεν εξαρτάται καθόλου
 από οποιαδήποτε άλλη τιμή, δηλαδή το σήμα είναι εντελώς τυχαίο.
 
-\todo{Graph 43}
+\begin{tikzpicture}[scale=1]
+\draw[->] (-1,0) -- (4.2,0) node[below] {$t$};
+\draw[->] (0,-1) -- (0,2) node[left] {$\underset{\text{noise}}{n(t)}$};
+
+\draw[thick,blue!60!black,mark position=0.2(a),mark position=0.7(b)]
+plot [smooth, tension=0.4, domain=0:4, samples=20] (\x,{0.4+0.8*rand});
+
+\draw[dashed] (a) -- (a |- 0,0) node[below] {$t_1$};
+\draw[dashed] (b) -- (b |- 0,0) node[below] {$t_2$};
+\end{tikzpicture}
 
 \subsubsection{Εφαρμογή}
 Αν τον προηγούμενο με άπειρο εύρος μπάντας λευκό θόρυβο τον περάσουμε
 μέσα από ένα πεπερασμένου εύρους συχνοτήτων σύστημα:
-\todo{Graph 44}
+
+\begin{tikzpicture}[scale=1]
+\draw (-3,0) -- (3,0) node[below right] {$\omega$};
+\draw[->] (0,-1) -- (0,2) node[above] {$\big\lvert H(f)\big\rvert^2$};
+
+\draw[very thick,red!40!orange]
+(-2,0) node[below,black] {$-\omega_0$} -- (-2,1) -- (2,1) -- (2,0) node[below,black] {$\vphantom{-}\omega_0$};
+
+\draw (0,1) node[above right] {$\big\lvert H(0)\big\rvert^2$};
+\end{tikzpicture}
 \[
 S_{\mathrm p x}(\omega )\left|H(\omega )\right|^2
 \]
 και έχουμε την έξοδο:
-\todo{Graph 45}
+
+\begin{tikzpicture}[scale=1]
+\draw (-3,0) -- (3,0) node[below right] {$\omega$};
+\draw[->] (0,-1) -- (0,2) node[above] {$S_{\mathrm p}\big\lvert H(f)\big\rvert^2$};
+
+\draw[very thick,green!60!black]
+(-2,0) node[below,black] {$-\omega_0$} -- (-2,1.2) -- (2,1.2) -- (2,0) node[below,black] {$\vphantom{-}\omega_0$};
+
+\draw (0,1.2) node[above right] {$S_0$};
+\end{tikzpicture}
 \[
 S_{\mathrm p y}(\omega ) = \begin{cases}
 S_0' \quad & |\omega | \leq \omega_0 \\
@@ -3320,4 +3556,5 @@ R_x(\tau) = \frac{\omega_0 S_0'}{\pi}
 Όσο μικραίνει το εύρος ζώνης και τείνει στο 0 (ώση), ο
 \( \mathscr F^{-1} \)
 γίνεται ένα συνημίτονο, δηλαδή αυξάνεται η αυτοσυσχέτιση.
+
 \end{document}
