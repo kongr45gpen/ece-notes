@@ -1,0 +1,22 @@
+﻿\def\dif{\mathrm d\,}
+\usetikzlibrary{patterns}
+\begin{tikzpicture}[scale=1.1]
+	\begin{scope}
+	\clip plot[smooth] coordinates {(-0.7,0.2) (1,1.5) (3,0.4) (3.7,0.2)} -- (3.7,0) -- (-0.7,0);
+	\fill[orange,postaction={pattern=north east lines,opacity=.3},fill opacity=.5] (1,0) rectangle ++(0.4,2);
+	\draw[dashed] (1,0) -- ++(0,2) (1+0.4,0) -- ++(0,2);
+	\end{scope}
+	
+	\draw[->] (-1,0) -- (2.5,0) node[below right] {$x$};
+	\draw[->] (0,-1) -- (0,2.5);
+	
+	\draw[thick,blue!40!black] plot[smooth] coordinates {(-0.7,0.2) (1,1.5) (3,0.4) (3.7,0.2)} node[right] {$f_X$};
+	\draw[dashed] (1,1.5) -- (0,1.5) node[left] {$f_X(x)$};
+	
+	\draw (current bounding box.south) node[below,align=center] {
+		$f_X(x_0)\dif x = P\big\{ x_0<x<x_0+\dif x\big\}$ \\
+		$f_Y(y)\dif x = P\big\{ y<Y<y+\dif y\big\}$
+	};
+	\draw (current bounding box.south east) node[above right,scale=.7] {$\big(y=g(x)\big)$};
+	
+\end{tikzpicture}
