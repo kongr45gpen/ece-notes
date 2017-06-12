@@ -18,7 +18,7 @@
 %\usepackage{color}
 \usepackage[active,pdftex,tightpage]{preview}
 
-\pgfplotsset{compat=1.14}
+\pgfplotsset{compat=1.13}
 
 \PreviewEnvironment[]{tikzpicture}
 \PreviewEnvironment[]{pgfpicture}
