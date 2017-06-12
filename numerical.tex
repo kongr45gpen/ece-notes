@@ -37,30 +37,30 @@
 	\maketitle
 
 	\tableofcontents
-	
+
 
 	\vspace{50pt}
 
 	\textbf{Αριθμητική ανάλυση - Numerical Analysis}
-	
+
 	Μάθημα 4 ώρες την εβδομάδα - δεν υπάρχει διάκριση μεταξύ θεωρίας και ασκήσεων.
-	
+
 	Και τα δύο βιβλία προτείνονται, το μάθημα γίνεται περισσότερο με βάση το βιβλίο του κ.
 	Πιτσούλη, του κ. Δούγαλη είναι περισσότερο μαθηματικό.
-	
+
 	Στις εξετάσεις δεν θα υπάρχει τυπολόγιο/βιβλίο, αλλά θα δίνονται τύποι που χρειάζονται
 	στα θέματα. Απαραίτητο το κομπιουτεράκι.
-	
+
 	\section{Εισαγωγή}
 	Η αριθμητική ανάλυση μάς δίνει \textit{προσεγγιστικές} λύσεις σε μοντέλα και μαθηματικά
 	προβλήματα.
-	
+
 	Σε δύσκολα προβλήματα, ζητάμε:
 	\begin{itemize}
 		\item \textbf{Ακρίβεια} αποτελέσματος
 		\item \textbf{Ταχύτητα} υπολογισμού
 	\end{itemize}
-	
+
 	Θα δούμε τα εξής προβλήματα:
 	\begin{itemize}
 		\item \textbf{Επίλυση εξισώσεων}
@@ -68,7 +68,7 @@
 		Ένας πελάτης θέλει να καταθέσει \( P \) € για \( N \) χρόνια στην τράπεζα, και εγώ
 		του λέω ότι θα του επιστρέψω \( A \) € από την κατάθεση. Ο πελάτης όμως ενδιαφέρεται
 		για το ετήσιο επιτόκιο \( R \).
-		
+
 		Προκύπτει μια εξίσωση της μορφής:
 		\begin{gather*}
 		A = P + P \left( 1 + \frac{R}{12} \right) + \dots \\
@@ -76,14 +76,14 @@
 		    \left(1+\frac{R}{12}\right)^N -1
 		\right] = 0, \quad R = ?
 		\end{gather*}
-		
+
 		Θυμόμαστε ότι μπορούμε να χρησιμοποιήσουμε το θεώρημα Bolzano για να βρούμε ότι
 		υπάρχει μια τουλάχιστον λύση μέσα σε ένα διάστημα, οπότε μπορούμε να "φανταστούμε"
 		έναν αριθμό κοντά στη λύση, και να κλείνουμε συνεχώς ένα διάστημα γύρω από αυτήν (το
 		διάστημα στις εξετάσεις θα δίνεται, π.χ. \textit{βρείτε μία λύση στο διάστημα
 			\( [2.5,\ 3.5] \) με ακρίβεια \( 10^{-5} \)}), αν και αυτό δεν θα γίνεται στον πραγματικό κόσμο.
 		\item \textbf{Παρεμβολή}
-		
+
 		Σε έναν σταθμό διοδίων μετράω πόσα αυτοκίνητα περνάν το κάθε λεπτό (π.χ. το
 		11\textsuperscript{ο} λεπτό περνάν 4, το 12\textsuperscript{ο} περνάν 7, κλπ.)
 
@@ -99,70 +99,70 @@
 		\draw (values-1-1.north west) -- (values-2-1.south west);
 		\foreach \x in {1,2,...,5}
 		\draw (values-1-\x.north east) -- (values-2-\x.south east);
-		
+
 		\draw[thick,->] (4,0) -- ++(1.7,0);
-		
-		
+
+
 		\begin{scope}[xshift=7cm,yshift=-1cm]
 		\draw (-0.5,0) -- (2,0);
 		\draw (0,-0.5) -- (0,2);
-		
+
 		\begin{scope}[yshift=2mm,xshift=3mm,yscale=.5,xscale=.5]
-		
+
 		\coordinate (A) at (0,1);
 		\coordinate (B) at (1,2);
 		\coordinate (C) at (2,3);
 		\coordinate (D) at (3,0.3);
 		\coordinate (E) at (4,4);
-		
+
 		\draw[thick,blue]
 		plot [smooth] coordinates { (A) (B) (C) (D) (E) };
-		
+
 		\foreach \p in {(A),(B),(C),(D),(E)}
 		\filldraw \p circle (2pt);
-		
+
 		\end{scope}
 		\end{scope}
-		
+
 		\end{tikzpicture}
 		\end{center}
-		
+
 		Θέλω να βρω ένα πολυώνυμο που να συνδέει όλα τα σημεία μεταξύ τους (θα αποδείξουμε
 		ότι τέτοιο πολυώνυμο πάντα υπάρχει), ή ένα πολυώνυμο (αρκετά χαμηλού βαθμού, ώστε
 		να μην γίνονται πολλές πράξεις) με αρκετά καλή προσέγγιση.
-		
+
 		Με αυτόν τον τρόπο θα μπορώ να προσεγγίσω τιμές που δεν γνωρίζω, π.χ. αν πήγα για
 		καφέ στο 13\textsuperscript{ο} λεπτό
 		\item \textbf{Προσέγγιση}
 		\item \textbf{Αριθμητική Γραμμική Άλγεβρα}
-		
+
 		Exact και προσεγγιστικές λύσεις συστημάτων πολλών αγνώστων.
 		\item \textbf{Ολοκλήρωση}
 		\item \textbf{Υπολογισμός ιδιοτιμών \& ιδιοδιανυσμάτων}
 		\item \textbf{Παραγοντοποίηση πινάκων σε γινόμενο πινάκων}
-		
+
 		Βολεύει κυρίως για την επίλυση συστημάτων.
 		\item \textbf{Επίλυση κανονικών διαφορικών εξισώσεων}
 		\item \textbf{Βελτιστοποίηση}
-		
+
 		Για παράδειγμα, να πρέπει να ελαχιστοποιήσω μια συνάρτηση τη στιγμή που πρέπει να
 		τηρούνται κάποιες συνθήκες.
 	\end{itemize}
-	
+
 	\subsection{Ακρίβεια vs Ταχύτητα}
-	
+
 	Απόλυτο Σφάλμα: \( \displaystyle
 	\left| X_t - X_c \right|
 	 \) \quad (απόσταση της λύσης που βρήκα από την πραγματική)
-	 
+
 	\vspace{5pt}
-	
+
 	Σχετικό Σφάλμα: \( \displaystyle
 	\frac{\left|X_t - X_c\right|}{\left|X_t\right|}
 	 \)
-	
+
 	Επειδή δεν θα γνωρίζουμε την πραγματική λύση \( X_t \), θα βρίσκουμε το μέγιστο σφάλμα.
-	
+
 	Για παράδειγμα, σε υπολογιστές έχουμε σφάλματα στρογγύλευσης και αποκοπής:
 	\[
 	\begin{array}{ll}
@@ -171,7 +171,7 @@
 		0.67 & \leftarrow \text{στρογγύλευση}
 	\end{array}
 	\]
-	
+
 	% Set counters so that they match the book
 	\setcounter{section}{2}
 	\section{Επίλυση Εξισώσεων}
@@ -180,23 +180,23 @@
 		f(x): \qquad \text{βρείτε $\bar x$ έτσι ώστε \( f(\bar x) = 0 \).}}
 		\)
 	\end{center}
-	
+
 	Η επίλυση είναι εύκολη όταν η \( f \) είναι πολυώνυμο μέχρι 2\textsuperscript{ου} βαθμού,
 	όχι όμως όταν είναι μεγαλύτερου, ή όταν έχει κι άλλους όρους (π.χ. εκθετικούς) μέσα.
-	
+
 	\begin{itemize}
 		\item Δημιουργούμε μια ακολουθία \( x_1, \dots, x_n \) προσέγγισης της \( \bar x \).
 		\item Σε κάθε βήμα κάνουμε έλεγχο σύγκλισης για να δούμε πόσο κοντά είμαστε.
 	\end{itemize}
-	
+
 	\subsection{Μέθοδος Διχοτόμησης}
 	Θα χρησιμοποιήσω θεώρημα Bolzano (\( \mathsmaller{f(a) \cdot f(b) < 0} \))
-	
+
 	\begin{center}
 		\begin{tikzpicture}[scale=1.9]
 		\draw (0,-0.5) -- (0,2);
 		\draw (-1,0) -- (3,0);
-		
+
 		\draw[thick, orange,
 		mark position=0.5(c),
 		mark position=0.3(a),
@@ -207,36 +207,36 @@
 		] plot[smooth,tension=0.7]
 		coordinates {(-0.5,0.7) (0.5,1.5)  (2.2,-0.7) (3.2,-0.9)};
 		\draw[orange!90!black] (c) node[above] {$f$};
-		
+
 		\draw[dashed] (a) -- (a |- 0,0) node[below] {$a$};
 		\draw[dashed] (b) -- (b |- 0,0) node[above] {$b$};
 		\draw[thick,gray!50!blue] (c1) -- (c1 |- 0,0) node[below] {$c_1$};
 		\draw[thick,gray!35!blue] (c2) -- (c2 |- 0,0) node[above] {$c_2$};
 		\draw[thick,gray!20!blue!60!green] (c3) -- (c3 |- 0,0) node[below] {$\mathsmaller{c_3}$};
-		
+
 		\draw (1,-1.5) node {$\displaystyle c_1 = \frac{a+b}{2}$};
 		\draw (1,-2) node {$\displaystyle c_2 = \frac{c_1+b}{2}$};
 		\end{tikzpicture}
 	\end{center}
-	
+
 	Ξεκινάω από μία αρχική προσέγγιση/διάστημα (η μέθοδος διχοτόμησης δεν δίνει λύση
 	συγκεκριμένη, αλλά διάστημα - τη λύση την παίρνω σαν το μέσο του διαστήματος).
-	
+
 	Συνέχεια κόβω το διάστημα στη μέση, έτσι ώστε \( f(\text{των άκρων}) \) να είναι
 	ετερόσημα, και παίρνω συνεχώς ένα μικρότερο διάστημα.
-	
+
 	Σταματάω όταν είναι επιτυχής ο έλεγχος σύγκλισης, π.χ
 	\( \mathlarger{\left|c_{k+1}-c_k\right| < \epsilon \rightarrow 10^{-5}} \), δηλαδή
 	το διάστημα στο οποίο βρίσκεται η ρίζα είναι αρκετά μικρό.
-	
+
 	Θα διαπιστώσουμε ότι, αν και αυτή η μέθοδος λειτουργεί πάντα, είναι αρκετά αργή.
-	
+
 	\paragraph{Παράδειγμα}
 	Να βρεθεί ρίζα της εξίσωσης
 	\( \mathlarger{
 	\mathlarger{f(x) = x^3+x-1} }
 	 \) στο διάστημα \( [0,1] \) με ακρίβεια \( 10^{-3} \).
-	
+
 	\begin{gather*}
 		f(0) \cdot f(1) < 0 \\
 		k=1,\ a_1=0,\ b_1=1,\ m=\frac{a_1+b_1}{2} = 0.5 \\
@@ -244,7 +244,7 @@
 		\quad f(0.5) \cdot f(1) < 0
 	\end{gather*}
 	Άρα η λύση βρίσκεται μεταξύ \( 0.5 \) και \( 1 \).
-	
+
 	Για το επόμενο βήμα:
 	\begin{gather*}
 		k = 2,\ m_2 = \frac{0.5+1}{2} = 0.75 \\
@@ -255,36 +255,36 @@
 		\quad f(m_2)f(m_3) < 0 \\[3ex]
 		\mathlarger{\mathlarger{\vdots}}
 	\end{gather*}
-	
+
 	\subsubsection{Σύγκλιση}
 	Όπου \( r \) και \( m_n \) η πραγματική και προσεγγιστική λύση αντίστοιχα:
 	\begin{align*}
 		\left|r - m_n\right| \leq \left(\frac{1}{2}\right)^n (b-a)
 	\end{align*}
 	επειδή στη \( n- \)οστή επανάληψη έχω κόψει το διάστημα στα 2 σε \( n \) φορές.
-	
+
 	Για σφάλμα \( 10^{-5} \), θέλουμε \( |r-m_n| = 10^{-5} \):
 	\begin{align*}
 		&10^{-5} \leq \left(\frac{1}{2}\right)^n (1-0) \implies
 		\\ \implies & n \simeq 16.667 \implies \mathlarger{n = 17}
 	\end{align*}
-	
+
 	\subsection{Μέθοδος Χορδής ή Τέμνουσας}
 	Σαν τη μέθοδο Bolzano, αλλά δεν παίρνουμε το μέσο του διαστήματος, αλλά κάποια άλλη τιμή.
-	
+
 	Παρατηρείται ότι αυτή η μέθοδος συγκλίνει γρηγορότερα.
-	
+
 	\begin{tikzpicture}[scale=2]
 	\draw (0,-0.2) -- (0,2);
 	\draw (-0.5,0) -- (3,0);
-	
+
 	\draw[dashed] (2.7,1.7) node [right] {$\left(b_1,f(b_1)\right)$}
 	-- (2.7,0);
-	
+
 	\draw[very thick, blue!50!magenta] plot[smooth,tension=1]
 	coordinates {(0.5,-0.4) (2,0.3) (2.7,1.7)};
 	\draw[blue!50!magenta] (2.11,0.2) node {$f$};
-	
+
 	\draw[dashed] (0.5,-0.4) node[below left] {$\left(a_1,f(a_1)\right)$} -- (0.5,0) node[above] {$a_1$};
 	\draw[cyan,thick] (0.5,-0.4) -- (2.7,1.7);
 	\draw[dashed] (0.93,-0.3) node[below,yshift=-2mm] {$\left(a_2,f(a_2)\right)$} -- (0.93,0) node[above] {$a_2$};
@@ -292,7 +292,7 @@
 	\draw[dashed] (1.2,0) -- (1.2,-0.2);
 	\draw [cyan,thick] (1.2,-0.2) -- (2.7,1.7);
 	\end{tikzpicture}
-	
+
 	Πρέπει να βρούμε τη ρίζα εντός του διαστήματος \( (a_1,b_1) \).
 	\begin{itemize}
 		\item Παίρνουμε τη χορδή που ενώνει τα \( a_1, b_1 \).
@@ -303,10 +303,10 @@
 		επομένως η ρίζα βρίσκεται μεταξύ των \( a_3,b_1 \)
 		\item \( \cdots \)
 	\end{itemize}
-	
+
 	Παρατηρούμε ότι η μέθοδος χορδής λειτουργεί για
 	κυρτές συναρτήσεις.
-	
+
 	\begin{infobox}{Κυρτές συναρτήσεις}
 		Όταν λέμε ότι μια συνάρτηση είναι κυρτή,
 		εννοούμε ότι η καμπύλη της είναι κυρτή,
@@ -314,7 +314,7 @@
 		δεν τέμνει κάποιο σημείο της \( f \). Στην αντίθετη περίπτωση,
 		η συνάρτηση λέγεται μη κυρτή.
 	\end{infobox}
-	
+
 	\paragraph{}
 	\( a_1,b_1 \) όπου \( f(a_1)f(b_1) < 0 \) for
 	\( k=1,2,\dots \)
@@ -328,23 +328,23 @@
 		c &= \frac{a_kf(b_k)=b_kf(a_k)}{f(b_k)-f(a_k)}
 		\\ f: \quad f(a_k)f(c) < 0 &\implies
 		a_{k+1} = a_k, \quad b_{k+1}=c \\
-		\text{else} &\implies 
+		\text{else} &\implies
 		a_{k+1} = c, \quad b_{k+1} = b_k
 	\end{align*}
-	
+
 	Αν και η μέθοδος χορδής είναι αργή, συνεχίζει να
 	είναι γρηγορότερη από τη μέθοδο διχοτόμησης.
-	
+
 	\subsection{Μέθοδος Μεταβαλλόμενης Χορδής}
 	\begin{tikzpicture}[scale=2]
 	\draw (0,-0.2) -- (0,2);
 	\draw (-0.5,0) -- (3,0);
-	
+
 	\draw[dashed] (2.7,1.7) node [right] {$\left(b_1,f(b_1)\right)$}-- (2.7,0);
-	
+
 	\draw[very thick, blue!50!magenta] plot[smooth,tension=1]
 	coordinates {(0.5,-0.4) (2,0.3) (2.7,1.7)};
-	
+
 	\draw[dashed] (0.5,-0.4) -- (0.5,0) node[above] {$a_1$};
 	\draw[draw=cyan,thick] (0.5,-0.4) -- (2.7,1.7);
 	\draw[dashed] (0.93,-0.3) -- (0.93,0) node[above,yshift=1mm] {$a_2$};
@@ -352,34 +352,34 @@
 	node[right]  {$ \left(b_1,\frac{f(b_1)}{2}\right)$};
 	\draw (1.4,0) node[above] {$a_3$} -- (1.4,-0.12);
 	\end{tikzpicture}
-	
+
 	Όπως η μέθοδος χορδής, αλλά μεταβάλλουμε την κλίση
 	της χορδής γρηγορότερα, ώστε να φτάσει πιο κοντά
 	στη ρίζα.
-	
+
 	Αυτό μπορούμε να το πετύχουμε π.χ. θεωρώντας
 	ως 2\textsuperscript{ο} σημείο το \( \left(b_1,\frac{f(b_1)}{2}\right) \)
 	αντί για το \( \left( b_1,f(b_1) \right) \), όπως φαίνεται στο
 	σχήμα. Αντί για να διαιρέσουμε με 2, μπορούμε να επιλέξουμε έναν
 	άλλον αριθμό, π.χ. \( 4 \) για συναρτήσεις που έχουν πιο κάθετες
 	χορδές.
-	
+
 	\subsection{Μέθοδος Newton}
 	Αν και η μέθοδος Newton δεν συγκλίνει πάντα και απαιτεί παραγωγισιμότητα,
 	είναι πολύ πιο γρήγορη από τις προηγούμενες μεθόδους, και χρησιμοποιείται
 	πολύ πιο συχνά.
-	
+
 	Παίρνουμε το ανάπτυγμα Taylor της \( f \):
 	\begin{gather*}
 		f(x) = f(x_0) + (x-x_0)f'(x_0) \\
 		f(x_0) + (x-x_0) f'(x_0) = 0 \\
 		\boxed{x = x_0 - \frac{f(x_0)}{f'(x_0)}}
 	\end{gather*}
-	
+
 	\paragraph{}
 	for \( \kappa = 1,2,\dots \)
 	\[
-	x_{\kappa+1} = x_\kappa - \frac{f(x_1)}{f'(x_1)} \ 
+	x_{\kappa+1} = x_\kappa - \frac{f(x_1)}{f'(x_1)} \
 	\rightarrow \text{ΕΠΑΝΑΛΗΠΤΙΚΗ}
 	\]
 	\begin{gather*}
@@ -387,10 +387,10 @@
 	\rightarrow \text{ΚΡΙΤΗΡΙΟ ΤΕΡΜΑΤΙΣΜΟΥ} \\
 	\mathlarger{\text{stop}}, \text{ αλλιώς } \kappa = \kappa+1
 	\end{gather*}
-	
+
 	Η μέθοδος Newton έχει αρκετά περίπλοκες συνθήκες
 	σύγκλισης που δεν θα μελετήσουμε.
-	
+
 	\subsection{Μέθοδος Σταθερού Σημείου}
 	\begin{defn}{Σταθερό Σημείο}{}
 		\[
@@ -401,29 +401,29 @@
 		\end{array}
 		\]
 	\end{defn}
-	
+
 	\( \bar x \) της \( f(x) \) στο \( (a,b) \)
 	αν κατασκευάσω \( g(x) \):
 	\[
 	\bar x = g(\bar x) \iff f(\bar x) = 0
 	\]
-	
+
 	\paragraph{Παράδειγμα}
 	\[
 	\mathlarger{f(x) = x^2-x-2}
 	\]
-	
+
 	Μπορούμε να θέσουμε:
 	\begin{gather*}
 		g(x) = x^2 - 2 \\
 		g(x) = \sqrt{x+2} \\
 		g(x) = 1 - \frac{2}{x}
 	\end{gather*}
-	
+
 	Αντί να λύσω την \( f \), βρίσκω υποψήφιες λύσεις
 	(δύσκολες επαναληπτικές λύσεις θα δίνονται στις
 	εξετάσεις)
-	
+
 	\paragraph{Μέθοδος}
 	for \(k=1,2,\dots \qquad \left(x_0,g(x),\epsilon\right) \)
 	\[
@@ -436,7 +436,7 @@
 		& \rightarrow \text{ΚΡΙΤΗΡΙΟ ΤΕΡΜΑΤΙΣΜΟΥ}
 	\end{array}
 	\]
-	
+
 	\paragraph{Προϋποθέσεις σύγκλισης}
 	\begin{enumerate}
 		\item Για αρχικό \( x_0 \), τα \( x_1,x_2,\dots \) να
@@ -452,7 +452,7 @@
 		\item Το σημείο σύγκλισης \( \gamma \) να είναι σταθερό
 		σημείο της \( g(x) \).
 	\end{enumerate}
-	
+
 	Τα παραπάνω μετασχηματίζονται σε 3 κριτήρια σύγκλισης:
 	\paragraph{Κριτήρια Σύγκλισης}
 	\begin{enumerate}
@@ -468,13 +468,13 @@
 		\left|g'(x)\right| \leq k
 		\]
 	\end{enumerate}
-	
+
 	\paragraph{Θεώρημα}
 	Αν ισχύουν οι 3 παραπάνω προϋποθέσεις, τότε στο διάστημα
 	\( [a,b] \) υπάρχει ακριβώς ένα σταθερό σημείο \(\gamma\)
 	της \(g\), και η μέθοδος σταθερού σημείου συγκλίνει σε αυτό
 	το \( \gamma \).
-	
+
 	\subsection{Ασκήσεις}
 	\paragraph{Άσκηση}
 	\[
@@ -504,9 +504,9 @@
 		\text{Άρα: } & \mathrm Y_3 \ \checkmark
 	\end{align*}
 	(όπου \( \mathrm Y \) τα κριτήρια σύγκλισης)
-	
+
 	Επομένως, η \( g(x) \) που επέλεξα ικανοποιεί τη σύγκλιση.
-	
+
 	Επιλέγω: \( x_0 = 0 \)
 	\begin{align*}
 		x_1 &= g(x_0) = g(0) = \frac{1}{2} \\
@@ -541,7 +541,7 @@
 		x_3 = \frac{1}{2} \left( x_2 + \frac{3}{x_2} \right) = 1.7320528 \\
 		\left|x_3-x_2\right| < 0.5\cdot 10^{-3} \text{ (ικανοποίηση κριτηρίου τερματισμού)}
 	\end{gather*}
-	
+
 	Άρα:
 	\[
 	\boxed{x_3 = 1.7320528}
@@ -596,19 +596,19 @@
 		x_2 &= 0.683 \\
 		x_3 &= 0.682
 	\end{align*}
-	
+
 	\paragraph{Άσκηση}
 	Να βρεθεί μια λύση της:
 	\[
 	\mathlarger{f(x) = x^{10} -1} \qquad (0,1.3)
 	\]
-	
+
 	\begin{tikzpicture}[scale=.7]
 		\begin{axis}[samples=30,very thick,domain=0:1.3,no marks]
 		\addplot+{x^10-1};
 		\end{axis}
 	\end{tikzpicture}
-	
+
 	\subparagraph{Λύση με διχοτόμηση}
 	Με τη μέθοδο της διχοτόμησης έχουμε:
 	\[
@@ -621,7 +621,7 @@
 	0.975 & 1.05625 & 1.015625
 	\end{array}
 	\]
-	
+
 	\subparagraph{Λύση με μέθοδο χορδής}
 	Με τη μέθοδο της χορδής έχουμε (εφαρμόζοντας τον τύπο
 	όπως και στην προηγούμενη άσκηση):
@@ -635,16 +635,16 @@
 	0.33811 & 1.3 & 0.40708
 	\end{array}
 	\]
-	
+
 	Παρατηρούμε ότι σε αυτήν την περίπτωση, η μέθοδος χορδής
 	είναι αρκετά πιο αργή. Για να το αποτρέψουμε αυτό, μπορούμε
 	να χρησιμοποιήσουμε μεταβαλλόμενη χορδή.
-	
+
 	\subparagraph{Λύση με μέθοδο Newton}
 	\[
 	x_{i+1} = x_i - \frac{x_i^{10}-1}{10x_i^9}
 	\]
-	
+
 	\[
 	\begin{array}{c|c}
 	i & x_i \\ \hline
@@ -657,7 +657,7 @@
 	40 & 1.002316
 	\end{array}
 	\]
-	
+
 	\paragraph{Άσκηση}
 	Να βρεθεί μία ρίζα της εξίσωσης
 	\[
@@ -676,26 +676,26 @@
 	19 & & & 2.0945530
 	\end{array}
 	\]
-	
+
 	\section{Παρεμβολή}
 	\subsection{Το πρόβλημα}
-	
+
 	Έστω μια άγνωστη \( f(x) \) ορισμένη στο \( [a,b] \) και οι τιμές
 	\( x_i\ (i=0,\dots,n-1) \). Επίσης, έστω μια \( p(x) \) που
 	παρεμβάλλει την \( f(x) \), δηλαδή:
 	\[
 	p(x_i) = f(x_i).
 	\]
-	
+
 	Θα ψάξω να βρω την \( p(x) \) με βάση τις τιμές \( p(x_i) \).
-	
+
 	Όταν ψάχνω να βρω μια προσέγγιση για κάποια τιμή \( \bar x \
 	(\bar x \in \left[x_0,x_{n-1}\right]) \) με βάση την \( p(x) \) που
 	προκύπτει με δεδομένες τιμές για \( x_i \), λέγεται ότι κάνω
 	\textbf{intrapolation}. \\
 	Για \( \bar x \neq \left[x_0,x_{n-1}\right] \) (πιο επικίνδυνη
 	περίπτωση), ονομάζεται \textbf{extrapolation}.
-	
+
 	\begin{theorem}{}{Weierstrass}
 		Για οποιαδήποτε συνάρτηση, υπάρχει ένα πολυώνυμο που την
 		παρεμβάλλει, δηλαδή:
@@ -704,25 +704,25 @@
 		\]
 	\end{theorem}
 	\begin{tikzpicture}
-	
+
 	\draw (-1,0) -- (3,0);
 	\draw (0,0) -- (0,3);
-	
+
 	\draw[green!50!black,very thick] plot[smooth] coordinates {(-0.7,0.8) (-0.5,1) (1,1) (2,1.2) (2.5,1.3)}
 	node[below right] {$f(x)$};
 	\draw[cyan!50!black,very thick] plot[smooth] coordinates {(-0.8,0.9) (-0.5,1.2) (1,1.1) (2,1.3) (2.5,1.7)}
 	node[right] {$p(x)$};
-	
+
 	\end{tikzpicture}
-	
+
 	Και μάλιστα:
 	\[
 	\left|P_n(x)-f(x)\right| \leq \epsilon \quad
 	\text{$\epsilon$ δεδομένη ακρίβεια}
 	\]
-	
+
 	Όσο το \( \epsilon \) μικραίνει, ο βαθμός του \( P_n(x) \) αυξάνεται.
-	
+
 	Για παράδειγμα, αν έχουμε μερικά σημεία της \( f \):
 	\[
 	\begin{array}{c|c|c|c|c}
@@ -741,13 +741,13 @@
 	(0.9,1) circle (2.5pt)
 	(1.5,1.5) circle (2.5pt)
 	(2.4,0.7) circle (2.5pt);
-	
+
 	\draw[green!30!black,very thick] plot[smooth,tension=0.7]
 	coordinates {(0.1,0,1) (0.5,0.5) (0.9,1) (1.5,1.5) (2.4,0.7) (2.6, 0.2)}
 	node[right,scale=0.6] {$p(x)$};						;
-	
+
 	\end{tikzpicture}
-	
+
 	Αν έχω δύο σημεία, το ζητούμενο πολυώνυμο είναι μια ευθεία, δηλαδή
 	ένα πολυώνυμο 1\textsuperscript{ου} βαθμού. Για τρία σημεία, θα
 	χρειαστώ πολυώνυμο 2\textsuperscript{ου} βαθμού, και γενικά έχω
@@ -758,49 +758,49 @@
 	\begin{tikzpicture}[scale=1.3]
 	\draw (-1,0) -- (1,0);
 	\draw (0,-0.5) -- (0,1.5);
-	
-	
+
+
 	\filldraw[cyan!50!blue] (-0.5,1) circle (2pt)
 	(0,0) circle (2pt)
 	(0.5,1) circle (2pt);
-	
+
 	\draw[red!90!blue,very thick] (0,0) -- (0.5,1) --(0.7,1.4);
-	
+
 	\draw[green!30!black,very thick] plot[smooth,tension=0.7]
 	coordinates {(-0.5,1) (0,0) (0.5,1)};
-	
+
 	\begin{scope}[xshift=2.5cm]
 	\draw (-0.2,0) -- (2,0);
 	\draw (0,-0.5) -- (0,1.5);
-	
+
 	\draw[red!90!blue,very thick] (0.1,-0.2) -- (2.2,2.2);
-	
+
 	\draw[green!70!black,thick] plot[smooth,tension=0.7]
 	coordinates {(0.25,0) (0.5,0.25) (0.75,1.2)  (1.25,0.8) (1.5,1.45) (2,2)};
 	\filldraw[green!50!red] (0.5,0.25) circle (1pt) (1.5,1.45) circle (1pt);
 	\end{scope}
 	\end{tikzpicture}
-	
+
 	Η πραγματική συνάρτηση μπορεί να έχει διαφορετική συμπεριφορά
 	ανάμεσα στα σημεία της τα οποία γνωρίζουμε.
-	
+
 	Στο επόμενο κεφάλαιο θα μάθουμε την προσέγγιση, δηλαδή την εύρεση
 	ενός πολυωνύμου συγκεκριμένου βαθμού που να φτάνει κοντά στην
 	\( f \), έτσι ώστε να είναι πιο εύκολα υπολογίσιμο αν π.χ. έχουμε
 	300 σημεία της συνάρτησης.
-	
+
 	\subsection{Μορφές Αναπαράστασης Πολυωνύμου}
 	\paragraph{Εκθετική μορφή}
-	\( 
+	\(
 	\displaystyle P_n(x) = a_0 + a_1x+a_2x^2 + \dots + a_nx^n
 	 \)
 	\paragraph{Μορφή κέντρων}
-	\( 
+	\(
 	\displaystyle P_n(x) = b_0 + b_1(x-c) + b_2(x-c)^2 + \dots
 	+ b_n(x-c)^n
 	 \)
 	\paragraph{Μορφή Newton}
-	\( 
+	\(
 	\displaystyle P_n(x) = a_0 + a_1(x-c_1) + a_2(x-c_1)(x-c_2)
 	+ \dots + a_n(x-c_1)(x-c_2)\cdots(x-c_n)
 	= a_0 + \sum_{k=1}^{n} a_k \prod_{i+1}^{k} (x-c_i)
@@ -815,11 +815,11 @@
 	\right]\right]\right]
 	\right]
 	 \end{align*}
-	 
+
 	 \paragraph{Μορφή Lagrange}
-	 Δεδομένων \( n+1 \) σημείων \( x_0,x_1,\dots,x_n \), έχουμε 
+	 Δεδομένων \( n+1 \) σημείων \( x_0,x_1,\dots,x_n \), έχουμε
 	 τα πολυώνυμα:
-	 
+
 	 \[
 	 l_j(x) = \frac{
 	 	(x-x_0)(x-x_1)\cdots(x-x_{j-1})(x-x_{j+1})\cdots(x-x_n)
@@ -830,7 +830,7 @@
 	 \]
 	 για \( j=0,1,\dots,n \) ονομάζονται \textbf{πολυώνυμα Lagrange} (ο
 	 παρονομαστής σταθερός).
-	 
+
 	 Παρατηρούμε ότι:
 	 \[
 	 l_j(x_i) = \begin{cases}
@@ -838,20 +838,20 @@
 	 1 & \quad i = j
 	 \end{cases} \ = \delta_{ij}
 	 \]
-	 
+
 	 Άρα για σταθερές \( a_0,a_1,\dots,a_n \) και σημεία \( x_0,x_1,
 	 \dots,x_n \), το πολυώνυμο \[
 	 P_n(x) = a_0l_0(x) + a_1l_1(x) + \dots + a_nl_n(x)
 	 \]
 	 ονομάζεται \textbf{πολυώνυμο σε μορφή Lagrange}.
-	 
+
 	 \subsection{Μέθοδοι Παρεμβολής}
 	 \begin{gather*}
 	    P(x_i) = f(x_i) \\
 	 	P(x_i) = \sum_{k=0}^{n} a_kl_k(x_i) = a_i \\[.3ex]
 	 	\boxed{P(x) = \sum_{k=0}^n f(x_k)l_k(x)}
 	 \end{gather*}
-	 
+
 	 \paragraph{Παράδειγμα}
 	 Έχουμε τη συνάρτηση:
 	 \[
@@ -861,13 +861,13 @@
 	 f(x_i) & 1 & 1 & 2
 	 \end{array}
 	 \]
-	 
+
 	 Αναζητώ πολυώνυμο που να παρεμβάλλει την \( f \) σε
 	 \begin{enumgreekpar}
 	 	\item μορφή Lagrange
 	 	\item εκθετική μορφή
 	 \end{enumgreekpar}
-	 
+
 	 \subparagraph{Λύση}
  	\begin{align*}
  		l_0(x) &=
@@ -880,7 +880,7 @@
  		\\ &= \frac{1}{2}x^2 + \frac{1}{2}x + 1
  		\quad \leftarrow \text{ εκθετική μορφή}
  	\end{align*}
- 	
+
  	Ένας άλλος τρόπος θα ήταν να θεωρήσουμε πολυώνυμο
  	2\textsuperscript{ου} βαθμού με 3 άγνωστους συντελεστές, και να λύσω
  	το σύστημα για να τους βρω, κάτι που θα χρησιμεύει αργότερα στην
@@ -891,7 +891,7 @@
  	    P(0) &= a_0 = 1 \\
  	    P(1) &= a_0 + a_1 + a_2 = 2
  	\end{align*}
- 	
+
  	\subsubsection{Μέθοδος διηρημένων διαφορών}
  	Η ιδέα είναι να ξεκινάμε από τον μικρό βαθμό, και να χτίζουμε το
  	ζητούμενο πολυώνυμο βαθμό-βαθμό.
@@ -905,7 +905,7 @@
  		\prod_{i=0}^{k} \left(x_{k+1}-x_i\right)
  		}
  	\end{align*}
- 	
+
  	Για να διευκολύνω τις πράξεις ορίζω:
  	\begin{defn}{Πρώτη Διηρεμένη Διαφορά}{}
  		\[
@@ -915,7 +915,7 @@
  	    }
  		\]
  	\end{defn}
- 	
+
  	Η \( k \)-οστή Διηρεμένη Διαφορά είναι:
  	\begin{defn}{k-οστή Διηρεμένη Διαφορά}{}
  		\[
@@ -928,10 +928,10 @@
  		}
  		\]
  	\end{defn}
- 	
+
  	Για διευκόλυνσή μας, αντί να χρησιμοποιούμε τους τύπους, μπορούμε
  	να χρησιμοποιήσουμε τον Πίνακα Διηρημένων Διαφορών.
- 	
+
  	\paragraph{Πίνακας ΔΔ}
  	\[
  	\begin{array}{llllll}
@@ -946,7 +946,7 @@
  	x_4 & f(x_4) & &
  	\end{array}
  	\]
- 	
+
  	Τότε το πολυώνυμο θα είναι:
  	\begin{align*}
  		P_k(x) &= f(x_0) + f[x_0,x_1](x-x_0) +
@@ -954,26 +954,26 @@
  		\\ & + \dots +
  		f[x_0,x_1,\dots,x_k](x-x_0)(x-x_1)\cdots(x-x_{k+1})
  	\end{align*}
- 	
+
  	\paragraph{Παράδειγμα}
  	\hspace{0pt}
- 	
+
  	\begin{tabular}{|c|c|c|c|c|}
- 		\hline 
- 		\(i\) & 0 & 1 & 2 & 3 \\ 
- 		\hline 
- 		\(x_i\) & 0 & 1 & 2 & 4 \\ 
- 		\hline 
- 		\(f(x_i)\) & 1 & 1 & 2 & 5 \\ 
- 		\hline 
+ 		\hline
+ 		\(i\) & 0 & 1 & 2 & 3 \\
+ 		\hline
+ 		\(x_i\) & 0 & 1 & 2 & 4 \\
+ 		\hline
+ 		\(f(x_i)\) & 1 & 1 & 2 & 5 \\
+ 		\hline
  	\end{tabular}
- 	
+
  	Πίνακας ΔΔ:
  	\[
  	\begin{array}{ccccc} \cline{2-2}
  	0 & \multicolumn{1}{|c|}{1 \searrow} & & &  \\ \cline{2-3}
  	& & \multicolumn{1}{|c|}{\frac{1-1}{1-0} \searrow} & & \\ \cline{3-4}
- 	1 & 1 \nesearrow & & 
+ 	1 & 1 \nesearrow & &
  	\multicolumn{1}{|c|}{\frac{1}{2} \searrow} & \\ \cline{4-5}
  	& & 1 \nesearrow & & \multicolumn{1}{|c|}{\frac{1}{12}}\\ \cline{5-5}
  	2 & 2 \nesearrow & & \frac{1}{6} \nearrow & \\
@@ -981,29 +981,29 @@
  	4 & 5 \nearrow & & &
  	\end{array}
  	\]
- 	
+
  	Άρα:
  	\begin{align*}
  	P_3(x) &= 1 + 0(x-0) + \frac{1}{2}(x-0)(x-1)-\frac{1}{12}
  	(x-0)(x-1)(x-2) \\ &= \frac{1}{12} (-x^3+9x^2-8x+12)
  	\end{align*}
- 	
+
  	\begin{tikzpicture}
  	\begin{axis}[grid=both,ymin=0,ymax=10,xmax=7,xmin=-3,xticklabel=\empty,yticklabel=\empty,
  	minor tick num=1,axis lines = middle,xlabel=$x$,ylabel=$y$,label style =
  	{at={(ticklabel cs:1.1)}}]
  	\addplot[blue,thick,samples=50,domain=-3:7] {1/12*(-x^3+9*x^2-8*x+12)};
- 	
+
  	\filldraw [fill=gray!30, draw=black, thick] (axis cs:0,1) circle [radius=3pt];
  	\filldraw [fill=gray!30, draw=black, thick] (axis cs:1,1) circle [radius=3pt];
  	\filldraw [fill=gray!30, draw=black, thick] (axis cs:2,2) circle [radius=3pt];
  	\filldraw [fill=gray!30, draw=black, thick] (axis cs:4,5) circle [radius=3pt];
- 	
+
  	% nice node: node [label={[inner sep=1pt, fill=white,text=black, fill opacity=0.75, text opacity=1]above left:$(65, 35)$}] {};
- 	
+
  	\end{axis}
  	\end{tikzpicture}
- 	
+
  	\subsubsection{Μέθοδος πεπερασμένων διαφορών}
  	Για τη μέθοδο αυτή, θεωρούμε ότι τα σημεία της \( f \)
  	που έχουμε ισαπέχουν μεταξύ τους:
@@ -1014,7 +1014,7 @@
  		f\left[x_i,x_{i+1}\right] =
  		\frac{f(x_{i+1})-f(x_i)}{h}
  	\end{gather*}
- 	
+
  	Ορίζω συμβολισμούς για ευκολία:
  	\begin{align*}
  		\Delta^0 f(x_i) &= f(x_i) \\
@@ -1025,7 +1025,7 @@
  		\Delta \left(\Delta^{k-1}\left(f(x_i)\right)\right)
  		= \Delta^{k-1} f(x_{i+1}) - \Delta^{k-1} f(x_i)
  	\end{align*}
- 	
+
  	\begin{defn}{k-οστή πεπερασμένη διαφορά}{}
  		\[
  			f\left[x_i,x_{i+1},\dots,x_{i+k}\right]
@@ -1033,7 +1033,7 @@
  			\qquad \text{προκύπτει μετά από πράξεις}
  		\]
  	\end{defn}
- 	
+
  	Άρα το πολυώνυμο γίνεται:
  	\begin{align*}
  	P_n(x) &= f(x_0) + f[x_0,x_1](x-x_0) + \dots
@@ -1045,7 +1045,7 @@
  	(x-x_0)(x-x_1)\cdots
  	(x-x_{n-1})
  	\end{align*}
- 	
+
  	Θα βρούμε μια διαδικασία ώστε να υπολογίζουμε το πολυώνυμο
  	γρηγορότερα. Αν \( x = x_0+rh \), αποδεικνύεται πως
  	(οι πράξεις υπάρχουν στο βιβλίο):
@@ -1062,18 +1062,18 @@
  	\]
  	όπου \( \displaystyle \binom{r}{i} =
  	\frac{r(r-1)\cdots\left(r-(i-1)\right)}{i!} \)
- 	
+
  	\paragraph{Παράδειγμα}
  	\hspace{0pt}
- 	
+
  	\begin{tabular}{|c|c|c|c|c|c|}
- 		\(i\) & 0 & 1 & 2 & 3 & 4\\ 
- 		\hline 
- 		\(x_i\) & 1 & 2 & 3 & 4 & 5\\ 
- 		\hline 
+ 		\(i\) & 0 & 1 & 2 & 3 & 4\\
+ 		\hline
+ 		\(x_i\) & 1 & 2 & 3 & 4 & 5\\
+ 		\hline
  		\(f(x_i)\) & 1 & -1 & 1 & -1 & 1
  	\end{tabular}
- 	
+
  	\[
  		\begin{array}{|c|c|c|c|c|c|}
  			\hline
@@ -1089,7 +1089,7 @@
  			\vdots &        &                 &                 &                 &  \\ \hline
  		\end{array}
  	\]
- 	
+
  	\[
  	\begin{array}{cccccc}
  		\cellcolor{blue!25}1 & \cellcolor{blue!25} 1 \searrow &                                 &                                &                                &  \\
@@ -1103,7 +1103,7 @@
  		         5           &           1 \nearrow           &                                 &                                &                                &
  	\end{array}
  	\]
- 	
+
  	\begin{align*}
  		P_4(1+r) &= 1-2\binom{r}{1}+4\binom{r}{2}-8\binom{r}{3}
  		+6\binom{r}{4}
@@ -1113,7 +1113,7 @@
  		P(2.5) &= 1 -2 \binom{1.5}{1} + 4\binom{1.5}{2}
  		-8\binom{1.5}{3} + 16\binom{1.5}{4}
  	\end{align*}
- 	
+
  	\subsubsection{Μέθοδος Aitken}
  	Έστω \( p,q \) δύο πολυώνυμα παρεμβολής μικρότερου
  	βαθμού (για \( m+2 \) σημεία),
@@ -1126,7 +1126,7 @@
  		\item \( p(y) = r(y) = f(y) \)
  		\item \( q(z) = r(z) = f(z) \)
  	\end{itemize}
- 	
+
  	Τότε η \( r(x) \) που είναι η συνάρτηση που θέλω να
  	παρεμβάλλει την \( f \) είναι:
  	\[
@@ -1134,7 +1134,7 @@
  	r(x) = \frac{(y-x)q(x) - (z-x)p(x)}{y-z}
     }
  	\]
- 	
+
  	\paragraph{}
  	Έστω \( A_{k,r} \) η τιμή στο \( \bar x \) του πολυωνύμου
  	παρεμβολής της \( f(x) \) στα σημεία \( x_0,x_1,
@@ -1147,8 +1147,8 @@
  	A_{k,r} &= \frac{(x_{k-1}-\bar x)A_{k-1,r}
  		-(x_r-\bar x)A_{k-1,k-1}}{x_{k-1}-x_r}
 	\end{align*}
-	
-	
+
+
 	\begin{tikzpicture}
 	\begin{scope}[yscale=-0.6,xscale=1]
 	\foreach \i in {0,1,...,4} {
@@ -1156,33 +1156,33 @@
 		\draw (1,\i) node {$A_{0,\i}$};
 		\draw (7,\i) node {$x_\i - \bar x$};
 	}
-	
+
 	\foreach \i in {1,...,4} {
 		\draw (2,\i-0.5) node {$A_{1,\i}$};
 	}
-	
+
 	\foreach \i in {2,...,4} {
 		\draw (3,\i-1) node {$A_{2,\i}$};
 	}
-	
+
 	\foreach \i in {3,...,4} {
 		\draw (4,\i-1.5) node {$A_{3,\i}$};
 	}
-	
+
 	\foreach \i in {4,...,4} {
 		\draw (5,\i-2) node {$A_{4,\i}$};
 	}
-	
+
 	\end{scope}
 	\end{tikzpicture}
-	
-	
+
+
 	\paragraph{π.χ.}
 	\begin{align*}
 		A_{2,3} &=
 		\frac{(x_1-\bar x)A_{1,3}-(x_3-\bar x)A_{1,1}}{x_1-x_3}
 	\end{align*}
-	
+
 	\subsection{Ασκήσεις}
 	\paragraph{Άσκηση}
 	Να βρεθεί πολυώνυμο Lagrange που να παρεμβάλλει την
@@ -1204,18 +1204,18 @@
     +\left(\frac{e}{2}-\frac{1}{2e}\right)x -1
     \quad \text{(δεν είναι απαραίτητο να το φτάσουμε μέχρι εδώ)}
 	\end{align*}
-	
+
 	\begin{tikzpicture}[scale=.8]
 	\begin{axis}[samples=30,very thick,domain=-1.5:1.5,no marks,grid=both,axis lines = middle,clip=false]
 	\addplot+{e^x} node[above right] {$e^x$};
 	\addplot+{(x^2-x)/(2*e) + (1-x^2) + (e/2)*(x^2+x) }
 	node[above right] {$P_2(x)$};
-	
+
 	\filldraw [fill=red!50!gray!30, draw=black, thick, fill opacity=.7]
 	(axis cs:-1,1/e) circle [radius=3pt] (axis cs:0,1) circle [radius=3pt] (axis cs:1,e) circle [radius=3pt];
 	\end{axis}
 	\end{tikzpicture}
-	
+
 	\paragraph{Άσκηση}
 	Να βρεθεί πολυώνυμο Newton που να παρεμβάλλει την παρακάτω \( f \)
 	με τη μέθοδο διηρημένων διαφορών:
@@ -1236,7 +1236,7 @@
 	\[
 	P_2(x) = 1 + \frac{1}{2}(x+1) - \frac{7}{6}(x+1)(x-1)
 	\]
-	
+
 	\paragraph{Άσκηση}
 	Να βρεθεί η τιμή \( f(0.5) \) (intrapolation)
 	χρησιμοποιώντας τη μέθοδο πεπερασμένων διαφορών. Δίνεται ο πίνακας
@@ -1250,7 +1250,7 @@
 	\subparagraph{Λύση}
 	Οι τύποι για τις \( k \)-οστές διαφορές θα δίνονται στις εξετάσεις,
 	αλλά είναι πιο κομψό και εύκολο να χρησιμοποιήσουμε τον πίνακα:
-	
+
 	\[
 	\begin{array}{cccccc}
 		x_i & f(x_i) & & & & \\
@@ -1258,7 +1258,7 @@
 		&     & \cellcolor{blue!25} -2 \searrow &     & &\\
 		1   &   0 \nesearrow& & \cellcolor{blue!25} 0 \searrow & &\\
 		& &-1 \nesearrow   & & \cellcolor{blue!25}3 \searrow &\\
-		2   &-1 \nesearrow& &   3 \nesearrow&& \cellcolor{blue!25}-7 \\	
+		2   &-1 \nesearrow& &   3 \nesearrow&& \cellcolor{blue!25}-7 \\
 		&&2 \nesearrow&&   -4 \nearrow   &\\
 		3   &   1 \nesearrow& &   -1 \nearrow   &&\\
 		&&   1 \nearrow&&&\\
@@ -1277,7 +1277,7 @@
     	\( \binom{r}{k} = \frac{r(r-1)\cdots\left(r-(k-1)\right)}{k!} \)
     	}
 	\end{align*}
-	
+
 	\paragraph{Άσκηση}
 	Να βρεθεί η τιμή του πολυωνύμου παρεμβολής \( P(5) \) για τα σημεία
 	\( x_i \) και τις αντίστοιχες τιμές της συνάρτησης \( f(x_i) \) που
@@ -1345,30 +1345,30 @@ node[below left,scale=.7] {$\cdot 1$};
 
 	Άρα \( P(5) = \frac{3}{16} \), λύση που φαίνεται λογική, αφού
 	βρίσκεται ανάμεσα στο -2 και το 3.
-	
-	
+
+
 	\section{Προσέγγιση}
 	Η προσέγγιση μοιάζει με την παρεμβολή, με τη διαφορά ότι δεν
 	επιθυμούμε το πολυώνυμο που βρούμε να περνάει από όλα τα σημεία της
 	αρχικής συνάρτησης, αλλά να έχει την ελάχιστη απόσταση από αυτά. Το
 	κέρδος μας με αυτόν τον τρόπο είναι ότι το πολυώνυμο που θα βρούμε
 	είναι μικρότερου βαθμού.
-	
+
 	\begin{tikzpicture}[scale=0.6]
 	\draw (0,2) node {ΠΑΡΕΜΒΟΛΗ};
 	\draw (0,1) node {+};
 	\draw (0,0) node {ΠΡΟΣΕΓΓΙΣΗ};
-	
+
 	\draw[->] (3,2) -- ++(0.8,0);
 	\draw[->] (3,0) -- ++(0.8,0);
-	
+
 	\draw (4,2) node[right] {$f(x_i) = p(x_i)$};
 	\draw (4,0) node[right] {$
 		\underbrace{\left|f(x_i)-p(x)\right|}_{
 			\mathclap{\text{πολυώνυμο μικρότερου βαθμού}}}$
 		ελάχιστη};
 	\end{tikzpicture}
-	
+
 	\paragraph{}
 	Έστω οι τιμές μιας συνάρτησης:
 	\[
@@ -1377,25 +1377,25 @@ node[below left,scale=.7] {$\cdot 1$};
 	f(x_i) & f(x_0) & f(x_1) & \dots & f(x_{m-1})
 	\end{array}
 	\]
-	
+
 	\begin{tikzpicture}[scale=1]
 	\draw (-0.5,0) -- (3,0);
 	\draw (0,-0.5) -- (0,3);
-	
+
 	\draw[thick,blue!50!black,mark position=0.8(a)] (-1,2) -- ++(15:4);
 	\draw[thick,blue!50!black,mark position=0.1(b)] (0.5,-0.5) -- ++(70:3);
 	\draw[thick,blue!50!black,mark position=0.9(c)] (-1,-0.5) -- ++(30:5);
-	
+
 	\draw[<-,cyan] (a) -- ++(-40:0.5) node[below,rotate=30] {κακή προσέγγιση};
 	\draw[<-,cyan] (b) -- ++(-40:0.5) node[below,rotate=20] {μέτρια προσέγγιση};
 	\draw[<-,cyan] (c) -- ++(-40:0.5) node[below,rotate=30] {καλύτερη προσέγγιση};
-	
+
 	\filldraw (0.3,0.3) circle (1pt) (0.4,0.5) circle (1pt) (0.8,0.6) circle (1pt)
 	(rand,rand) circle (1pt) (0.7,2) circle (1pt) (1,1.5) circle (1pt)
 	(1.5,1) circle (1pt) (2,1.2) circle (1pt) (2.5,1) circle (1pt);
-	
+
 	\end{tikzpicture}
-	
+
 	Αν ζητάμε η προσέγγιση \( P(x) \) να είναι μια ευθεία, τότε στην
 	ιδανική περίπτωση:
 	\[
@@ -1419,7 +1419,7 @@ node[below left,scale=.7] {$\cdot 1$};
 	\]
 	που είναι σύστημα 2 αγνώστων αλλά \( m \) εξισώσεων, κάτι που μάλλον
 	θα είναι αδύνατο.
-	
+
 	Επομένως αντί να λύσω την εξίσωση:
 	\[
 	Ax = b
@@ -1432,15 +1432,15 @@ node[below left,scale=.7] {$\cdot 1$};
 	\[
 	A\bar x -b.
 	\]
-	
+
 	Η παραπάνω σχέση όμως δεν εκφράζει έναν αριθμό, αλλά έναν πίνακα!
 	Για να "ελαχιστοποιήσουμε" αυτόν τον πίνακα θα ορίσουμε κάποια
 	μεγέθη.
-	
+
 	\subsection{Στοιχεία Αριθμητικής Γραμμικής Άλγεβρας}
 	\subsubsection{Εσωτερικό γινόμενο}
 	\textit{Εσωτερικό γινόμενο} σε χώρο \( V \) είναι μια \textbf{πράξη}
-	για κάθε \( x,y \in V \) 
+	για κάθε \( x,y \in V \)
 	(συμβολίζεται με \( (x,y) \) ή \( \langle x,y \rangle \))
 	ορίζει έναν \textbf{αριθμό} που ικανοποιεί:
 	\begin{enumroman}
@@ -1448,7 +1448,7 @@ node[below left,scale=.7] {$\cdot 1$};
 		\item \( (x,y) = (y,x) \quad \forall x,y\in V \)
 		\item \( (ax+by,z) = a(x,z)+b(y,z) \)
 	\end{enumroman}
-	
+
 	Πιο συγκεκριμένα, για κάποιους χώρους ορίζουμε:
 	\begin{align*}
 	\mathbb R^n &: \ (x,y) = x^{\mathrm T}y \quad
@@ -1457,27 +1457,27 @@ node[below left,scale=.7] {$\cdot 1$};
 	\mathbb R^{m\times n} &: (A,B) =
 	\sum_{i=1}^{m}\sum_{j=1}^{n} a_{ij}b_{ij}
 	\end{align*}
-	
+
 	Για συναρτήσεις, έχουμε \( (f,g) = \int f(x)g(x)\dif x \)
-	
+
 	Δύο διανύσματα \( x,y \in V \) λέγονται \textbf{ορθογώνια} όταν
 	\( (x,y) = 0\), και γράφουμε \( x \perp y \).
-	
+
 	\subsubsection{Μήκος - Νόρμα (norm) διανύσματος}
 	Ως νόρμα μπορούμε να επιλέξουμε οποιαδήποτε συνάρτηση που καλύπτει
 	κάποια αξιώματα (για παράδειγμα, νόρμα ενός διανύσματος μπορεί να
 	είναι το μέγιστο στοιχείο ενός διανύσματος).
-	
+
 	Ένας χώρος \( V \) είναι εφοδιασμένος με \textbf{μήκος} ή
 	\textbf{νόρμα} αν για κάθε \( x \in V \) υπάρχει αριθμός
 	\( \Vert x\Vert \) που ικανοποιεί:
-	
+
 	\begin{enumroman}
 		\item \( \Vert x\Vert > 0 \) με ισότητα μόνο εάν \( x=0 \)
 		\item \( \Vert ax\Vert = |a|\,\Vert x\Vert \) για κάθε σταθερά \( a \)
 		\item \( \Vert x+y\Vert \leq \Vert x\Vert+\Vert y\Vert \ \forall x,y\in V  \)
 	\end{enumroman}
-	
+
 	\paragraph{Είδη νορμών}
 	Για ένα διάνυσμα \( x=(x_1,x_2,\dots,x_n)^{\mathrm T} \)
 	\begin{align*}
@@ -1492,29 +1492,29 @@ node[below left,scale=.7] {$\cdot 1$};
 		\sqrt{x_1^2 + \dots + x_n^2}
 		\quad \text{ (ευκλείδια νόρμα)}
 	\end{align*}
-	
+
 	\paragraph{Απόσταση}
 	μεταξύ διανυσμάτων \( x,y \in \mathbb R  \) είναι ο αριθμός:
 	\[
     \mathlarger{\Vert x-y\Vert }
 	\]
-	
+
 	\paragraph{Θεωρήματα}
 	\[
 	\Vert x+y\Vert ^2 = \Vert x\Vert ^2 + \Vert y\Vert ^2
 	\]
-	
+
 	Cauchy-Schwartz:
 	\[
-	\left\Vert(x,y)\right\Vert \leq \Vert x\Vert \,\Vert y\Vert 
+	\left\Vert(x,y)\right\Vert \leq \Vert x\Vert \,\Vert y\Vert
 	\]
-	
+
 	\subsubsection{Ορθογώνιοι Υποχώροι}
 	\begin{defn}{Ορθογώνιοι Υποχώροι}{}
 		Δύο υποχώροι \( X,Y \) του  \( \mathbb R^n \) λέγονται
 		\textbf{ορθογώνιοι}, αν \( x^{\mathrm T}y = 0 \) \textbf{για
 		κάθε} \( x \in X \) και \( y \in Y \).
-	
+
 	    Γράφουμε: \( \mathlarger{X \perp Y} \)
 	\end{defn}
 	\begin{defn}{Ορθογώνιο Συμπλήρωμα}{}
@@ -1522,13 +1522,13 @@ node[below left,scale=.7] {$\cdot 1$};
 		\[
 		\mathlarger{
 			Y^\perp
-			} = \left\lbrace 
+			} = \left\lbrace
 			x \in \mathbb R^n : x^{\mathrm T}y = 0 \quad
 			\forall y \in Y
 			 \right\rbrace
 		\]
 		είναι το \textbf{ορθογώνιο συμπλήρωμα} του \( Y \).
-		
+
 		Για παράδειγμα, το ορθογώνιο συμπλήρωμα του πίνακα στην αίθουσα
 		Α3 είναι ο κάθετος τοίχος.
 	\end{defn}
@@ -1544,7 +1544,7 @@ node[below left,scale=.7] {$\cdot 1$};
 			x \in \mathbb R^n \right\rbrace
 			\)
 			\item \textbf{Χώρος των γραμμών} του \( A \):
-			\( \mathrm R(A^{\mathrm T}) = \left\lbrace 
+			\( \mathrm R(A^{\mathrm T}) = \left\lbrace
 			y \in \mathbb R^n: y = A^{\mathrm T}x \text{ για }
 			x \in \mathbb R^m
 			 \right\rbrace \)
@@ -1564,32 +1564,32 @@ node[below left,scale=.7] {$\cdot 1$};
     \text{διαφορά } r(x) &= b - Ax \\
     \left\Vert r(x)\right\Vert &= \Vert b-Ax\Vert
     \end{align*}
-    
+
     \begin{tikzpicture}
     \filldraw[fill=gray!30] (0,0) -- (1,3) -- (6,3) -- (5,0) -- cycle;
-    
+
     \draw[thick,cyan!50!blue] (3,1.5) --++(0,1) node[midway,right] {$b-A\bar x=r(x)$};
     \draw[->] (2,1.5) -- ++(0:1) node[below] {$A\bar x$};
     \draw[->] (2,1.5) -- ++(1,1) node[left] {$b$};
     \end{tikzpicture}
-    
-    
+
+
     Το διάνυσμα \( r(x) \) ανήκει στο ορθογώνιο συμπλήρωμα του χώρου
     των στηλών, άρα στο μηδενοχώρο του \( A^{\mathrm T} \) (από το
     Θεμελιώδες Θεώρημα Γραμμικής Άλγεβρας), επομένως:
-    
+
     \begin{align*}
     	A^{\mathrm T} r(x) &= 0 \\
     	A^{\mathrm T} (b-A\bar x) &= 0
     \end{align*}
-    
+
     Άρα: \[
     \boxed{
     \mathlarger{\mathlarger{\mathlarger{
     		Α^{\mathrm T}Ax = A^{\mathrm T}b
     	}}}} \quad \xleftarrow{\hspace{5pt}} \text{ κανονικές εξισώσεις}
     \]
-    
+
     \paragraph{Παράδειγμα}
     Να προσεγγιστεί η \( f(x) \) με πολυώνυμο πρώτου βαθμού, όπου:
     \[
@@ -1598,7 +1598,7 @@ node[below left,scale=.7] {$\cdot 1$};
     f(x_i) & 1 & 4 &  5
     \end{array}
     \]
-    
+
     \subparagraph{Λύση}
     \[
     A = \left[ \begin{matrix}
@@ -1609,7 +1609,7 @@ node[below left,scale=.7] {$\cdot 1$};
     1 \\ 4 \\ 5
     \end{matrix} \right]
     \]
-    
+
     \begin{align*}
     	A^{\mathrm T} A &= \left[\begin{matrix}
     	3 & 9 \\ 9 & 45
@@ -1618,7 +1618,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	10 \\ 42
     	\end{matrix} \right]
     \end{align*}
-    
+
     Άρα πρέπει να λύσουμε το σύστημα:
     \[
     \left[\begin{matrix}
@@ -1630,9 +1630,9 @@ node[below left,scale=.7] {$\cdot 1$};
     \end{matrix}\right]
     \]
     \( a_0 = \sfrac{4}{3},\ a_1 = \sfrac{2}{3}  \)
-    
+
     Επομένως \( \displaystyle P_1(x) = \frac{4}{3} + \frac{2}{3}x \).
-    
+
     \paragraph{Άσκηση}
     Να προσεγγιστούν τα παρακάτω σημεία με μία παραβολή, χρησιμοποιώντας
     τη μέθοδο ελαχίστων τετραγώνων:
@@ -1671,38 +1671,38 @@ node[below left,scale=.7] {$\cdot 1$};
     Πολλές φορές δεν μπορούμε να υπολογίσουμε αναλυτικά ένα ολοκλήρωμα,
     ή αυτός ο υπολογισμός είναι υπολογιστικά δύσκολος, επομένως σε αυτό το
     κεφάλαιο θα αναπτύξουμε τεχνικές για αριθμητική ολοκλήρωση.
-    
+
     \begin{gather*}
     	f(x) \quad [a,b] \\
     	\mathlarger{\int_a^b f(x) \dif x}
     \end{gather*}
     \begin{tikzpicture}
-    
+
     \begin{scope}[scale=1.4]
     \clip plot [smooth,tension=1]
     coordinates {(0.2,2)  (1.5,1.7)  (2.8,2.2)}
     -- (2.8,0) -- (0,0) -- (0,2);
-    
+
     \fill[green!30,postaction={pattern=north east lines,opacity=.15}] (0.7,0) rectangle (2,2.2);
-    
+
     \draw[dashed] (0.7,0) -- ++(0,2.2);
     \draw[dashed] (2,0) -- ++(0,2.2);
     \end{scope}
     \draw (0.7,0) node[below] {$\vphantom{b}a$};
     \draw (2,0) node[below] {$b$};
-    
+
     \draw (-0.5,0) -- (3,0);
     \draw (0,-0.2) -- (0,2.5);
-    
+
     \draw[very thick,draw=blue] plot [smooth,tension=1]
     coordinates {(0.2,2)  (1.5,1.7)  (2.8,2.2)} node[above right] {$f(x)$};
     \end{tikzpicture}
-    
-    
+
+
     Ο πιο απλός τρόπος να υπολογίσουμε το ολοκλήρωμα μιας συνάρτησης
     είναι να πάρουμε τον εμβαδόν της συνάρτησης μεταξύ δύο σημείων
     (κατά Riemann).
-    
+
     Σε αυτό το κεφάλαιο η γενική ιδέα είναι να παρεμβάλλουμε την \( f \)
     με ένα πολυώνυμο \( p \):
     \[
@@ -1715,7 +1715,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	I\left(f(x)+g(x)\right) &= I\left(f(x)\right)+I\left(g(x)\right)
     	\\ I\left(af(x)\right) &= aI\left(f(x)\right)
     \end{align*}
-    
+
     Επίσης θα υπολογίζουμε το σφάλμα (ή πιο συγκεκριμένα, το μέγιστο
     σφάλμα) της προσέγγισής μας:
     \begin{align*}
@@ -1723,7 +1723,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	\\
     	I\left(f(x)-p(x)\right) &= I\left(e(x)\right)
     \end{align*}
-    
+
     \paragraph{}
     Για πολυώνυμα σε μορφή Lagrange έχουμε:
     \begin{align*}
@@ -1733,7 +1733,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	I(f) &= \int_{a}^{b} f(x) \dif x \simeq
     	 \sum_{k=0}^n f(x_k) \cdot I\left(l_k(x)\right)
     \end{align*}
-    
+
     Γενικά θα χρησιμοποιούμε πολυώνυμα το πολύ 2\textsuperscript{ου}
     βαθμού:
     \begin{itemize}
@@ -1741,41 +1741,41 @@ node[below left,scale=.7] {$\cdot 1$};
     	\item \textbf{Σύνθετος κανόνας:} Εφαρμόζουμε τον απλό κανόνα σε
     	πολλά διαστήματα της \( f \).
     \end{itemize}
-    
+
     \subsection{Κανόνας Παραλληλογράμμου}
     \( \mathsmaller{(n = 0)} \)
-    
+
     \begin{tikzpicture}[scale=1.5]
-    
+
     \begin{scope}
     \clip plot [smooth,tension=1]
     coordinates {(0.2,2)  (1.5,2)  (2.2,3)}
     -- (2.8,0) -- (0,0) -- (0,2);
-    
+
     \fill[yellow!40] (0.7,0) rectangle (2,2.5);
-    
+
     \draw[dashed] (0.7,0) -- ++(0,3);
     \draw[dashed] (2,0) -- ++(0,3);
     \end{scope}
-    
+
     \filldraw[fill=yellow!80!black,fill opacity=.5,postaction={pattern=north east lines,opacity=.15}]
     (0.7,0) rectangle (2,1.89);
     \draw[dashed] (0.7,1.89) -- ++(-0.7,0) node[left] {$f(a)$};
-    
+
     \draw (0.7,0) node[below] {$\vphantom{b}a$};
     \draw (2,0) node[below] {$b$};
-    
+
     \draw (-0.5,0) -- (3,0);
     \draw (0,-0.2) -- (0,2.5);
-    
+
     \draw[very thick,draw=blue!50!black] plot [smooth,tension=1]
     coordinates {(0.2,2)  (1.5,2)  (2.2,3)} node[above right] {$f(x)$};
     \end{tikzpicture}
-    
+
     \paragraph{Απλός κανόνας παραλληλογράμμου/ορθογωνίου}
     Για να εφαρμόσω τον κανόνα του παραλληλογράμμου, θα παρεμβάλλω την
     \( f \) σε ένα σημείο.
-    
+
     Ας υποθέσω ότι παρεμβάλλω την \( f \) στο σημείο \( \left(a,f(a)
     \right) \):
     \begin{align*}
@@ -1789,13 +1789,13 @@ node[below left,scale=.7] {$\cdot 1$};
     	\\ &= \frac{(b-a)^2}{2} f'(z) \quad \text{(με βάση πράξεις του
     		βιβλίου, για κάποιο $z: a<z<b$)}
     \end{align*}
-    
+
     Για να φράξω το σφάλμα (να βρω την μέγιστη δηλαδή τιμή του):
     \begin{align*}
     |E_\mathrm{R}| = \frac{(b-a)^2}{2} \left|f'(z)\right| &\leq
     \frac{(b-a)^2}{2} \max_{a<z<b} \left|f'(z)\right|
     \end{align*}
-    
+
     \paragraph{Σύνθετος κανόνας παραλληλογράμμου}
     Ο σύνθετος κανόνας λειτουργεί σαν τον απλό, με τη διαφορά ότι
     διαμερίζει το διάστημα ολοκλήρωσης \( [a,b] \) σε \( N \) ίσα
@@ -1820,7 +1820,7 @@ node[below left,scale=.7] {$\cdot 1$};
     \left|E_{\mathrm R,N}\right| &\leq \frac{h}{2} (b-a)
     \max_{a<z<b} \left|f'(z)\right|
     \end{align*}
-    
+
     \paragraph{Παράδειγμα}
     Να υπολογιστεί το ολοκλήρωμα της \( \mathlarger{f(x)=x^3} \) στο
     διάστημα \( \mathlarger{[1,2]} \) για \( N=1 \text{ και } N=8 \).
@@ -1839,40 +1839,40 @@ node[below left,scale=.7] {$\cdot 1$};
     	\\ \left|E_{R,8}\right| &\leq \frac{1}{8}\cdot\frac{1}{2}\cdot 1
     	\max_{1<z<2} \left|3z^2\right| = 0.75
     \end{align*}
-    
+
     \subsection{Κανόνας Τραπεζίου}
     \( \mathsmaller{(n = 1)} \)
-    
+
     Παρεμβάλλω την \( f \) σε δύο σημεία για να πάρω ένα πολυώνυμο
     1\textsuperscript{ου} βαθμού:
-    
+
     \begin{tikzpicture}[scale=1.8]
-    
+
     \filldraw[fill=yellow!80!black,fill opacity=.9,postaction={pattern=north east lines,opacity=.15}]
     (0.7,0) -- (0.7,1.89) node[above]{$a$} -- (2,2.5) node[above,xshift=-1mm] {$b$} -- (2,0) -- cycle;
     \draw[dashed] (0.7,1.89) -- ++(-0.7,0);
-    
+
     \begin{scope}
     \clip plot [smooth,tension=1]
     coordinates {(0.2,2)  (1.5,2)  (2.2,3)}
     -- (2.8,0) -- (0,0) -- (0,2);
-    
+
     \fill[yellow!40,opacity=.5] (0.7,0) rectangle (2,2.5);
-    
+
     \draw[dashed] (0.7,0) -- ++(0,3);
     \draw[dashed] (2,0) -- ++(0,3);
     \end{scope}
-    
+
     \draw (-0.5,0) -- (3,0);
     \draw (0,-0.2) -- (0,2.5);
-    
+
     \draw[very thick,draw=blue!50!black] plot [smooth,tension=1]
     coordinates {(0.2,2)  (1.5,2)  (2.2,3)} node[above right] {$f(x)$};
     \end{tikzpicture}
-    
-    
+
+
     \paragraph{Απλός κανόνας τραπεζίου}
-    
+
     \[x_0 = a \hspace{50pt} x_1=b \]
     \begin{align*}
     	p_1(x) &= f(a)l_0(x) + f(b)l_1(x) \qquad
@@ -1891,7 +1891,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	\left|E_{\mathrm T}\right| &\leq \frac{(b-a)^3}{12}
     	\max_{a<z<b} f''(z)
     \end{align*}
-    
+
     \paragraph{Σύνθετος κανόνας τραπεζίου}
     Όπως και προηγουμένως, διαμερίζουμε το τραπέζιο σε \( N \) τμήματα,
     και εφαρμόζουμε τον απλό κανόνα σε καθ' ένα από αυτά:
@@ -1899,7 +1899,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	h = \frac{b-a}{N} \\
     	a = x_0,x_1,\dots,x_N=b
     \end{gather*}
-    
+
     \begin{align*}
     	I_{\mathrm T,N} &= \frac{h}{2} \left(f(x_0)+f(x_1)\right)
     	+ \frac{h}{2} \left(f(x_1)+f(x_2)\right) + \dots + \frac{h}{2}
@@ -1908,7 +1908,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	f(x_0)+2f(x_1)+2f(x_2)+\dots+2f(x_{N-1})+f(x_N)
     	\right]
     \end{align*}
-    
+
     Αντίστοιχα με παραπάνω, για το σφάλμα θα αθροίσω τα επιμέρους
     σφάλματα:
     \begin{align*}
@@ -1919,7 +1919,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	|E_{\mathrm T,N}| &\leq \frac{h^2}{12}(b-a)\max_{a<z<b}
     	\left|f''(z)\right|
     \end{align*}
-    
+
     \paragraph{Παράδειγμα}
     Να υπολογιστεί με τον κανόνα τραπεζίου για \( N=4,\ 8 \) το
     ολοκλήρωμα:
@@ -1940,7 +1940,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	\\ \left|E_{T,4}\right| &\leq \frac{1}{32}\cdot 2
     	=\frac{1}{16} = 0.0625
     \end{align*}
-    
+
     \subparagraph{Λύση για \( N=8 \)}
     \begin{align*}
         I_{T,8} &= \frac{h}{2} \left[
@@ -1954,23 +1954,23 @@ node[below left,scale=.7] {$\cdot 1$};
     	&= -\frac{\sfrac{1}{8^2} }{12}\cdot 6z=-\frac{1}{128}z \\
     	|E_{T,8}| &\leq \frac{1}{128}z=\frac{1}{64}=0.01562
     \end{align*}
-    
+
     \subsection{Κανόνας Simpson}
     \( \mathsmaller{(n = 2)} \)
-    
+
     \begin{tikzpicture}
-    
+
     \draw[dashed] (0.7,0) node[below] {$\vphantom{b}a$} -- ++(0,1.6);
     \draw (1.35,0) node[below] {$\frac{a+b}{2}$};
     \draw[dashed] (2,0) node[below] {$b$} -- ++(0,2.24);
     \draw (-0.5,0) -- (3,0);
     \draw (0,-0.2) -- (0,3);
-    
+
     \draw[very thick] plot [smooth,tension=0.7]
     coordinates {(0.3,1) (0.7,1.6) (1.5,1.7) (2.2,2.5) (2.5,2.7)};
     \end{tikzpicture}
-    
-    
+
+
     \paragraph{Απλός κανόνας Simpson}
     \begin{align*}
     	P_2(x) &= f(a)l_0(x) +f\left(\frac{a+b}{2}\right)l_1(x)+f(b)
@@ -1987,10 +1987,10 @@ node[below left,scale=.7] {$\cdot 1$};
     	\left|E_{\mathrm S}\right| &\leq
     	\frac{\left(\frac{b-a}{2}\right)^5}{90}\max_{a<z<b}f^{(4)}(z)
     \end{align*}
-    
+
     \paragraph{Σύνθετος κανόνας Simpson}
     Το αρχικό διάστημα χωρίζεται σε \( 2N \) τμήματα:
-    
+
     \begin{tikzpicture}[scale=.7,xscale=1.4]
     \draw (0,0) -- (0,-1) node[below] {$x_0$};
     \draw (0.5,0) -- ++(0,-0.7) node[below] {$x_1$};
@@ -2000,7 +2000,7 @@ node[below left,scale=.7] {$\cdot 1$};
     \draw (2.5,0) -- ++(0,-0.7) node[below] {$x_5$};
     \draw (3,0) -- ++(0,-1) node[below] {$x_6$};
     \end{tikzpicture}
-    
+
     Εφαρμόζουμε τον απλό κανόνα Simpson σε πολλά διαστήματα:
     \[
     a = x_0 \ < x_1 < x_2 < \cdots < x_{2N-1} < \ x_{2N} = b
@@ -2013,7 +2013,7 @@ node[below left,scale=.7] {$\cdot 1$};
     \[
     \left[x_i,\ x_{i+2}\right], \qquad i=0,2,4,\dots,2N-2
     \]
-    
+
     Οπότε τελικά έχουμε: \begin{align*}
     	I_{\mathrm S,2N} &= \frac{h}{6} \left[f(x_0)+4f(x_1)+f(x_2)
     	+f(x_2)+4f(x_3)+f(x_4)+\dots + f(x_{2N-2}) + 4f(x_{2N-1})
@@ -2021,7 +2021,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	\frac{h}{6} \left[f(x_0)+4f(x_1)+2f(x_2)+4f(x_3)+2f(x_4)+\dots
     	+ 2f(x_{2N-2}) + 4f(x_{2N-1})+f(x_{2N})\right]
     \end{align*}
-    
+
     Και για το σφάλμα, με αρκετές πράξεις προκύπτει:
     \begin{align*}
     	E{\mathrm S,2N} &= -n \frac{\left(\frac{h}{2}\right)^5}{90}
@@ -2031,23 +2031,23 @@ node[below left,scale=.7] {$\cdot 1$};
     	\frac{\left(\frac{h}{2}\right)^4}{180}(b-a)
     	\max_{a<z<b} \left(f^{(4)}(z)\right)
     \end{align*}
-    
+
     \subsection{Κανόνας Μέσου Σημείου}
     Ανοικτοί τύποι Newton-Cotes (μέχρι στιγμής έχουμε ασχοληθεί με
     κλειστούς τύπους Newton-Cotes).
-    
+
     \paragraph{Απλός κανόνας μέσου σημείου}
-    
+
     Η ιδέα είναι να παίρνουμε ένα παραλληλόγραμμο με ύψος όμως που να
     μην αντιστοιχεί στο άκρο του διαστήματος, αλλά στο μέσον του:
-    
+
     \begin{center}
     	\begin{tikzpicture}[scale=1.7]
     	\filldraw[draw=gray,fill=green!80!blue!50!white] (0.8,0) rectangle (1.8,1.3);
-    	
+
     	\draw (-0.5,0) -- (2.3,0);
     	\draw (0,-0.5) -- (0,2.2);
-    	
+
     	\draw (0.8,0) node[below] {$a$} -- ++(0,0.85);
     	\draw[dashed] (0.8,0.85) -- (0,0.85) node[left] {$f(a)$};
     	\draw[dashed] (1.3,0) node[below] {$\frac{a+b}{2}$} -- ++(0,1.3) -- (0,1.3);
@@ -2055,17 +2055,17 @@ node[below left,scale=.7] {$\cdot 1$};
     	\draw[dashed] (0.8,0.85) -- (1.8,0.85);
     	\draw (1.8,0) node[below] {$b$} -- ++(0,2);
     	\draw[dashed] (1.8,2) -- (0,2) node[left] {$f(b)$};
-    	
+
     	\draw[very thick,blue] plot [smooth,tension=1] coordinates {(-0.2,0.5) (1,1) (1.9,2.2)};
-    	
+
     	\end{tikzpicture}
     \end{center}
-    
+
     \begin{align*}
     	I_{\mathrm M} &= (b-a)\cdot f\left(\frac{a+b}{2}\right) \\
     	E_{\mathrm M} &= \frac{(b-a)^3}{24}f''(z) \quad a<z<b
     \end{align*}
-    
+
     \paragraph{Σύνθετος κανόνας μέσου σημείου}
     \begin{align*}
     	I_{\mathrm M, N} &= hf\left(x_0+\frac{h}{2}\right)
@@ -2076,7 +2076,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	\\ \left|E_{\mathrm M,N}\right| &\leq \frac{h^2}{24}(b-a)
     	\max_{a<z<b}\left|f''(z)\right|
     \end{align*}
-    
+
     \subsection{Ασκήσεις}
     \paragraph{Άσκηση}
     Να υπολογιστεί το ολοκλήρωμα
@@ -2085,7 +2085,7 @@ node[below left,scale=.7] {$\cdot 1$};
     \]
     με τον κανόνα του παραλληλογράμμου για \( N=1 \) και \( N=10 \)
     διαστήματα.
-    
+
     \subparagraph{Λύση για \( N=1 \)}
     \begin{align*}
     	I_R &= f(0)\big(1-0\big) = 1\cdot 1 = 1 \\[3ex]
@@ -2095,7 +2095,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	\left|E_R\right| &\leq \frac{(b-a)^2}{2}\max_{0<z<1}\left|
     	f(z)\right| = \frac{1}{2}\cdot 1 = \frac{1}{2}
     \end{align*}
-    
+
     \subparagraph{Λύση για \( N=10 \)}
     \begin{align*}
     	I_{R,10} &= h\left(f(x_0)+f(x_1)+\dots+f(x_{N-1})\right) \\
@@ -2113,35 +2113,35 @@ node[below left,scale=.7] {$\cdot 1$};
     	(b-a) \max_{a<z<b}\left|f'(z)\right| = \frac{0.1}{2}\cdot
     	1\cdot 1 = 0.05
     \end{align*}
-    
+
     \subparagraph{Λύση με κανόνα μέσου σημείου}
     \begin{align*}
     	I_M &= (b-a) \cdot f\left(\frac{a+b}{2}\right)
     	= 1 \cdot f\left(\frac{1}{2}\right) = 0.6667 \\
     	|E_M| &\leq \frac{(b-a)^3}{24} \max_{a<z<b} \left|f''(z)\right|
-    	\intertext{\( 
+    	\intertext{\(
     		\max\limits_{0<z<1}\left|f''(z)\right|=
     		\max\limits_{0<z<1}\left|
     		\frac{2}{(1+x)^3}
     		\right| = 2\) για $x=0$}
     	&= \frac{1}{24}\cdot 2 = 0.0833
     \end{align*}
-    
+
     \begin{tabular}{c|c|c}
-    	Τύπος & Τιμή & Σφάλμα \\ 
+    	Τύπος & Τιμή & Σφάλμα \\
     	\begin{tikzpicture}[scale=0.3]
     	\draw (0,0) -- (0.3,0.7) -- (1.3,0.7) -- (1,0) -- cycle;
     	\draw (1.2,0.35) node[right] {$N=1$};
-    	\end{tikzpicture}&  1 & 0.5  \\ 
-    	\hline 
+    	\end{tikzpicture}&  1 & 0.5  \\
+    	\hline
     	\begin{tikzpicture}[scale=0.3]
     	\draw (0,0) -- (0.3,0.7) -- (1.3,0.7) -- (1,0) -- cycle;
     	\draw (1.2,0.35) node[right] {$N=10$};
-    	\end{tikzpicture}& 0.7188 & 0.05  \\ 
-    	\hline 
-    	Μέσου Σημείου & 0.6667  & 0.0833 \\ 
-    \end{tabular} 
-    
+    	\end{tikzpicture}& 0.7188 & 0.05  \\
+    	\hline
+    	Μέσου Σημείου & 0.6667  & 0.0833 \\
+    \end{tabular}
+
     \paragraph{Άσκηση}
     Να υπολογιστεί το ολοκλήρωμα
     \[
@@ -2152,23 +2152,23 @@ node[below left,scale=.7] {$\cdot 1$};
     με τη μέθοδο τραπεζίου για \( N=6 \).
     \subparagraph{Λύση}
     \( 1=x_0<x_1<\dots<x_6=3 \)
-    
+
     \begin{align*}
     I_{T,6} &= \frac{h}{2}\left[
     f(x_0)+2f(x_1)+2f(x_2)+2f(x_3)+2f(x_4)+2f(x_5)+f(x_6)
     \right]
     \end{align*}
     \(h=\frac{b-a}{N}=\frac{3-1}{6}=\frac{1}{3}\)
-    
+
     \[
     \begin{array}{r|c|c|c|c|c|c|c}
     x_i & 1 & 1+\sfrac{1}{3} & 1+\sfrac{2}{3} & 2 & 2+\sfrac{1}{3}
     & 2+\sfrac{2}{3} & 3 \\ \hline
     f(x_i) & 2 & \sfrac{91}{48} & \sfrac{152}{75} & \sfrac{9}{4} &
-    \sfrac{370}{147}  & \sfrac{532}{192} & \sfrac{28}{9} 
+    \sfrac{370}{147}  & \sfrac{532}{192} & \sfrac{28}{9}
     \end{array}
     \]
-    
+
     Άρα:
     \begin{align*}
     	I_{T,6} &= \frac{1}{6} \left[
@@ -2179,7 +2179,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	= \frac{\left(\sfrac{1}{2} \right)^2}{12}\cdot(3-1)
     	\cdot\max_{1<z<3}\frac{6}{z^4} = \frac{1}{9} \simeq 0.1111
     \end{align*}
-    
+
     \paragraph{Άσκηση}
     Για τη συνάρτηση \( f \) γνωρίζουμε τον παρακάτω πίνακα τιμών:
     \[
@@ -2189,36 +2189,36 @@ node[below left,scale=.7] {$\cdot 1$};
     	f(x_i) & -1  &  0  & 0.5 &  2  & 1.5 &  3  &  5
     \end{array}
     \]
-    
-    Ζητείται να βρεθεί το ολοκλήρωμα \( \displaystyle \int_1^7 f(x) 
+
+    Ζητείται να βρεθεί το ολοκλήρωμα \( \displaystyle \int_1^7 f(x)
     \dif x \) με κανόνα Simpson.
-    
+
     \subparagraph{Λύση}
     Για να εφαρμόσουμε κανόνα Simpson, το κάθε διάστημα πρέπει να
     καταλαμβάνει 3 σημεία (τα δύο άκρα και το μέσο).
 
     \begin{tikzpicture}[scale=2.5,every node/.style={scale=1},xscale=.9]
-    
+
     \draw (0,0) node[above] {$x_0$} -- +(0,-0.15) -- ++(0.6,-0.15) --++(0,0.15);
     \draw (0.7,0) -- +(0,-0.15) -- ++(0.6,-0.15) --++(0,0.15);
     \draw (1.4,0) -- +(0,-0.15) -- ++(0.6,-0.15) --++(0,0.15) node[above] {$x_6$};
-    
+
     \draw (0.65,0) node[above] {$x_2$};
     \draw (1.3,0) node[above] {$x_4$};
-    
+
     \draw(0.3,0.1) node[above] {$x_1$};
     \draw(1.0,0.1) node[above] {$x_3$};
     \draw(1.7,0.1) node[above] {$x_5$};
-    
-    
+
+
     \end{tikzpicture}
-    
+
     Επομένως:
     \begin{gather*}
     	N = 3 \\
     	h=\frac{7-1}{2}
     \end{gather*}
-    
+
     Άρα έχουμε:
     \begin{align*}
     	I &= \frac{h}{6} \left[
@@ -2227,7 +2227,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	-1+4\cdot 0 + 2\cdot 0.5 + 4\cdot 2 + 2\cdot 1.5 + 3\cdot 3+5
     	\right] \\ &= 9.333
     \end{align*}
-    
+
     \section{Υπολογισμός Ιδιοτιμών}
     Δομή της ενότητας:
     \begin{itemize}
@@ -2236,7 +2236,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	\item Μετασχηματισμοί Householder
     	\item Παραγοντοποίηση QR
     \end{itemize}
-    
+
     \textbf{Το πρόβλημα που καλούμαστε να λύσουμε είναι:} Δεδομένου
     ενός πίνακα \( A \in \mathbb R^{n\times n} \), να υπολογιστούν οι
     ιδιοτιμές \( \lambda_i \in \mathbb R \), και τα αντίστοιχα
@@ -2245,7 +2245,7 @@ node[below left,scale=.7] {$\cdot 1$};
     \[
     Ax_i = \lambda x_i \quad \text{για } i =1,2,\dots,n
     \]
-    
+
     \subsection{Εισαγωγή}
     \[
     \boxed{Ax =
@@ -2255,28 +2255,28 @@ node[below left,scale=.7] {$\cdot 1$};
     		x}\hspace{25pt}
     	}
     \]
-    
+
     ή:
     \begin{align*}
     	(A-\lambda I)x &= 0 \\
     	\det(A-\lambda I) &= 0, \text{ δηλαδή } x \in N(A-\lambda I),
     	\text{ όπου } N \text{ ο μηδενοχώρος}
     \end{align*}
-    
+
     Δηλαδή πρέπει να λύσουμε ένα σύστημα \( n \) εξισώσεων και αγνώστων.
-    
+
     Ορίζουμε και το χαρακτηριστικό πολυώνυμο ως:
     \[
     P(\lambda) = \det(A-\lambda I)
     \]
-    
+
     \paragraph{Παράδειγμα}
     \[
     A = \left[\begin{matrix}
     3&2\\3&-2
     \end{matrix}\right]
     \]
-    
+
     Τότε:
     \begin{gather*}
     	|A-\lambda I| = \left|\begin{matrix}
@@ -2286,19 +2286,19 @@ node[below left,scale=.7] {$\cdot 1$};
     	\lambda_1 &= 4 \\ \lambda_2&=-3
     	\end{cases}
     \end{gather*}
-    
+
     Τα παραπάνω \( \lambda \) είναι οι ιδιοτιμές, και τα ιδιοδιανύσματα
     είναι, για \( \lambda_1 = 4 \):
     \begin{gather*}
     	(A-4I)x = 0 \iff \left[\begin{matrix}
     	-1&2\\3&-6
-    	\end{matrix}\right]x = 0 \\ N(A-4I)= \left\lbrace 
+    	\end{matrix}\right]x = 0 \\ N(A-4I)= \left\lbrace
     	a\left[\begin{matrix}
     	2\\1
     	\end{matrix}\right]: a \in\mathbb R, a\neq 0
     	 \right\rbrace
     \end{gather*}
-    
+
     Αντίστοιχα προκύπτει:
     \[
     N(A+3I) = \left\lbrace a\left[
@@ -2307,14 +2307,14 @@ node[below left,scale=.7] {$\cdot 1$};
     \end{matrix}
     \right] : a \in\mathbb R, a\neq 0 \right\rbrace
     \]
-    
+
     \paragraph{}
     Αν ο πίνακας είναι τριγωνικός, οι ιδιοτιμές είναι μόνο τα διαγώνια
     στοιχεία του:
     \[
     \lambda_i = a_{ii}
     \]
-    
+
     \begin{defn}{Φάσμα}{}
     	Το σύνολο όλων των ιδιοτιμών ενός πίνακα \( A \) ονομάζεται
     	\textbf{ΦΑΣΜΑ} του \( A \):
@@ -2322,7 +2322,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	\sigma(a)
     	\]
     \end{defn}
-    
+
     \begin{defn}{Φασματική ακτίνα}{}
     	Το μέγιστο κατ' απόλυτη τιμή στοιχείο του φάσματος ονομάζεται
     	\textbf{φασματική ακτίνα} του \( A \) και συμβολίζεται:
@@ -2330,13 +2330,13 @@ node[below left,scale=.7] {$\cdot 1$};
     	P(A) = \max\left\lbrace |\lambda|:\lambda \in \sigma(A)
     	\right\rbrace
     	\]
-    	
+
     	Δηλαδή είναι η μέγιστη κατ' απόλυτη τιμή ιδιοτιμή του \( A \).
     \end{defn}
-    
+
     Επειδή ο υπολογισμός ορίζουσας είναι δύσκολη υπολογιστική διαδικασία,
     άρα θα βρούμε αριθμητικούς τρόμους να τις βρίσκουμε/προσεγγίζουμε.
-    
+
     \subsubsection{Άνω Φράγματα}
     \begin{defn}{}{}
     	Ορίζουμε:
@@ -2350,7 +2350,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	\intertext{(το μέγιστο άθροισμα)}
     	\end{align*}
     \end{defn}
-    
+
     \begin{theorem}{Gerschgorin}{}
     	Για πίνακα \( A \in \mathbb R^{n\times n} \), έστω ότι, για
     	κάθε γραμμή:
@@ -2359,14 +2359,14 @@ node[below left,scale=.7] {$\cdot 1$};
     	\]
     	και έστω δίσκος \( C_i \) με ακτίνα \( R_i \) και κέντρο
     	\( a_{ii} \) (\( a_{ii}\in\mathbb C \)).
-    	
+
     	Τότε για κάθε \( \lambda \in \sigma(A) \) υπάρχει \( i \) όπου
     	\( \lambda \in C_i \), δηλαδή:
     	\[
     	\left|\lambda - a_{ii}\right| \leq R_i
     	\]
     \end{theorem}
-    
+
     \paragraph{Συνέπεια}
     Έστω:
     \begin{align*}
@@ -2378,12 +2378,12 @@ node[below left,scale=.7] {$\cdot 1$};
     	\left|\lambda - a_{kk}\right|+\left|a_{kk}\right|
     	\leq R_k + \left|a_{kk}\right| = r_k(A) \leq r(A)
     \end{align*}
-    
+
     Επειδή \( r(A^{\mathrm T}) = c(A) \), ισχύει ότι:
     \[
     |\lambda| \leq \min\left\lbrace r(A),c(A) \right\rbrace
     \]
-    
+
     Επομένως για το προηγούμενο παράδειγμα:
     \begin{align*}
     A&=\left[\begin{matrix}
@@ -2397,7 +2397,7 @@ node[below left,scale=.7] {$\cdot 1$};
     \end{array}\right\rbrace c(A) &= 6 \\
     |\lambda| &\leq \min\left\lbrace 5,6 \right\rbrace = 5
     \end{align*}
-    
+
     \subsection{Μέθοδος δύναμης}
     Έχουμε έναν πίνακα \( A \) και κατατάσσουμε τις ιδιοτιμές του:
     \[
@@ -2429,11 +2429,11 @@ node[below left,scale=.7] {$\cdot 1$};
     \end{align*}
     Επειδή \( k\to \infty \) και μπορεί να εμφανιστούν πολύ μεγάλοι ή
     πολύ μικροί αριθμοί, θα κανονικοποιήσω το \( v_k \).
-    
+
     \subsubsection{Αλγόριθμος}
     \textbf{Είσοδος:} \( A \in \mathbb R^{n\times n},
     u_0 \in \mathbb R^n \):
-    
+
     \begin{algorithm}[H]
     	\For{k=0,1,\dots}{
             \( v_{k+1} := A u_k \)\;
@@ -2517,7 +2517,7 @@ HAH^{-1} = \left[ \begin{array}{c|ccccc}
 Μετατρέπω έναν πίνακα \( A \) σε γινόμενο 2 πινάκων \( Q \) και
 \( R \), όπου ο \( Q \) και ο \( R \) άνω τριγωνικός:
 \[
-A = 
+A =
 \underset{\substack{\downarrow\\\mathclap{\text{ορθογώνιος}}}}{Q}
 \cdot
 \overset{\substack{\mathclap{\text{άνω τριγωνικός}}\\\uparrow}}{R}
@@ -2808,7 +2808,7 @@ Q^{-1} = Q^{\mathrm T}
 	HH^{\mathrm T} &=
 	(I-2uu^{\mathrm T})(I-2uu^{\mathrm T})^T \\
 	&= (I-2uu^{\mathrm T})(I-2uu^{\mathrm T}) \\
-	&= I-4uu^{\mathrm T} + 
+	&= I-4uu^{\mathrm T} +
 	\underbrace{4u\underbrace{u^{\mathrm T} u}_1
 	u^{\mathrm T}uu^{\mathrm T}}_1 \\
 	&= I
@@ -2995,7 +2995,7 @@ H^{\mathrm T} = H^{-1}
 	\intertext{Δηλαδή φτάνουμε στο πολυπόθητο:}
 	\Aboxed{A &= QR} \\
 	\underset{m\times n}{A} &= \underset{m\times m}{Q} \times
-	\underset{m\times n}{R} \rightarrow 
+	\underset{m\times n}{R} \rightarrow
 	\left[\begin{matrix}
 	n\times n \text{ άνω τριγωνικός }  \\ \hline
 	\underset{\text{$m\times n$ γραμμές}}{0}
@@ -3101,7 +3101,7 @@ A = \left[\begin{matrix}
 		5&0&0\\0&-4&3\\0&3&4
 		\end{matrix}\right] \\
 		A_2 = H_2A_1 = \left[\begin{matrix}
-		-3&-8&-3\\0&-5&-\sfrac{2}{5} \\0&0&-\sfrac{11}{5} 
+		-3&-8&-3\\0&-5&-\sfrac{2}{5} \\0&0&-\sfrac{11}{5}
 		\end{matrix}\right] \mathlarger{= R} \\
 		Q = H_1H_2 = \frac{1}{15} \left[\begin{matrix}
 		-1&-2&-2\\-2&2&-1\\-2&-1&2
@@ -3215,7 +3215,7 @@ x_k = \frac{b_k - \sum_{j=k+1}^{n} a_{kj}x_j}{a_{kk}}
 \subsubsection{Στοιχειώδεις πράξεις}
 \begin{itemize}
 	\item \textbf{Ανταλλαγή} δύο γραμμών \( R_i \) και \( R_j \).
-	
+
 	Θα το συμβολίζουμε:
 	\[
 	R_i := R_j \text{ ή } R_i \leftarrow R_j
@@ -3223,23 +3223,23 @@ x_k = \frac{b_k - \sum_{j=k+1}^{n} a_{kj}x_j}{a_{kk}}
 	\item \textbf{Πολλαπλασιασμός} γραμμής \( R_i \) με μια σταθερά
 	\( a\in
 	\mathbb R  \).
-	
+
 	Θα το συμβολίζουμε:
 	\[
 	R_i := aR_i \text{ ή } R_i \leftarrow aR_i
 	\]
-	
+
 	\item \textbf{Πρόσθεση} σε μια γραμμή \( R_i \) το γινόμενο της
 	γραμμής
 	\( R_j \) με μια σταθερά \( a \in \mathbb R  \).
-	
+
 	Θα το συμβολίζουμε:
 	\[
 	R_i := R_i + aR_j \text{ ή } R_i \leftarrow R_i + aR_j
 	\]
-	
+
 	\subsubsection{Κλιμακωτή Μορφή}
-	
+
 	\paragraph{Παράδειγμα}
 	Αν έχουμε το σύστημα:
 	\begin{align*}
@@ -3257,7 +3257,7 @@ x_k = \frac{b_k - \sum_{j=k+1}^{n} a_{kj}x_j}{a_{kk}}
 	\]
 	και προσπαθώ να τον φέρω σε \textbf{κλιμακωτή μορφή},
 	εκτελώντας τις παραπάνω γραμμοπράξεις.
-	
+
 	\begin{defn}{Κλιμακωτή μορφή ενός ΠΙΝΑΚΑ}{}
 		\begin{enumerate}
 			\item Το πρώτο μη μηδενικό στοιχείο κάθε μη μηδενικής γραμμής
@@ -3321,10 +3321,10 @@ x_k = \frac{b_k - \sum_{j=k+1}^{n} a_{kj}x_j}{a_{kk}}
 		1&1&1&0&0&1\\0&0&0&1&0&2\\0&0&0&0&1&-1
 		\end{array}\right]
 	\end{align*}
-	
+
 	Η επίλυση συστήματος με ανηγμένη κλιμακωτή μορφή ονομάζεται
 	απαλοιφή Gauss-Jordan
-	
+
 	\subsubsection{Ομογενή Συστήματα}
 	\begin{defn}{Ομογενές Σύστημα}{}
 		\[
@@ -3337,7 +3337,7 @@ x_k = \frac{b_k - \sum_{j=k+1}^{n} a_{kj}x_j}{a_{kk}}
 		\item Μια μοναδική λύση \( x=0 \) (τετριμμένη λύση) ή
 		\item Άπειρες λύσεις
 	\end{itemize}
-	
+
 	\subsubsection{Στοιχειώδεις Πίνακες}
 	Κάθε μία από τις στοιχειώδεις γραμμοπράξεις αντιστοιχεί σε έναν
 	στοιχειώδη πίνακα, δηλαδή έναν πίνακα που τον πολλαπλασιάζουμε με
@@ -3444,7 +3444,7 @@ A = \left[\begin{matrix}1&2&1\\3&4&2\\2&5&1\end{matrix}\right]
 	1&2&1\\0&-2&-1\\0&1&-1
 	\end{matrix}\right] \xrightarrow{R_3:=R_3+\frac{1}{2}R_2}
 	\left[\begin{matrix}
-	1&2&1\\0&-2&-1\\0&0&-\sfrac{3}{2} 
+	1&2&1\\0&-2&-1\\0&0&-\sfrac{3}{2}
 	\end{matrix}\right] = U \\
 	L &= \left[\begin{matrix}
 	1&0&0 \\ 3&1&0 \\ 2 & -\frac{1}{2} & 1
@@ -3464,7 +3464,7 @@ A = \left[\begin{matrix}1&2&1\\3&4&2\\2&5&1\end{matrix}\right]
 	\begin{align*}
 		x_1+2x_2+x_3 &= 3\\
 		-2x_2-x_3 &= -7\\
-		\sfrac{-3}{2} x_3 &= \sfrac{-11}{2} 
+		\sfrac{-3}{2} x_3 &= \sfrac{-11}{2}
 	\end{align*}
 	\begin{align*}
 		x_1&=-4\\x_2&=\sfrac{5}{3}\\x_3&=\sfrac{11}{2}
@@ -3638,11 +3638,11 @@ A = \left[\begin{matrix}
 	Ταινιοειδής λέγεται ο πίνακας, που έχει μη μηδενικά στοιχεία
 	μόνο σε έναν αριθμό διαγωνίων κάτω και πάνω από την κύρια
 	διαγώνιο:
-	
+
 	\begin{tikzpicture}
-	
+
 	\def\bo{2mm}
-	
+
 	\draw (\bo,-2) -- (0,-2) -- (0,2) -- (\bo,2);
 	\draw (4cm-\bo,-2) -- (4cm,-2) -- (4,2) -- (4cm-\bo,2);
 	\foreach \x in {-1.8,-1.4,...,1.8}
@@ -3651,37 +3651,37 @@ A = \left[\begin{matrix}
 	\draw (\x+2,-\x-1) node[scale=.9] {$/$};
 	\foreach \x in {-0.7,-0.5,...,1.7}
 	\draw (\x+2,-\x+1) node[scale=.9] {$/$};
-	
+
 	\path[mark position=0.33(a),mark position=0.66(b)] (2,2) -- ++(-45:3);
 	\path[mark position=0.55(c)] (2.7,2) -- ++(-45:1.8);
-	
+
 	\draw (a) node[scale=.9] {$0$};
 	\draw (b) node[scale=.9] {$0$};
 	\draw (c) node[scale=.7] {$0$};
 	\draw (3.65,1.6) node[rotate=45,scale=.7] {$\hdots$};
-	
+
 	\begin{scope}[rotate around={180:(2,0)}]
 	\path[mark position=0.33(a),mark position=0.66(b)] (2,2) -- ++(-45:3);
 	\path[mark position=0.55(c)] (2.7,2) -- ++(-45:1.8);
-	
+
 	\draw (a) node[scale=.9] {$0$};
 	\draw (b) node[scale=.9] {$0$};
 	\draw (c) node[scale=.7] {$0$};
 	\draw (3.65,1.6) node[rotate=45,scale=.7] {$\hdots$};
 	\end{scope}
-	
+
 	\draw[rotate around={-45:(2.5,0.5)},mark position=0.1(d)] (2.5,0.5) ellipse (2cm and 4mm);
 	\draw[rotate around={-45:(2,0)},blue!40!black] (2,0) ellipse (2.8cm and 3mm);
 	\draw[rotate around={-45:(1.5,-0.5)},mark position=0.9(f)] (1.5,-0.5) ellipse (2cm and 4mm);
-	
+
 	\draw[->] (d) to[bend left=40] ++(2,1) node[right] {υπερδιαγώνιος};
 	\draw[->] (f) to[bend right=40] ++(1,-1) node[right] {υποδιαγώνιος};
-	
+
 	\draw[->] (4,-1.4) to[bend left=20] ++(1,0.3)
 	node[right,rectangle,align=center] {τριδιαγώνιος πίνακας\\(η υπερδιαγώνιος ακριβώς από επάνω\\ \&
 		η υποδιαγώνιος ακριβώς από κάτω)};
 	\end{tikzpicture}
-	
+
 	Αν έχει μη μηδενικά στοιχεία στην κύρια διαγώνιο, στην
 	υπερδιαγώνιο ακριβώς επάνω από την κύρια, και στην υποδιαγώνιο
 	κάτω από την κύρια, λέγεται \textbf{τριδιαγωνικός}:
@@ -3705,7 +3705,7 @@ A = \left[\begin{matrix}
 	1&-2&0&0\\0&-2&1&0\\0&0&-1&3\\0&0&-1&4
 	\end{matrix}
 	\right] \\
-	& 
+	&
 	\xrightarrow{R_4:=R_4-R-3}\left[\begin{matrix}
 	1&-2&0&0\\0&-2&1&0\\0&0&-1&3\\0&0&0&1
 	\end{matrix}\right] = U
@@ -3845,13 +3845,13 @@ x^{(k+1)} = -D^{-1}(L+U)x^{(k)} + D^{-1}b
 	0 & -1 \\ -1 & 0
 	\end{matrix}\right] \\
 	M^{-1} &= \left[\begin{matrix}
-	\sfrac{1}{5} & 0 \\ 0 & \sfrac{1}{10} 
+	\sfrac{1}{5} & 0 \\ 0 & \sfrac{1}{10}
 	\end{matrix}\right] \\
 	M^{-1}N &= \left[\begin{matrix}
 	0 & \sfrac{-1}{5} \\ \sfrac{-1}{10}  & 0
 	\end{matrix}\right] \\
 	M^{-1}b &= \left[\begin{matrix}
-	\sfrac{3}{5} \\ \sfrac{19}{10} 
+	\sfrac{3}{5} \\ \sfrac{19}{10}
 	\end{matrix}\right]
 \end{align*}
 \begin{gather*}
@@ -3862,12 +3862,12 @@ x^{(k+1)} = -D^{-1}(L+U)x^{(k)} + D^{-1}b
 	\end{matrix}\right] \left[\begin{matrix}
 	x_1\\x_2
 	\end{matrix}\right]^{(k)} + \left[\begin{matrix}
-	\sfrac{3}{5} \\ \sfrac{19}{10} 
+	\sfrac{3}{5} \\ \sfrac{19}{10}
 	\end{matrix}\right] \\
 	x^{(0)} = \left[\begin{matrix}
 	0\\0
 	\end{matrix}\right],\ x^{(1)}=\left[\begin{matrix}
-	\sfrac{3}{5} \\ \sfrac{19}{10} 
+	\sfrac{3}{5} \\ \sfrac{19}{10}
 	\end{matrix}\right],\ x^{(2)}=\left[\begin{matrix}
 	0.98\\1.96
 	\end{matrix}\right],\dots,\ x^{(6)}=\left[\begin{matrix}
@@ -3949,7 +3949,7 @@ A = M + N
 (το μεγαλύτερο άθροισμα των στοιχείων κάθε γραμμής):
 \[
 \left\Vert A \right\Vert_{\infty}
-= \max_{1\leq i \leq m} \left\lbrace \sum_{j=1}^{n} 
+= \max_{1\leq i \leq m} \left\lbrace \sum_{j=1}^{n}
 \left|a_{ij}\right| \right\rbrace
 \]
 που έχει την ιδιότητα:
@@ -3972,20 +3972,20 @@ A = M + N
 
 Για παράδειγμα:
 \begin{itemize}
-	\item \textbf{σύγκλιση} \( 
+	\item \textbf{σύγκλιση} \(
 	M^{-1} = \left[\begin{matrix}
 	\sfrac{1}{5} & 0 \\
-	0 & \sfrac{1}{10} 
+	0 & \sfrac{1}{10}
 	\end{matrix}\right],\ N = \left[\begin{matrix}
 	0&-1\\-1&0
 	\end{matrix}\right],
 	\quad M^{-}N = \left[\begin{matrix}
 	0 & \sfrac{-1}{5} \\ \sfrac{-1}{10} & 0
 	\end{matrix}\right] \implies
-	\left\Vert M^{-1}N\right\Vert_{\infty} = \max \left\lbrace 
+	\left\Vert M^{-1}N\right\Vert_{\infty} = \max \left\lbrace
 	\frac{1}{5},\frac{1}{10} \right\rbrace = \frac{1}{5}
 	 \)
-	\item \textbf{μη σύγκλιση} \( 
+	\item \textbf{μη σύγκλιση} \(
 	M^{-1} = \left[\begin{matrix}
 	-1 & 0 \\
 	0 & -1
@@ -3995,7 +3995,7 @@ A = M + N
 	\quad M^{-}N = \left[\begin{matrix}
 	0 & -10 \\ -5 & 0
 	\end{matrix}\right] \implies
-	\left\Vert M^{-1}N\right\Vert_{\infty} = \max \left\lbrace 
+	\left\Vert M^{-1}N\right\Vert_{\infty} = \max \left\lbrace
 	5,10 \right\rbrace = 10
 	\)
 \end{itemize}
@@ -4005,11 +4005,11 @@ A = M + N
 συγκλίνουν πάντα:
 \begin{defn}{Διαγώνια Δεσπόζων/Διαγώνια Κυρίαρχος (Dominant) πίνακας}{}
 	Σε κάθε γραμμή υπάρχει ένα στοιχείο που ανήκει στην κύρια διαγώνιο.
-	
+
 	Αν η απόλυτη τιμή αυτού του στοιχείου είναι μεγαλύτερη από
     το άθροισμα των απόλυτων τιμών των υπόλοιπων στοιχείων της γραμμής,
     τότε ο πίνακας λέγεται \textbf{διαγώνια δεσπόζων}.
-    
+
     Δηλαδή πρέπει:
     \[
     \mathlarger{
@@ -4050,7 +4050,7 @@ b_i - \sum_{j=1}^{i-1}a_{ij}x_i^{(k+1)}
 
 Αν \( A \) θετικά ορισμένος (\( \mathsmaller{x\neq0, x^{\mathrm T}Ax>0}
  \)), η μέθοδος Gauss-Seidel συγκλίνει.
- 
+
 \subsection{Μέθοδος SOR}
 Στον τύπο της μεθόδου Gauss-Seidel προσθαφαιρώ το \( x_i^{(k)} \):
 \begin{align*}
@@ -4272,7 +4272,7 @@ Ax = b
 	&\leq \frac{\Vert e \Vert}{\lVert x\rVert}
 	\leq \frac{\lVert A^{-1} \rVert \lVert r\rVert}{\lVert x\rVert}
 	\intertext{Επειδή \( \Vert A^{-1}b\Vert \leq \Vert A^{-1}
-		\Vert\Vert b\Vert \) και \( 
+		\Vert\Vert b\Vert \) και \(
 		\Vert b\Vert = \Vert Ax \Vert \leq \Vert A \Vert \Vert x\Vert
 		\implies \frac{1}{\Vert x\Vert} \leq \frac{\Vert A \Vert}{
 		\Vert b \Vert}
@@ -4304,7 +4304,7 @@ Ax = b
 
 Έχουμε:
 \[
-1 = \lVert I \rVert = \left\lVert A^{-1} A \right\rVert 
+1 = \lVert I \rVert = \left\lVert A^{-1} A \right\rVert
 \leq \lVert A^{-1} \rVert \lVert A\rVert
 \]
 επομένως: \( \kappa(A) \geq 1 \).
@@ -4370,7 +4370,7 @@ k(A) \ggg 1
 	\end{matrix}\right]
 	\xrightarrow{R_3=R_3-\frac{1}{7}R_2}\left[\begin{matrix}
 	9&3&6\\0&\sfrac{14}{3} &\sfrac{-5}{3} \\
-	0&0&\sfrac{46}{7} 
+	0&0&\sfrac{46}{7}
 	\end{matrix}\right] = U \\
 	L &= \left[\begin{matrix}
 	1&0&0\\ \boxed{\sfrac{4}{9} } & 1 & 0 \\
@@ -4422,7 +4422,7 @@ I=\left[\begin{matrix}
 \\[1ex]
 \left[\begin{matrix}
 7&8&9 \\ 0 & \sfrac{3}{7}  & \sfrac{6}{7}  \\
-0 & \boxed{\sfrac{6}{7}}  & \sfrac{9}{7} 
+0 & \boxed{\sfrac{6}{7}}  & \sfrac{9}{7}
 \end{matrix}\right] &
 \left[\begin{matrix}
 0&0&1\\ 0&1&0 \\ 1&0&0
@@ -4449,7 +4449,7 @@ I=\left[\begin{matrix}
 \substack{R_3=R_3-\frac{1}{2}R_2} & &
 \\[1ex]
 \left[\begin{matrix}
-7&8&9 \\ 0 & \sfrac{6}{7}  & \sfrac{19}{2} \\ 0 & 0 & -\sfrac{1}{2} 
+7&8&9 \\ 0 & \sfrac{6}{7}  & \sfrac{19}{2} \\ 0 & 0 & -\sfrac{1}{2}
 \end{matrix}\right]
 & \left[\begin{matrix}
 0&0&1\\1&0&0\\0&1&0
@@ -4488,11 +4488,11 @@ d = Pb = \left[\begin{matrix}
 	\end{matrix}\right]
 	\]
 	\( y_1 = 3,\ y_2 = \frac{4}{7},\ y_3=0 \)
-	
+
 	\item \[
 	Ux = y \left[\begin{matrix}
 	7&8&9\\0& \sfrac{6}{7}  & \sfrac{19}{7}  \\
-	0 & 0 & \sfrac{-1}{2} 
+	0 & 0 & \sfrac{-1}{2}
 	\end{matrix}\right]\left[\begin{matrix}
 	x_1\\x_2\\x_3
 	\end{matrix}\right] = \left[\begin{matrix}
@@ -4604,14 +4604,14 @@ k & x_1^{(k)} & x_2^{(k)} & x_3^{(k)} \\ \hline
 	απλά αντιστρέφουμε τα στοιχεία της διαγωνίου του:
 	\[
 	D^{-1} = \left[\begin{matrix}
-	\sfrac{1}{4} & 0 \\ 0 & \sfrac{1}{5} 
+	\sfrac{1}{4} & 0 \\ 0 & \sfrac{1}{5}
 	\end{matrix}\right]
 	\]
 \end{infobox}
 
 \begin{align*}
 	J = -D^{-1} (L+U) = -\left[\begin{matrix}
-	-\sfrac{1}{4}  & 0 \\ 0 & \sfrac{1}{5} 
+	-\sfrac{1}{4}  & 0 \\ 0 & \sfrac{1}{5}
 	\end{matrix}
 	\right]\left(\left[\begin{matrix}
 	0&0\\1&0
@@ -4724,7 +4724,7 @@ F(x,y,y',\dots,y^{(k)}) = 0
 θέλουμε μερική λύση που αντιστοιχεί τις \textbf{αρχικές τιμές}
 \( x=a, y(a)=\beta_0, y'(a)=\beta_1,\dots, y^{(k-1)}(a)=\beta_n \).
 
-Για \(y' = \od{x}{y} = f(x,y) \), βρίσκουμε πρώτα τιμή για \( y(a)=y_0 
+Για \(y' = \od{x}{y} = f(x,y) \), βρίσκουμε πρώτα τιμή για \( y(a)=y_0
 \quad a \leq x \leq b
 \). Μία προσέγγιση για τη λύση \( y(x) \) της ΔΕ μπορούμε να την βρούμε
 με:
@@ -4764,7 +4764,7 @@ y''(\xi_i)
 \( \displaystyle
 \od{y}{x} = \overbrace{-y+x+1}^{f(x_i,y_i)}
  \) \\ \( y(0)=1 \qquad x_i=0.1i \)
- 
+
 Λύνουμε για \( 0\leq x\leq 1 \) και \( N=10 \) τμήματα.
 
 Η μέθοδος Euler εφαρμόζεται ως εξής:
@@ -4926,7 +4926,7 @@ f(x,y) = -y+x+1
 \end{align*}
 \subparagraph{Για \( i=1 \)} \( x_1=0.2,\ y_1=2.443214 \)
 \begin{align*}
-	k_0 &= hf(x_1,y_1) = 0.2f(0.2,\ 2.443214) = 
+	k_0 &= hf(x_1,y_1) = 0.2f(0.2,\ 2.443214) =
 	0.490243 \\
 	k_1 &= 0.2f\left( 0.2+\frac{0.2}{2},\ 2.443214+\frac{1}{2}
 	\cdot 0.490249 \right) = 0.543067 \\
@@ -4950,7 +4950,7 @@ f(x,y) = -y+x+1
 
 Χωρίζονται σε:
 \begin{itemize}
-	\item Μεθόδους \textbf{πρόβλεψης} 
+	\item Μεθόδους \textbf{πρόβλεψης}
 	(\( y_n \) εκφράζεται ως προς \( y_{n-1},y_{n-2},\dots \)) και
 	\item Μεθόδους \textbf{διόρθωσης}
 	(\( y_n \) εκφράζεται ως προς \( y_n,y_{n-1},\dots \))
@@ -4959,7 +4959,7 @@ f(x,y) = -y+x+1
 
 Χρησιμεύουν σε:
 \begin{itemize}
-	\item Εύρεση πολυωνύμου παρεμβολής \( 
+	\item Εύρεση πολυωνύμου παρεμβολής \(
 	f(x,y)
 	 \) για τα σημεία \( (x_i,y_i),\ (x_{i-1},y_{i-1}),\ \dots,\
 	 (x_{i-l},y_{i-l})
@@ -5033,7 +5033,7 @@ y' = -y+x+1
 
 Εφαρμόζοντας Euler αναδρομικά, προκύπτει όπως και προηγουμένως:
 \begin{align*}
-	y_{i,\ j+1} &= y_{i,j}+hf_i(x_j,\ y_{1,j},\ y_{2,j},\ \dots,\ 
+	y_{i,\ j+1} &= y_{i,j}+hf_i(x_j,\ y_{1,j},\ y_{2,j},\ \dots,\
 	y_{n,j}) \\
 	y(x) &= \left[\begin{matrix}
 	y_1(x) \\ y_2(x) \\ \vdots \\ y_n(x)
@@ -5153,21 +5153,21 @@ y' = -y+x+1
 από τη ζήτηση και τη διαθεσιμότητα των πρώτων υλών.
 
 \begin{tabular}{c|c|c|c}
-	& \multicolumn{2}{c|}{Προϊόντα} &  \\ 
-	Πρώτες Ύλες & 1 & 2 & Διαθεσιμότητα \\ 
-	\hline 
-	Α & 1 & 2 & 15 \\ 
-	\hline 
-	Β & 2 & 1 & 18 \\ 
-	\hline 
-	Κέρδος & 4 & 3 &  \\ 
-\end{tabular} 
+	& \multicolumn{2}{c|}{Προϊόντα} &  \\
+	Πρώτες Ύλες & 1 & 2 & Διαθεσιμότητα \\
+	\hline
+	Α & 1 & 2 & 15 \\
+	\hline
+	Β & 2 & 1 & 18 \\
+	\hline
+	Κέρδος & 4 & 3 &  \\
+\end{tabular}
 \begin{tabular}{c|c}
-	& Ζήτηση \\ 
-	1 & 8 \\ 
-	\hline 
-	2 & 6 \\ 
-\end{tabular} 
+	& Ζήτηση \\
+	1 & 8 \\
+	\hline
+	2 & 6 \\
+\end{tabular}
 
 Έστω
 \[
@@ -5292,18 +5292,18 @@ x_1,x_2,x_3,x_4,x_5 &\geq 0
 Έχουμε αρχικοποιήσει το πρόβλημα, και τώρα πρέπει κάποιες μη βασικές μεταβλητές να τις κάνουμε
 βασικές, ώστε να αποκτήσουν τιμή που θα μεγιστοποιήσει την αντικειμενική συνάρτηση
 (\( z=3x_1+5x_2 \)). Για αυτό θα χρησιμοποιήσουμε το \textbf{Κριτήριο Βελτιστότητας},
-σύμφωνα με το οποίο πρέπει οι συντελεστές της αντικειμενικής συνάρτησης στον πίνακα να είναι 
+σύμφωνα με το οποίο πρέπει οι συντελεστές της αντικειμενικής συνάρτησης στον πίνακα να είναι
 θετικοί.
 
 \subparagraph{Επανάληψη 1}
 Επιλέγω τη μη βασική μεταβλητή με τον μεγαλύτερο συντελεστή στην αντικειμενική συνάρτηση (\(
  x_2 \) - αφού αυξάνει με μεγαλύτερο ρυθμό το \( z \)) για να την ανταλλάξω με μια βασική.
- 
+
 Για να βρω με ποιά βασική μεταβλητή θα την ανταλλάξω, ψάχνω τον ελάχιστο λόγο
 \( \frac{\text{συντελεστής του } x_2}{\text{δεξί μέλος}} \). Από τον πίνακα φαίνεται:
 \begin{align*}
 	\text{Για το $x_4$: }& \boxed{\sfrac{12}{2} = 6}\\
-	\text{Για το $x_5$: }& \sfrac{18}{2} = 9 
+	\text{Για το $x_5$: }& \sfrac{18}{2} = 9
 \end{align*}
 
 Για την εναλλαγή πραγματοποιούμε γραμμοπράξεις στο ταμπλό Simplex και έχουμε:
@@ -5396,7 +5396,7 @@ x_5     & 0 &  3  &  0  &  0 & -\sfrac{1}{3}  &  \sfrac{1}{3}   &         2     
 \text{\textbf{Κεφάλαιο 7: }} & \text{Δεν δίνονται οι τύποι}
 \nlc
 \text{\textbf{Κεφάλαιο 8: }} & (8.8) \nlc
-\text{\textbf{Κεφάλαιο 9: }} & 
+\text{\textbf{Κεφάλαιο 9: }} &
 (9.17)
 \\ & (9.24)
 \\ & (9.26)
@@ -5411,7 +5411,7 @@ x_5     & 0 &  3  &  0  &  0 & -\sfrac{1}{3}  &  \sfrac{1}{3}   &         2     
 \nlc
 \text{\textbf{Κεφάλαιο 10: }} & \text{Δεν δίνονται οι τύποι} \nlc
 \text{\textbf{Κεφάλαιο 11: }} & (11.1)
-\\ & (11.2) 
+\\ & (11.2)
 \\ & (11.6)
 \\ & (11.7)
 \\ & (11.8)
