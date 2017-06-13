@@ -5373,7 +5373,11 @@ x_5     & 0 &  3  &  0  &  0 & -\sfrac{1}{3}  &  \sfrac{1}{3}   &         2     
 
 \quickattnbox{}{Οι τύποι δίνονται με κάθε επιφύλαξη.}
 
-Τα κεφάλαια όπως υπάρχουν στο βιβλίο:
+Στα θέματα θα υπάρχουν όσοι τύποι χρειάζονται για να λυθεί η κάθε άσκηση.
+
+\subsection*{Συνοπτικά}
+Τα κεφάλαια όπως υπάρχουν στο βιβλίο του κ. Πιτσούλη
+(\emph{Εισαγωγή στην Αριθμητική Ανάλυση}, 2\textsuperscript{η} έκδοση):
 \newcommand{\nlc}{\displaybreak[2] \\[3ex]}
 \begin{alignat*}{2}
 \text{\textbf{Κεφάλαιο 2: }} & \text{Δεν δίνονται οι τύποι}
@@ -5432,9 +5436,9 @@ x_5     & 0 &  3  &  0  &  0 & -\sfrac{1}{3}  &  \sfrac{1}{3}   &         2     
 \\ & (9.42)
 \nlc
 \text{\textbf{Κεφάλαιο 10: }} & \text{Δεν δίνονται οι τύποι} \nlc
-\text{\textbf{Κεφάλαιο 11: }} & (11.1)
-\\ & (11.2)
-\\ & (11.6)
+\text{\textbf{Κεφάλαιο 11: }} & \text{Μέθοδος Euler σελ. 323 } \big(\mathsmaller{y_0=y(x_0),\quad
+ y_{i+1}=y_i+hf(x_i,y_i)}\big)
+\\[-0.5ex] & (11.6)
 \\ & (11.7)
 \\ & (11.8)
 \\ & (11.9)
@@ -5454,4 +5458,387 @@ x_5     & 0 &  3  &  0  &  0 & -\sfrac{1}{3}  &  \sfrac{1}{3}   &         2     
 \\ & (11.39)
 \nlc
 \end{alignat*}
+
+\newpage
+\subsection*{Αναλυτικά}
+\newcommand{\fchapter}[1] {\subsubsection*{Κεφάλαιο #1}\hspace{0pt}\par\nobreak}
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+\def\notgiven{red}
+\def\given{green!80!blue}
+\newtcolorbox{formula}[5]{colback=#1!5!white,%
+	colframe=#1!75!black,fonttitle=\bfseries,
+	equal height group=#5,
+	enlarge bottom finally by=2mm,
+	width=\ifx#41%
+	(\textwidth-5mm)%
+	\else
+	(\textwidth-9mm)/2%
+	\fi%
+	%,enlarge left by=\ifx#41%
+	%0mm\else4mm\fi%
+	,extrude left by=\ifx#41
+	-1mm\else0mm\fi%
+	,extrude right by=\ifx#41
+	-1mm\else0mm\fi%
+	,before=\hfill
+	,after=,
+	after title={\hfill\colorbox{#1!50!black}{σελ. #3}},%	
+	adjusted title={#2}}
+% en dash: –
+\fchapter{2}
+\begin{formula}{\notgiven}{Κεφάλαιο 2}{3–27}{}{2}
+	\textbf{Δεν δίνονται οι τύποι}.
+\end{formula}
+\begin{formula}{\notgiven}{Σφάλματα}{21}{}{2}
+	\textbf{Δεν δίνονται:}
+	\begin{align*}
+		\text{\textbf{Απόλυτο Σφάλμα}} &= \left\lvert x_t-x_c \right\rvert \\
+		\text{\textbf{Σχετικό Σφάλμα}} &= \frac{\left\lvert x_t-x_c \right\rvert}{\left\lvert x_t \right\rvert}
+	\end{align*}
+\end{formula}
+
+\fchapter{3}
+\begin{formula}{\notgiven}{Κεφάλαιο 3}{29–63}{1}{3}
+	\textbf{Δεν δίνονται οι τύποι.}
+\end{formula}
+
+\fchapter{4}
+\begin{formula}{\given}{Ορισμός 4.6}{75,76}{1}{4.1}
+	\begin{align*}
+		\intertext{1\textsuperscript{η} διηρημένη διαφορά:}
+		f\left[x_i,x_{i+1}\right]&=\frac{f(x_{i+1})-f(x_i)}{x_{i+1}-x_i}
+		\intertext{$k$-οστή διηρημένη διαφορά:}
+		f\left[x_i,x_{i+1},\dots,x_{i+k}\right]&=
+		\frac{f\left[x_{i+1},x_{i+2},\dots,x_{i+k}\right]-\left[x_i,x_{i+1},\dots,x_{i+k-1}\right]}{x_{i+k}-x_i}
+	\end{align*}
+\end{formula}
+
+\begin{formula}{\notgiven}{Τύπος παρεμβολής πολυωνύμου}{76}{1}{4.2}
+	\textbf{Δεν θα δίνεται:}
+	\begin{align*}
+	p_k(x) =\ & f(x_0) + f\left[x_0,x_1\right](x-x_0)+f\left[x_0,x_1,x_2\right](x-x_0)(x-x_1) + \dots \\
+	&\dots + f\left[x_0,x_1,\dots,x_k\right](x-x_0)(x-x_1)\cdots(x-{x_{k-1}})
+	\end{align*}
+\end{formula}
+
+\begin{formula}{\given}{Πρόταση 4.1}{79}{0}{4.3}
+	\[
+	f\left[x_i,x_{i+1},\dots,x_{i+k}\right] = \frac{\Delta^k f(x_i)}{k!h^k}
+	\]
+\end{formula}
+\begin{formula}{\given}{Πρόταση 4.2}{80}{0}{4.3}
+	\[
+	p_n(x_0+rh) = \sum_{i=0}^{n} \left(\begin{matrix}
+	r\\i
+	\end{matrix}\right) \Delta^i f(x_0)
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(4.19)}{84}{1}{4.4}
+	\[
+	A_{k,r} =
+	\frac{(x_{k-1}-\bar x)A_{k-1,\,r}-(x_r-\bar x)A_{k-1,\,k-1}}{x_{k-1}-x_r}
+	\]
+\end{formula}
+
+\fchapter{5}
+\begin{formula}{\notgiven}{Κεφάλαιο 5}{95–110}{}{5}
+	\textbf{Δεν δίνονται οι τύποι}.
+\end{formula}
+\begin{formula}{\notgiven}{(5.13)}{101}{}{5}
+	\textbf{Δεν θα δίνεται:}
+	\[
+	\mathbf A^{\mathrm T}\mathbf A \mathbf x = \mathbf A^{\mathrm T}\mathbf b
+	\]
+\end{formula}
+
+\subsubsection*{Κεφάλαιο 6}
+Θα δίνονται οι τύποι για τα ολοκληρώματα \(I\) και τα σφάλματα \( E \), αλλά
+\textbf{δεν θα δίνονται} οι τύποι για τα απόλυτα σφάλματα \( \lvert E \rvert \):
+\vspace{2ex}
+
+\begin{formula}{\given}{(6.2) Κανόνας Παρ/μου}{114}{}{6.1}
+	\[
+	I_{\mathrm R} = f(a)(\beta - a)
+	\]
+\end{formula}
+\begin{formula}{\given}{(6.3) Κανόνας Παρ/μου}{115}{}{6.1}
+	\[
+	E_{\mathrm R} = \frac{(\beta-a)^2}{2}f'(z)
+	\]
+\end{formula}
+
+\begin{formula}{\notgiven}{(6.4) Κανόνας Παρ/μου}{115}{1}{6.2}
+	\textbf{Δεν θα δίνεται:}
+	\[
+	\left\lvert E_{\mathrm R}\right\rvert \leq \frac{(\beta-a)^2}{2}\max_{a<z<\beta}
+	\left\lvert f'(z) \right\rvert
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(6.6) Σύνθετος Κ. Παρ/μου}{116}{}{6.3}
+	\[
+	I_{\mathrm R,N} = h\sum_{i=0}^{N-1} f(x_i)
+	\]
+\end{formula}
+\begin{formula}{\given}{(6.7) Σύνθετος Κ. Παρ/μου}{116}{}{6.3}
+	\[
+	E_{\mathrm R,N} = \vphantom{\sum_{i=0}^{N-1}}\frac{h}{2}(\beta-a)f'(z)
+	\]
+\end{formula}
+
+\begin{formula}{\notgiven}{(6.7) Σύνθετος Κ. Παρ/μου}{116}{1}{6.4}
+	\textbf{Δεν θα δίνεται:}\vspace{1ex}
+	\[
+	\left\lvert E_{\mathrm R,N}\right\rvert \leq \frac{h}{2}(\beta-a)\max_{a<z<\beta}
+	\left\lvert f'(z) \right\rvert
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(6.9) Κανόνας Τραπεζίου}{118}{}{6.5}
+	\[
+	I_{\mathrm T} = \frac{\beta-a}{2}\big(f(a)+f(\beta)\big)
+	\]
+\end{formula}
+\begin{formula}{\given}{(6.10) Κανόνας Τραπεζίου}{118}{}{6.5}
+	\[
+	E_{\mathrm T} = - \frac{(\beta-a)^3}{12}f''(z)
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(6.11) Σύνθετος Κ. Τραπεζίου}{119}{1}{6.6}
+	\[
+	I_{\mathrm T,N} = \frac{h}{2}\left[
+	f(x_0)+2f(x_1)+2f(x_2)+\dots +2f(x_{N-1}) + f(x_N)
+	\right]
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(6.12) Σύνθετος Τραπεζίου}{119}{}{6.7}
+	\[
+	E_{\mathrm T,N} = - \frac{h^2}{12}(\beta-a)f''(z)
+	\]
+\end{formula}
+\begin{formula}{\notgiven}{(6.13) Σύνθετος Τραπεζίου}{119}{}{6.7}
+	\textbf{Δεν θα δίνεται:}\vspace{1ex}
+	\[
+	\left\lvert E_{\mathrm T,N}\right\rvert \leq \frac{h^2}{12}(\beta-a)\max_{a<z<\beta}
+	\left\lvert f''(z) \right\rvert
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(6.14) Κανόνας Simpson}{120}{}{6.8}
+	\[
+	I_{\mathrm S} = \frac{1}{3}\frac{\beta-a}{2}\left[
+	f(a)+4f\left(\frac{a+\beta}{2}\right)+f(\beta)
+	\right]
+	\]
+\end{formula}
+\begin{formula}{\given}{(6.15) Κανόνας Simpson}{121}{}{6.8}
+	\[
+	E_{\mathrm S} = -\frac{\left(\frac{\beta-a}{2}\right)^5}{90}f^{(4)}(z)
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(6.16) Σύνθετος Κανόνας Simpson}{121}{1}{6.9}
+	\begin{align*}
+	I_{\mathrm S,2N} =\ & \frac{h}{6} \big[f(x_0)+4f(x_1)+2f(x_2)+4f(x_3)+2f(x_4)+\dots
+	\\ &\dots + 2f(x_{2N-2}) +4f(x_{2N-1}) +f(x_{2N})\big]
+	\end{align*}
+\end{formula}
+
+\begin{formula}{\given}{(6.17) Σύνθετος Κανόνας Simpson}{121}{1}{6.10}
+	\[
+	E_{\mathrm S,2N} =
+	\frac{\left(\frac{h}{2}\right)^4}{180}(\beta-a)f^{(4)}(z)
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(6.18) Κανόνας Μ. Σημείου}{123}{}{6.11}
+	\[
+	I_{\mathrm M} = (\beta-a)f\left(\frac{a+\beta}{2}\right)
+	\]
+\end{formula}
+\begin{formula}{\given}{(6.19) Κανόνας Μ. Σημείου}{123}{}{6.11}
+	\[
+	E_{\mathrm M} = \frac{(\beta-a)^3}{24}f''(z)
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(6.20) Σύνθετος Μ. Σημείου}{123}{}{6.12}
+	\[
+	I_{\mathrm M,N} = h\sum_{i=0}^{N-1} f\left(x_i+\frac{h}{2}\right)
+	\]
+\end{formula}
+\begin{formula}{\given}{(6.21) Σύνθετος Μ. Σημείου}{123}{}{6.12}
+	\[
+	E_{\mathrm M,N} = \vphantom{\sum_{i=0}^{N-1}}\frac{h^2}{24} (\beta-a)f''(z)
+	\]
+\end{formula}
+
+\fchapter{7}
+\begin{formula}{\notgiven}{Κεφάλαιο 7}{135–161}{1}{7}
+	\textbf{Δεν δίνονται οι τύποι.}
+\end{formula}
+
+\fchapter{8}
+\begin{formula}{\given}{(8.8)}{170}{1}{8}
+	\begin{gather*}
+		\mathbf s=\sqrt{x_k^2+x_{k+1}^2+\dots+x_n^2}\\
+		\mathbf H=\mathbf I - 2\mathbf u\mathbf u^{\mathrm T}\\
+		\mathbf u=\frac{1}{\sqrt{2s\left(s+\lvert x_k\rvert\right)}}\left[
+		\begin{matrix}
+		0\\0\\\vdots\\x_k+\sgn(x_k)s\\x_{k+1}\\\vdots\\x_n
+		\end{matrix}
+		\right]
+	\end{gather*}
+\end{formula}
+
+\fchapter{9}
+\begin{formula}{\given}{(9.17) Μέθοδος Jacobi}{213}{0}{9.1}
+	\[
+	\hspace{-5pt}
+	x_i^{(k+1)} \!=\! \frac{1}{a_{ii}} \hspace{-3pt}\left(\hspace{-1pt}
+	b_i-\sum_{j=1}^{i-1} a_{ij}x_j^{(k)} - \hspace{-6pt} \sum_{j=i+1}^n
+	\hspace{-3pt} a_{ij}x_j^{(k)}
+	\hspace{-3pt}
+	\right)
+	\]
+\end{formula}
+\begin{formula}{\given}{\hspace{-3pt}(9.24) Μέθοδος Gauss-Seidel}{217}{0}{9.1}
+	\[
+	\hspace{-7pt}
+	x_i^{(k+1)} \!=\! \frac{1}{a_{ii}} \hspace{-3pt}\left(\hspace{-3pt}
+	b_i-\hspace{-3pt}\sum_{j=1}^{i-1} a_{ij}x_j^{(k+1)} -
+	\hspace{-6pt} \sum_{j=i+1}^n \hspace{-5pt} a_{ij}x_j^{(k)}
+	\hspace{-3pt}
+	\right)
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(9.26) Μέθοδος SOR}{219}{1}{9.2}
+	\[
+	x_i^{(k+1)} = \omega \frac{1}{a_{ii}}\left(
+	b_i - \sum_{j=1}^{i-1} a_{ij}x_j^{(k+1)} - \sum_{j=i+1}^{n} a_{ij}x_j^{(k)}
+	\right)
+	+ (1+\omega)x_i^{(k)}
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(9.27) Μέθοδος SOR}{219}{1}{9.3}
+	\[
+	\omega = \frac{2}{1+\sqrt{1-\rho(\mathbf J)^2}}
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(9.34) Μέθοδος Doolittle}{222}{0}{9.4}
+	\[
+	u_{kj} = a_{kj} - \sum_{s=1}^{k-1} l_{ks}u_{sj}
+	\]
+\end{formula}
+\begin{formula}{\given}{(9.35) Μέθοδος Doolittle}{222}{0}{9.4}
+	\[
+	l_{ik} = \frac{1}{u_{kk}} \left( a_{ik} - \sum_{s=1}^{k-1} l_{is}u_{sk} \right)
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(9.36) Μέθοδος Crout}{223}{0}{9.5}
+	\[
+	l_{ik} = a_{ik} - \sum_{s=1}^{k-1} l_{is}u_{sk}
+	\]
+\end{formula}
+\begin{formula}{\given}{(9.37) Μέθοδος Crout}{223}{0}{9.5}
+	\[
+	u_{kj} = \frac{1}{l_{kk}} \left( a_{kj} - \sum_{s=1}^{k-1} l_{ks}u_{sj} \right)
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(9.40) Μέθοδος Cholesky}{227}{0}{9.6}
+	\[
+	h_{kk} = \sqrt{a_{kk} - \sum_{s=1}^{k-1} h^2_{ks}}
+	\]
+\end{formula}
+\begin{formula}{\given}{(9.41) Μέθοδος Cholesky}{227}{0}{9.6}
+	\[
+	h_{ik} = \frac{1}{h_{kk}} \left( a_{ik} - \sum_{s=1}^{k-1} h_{is}h_{ks} \right)
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(9.42) Μέθοδος Thomas}{229}{1}{9.7}
+	\[
+	a_1=a_{11},\quad
+	\beta_i = \frac{a_{i,\,i-1}}{a_{i-1}},\quad
+	a_i = a_{ii}-\beta_i\:a_{i-1,\,i}
+	\]
+\end{formula}
+
+\fchapter{10}
+\begin{formula}{\notgiven}{Κεφάλαιο 10}{255–290}{1}{10}
+	\textbf{Δεν δίνονται οι τύποι.}
+\end{formula}
+
+\fchapter{11}
+\begin{formula}{\given}{Μέθοδος Euler}{323}{1}{11.2}
+	\begin{enumerate}
+		\item \( y_0 = y(x_0) \)
+		\item \( y_{i+1} = y_i + hf(x_i,\, y_i) \)
+	\end{enumerate}
+\end{formula}
+
+\begin{formula}{\given}{(11.6), (11.7), (11.8)\\Βελτιωμένη Μέθοδος Euler}{327}{0}{11.3}
+	\begin{align}
+	k_0 &= f(x_i,y_i) \tag{11.6} \\
+	k_1 &= f(x_i+h,\; y_i+k_0) \tag{11.7} \\
+	y_{i+1} &= y_i + h\left( \frac{k_0+k_1}{2} \right) \tag{11.8}
+	\end{align}
+\end{formula}
+\begin{formula}{\given}{(11.9), (11.10), (11.11)\\Μέθοδος Μέσου Σημείου}{327}{0}{11.3}
+	\begin{align}
+	k_0 &= hf(x_i,y_i) \tag{11.9} \\
+	k_1 &= f\left(x_i+\frac{1}{2}h,\; y_i+\frac{1}{2}k_0\right) \tag{11.10} \\
+	y_{i+1} &= y_i + hk_1 \tag{11.11}
+	\end{align}
+\end{formula}
+
+\begin{formula}{\given}{(11.23), (11.24), (11.25), (11.26), (11.27)\\%
+		Μέθοδος Runge-Kutta 4\textsuperscript{ης} τάξης}{333}{1}{11.4}
+	\begin{align}
+	k_0 &= hf(x_i,y_i) \tag{11.23} \\
+	k_1 &= f\left(x_i+\frac{1}{2}h,\; y_i+\frac{1}{2}k_0\right) \tag{11.24} \\
+	k_2 &= f\left(x_i+\frac{1}{2}h,\; y_i+\frac{1}{2}k_1\right) \tag{11.25} \\
+	k_1 &= f\left(x_i+h,\; y_i+k_2\right) \tag{11.26} \\
+	y_{i+1} &= y_i + \frac{1}{6}\cdot \left(k_0+2k_1+2k_2+k_3\right) \tag{11.27}
+	\end{align}
+\end{formula}
+
+\begin{formula}{\given}{(11.33), (11.34), (11.35)\\%
+	    Τύποι Διόρθωσης}{337}{1}{11.5}
+	\begin{align}
+	i=1:\quad y_{n+1} &= y_n +\frac{h}{2} \left(f_{n+1}+f_n\right) - \frac{h^3}{12}y^{(3)} \tag{11.33} \\
+	i=2:\quad y_{n+1} &= y_n+\frac{h}{12} \left(5f_{n+1}+8f_n-f_{n-1}\right)-\frac{h^4}{24}y^{(4)} \tag{11.34}\\
+	i=3:\quad y_{n+1} &= y_n+\frac{h}{24}\left(9f_{n+1}+19f_n-5f_{n-1}+f_{n-2}\right)-\frac{19h^5}{720}y^{(5)}
+	\tag{11.35}
+	\end{align}
+\end{formula}
+
+\begin{formula}{\given}{(11.36) Γενικός τύπος πρόβλεψης}{337}{1}{11.6}
+	\[
+	y_{i+1} = y_i + h \sum_{k=0}^{i} \frac{(-1)^{i-1}f_k}{(k)!(i-1)!}
+	\int_{i}^{i+1} \prod_{\substack{j=0\\j\neq k}}^{i}(x-j)\dif x
+	\]
+\end{formula}
+
+\begin{formula}{\given}{(11.37), (11.38), (11.39)\\%
+		Τύποι Πρόβλεψης}{337}{1}{11.7}
+	\begin{align}
+	i=1:\quad y_{n+1} &= y_n +\frac{h}{2} \left(3f_n-f_{n-1}\right) + \frac{5h^3}{12}y^{(3)} \tag{11.37} \\
+	i=2:\quad y_{n+1} &= y_n+\frac{h}{12} \left(23f_n-16f_{n-1}+5f_{n-2}\right)-\frac{3h^4}{8}y^{(4)} \tag{11.38}\\
+	i=3:\quad y_{n+1} &= y_n+\frac{h}{24}\left(55f_n-59f_{n-1}+37f_{n-2}-9f_{n-3}\right)
+	+\frac{251h^5}{720}y^{(5)}
+	\tag{11.39}
+	\end{align}
+\end{formula}
 \end{document}
