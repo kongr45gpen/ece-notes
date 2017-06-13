@@ -830,18 +830,20 @@
 	 Δεδομένων \( n+1 \) σημείων \( x_0,x_1,\dots,x_n \), έχουμε
 	 τα πολυώνυμα:
 
-	 \[
-	 l_j(x) = \frac{
+	 \begin{align*}
+	 l_j(x) &= \frac{
 	 	(x-x_0)(x-x_1)\cdots(x-x_{j-1})(x-x_{j+1})\cdots(x-x_n)
 	 	}{
 	 	(x_j-x_0)(x_j-x_1)\cdots(x_j-x_{j-1})(x_j-x_{j+1})
 	 	\cdots (x_j-x_n)
-	 	}
-	 \]
+	 	} \\
+	 	&=
+	 	\prod_{\substack{i=0\\i\neq j}}^{n}\frac{(x-x_i)}{(x_j-x_i)}
+	 \end{align*}
 	 για \( j=0,1,\dots,n \) ονομάζονται \textbf{πολυώνυμα Lagrange} (ο
 	 παρονομαστής σταθερός).
 
-	 Παρατηρούμε ότι:
+	 Παρατηρούμε ότι τα πολυώνυμα είναι φτιαγμένα με τέτοιον τρόπο ώστε:
 	 \[
 	 l_j(x_i) = \begin{cases}
 	 0 & \quad i \neq j \\
