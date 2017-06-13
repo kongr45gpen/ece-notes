@@ -2986,7 +2986,7 @@ A = Q \cdot R
 	0 & * & * & * & \hdots & * \\
 	0 & 0 & * & * & \hdots & * \\
 	0 & 0 & 0 & * & \hdots & * \\
-	\vdots & & \vdots & \vdots & \vdots & \ddots & \vdots \\
+	\vdots & & \vdots & \vdots & \ddots & \vdots \\
 	0 & 0 & 0 & 0 & \hdots & 0
 	\end{matrix}\right] = A_2 \\
 	H_{n-1}A_{n-2} = \left[\begin{matrix}
@@ -2994,7 +2994,7 @@ A = Q \cdot R
 	0 & * & * & * & \hdots & * \\
 	0 & 0 & * & * & \hdots & * \\
 	0 & 0 & 0 & * & \hdots & * \\
-	\vdots & & \vdots & \vdots & \vdots & \ddots & \vdots \\
+	\vdots & & \vdots & \vdots & \ddots & \vdots \\
 	0 & 0 & 0 & 0 & \hdots & 0
 	\end{matrix}\right] = A_{n-1} = R
 \end{gather*}
@@ -3017,7 +3017,7 @@ H^{\mathrm T} = H^{-1}
 	\intertext{Δηλαδή φτάνουμε στο πολυπόθητο:}
 	\Aboxed{A &= QR} \\
 	\underset{m\times n}{A} &= \underset{m\times m}{Q} \times
-	\underset{m\times n}{R} \rightarrow
+	\underset{m\times n}{\vphantom{Q}R} \rightarrow
 	\left[\begin{matrix}
 	n\times n \text{ άνω τριγωνικός }  \\ \hline
 	\underset{\text{$m\times n$ γραμμές}}{0}
