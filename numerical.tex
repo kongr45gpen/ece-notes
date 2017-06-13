@@ -1067,11 +1067,13 @@
  	\hspace{0pt}
 
  	\begin{tabular}{|c|c|c|c|c|c|}
+ 		\hline
  		\(i\) & 0 & 1 & 2 & 3 & 4\\
  		\hline
  		\(x_i\) & 1 & 2 & 3 & 4 & 5\\
  		\hline
- 		\(f(x_i)\) & 1 & -1 & 1 & -1 & 1
+ 		\(f(x_i)\) & 1 & -1 & 1 & -1 & 1\\
+ 		\hline
  	\end{tabular}
 
  	\[
@@ -1089,6 +1091,17 @@
  			\vdots &        &                 &                 &                 &  \\ \hline
  		\end{array}
  	\]
+ 	όπου τα στοιχεία \( \Delta^1 f(x_0), \ \Delta^2 f(x_0),\ \dots \) είναι ίσα
+ 	με \textbf{τη διαφορά των δύο προηγούμενων στοιχείων}, δηλαδή:
+ 	\begin{align*}
+ 		\Delta^1 f(x_0) &= f(x_1) - f(x_0) \\
+ 		\Delta^1 f(x_1) &= f(x_2) - f(x_1) \\
+ 		\Delta^1 f(x_2) &= f(x_3) - f(x_2) \\
+ 		\Delta^2 f(x_0) &= \Delta^1 f(x_1) - \Delta^1 f(x_0)
+ 		\\ \text{κλπ.}
+ 		\intertext{και γενικά:}
+ 		\Delta^k f(x_i) &= \Delta^{k-1} f(x_{i+1}) - \Delta^{k-1} f(x_i)
+ 	\end{align*}
 
  	\[
  	\begin{array}{cccccc}
