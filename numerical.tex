@@ -172,6 +172,7 @@
 	\end{array}
 	\]
 
+	\newpage
 	% Set counters so that they match the book
 	\setcounter{section}{2}
 	\section{Επίλυση Εξισώσεων}
@@ -262,7 +263,7 @@
 	\begin{align*}
 		\left|r - m_n\right| \leq \left(\frac{1}{2}\right)^n (b-a)
 	\end{align*}
-	επειδή στη \( n- \)οστή επανάληψη έχω κόψει το διάστημα στα 2 σε \( n \) φορές.
+	επειδή στη \( n- \)οστή επανάληψη έχω κόψει \( n \) φορές το διάστημα στα 2.
 
 	Για σφάλμα \( 10^{-5} \), θέλουμε \( |r-m_n| = 10^{-5} \):
 	\begin{align*}
@@ -393,18 +394,21 @@
 	σύγκλισης που δεν θα μελετήσουμε.
 
 	\subsection{Μέθοδος Σταθερού Σημείου}
+	Ένα σημείο \(\bar x \) της \( f(x) \) λέγεται
+	\textbf{σταθερό σημείο} αν \( f(\bar x)=\bar x \).
 	\begin{defn}{Σταθερό Σημείο}{}
 		\[
 		\begin{array}{ll}
-		f(x) & \quad \text{το $\hat{x}$ σταθερό σημείο}
+		f(x) & \quad \text{το $\bar{x}$ σταθερό σημείο}
 		\\
-		\text{ανν} & \quad f(\hat x) = \hat x
+		\text{ανν} & \quad f(\bar x) = \hat x
 		\end{array}
 		\]
 	\end{defn}
 
-	\( \bar x \) της \( f(x) \) στο \( (a,b) \)
-	αν κατασκευάσω \( g(x) \):
+	Μπορώ να βρω μια ρίζα \( \bar x \) της \( f(x) \) στο \( (a,b) \)
+	αν κατασκευάσω \( g(x) \) τέτοια ώστε το \(\bar x \) να είναι σταθερό σημείο
+	της \( g \):
 	\[
 	\bar x = g(\bar x) \iff f(\bar x) = 0
 	\]
@@ -422,10 +426,14 @@
 	\end{gather*}
 
 	Αντί να λύσω την \( f \), βρίσκω υποψήφιες λύσεις
-	(δύσκολες επαναληπτικές λύσεις θα δίνονται στις
-	εξετάσεις)
+	μέσω της \(g\), όπως φαίνεται παρακάτω.
+	
+	Αν η εύρεση μιας κατάλληλης συνάρτησης είναι δύσκολη στις
+	εξετάσεις, θα δίνεται η \( g(x) \).
 
 	\paragraph{Μέθοδος}
+	\hspace{0pt}
+
 	for \(i=1,2,\dots \qquad \left(x_0,g(x),\epsilon\right) \)
 	\[
 	\mathlarger{\mathlarger{x_i = g\left( x_{i-1} \right)}}
@@ -477,6 +485,7 @@
 	το \( \gamma \).
 
 	\subsection{Ασκήσεις}
+
 	\paragraph{Άσκηση}
 	\[
 	\mathlarger{x^3+2x-1=0}
@@ -488,7 +497,7 @@
 	\begin{array}{l}
 	f(0) = -1,\ f\left(\frac{1}{2}\right) = \frac{1}{8} \implies
 	f(0)f\left(\frac{1}{2}\right) < 0 \\
-	f'() = 3x^2 + 2 > 0
+	f'(x) = 3x^2 + 2 > 0
 	\end{array} \right\rbrace \text{μοναδικότητα}
 	\]
 	\begin{gather*}
