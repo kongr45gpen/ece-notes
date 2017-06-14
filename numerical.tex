@@ -2009,7 +2009,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	E_{\mathrm S} &= I\left(f(x)\right)-I\left(P_2(x)\right) = \dots
     	\\ &= -\frac{\left(\frac{b-a}{2}\right)^5}{90} f^{(4)}(z) \\
     	\left|E_{\mathrm S}\right| &\leq
-    	\frac{\left(\frac{b-a}{2}\right)^5}{90}\max_{a<z<b}f^{(4)}(z)
+    	\frac{\left(\frac{b-a}{2}\right)^5}{90}\max_{a<z<b}\left\lvert f^{(4)}(z)\right\rvert
     \end{align*}
 
     \paragraph{Σύνθετος κανόνας Simpson}
@@ -2053,7 +2053,7 @@ node[below left,scale=.7] {$\cdot 1$};
     	&= -\frac{\left(\frac{h}{2}\right)^4}{180}(b-a)f^{(4)}(z) \\
     	\left|E_{\mathrm S,2N}\right| &\leq
     	\frac{\left(\frac{h}{2}\right)^4}{180}(b-a)
-    	\max_{a<z<b} \left(f^{(4)}(z)\right)
+    	\max_{a<z<b} \left\lvert f^{(4)}(z)\right\rvert
     \end{align*}
 
     \subsection{Κανόνας Μέσου Σημείου}
