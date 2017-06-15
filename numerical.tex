@@ -948,9 +948,9 @@
  	\[
  	\begin{array}{llllll}
  	 & & 1^{\text{η}} & 2^\text{η} & 3^\text{η} & 4^\text{η}\\
- 	x_0 & f(x_0) & f[x_0,x_1] & = \frac{f(x_1)-f(x_2)}{x_1-x_2} & \\
+ 	x_0 & f(x_0) & f[x_0,x_1] & = \frac{f(x_1)-f(x_0)}{x_1-x_0} & \\
  	x_1 & f(x_1) & f[x_1,x_2] & f[x_0,x_1,x_2] & =
- 	\frac{f[x_1,x_2,x_3]-f[x_0,x_1,x_2]}{x_3-x_0} \\
+ 	\frac{f[x_1,x_2]-f[x_0,x_1]}{x_2-x_0} \\
  	x_2 & f(x_2) & f[x_2,x_3] & f[x_1,x_2,x_3] & f[x_0,x_1,x_2,x_3]\\
  	x_3 & f(x_3) & f[x_3,x_4] & f[x_2,x_3,x_4] & f[x_1,x_2,x_3,x_4]
  	& f[x_0,x_1,x_2,x_3,x_4]
@@ -987,7 +987,7 @@
  	& & \multicolumn{1}{|c|}{\frac{1-1}{1-0} \searrow} & & \\ \cline{3-4}
  	1 & 1 \nesearrow & &
  	\multicolumn{1}{|c|}{\frac{1}{2} \searrow} & \\ \cline{4-5}
- 	& & 1 \nesearrow & & \multicolumn{1}{|c|}{\frac{1}{12}}\\ \cline{5-5}
+ 	& & 1 \nesearrow & & \multicolumn{1}{|c|}{-\frac{1}{12}}\\ \cline{5-5}
  	2 & 2 \nesearrow & & \frac{1}{6} \nearrow & \\
  	& & \frac{3}{2} \nearrow & & \\
  	4 & 5 \nearrow & & &
@@ -5324,7 +5324,7 @@ x_1,x_2,x_3,x_4,x_5 &\geq 0
  x_2 \) - αφού αυξάνει με μεγαλύτερο ρυθμό το \( z \)) για να την ανταλλάξω με μια βασική.
 
 Για να βρω με ποιά βασική μεταβλητή θα την ανταλλάξω, ψάχνω τον ελάχιστο λόγο
-\( \frac{\text{συντελεστής του } x_2}{\text{δεξί μέλος}} \). Από τον πίνακα φαίνεται:
+\( \frac{\text{δεξί μέλος}}{\text{συντελεστής του } x_2} \). Από τον πίνακα φαίνεται:
 \begin{align*}
 	\text{Για το $x_4$: }& \boxed{\sfrac{12}{2} = 6}\\
 	\text{Για το $x_5$: }& \sfrac{18}{2} = 9
@@ -5352,7 +5352,7 @@ x_1,x_2,x_3,x_4,x_5 &\geq 0
 \begin{array}{c|cccccc|c}
 \text{Β.Μ.} & z & x_1 & x_2 & x_2 &     x_4      & x_5 & \text{Δεξί μέλος} \\ \hline
 & 1 & 0  &  0  &  0  & 0 &  \sfrac{3}{2}   &        36         \\
-x_3     & 0 &  0  &  0  &  1  &  \sfrac{1}{3}   &  -\sfrac{1}{3}   &         2         \\
+x_1     & 0 &  0  &  0  &  1  &  \sfrac{1}{3}   &  -\sfrac{1}{3}   &         2         \\
 x_2     & 0 &  0  &  1  &  0  & \sfrac{1}{2} &  0  &         6         \\
 x_5     & 0 &  3  &  0  &  0 & -\sfrac{1}{3}  &  \sfrac{1}{3}   &         2         \\ \hline
 \end{array}
