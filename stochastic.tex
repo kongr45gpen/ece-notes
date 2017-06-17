@@ -1805,8 +1805,27 @@ S = \left\lbrace \varPi, M, \varPi_1, \varPi_2 \right\rbrace
 \[
 E[x] = \sum_{i=1}^{4} x_if_X(x) = \frac{1}{4}40 + \frac{1}{4}28 + \frac{1}{4}5 + \frac{1}{4}3
 \]
-\paragraph{Μία ενδιαφέρουσα ιδιότητα}
-\todo{Graph 25}
+\paragraph{Μία ενδιαφέρουσα ιδιότητα}\hspace{0pt}\par
+\begin{tikzpicture}
+\draw[draw=blue!50!green,fill=green,fill opacity=.5,postaction={pattern=north east lines,opacity=.2}] (-0.2,0) rectangle (2.3,0.797115095315);
+
+\begin{scope}[]
+\clip plot [variable=\x,domain=-0.3:2.5,samples=40,yscale=.5]
+(\x,-3.47852*\x^6+19.8404*\x^5-33.1088*\x^4+1.97819*\x^3+36.2435*\x^2-21.1624*\x+1)
+-- (2.5,0) -- (-0.3,0);
+\fill[yellow!90!brown,opacity=.7,postaction={pattern=north west lines,opacity=.2}]
+(-0.2,2) rectangle (2.3,-2);
+\draw[dashed] (-0.2,0) -- ++(0,2);
+\draw[dashed] (2.3,0) -- ++(0,2);
+\end{scope}
+
+\draw[blue,very thick] plot [variable=\x,domain=-0.3:2.5,samples=150,yscale=.5]
+(\x,-3.47852*\x^6+19.8404*\x^5-33.1088*\x^4+1.97819*\x^3+36.2435*\x^2-21.1624*\x+1);
+
+\draw (-1,0) -- (3,0);
+\draw (0,-1.5) -- (0,2);
+\end{tikzpicture}
+
 Το εμβαδόν μιας συνάρτησης σε ένα διάστημα είναι ίσο με το ορθογώνιο
 που έχει ύψος τη μέση τιμή της συνάρτησης στο διάστημα αυτό.
 
@@ -1850,7 +1869,25 @@ E[y] &= \bar y = \int_{-\infty}^{\infty} g(X)\dif x
 	\( y=(x-\bar x)^k \)
 \end{defn}
 (οι προηγούμενες ροπές που μελετήσαμε λέγονταν κανονικές)
-\todo{Graph 26}
+
+\begin{tikzpicture}
+\begin{axis}[
+no markers, domain=-4:4, samples=100,
+axis y line=center,
+axis x line=middle,
+ylabel=$f_x(x)$,
+height=6cm, width=7cm,
+xtick=\empty, ytick=\empty,
+enlargelimits=false, clip=false, axis on top,
+enlarge y limits=0.15,
+grid = major
+]
+\addplot [very thick,cyan!50!black] {gauss(0,1.5)};
+\draw[<->] (0,0.07) -- (1.5,0.07) node[midway,above] {$x-\bar x$};
+\draw[dashed] (1.5,0) -- (1.5,0.16);
+\draw (0,0) node[below left] {$\bar x$};
+\end{axis}
+\end{tikzpicture}
 
 Παρατηρούμε ότι:
 \[
@@ -2099,7 +2136,24 @@ f_{XY}(x,y) = \frac{1}{4\pi^2} \int_{-\infty}^{\infty}
 	έχει ισχύ. Αν τον αφαιρέσουμε, έχει μέση τιμή 0, άρα και μέση ισχύ
 	0. Δύο μεταβλητές μπορεί να είναι ασυσχέτιστες, κάτι που όμως
 	μπορούμε να το δούμε αν αφαιρέσουμε από αυτές την μέση τους τιμή.
-	\todo{Graph 27}
+	\begin{tikzpicture}
+	\draw (-1,0) -- (6,0);
+	\draw (-1,2.5) -- (6,2.5);
+	\draw (0,-1) -- (0,4);
+	
+	\def\c{plot[samples=25,domain=-0.5:5.8,smooth] (\x+rand*0.1,rand/1.5)}
+	
+	\pgfmathsetseed{15394}
+	\draw[thick,green!80!blue!70!black] \c node[above,xshift=2mm] {$f(t)-s$};
+	\pgfmathsetseed{15394}
+	\draw[thick,green!80!blue!70!black,yshift=2.5cm] \c node[above] {$f(t)$};
+	
+	\draw (0,0) node[below left,yshift=-2mm] {$0$};
+	\draw (0,2.5) node[below left,yshift=-2mm] {$s$};
+	
+	\draw[->] (-1.5,1.5) node[below left] {DC όρος} to[bend right] (-0.35,1.9);
+	\end{tikzpicture}
+	
 	
 	\item
 	Αν \( X,Y \) ασυσχέτιστες \( \rightarrow \) μια καινούρια
@@ -2176,17 +2230,56 @@ E[x^2]E[y^2]}
 \textit{στον χρόνο}, π.χ. \( E(t), I(t), H(t), B(t), U(t) \) που μπορεί
 π.χ. να είναι ίσα με \(U_0(t)\cos\left(2\pi f(t) t + \phi(t)\right) \).
 
-\todo{Graph 28}
+\begin{tikzpicture}[every node/.style={scale=.8}]
+\draw (-1,0) -- (6,0) node[below] {$t$};
+\draw (0,-1) -- (0,3) node[below left] {$x(t)$};
+
+\draw[dashed] (0.48,0) node[below,xshift=2mm] {$\Delta t_1$} -- ++(0,1.5);
+\draw[dashed] (0.55,0) -- ++(0,1.7);
+\draw[dashed] (1.12,0) node[below,xshift=2mm] {$\Delta t_2$} -- ++(0,1.5);
+\draw[dashed] (1.24,0) -- ++(0,1.7);
+\draw[dashed] (1.90,0) node[below,xshift=2mm] {$\Delta t_3$} -- ++(0,1.5);
+\draw[dashed] (2.00,0) -- ++(0,1.7);
+\draw[dashed] (2.52,0) node[below,xshift=2mm] {$\Delta t_4$} -- ++(0,1.5);
+\draw[dashed] (2.62,0) -- ++(0,1.7);
+\draw[dashed] (3.15,0) node[below,xshift=2mm] {$\Delta t_5$} -- ++(0,1.5);
+\draw[dashed] (3.24,0) -- ++(0,1.7);
+
+\draw[very thick,orange] (0,1.5) node[left] {$x$} -- (5.5,1.5);
+\draw[orange!50!red] (0,1.7) node[left] {$x+\Delta x$} -- ++(5.5,0);
+
+\draw[very thick,blue!60!black] plot [smooth]
+coordinates {(0,0) (0.7,2) (1.5,1.2) (2.2,1.6) (3,1.3) (3.4,1.9) (4,0.9) (4.5,1.5) (5,1.2)};
+\end{tikzpicture}
 
 Το σήμα δεν είναι ντετερμινιστικό, αλλιώς δεν θα μετέφερε καμία
 πληροφορία.
 Η τυχαία μεταβλητή είναι το πλάτος του σήματος. Η πιθανότητα που
-μας ενδιαφέρει είναι η πιθανότητα να βρεθούμε ετός μιας περιοχής:
+μας ενδιαφέρει είναι η πιθανότητα να βρεθούμε εντός μιας περιοχής:
 \[
 P \left\lbrace x < X \leq x+\dif x \right\rbrace = f_X(x)\Delta x
 \]
 την οποία βρίσκουμε μέσω μίας κατανομής \( f_X \):
-\todo{Graph 29}
+
+\begin{tikzpicture}
+\begin{axis}[
+no markers, domain=-2:6, samples=100,
+axis y line=center,
+axis x line=middle,
+ylabel=$f_x(x)$,
+height=5cm, width=8cm,
+xtick=\empty, ytick=\empty,
+enlargelimits=false, clip=false, axis on top,
+enlarge y limits=0.2,
+grid = major
+]
+\addplot [dashed,domain=3.5:4,fill=green,postaction={pattern=north east lines,opacity=.2}] {gauss(2,1.5)} -- (4,0) -- (3.5,0) -- cycle;
+\draw (3.5,0) node[below,scale=.6,xshift=-1mm] {$x\vphantom{\dif}$};
+\draw (4,0) node[below,scale=.6,xshift=2mm] {$x+\dif x$};
+\addplot [very thick,cyan!50!black] {gauss(2,1.5)};
+\end{axis}
+\end{tikzpicture}
+
 
 Τον χρόνο που το σήμα μας έχει πλάτος που βρίσκεται εντός των τιμών
 που θέλουμε τον αποκαλούμε \( T_X \):
@@ -2211,7 +2304,35 @@ f_X(x) = \frac{1}{\sigma_x \sqrt{2\pi}}\exp\left[
 \right] }
 \]
 
-\todo{Graph 30}
+\begin{tikzpicture}
+\begin{axis}[
+no markers, domain=-2:6, samples=100,
+axis y line=center,
+axis x line=middle,
+ylabel=$f_x(x)$,xlabel=$x$,
+height=5cm, width=8cm,
+xtick=\empty, ytick=\empty,
+enlargelimits=false, clip=false, axis on top,
+enlarge y limits=0.2,
+xlabel style={below},
+grid = major
+]
+\addplot [fill=green!5!white,draw opacity=0,postaction={pattern=north east lines,opacity=.1},samples=20]
+{gauss(2,1.5)} -- (6,0) -- (-2,0) -- cycle;
+\addplot [dashed,domain=-1:5,fill=green!30!white,postaction={pattern=north east lines,opacity=.2},samples=20]
+{gauss(2,1.5)} -- (5,0) -- (-1,0) -- cycle;
+\addplot [dashed,domain=0.5:3.5,fill=green,postaction={pattern=north east lines,opacity=.2},samples=10]
+{gauss(2,1.5)} -- (3.5,0) -- (0.5,0) -- cycle;
+%\addplot [dashed,domain=0.5:3.5,fill=green,postaction={pattern=north east lines,opacity=.2}] {gauss(2,1.5)} -- (3.5,0) -- (0.5,0) -- cycle;
+
+\draw (0,0) node[below left] {$0$};
+\addplot [ultra thick,cyan!50!black] {gauss(2,1.5)};
+\draw[dashed] (2,-0.02) node[right] {$\bar x$} -- (2,0.265);
+
+\draw (2,0.265/2) node[label={[inner sep=2pt, fill=white,text=black, fill opacity=0.55, text opacity=1]center:$68\%$}] {};
+\draw (4.2,0.025) node[label={[inner sep=2pt, fill=white,text=black, fill opacity=0.55, text opacity=1]center:$95\%$}] {};
+\end{axis}
+\end{tikzpicture}
 
 Με μέση τιμή \( \bar x \) και τυπική απόκλιση \( \sigma_x \).
 
@@ -2223,7 +2344,18 @@ f_X(x) = \frac{1}{\sigma_x \sqrt{2\pi}}\exp\left[
 F_X(x) = \cdots
 \]
 
-\todo{Graph 31}
+\begin{tikzpicture}[scale=1.2]
+\draw[dashed] (0,3) node[left] {$1$} -- ++(4,0);
+\draw[dashed] (0,1.5) node[left] {$0.5$} -- ++(1,0);
+\draw[dashed] (1,0) node[below] {$\bar x$} -- ++(0,3);
+
+\draw[very thick,blue!75!magenta] plot[smooth,xscale=0.5,yscale=3] file{/home/kongr45gpen/ece/notes/data/gaussian_integral.data};
+
+\filldraw[draw=blue!50!black,thick,fill=white,fill opacity=.6] (1,1.5) circle (3pt);
+
+\draw (0,-0.2) -- (0,3.5) node[above] {$F_x(x)$};
+\draw[->] (-1,0) -- (4,0) node[right] {$x$};
+\end{tikzpicture}
 
 \subsubsection[Συνάρτηση Y=aX+b]{Συνάρτηση \( Y=aX+b \)}
 Αν έχουμε μια συνάρτηση για την τυχαία μεταβλητή \( X \):
@@ -2428,6 +2560,7 @@ Gaussιανή κατανομή του θορύβου που θα εμφανισ�
 \int_{-\infty}^{\infty} z^a f(z) < C = \text{ σταθερά.}
 \]
 
+\newpage
 \section{Στοχαστικό Σήμα}
 Το στοχαστικό σήμα έχει διαφορετικές ονομασίες:
 \begin{itemize}
@@ -2439,7 +2572,59 @@ Gaussιανή κατανομή του θορύβου που θα εμφανισ�
 
 \paragraph{}
 Έστω ότι έχουμε ένα πείραμα με δειγματικό χώρο \( S \).
-\todo{Graph 32}
+
+\begin{tikzpicture}[scale=1.4]
+\def\radius{1cm}
+\pgfmathsetseed{1000}
+\draw[mark position=0.5(c),mark position=0.65(d)]
+plot[
+smooth cycle,
+samples=30,
+domain=0:360,
+variable=\t
+]
+(\t:{\radius+2*(rand)})
+;
+
+\draw (0.4,0.4) node {$J_1$};
+\draw (0.5,-0.2) node {$J_2$};
+\draw (0.2,-0.6) node {$J_k$};
+\draw (-0.5,0) node {$J_m$};
+\draw (-0.3,0.5) node {$J_n$};
+\draw (c) to[bend left] (-0.4,-0.4) to[bend left] (d);
+\draw (-0.6,-0.52) node[scale=.85] {$S$};
+
+\draw[gray!50!brown,->] (0.6,0.35) to[bend left] node[midway,above] {$S(t,J_1)$} (2.5,1);
+\draw[gray!50!brown,->] (0.8,-0.25) to[bend left=20] node[midway,above] {$S(t,J_2)$} (2.5,-0.5);
+\draw[gray!50!brown,->] (0.45,-0.70) to[bend right] node[midway,below,yshift=-2mm] {$S(t,J_k)$} (2.5,-2);
+
+\begin{scope}[xshift=3cm,yshift=-2cm]
+\draw (0,-1) -- (0,4);
+\foreach \y in {0,1.5,3}
+\draw[->] (-0.2,\y) -- (6,\y) node[right] {$t$};
+
+\draw[thick,green!80!cyan,dashed,name path=D] (1.9,-1) node[right] {$t_i$} -- ++(0,5);
+
+\foreach \i in {1,2,3}
+\draw[thick,yellow!70!cyan!70!orange,dashed] (2.5+0.9*\i,-1) node[right] {$t_\i$} -- ++(0,5);
+
+
+\draw[thick,blue,name path=A] plot [domain=0:5.5,smooth,samples=25]
+(\x,rand/1.5);
+\draw[thick,blue,name path=B] plot [domain=0:5.5,smooth,samples=20,yshift=1.5cm]
+(\x,{rand*abs(rand)/1.5});
+\draw[thick,blue,name path=C] plot [domain=0:5.5,smooth,samples=30,yshift=3cm]
+(\x+0.05*rand,rand/1.5);
+
+\path [name intersections={of=A and D,by=E}];
+\path [name intersections={of=B and D,by=F}];
+\path [name intersections={of=C and D,by=G}];
+\foreach \x in {E,F,G} {
+	\filldraw[fill=green!30!white,draw=blue!30!black,fill opacity=.5]
+	(\x) circle (2pt);
+}
+\end{scope}
+\end{tikzpicture}
 
 Αν σε κάθε αποτέλεσμα αντιστοιχήσουμε μια συνάρτηση
 \( S(t) \), τότε έχουμε ορίσει το \textbf{στοχαστικό σήμα}.
@@ -2490,11 +2675,89 @@ x_5(4)
 Τα στοχαστικά σήματα διακρίνονται σε:
 \begin{itemize}
 	\item \textbf{Συνεχές στ. σήμα}
-	\todo{Graph 33}
+	
+	\begin{tikzpicture}
+	\draw[->] (-0.5,0) -- (6.5,0);
+	\draw[->] (0,-1) -- (0,2.5) node[left] {$x_J(t)$};
+	
+	\draw[thick,blue!70!black, name path=line1]
+	plot [smooth]
+	coordinates {(0,0) (0.2,0.4) (0.5,0.8) (0.7,2.1)(1,0.7)(1.3,0.8)(1.8,1.4)(2,1.6)(2.2,0.7)(2.5,0.8)
+		(2.8,1) (3,1.7) (3.25,1.4) (3.5,1.7) (3.75,1.4) (3.9,1.7) (4,0.8) (5,0.3)
+	};
+	\draw[name path=line2] (1.7,0) node[below] {$t_i$} -- (1.7,2);
+	\path [name intersections={of=line1 and line2,by=E}];
+	\filldraw[fill=blue!50!black,fill opacity=.7] (E) circle (2pt);
+	
+	\begin{scope}[xshift=8cm]
+	\draw[->] (-0.5,0) -- (6.5,0);
+	\draw[->] (0,-1) -- (0,2.5) node[left] {$f_x\left(\underline{x(t_i)}\right)$};
+	
+	\draw[very thick,cyan!90!black]
+	plot [smooth,tension=1]
+	coordinates {(0,0) (1.5,1.7) (3.2,0.6) (5,0.1)};
+	
+	\draw[<-,thick] (1,-0.2) to[bend left] ++(0.2,-1.2) node[below] {Συνάρτηση πυκνότητας πιθανότητας};
+	\end{scope}
+	\end{tikzpicture}
 	\item \textbf{Διακριτό στ. σήμα}
-	\todo{Graph 34}
+	
+	\begin{tikzpicture}
+	\draw[->] (-0.5,0) -- (7,0);
+	\draw[->] (0,-1) -- (0,2.5) node[left] {$x_J(t)$};
+	
+	\draw[very thick,blue!70!black, name path=line1]
+	plot [const plot,yscale=0.15]
+	coordinates {(0,10) (0.7,0) (1.4,10) (1.6,0) (2,10) (3,0) (4,10) (4.8,0) (5.5,7.3) (5.8,0) (6,0)
+	};
+	
+	\draw (0,0) node[below left] {$0$};
+	
+	\begin{scope}[xshift=9cm]
+	\draw[->] (-0.5,0) -- (5,0);
+	\draw[->] (0,-1) -- (0,2.5) node[left] {$f_x\big(x(t_i)\big)$};
+	
+	\draw[ultra thick,draw=cyan!90!black,->]
+	(0,0) node[cross=3pt,thick,cyan!20!black] {} node[below left] {$0$} -- ++(0,1);
+	\draw[ultra thick,draw=cyan!90!black,->]
+	(7.3/6,0) node[cross=3pt,thick,cyan!20!black] {} node[below,xshift=-1mm,scale=.9] {$7.3$} -- ++(0,0.6);
+	\draw[ultra thick,draw=cyan!90!black,->]
+	(10/6,0) node[cross=3pt,thick,cyan!20!black] {} node[below,xshift=1mm,scale=.9] {$10$} -- ++(0,1);
+	\end{scope}
+	\end{tikzpicture}
 	\item \textbf{Μικτό στ. σήμα}
-	\todo{Graph 35}
+	
+	\begin{tikzpicture}
+	\draw[->] (-0.5,0) -- (7,0);
+	\draw[->] (0,-1) -- (0,2.5) node[left] {$x_J(t)$};
+	
+	\draw[very thick,blue!70!black, name path=line1]
+	plot[smooth] coordinates
+	{(0,0) (0.1,0.2) (0.2,0.25) (0.5,1) (1,2) (1.5,0)}
+	-- (2,0)
+	plot [smooth] coordinates
+	{(2,0) (2.2,1) (2.4,0.9) (2.6,1.1) (2.8,0)}
+	-- (3.3,0)
+	plot [smooth,tension=.3] coordinates
+	{(3.3,0) (3.5,1) (3.7,2.4) (4.1,2.4) (4.3,0)}
+	-- (4.7,0)
+	plot[smooth] coordinates
+	{(4.7,0) (4.95,0.7) (5.1,0.7) (5.2,0)}
+	-- (6,0);
+	
+	\draw (0,0) node[below left] {$0$};
+	
+	\begin{scope}[xshift=8.5cm]
+	\draw[->] (-0.5,0) -- (5.5,0);
+	\draw[->] (0,-1) -- (0,2.5) node[left] {$f_x\big(x(t_i)\big)$};
+	
+	\draw[ultra thick,draw=cyan!80!black,->]
+	(0,0) node[cross=3pt,thick,cyan!20!black,opacity=.5] {} node[below left] {$0$} -- ++(0,1.2);
+	\draw[very thick,cyan!90!black,yscale=.7]
+	plot [smooth,tension=1]
+	coordinates {(0.1,0) (1.5,1.7) (3.2,0.6) (5,0.1)};
+	\end{scope}
+	\end{tikzpicture}
 \end{itemize}
 
 Επιπλέον, διακρίνονται ως εξής:
@@ -2512,7 +2775,17 @@ x_5(4)
 	\[
 	x_i(t) = A\cos(\omega t + \underline{\theta_i})
 	\]
-	\todo{Graph 36}
+	\begin{tikzpicture}[xscale=0.7]
+	\draw (0,-1) -- (0,6);
+	\draw[->] (-0.5,0) -- (5.5,0);
+	\draw[->] (-0.5,2) -- ++(6,0);
+	\draw[->] (-0.5,4) -- ++(6,0);
+	
+	\draw[thick,blue!70!black,variable=\x,samples=700,domain=0:5] plot ({\x},{(0.7*sin(\x r*3))});
+	\draw[thick,blue!70!black,variable=\x,samples=700,domain=0:5,yshift=2cm] plot ({\x},{(0.7*sin((\x+0.4) r*3))});
+	\draw[thick,blue!70!black,variable=\x,samples=700,domain=0:5,yshift=4cm] plot ({\x},{(0.7*sin((\x+0.8) r*3))});
+	\end{tikzpicture}
+
 	Η οικογένεια αυτών των σημάτων αποτελείται από συνημίτονα
 	ίδιου πλάτους και συχνότητας, αλλά διαφορετικής φάσης.
 	
@@ -3487,7 +3760,7 @@ E\left[x^2(t)\right] = \frac{1}{2\pi}
 R_{x}(\tau) = S_0\delta(\tau)
 \]
 
-\begin{tikzpicture}[scale=1]
+\begin{tikzpicture}
 \draw[->] (-1.5,0) -- (1.5,0) node[below left] {$\tau$};
 \draw[->] (0,-0.5) -- (0,2) node[left] {$R_x(\tau)$};
 
@@ -3548,11 +3821,36 @@ R_x(\tau) = \frac{\omega_0 S_0'}{\pi}
 \underbrace{\frac{\sin(\omega_0\tau)}{\omega_0\tau}}_{
 	\sinc(\omega_0 t)}
 \]
-\todo{Graph 46}
+\begin{tikzpicture}[scale=1.2]
+\draw[->] (0,-0.5) -- (0,1.5) node[right] {$R_x(\tau)$};
+\draw[->] (-2.5,0) -- (2.5,0);
+
+\draw[very thick,xscale=0.5,samples=200,domain=-5:5,smooth,variable=\x,magenta!60!blue]
+plot ({\x},{sinc(pi*\x)});
+
+\foreach \x in {-2,-1.5,...,2} {
+   	\filldraw[fill=magenta!50!white,fill opacity=.5] (\x,0) circle (1.5pt);
+}
+\end{tikzpicture}
+
 δηλαδή στην πραγματικότητα, οι εναλλαγές στον θόρυβο είναι ομαλές,
 και δεν μπορούν να παίρνουν οποιεσδήποτε τιμές.
 
-\todo{Graph 47}
+\begin{tikzpicture}
+\draw (-3,0) -- (3,0);
+\draw (0,-0.5) -- (0,2.5);
+
+\draw[very thick] (1,0) -- ++(0,1.5) --++(1,0) --++(0,-1.5);
+\draw[very thick,green!50!black] (1.35,0) -- ++(0,1.5) --++(0.3,0) --++(0,-1.5);
+\draw (1.5,-0.1) node[below] {$f_1$} -- (1.5,0.1);
+
+\begin{scope}[xscale=-1]
+\draw[very thick] (1,0) -- ++(0,1.5) --++(1,0) --++(0,-1.5);
+\draw[very thick,green!50!black] (1.35,0) -- ++(0,1.5) --++(0.3,0) --++(0,-1.5);
+\draw (1.5,-0.1) node[below] {$-f_1$} -- (1.5,0.1);
+\end{scope}
+\end{tikzpicture}
+
 Όσο μικραίνει το εύρος ζώνης και τείνει στο 0 (ώση), ο
 \( \mathscr F^{-1} \)
 γίνεται ένα συνημίτονο, δηλαδή αυξάνεται η αυτοσυσχέτιση.
