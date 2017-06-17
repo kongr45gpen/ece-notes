@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper,titlepage,draft]{article}
+\documentclass[11pt,a4paper,titlepage]{article}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -5667,18 +5667,18 @@ g &: B \to C \subseteq  \mathbb R
 \end{align*}
 
 \paragraph{}
-\begin{align*}
+\begin{gather*}
 \lim_{(x,y)\to (0,0)}
 \left[
 \frac{(2+y^3)\tan (x^3+y^3)}{x^3+y^3} +
 \frac{\tan(x^5y^5)}{\tan(x^5)\tan(y^5)}
 \right]
-&= \\
-&=
+=\\
+=
 \lim_{(x,y)\to (0,0)} (2+y^3) \cdot
 \lim_{(x,y)\to (0,0)} \frac{\tan(x^3+y^3)}{x^3+y^3} +
-\lim_{(x,y)\to (0,0)} \frac{\tan(x^5+y^5)}{\tan(x^5) \tan(y^5)}
-\end{align*}
+\lim_{(x,y)\to (0,0)} \frac{\tan(x^5y^5)}{\tan(x^5) \tan(y^5)}
+\end{gather*}
 
 Αν θέσω \(x^3+y^3=u\), έχω:
 \[
@@ -5689,9 +5689,9 @@ g &: B \to C \subseteq  \mathbb R
 \]
 
 \[
-\lim_{(x,y)\to (0,0)} \frac{\tan(x^5+y^5)}{\tan(x^5) \tan(y^5)}
+\lim_{(x,y)\to (0,0)} \frac{\tan(x^5y^5)}{\tan(x^5) \tan(y^5)}
 =
-\lim_{(x,y)\to (0,0)} \frac{\frac{\tan(x^5+y^5)}{x^5y^5}}{\frac{\tan(x^5)}{x^5}\cdot\frac{\tan(y^5)}{y^5}}
+\lim_{(x,y)\to (0,0)} \frac{\frac{\tan(x^5y^5)}{x^5y^5}}{\frac{\tan(x^5)}{x^5}\cdot\frac{\tan(y^5)}{y^5}}
 =
 \frac{
 \lim_{v\to 0} \frac{\tan v}{v}
@@ -6533,16 +6533,16 @@ Q_z&=P_y
 \paragraph{}
 %TODO Zaharis Graph 02
 \begin{align*}
-f(A)-f(A_0)=
-\int_{A_0}^A \vec F \dif r \implies \\ f(A)=f(A_0)+\int_{A_0}^B (\cancel{P\dif x+Q\dif y} + R\dif z) +
+f(A)-f(A_0)&=
+\int_{A_0}^A \vec F \dif r \implies \\ f(A)&=f(A_0)+\int_{A_0}^B (\cancel{P\dif x+Q\dif y} + R\dif z) +
 \int_B^\Gamma (\cancel{P\dif x}+Q\dif y +\cancel{P\dif z}) + \int_\Gamma^A (P\dif x + \cancel{Q\dif y+R\dif z})
 \implies \\
-f(A)=f(A_0)+\int_{z_0}^z R(x_0,y_0,t)\dif t + \int_{y_0}^y Q(x_0,t,z)\dif t +\int_{x_0}^x P(t,y,z)\dif t
+f(A)&=f(A_0)+\int_{z_0}^z R(x_0,y_0,t)\dif t + \int_{y_0}^y Q(x_0,t,z)\dif t +\int_{x_0}^x P(t,y,z)\dif t
 \end{align*}
 
 \paragraph{Άσκηση}
 \[
-\underbrace{(3x^2+6xy^2)}_{P(x,y)=f_x}\dif x + \underbrace{(6x^2+4y^3)}_{Q(x,y)=f_y}\dif y
+\underbrace{(3x^2+6xy^2)}_{P(x,y)=f_x}\dif x + \underbrace{(6x^2y+4y^3)}_{Q(x,y)=f_y}\dif y
 \]
 Να δειχθεί ότι η έκφραση αυτή αποτελεί ολικό διαφορικό μιας συνάρτησης \(f(x,y)\), και να βρεθεί η μορφή της συναρτησης αυτής.
 \begin{align*}
@@ -7560,7 +7560,7 @@ f_{yx} & f_{yy}
 \end{enumerate}
 
 \paragraph{Άσκηση}
-Να βρεθούν τα στάσιμα σημεία της συνάρτησης \( f(x,y) = x^2+y^2-3xy \)
+Να βρεθούν τα στάσιμα σημεία της συνάρτησης \( f(x,y) = x^3+y^3-3xy \)
 \[
     \nabla f = 0 \implies
     \begin{cases}
