@@ -3199,7 +3199,25 @@ Fourier του \( \mathscr{F}\big\lbrace x(t) \big\rbrace \) εκφράζει τ
 Δηλαδή, αν πάρουμε το εμβαδόν ενός εύρους συχνοτήτων στο
 \(  S_{\mathrm P_{x}} \), θα βρούμε την ισχύ που συνεισφέρουν στο
 σήμα αυτές οι συχνότητες:
-\todo{Graph 37}
+
+\begin{tikzpicture}
+\begin{scope}
+\clip plot[smooth,tension=.7] coordinates
+{(-3,0.2) (-1.5,1)  (-0.2,2.3) (2,0.8) (3,0.5)} |- (-3,0) -- cycle;
+
+\fill[orange,fill opacity=.7,postaction={pattern=north east lines,opacity=.2}] (1.4,0) rectangle (1.8,2);
+\draw[dashed] (1.4,0) -- (1.4,2);
+\draw[dashed] (1.8,0) -- (1.8,2);
+\end{scope}
+
+\draw ({(1.8+1.4)/2},0) node[below] {$\dif x$};
+
+\draw (-3,0) -- (3,0);
+\draw (0,-0.5) -- (0,3.5) node[right] {$S_{\mathrm p x}(f)$};
+
+\draw[very thick,green!60!black] plot[smooth,tension=.7] coordinates
+{(-3,0.2) (-1.5,1)  (-0.2,2.3) (2,0.8) (3,0.5)};
+\end{tikzpicture}
 
 \paragraph{}
 Αν σε ένα στοχαστικό σήμα προσπαθήσουμε να πάρουμε τον μετασχηματισμό
@@ -3633,7 +3651,27 @@ S_{\mathrm p y} (\omega ) =
 	\boxed{P}
 \end{align*}
 
-\todo{Graph 40}
+\begin{tikzpicture}
+\fill[orange,fill opacity=.2,postaction={pattern=north east lines,opacity=.1}] plot[smooth,tension=.6] coordinates
+{(-3,0.2) (-2.3,0.4) (-1.2,1.3) (1.2,1.3) (2.3,0.4) (3,0.2)}  |- (-3,0) -- cycle;
+
+\draw (-3,0) -- (3,0) node[below] {$\omega$};
+\draw (0,-0.5) -- (0,2.5) node[right] {$S_{\mathrm p x}(\omega)$};
+
+\draw[very thick,green!60!black] plot[smooth,tension=.6] coordinates
+{(-3,0.2) (-2.3,0.4) (-1.2,1.3) (1.2,1.3) (2.3,0.4) (3,0.2)};
+
+\begin{scope}[yshift=-4cm]
+\draw (-3,0) -- (3,0) node[below] {$\tau$};
+\draw (0,-0.5) -- (0,2.5) node[right] {$R_{x}(\tau)$};
+
+\draw[very thick,magenta!60!blue] plot[smooth,tension=.6] coordinates
+{(-3,0.2) (-1,0.6) (0,2.2)}  plot[smooth,tension=.6] coordinates
+{(0,2.2)  (1,0.6) (3,0.2)};
+
+\filldraw[fill=black,draw=magenta!60!blue!70!black,fill opacity=.5] (0,2.2) circle(2pt) node[opacity=1,left] {$R_x(0)$};
+\end{scope}
+\end{tikzpicture}
 
 \subsection{Χαρακτηριστικά στοχαστικά σήματα}
 Έστω ένα στοχαστικό σήμα \( \bigg\lbrace x(t) \bigg\rbrace \) με
@@ -3843,11 +3881,15 @@ plot ({\x},{sinc(pi*\x)});
 \draw[very thick] (1,0) -- ++(0,1.5) --++(1,0) --++(0,-1.5);
 \draw[very thick,green!50!black] (1.35,0) -- ++(0,1.5) --++(0.3,0) --++(0,-1.5);
 \draw (1.5,-0.1) node[below] {$f_1$} -- (1.5,0.1);
+\draw[->,thick,green!50!black,opacity=.8] (2-0.07,0.75) -- (1.65+0.07,0.75);
+\draw[->,thick,green!50!black,opacity=.8] (1+0.07,0.75) -- (1.35-0.07,0.75);
 
 \begin{scope}[xscale=-1]
 \draw[very thick] (1,0) -- ++(0,1.5) --++(1,0) --++(0,-1.5);
 \draw[very thick,green!50!black] (1.35,0) -- ++(0,1.5) --++(0.3,0) --++(0,-1.5);
 \draw (1.5,-0.1) node[below] {$-f_1$} -- (1.5,0.1);
+\draw[->,thick,green!50!black,opacity=.8] (2-0.07,0.75) -- (1.65+0.07,0.75);
+\draw[->,thick,green!50!black,opacity=.8] (1+0.07,0.75) -- (1.35-0.07,0.75);
 \end{scope}
 \end{tikzpicture}
 
