@@ -241,8 +241,8 @@
 
 	\begin{gather*}
 		f(0) \cdot f(1) < 0 \\
-		k=1,\ a_1=0,\ b_1=1,\ m=\frac{a_1+b_1}{2} = 0.5 \\
-		\quad f(m) = -0.375 < 0 \\
+		k=1,\ a_1=0,\ b_1=1,\ m_1=\frac{a_1+b_1}{2} = 0.5 \\
+		\quad f(m_1) = -0.375 < 0 \\
 		\quad f(0.5) \cdot f(1) < 0
 	\end{gather*}
 	Άρα η λύση βρίσκεται μεταξύ \( 0.5 \) και \( 1 \).
@@ -327,7 +327,7 @@
 		\text{Σημείο τομής με άξονα } x:
 		\Aboxed{x &= \frac{af(b)-bf(a)}{f(b)-f(a)}}
 		\\
-		c &= \frac{a_kf(b_k)=b_kf(a_k)}{f(b_k)-f(a_k)}
+		c &= \frac{a_kf(b_k)-b_kf(a_k)}{f(b_k)-f(a_k)}
 		\\ f: \quad f(a_k)f(c) < 0 &\implies
 		a_{k+1} = a_k, \quad b_{k+1}=c \\
 		\text{else} &\implies
@@ -573,12 +573,12 @@
 	\paragraph{Άσκηση}
 	Να βρεθεί μια λύση της εξίσωσης
 	\[
-	\mathlarger{x^3+x+1}
+	\mathlarger{x^3+x-1}
 	\]
 	στο διάστημα \( (0,1) \)
 	με ακρίβεια 2 δεκαδικών ψηφίων χρησιμοποιώντας τη μέθοδο
 	χορδής, και να συγκριθεί με τη μέθοδο Newton.
-	\subparagraph{Λύση}
+	\subparagraph{Λύση (με μέθοδο χορδής)}
 	\begin{align*}
 	x_{n+1} &= x_n - f(x_n)\frac{x_n-x_{n-1}}{f(x_n)-f(x_{n-1})}
 	\\
@@ -819,7 +819,7 @@
 	\begin{align*}
 	P_n(x) &= a_0 + (x-c_1)\left[a_1
 	+ a_2(x-c_2) + a_3(x-c_2)(x-c_3) + \dots + a_n(x-c_2)\cdots(x-c_n)
-	\right] = \dots \\ &= a_0 + (x-c_1)\left[a_0+(x-c_2)
+	\right] = \dots \\ &= a_0 + (x-c_1)\left[a_1+(x-c_2)
 	\left[a_2+ (x-c_3)\left[a_3+\dots + (x-c_{n-1})\left[
 	a_{n-1}+(x-c_n)a_n
 	\right]\right]\right]
@@ -951,7 +951,8 @@
  	x_0 & f(x_0) & f[x_0,x_1] & = \frac{f(x_1)-f(x_0)}{x_1-x_0} & \\
  	x_1 & f(x_1) & f[x_1,x_2] & f[x_0,x_1,x_2] & =
  	\frac{f[x_1,x_2]-f[x_0,x_1]}{x_2-x_0} \\
- 	x_2 & f(x_2) & f[x_2,x_3] & f[x_1,x_2,x_3] & f[x_0,x_1,x_2,x_3]\\
+ 	x_2 & f(x_2) & f[x_2,x_3] & f[x_1,x_2,x_3] & f[x_0,x_1,x_2,x_3] &
+ 	=\frac{f[x_1,x_2,x_3]-f[x_0,x_1,x_2]}{x_3-x_0} \\
  	x_3 & f(x_3) & f[x_3,x_4] & f[x_2,x_3,x_4] & f[x_1,x_2,x_3,x_4]
  	& f[x_0,x_1,x_2,x_3,x_4]
  	\\
@@ -964,7 +965,7 @@
  		P_k(x) &= f(x_0) + f[x_0,x_1](x-x_0) +
  		f[x_0,x_1,x_2](x-x_0)(x-x_1)
  		\\ & + \dots +
- 		f[x_0,x_1,\dots,x_k](x-x_0)(x-x_1)\cdots(x-x_{k+1})
+ 		f[x_0,x_1,\dots,x_k](x-x_0)(x-x_1)\cdots(x-x_{k-1})
  	\end{align*}
 
  	\paragraph{Παράδειγμα}
@@ -1851,7 +1852,7 @@ node[below left,scale=.7] {$\cdot 1$};
     \subparagraph{Λύση για \( N=1 \)}
     \begin{align*}
     	I_R &= f(a)\big(b-a\big) = f(1)\big(2-1\big) = 1\cdot 1 = 1 \\
-    	E_R &= \frac{(z-1)^2}{2} f'(z) \quad 1<z<2 \\
+    	E_R &= \frac{(2-1)^2}{2} f'(z) \quad 1<z<2 \\
     	\left|E_R\right| &\leq \frac{1}{2}\max_{1<z<2} 3z^2 =
     	\frac{1}{2} \cdot 3 \cdot 2^2 = 6
     \end{align*}
@@ -1901,9 +1902,9 @@ node[below left,scale=.7] {$\cdot 1$};
     \begin{align*}
     	p_1(x) &= f(a)l_0(x) + f(b)l_1(x) \qquad
     	\text{($l_i$ πολυώνυμα Lagrange)} \\
-    	&= \frac{(x-b)}{a-b} + f(b)\frac{x-a}{b-a} \\
+    	&= f(a)\frac{(x-b)}{a-b} + f(b)\frac{x-a}{b-a} \\
     	I\left(p_1(x)\right) &= \int_{a}^{b} p_1(x)
-    	\\ &= \dots = \frac{b-a}{2}\left(f(a)-f(b)\right) =
+    	\\ &= \dots = \frac{b-a}{2}\left(f(a)+f(b)\right) =
     	I_{\mathrm T \ \leftarrow \text{Trapezoid}}
     \end{align*}
 
@@ -2359,7 +2360,7 @@ node[below left,scale=.7] {$\cdot 1$};
     \end{defn}
 
     Επειδή ο υπολογισμός ορίζουσας είναι δύσκολη υπολογιστική διαδικασία,
-    άρα θα βρούμε αριθμητικούς τρόπους να τις βρίσκουμε/προσεγγίζουμε.
+    θα βρούμε αριθμητικούς τρόπους να τις βρίσκουμε/προσεγγίζουμε.
 
     \subsubsection{Άνω Φράγματα}
     \begin{defn}{}{}
@@ -2396,7 +2397,7 @@ node[below left,scale=.7] {$\cdot 1$};
     \begin{align*}
     	\lambda &\in \sigma(A) \text{ ενός } A \in \mathbb R^{n\times n}
     	\\
-    	\lambda| &\leq r(A) \\[3ex]
+    	\lvert\lambda\rvert &\leq r(A) \\[3ex]
     	\left|\lambda - a_{kk}\right| &\leq R_k \\
     	\left|(\lambda - a_{kk})+a_{kk}\right| &\leq
     	\left|\lambda - a_{kk}\right|+\left|a_{kk}\right|
@@ -2477,7 +2478,7 @@ A&=\begin{bmatrix}
 \end{matrix}\right] \\
 v_1 &= Au_0 = \left[\begin{matrix}
 5\\4
-\end{matrix}\right] && \implies u_1 && = \frac{1}{5}v_i && = \left[
+\end{matrix}\right] && \implies u_1 && = \frac{1}{5}v_1 && = \left[
 \begin{matrix}
 1.0\\0.8
 \end{matrix}\right] \\
@@ -2538,7 +2539,7 @@ HAH^{-1} = \left[ \begin{array}{c|ccccc}
 
 \subsection{Παραγοντοποίηση QR (Εισαγωγή)}
 Μετατρέπω έναν πίνακα \( A \) σε γινόμενο 2 πινάκων \( Q \) και
-\( R \), όπου ο \( Q \) και ο \( R \) άνω τριγωνικός:
+\( R \), όπου ο \( Q \) ορθογώνιος και ο \( R \) άνω τριγωνικός:
 \[
 A =
 \underset{\substack{\downarrow\\\mathclap{\text{ορθογώνιος}}}}{Q}
@@ -2606,7 +2607,7 @@ A = \left[\begin{matrix}
 	\left|\begin{matrix}
 	1-\lambda & 5 \\ -3 & 2-\lambda
 	\end{matrix}
-	\right| = 0 \implies \lambda^2 -3\lambda + 17
+	\right| = 0 \implies \lambda^2 -3\lambda + 17 = 0
 	\implies \lambda_{2,3} =\frac{3}{2} \pm i\frac{\sqrt{59}}{2}
 \end{align*}
 
@@ -2738,12 +2739,12 @@ X = \sum_{i=1}^{n} c_i x_i
 και επειδή η βάση είναι ορθοκανονική, αποδεικνύεται ότι οι
 συντελεστές \( c_i \) προκύπτουν από το εσωτερικό γινόμενο:
 \[
-c = (x_i,x)
+c_i = (x_i,X)
 \]
 
 \textit{Πράγματι:}
 \begin{align*}
-	\left(x_i,x\right) &= \left(
+	\left(x_i,X\right) &= \left(
 	x_i, \sum_{j=1}^{n} c_j x_j \right)
 	\intertext{Από ιδιότητα του εσωτερικού γινομένου
 		\( (ax+by,z)=a(x,y)+b(y,z) \)}
@@ -2902,16 +2903,18 @@ u = \frac{x-y}{\Vert x-y \Vert}
 	 \end{matrix}
 	\right]
 \end{gather*}
-Για ευκολία θέτω: \[
+Για ευκολία θέτω: \begin{equation}
+\label{s_formula}
 		\boxed{s=\sqrt{x_k^2+x_{k+1}^2+\dots + x_n^2}
-			}\]
-\begin{align*}
+			}\end{equation}
+\begin{align}
+\label{xy_formula}
 	\Vert x-y \Vert &= \sqrt{
 		\left(x_k+\sgn(x_k)s\right)+x_{k+1}^2+\dots + x_n^2
-		} \\ &= \sqrt{2s\left(s+|x_k|\right)}
-\end{align*}
+		} \nonumber \\ &= \sqrt{2s\left(s+|x_k|\right)}
+\end{align}
 
-Τελικά: \begin{equation}
+Τελικά: \[
 	\label{u_matrix}
 	u = \frac{1}{\sqrt{2s\left(s+|x_k|\right)}} \left[
 	\begin{matrix}
@@ -2921,7 +2924,7 @@ u = \frac{x-y}{\Vert x-y \Vert}
 	\\ x_{k+1} \\ \vdots \\ \vdots \\ x_n
 	\end{matrix}
 	\right]
-\end{equation}
+\]
 
 \paragraph{Παράδειγμα}
 Επιθυμώ το παρακάτω \( x \) να έχει μηδέν στην 3\textsuperscript{η}
@@ -2931,7 +2934,7 @@ x = \left[\begin{matrix}
 \end{matrix}\right]
 \]
 \subparagraph{Επίλυση}
-Είναι \( k=2 \). Θα χρησιμοποιήσω την \( \eqref{u_matrix} \):
+Είναι \( k=2 \). Θα χρησιμοποιήσω τις \eqref{s_formula} και \eqref{xy_formula}:
 \begin{gather*}
 	s = \sqrt{x_2^2+x_3^2} = \sqrt{4^2+3^2} = 5\\
 	\Vert u \Vert = \Vert x-y \Vert = \sqrt{2\cdot 5
@@ -2986,9 +2989,9 @@ A = Q \cdot R
 	* & * & * & * & \hdots & * \\
 	0 & * & * & * & \hdots & * \\
 	0 & 0 & * & * & \hdots & * \\
-	0 & 0 & 0 & * & \hdots & * \\
+	0 & 0 & * & * & \hdots & * \\
 	\vdots & & \vdots & \vdots & \ddots & \vdots \\
-	0 & 0 & 0 & 0 & \hdots & 0
+	0 & 0 & * & * & \hdots & *
 	\end{matrix}\right] = A_2 \\
 	H_{n-1}A_{n-2} = \left[\begin{matrix}
 	* & * & * & * & \hdots & * \\
@@ -2996,7 +2999,7 @@ A = Q \cdot R
 	0 & 0 & * & * & \hdots & * \\
 	0 & 0 & 0 & * & \hdots & * \\
 	\vdots & & \vdots & \vdots & \ddots & \vdots \\
-	0 & 0 & 0 & 0 & \hdots & 0
+	0 & 0 & 0 & 0 & \hdots & *
 	\end{matrix}\right] = A_{n-1} = R
 \end{gather*}
 
@@ -3576,7 +3579,7 @@ x_P A &= L \quad \cdot \quad U
 \end{matrix}\right]
 \end{align*}
 
-Παρατηρούμε ότι, ακόμα και μετά τις γραμμοπράξεις, οι πίνακες
+Παρατηρούμε ότι, ακόμα και μετά τις γραμμοπράξεις, οι επιμέρους υποπίνακες
 παραμένουν συμμετρικοί.
 
 Θυμόμαστε ότι:
@@ -3586,9 +3589,9 @@ x^TAx > 0
 \]
 για κάθε διάνυσμα \( x\neq 0 \), και ο \( A \) σπάει σε γινόμενο:
 \[
-A = \underset{\substack{\downarrow\\\mathclap{\text{
-				άνω τριγ. με θετική διαγώνιο}}}}{H^{\mathrm T}}
-			H
+A = H^{\mathrm T}
+\underset{\substack{\downarrow\\\mathclap{\text{
+				άνω τριγ. με θετική διαγώνιο}}}}{H}
 \]
 
 Αν δηλαδή ο \( A \) είναι συμμετρικός και θετικά ορισμένος,
@@ -3616,7 +3619,7 @@ A = \underset{\substack{\downarrow\\\mathclap{\text{
 Για \( k=1,2,\dots,n \):
 \begin{align*}
 	h_{kk} &= \sqrt{a_{kk}-\sum_{s=1}^{k-1} h_{ks}^2 }\\
-	h_{ik} &= \frac{1}{h_{kk}}\left(a_{ik}-\sum_{s=1}^{k-1}
+	h_{ki} &= \frac{1}{h_{kk}}\left(a_{ik}-\sum_{s=1}^{k-1}
 h_{is}h_{ks}\right)
 \end{align*}
 για \( i=k+1,\dots,n \).
@@ -3846,9 +3849,9 @@ x^{(k+1)} = -D^{-1}(L+U)x^{(k)} + D^{-1}b
 	A = M +N \implies \\
 	(M+N)x = b \implies Mx = -Nx + b\\
 	\boxed{x = -M^{-1}Nx + M^{-1}b } \\
-	x^{(k+1)} = -\underset{\substack{\downarrow\\D}}{M^{-1}}
-	\underset{\substack{\downarrow\\LU}}{N} x^{(k)}
-	+ \underset{\substack{\downarrow\\D}}{M^{-1}} b
+	x^{(k+1)} = -\underset{\substack{\downarrow\\D}}{M}^{-1}
+	\underset{\substack{\downarrow\\\mathclap{L+U}}}{N} x^{(k)}
+	+ \underset{\substack{\downarrow\\D}}{M}^{-1} b
 \end{gather*}
 
 \paragraph{Παράδειγμα}
@@ -4747,7 +4750,7 @@ F(x,y,y',\dots,y^{(k)}) = 0
 θέλουμε μερική λύση που αντιστοιχεί τις \textbf{αρχικές τιμές}
 \( x=a, y(a)=\beta_0, y'(a)=\beta_1,\dots, y^{(k-1)}(a)=\beta_n \).
 
-Για \(y' = \od{x}{y} = f(x,y) \), βρίσκουμε πρώτα τιμή για \( y(a)=y_0
+Για \(y' = \od{y}{x} = f(x,y) \), βρίσκουμε πρώτα τιμή για \( y(a)=y_0
 \quad a \leq x \leq b
 \). Μία προσέγγιση για τη λύση \( y(x) \) της ΔΕ μπορούμε να την βρούμε
 με:
@@ -4765,7 +4768,7 @@ h=\frac{b-a}{N} \qquad x=a+ih,\ i=0,\dots,N
 
 Από το ανάπτυγμα Taylor
 \[
-y(x_i+1) = y(x_i)
+y(x_{i+1}) = y(x_i)
 + (x_{i+1}-x_i)\overbrace{y'(x_i)}^{f(x_i,y_i)}
 + \underbrace{\frac{(x_{i+1}-x_i)^2}{2}
 }_{\mathclap{\text{σφάλμα (Taylor)}}}
@@ -4901,7 +4904,7 @@ f(x,y) = -y+x+1
 	\right)
 	\\ &= y_i + \frac{h}{2}\left(-y_i+x_i+1
 	+x_i+h+1-\left(
-	y_i+h(-y_i+x_i+i)
+	y_i+h(-y_i+x_i+1)
 	\right)\right)
 	\\ &=
 	y_i\left(1-h+\frac{h^2}{2}\right) + \frac{h}{2}\left[
@@ -5003,14 +5006,14 @@ y_{i+1} = 0.9059y_i + 0.0095i + 0.1
 	i &= 2\\
 	y_{n+1} &=
 	y_n + \frac{h}{12}\left(5f_{n+1}+8f_n-f_{n-1}\right)
-	-\frac{h^3}{12}y^{(3)} \\[2ex]
+	-\frac{h^4}{24}y^{(4)} \\[2ex]
 	i &= 3\\
-	y_{n+1}' &= y_n+\frac{h}{24}\left(
+	y_{n+1} &= y_n+\frac{h}{24}\left(
 	9f_{n+1}+19f_n-5f_{n-1}+f_{n-2}
-	\right) -\frac{h^4}{24}y^{(4)}
+	\right) -\frac{19h^5}{720}y^{(5)}
 \end{align*}
 
-Και επιπλέον υπάρχουν τρεις τύποι διόρθωσης.
+Και επιπλέον υπάρχουν τρεις τύποι πρόβλεψης.
 
 Όλοι αυτοί οι τύποι ονομάζονται \textbf{τύποι Adams}. Χρησιμοποιώντας
 αυτούς τους τύπους, μπορούμε να εφαρμόσουμε τη \textbf{μέθοδο
@@ -5020,7 +5023,7 @@ y_{i+1} = 0.9059y_i + 0.0095i + 0.1
 	το \( y_{n+1}^{(0)} \) από τα \( y_n,\ y_{n-1},\dots,
 	y_{n-i} \)
 	\item \textbf{ΔΙΟΡΘΩΝΩ}
-	του \( y_{n+1}^{(t)} \) από τα \( y_{n+1}^{(t)}, y_n,y_{n-1},\dots
+	το \( y_{n+1}^{(t)} \) από τα \( y_{n+1}^{(t)}, y_n,y_{n-1},\dots
 	y_{n-i} \)
 \end{itemize}
 
@@ -5071,7 +5074,7 @@ y' = -y+x+1
 	\end{matrix}\right]
 \end{align*}
 
-\subsubsection{Μετατροπή ΔΕ 1\textsuperscript{ης} τάξης σε σύστημα}
+\subsubsection{Μετατροπή ΔΕ n-οστής τάξης σε σύστημα}
 
 \paragraph{}
 Για μία ΔΕ της μορφής:
@@ -5113,7 +5116,7 @@ y' = -y+x+1
 \subparagraph{Λύση}
 \begin{align*}
 	k_0 &= hf(x_i,y_i) = 0.1\left[\begin{matrix}
-	2_{y1i}+y_{2i} \\
+	2y_{1i}+y_{2i} \\
 	3y_{1i}+4y_{2i}
 	\end{matrix}\right] \\
 	k_1 &= hf(x_i+h,y_i+k_0) \\
