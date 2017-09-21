@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,titlepage,fleqn]{article}
+\documentclass[12pt,a4paper,notitlepage,fleqn]{article}
 
 \input{preambles/preamble2016.tex}
 
@@ -12,9 +12,16 @@
 
 \title{Εφαρμοσμένα Μαθηματικά - Σημειώσεις}
 \date{2016}
-\author{\textlatin{\csuse{no\greek @numbers}\selectlanguage{english} \url{https://github.com/kongr45gpen/ece-notes}}}
+\author{\url{https://github.com/kongr45gpen/ece-notes}}
 
 \begin{document}
+	\maketitle
+	
+	\tableofcontents
+	
+	\paragraph{}
+	\hrule
+	
 	\url{http://users.auth.gr/natreas} \\
 	Σημειώσεις: Ατρέας Κεφ. 3-4-5 \\
 	Κεχαγιάς Κεφ. 1-2-6
@@ -24,6 +31,8 @@
 		\item Churchill - Brown (για μηχανικούς)
 		\item Marsden (πιο μαθηματικό)
 	\end{itemize}
+	
+	\newpage
 
 	\part{Ατρέας}
 	\section{Μιγαδικοί Αριθμοί}
@@ -246,7 +255,7 @@
 	όπου \( u,v \) πραγματ. συναρτ. 2 μεταβλητών
 
 	\paragraph{Υπάρχουν} \( f:A \subseteq \mathbb R \to \mathbb C \),
-	μιγαδικές πραγματικής μεταβλητής
+	μιγαδικές συναρτήσεις πραγματικής μεταβλητής
 
 	π.χ \begin{align*}
 	f(t) &= e^{it},\ t \in (0,\pi] \\
@@ -398,7 +407,8 @@
     \text{Π.Ο} = \mathbb C - \left\lbrace 0 \right\rbrace
     \]
 
-    \subsection{Όριο/Συνέχεια\\μιγαδικών συναρτήσεων μιγαδικής μεταβλητής}
+    \subsection[Όριο \& Συνέχεια μιγαδικών συναρτήσεων μιγαδικής μεταβλητής]{%
+    	Όριο/Συνέχεια\\μιγαδικών συναρτήσεων μιγαδικής μεταβλητής}
     \begin{defn*}{}
     	Έστω \( f(z)=f(x+iy)=u(x,y)+iv(x,y) \)
     	μιγ. συνάρτηση ορισμένη σε σύνολο \( A \subset \mathbb C,
@@ -567,6 +577,8 @@
     y=0,\ & \text{τότε } \arg := 0\text{ ή }\pi
     \end{array}
      \)
+     
+    \paragraph{Σημεία ασυνέχειας του \( \arg z \)} \hspace{0pt}
 
     Έστω \( z_0 = x_0 < 0 \)
     \begin{itemize}
@@ -594,8 +606,6 @@
     Αν \( \arg z \in [0,2\pi) \) πού είναι ασυνεχής;
 
     \subsection{Μιγαδική παράγωγος}
-    Την εβδομάδα της 28\textsuperscript{ης} θα γίνουν κανονικά τα μαθήματα του
-    Ατρέα.
     \begin{defn*}{}
        	Έστω \( f:A \subset \mathbb C \to \mathbb C  \), \( A \) ανοικτό,
        	\( z_0 \in A \). Λέμε ότι η \( f \) είναι μιγαδικά παραγωγίσιμη στο σημείο
@@ -633,12 +643,12 @@
 
     \begin{defn*}{}
        	Αν \( A \) μη ανοικτό, λέμε ότι η \( f \) ολόμορφη στο \( A \), αν
-       	υπάρχει \( B \supset A \), \( B \) ανοικτό ώστε η \( f \) στο \( B \).
+       	υπάρχει \( B \supset A \), \( B \) ανοικτό ώστε η \( f \) να είναι ολόμορφη στο \( B \).
     \end{defn*}
 
     \paragraph{}
     Όλες οι γνωστές ιδιότητες της παραγώγου που γνωρίζετε ισχύουν και για τη
-    μιγαδική παράγωγο
+    μιγαδική παράγωγο.
     \subparagraph{π.χ.}
     Έστω \( f,g \) \textbf{μιγαδικά} παραγωγίσιμες σε σημείο \( z_0 \). Τότε:
     \begin{itemize}
@@ -840,7 +850,7 @@
        		\dif f(z_0):= \begin{array}{l}
        		\text{στοιχειώδες χωρίο στο επίπεδο } uv \\
        		\text{στο οποίο μετασχηματίζεται το } \dif z\\
-       		\text{μέσω της απεικόνισης} f
+       		\text{μέσω της απεικόνισης } f
        		\end{array}
        		\]
 
@@ -904,7 +914,7 @@
 	 άρα \( \forall z \in\mathbb C ^* \), από το θεώρ. παραγώγισης αντίστροφης
 	 συνάρτησης έχουμε: \( (\mathrm{Log}z)' = \frac{1}{e^w}=\frac{1}{z} \)
 
-	 Με την ίδια λογική (και με χρήση των ιδιοτήτων παραγώγου) αποδεικνύεται ότι
+	 Με την ίδια λογική (και με χρήση των ιδιοτήτων παραγώγου) αποδεικνύεται ότι:
 	 \begin{itemize}
 	 	\item \( (z^n)' =nz^{n-1}\quad \forall n\in\mathbb N \quad \forall z\in\mathbb C \)
 	 	\item \(
@@ -914,15 +924,17 @@
 	    \item \(
 	    (z^a)'=az^{a-1}\quad\forall a\in\mathbb Q \text{
 	    	ή $a$ άρρητος ή $a$ έχει μη μηδενικό φανταστικό μέρος
-	    	}\quad\forall z\in\mathbb C^* (\mathbb C^* \text{
-	    	όπως στο λογάριθμο πριν
-	    	})
+	    	}
 	     \)
+	     
+	     \( \quad \forall z\in\mathbb C^* (\mathbb C^* \text{
+	     	όπως στο λογάριθμο πριν
+	     }) \)
 	    \item \( (\sin z)'=\cos z\quad\forall z\in\mathbb C  \)
 	    \item \( (\cos z)'=-\sin z \quad\forall z\in\mathbb C  \)
 	    \item \( (\sinh z)' = \cosh z\quad\forall z\in\mathbb C \)
 	    \item \( (\cosh z)' = \sinh z\quad\forall z\in\mathbb C \)
-	    \item \( (a^z)'=a^z\mathrm{Log}a\quad\forall z\int\mathbb C \)
+	    \item \( (a^z)'=a^z\mathrm{Log}a\quad\forall z\in\mathbb C \)
 	 \end{itemize}
 	 κλπ.
 
@@ -946,6 +958,8 @@
 	 	η \( f(z)=\bar z \) \textbf{ΔΕΝ} είναι μιγαδικά παραγ.
 	 	\( \forall z\in\mathbb C \).
 	 \end{itemize}
+
+	 \paragraph{}\hspace{0pt}
 
 	 \begin{tikzpicture}[scale=1.5]
 	 \draw[->] (0,-1) -- (0,2) node[left] {$y$};
@@ -1231,7 +1245,7 @@
     u_x & -u_y \\ u_y & u_y
     \end{matrix}\right| = u_x^2+u_y^2
     \end{gather*}
-    και επειδή \( a^+b^2\neq 0 \), πρέπει \( u_x^2+u_y^2=0 \) για να έχει λύση
+    και επειδή \( a^2+b^2\neq 0 \), πρέπει \( u_x^2+u_y^2=0 \) για να έχει λύση
     το σύστημα \( \implies u_x=0 \) και \( u_y=0
     \xRightarrow{\text{C-R}} u_x=u_y=v_x=v_y=0 \ \forall (x,y)\in\mathbb R ^2
     \implies f(z) = A\in\mathbb C
@@ -2743,9 +2757,12 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\textbf{Άρα}:
     	\[
     	\Res(h,0) \overset{\text{ορισμός}}{=} a_1
+    	\ %
+    	\begin{array}{l}
     	\text{ (ο οποίος είναι συντελεστής του
     		$\frac{1}{z-z_0} \overset{z_0=0}{=} \frac{1}{2}$
-    		), στο ανάπτυγμα Laurent της $h$ με κέντρο το $z_0 = 0$.}
+    		),}\\\text{στο ανάπτυγμα Laurent της $h$ με κέντρο το $z_0 = 0$.}
+    	\end{array}
     	\]
 
     	\textbf{Επομένως}:
@@ -3524,8 +3541,6 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 		\item ΔΙΑΦΟΡΙΚΕΣ ΕΞΙΣΩΣΕΙΣ με μερικές παραγώγους
 	\end{enumerate}
 
-	\setcounter{section}{0}
-
 	\section{Μιγαδικοί αριθμοί}
 	\begin{align*}
 	    z = & x+iy \in \mathbb C \\
@@ -3814,6 +3829,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 
     \section{Βασικές μιγαδικές συναρτήσεις}
     \( e^z,\ \log(z) \)
+    \subsection{Εκθετική συνάρτηση}
     \[
     e^z \overset{\text{ορισμός}}{=} e^xe^{iy}
     = e^x(\cos y+i\sin y)
@@ -3846,8 +3862,8 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \end{align*}
 
     \paragraph{Ορίζω}
-    \subparagraph{Πλειότιμη} \( \log(z) = \ln\left(|z|\right)+i\mathrm{arg}(z) \)
-    \subparagraph{Μονότιμη} \( \mathrm{Log}(z) = \ln\left(|z|\right)+i\arg(z)\)
+    \subparagraph{Την πλειότιμη λογαριθμική} \( \log(z) = \ln\left(|z|\right)+i\mathrm{arg}(z) \)
+    \subparagraph{Τη μονότιμη λογαριθμική} \( \mathrm{Log}(z) = \ln\left(|z|\right)+i\arg(z)\)
     είναι ο πρωτεύων κλάδος της πλειότιμης
 
     \begin{align*}
@@ -3855,19 +3871,14 @@ decoration={markings,mark=at position 0 with \arrow{<}}
         \sqrt{2}e^{i\left(\sfrac{\pi}{4}+2k\pi \right)}
     \right) \\ &=
     \log\left(\sqrt{2}\right) + i\left( \frac{\pi}{4} +2k\pi \right)
-    \end{align*}
-    \begin{align*}
-    \left\lbrace
-    \frac{1}{2}\ln(2) + i\left( \frac{\pi}{4} +2 k \pi \right)
-     \right\rbrace
+    \\ &=     \frac{1}{2}\ln(2) + i\left( \frac{\pi}{4} +2 k \pi \right)
     \end{align*}
 
-    \subsection{}
-    Από σήμερα: \( \arg(z) \in (-\pi,\pi] \)
+    \paragraph{Από σήμερα:} \( \arg(z) \in (-\pi,\pi] \)
 
-    Πριν 7 ημέρες: \( \cancel{e^z=e^{x+iy}=e^x{\cos y+i\sin y}} \)
+    Πριν 7 ημέρες: \( \cancel{e^z=e^{x+iy}=e^x{\cos y+i\sin y}} \) \\
 
-    \paragraph{Σήμερα:} \( \exp(z) \overset{\text{ορ}}{=}
+    Σήμερα: \( \exp(z) \overset{\text{ορ}}{=}
     1+z+\frac{z^2}{2!}+\dots=\sum_{n=0}^\infty \frac{z^n}{n!} \)
 
     \begin{theorem*}{}
@@ -3980,7 +3991,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\end{tikzpicture}
     \end{enumparen}
 
-    \subsection{Λογαριθμική Συν.}
+    \subsection{Λογαριθμική Συνάρτηση}
     \[
     w = \overbrace{\log(z)}^{\mathclap{\text{πλειότιμη}}}
     \iff z=\exp(w)
@@ -4221,7 +4232,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     k=0,1,\dots,2n-1
     \end{align*}
 
-    \subsection{}
+    \subsection{Μετασχηματισμοί \& Απεικονίσεις}
     \subsubsection{Η γραμμική απεικόνιση}
     \paragraph{Τύπος:} \( f(z) = az+b,\quad a,b\in\mathbb C  \)
 
@@ -4489,7 +4500,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      	\]
      \end{itemize}
 
-     \subsubsection{Τριγωνομετρικές και αντίστροφές τους}
+     \subsection{Τριγωνομετρικές και αντίστροφές τους}
 
      \begin{itemize}
      	\item Η συνάρτηση
@@ -4617,14 +4628,6 @@ decoration={markings,mark=at position 0 with \arrow{<}}
      	  \end{itemize}
 
      \end{itemize}
-
-     \begin{infobox}{}
-     	\begin{itemize}
-     		\item \textbf{Τρίτη 22/11} Ατρέας, 2 τμήματα
-     		\item \textbf{Πέμπτη 24/11} Κεχαγιάς, 2 τμήματα
-     		\item \textbf{Παρασκευή 25/11} Κεχαγιάς, 2 τμήματα
-     	\end{itemize}
-     \end{infobox}
 
      \section{Ακολουθίες \& Σειρές\\(Μιγαδικών αριθμών/συναρτήσεων)}
      \begin{defn*}{}
@@ -5373,8 +5376,6 @@ decoration={markings,mark=at position 0 with \arrow{<}}
   \draw (1.5,0) node[below right] {$2$};
   \end{tikzpicture}
 
-  Αυτή είναι η άσκηση που θα πέσει στις εξετάσεις αν δεν έχει κέφι ο Κεχαγιάς.
-
   \textbf{1η σειρά:} \( |z|<1 \)
 
   \textbf{2η σειρά:} \( 1<|z|<2 \)
@@ -5517,7 +5518,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 	  	\\ &= e^x = e^x e^{iy} + \tilde c = e^z + \tilde c = f(z)
 	  \end{align*}
 
-	  \subsubsection{Τι σημαίνει/σε τι χρησιμεύει/τι είναι η εξίσωση του Laplace;}
+	  \subsection{Τι σημαίνει/σε τι χρησιμεύει/τι είναι η εξίσωση του Laplace;}
 	  Η λύση της Εξ. Laplace περιγράφει προβλήματα όπως
 	  \begin{enumparen}
 	  	\item μετάδοση θερμότητας σε σταθερή κατάσταση
@@ -6309,7 +6310,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	u(r,\theta) &= \frac{2\cdot 50}{\pi} \arctan\left(r^2-1,2r\sin\theta\right)
     \end{align*}
     
-    \subsubsection{}
+    \paragraph{}
     \begin{gather*}
     	\frac{\zeta}{\zeta-z} + \frac{\bar z}{\bar \zeta - \bar z}
     	= \frac{\left|\zeta\right|^2-|z|^2}{\left|\zeta-z\right|^2} \\
