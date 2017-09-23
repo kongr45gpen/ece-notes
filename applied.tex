@@ -1410,7 +1410,7 @@
 	\begin{defn*}{}
         Καλούμε \textbf{καμπύλη} στο μιγαδικό επίπεδο κάθε \underline{συνεχή} συνάρτηση
         \[
-        \gamma:[a,b]\to\mathbb C :\gamma(t)=x(t)=iy(t)
+        \gamma:[a,b]\to\mathbb C :\gamma(t)=x(t)+iy(t)
         \]
         όπου \( x,y:[a,b]\to\mathbb R  \) συνεχείς πραγματικές συναρτήσεις.
 	\end{defn*}
@@ -1530,8 +1530,8 @@
     _{\mathclap{\begin{array}{l}
     	\text{επικαμπύλιο ολοκλ.}\\
     	\text{διαν. πεδίου στον } \mathbb R^2
-    	\end{array}}}
-    +i
+    	\end{array}}}\quad %
+    +\quad i
     \underbrace{\left(\int_\gamma u\dif y+v\dif x\right)}%
     _{\mathclap{\begin{array}{l}
     	\text{επικαμπύλιο ολοκλ.}\\
@@ -1582,7 +1582,7 @@
 	Έστω \( f = f(z) \) είναι συνεχής μιγαδική συνάρτηση σε τόπο \( \mathbf G \).
 	Οι ακόλουθες συνθήκες είναι ισοδύναμες:
 	\begin{itemize}
-		\item Η \( f \) είναι ΜΟΝΑΔΙΚΗ αντιπαράγωγο \( F \) (με προσέγγιση σταθεράς)
+		\item Η \( f \) έχει ΜΟΝΑΔΙΚΗ αντιπαράγωγο \( F \) (με προσέγγιση σταθεράς)
 		\item \(
 		\displaystyle \oint_\gamma f(z)\dif z = 0,\) για ΚΑΘΕ κλειστή λεία
 			καμπύλη εντός του \(G\)
@@ -1702,7 +1702,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \end{align*}
 
     \begin{theorem*}[width=\textwidth]{Παραμόρφωση δρόμων}
-    	Έστω \( f=f(z) \) είναι ολόμορφη σε τόπο \( G \) με σύνολο
+    	Έστω \( f=f(z) \) είναι ολόμορφη σε τόπο \( G \) με σύνορο
     	\( \partial G = \gamma_1 \cup \gamma_2 \) όπου \( \gamma_1,\gamma_2 \)
     	απλές λειστές καμπύλες, λείες, με κοινό προσανατολισμό π.χ. όπως στο σχήμα.
 
@@ -1759,6 +1759,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     και στο \( G_2 \).
 
     \begin{tikzpicture}[scale=1.5]
+    %TODO: Add γ_1 + and - direction labels and γ_1^- node
     \def\c{plot[smooth cycle] coordinates
    	{
    		(0,0.7) (2.5,0.7) (3,-0.3) (0.5,-1) (-3,0)
@@ -1799,6 +1800,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
    	;
 
    	\draw(0.4,0.5) node {$\mathsmaller{G_1}$};
+   	\draw(0,-0.6) node {$\mathsmaller{G_2}$};
    	\draw[->] (2.5,-0.35) -- ++(-0.5,0);
    	\end{tikzpicture}
 
@@ -1812,7 +1814,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \end{itemize}
     \[
     \implies \left| \begin{array}{l}
-    \left( \int_{\gamma_1^+} + \int_{L_1} - \int_{\gamma_2^+} + \int_{L_2} \right)
+    \left( \int_{\gamma_1^+} + \int_{L_1} + \int_{\gamma_2^+} + \int_{L_2} \right)
     f(z)\dif z = 0 \\
     \left( \int_{\gamma_1^-} - \int_{L_1} - \int_{\gamma_2^-} - \int_{L_2} \right)
     f(z)\dif z = 0
