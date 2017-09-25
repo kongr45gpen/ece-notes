@@ -2094,7 +2094,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 
     \paragraph{Άσκ.} Υπολογίστε το \( \int_\gamma \left( i\bar z - z \right)\dif z \)
     \\ όπου \( \gamma \) είναι η παραβολή \( y=2t^2+1 \) με αρχή το σημείο \( (1,3) \)
-    και πέρας το σημείο \( 2,9 \).
+    και πέρας το σημείο \( (2,9) \).
     \subparagraph{}
     Γενικά, μπορώ να κινηθώ μέσω ορισμού, αντιπαραγώγου ή θεωρημάτων. Η \( \bar z \)
     δεν έχει παράγωγο, άρα δεν έχει αντιπαράγωγο (διαφορετικά από προηγούμενη εφαρμογή
@@ -2122,8 +2122,8 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     				είναι παραγωγίσιμη σε κανένα σημείο}}{=}}
     	\\ &
     	\overset{(t,2t^2+1)}{\underset{t+i(2t^2+1)=\gamma(t)}{=}}
-    	\int_1^2 \overline{\gamma(t)} \dif\left(\gamma(t)\right)
-    	\\ &= \int_1^2 \left[
+    	i\int_1^2 \overline{\gamma(t)} \dif\left(\gamma(t)\right)
+    	\\ &= i\int_1^2 \left[
     	t-i\left(2t^2+1\right)
     	\right]\underbrace{\left[
     	1+4ti
@@ -2138,11 +2138,11 @@ decoration={markings,mark=at position 0 with \arrow{<}}
         \\ &= A + B
     	\end{align*}
 
-    	\textbf{Τελικά}
+    	\textbf{Τελικά}\[
+    	Ι = Ι_1 + Ι_2
+    	\]
 
     \end{itemize}
-
-    Από εδώ και στο εξής, μέχρι νεωτέρας, όλοι μαζί, Τρίτη και Πέμπτη.
 
     \paragraph{Άσκ.}
     Υπολογίστε τα επικαμπύλια ολοκληρώματα
@@ -2359,7 +2359,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 
     Έτσι για \( n=2 \) έχω για \( z_0 \in \mathbb C  \)
     \[
-    f''(z_0) \leq \frac{2! \cdot M_R}{R^2} = \frac{2MR}{R^2}
+    f''(z_0) \leq \frac{2! \cdot M_R}{R^2} = \frac{2M_R}{R^2}
     \]
 
     Για \( |z-z_0| = R \) δηλ. για \( z = z_0 + Re^{i\theta} \) έχω
@@ -2372,7 +2372,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     \[
       \left| f''(z_0) \right| \leq
       \frac{2\left(|z_0+R|\right)}{R^2}
-      \xrightarrow[R\to \infty] 0
+      \xrightarrow[R\to \infty]{} 0
     \]
 
     άρα \( \left|f''(z_0)\right| = 0\ \forall z_0\in\mathbb C  \), άρα
@@ -2442,7 +2442,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 
 	\textbf{Δηλ.}
 	\[
-	f(z) = \dots + \frac{a{-n}}{(z-z_0)^n} + \dots + \frac{a_{-1}}{z-z_0}
+	f(z) = \dots + \frac{a_{-n}}{(z-z_0)^n} + \dots + \frac{a_{-1}}{z-z_0}
 	+ a_0 + a_1(z-z_0) + \dots + a_n(z-z_0)^k + \dots
 	\]
 
@@ -2500,7 +2500,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
 	\end{itemize}
 
 	\paragraph{π.χ.}
-	Τι είδους ανωμαλία είναι το σημείο \( z_0 \) για τη συνάρτηση
+	Τι είδους ανωμαλία είναι το σημείο \( z_0=1 \) για τη συνάρτηση
 	\( f(z) = \displaystyle \frac{1}{z^2-1} \);
 	\subparagraph{}
 	\begin{align*}
@@ -2679,7 +2679,7 @@ decoration={markings,mark=at position 0 with \arrow{<}}
        	\( \displaystyle
        	\lim_{\kappa \to \infty} z_\kappa = z_0\) ανήκει στο εσωτερικό της \( \gamma \).
 
-       	Τότε, εάν \( f(z_\kappa) = 0 \ \forall \kappa \) ισχύει
+       	Τότε, εάν \( f(z_\kappa) = 0 \ \forall \kappa \), ισχύει:
        	\[
        	f(z) = 0 \quad \forall z \text{ στο εσωτερικό της } \gamma
        	\]
@@ -2689,9 +2689,9 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     Να ταξινομηθούν όλα τα ανώμαλα σημεία των συναρτήσεων
     \begin{enumlatin}
     	\item \( \displaystyle f(z) = \frac{1-\cos(z)}{z^2} \)
-    	\item \( \displaystyle g(z) = \frac{e^z}{z^3} \)
+    	\item \( \displaystyle g(z) = \frac{e^{z^2}}{z^3} \)
     	\item \( \displaystyle h(z) =
-    	\frac{\cos\left(\sfrac{1}{2} \right)}{z} \)
+    	\frac{\cos\left(\sfrac{1}{z} \right)}{z} \)
     	\item \( \displaystyle k(z) = \frac{z}{e^z-1} \)
     \end{enumlatin}
     και να υπολογιστούν τα ολοκληρωτικά υπόλοιπα στα σημεία αυτά.
