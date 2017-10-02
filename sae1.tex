@@ -87,7 +87,33 @@
 
 \paragraph{Ανάρτηση αυτοκινήτου}
 Θεωρούμε ότι η ανάρτηση ενός αυτοκινήτου αποτελείται από ένα ελατήριο και έναν αποσβεστήρα:
-\todo{Graph 2}
+
+\begin{tikzpicture}
+\draw (0,0) rectangle (2,1) node[midway] {$m$};
+\draw (0.5,0) -- ++(0,-0.4)
+-- ++(-30:0.2)
+-- ++(-150:0.4)
+-- ++(-30:0.4)
+-- ++(-150:0.4)
+-- ++(-30:0.4)
+-- ++(-150:0.4)
+-- ++(-30:0.2)
+-- (0.5,-2);
+;
+\draw (1.5,0) -- (1.5,-1);
+\draw (1.25,-1) -- (1.75,-1);
+\draw (1.1,-0.9) -- (1.1,-1.2) -- (1.9,-1.2) -- (1.9,-0.9);
+\draw (1.5,-1.2) -- (1.5,-2);
+
+\draw (-0.5,-2) -- (2.5,-2);
+\draw[gray] (2.5,1.2) -- (2.5,-2.7);
+
+\draw (1,-2) -- (1,-2.5);
+\filldraw (1,-2.5) circle(1pt) node[below left] {$\rho$};
+
+\draw[dashed] (0.5,0) -- (3,0) node[right] {$x_0$};
+\draw[dashed] (0.5,-2) -- (3,-2) node[right] {$x_i$};
+\end{tikzpicture}
 
 Και όπως πριν προκύπτει η σχέση:
 \[
@@ -143,12 +169,36 @@ m\ddot x_0 + b(\dot x_0 - \dot x_i) + \kappa (x_0-x_i) = 0
 	\]
 	
 	\begin{center}
-	%\todo{Graph 3}
+	\begin{tikzpicture}[scale=1.2]
+	\draw[->] (0,0) -- (1,0) node[above,midway] {$X_1(s)$};
+	\draw (1,-0.3) rectangle (2,0.3) node[midway] {$G_1(s)$};
+	\draw (2,0) -- (3,0) node[above,midway] {$X_2(s)$};
+	\draw (3,-0.3) rectangle (4,0.3) node[midway] {$G_2(s)$};
+	\draw[->] (4,0) -- (5,0) node[above,midway] {$X_3(s)$};
+	\end{tikzpicture}
     \end{center}
 \end{theorem}
 \paragraph{Παράδειγμα} \hspace{0pt}
 
-\todo{Graph 4}
+
+\begin{circuitikz}[american,scale=1.4]
+	\ctikzset{bipoles/thickness=3}
+	\draw (0,2) to [V=$u(s)$] (0,0);
+	\draw[color=green!50!black] (0,2)
+	to[R=$R_1$] (2,2)
+	to[C=$C_1$] (2,0)
+	-- (0,0);
+	
+	\draw[color=green!50!cyan!50!black] (2,2)
+	to[R=$R_2$] (4,2)
+	to[C=$C_2$] (4,0)
+	-- (2,0);
+	
+	\draw (4,2) to[short,-*] (5,2);
+	\draw (4,0) to[short,-*] (5,0);
+	\draw (5,2) to[open, v^=$y$] (5,0);
+\end{circuitikz}
+
 Για το παραπάνω κύκλωμα, αν και έχουμε δύο συστήματα ενωμένα σε σειρά, δεν μπορούμε να
 εφαρμόσουμε το θεώρημα στο παραπάνω κύκλωμα, αφού τα επιμέρους κυκλώματα δεν είναι απομονωμένα
 και παρουσιάζουν σύνθετες αντιστάσεις εισόδου και εξόδου. Πράγματι, αν επιλύσουμε το
@@ -160,8 +210,26 @@ m\ddot x_0 + b(\dot x_0 - \dot x_i) + \kappa (x_0-x_i) = 0
 Παρατηρούμε τον όρο \( R_1C_2s \) που δεν υπάρχει στον απλό πολλαπλασιασμό των δύο
 συστημάτων.
 
-\paragraph{Σύστημα κλειστού βρόγχου}
-\todo{Graph 5}
+\paragraph{Σύστημα κλειστού βρόγχου} \hspace{0pt}
+
+\begin{tikzpicture}
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$G(s)$};
+\draw (3,0) -- (3.75,0);
+\draw (4,0) circle (0.25);
+\draw[->] (4.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[<-] (4,0.25)  node[left] {$+$} --++ (0,0.5)
+node[above,rectangle,align=center,scale=0.8]
+{είσοδος\\διαταραχής\\$d(s)$};
+
+\draw (4.5,0) -- ++(0,-1.5) -- (3,-1.5);
+\draw (1.5,-2) rectangle (3,-1) node[midway] {$H(s)$};
+\draw (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25);
+\end{tikzpicture}
+
 \begin{gather*}
 	T(s) = \frac{y(s)}{r(s)} \\
 	T_d(s) = \frac{y(s)}{d(s)}
