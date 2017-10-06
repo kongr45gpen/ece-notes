@@ -5,6 +5,8 @@
 \title{ΣΑΕ 1
 	\\
 	{ 
+		\normalsize Συστήματα Αυτομάτου Ελέγχου 1
+		\\
 		\normalsize Σημειώσεις από τις παραδόσεις
 	}}
 \date{Οκτώβριος-Ιανουάριος 2017
@@ -262,24 +264,68 @@ node[above,rectangle,align=center,scale=0.8]
 
 \paragraph{Παράδειγμα} \hspace{0pt}
 
-\todo{Graph 6}
+\begin{tikzpicture}
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$\displaystyle\frac{\kappa}{s+a}$};
+\draw (3,0) -- (4,0);
+\draw[->] (4,0) -- ++(1,0) node[above right] {$y$};
+
+\draw (4,0) -- ++(0,-1.5) -- (3,-1.5);
+\draw[dashed] (3,-1.5) -- (1.5,-1.5);
+\draw (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[below right] {$-$};
+\end{tikzpicture}
 
 Θα υπολογίσουμε την έξοδο του συστήματος \underline{χωρίς ανάδραση} και \underline{με ανάδραση} σε βηματική είσοδο \( r(s) \rightarrow \mathrm u(t) \).
-\subparagraph{Χωρίς ανάδραση}
+\subparagraph{Χωρίς ανάδραση} \hspace{0pt}
+
+Το σύστημα χωρίς ανάδραση είναι το παραπάνω χωρίς τον κάτω βρόχο:
+\begin{tikzpicture}[baseline,scale=0.7]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$\frac{\kappa}{s+a}$};
+\draw (3,0) -- (4,0);
+\draw[->] (4,0) -- ++(1,0) node[above right] {$y$};
+\end{tikzpicture}
+
+Και ισχύει:
 \begin{align*}
 	y(s) &= r(s)\frac{\kappa}{s+a} \\
 	y(s) &= \kappa\frac{1}{s}\frac{1}{s+a} \\
-	y(t) &= \cdots
+	y(t) &= \kappa\left( 1-e^{\sfrac{-t}{\tau}} \right)
 \end{align*}
 (όπου η σταθερά χρόνου \( \tau = \frac{1}{a} \))
 
-Για \( t\to \infty \) το αποτέλεσμα είναι \todo{}.
+Για \( t\to \infty \) το αποτέλεσμα είναι \( y(t) = \kappa \).
 
 \subparagraph{Με ανάδραση}
 \begin{align*}
-	y(s) &= \frac{G(s)r(s)}{1+G(s)}
+	y(s) &= \frac{G(s)r(s)}{1+G(s)} \implies \dots \implies
+	\tau' = \frac{1}{a+\kappa}
 \end{align*}
-Παρατηρούμε πως το σύστημα αυτό φτάνει πολύ πιο γρήγορα στην τελική του τιμή.
+Παρατηρούμε πως το σύστημα αυτό φτάνει πολύ πιο γρήγορα στην τελική του τιμή. Αυτό φαίνεται
+αν συγκρίνουμε τις σταθερές χρόνου μεταξύ τους, σκεπτόμενοι ότι λειτουργούν ως συντελεστές
+στην εκθετική συνάρτηση:
+
+\begin{tikzpicture}
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+
+\draw (-1.5,0) node[cross=4pt,thick,blue] {} node[below,yshift=-1mm] {$-a-\kappa$};
+\draw (-0.5,0) node[cross=4pt,thick,yellow!50!brown!50!red] {} node[above,yshift=1mm] {$-a$};
+
+\begin{scope}[xshift=4cm]
+\draw (-1,0) -- (3,0);
+\draw (0,-2) -- (0,2);
+
+\draw [very thick, color=blue, domain=0:3,variable=\t, samples=\gsamples, smooth]
+plot (\t,{ 1-exp(-\t) }) node[below] {$-a$};
+\draw [very thick, color=yellow!50!brown!50!red, domain=0:3,variable=\t, samples=\gsamples, smooth]
+plot (\t,{ 1-exp(-5*\t) }) node[above,xshift=-2cm] {$-a-k$};
+\end{scope}
+\end{tikzpicture}
 
 \subsection{Ισοδύναμα λειτουργικά διαγράμματα}
 Για τη διευκόλυνσή της εύρεσης της συνάρτησης μεταφοράς, μπορούμε αντί να βρούμε την έξοδο
