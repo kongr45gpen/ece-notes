@@ -217,6 +217,25 @@ m\ddot x_0 + b(\dot x_0 - \dot x_i) + \kappa (x_0-x_i) = 0
 Παρατηρούμε τον όρο \( R_1C_2s \) που δεν υπάρχει στον απλό πολλαπλασιασμό των δύο
 συστημάτων.
 
+\paragraph{Άσκηση}
+Ποιές από τις παρακάτω συναρτήσεις μεταφοράς έχουν \textbf{ρυθμούς} (ρίζες του παρονομαστή)
+που δεν είναι πόλοι;
+\begin{enumroman}
+	\item \( \displaystyle \frac{s+8}{(s+3)(s+10)} \)
+	\item \( \displaystyle \frac{s+1}{(s+1)^2(s+2)} \)
+	\item \( \displaystyle \frac{s+9}{(s+2)^2+9} \)
+	\item \( \displaystyle \frac{s+1}{(s+1)(s+2)} \)
+\end{enumroman}
+\subparagraph{Απάντηση}
+\begin{enumroman}
+	\item Έχει μηδενικό στο \( -8 \) και πόλλους στα \( -3 \) και \( -10 \).
+	\item Έχει μόνο έναν πόλο στο \( -1 \) και στο \( -2 \).
+	\item Έχει μηδενικό στο \( -9 \) και πόλους στα \( -2+j3 \) και \( -2-j3 \).
+	\item Έχει μόνο πόλο στο \( -2 \).
+\end{enumroman}
+
+Η λύση αυτή μπορεί να προκύψει από τους ορισμούς του πόλου και του μηδενικού.
+
 \subsection{Σύστημα κλειστού βρόγχου}
 
 \begin{tikzpicture}[scale=1.3]
@@ -505,11 +524,11 @@ f(\infty) = \lim_{s\to 0} sF(s)
 
 Χρησιμοποιούμε διάφορες εισόδους για να βρούμε διάφορα είδη σφαλμάτων του συστήματος:
 \todo{graphs}
-\begin{alignat}{4}
-y(t) = \delta(t) &&\quad y(s) = \frac{1}{s} &\qquad e_{\mathrm ssp} && \quad{\text{σφάλμα θέσης}} \\
-y(t) = t &&\quad y(s) = \frac{1}{s^2} &\qquad e_{\mathrm ssv} && \quad{\text{σφάλμα ταχύτητας}} \\
-y(t) = \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} && \quad{\text{σφάλμα επιτάχυνσης}}
-\end{alignat}
+\begin{alignat*}{5}
+y(t) &= \delta(t) &&\quad y(s) = \frac{1}{s} &\qquad e_{\mathrm ssp} & \quad{\text{σφάλμα θέσης}} \\
+y(t) &= t &&\quad y(s) = \frac{1}{s^2} &\qquad e_{\mathrm ssv} & \quad{\text{σφάλμα ταχύτητας}} \\
+y(t) &= \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \quad{\text{σφάλμα επιτάχυνσης}}
+\end{alignat*}
 
 Για παράδειγμα, για το σύστημα κλειστού βρόγχου, θυμόμαστε ότι:
 
@@ -529,22 +548,23 @@ y(t) = \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} && \q
 \begin{align*}
 	\frac{y(s)}{r(s)} &= \frac{H(s)}{1+H(s)} \\
 	\text{όπου } H(s) &=
-	\frac{G(τ_{n+1}s+1)\cdots(τ_{n+m}s+1)}{s^N(1+sτ_1)\cdots(1+sτ_n)} \implies\\
+	\frac{G(τ_{n+1}s+1)\cdots(τ_{n+m}s+1)}{s^N(1+sτ_1)\cdots(1+sτ_n)} \implies
+	\\
 	e(s) &= r(s)-y(s) = \frac{1}{1+H(s)}r(s).
 \end{align*}
 (δηλαδή \( N \) είναι η τάξη του τυχόν πόλου στο 0).
 
 Εφαρμόζοντας τις διάφορες συναρτήσεις ως εισόδους, σύμφωνα με τα παραπάνω, έχουμε:
-\begin{align*}
+\begin{alignat*}{3}
 	e_{\mathrm{ssp}} &= \frac{1}{\displaystyle 1+\underbrace{\lim_{s\to 0}H(s)}_{K_p}}
 	= \frac{1}{1+K_p}
-	= \begin{cases}
+	&&= \begin{cases}
 	\frac{1}{1+G} \qquad &\text{για } N = 0 \\
 	\frac{1}{1+\infty} = 0 \qquad &\text{για } N \geq 1
 	\end{cases}
 	\\
 	e_{\mathrm{ssv}} &= \frac{1}{\displaystyle \underbrace{\lim_{s\to 0} sH(s)}_{K_v} }
-	= \frac{1}{K_v} =
+	= \frac{1}{K_v} &&=
 	\begin{cases}
 	\frac{1}{0} = \infty \qquad &\text{για } N = 0
 	\\
@@ -553,15 +573,22 @@ y(t) = \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} && \q
 	\frac{1}{\infty} = 0\qquad &\text{για } N\geq 2
 	\end{cases}
 	\\
-	e_{\mathrm{ssa}} &= \dots = \begin{cases}
+	e_{\mathrm{ssa}} &= \frac{1}{\displaystyle \underbrace{\lim_{s\to 0} s^2H(s)}_{K_a}}
+	= \frac{1}{K_a}
+	&&= \begin{cases}
 	\infty \qquad &\text{για } N \leq 1 \\
 	\frac{1}{G} \qquad &\text{για } N = 2 \\
 	0 \qquad &\text{για } N > 2
 	\end{cases}
-\end{align*}
+\end{alignat*}
 
 Πρακτικά, για να έχουμε μηδενικό σφάλμα και δηλαδή πλήρη ακρίβεια θέσης, θέλουμε στη βηματική
 είσοδο η έξοδος να είναι μηδενική.
+
+\begin{defn}{Ολοκληρωτής}{}
+	Ένας \textbf{πόλος στο 0} λειτουργεί σαν \textbf{ολοκληρωτής}, επειδή
+	έχει την ιδιότητα να ολοκληρώνει το σήμα εισόδου.
+\end{defn}
 
 \paragraph{Παράδειγμα}
 Έστω το σύστημα:
@@ -609,7 +636,7 @@ gs^3+bs^2+κ = 0
 Για να διορθώσουμε αυτήν την ατέλεια, χρησιμοποιούμε έναν \textbf{ελεγκτή PI}
 (Proportional \& Integral), δηλαδή πολλαπλασιάζουμε την είσοδό του \( e(t) \) 
 με \( K_P e(t) \) και ολοκληρώνουμε με
-\( K_I \int e(t) \)).
+\( K_I \int e(t) \).
 
 \begin{infobox}{Ελεγκτής PI}
 Σύμφωνα με την παραπάνω παράγραφο, η έξοδος \( u(t) \) ενός ελεγκτή PI είναι:
@@ -636,7 +663,7 @@ K_p\left(\frac{s+z}{s}\right)
 \[
 x(s) = Js^3 + bs^2 + K_p s + K_I = 0
 \]
-που μπορεί να είναι ευσταθές.
+που μπορεί να είναι ευσταθές με κατάλληλη επιλογή των σταθερών.
 
 \paragraph{Παράδειγμα} \hspace{0pt}
 
@@ -649,25 +676,5 @@ x(s) = Js^3 + bs^2 + K_p s + K_I = 0
 	e_{\mathrm{ssv}} &= \lim_{s\to 0} \frac{1-H_κ(s)}{s} \\
 	e_{\mathrm{ssa}} &= \lim_{s\to 0} \frac{1-H_κ(s)}{s^2}
 \end{align*}
-
-\subsection{Ασκήσεις}
-\paragraph{Άσκηση}
-Ποιές από τις παρακάτω συναρτήσεις μεταφοράς έχουν \textbf{ρυθμούς} (ρίζες του παρονομαστή)
-που δεν είναι πόλοι;
-\begin{enumroman}
-	\item \( \displaystyle \frac{s+8}{(s+3)(s+10)} \)
-	\item \( \displaystyle \frac{s+1}{(s+1)^2(s+2)} \)
-	\item \( \displaystyle \frac{s+9}{(s+2)^2+9} \)
-	\item \( \displaystyle \frac{s+1}{(s+1)(s+2)} \)
-\end{enumroman}
-\subparagraph{Απάντηση}
-\begin{enumroman}
-	\item Έχει μηδενικό στο \( -8 \) και πόλλους στα \( -3 \) και \( -10 \).
-	\item Έχει μόνο έναν πόλο στο \( -1 \) και στο \( -2 \).
-	\item Έχει μηδενικό στο \( -9 \) και πόλους στα \( -2+j3 \) και \( -2-j3 \).
-    \item Έχει μόνο πόλο στο \( -2 \).
-\end{enumroman}
-
-Η λύση αυτή μπορεί να προκύψει από τους ορισμούς του πόλου και του μηδενικού.
 
 \end{document}
