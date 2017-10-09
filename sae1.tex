@@ -523,10 +523,26 @@ f(\infty) = \lim_{s\to 0} sF(s)
 \end{defn}
 
 Χρησιμοποιούμε διάφορες εισόδους για να βρούμε διάφορα είδη σφαλμάτων του συστήματος:
-\todo{graphs}
+
 \begin{alignat*}{5}
+\begin{tikzpicture}[scale=0.4,baseline]
+\draw (-0.2,0) -- (2,0);
+\draw (0,-0.2) -- (0,2);
+\draw [very thick, color=blue] (0,1.8) -- (2,1.8);
+\end{tikzpicture}\quad
 y(t) &= \mathrm u(t) &&\quad y(s) = \frac{1}{s} &\qquad e_{\mathrm ssp} & \quad{\text{σφάλμα θέσης}} \\
+\begin{tikzpicture}[scale=0.4,baseline]
+\draw (-0.2,0) -- (2,0);
+\draw (0,-0.2) -- (0,2);
+\draw [very thick, color=blue] (0,0) -- (2,2);
+\end{tikzpicture}\quad
 y(t) &= t &&\quad y(s) = \frac{1}{s^2} &\qquad e_{\mathrm ssv} & \quad{\text{σφάλμα ταχύτητας}} \\
+\begin{tikzpicture}[scale=0.4,baseline]
+\draw (-0.2,0) -- (2,0);
+\draw (0,-0.2) -- (0,2);
+\draw [very thick, color=blue, domain=0:2,variable=\t, samples=\gsamples, smooth]
+plot (\t,\t^2/2);
+\end{tikzpicture}\quad
 y(t) &= \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \quad{\text{σφάλμα επιτάχυνσης}}
 \end{alignat*}
 
@@ -545,6 +561,7 @@ y(t) &= \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \q
 \draw[->] (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[right,xshift=1mm,yshift=-1mm] {$-$};
 \end{tikzpicture}
 
+Αν θεωρήσουμε ότι η \( G(s) \) είναι \( 1 \), τότε:
 \begin{align*}
 	\frac{y(s)}{r(s)} &= \frac{H(s)}{1+H(s)} \\
 	\text{όπου } H(s) &=
@@ -582,9 +599,6 @@ y(t) &= \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \q
 	\end{cases}
 \end{alignat*}
 
-Πρακτικά, για να έχουμε μηδενικό σφάλμα και δηλαδή πλήρη ακρίβεια θέσης, θέλουμε στη βηματική
-είσοδο η έξοδος να είναι μηδενική.
-
 \begin{defn}{Ολοκληρωτής}{}
 	Ένας \textbf{πόλος στο 0} λειτουργεί σαν \textbf{ολοκληρωτής}, επειδή
 	έχει την ιδιότητα να ολοκληρώνει το σήμα εισόδου.
@@ -593,7 +607,23 @@ y(t) &= \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \q
 \paragraph{Παράδειγμα}
 Έστω το σύστημα:
 
-\todo{Graph 11}
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H(s)$};
+\draw (3,0) -- (3.75,0);
+\draw (4,0) circle (0.25);
+\draw[->] (4.25,0) -- ++(1,0) node[above right] {$y$};
+\draw ({(3+1.5)/2},0.5) node[above] {$\frac{1}{s(s+a)}$};
+
+\draw[<-] (4,0.25)  node[right,xshift=1mm,yshift=1mm] {$+$} --++ (0,0.5)
+node[above,rectangle,align=center,scale=0.8]
+{$d(s)=\frac{1}{s}$};
+
+\draw[->] (4.5,0) -- ++(0,-1.5) -- (0.75,-1.5) -- ++(0,1.25)
+node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
 
 Ποιά θα είναι η έξοδος του συστήματος στη μόνιμη κατάσταση αν προσθέσουμε την είσοδο
 διαταραχής;
