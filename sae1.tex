@@ -20,10 +20,11 @@
 	\\
 	\url{https://github.com/kongr45gpen/ece-notes}}
 
-\setmainfont{Linux Libertine O}
+\setallmainfonts(Digits,Latin,Greek){Asana Math}
+\setmainfont{Noto Serif}
 \setsansfont{Ubuntu}
 \usepackage{polyglossia}
-\newfontfamily\greekfont[Script=Greek,Scale=0.95]{GFS Artemisia}
+\newfontfamily\greekfont[Script=Greek,Scale=1.00]{Liberation Serif}
 
 \hypersetup{pdftitle = {ΣΑΕ 1}}
 
@@ -464,13 +465,14 @@ Laplace της συνάρτησης για να πάμε στο πεδίο το�
 f(\infty) = \lim_{s\to 0} sF(s)
  \]
 
-Δηλαδή, για βηματική είσοδο (\( \mathrm u(t) \rightarrow \frac{1}{s}\))
+Για παράδειγμα, για βηματική είσοδο (\( \mathrm u(t) \rightarrow \frac{1}{s}\))
 σε ένα σύστημα (ss = steady state):
 \begin{align*}
-	y_{\mathrm{ss}} &= \lim_{s\to 0} sF(s) = \lim_{s\to 0} sH(s)\frac{1}{s} = H(0)
+	y_{\mathrm{ss}} &= \lim_{s\to 0} sF(s) = \lim_{s\to 0} sH(s)\frac{1}{s} =
+	\lim_{s\to 0} H(s)
 \end{align*}
-\todo{}
 
+\begin{comment}
 \begin{tikzpicture}
 \def\h{0.6}
 \def\l{1.2}
@@ -492,6 +494,161 @@ f(\infty) = \lim_{s\to 0} sF(s)
 \draw (4,-1.5-\h/2) rectangle ++(-\l,\h) node[midway] {$H(s)$};
 \draw[->] (4-\l,-1.5) -- (1,-1.5) -- (1,-0.2);
 \end{tikzpicture}
+\end{comment}
+
+Για να μελετήσουμε την ακρίβεια, ορίζουμε το σφάλμα:
+\begin{defn}{Σφάλμα}{}
+	\[
+	e(s) = r(s) - y(s)
+	\]
+\end{defn}
+
+Χρησιμοποιούμε διάφορες εισόδους για να βρούμε διάφορα είδη σφαλμάτων του συστήματος:
+\todo{graphs}
+\begin{alignat}{4}
+y(t) = \delta(t) &&\quad y(s) = \frac{1}{s} &\qquad e_{\mathrm ssp} && \quad{\text{σφάλμα θέσης}} \\
+y(t) = t &&\quad y(s) = \frac{1}{s^2} &\qquad e_{\mathrm ssv} && \quad{\text{σφάλμα ταχύτητας}} \\
+y(t) = \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} && \quad{\text{σφάλμα επιτάχυνσης}}
+\end{alignat}
+
+Για παράδειγμα, για το σύστημα κλειστού βρόγχου, θυμόμαστε ότι:
+
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H(s)$};
+\draw (3,0) -- (3.75,0);
+\draw[->] (3.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw (3.6,0) -- ++(0,-1.5) -- (3,-1.5);
+\draw (1.5,-2) rectangle (3,-1) node[midway] {$G(s)$};
+\draw[->] (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+\begin{align*}
+	\frac{y(s)}{r(s)} &= \frac{H(s)}{1+H(s)} \\
+	\text{όπου } H(s) &=
+	\frac{G(τ_{n+1}s+1)\cdots(τ_{n+m}s+1)}{s^N(1+sτ_1)\cdots(1+sτ_n)} \implies\\
+	e(s) &= r(s)-y(s) = \frac{1}{1+H(s)}r(s).
+\end{align*}
+(δηλαδή \( N \) είναι η τάξη του τυχόν πόλου στο 0).
+
+Εφαρμόζοντας τις διάφορες συναρτήσεις ως εισόδους, σύμφωνα με τα παραπάνω, έχουμε:
+\begin{align*}
+	e_{\mathrm{ssp}} &= \frac{1}{\displaystyle 1+\underbrace{\lim_{s\to 0}H(s)}_{K_p}}
+	= \frac{1}{1+K_p}
+	= \begin{cases}
+	\frac{1}{1+G} \qquad &\text{για } N = 0 \\
+	\frac{1}{1+\infty} = 0 \qquad &\text{για } N \geq 1
+	\end{cases}
+	\\
+	e_{\mathrm{ssv}} &= \frac{1}{\displaystyle \underbrace{\lim_{s\to 0} sH(s)}_{K_v} }
+	= \frac{1}{K_v} =
+	\begin{cases}
+	\frac{1}{0} = \infty \qquad &\text{για } N = 0
+	\\
+	\frac{1}{G}\qquad &\text{για } N=1
+	\\
+	\frac{1}{\infty} = 0\qquad &\text{για } N\geq 2
+	\end{cases}
+	\\
+	e_{\mathrm{ssa}} &= \dots = \begin{cases}
+	\infty \qquad &\text{για } N \leq 1 \\
+	\frac{1}{G} \qquad &\text{για } N = 2 \\
+	0 \qquad &\text{για } N > 2
+	\end{cases}
+\end{align*}
+
+Πρακτικά, για να έχουμε μηδενικό σφάλμα και δηλαδή πλήρη ακρίβεια θέσης, θέλουμε στη βηματική
+είσοδο η έξοδος να είναι μηδενική.
+
+\paragraph{Παράδειγμα}
+Έστω το σύστημα:
+
+\todo{Graph 11}
+
+Ποιά θα είναι η έξοδος του συστήματος στη μόνιμη κατάσταση αν προσθέσουμε την είσοδο
+διαταραχής;
+
+\subparagraph{}
+
+Γνωρίζουμε για το σύστημα κλειστού βρόχου ότι:
+\begin{align*}
+	\frac{y(s)}{d(s)} &= \frac{1}{1+H(s)} \\
+	\lim_{s\to 0}sy(s) &= \lim_{s\to 0} s\frac{d(s)}{1+H(s)}
+	= \lim_{s\to 0} s\frac{\frac{1}{s}}{1+H(s)} = \lim_{s\to 0}\frac{1}{1+H(s)} = 0
+%	\frac{y(s)}{r(s)} &= \frac{H(s)}{1+H(s)}\\
+%	y(s) &= \frac{H(s)}{1+H(s)}r(s) + \frac{1}{1+H(s)}d(s)
+\end{align*}
+Δηλαδή \( y_{\mathrm{ss}} = 0 \), άρα το σύστημα έχει πάλι τέλεια ακρίβεια, και σφάλμα θέσης
+0.
+
+\paragraph{Παράδειγμα}{}
+
+\todo{Graph 12, πράξεις, + ή -?}
+
+Τότε προκύπτει, μετά από πράξεις:
+\begin{align*}
+	e_{\mathrm{ssp}} &= -\frac{1}{k}
+\end{align*}
+Δηλαδή βλέπουμε ότι η διαφορετική θέση της εισόδου διαταραχής επηρεάζει το σφάλμα θέσης του
+συστήματος.
+
+Αν, προσπαθώντας να μειώσουμε στο 0 το σφάλμα της εξόδου, προσθέσουμε έναν ολοκληρωτή
+πριν από την είσοδο διαταραχής:
+
+\todo{Graph 13}
+
+τότε το χαρακτηριστικό πολυώνυμο του συστήματος γίνεται:
+\[
+gs^3+bs^2+κ = 0
+\]
+που έχει ρίζες στο δεξί ημιεπίπεδο, άρα οδηγεί σε ασταθές σύστημα.
+
+Για να διορθώσουμε αυτήν την ατέλεια, χρησιμοποιούμε έναν \textbf{ελεγκτή PI}
+(Proportional \& Integral), δηλαδή πολλαπλασιάζουμε την είσοδό του \( e(t) \) 
+με \( K_P e(t) \) και ολοκληρώνουμε με
+\( K_I \int e(t) \)).
+
+\begin{infobox}{Ελεγκτής PI}
+Σύμφωνα με την παραπάνω παράγραφο, η έξοδος \( u(t) \) ενός ελεγκτή PI είναι:
+\[
+u(t) = K_P e(t) + K_I \int e(t) \dif t
+\]
+(όπου \( e \) η είσοδος)
+και, μετασχηματίζοντας κατά Laplace:
+\[
+u(s) = \left( K_P + \frac{K_I}{s} \right) =
+\frac{K_P\left( s+\frac{K_I}{K_P} \right)}{s}
+= \frac{K_P(s+z)}{s}
+\]
+όπου \( z = \frac{K_P}{K_I} \) μία σταθερή τιμή.
+\end{infobox}
+
+Στο συγκεκριμένο παράδειγμα, αντικαθιστούμε τη συνάρτηση μεταφοράς \( \sfrac{κ}{s}  \) με
+τη συνάρτηση:
+\[
+K_p\left(\frac{s+z}{s}\right)
+\]
+όπου \( z = \frac{K_P}{K_I} \),
+και το χαρακτηριστικό πολυώνυμο γίνεται:
+\[
+x(s) = Js^3 + bs^2 + K_p s + K_I = 0
+\]
+που μπορεί να είναι ευσταθές.
+
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+Στο σύστημα χωρίς βρόγχο:
+
+\todo{Graph 14}
+
+\begin{align*}
+	e_{\mathrm{ssp}} &= \lim_{s\to 0} se(s) = \lim_{s\to 0}\left(1-H_κ(s)\right) \\
+	e_{\mathrm{ssv}} &= \lim_{s\to 0} \frac{1-H_κ(s)}{s} \\
+	e_{\mathrm{ssa}} &= \lim_{s\to 0} \frac{1-H_κ(s)}{s^2}
+\end{align*}
 
 \subsection{Ασκήσεις}
 \paragraph{Άσκηση}
