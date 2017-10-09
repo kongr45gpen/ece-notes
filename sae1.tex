@@ -434,17 +434,17 @@ plot (\t,{ 1-exp(-5*\t) }) node[above,xshift=-2cm] {$-a-k$};
 
 Χρησιμοποιώντας τους παραπάνω κανόνες, ή την προηγούμενη μέθοδο, μπορούμε να βρούμε:
 \[
-T(s) = \frac{\kappa H_2(s)+H_2(s)H_1(s)}{1+H_2(s)}
+T(s) = \frac{\kappa H_2(s)+H_2(s)H_1(s)}{1+H_1(s)H_2(s)}
 \]
 
 Ενδεικτικά, με βοηθητικές συναρτήσεις, οι πράξεις γίνονται ως εξής:
 \begin{align*}
 	y(s) &= H_2(s)\cdot\left( \kappa r(s) + w(s) \right)
 	\\ &= H_2 \cdot \left[ \kappa r + H_1 \left( r - y \right) \right]
-	\\ &= \kappa H_2 r + H_2H_1r - H_2y \implies
-	\\ y \cdot (1+H_2) &= \kappa H_2 r + H_2H_1 r \implies
-	\\ y &= \frac{\kappa H_2 r + H_2H_1 r}{1+H_2} \implies
-	\\ T(s) &= \frac{\kappa H_2(s) + H_2(s)H_1(s) }{1+H_2(s)}
+	\\ &= \kappa H_2 r + H_2H_1r - H_1H_2y \implies
+	\\ y \cdot (1+H_1H_2) &= \kappa H_2 r + H_2H_1 r \implies
+	\\ y &= \frac{\kappa H_2 r + H_2H_1 r}{1+H_1H_2} \implies
+	\\ T(s) &= \frac{\kappa H_2(s) + H_2(s)H_1(s) }{1+H_1(s)H_2(s)}
 \end{align*}
 
 
