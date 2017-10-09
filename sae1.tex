@@ -641,9 +641,28 @@ node[right,xshift=1mm,yshift=-1mm] {$-$};
 Δηλαδή \( y_{\mathrm{ss}} = 0 \), άρα το σύστημα έχει πάλι τέλεια ακρίβεια, και σφάλμα θέσης
 0.
 
-\paragraph{Παράδειγμα}{}
+\paragraph{Παράδειγμα} \hspace{0pt}
 
-\todo{Graph 12, πράξεις, + ή -?}
+Το παρακάτω διάγραμμα αντιστοιχεί σε έναν κινητήρα:
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$κ$};
+\draw (3,0) -- (3.75,0);
+\draw (4,0) circle (0.25);
+\draw (5,-0.5) rectangle (6.5,0.5) node[midway] {$\frac{1}{s(Js+b)}$};
+\draw (4.25,0) -- (5,0);
+\draw[->] (6.5,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[<-] (4,0.25)  node[right,xshift=1mm,yshift=1mm] {$+$} --++ (0,0.5)
+node[above] {$d$};
+
+\draw[->] (7,0) -- ++(0,-1.5) -- (0.75,-1.5) -- ++(0,1.25)
+node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+\todo{πράξεις, + ή -?}
 
 Τότε προκύπτει, μετά από πράξεις:
 \begin{align*}
@@ -655,13 +674,29 @@ node[right,xshift=1mm,yshift=-1mm] {$-$};
 Αν, προσπαθώντας να μειώσουμε στο 0 το σφάλμα της εξόδου, προσθέσουμε έναν ολοκληρωτή
 πριν από την είσοδο διαταραχής:
 
-\todo{Graph 13}
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$\sfrac{κ}{\color{cyan!70!black} s}$};
+\draw (3,0) -- (3.75,0);
+\draw (4,0) circle (0.25);
+\draw (5,-0.5) rectangle (6.5,0.5) node[midway] {$\frac{1}{s(Js+b)}$};
+\draw (4.25,0) -- (5,0);
+\draw[->] (6.5,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[<-] (4,0.25)  node[right,xshift=1mm,yshift=1mm] {$+$} --++ (0,0.5)
+node[above] {$d$};
+
+\draw[->] (7,0) -- ++(0,-1.5) -- (0.75,-1.5) -- ++(0,1.25)
+node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
 
 τότε το χαρακτηριστικό πολυώνυμο του συστήματος γίνεται:
 \[
-gs^3+bs^2+κ = 0
+Js^3+bs^2+κ = 0
 \]
-που έχει ρίζες στο δεξί ημιεπίπεδο, άρα οδηγεί σε ασταθές σύστημα.
+που έχει ρίζες στο δεξί ημιεπίπεδο, άρα οδηγεί σε ασταθές σύστημα (θυμόμαστε από τα Κ3 ότι μόνο τα πολυώνυμα με θετικούς συντελεστές \textit{μπορεί} να οδηγήσουν σε ευστάθεια).
 
 Για να διορθώσουμε αυτήν την ατέλεια, χρησιμοποιούμε έναν \textbf{ελεγκτή PI}
 (Proportional \& Integral), δηλαδή πολλαπλασιάζουμε την είσοδό του \( e(t) \) 
@@ -671,7 +706,7 @@ gs^3+bs^2+κ = 0
 \begin{infobox}{Ελεγκτής PI}
 Σύμφωνα με την παραπάνω παράγραφο, η έξοδος \( u(t) \) ενός ελεγκτή PI είναι:
 \[
-u(t) = K_P e(t) + K_I \int e(t) \dif t
+u(t) = K_P\cdot e(t) + K_I \int e(t) \dif t
 \]
 (όπου \( e \) η είσοδος)
 και, μετασχηματίζοντας κατά Laplace:
@@ -699,7 +734,11 @@ x(s) = Js^3 + bs^2 + K_p s + K_I = 0
 
 Στο σύστημα χωρίς βρόγχο:
 
-\todo{Graph 14}
+\begin{tikzpicture}[scale=0.9]
+\draw[->] (0,0) -- (1.5,0) node[above,midway] {$r(s)$};
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H_κ(s)$};
+\draw[->] (3,0) -- ++(1.5,0) node[above,midway] {$y(s)$};
+\end{tikzpicture}
 
 \begin{align*}
 	e_{\mathrm{ssp}} &= \lim_{s\to 0} se(s) = \lim_{s\to 0}\left(1-H_κ(s)\right) \\
