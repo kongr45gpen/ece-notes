@@ -331,16 +331,120 @@ plot (\t,{ 1-exp(-5*\t) }) node[above,xshift=-2cm] {$-a-k$};
 Για τη διευκόλυνσή της εύρεσης της συνάρτησης μεταφοράς, μπορούμε αντί να βρούμε την έξοδο
 αλγεβρικά χρησιμοποιώντας ενδιάμεσες συναρτήσεις, να χρησιμοποιήσουμε κανόνες όπως τους
 παρακάτω:
-\todo{Graph 7}
+\begin{infobox}{}
+	\begin{itemize}
+		\item
+		\begin{tikzpicture}[scale=1.3,baseline]
+		\begin{scope}[yshift=2mm]
+		\draw[->] (0,0) -- (0.75,0);
+		\draw (0.75,-0.7/2) rectangle ++(1,0.7) node[midway] {$H$};
+		\draw[->] (1.75,0) -- (2.5,0) node[right] {$y_1$};
+		\draw[->] (2,0) -- (2,-0.5) -- (2.5,-0.5) node[right] {$y_2$};
+		\end{scope}
+		
+		\draw[->,very thick,gray!20!black] (4,0) to[bend left=10] ++(1.5,0);
+		
+		\begin{scope}[xshift=6.5cm]
+		\draw (0,0) -- (0.5,0);
+		\draw (0.5,0) -- (0.5,0.3) -- (1,0.3);
+		\draw (0.5,0) -- (0.5,-0.3) -- (1,-0.3);
+		\draw (1,-0.5) rectangle (1.7,-0.1) node[midway] {$H$};
+		\draw[->] (1.7,-0.3) -- ++(0.5,0) node[right] {$y_2$};
+		\draw (1,0.5) rectangle (1.7,0.1) node[midway] {$H$};
+		\draw[->] (1.7,0.3) -- ++(0.5,0) node[right] {$y_1$};
+		\end{scope}
+		\end{tikzpicture}
+		\item
+		\begin{tikzpicture}[scale=1.3,baseline]
+		\begin{scope}[]
+		\draw[->] (0,0) -- (0.75,0) node[above,midway] {$u$};
+		\draw (0.75,0) -- (0.75,0.5) -- (1.25,0.5);
+		\draw (1.25,0.5-0.7/2) rectangle ++(1,0.7) node[midway] {$H$};
+		\draw[->] (2.25, 0.5) -- (2.75,0.5) node[right] {$y$};
+		\draw[->] (0.75,0) -- (0.75,-0.5) -- (2.75, -0.5) node[right]{$y_1$};
+		\end{scope}
+		
+		\draw[->,very thick,gray!20!black] (4,0) to[bend left=10] ++(1.5,0);
+		
+		\begin{scope}[xshift=6.5cm,yshift=0.3cm]
+		\draw[->] (0,0) -- (0.75,0) node[above,midway] {$u$};
+		\draw (0.75,-0.5/2) rectangle ++(0.75,0.5) node[midway] {$H$};
+		\draw[->] (1.5,0) -- (2.25,0) node[right] {$y$};
+		\draw[->] (1.75,0) -- (1.75,-0.5) -- (2.25,-0.5);
+		\draw (2.25,-0.5-0.5/2) rectangle ++(0.75,0.5) node[midway] {$\frac{1}{H}$};
+		\draw[->] (3,-0.5) -- ++(0.5,0) node[right] {$y_1$};
+		\end{scope}
+		\end{tikzpicture}
+		\item
+		\begin{tikzpicture}[scale=1.3,baseline]
+		\begin{scope}[]
+		\draw[->] (0,0.5) -- ++(0.75,0);
+		\draw (0.75,0.5-0.5/2) rectangle ++(0.75,0.5) node[midway] {$H_1$};
+		\draw[->] (1.5,0.5) -- (2.25,0.5) -- (2.25,0.2) node[right,yshift=1mm,xshift=1mm] {$+$};
+		\draw[->] (0,-0.5) -- ++(0.75,0);
+		\draw (0.75,-0.5-0.5/2) rectangle ++(0.75,0.5) node[midway] {$H_2$};
+		\draw[->] (1.5,-0.5) -- (2.25,-0.5) -- (2.25,-0.2);
+		\draw (2.25,0) circle (2mm);
+		\draw[->] (2.45,0) -- ++(0.75,0) node[above,pos=.9] {$y$};
+		\end{scope}
+		
+		\draw[->,very thick,gray!20!black] (4,0) to[bend left=10] ++(1.5,0);
+		
+		\begin{scope}[xshift=6.5cm]
+		\draw[] (0,0.5) -- ++(0.6,0);
+		\draw (0.6,0.5-0.5/2) rectangle ++(1,0.5) node[midway] {$\sfrac{H_1}{H_2}$};
+		\draw[->] (1.6,0.5) -- (2.25,0.5) -- (2.25,0.2) node[right,yshift=1mm,xshift=1mm] {$+$};
+		\draw[->] (0,-0.5) -- (2.25,-0.5) -- (2.25,-0.2);
+		\draw (2.25,0) circle (2mm);
+		\draw (3.05,-0.4/2) rectangle ++(0.8,0.4) node[midway] {$H_2$};
+		\draw[] (2.45,0) -- ++(0.6,0);
+		\draw[->] (3.85,0) -- ++(0.6,0) node[right] {$y$};
+		\end{scope}
+		\end{tikzpicture}
+	\end{itemize}
+\end{infobox}
 
 \paragraph{Παράδειγμα} \hspace{0pt}
 
-\todo{Graph 8}
+\begin{tikzpicture}
+\def\h{0.6}
+\def\l{1}
+\def\ll{0.75}
+\draw[->] (0,0) node[green!70!black,scale=.8,opacity=.8,left] {$r(s)$} -- (1.5-0.2,0);
+\begin{scope}[xshift=1.5cm]
+\draw (0,0) circle (2mm);
+\draw (0.2,0) -- ++(0.75,0);
+\draw (0.2+0.75, -\h/2) rectangle ++(\l, \h) node[midway] {$H_1$};
+\draw[->] (\l+0.2+0.75,0) -- (2.8,0) node[green!70!black,scale=.8,opacity=.8,above,midway] {$w(s)$};
+\draw (3,0) circle (2mm);
+\end{scope}
+\begin{scope}[xshift=4.5cm]
+\draw (0.2,0) -- ++(0.75,0);
+\draw (0.2+0.75, -\h/2) rectangle ++(\l, \h) node[midway] {$H_2$};
+\draw[] (\l+0.2+0.75,0) -- (3.5,0) node[right] {$y(s)$};
+\end{scope}
+
+\draw (0.5,0) -- ++(0,1.5) -- (4.5,1.5) -- (4.5,1);
+\draw (4.5-\ll/2,1) rectangle (4.5+\ll/2,0.6) node[midway] {$\kappa$};
+\draw[->] (4.5,0.6) -- (4.5,0.2) node[right,xshift=1mm,yshift=1mm] {$+$};
+
+\draw[->] (4.5+2.5,0) -- ++(0,-1.5) -- (1.5,-1.5) -- (1.5,-0.2) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
 
 Χρησιμοποιώντας τους παραπάνω κανόνες, ή την προηγούμενη μέθοδο, μπορούμε να βρούμε:
 \[
 T(s) = \frac{\kappa H_2(s)+H_2(s)H_1(s)}{1+H_2(s)}
 \]
+
+Ενδεικτικά, με βοηθητικές συναρτήσεις, οι πράξεις γίνονται ως εξής:
+\begin{align*}
+	y(s) &= H_2(s)\cdot\left( \kappa r(s) + w(s) \right)
+	\\ &= H_2 \cdot \left[ \kappa r + H_1 \left( r - y \right) \right]
+	\\ &= \kappa H_2 r + H_2H_1r - H_2y \implies
+	\\ y \cdot (1+H_2) &= \kappa H_2 r + H_2H_1 r \implies
+	\\ y &= \frac{\kappa H_2 r + H_2H_1 r}{1+H_2} \implies
+	\\ T(s) &= \frac{\kappa H_2(s) + H_2(s)H_1(s) }{1+H_2(s)}
+\end{align*}
 
 
 \subsection{Προδιαγραφές}
@@ -360,12 +464,34 @@ Laplace της συνάρτησης για να πάμε στο πεδίο το�
 f(\infty) = \lim_{s\to 0} sF(s)
  \]
 
-Δηλαδή, για βηματική είσοδο (\( \mathrm u(t) \rightarrow \frac{1}{den}s\))
+Δηλαδή, για βηματική είσοδο (\( \mathrm u(t) \rightarrow \frac{1}{s}\))
 σε ένα σύστημα (ss = steady state):
 \begin{align*}
-	y_{\mathrm{ss}} &= \lim_{s\to 0}
+	y_{\mathrm{ss}} &= \lim_{s\to 0} sF(s) = \lim_{s\to 0} sH(s)\frac{1}{s} = H(0)
 \end{align*}
 \todo{}
+
+\begin{tikzpicture}
+\def\h{0.6}
+\def\l{1.2}
+\def\ll{0.75}
+\draw[->] (0,0) node[left] {$r(s)$} -- (1-0.2,0);
+\begin{scope}[xshift=1cm]
+\draw (0,0) circle (2mm);
+\draw (0.2,0) -- ++(0.75,0);
+\draw (0.2+0.75, -\h/2) rectangle ++(\l, \h) node[midway] {$G_1(s)$};
+\draw (\l+0.2+0.75,0) -- (3,0);
+\draw  (3, -\h/2) rectangle ++(\l, \h) node[midway] {$G_2(s)$};
+\draw (3+\l,0) -- (5-0.2,0);
+\draw[->] (5,1) -- ++(0,-1+0.2) node[midway,right] {$d(s)$};
+\draw (5,0) circle (2mm);
+\draw[->] (5+0.2,0) -- ++(1,0) node[right] {$y$};
+\end{scope}
+
+\draw[->] (4.5+2.2,0) -- ++(0,-1.5) -- (4,-1.5);
+\draw (4,-1.5-\h/2) rectangle ++(-\l,\h) node[midway] {$H(s)$};
+\draw[->] (4-\l,-1.5) -- (1,-1.5) -- (1,-0.2);
+\end{tikzpicture}
 
 \subsection{Ασκήσεις}
 \paragraph{Άσκηση}
