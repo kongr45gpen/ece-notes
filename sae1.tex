@@ -567,41 +567,48 @@ y(t) &= \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \q
 	\text{όπου } H(s) &=
 	\frac{G(τ_{n+1}s+1)\cdots(τ_{n+m}s+1)}{s^N(1+sτ_1)\cdots(1+sτ_n)} \implies
 	\\
-	e(s) &= r(s)-y(s) = \frac{1}{1+H(s)}r(s).
+	e(s) &= r(s)-y(s) = \frac{1}{1+H(s)}r(s) \\
+	e_{\mathrm{ss}} &= \lim_{s\to 0}se(s)
 \end{align*}
 (δηλαδή \( N \) είναι η τάξη του τυχόν πόλου στο 0).
 
 Εφαρμόζοντας τις διάφορες συναρτήσεις ως εισόδους, σύμφωνα με τα παραπάνω, έχουμε:
 \begin{alignat*}{3}
-	e_{\mathrm{ssp}} &= \frac{1}{\displaystyle 1+\underbrace{\lim_{s\to 0}H(s)}_{K_p}}
-	= \frac{1}{1+K_p}
+	e_{\mathrm{ssp}} &= \frac{1}{\displaystyle 1+\underbrace{\lim_{s\to 0}H(s)}_{K_\mathrm{pos}}}
+	= \frac{1}{1+{\color{green!50!black}K_\mathrm{pos}}}
 	&&= \begin{cases}
-	\frac{1}{1+G} \qquad &\text{για } N = 0 \\
-	\frac{1}{1+\infty} = 0 \qquad &\text{για } N \geq 1
+	\frac{1}{1+{\color{green!50!black}G}} \qquad &\text{για } N = 0 \\
+	\frac{1}{1+{\color{green!50!black}\infty}} = 0 \qquad &\text{για } N \geq 1
 	\end{cases}
 	\\
 	e_{\mathrm{ssv}} &= \frac{1}{\displaystyle \underbrace{\lim_{s\to 0} sH(s)}_{K_v} }
-	= \frac{1}{K_v} &&=
+	= \frac{1}{\color{cyan!50!black}K_v} &&=
 	\begin{cases}
-	\frac{1}{0} = \infty \qquad &\text{για } N = 0
+	\frac{1}{\color{cyan!50!black}0} = \infty \qquad &\text{για } N = 0
 	\\
-	\frac{1}{G}\qquad &\text{για } N=1
+	\frac{1}{\color{cyan!50!black}G}\qquad &\text{για } N=1
 	\\
-	\frac{1}{\infty} = 0\qquad &\text{για } N\geq 2
+	\frac{1}{\color{cyan!50!black}\infty} = 0\qquad &\text{για } N\geq 2
 	\end{cases}
 	\\
 	e_{\mathrm{ssa}} &= \frac{1}{\displaystyle \underbrace{\lim_{s\to 0} s^2H(s)}_{K_a}}
-	= \frac{1}{K_a}
+	= \frac{1}{\color{orange!50!black}K_a}
 	&&= \begin{cases}
 	\infty \qquad &\text{για } N \leq 1 \\
-	\frac{1}{G} \qquad &\text{για } N = 2 \\
+	\frac{1}{\color{orange!50!black} G} \qquad &\text{για } N = 2 \\
 	0 \qquad &\text{για } N > 2
 	\end{cases}
 \end{alignat*}
 
+Δε συζητάμε για ακρίβειες πέραν της επιτάχυνσης, επειδή σπάνια τα συστήματα έχουν πάνω από
+2 ολοκληρωτές.
+
 \begin{defn}{Ολοκληρωτής}{}
 	Ένας \textbf{πόλος στο 0} λειτουργεί σαν \textbf{ολοκληρωτής}, επειδή
 	έχει την ιδιότητα να ολοκληρώνει το σήμα εισόδου.
+\end{defn}
+\begin{defn}{Τύπος συστήματος}{}
+	Ο \textbf{τύπος του συστήματος} είναι ο αριθμός των ολοκληρωτών που έχει.
 \end{defn}
 
 \paragraph{Παράδειγμα}
@@ -745,5 +752,229 @@ x(s) = Js^3 + bs^2 + K_p s + K_I = 0
 	e_{\mathrm{ssv}} &= \lim_{s\to 0} \frac{1-H_κ(s)}{s} \\
 	e_{\mathrm{ssa}} &= \lim_{s\to 0} \frac{1-H_κ(s)}{s^2}
 \end{align*}
+
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H(s)$};
+\draw (3,0) -- (3.75,0);
+\draw[->] (3.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[->]  (3.6,0) -- ++(0,-1.5) -- (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+\[
+H(s) = \frac{s+9}{s^2+7s+3}
+\]
+
+Τι σφάλμα θέσης έχει το παραπάνω σύστημα;
+
+\begin{align*}
+	e_{\mathrm{ssp}} &= \frac{1}{1+K_{\mathrm{pos}}} \\
+	K_{\mathrm{pos}} &= \lim_{s\to 0} H(s) = \frac{9}{3} = 3 \implies \\
+	e_{\mathrm{ssp}} &= \frac{1}{1+3} = \frac{1}{4}.
+\end{align*}
+
+\paragraph{Παράδειγμα}
+Στο παραπάνω σχήμα, θέτουμε:
+
+\[
+H(s) = \frac{2(s+10)}{s(s+2)(s+5)}
+\]
+
+Τι σφάλματα έχει το παραπάνω σύστημα;
+\subparagraph{}
+\begin{alignat*}{2}
+K_{\mathrm{pos}} &= \infty \\
+K_{\mathrm v}	 &= \lim_{s\to 0} sH(s) = \frac{20}{10} = 2 \\
+K_{\mathrm a}    &= 0 \\[2ex]
+e_{\mathrm{ssp}} &= \frac{1}{1+\infty} &&= 0 \\
+e_{\mathrm{ssv}} &= \frac{1}{K_{\mathrm v}} &&= \frac{1}{2} \\
+e_{\mathrm{ssa}} &= \frac{1}{0} &&= \infty
+\end{alignat*}
+
+\paragraph{Παράδειγμα}
+Στο παραπάνω σχήμα:
+\[
+H(s) = \frac{1.8κ}{s(s+3.5)}
+\]
+
+Ποιά πρέπει να είναι η σταθερά \( κ \) ώστε να ισχύει \( e_{\mathrm{ssv}} = 0.327 \);
+
+\todo{πράξεις}
+
+\paragraph{Άσκηση}
+Έστω ένα σύστημα με συνάρτηση μεταφοράς:
+\[
+H_{κ}(s) = \frac{κs+b}{s^2+as+b}
+\]
+
+Ποιά είναι τα σφάλματα του συστήματος, και ποιά είναι η συνάρτηση μεταφοράς, αν προέρχεται
+από σύστημα κλειστού βρόγχου \textit{μοναδιαίας αρνητικής ανάδρασης};
+
+\subparagraph{Σφάλματα}
+\begin{alignat*}{2}
+	e_{\mathrm{ssp}} &= \lim_{s\to 0}\left[1-H_κ(s)\right] = 1-\frac{b}{b} &&= 0 \\
+	e_{\mathrm{ssv}} &= \lim_{s\to 0}\left[\frac{1-H_κ(s)}{s}\right] &&= \frac{a-κ}{b} \\
+	e_{\mathrm{ssa}} &= \lim_{s\to 0}\left[\frac{1-Η_κ(s)}{s^2}\right] &&= \infty
+\end{alignat*}
+\subparagraph{Συνάρτηση μεταφοράς} \hspace{0pt}
+
+\begin{tikzpicture}[scale=0.8,every node/.style={scale=.8}]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H(s)$};
+\draw (3,0) -- (3.75,0);
+\draw[->] (3.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[->]  (3.6,0) -- ++(0,-1.5) -- (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+Γνωρίζουμε ή βρίσκουμε ότι, για συστήματα κλειστού βρόγχου:
+\[
+H_κ(s) = \frac{H(s)}{1+H(s)}
+\]
+άρα:
+\begin{align*}
+	H_κ(1+H) &= H \implies \\
+	H_κ + H_κH &= H \implies \\
+	H(1-H_κ) &= H_κ \implies \\
+	H &= \frac{H_κ}{1-H_κ} \implies \\
+	H &= \frac{\frac{κs+b}{s^2+as+b}}{1-\frac{ks+b}{s^2+as+b}}
+	= \frac{\frac{κs+b}{\cancel{s^2+as+b}}}{\frac{s^2+as+b-ks-b}{\cancel{s^2+as+b}}}
+	\implies \\
+	\Aboxed{H(s) &= \frac{κs+b}{s(s+a-κ)}}
+\end{align*}
+
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+\todo{Graph 16}
+
+Έστω το σύστημα με την παραπάνω απόκριση στη βηματική συνάρτηση. Ποιός είναι ο τύπος του
+συστήματος;
+
+\subparagraph{} \hspace{0pt}
+
+\todo{Graph 17}
+
+Η επιθυμητή έξοδος του συστήματος είναι 1, αλλά η έξοδός του στη μόνιμη κατάσταση είναι 0.5,
+επομένως υπάρχει σταθερό σφάλμα \( 0.5 \). Άρα το σύστημα έχει τύπο \( 0 \).
+
+Γνωρίζουμε ότι, αφού είναι τύπου \( 0 \), θα έχει άπειρο σφάλμα ταχύτητας. Πράγματι, αν
+βάλουμε ως είσοδο τη συνάρτηση ράμπας, το σφάλμα όσο \( t \to \infty \) θα αυξάνεται όλο
+και περισσότερο:
+
+\todo{Graph 18}
+
+\paragraph{Άσκηση} \hspace{0pt}
+
+Ποιά είναι τα σφάλματα του παρακάτω συστήματος;
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$\displaystyle \frac{κ}{Js^2}$};
+\draw (3,0) -- (3.75,0);
+\draw[->] (3.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw (3.6,0) -- ++(0,-1.5) -- (3,-1.5);
+\draw (1.5,-2) rectangle (3,-1) node[midway] {$1+bs$};
+\draw[->] (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+Επειδή δεν έχουμε μοναδιαία αρνητική ανάδραση, δεν μπορούμε να εφαρμόσουμε τους τύπους
+σφάλματος για συστήματα μοναδιαίας αρνητικής ανάδρασης.
+
+Βρίσκουμε τη συνάρτηση μεταφοράς κλειστού βρόγχου:
+\begin{align*}
+	y &= H(s)\left(r-G(s)y\right) = \dots = \frac{H(s)}{1+H(s)G(s)}
+	= \frac{\sfrac{κ}{Js^2} }{1+bs}
+	= \frac{κ}{Js^2 + κbs + κ}
+\end{align*}
+
+Επομένως μπορούμε να εφαρμόσουμε τους τύπους σφάλματος χωρίς βρόγχο:
+\[
+e_{\mathrm{ssp}} = 0 \hspace{100pt}
+e_{\mathrm{ssv}} = b \hspace{100pt}
+e_{\mathrm{ssa}} = \infty
+\]
+
+\paragraph{Άσκηση} \hspace{0pt}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H_1(s)$};
+\draw[->] (3,0) -- (3.75,0);
+\draw (4,0) circle (0.25);
+\draw (5,-0.5) rectangle (6.5,0.5) node[midway] {$H_2(s)$};
+\draw[->] (4.25,0) -- (5,0);
+\draw[->] (6.5,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[<-] (4,0.25)  node[right,xshift=1mm,yshift=1mm] {$+$} --++ (0,0.5)
+node[above] {$d(s)$};
+
+\draw[->] (7,0) -- ++(0,-1.5) -- (0.75,-1.5) -- ++(0,1.25)
+node[left,xshift=-1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+\begin{enumgreekparen}
+	\item
+	\( \displaystyle
+	H_1(s) = \frac{s+2}{s+1} \qquad
+	H_2(s) = \frac{10}{s(s+6)}
+	 \)
+	\item
+	\( 
+	H_1(s) = \frac{s+2}{s(s+1)} \qquad
+	H_2(s) = \frac{10}{s+6}
+	 \)
+\end{enumgreekparen}
+Να βρεθούν και στις δύο περιπτώσεις τα σφάλματα θέσης και ταχύτητας με διάφορες
+περιπτώσεις διαταραχών.
+
+\subparagraph{Λύση, αν δεν υπάρχει διαταραχή d(s)}
+Έχουμε μοναδιαία αρνητική ανάδραση και το σύστημα έχει έναν ολοκληρωτή, άρα είναι τύπου 1.
+Το σφάλμα θέσης είναι \( e_{\mathrm{ssp}} = 0 \), και το σφάλμα ταχύτητας μία σταθερά
+\( e_{\mathrm{ssv}}=\frac{1}{K_{\mathrm v}} = \frac{1}{\lim_{s\to 0} sH(s)} \).
+
+\subparagraph{Λύση με διαταραχή \( d(s) = \frac{A}{s} \)}
+Υπολογίζουμε:
+\begin{align*}
+	y &= H_2\left( d+H_1(r-y) \right) \implies \dots \\
+	\implies y &= \underbrace{\frac{H_1H_2}{1+H_1H_2}}_{y_1} r +
+	\underbrace{\frac{H_2}{1+H_1H_2}d}_{y_2}
+\end{align*}
+
+Φαίνεται η επαλληλία στη απόκριση του συστήματος, την οποία θα μπορούσαμε να εκμεταλλευτούμε.
+
+Θυμόμαστε ότι:
+\[
+e(s) = r(s)-y(s) \qquad \text{και} \qquad
+e_{\mathrm{ss}} = \lim_{s\to 0} se(s)
+\]
+
+\todo{πράξεις, check εκφώνηση}
+
+\subparagraph{(α) σφάλμα θέσης}
+Για το σφάλμα θέσης, θεωρούμε \( r(s) = \frac{1}{s} \),  και έχουμε:
+\begin{align*}
+	e_{\mathrm{ssp}} &= \lim_{s\to 0}s\left[
+	\frac{1}{s} - \frac{H_1H_2}{1+H_1H_2} \frac{1}{s}
+	- \frac{H_2}{1+H_1H_2}\frac{A}{s}
+	\right] = \dots
+\end{align*}
+
+\subparagraph{(β) σφάλμα θέσης}
+Αντίστοιχα με παραπάνω, βρίσκουμε:
+\[
+    e_{\mathrm{ssp}} = 0
+\]
 
 \end{document}
