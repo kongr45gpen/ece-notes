@@ -491,7 +491,7 @@ S(f) &= \mathsmaller{\mathsmaller{\frac{1}{2} A_c \left[
 \draw[gray,dashed] (0.2*3,{3*0.2^2/(2+0.2^2)}) -- ++(-0.2*3,0)
 node[scale=0.6,left] {$2\%$};
 
-\draw[->,black!80!brown] (1.51,2.67) to[bend left=20] ++(0.5,1) node[above right] {Ισχύς φέροντος};
+\draw[->,black!80!brown] (1.51,2.67) to[bend left=20] ++(0.5,1.5) node[above right] {Ισχύς φέροντος};
 \draw[->,black!80!brown] (2.61,0.82) to[bend right=20] ++(0.8,-0.5) node[right] {
 	Ισχύς πλευρικών συνιστωσών};
 
@@ -509,14 +509,14 @@ plot ({\m}, {3-3*(\m/3)^2/(2+(\m/3)^2)});
 σήματος με το φέρον. Για αυτό παρουσιάζεται ο \textbf{διαμορφωτής AM (διακοπτικός - switching modulator)}:
 
 \begin{circuitikz}[american,scale=1.3]
-	\draw (0,0) to[esource=$m(t)$] (0,2)
-	to[sV=$c(t)$] (2,2)
-	to[Do] (4,2)
+	\draw (0,0) to[esource,label=$m(t)$] (0,2)
+	to[sV,label={$c(t)\equals A_c\cos(2πf_ct)$}] (2,2)
+	to[D] (4,2)
 	to[R=$R_L$] (4,0)
 	-- (0,0);
 	
-	%\draw (2,2) to[V=$v_1(t)$,*-*] (2,0);
-	%\draw (4,2) to[V=$v_2(t)$,*-*] (4,0);
+	\draw (2,2) to[open,v=$v_1(t)$,*-*] (2,0);
+	\draw (4,2) -- (5,2) to[open,v^=$v_2(t)$,o-o] (5,0) -- (4,0);
 \end{circuitikz}
 
 Επίσης απαιτούμε το σήμα \( m(t) \) να έχει \textbf{αρκετά μικρότερο πλάτος} από το φέρον:
@@ -586,7 +586,23 @@ A_c\left[ 1+k_am(t) \right] \cos 2πf_c
 \end{align*}
 
 δηλαδή το κύκλωμα γίνεται:
-\todo{Circuit with BPF}
+
+\begin{circuitikz}[american,scale=1.3]
+	\draw (0,0) to[esource,label=$m(t)$] (0,2)
+	to[sV,label={$c(t)\equals A_c\cos(2πf_ct)$}] (2,2)
+	to[D] (4,2)
+	to[R=$R_L$] (4,0)
+	-- (0,0);
+	
+	\draw (2,2) to[open,v=$v_1(t)$,*-*] (2,0);
+	\draw (4,2) -- (5,2) to[open] (5,0) -- (4,0);
+	
+	% Rectangle
+	\draw (5,2.5) rectangle (7,-0.5) node[align=center] (A) at (6,1) {BPF\\{%
+			\footnotesize Band Pass Filter}};
+	
+	\draw (7,2) -- (8,2) to[open,v^=$s(t)$,o-o] (8,0) -- (7,0);
+\end{circuitikz}
 
 όπου το Band Pass Filter πρέπει να έχει κέντρο τη συχνότητα \( f_c \) και εύρος ζώνης
 από \( f_c - w \) μέχρι \( f_c + w \).
