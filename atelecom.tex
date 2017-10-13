@@ -116,51 +116,49 @@ rotate=90,minimum width=3cm, minimum height=1.6cm, align=center, draw]
 ιονόσφαιρα και να ανακλαστούν για ακόμα μεγαλύτερη κάλυψη. Αντιθέτως, οι υψηλές συχνότητες
 (π.χ. FM) επιτρέπουν υψηλότερη ποιότητα μετάδοσης.
 
+\begin{wrapfigure}{r}{0.3\textwidth}\centering
+	\begin{tikzpicture}[scale=.5,every node/.style={scale=.7}]
+	\def\l{1}
+	\def\h{3.5}
+	\def\N{7}
+	
+	\begin{scope}[every node/.style={midway,above,scale=.4}]
+	\draw[->] (0,1) -- (0,0) node[midway,right] {user};
+	\draw (-\l,0) rectangle (\l,-\h);
+	\draw(-\l,-1*\h/7) -- ++(2*\l,0) node {Application};
+	\draw(-\l,-2*\h/7) -- ++(2*\l,0) node {Presentation};
+	\draw(-\l,-3*\h/7) -- ++(2*\l,0) node {Session};
+	\draw(-\l,-4*\h/7) -- ++(2*\l,0) node {Transport};
+	\draw(-\l,-5*\h/7) -- ++(2*\l,0) node {Network};
+	\draw(-\l,-6*\h/7) -- ++(2*\l,0) node {Data Link};
+	\draw(-\l,-7*\h/7) -- ++(2*\l,0) node[scale=1.3,yshift=-1mm] {Physical};
+	\end{scope}
+	
+	\begin{scope}[every node/.style={midway,above,scale=.4,baseline},xshift=5cm]
+	\draw[<-] (0,1) -- (0,0) node[midway,right] {user};
+	\draw (-\l,0) rectangle (\l,-\h);
+	\draw(-\l,-1*\h/7) -- ++(2*\l,0) node {Application};
+	\draw(-\l,-2*\h/7) -- ++(2*\l,0) node {Presentation};
+	\draw(-\l,-3*\h/7) -- ++(2*\l,0) node {Session};
+	\draw(-\l,-4*\h/7) -- ++(2*\l,0) node {Transport};
+	\draw(-\l,-5*\h/7) -- ++(2*\l,0) node {Network};
+	\draw(-\l,-6*\h/7) -- ++(2*\l,0) node {Data Link};
+	\draw(-\l,-7*\h/7) -- ++(2*\l,0) node[scale=1.3,yshift=-1mm] {Physical};
+	\end{scope}
+	
+	\draw (0,-\h) -- ++(0,-1) -- ++(1.5,0);
+	\draw (1.5,-\h-1+0.4) rectangle ++(2,-0.8) node[midway] {Κανάλι};
+	\draw (3.5,-\h-1) -- ++(1.5,0) -- ++(0,1);
+	
+	\draw[<->,thick,gray] (1.5,-1.7) to[bend left] node[midway,above] {Peer} ++(2,0);
+	
+	\draw (current bounding box.north) node[rectangle,align=center]
+	{OSI\\7 επιπέδων};
+	\end{tikzpicture}
+\end{wrapfigure}
+
 Για την κωδικοποίηση και αποκωδικοποίηση των δεδομένων, πρέπει ο πομπός και ο δέκτης να
 συμφωνήσουν σε ένα κοινό πρότυπο, για παράδειγμα στο TCP/IP ή το OSI 7 επιπέδων.
-
-\begin{wrapfigure}{l}{0.3\textwidth}
-	
-	\centering
-\begin{tikzpicture}[scale=.5,every node/.style={scale=.7}]
-\def\l{1}
-\def\h{3.5}
-\def\N{7}
-
-\begin{scope}[every node/.style={midway,above,scale=.4}]
-\draw[->] (0,1) -- (0,0) node[midway,right] {user};
-\draw (-\l,0) rectangle (\l,-\h);
-\draw(-\l,-1*\h/7) -- ++(2*\l,0) node {Application};
-\draw(-\l,-2*\h/7) -- ++(2*\l,0) node {Presentation};
-\draw(-\l,-3*\h/7) -- ++(2*\l,0) node {Session};
-\draw(-\l,-4*\h/7) -- ++(2*\l,0) node {Transport};
-\draw(-\l,-5*\h/7) -- ++(2*\l,0) node {Network};
-\draw(-\l,-6*\h/7) -- ++(2*\l,0) node {Data Link};
-\draw(-\l,-7*\h/7) -- ++(2*\l,0) node[scale=1.3,yshift=-1mm] {Physical};
-\end{scope}
-
-\begin{scope}[every node/.style={midway,above,scale=.4,baseline},xshift=5cm]
-\draw[<-] (0,1) -- (0,0) node[midway,right] {user};
-\draw (-\l,0) rectangle (\l,-\h);
-\draw(-\l,-1*\h/7) -- ++(2*\l,0) node {Application};
-\draw(-\l,-2*\h/7) -- ++(2*\l,0) node {Presentation};
-\draw(-\l,-3*\h/7) -- ++(2*\l,0) node {Session};
-\draw(-\l,-4*\h/7) -- ++(2*\l,0) node {Transport};
-\draw(-\l,-5*\h/7) -- ++(2*\l,0) node {Network};
-\draw(-\l,-6*\h/7) -- ++(2*\l,0) node {Data Link};
-\draw(-\l,-7*\h/7) -- ++(2*\l,0) node[scale=1.3,yshift=-1mm] {Physical};
-\end{scope}
-
-\draw (0,-\h) -- ++(0,-1) -- ++(1.5,0);
-\draw (1.5,-\h-1+0.4) rectangle ++(2,-0.8) node[midway] {Κανάλι};
-\draw (3.5,-\h-1) -- ++(1.5,0) -- ++(0,1);
-
-\draw[<->,thick,gray] (1.5,-1.7) to[bend left] node[midway,above] {Peer} ++(2,0);
-
-\draw (current bounding box.north) node[rectangle,align=center]
-{OSI\\7 επιπέδων};
-\end{tikzpicture}
-\end{wrapfigure}
 
 Σε αυτό το μάθημα μας ενδιαφέρει το φυσικό επίπεδο μόνο.
 
@@ -168,7 +166,20 @@ rotate=90,minimum width=3cm, minimum height=1.6cm, align=center, draw]
 του σήματος μέσω των καναλιών (π.χ ηλεκτρομαγνητικά κύματα) είναι αναλογική, αφού δεν γίνεται
 να έχουμε άμεση μετάβαση της κατάστασης από 0 ως 1:
 
-\todo{Graph 3}
+\begin{tikzpicture}[scale=1]
+\draw (0,-2) -- (0,2);
+\draw (0,0) -- (6,0);
+
+\draw[very thick,black!70!blue] plot[const plot]
+coordinates {(0,1) (1,-1) (3,1) (4,-1) (5.5,1) (6,1)};
+
+\draw[very thick,black!20!cyan!80!blue] plot[const plot,smooth,tension=0.8]
+coordinates {(0,0.8) (0.8,0.7) (1.5,-1.4) (2.7,-0.8) (3.5,1) (4.9,-1.2) (5.5,1) (6,1.2)};
+
+\filldraw[fill=black!70!blue] (7,-0.3) rectangle ++(0.2,0.2) node[midway,right,xshift=1mm] {ψηφιακό σήμα};
+
+\filldraw[fill=black!20!cyan!80!blue] (7,-0.8) rectangle ++(0.2,0.2) node[midway,right,xshift=1mm] {πραγματικό σήμα};
+\end{tikzpicture}
 
 Πρακτικά οι αναλογικές τηλεπικοινωνίες χρησιμοποιούνται πλέον μόνο στους ραδιοφωνικούς
 σταθμούς FM (που αρχίζουν και αυτοί να καταργούνται), αλλά συνεχίζουμε να τις μελετάμε για
@@ -181,11 +192,37 @@ rotate=90,minimum width=3cm, minimum height=1.6cm, align=center, draw]
 "χαμηλές" συχνότητες όπως αναφέρθηκε παραπάνω (συνήθως από 0 μέχρι π.χ. 20 \( \mathrm{kHz} \)
 ή 6 \( \mathrm{MHz} \)):
 
-\todo{Graph 4}
+\begin{tikzpicture}[scale=1]
+\def\s{ (0,0) (0.5,1) (0.7,1.2+0.1*rand) (1,1.5) (1.2,1.2+0.1*rand) (1.4,1+0.1*rand)
+	(1.6, 0.7+0.2*rand) (1.8,0.4+0.15*rand) (2,0)}
+
+\pgfmathsetseed{15}
+\draw[very thick, orange] plot [smooth] coordinates \s;
+\pgfmathsetseed{15}
+\draw (2,0) node[below] {$w$};
+
+\draw (0,0) node[below left] {$0$};
+\draw (-3,0) -- (3,0) node[below right] {$\mathrm{Hz}$};
+\draw (0,-0.2) -- (0,2);
+\end{tikzpicture}
 
 Ή, επειδή χρησιμοποιούμε \textit{δίπλευρα} φάσματα:
 
-\todo{Graph 5}
+\begin{tikzpicture}[scale=1]
+\def\s{ (0,0) (0.5,1) (0.7,1.2+0.1*rand) (1,1.5) (1.2,1.2+0.1*rand) (1.4,1+0.1*rand)
+	(1.6, 0.7+0.2*rand) (1.8,0.4+0.15*rand) (2,0)}
+
+\pgfmathsetseed{15}
+\draw[very thick, orange] plot [smooth] coordinates \s;
+\pgfmathsetseed{15}
+\draw[very thick, orange!90!brown, xscale=-1] plot [smooth] coordinates \s;
+\draw (2,0) node[below] {$w$};
+\draw (-2,0) node[below] {$-w$};
+
+\draw (0,0) node[below left] {$0$};
+\draw (-3,0) -- (3,0) node[below right] {$\mathrm{Hz}$};
+\draw (0,-0.2) -- (0,2);
+\end{tikzpicture}
 
 Η μέγιστη θετική συχνότητα \( w \) ορίζει το \textbf{εύρος ζώνης (bandwidth)} του σήματος.
 
@@ -239,15 +276,73 @@ s(t) = A_c\left[ 1 + k_a \cdot m(t) \right]\cos(2\pi f_c t)
 \]
 το οποίο μπορεί να εκφράζεται σε Volt ή Ampere και ίσως εκπέμπεται από κάποια κεραία.
 
-%Γραφικά:
-\todo{Graph 6}
+Γραφικά:
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2,xscale=1.3]
+\def\f{1.3+0.30362*\x-6.94276*\x^2+5.23511*\x^3-0.0466465*\x^4-0.696833*\x^5+0.128634*\x^6}
+%coordinates {(0,1.5) (0.7,0) (1.2,-0.5) (1.5,0) (2,1.5)  (3,1.5) (3.2,1.5)}
+\draw (0,-1.5) -- (0,2);
+\draw (0,0) -- (3,0);
+
+\draw[very thick,black!70!blue,variable=\x,samples=\gsamples,domain=0:3]
+plot ({\x},{\f}) (0,1.3) node[left] {$m(t)$};
+
+\begin{scope}[yshift=-4cm]
+\draw (0,-2) -- (0,2);
+\draw (0,0) -- (3,0);
+
+\draw[thick,blue!70!black,variable=\x,samples=\gsamples,domain=0:3] plot ({\x},{(1.5*sin(\x r*40))}) (0,1.5) node[above right] {$c(t)$};
+\draw (0,-1.5) node[left] {$-A_c$};
+\draw (0,1.5) node[left] {$A_c$};
+\end{scope}
+
+\begin{scope}[xshift=5cm]
+\draw (0,-0.5) -- (0,3);
+\draw (0,0) -- (3,0);
+
+\draw[very thick,black!70!blue,variable=\x,samples=\gsamples,domain=0:3]
+plot ({\x},{\f+1}) (0,1.3+1) node[left] {$\left[1+k_am(t)\right]$};
+\end{scope}
+
+\begin{scope}[xshift=5cm,yshift=-4cm]
+\draw[thin,dashed,cyan!70!blue,variable=\x,samples=\gsamples,domain=0:3]
+plot ({\x},{\f+1}) (0,1.3+1);
+\draw[very thick,green!70!blue,variable=\x,samples=\gsamples,domain=0:3]
+plot ({\x},{(\f+1)*sin(\x r*40)}) (1.3+1,0);
+
+\draw[->,cyan!70!blue] (2.65,3) to[bend left] ++(1,1) node[above right] {Περιβάλλουσα};
+
+\draw (0,-3) -- (0,3);
+\draw (0,0) -- (3,0);
+\end{scope}
+\end{tikzpicture}
+\end{center}
 
 Η περιβάλλουσα του διαμορφωμένου σήματος περιέχει την πληροφορία που θέλουμε.
 
 Η σταθερά \( k_a \) ονομάζεται \textbf{ευαισθησία πλάτους} του διαμορφωτή, και θέλουμε
 να είναι τέτοια ώστε \( \left[1 + k_a m(t)\right] > 0 \), διότι σε διαφορετική περίπτωση:
 
-\todo{Graph 7}
+\begin{tikzpicture}[scale=1,xscale=1.3]
+\def\f{1.3+0.30362*\x-6.94276*\x^2+5.23511*\x^3-0.0466465*\x^4-0.696833*\x^5+0.128634*\x^6}
+%coordinates {(0,1.5) (0.7,0) (1.2,-0.5) (1.5,0) (2,1.5)  (3,1.5) (3.2,1.5)}
+\draw (0,-2) -- (0,2);
+\draw (0,0) -- (3,0);
+
+\draw[very thick,black!70!blue,variable=\x,samples=\gsamples,domain=0:3]
+plot ({\x},{\f}) (0,1.3);
+
+\begin{scope}[xshift=5cm]
+\draw[very thick,green!70!blue,variable=\x,samples=\gsamples,domain=0:3]
+plot ({\x},{(\f)*sin(\x r*40)}) (1.3+1,0);
+\draw[very thick,black!70!blue,variable=\x,samples=\gsamples,domain=0:3]
+plot ({\x},{abs(\f)}) (0,1.3);
+
+\draw (0,-2) -- (0,2);
+\draw (0,0) -- (3,0);
+\end{scope}
+\end{tikzpicture}
 
 Επειδή ο αποδιαμορφωτής βλέπει μόνο τις θετικές κορυφές του σήματος, εδώ δεν έχει μεταφέρει
 σωστά την πληροφορία στα σημεία όπου \(  \left[1 + k_a m(t)\right] < 0  \), αλλά την έχει
@@ -302,5 +397,201 @@ s(t) = A_c\left[ 1 + k_a \cdot m(t) \right]\cos(2\pi f_c t)
 είναι περισσότερο απ' όσο χρειάζεται (αφού το αριστερό του μέρος είναι ίδιο με το δεξί),
 ενώ το σήμα είναι και ενεργειοβόρο, αφού τα \( \sfrac{2}{3}  \) της ενέργειας καταναλώνονται
 στον όρο \( δ \) και όχι στην πληροφορία.
+
+\subsubsection{Για ημιτονοειδή είσοδο}
+Έστω ένα αρχικά ημιτονοειδές σήμα:
+\[
+m(t) = A_m\cos(2\pi f_mt)
+\]
+
+Τότε το διαμορφωμένο σήμα AM γίνεται:
+\begin{align*}
+s(t) &= A_c \left[
+1 + \overbrace{μ}^{\mathclap{μ = k_aA_m}}
+\cdot \cos(2\pi \cdot f_m t)
+\right]\cos(2\pi f_c t)
+\boxed{\hspace{200pt}}
+μ \leq 1
+\\
+&= A_c\cos(2\pi f_c t) + A_c μ\cos(2\pi f_c t)\cos(2\pi f_mt)
+\\ &=
+A_c\cos2πf_ct + \frac{1}{2}μA_c \cos\left[2π(f_c+f_m)t\right]
++\frac{1}{2} μA_c\cos\left[
+2π(f_c-f_m)t
+\right]
+\\
+\updownarrow &\quad \text{Μ. F}
+\\
+S(f) &= \mathsmaller{\mathsmaller{\frac{1}{2} A_c \left[
+δ(f-f_c)+δ(f+f_c) \right]
++ \frac{1}{4}μA_c \left[
+δ(f-f_c-f_m)+δ(f-f_c+f_m)
+\right]
++ \frac{1}{4} μA_c\left[
+δ(f-f_c+f_m)+δ(f+f_c-f_m)
+\right]}}
+\end{align*}
+
+%Γραφικά:
+
+\todo{Graph 11}
+
+\[
+\underset{\substack{\downarrow\\\mathclap{\text{Bandwidth}}}}{\mathrm{B_T}}
+=2f_m = 2w
+\]
+
+Επίσης προκύπτει ότι:
+\begin{align*}
+\frac{A_{\max}}{A_{\min}} &= \frac{A_c(1+μ)}{A_c(1-μ)} \implies \\
+μ &= \frac{A_{\max} -A_{\min} }{A_{\max} + A_{\min}}
+\end{align*}
+
+\subsubsection{Ισχύς}
+Αν μας ζητούνταν η ισχύς του σήματος, θα απαντούσαμε \( \frac{1}{2}A_c^2R \), αν θεωρήσουμε
+ότι το σήμα είναι μια ένταση ρεύματος που διαρρέει κάποια αντίσταση \( R \). Στα σήματα
+όμως θεωρούμε ότι η αντίσταση αυτή είναι 1, άρα παίρνουμε ίδιο αποτέλεσμα, είτε θεωρούμε ότι
+το σήμα αναπαριστά ρεύμα, είτε τάση.
+
+Επομένως η ισχύς π.χ. του φέροντος είναι:
+\[
+\boxed{
+\frac{1}{2}A_c^2
+	}
+\]
+
+Το πλευρικό σήμα για ημιτονοειδή είσοδο έχει ενέργεια:
+\[
+2\times \frac{1}{8}μ^2A_c^2
+\]
+
+και ο λόγος του με τη συνολική ενέργεια είναι:
+\[
+\frac{2\cdot \frac{1}{8} μ^2A_c^2}{\frac{1}{2}A_c^2+2\cdot\frac{1}{8}μ^2A_c^2}
+= \frac{μ^2}{2+μ^2}
+\]
+
+Γραφικά:
+
+\begin{tikzpicture}
+\def\c{gray!50!black}
+\draw (0,0) -- (4,0) node[below] {$μ$};
+\draw (0,-0.5) -- (0,4) node[left] {Ισχύς \%};
+
+\draw[\c,thin] (3,-0.5) -- (3,4);
+
+\draw (0,0) node [below left] {$0$};
+\draw (3,0) node [below left] {$1$};
+
+\draw[\c,thin] (0,1) node[left] {$\sfrac{1}{3}$} -- (4,1);
+\draw[\c,thin] (0,2) node[left] {$\sfrac{2}{3}$} -- (4,2);
+\draw[\c,thin] (0,3) node[left] {$\sfrac{3}{3}$} -- (4,3);
+
+\draw[gray,dashed] (0.2*3,-0.4) node[right,scale=.8] {$0.2=20\%$} -- (0.2*3,4);
+\draw[gray,dashed] (0.2*3,{3*0.2^2/(2+0.2^2)}) -- ++(-0.2*3,0)
+node[scale=0.6,left] {$2\%$};
+
+\draw[->,black!80!brown] (1.51,2.67) to[bend left=20] ++(0.5,1) node[above right] {Ισχύς φέροντος};
+\draw[->,black!80!brown] (2.61,0.82) to[bend right=20] ++(0.8,-0.5) node[right] {
+	Ισχύς πλευρικών συνιστωσών};
+
+\draw[very thick,black!80!brown,variable=\m,domain=0:3,samples=\gsamples]
+plot ({\m}, {3*(\m/3)^2/(2+(\m/3)^2)});
+\draw[very thick,black!80!brown,variable=\m,domain=0:3,samples=\gsamples]
+plot ({\m}, {3-3*(\m/3)^2/(2+(\m/3)^2)});
+\end{tikzpicture}
+
+Όσο αυξάνουμε το \( μ \), αυξάνεται το ποσοστό της ισχύος που καταναλώνεται για τη μετάδοση
+του σήματος και όχι του φέροντος, αλλά η ισχύς του φέροντος συνεχίζει να είναι μεγάλη.
+
+\subsubsection{Διαμορφωτής AM}
+Ένα ερώτημα που προκύπτει είναι ποιό κύκλωμα θα πραγματοποιήσει τον πολλαπλασιασμό του
+σήματος με το φέρον. Για αυτό παρουσιάζεται ο \textbf{διαμορφωτής AM (διακοπτικός - switching modulator)}:
+
+\begin{circuitikz}[american,scale=1.3]
+	\draw (0,0) to[esource=$m(t)$] (0,2)
+	to[sV=$c(t)$] (2,2)
+	to[Do] (4,2)
+	to[R=$R_L$] (4,0)
+	-- (0,0);
+	
+	%\draw (2,2) to[V=$v_1(t)$,*-*] (2,0);
+	%\draw (4,2) to[V=$v_2(t)$,*-*] (4,0);
+\end{circuitikz}
+
+Επίσης απαιτούμε το σήμα \( m(t) \) να έχει \textbf{αρκετά μικρότερο πλάτος} από το φέρον:
+\[
+\left\lvert  m(t) \right\rvert \ll A_c
+\]
+
+Τότε, η τάση \( u_1 \) γίνεται:
+\[
+u_1(t) = m(t)+A_c \cos(2πf_ct)
+\]
+\todo{Graph 13}
+
+Και, αφού θυμηθούμε την καμπύλη λειτουργίας της διόδου, \todo{Graph 14}, ισχύει:
+\[
+u_2(t) \simeq \begin{cases}
+u_1(t), &\quad \text{όταν } c(t) > 0 \\
+0,&\quad \text{όταν } c(t) < 0
+\end{cases}
+\]
+
+Εναλλακτικά, μπορούμε να εκφράσουμε την \( u_2(t) \) ως γινόμενο της
+εισόδου \( u_1(t) \) και μιας συνάρτησης \( g_{T_0} \) που μηδενίζεται για \( c(t) <0 \) και
+είναι μονάδα για \( c(t) > 0 \), δηλαδή μιας παλμοσειράς:
+
+\todo{Graph 15}
+
+\begin{align*}
+	u_2(t) &\simeq
+	\left[
+	A_c\cos 2π f_c t + m(t)
+	\right] \cdot g_{T_0}(t) \\
+	g_{T_0(t)} &= \frac{1}{2} + \frac{2}{\pi}
+	\sum_{n=1}^\infty \frac{(-1)^{n-1}}{2n+1}\cos[2πf_ct(2n-1)]
+	\intertext{Άρα}
+	u_2(t) &\simeq
+	\left(
+	A_c\cos 2πf_ct +m(t
+	\right) \cdot \left[
+	\frac{1}{2} + \frac{2}{π} \cos\left(
+	2πf_ct
+	\right)-\frac{2}{π}\frac{1}{3}\cos(2π3f_ct)
+	+ \frac{2}{π}\frac{1}{5}\cos(5f_ct)+\dots
+	\right]
+	\\
+	&=
+	\frac{A_c}{2}\cos 2 π f_ct
+	+ \frac{1}{2}m(t)
+	\\ &\hphantom{=}
+	+ \frac{2}{π}A_c\cos 2πf_ct + \infoboxed{\frac{2}{π}m(t)\cos 2πf_c t}
+	\\ &\hphantom{=}
+	-\frac{2}{3π}A_c\cos 2π (3f_c) \cos 2πf_ct - \frac{2}{3π}
+	m(t)\cos 2π(3f_ct)+\dots
+\end{align*}
+
+Αν σχεδιάσουμε τις συχνότητες που δίνει ο τύπος σε ένα διάγραμμα φάσματος:
+
+\todo{Graph 16}
+
+Παρατηρούμε ότι στο φάσμα υπάρχει το επιθυμητό διαμορφωμένο AM σήμα, όπως και ο
+πολλαπλασιασμός του \( m(t) \) με το φέρον. Επομένως, με ένα ζωνοπερατό φίλτρο, μπορούμε
+να πάρουμε από τις άπειρες συχνότητες μόνο το τελικό φάσμα:
+\begin{align*}
+u(t) = &\frac{A_c}{2}\left[ 1+\frac{4}{πA_c}m(t) \right]\cos 2π f_c t
+\intertext{που αντιστοιχεί στον τύπο:}
+A_c\left[ 1+k_am(t) \right] \cos 2πf_c
+\end{align*}
+
+δηλαδή το κύκλωμα γίνεται:
+\todo{Circuit with BPF}
+
+όπου το Band Pass Filter πρέπει να έχει κέντρο τη συχνότητα \( f_c \) και εύρος ζώνης
+από \( f_c - w \) μέχρι \( f_c + w \).
+
+Αυτό ήταν ένα παράδειγμα χρήσης \textit{μη γραμμικών στοιχείων} (δίοδος) για spectral
+spread.
 
 \end{document}

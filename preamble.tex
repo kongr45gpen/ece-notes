@@ -132,6 +132,8 @@
 \tcbset{highlight math style={enhanced,colframe=red,colback=white,%
         arc=0pt,boxrule=1pt,shrink tight,boxsep=1.5mm,extrude by=0.5mm}}
 \newcommand{\attnboxed}[1]{\tcbhighmath[colback=red!5!white,drop fuzzy shadow,arc=0mm]{#1}}
+\newcommand{\infoboxed}[1]{%
+	\tcbhighmath[colframe=blue!50!white,colback=blue!5!white,arc=0mm]{#1}}
 \titleformat{\section}{\bf\Large}{Κεφάλαιο \thesection}{1em}{}
 \newtcolorbox{attnbox}[1]{colback=red!5!white,%
     colframe=red!75!black,fonttitle=\bfseries,title=#1}
@@ -184,7 +186,7 @@
 % Global amount of samples
 % Set to a higher value (e.g. 200) for nicer graphs
 % Set to a low value (e.g. 10) for performance
-\newcommand*{\gsamples}{10}
+\newcommand*{\gsamples}{70}
 
 \newcommand{\nesearrow}{%
 	\,%
