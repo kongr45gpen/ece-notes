@@ -253,8 +253,8 @@ node[above,rectangle,align=center,scale=0.8]
 
 \draw (4.5,0) -- ++(0,-1.5) -- (3,-1.5);
 \draw (1.5,-2) rectangle (3,-1) node[midway] {$H(s)$};
-\draw (1.5,-1.5) -- (0.75,-1.5) node[above,midway,green!50!black,scale=0.8] {$f(s)$} 
--- ++(0,1.25);
+\draw[->] (1.5,-1.5) -- (0.75,-1.5) node[above,midway,green!50!black,scale=0.8] {$f(s)$} 
+-- ++(0,1.25) node[right,xshift=1mm,yshift=-1mm] {$-$};
 \end{tikzpicture}
 
 Ορίζουμε:
@@ -275,10 +275,31 @@ node[above,rectangle,align=center,scale=0.8]
 \end{align*}
 
 Αν συμπεριλάβουμε και την είσοδο διαταραχής, το ζητούμενο είναι η είσοδος αυτή να μην
-επηρεάζει καθόλου (ή όσο το δυνατόν λιγότερο) την έξοδο. Μετά από τις πράξεις:
+επηρεάζει καθόλου (ή όσο το δυνατόν λιγότερο) την έξοδο. Έχουμε:
 \begin{align*}
-	T_d(s) &= \frac{Y(s)}{d(s)} = \frac{1}{1+G(s)H(s)}
+    y(s) &= d(s) + G(s)w(s)
+    \\ &= d(s) - G(s)f(s) \\ &= d(s) - G(s)H(s)y(s) \implies \\
+    y(s)\left[ 1+G(s)H(s) \right] &= d(s) \implies \\
+	T_d(s) &= \frac{y(s)}{d(s)} = \frac{1}{1+G(s)H(s)}
 \end{align*}
+
+Συνοπτικά:
+\begin{theorem}{Συναρτήσεις μεταφοράς σε σύστημα κλειστού βρόγχου}{}
+	Για ένα σύστημα κλειστού βρόγχου με είσοδο \( r(s) \), είσοδο διαταραχής
+	\( d(s) \), συνάρτηση \( G(s) \) στην ευθεία διαδρομή και \( H(s) \) στη
+	διαδρομή ανάδρασης, οι συναρτήσεις μεταφοράς είναι:
+	\begin{align*}
+		T(s) &= \left. \frac{y(s)}{r(s)} \right\rvert_{d(s) = 0}
+		= \frac{G(s)}{1+G(s)H(s)} \\
+		T_{d}(s) &= \left. \frac{y(s)}{d(s)} \right\rvert_{r(s) = 0}
+		=
+		\frac{1}{1+G(s)H(s)}
+	\end{align*}
+	και η συνολική έξοδος του συστήματος είναι:
+	\[
+	y(s) = T(s)r(s) + T_d(s)d(s)
+	\]
+\end{theorem}
 
 Παρατηρούμε ότι το χαρακτηριστικό πολυώνυμο είναι το ίδιο στις δύο συναρτήσεις μεταφοράς.
 
@@ -548,7 +569,7 @@ y(t) &= \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \q
 
 Για παράδειγμα, για το σύστημα κλειστού βρόγχου, θυμόμαστε ότι:
 
-\begin{tikzpicture}[scale=0.8]
+\begin{tikzpicture}[scale=1]
 \draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
 \draw (0.75,0) circle (0.25);
 \draw (1,0) -- ++(0.5,0);
@@ -556,8 +577,8 @@ y(t) &= \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \q
 \draw (3,0) -- (3.75,0);
 \draw[->] (3.25,0) -- ++(1,0) node[above right] {$y$};
 
-\draw (3.6,0) -- ++(0,-1.5) -- (3,-1.5);
-\draw (1.5,-2) rectangle (3,-1) node[midway] {$G(s)$};
+\draw (3.6,0) -- ++(0,-1.5) -- (3,-1.5) -- (1.5,-1.5);
+\draw[dashed] (1.5,-2) rectangle (3,-1) node[midway,opacity=.5] {$G(s)$};
 \draw[->] (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[right,xshift=1mm,yshift=-1mm] {$-$};
 \end{tikzpicture}
 
@@ -669,11 +690,53 @@ node[above] {$d$};
 \draw[->] (7,0) -- ++(0,-1.5) -- (0.75,-1.5) -- ++(0,1.25)
 node[right,xshift=1mm,yshift=-1mm] {$-$};
 \end{tikzpicture}
+
+Το μετασχηματίζουμε στο ισοδύναμό του, ώστε να εφαρμόσουμε τους τύπους κλειστού βρόγχου:
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$κ$};
+\draw (3,0) -- (3.75,0);
+\draw (4,0) circle (0.25);
+\draw (6,-0.5) rectangle (7.5,0.5) node[midway] {$\frac{1}{s(Js+b)}$};
+\draw (4.25,0) -- (6,0);
+\draw[->] (7.5,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[<-] (4,0.25)  node[right,xshift=1mm,yshift=1mm] {$+$} --++ (0,0.5)
+node[above] {$d$};
+
+
+\draw[->] (5,0) -- ++(0,-1.5) -- (3.5,-1.5);
+\draw[->]  (2,-1.5) -- (0.75,-1.5) -- ++(0,1.25)
+node[right,xshift=1mm,yshift=-1mm] {$-$};
+
+\draw (2,-1.5-0.5) rectangle (3.5,-1.5+0.5) node[midway] {$\frac{1}{s(Js+b)}$};
+\end{tikzpicture}
+
 \todo{πράξεις, + ή -?}
 
-Τότε προκύπτει, μετά από πράξεις:
+Τότε προκύπτει (για είσοδο \( \frac{1}{s} \), αφού αναζητούμε σφάλμα θέσης):
 \begin{align*}
-	e_{\mathrm{ssp}} &= -\frac{1}{k}
+    T(s) &= \frac{1}{s(Js+b)}\frac{κ}{1+\frac{κ}{s(Js+b)}} 
+    = \frac{κ}{s(Js+b)+κ}\\
+    T_{d}(s) &= \frac{1}{s(Js+b)}\frac{1}{1+\frac{κ}{s(Js+b)}}
+    = \frac{1}{s(Js+b)+κ}
+     \\
+    y(s) &= T(s)r(s) + T_d(s)d(s)
+    \\ &= \frac{1}{s}\frac{κ}{s(Js+b)+κ} + \frac{1}{s}\frac{1}{s(Js+b)+κ}
+    \\
+    e(s) &= r(s) - y(s) \\
+    e_{\mathrm{ssp}} &= \lim_{s\to 0} se(s)
+    \\ &= \lim_{s \to 0} s\left[
+    \frac{1}{s} - \frac{1}{s}\frac{κ}{s(Js+b)+κ} - \frac{1}{s}\frac{1}{s(Js+b)+κ}
+    \right]
+    \\
+    &= \lim_{s\to 0} \left[
+    1 - \frac{κ}{s(Js+b)+κ} - \frac{1}{s(Js+b)+κ}
+    \right] \\
+    &= 1-\frac{κ}{κ}-\frac{1}{κ} = -\frac{1}{κ}
 \end{align*}
 Δηλαδή βλέπουμε ότι η διαφορετική θέση της εισόδου διαταραχής επηρεάζει το σφάλμα θέσης του
 συστήματος.
@@ -778,7 +841,18 @@ H(s) = \frac{s+9}{s^2+7s+3}
 	e_{\mathrm{ssp}} &= \frac{1}{1+3} = \frac{1}{4}.
 \end{align*}
 
-\paragraph{Παράδειγμα}
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H(s)$};
+\draw (3,0) -- (3.75,0);
+\draw[->] (3.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[->]  (3.6,0) -- ++(0,-1) -- (1.5,-1) -- (0.75,-1) -- ++(0,0.75) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
 Στο παραπάνω σχήμα, θέτουμε:
 
 \[
@@ -789,22 +863,40 @@ H(s) = \frac{2(s+10)}{s(s+2)(s+5)}
 \subparagraph{}
 \begin{alignat*}{2}
 K_{\mathrm{pos}} &= \infty \\
-K_{\mathrm v}	 &= \lim_{s\to 0} sH(s) = \frac{20}{10} = 2 \\
+K_{\mathrm v}	 &= \lim_{s\to 0} sH(s) &&= \frac{20}{10} = 2 \\
 K_{\mathrm a}    &= 0 \\[2ex]
 e_{\mathrm{ssp}} &= \frac{1}{1+\infty} &&= 0 \\
 e_{\mathrm{ssv}} &= \frac{1}{K_{\mathrm v}} &&= \frac{1}{2} \\
 e_{\mathrm{ssa}} &= \frac{1}{0} &&= \infty
 \end{alignat*}
 
-\paragraph{Παράδειγμα}
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H(s)$};
+\draw (3,0) -- (3.75,0);
+\draw[->] (3.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[->]  (3.6,0) -- ++(0,-1) -- (1.5,-1) -- (0.75,-1) -- ++(0,0.75) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
 Στο παραπάνω σχήμα:
 \[
-H(s) = \frac{1.8κ}{s(s+3.5)}
+H(s) = \frac{1.8κ}{s(s+3.3)}
 \]
 
 Ποιά πρέπει να είναι η σταθερά \( κ \) ώστε να ισχύει \( e_{\mathrm{ssv}} = 0.327 \);
 
-\todo{πράξεις}
+\begin{align*}
+	K_{\mathrm{v}} &= \lim_{s\to 0}
+	sH(s) = \lim_{s \to 0} \frac{1.8κ}{s+3.3} = \frac{18κ}{33} \\
+	e_{\mathrm{ssv}} &= \frac{1}{K_{\mathrm v}}
+	= \frac{33}{18κ} = 0.327 \implies \\
+	κ &= \frac{33}{18\cdot 0.327} \simeq 5.607
+\end{align*}
 
 \paragraph{Άσκηση}
 Έστω ένα σύστημα με συνάρτηση μεταφοράς:
@@ -852,14 +944,48 @@ H_κ(s) = \frac{H(s)}{1+H(s)}
 
 \paragraph{Παράδειγμα} \hspace{0pt}
 
-\todo{Graph 16}
+\begin{tikzpicture}
+\draw[->] (-0.1,0) -- (3,0) node[below right] {$t$};
+\draw[->] (0,-0.1) -- (0,3);
+
+\draw[dashed] (0,1.4) node[left] {$0.5$} -- ++(3,0);
+\draw[dashed] (0,2.8) node[left] {$1$} -- ++(3,0);
+
+\draw[very thick, blue!80!green]
+plot[samples=10,variable=\x,domain=0:3,smooth]
+({\x},{0.2/(0.01+2*\x)*sin(2*\x r)+1.4*(1-exp(-4*\x))})
+node[right] {$y(t)$};
+
+\foreach \i in {1,2,3}
+\draw(\i*2.5/3,0.05) -- ++(0,-0.1) node[below] {$\i$};
+\end{tikzpicture}
 
 Έστω το σύστημα με την παραπάνω απόκριση στη βηματική συνάρτηση. Ποιός είναι ο τύπος του
 συστήματος;
 
 \subparagraph{} \hspace{0pt}
 
-\todo{Graph 17}
+\begin{tikzpicture}
+\draw[dashed] (0,1.4) node[left] {$0.5$} -- ++(3,0);
+\draw[dashed] (0,2.8) node[left] {$1$} -- ++(3,0);
+
+\draw[very thick, blue!80!green]
+plot[samples=10,variable=\x,domain=0:3,smooth]
+({\x},{0.2/(0.01+2*\x)*sin(2*\x r)+1.4*(1-exp(-4*\x))})
+node[right] {$y(t)$};
+
+\draw[very thick, blue!40!cyan]
+(0,2.8) -- ++(3,0) node[right] {$r(s)$};
+
+\draw[thin,<->,blue!40!cyan]
+(1.5,2.7) -- ++(0,-1.2) node[midway,right,scale=.8] {$0.5$};
+
+\foreach \i in {1,2,3}
+\draw(\i*2.5/3,0.05) -- ++(0,-0.1) node[below] {$\i$};
+
+\draw[->] (-0.1,0) -- (3,0) node[below right] {$t$};
+\draw[->] (0,-0.1) -- (0,3);
+\end{tikzpicture}
 
 Η επιθυμητή έξοδος του συστήματος είναι 1, αλλά η έξοδός του στη μόνιμη κατάσταση είναι 0.5,
 επομένως υπάρχει σταθερό σφάλμα \( 0.5 \). Άρα το σύστημα έχει τύπο \( 0 \).
@@ -868,7 +994,33 @@ H_κ(s) = \frac{H(s)}{1+H(s)}
 βάλουμε ως είσοδο τη συνάρτηση ράμπας, το σφάλμα όσο \( t \to \infty \) θα αυξάνεται όλο
 και περισσότερο:
 
-\todo{Graph 18}
+\begin{tikzpicture}
+\draw[dashed] (0,2.6/3) node[left] {$1$} -- ++(3,0);
+\draw[dashed] (0,2.6) node[left] {$3$} -- ++(3,0);
+
+\begin{scope}
+\pgfmathsetseed{22}
+\clip  (0,0) --
+plot[samples=10,variable=\x,domain=0.1:3,smooth]
+({\x},{0.2*\x+0.1*rand}) -- (3,3) -- (0,0);
+\fill[draw=yellow!50!black,opacity=.5,fill=yellow!50!white,postaction={pattern=vertical lines}] (0,0) -- (3,3) -- (3,0) -- cycle;
+\end{scope}
+
+\pgfmathsetseed{22}
+\draw[very thick, blue!80!green] (0,0) --
+plot[samples=10,variable=\x,domain=0.1:3,smooth]
+({\x},{0.2*\x+0.1*rand})
+node[right] {$y(t)$};
+
+\draw[very thick, blue!40!cyan]
+(0,0) -- (3,3) node[right] {$r(s)$};
+
+\foreach \i in {1,2,3}
+\draw(\i*2.5/3,0.05) -- ++(0,-0.1) node[below] {$\i$};
+
+\draw[->] (-0.1,0) -- (3,0) node[below right] {$t$};
+\draw[->] (0,-0.1) -- (0,3);
+\end{tikzpicture}
 
 \paragraph{Άσκηση} \hspace{0pt}
 
@@ -931,7 +1083,7 @@ node[left,xshift=-1mm,yshift=-1mm] {$-$};
 	H_2(s) = \frac{10}{s(s+6)}
 	 \)
 	\item
-	\( 
+	\( \displaystyle
 	H_1(s) = \frac{s+2}{s(s+1)} \qquad
 	H_2(s) = \frac{10}{s+6}
 	 \)
@@ -940,9 +1092,30 @@ node[left,xshift=-1mm,yshift=-1mm] {$-$};
 περιπτώσεις διαταραχών.
 
 \subparagraph{Λύση, αν δεν υπάρχει διαταραχή d(s)}
-Έχουμε μοναδιαία αρνητική ανάδραση και το σύστημα έχει έναν ολοκληρωτή, άρα είναι τύπου 1.
+\begin{enumgreekparen}
+\item Έχουμε μοναδιαία αρνητική ανάδραση και το σύστημα έχει έναν ολοκληρωτή, άρα είναι τύπου 1.
 Το σφάλμα θέσης είναι \( e_{\mathrm{ssp}} = 0 \), και το σφάλμα ταχύτητας μία σταθερά
-\( e_{\mathrm{ssv}}=\frac{1}{K_{\mathrm v}} = \frac{1}{\lim_{s\to 0} sH(s)} \).
+\(
+\displaystyle e_{\mathrm{ssv}}=\frac{1}{K_{\mathrm v}} = \frac{1}{\lim_{s\to 0} sH(s)}
+= \frac{1}{\lim_{s\to 0}s\frac{s+2}{s+1}\frac{10}{s(s+6)}}
+=\frac{1}{\sfrac{20}{6} }=\frac{3}{10}
+ \).
+ 
+\item
+Αντίστοιχα με το προηγούμενο ερώτημα, έχουμε:
+\begin{align*}
+K_{\mathrm{pos}} &=
+\lim_{s\to 0} H(s) = \lim_{s\to 0}
+\frac{s+2}{s(s+1)}\frac{10}{s+6} = \infty \\
+K_{\mathrm{v}} &=
+\lim_{s\to 0}sH(s) = \lim_{s\to 0}
+\frac{s+2}{s+1}\frac{10}{s+6} = 2\cdot\frac{10}{6} = \frac{10}{3}
+\intertext{Άρα:}
+e_{\mathrm{ssp}} &= \frac{1}{1+K_{\mathrm{pos}}} = 0 \\
+e_{\mathrm{ssv}} &= \frac{1}{K_{\mathrm v}} = \frac{3}{10}
+\end{align*}
+\end{enumgreekparen}
+
 
 \subparagraph{Λύση με διαταραχή \( d(s) = \frac{A}{s} \)}
 Υπολογίζουμε:
@@ -960,7 +1133,7 @@ e(s) = r(s)-y(s) \qquad \text{και} \qquad
 e_{\mathrm{ss}} = \lim_{s\to 0} se(s)
 \]
 
-\todo{πράξεις, check εκφώνηση}
+Για την εύρεση του αποτελέσματος, θα χρησιμοποιήσουμε τον ορισμό του σφάλματος.
 
 \subparagraph{(α) σφάλμα θέσης}
 Για το σφάλμα θέσης, θεωρούμε \( r(s) = \frac{1}{s} \),  και έχουμε:
@@ -968,13 +1141,53 @@ e_{\mathrm{ss}} = \lim_{s\to 0} se(s)
 	e_{\mathrm{ssp}} &= \lim_{s\to 0}s\left[
 	\frac{1}{s} - \frac{H_1H_2}{1+H_1H_2} \frac{1}{s}
 	- \frac{H_2}{1+H_1H_2}\frac{A}{s}
-	\right] = \dots
+	\right]
+	\\ &=
+	\lim_{s\to 0} \left[
+	1 - \frac{\frac{s+2}{s+1}\frac{10}{s(s+6)}}{1+\frac{s+2}{s+1}\frac{10}{s(s+6)}}
+	- \frac{\frac{10}{s(s+6)}}{1+\frac{s+2}{s+1}\frac{10}{s(s+6)}}
+	\right]
+	\\ &= \lim_{s\to 0} \left[
+	1-\frac{\frac{10(s+2)}{\cancel{s(s+1)(s+6)}}}{\frac{s(s+1)(s+6)+10(s+2)}{\cancel{s(s+1)(s+6)}}} - A
+	\frac{\frac{10}{\cancel{s(s+6)}}}{\frac{s(s+1)(s+6)+10(s+2)}{\cancel{s(s+6)}(s+1)}}
+	\right]
+	\\ &= \lim_{s\to 0} \left[
+	1- \frac{10(s+2)}{s(s+1)(s+6)+10(s+2)}
+	-A\frac{10(s+1)}{s(s+1)(s+6)+10(s+2)}
+	\right]
+	\\ &= 1 - \frac{20}{20} - A\cdot\frac{10}{20}
+	\\ &= -\frac{A}{2}.
 \end{align*}
-
 \subparagraph{(β) σφάλμα θέσης}
 Αντίστοιχα με παραπάνω, βρίσκουμε:
-\[
-    e_{\mathrm{ssp}} = 0
-\]
+\begin{align*}
+    e_{\mathrm{ssp}} &= \lim_{s\to 0}s\left[
+    \frac{1}{s} - \frac{H_1H_2}{1+H_1H_2} \frac{1}{s}
+    - \frac{H_2}{1+H_1H_2}\frac{A}{s}
+    \right]
+    \\ &=
+    \lim_{s\to 0} \left[
+    1 - \frac{\frac{s+2}{s(s+1)}\frac{10}{s+6}}{1+\frac{s+2}{s(s+1)}\frac{10}{s+6}}
+    - A\frac{\frac{10}{s+6}}{1+\frac{s+2}{s(s+1)}\frac{10}{s+6}}
+    \right]
+    \\ &=
+    \lim_{s\to 0} \left[
+    1-
+    \frac{\frac{10(s+2)}{\cancel{s(s+1)(s+6)}}}{\frac{s(s+1)(s+6)+10(s+2)}{\cancel{s(s+1)(s+6)}}}
+    - A\frac{\frac{10}{\cancel{s+6}}}{
+    	\frac{s(s+1)(s+6)+10(s+2)}{s(s+1)\cancel{(s+6)}}
+    	}
+    \right]
+    \\ &=
+    \lim_{s\to 0} \left[
+    1 - \frac{10(s+2)}{s(s+1)(s+6)+10(s+2)}
+    - A \frac{10s(s+1)}{s(s+1)(s+6)+10(s+2)}
+    \right]
+    \\ &= 1 - \frac{20}{20} - A\cdot \frac{0}{20}
+    \\ &= 0.
+\end{align*}
+
+Παρατηρούμε ότι η αλλαγή της θέσης του ολοκληρωτή \( \displaystyle \frac{1}{s} \) επηρεάζει
+και το σφάλμα του συστήματος.
 
 \end{document}
