@@ -292,7 +292,7 @@ plot ({\x},{\f}) (0,1.3) node[left] {$m(t)$};
 \draw (0,-2) -- (0,2);
 \draw (0,0) -- (3,0);
 
-\draw[thick,blue!70!black,variable=\x,samples=\gsamples,domain=0:3] plot ({\x},{(1.5*sin(\x r*40))}) (0,1.5) node[above right] {$c(t)$};
+\draw[thick,blue!70!black,variable=\x,samples=\gsamples,domain=0:3,smooth] plot ({\x},{(1.5*sin(\x r*40))}) (0,1.5) node[above right] {$c(t)$};
 \draw (0,-1.5) node[left] {$-A_c$};
 \draw (0,1.5) node[left] {$A_c$};
 \end{scope}
@@ -301,7 +301,9 @@ plot ({\x},{\f}) (0,1.3) node[left] {$m(t)$};
 \draw (0,-0.5) -- (0,3);
 \draw (0,0) -- (3,0);
 
-\draw[very thick,black!70!blue,variable=\x,samples=\gsamples,domain=0:3]
+\draw[very thick,black!70!blue,variable=\x,samples={\gsamples/2},domain=0:3,opacity=.05]
+plot ({\x},{\f}) (0,1.3);
+\draw[very thick,black!70!blue,variable=\x,samples=\gsamples,domain=0:3,smooth]
 plot ({\x},{\f+1}) (0,1.3+1) node[left] {$\left[1+k_am(t)\right]$};
 \end{scope}
 
@@ -376,7 +378,43 @@ plot ({\x},{abs(\f)}) (0,1.3);
 	+ \frac{k_aA_c}{2}\left[ M(f-f_c) + M(f+f_c) \right]
 \end{align*}
 
-\todo{Graph 8}
+\begin{tikzpicture}[scale=1]
+\draw[draw=orange!50!brown,very thick]
+(-1.2,0) node[below] {$-w$}
+-- (0,1.8) node[right] {$M(0)$}
+-- (1.2,0) node[below] {$w$}
+;
+
+\draw (-2,0) -- (2,0);
+\draw (0,-0.5) -- (0,3) node[right] {$M(f)$};
+
+\begin{scope}[yshift=-4.5cm]
+\draw[xshift=-2cm,draw=black!50!orange,dashed,very thick,every node/.style={scale=.9}]
+(-1.2,0) node[below] {$-f_c-w$}
+-- (0,1.8)
+-- (1.2,0) node[below] {$-f_c+w$}
+(0,0) node[below] {$-f_c$}
+;
+\draw[xshift=2cm,draw=black!50!orange,dashed,very thick,every node/.style={scale=.9}]
+(-1.2,0) node[below] {$f_c-w$}
+-- (0,1.8)
+-- (1.2,0) node[below] {$f_c+w$}
+(0,0) node[below] {$f_c$}
+;
+\draw[ultra thick,->] (-2,0) -- ++(0,2.5)
+node[above] {$\sfrac{A_c}{2}$};
+\draw[ultra thick,->] (2,0) -- ++(0,2.5);
+
+\draw (-4,0) -- (4,0);
+\draw[->] (0,-0.5) -- (0,3) node[right] {$S(f)$};
+
+\draw[dashed] (-2.1,2.5) --++(4.2,0);
+\draw[dashed] (-2.1,1.8) --++(4.2,0);
+\draw (0,1.8) node[above right,scale=.7] {$\sfrac{1}{2}k_aA_cM(0)$};
+
+\end{scope}
+\end{tikzpicture}
+
 Βλέπουμε ότι το φάσμα του σήματος μετακινήθηκε στη συχνότητα.
 
 Παρατηρούμε επίσης ότι το φάσμα είναι δίπλευρο, και θυμόμαστε από το αναλογικό σήμα ότι
@@ -389,7 +427,40 @@ plot ({\x},{abs(\f)}) (0,1.3);
  
 Αν έχουμε \textbf{μικρή συχνότητα} \( f_c \), τότε το φάσμα του σήματος δεν περνάει το 0:
 
-\todo{Graph 9}
+\begin{tikzpicture}[scale=1]
+\draw[dashed] (0.7,0) -- ++(0,1.8);
+\draw[xshift=-0.7cm,draw=orange!50!brown,,very thick,every node/.style={scale=.9}]
+(-1.2,0)
+-- (0,1.8)
+-- (1.2,0)
+(0,0)
+;
+\draw[xshift=0.7cm,draw=blue!50!brown,very thick,every node/.style={scale=.9}]
+(-1.2,0) node[below] {$f_c-w$}
+-- (0,1.8)
+-- (1.2,0) node[below] {$f_c+w$}
+(0,0) node[below] {$f_c$}
+;
+
+\draw[draw=gray!70!black,thin] (-3,0) -- (3,0);
+\draw[->,draw=gray!70!black,thin] (0,-0.5) -- (0,3) node[right] {$S(f)$};
+
+\draw[very thick,black!70!gray,->] (0,-0.75) -- ++(0,-0.5);
+
+\begin{scope}[yshift=-4.5cm]
+\draw[->,draw=gray!70!black,thin] (0,-0.5) -- (0,3) node[right] {$S(f)$};
+
+\draw[very thick,orange!50!brown] (-1.9,0) -- (-0.7,1.8) -- (-0.5,1.5) -- (-0.49,1.5);
+\draw[very thick,blue!50!brown]
+(-0.5,1.5) -- (0.5,1.5);
+\draw[very thick,path fading=east,orange!50!brown]
+(-0.5,1.5) -- (0.5,1.5);
+\draw[very thick,blue!50!brown] (0.49,1.5) -- (0.5,1.5) -- (0.7,1.8) -- (1.9,0);
+
+\draw[draw=gray!70!black,thin] (-3,0) -- (3,0);
+
+\end{scope}
+\end{tikzpicture}
 
 και το αποτέλεσμα είναι παραμορφωμένο και μακριά από το επιθυμητό.
 
@@ -397,6 +468,35 @@ plot ({\x},{abs(\f)}) (0,1.3);
 είναι περισσότερο απ' όσο χρειάζεται (αφού το αριστερό του μέρος είναι ίδιο με το δεξί),
 ενώ το σήμα είναι και ενεργειοβόρο, αφού τα \( \sfrac{2}{3}  \) της ενέργειας καταναλώνονται
 στον όρο \( δ \) και όχι στην πληροφορία.
+
+\begin{tikzpicture}[scale=0.8]
+\draw[xshift=-3cm,fill=gray,fill opacity=0.04]
+(-1.6,0) -- ++(0,3) -- ++(1.6*2,0) -- ++(0,-3);
+\draw[xshift=3cm,fill=gray,fill opacity=0.04]
+(-1.6,0) -- ++(0,3) -- ++(1.6*2,0) -- ++(0,-3);
+
+\draw[xshift=-3cm,draw=black!50!orange,very thick,every node/.style={scale=.8}]
+(-1.2,0) node[below] {$-f_c-w$}
+-- (0,1.8)
+-- (1.2,0) node[below] {$-f_c+w$}
+(0,0) node[below] {$-f_c$}
+;
+\draw[xshift=3cm,draw=black!50!orange,very thick,every node/.style={scale=.8,opacity=1},
+fill=lime!60!green,fill opacity=.5]
+(-1.2,0) node[below] {$f_c-w$}
+-- (0,1.8)
+-- (1.2,0) node[below] {$f_c+w$}
+(0,0) node[below] {$f_c$}
+;
+\draw[ultra thick,->] (-3,0) -- ++(0,2.5);
+\draw[ultra thick,->] (3,0) -- ++(0,2.5);
+
+\draw (-5.5,0) -- (5.5,0);
+\draw[->] (0,-0.5) -- (0,4) node[right] {$S(f)$};
+
+\draw[xshift=-3cm]
+(-1.6,0) -- ++(0,3) -- ++(1.6*2,0) -- ++(0,-3);
+\end{tikzpicture}
 
 \subsubsection{Για ημιτονοειδή είσοδο}
 Έστω ένα αρχικά ημιτονοειδές σήμα:
@@ -410,8 +510,10 @@ s(t) &= A_c \left[
 1 + \overbrace{μ}^{\mathclap{μ = k_aA_m}}
 \cdot \cos(2\pi \cdot f_m t)
 \right]\cos(2\pi f_c t)
-\boxed{\hspace{200pt}}
+\hspace{200pt}
+\boxed{
 μ \leq 1
+}
 \\
 &= A_c\cos(2\pi f_c t) + A_c μ\cos(2\pi f_c t)\cos(2\pi f_mt)
 \\ &=
@@ -432,9 +534,79 @@ S(f) &= \mathsmaller{\mathsmaller{\frac{1}{2} A_c \left[
 \right]}}
 \end{align*}
 
-%Γραφικά:
+Γραφικά:\nopagebreak
 
-\todo{Graph 11}
+\begin{center}
+	\begin{tikzpicture}[scale=1]
+	\draw (0,-1.8) -- (0,2);
+	\draw (0,0) -- (6,0);
+	
+	\draw[very thick,black!70!blue,variable=\x,samples=\gsamples,domain=0:6]
+	plot ({\x},{1.4*cos(1.5*\x r)}) (1.1,1) node[] {$m(t)$};
+	
+	\draw (0,1.4) node[left] {$A_m$};
+	\draw (0,-1.4) node[left] {$-A_m$};
+	
+	\draw[dashed] (2/1.5*pi,0) node[below] {$T_m=\frac{1}{f_m}$} -- ++(0,1.4);
+	
+	\begin{scope}[yshift=-5cm]
+	\draw (0,-1.8) -- (0,2);
+	\draw (0,0) -- (6,0);
+	
+	\draw[very thick,blue!70!cyan,variable=\x,samples=\gsamples,domain=0:6,smooth]
+	plot ({\x},{1.2*sin(26*\x r)}) (1,1.2) node[above] {$c(t)$};
+	
+	\draw (0,1.2) node[left] {$A_c$};
+	\draw (0,-1.2) node[left] {$-A_c$};
+	
+	\draw[dashed] (0,1.2) -- ++(6,0);
+	\end{scope}
+	
+	\begin{scope}[yshift=-10cm]
+	\draw (0,-2.5) -- (0,2.5);
+	\draw (0,0) -- (6,0);
+	
+	\draw[dashed,variable=\x,samples=\gsamples,domain=0:6]
+	plot ({\x},{1+0.7*cos(1.5*\x r)});
+	\draw[dashed,variable=\x,samples=\gsamples,domain=0:6]
+	plot ({\x},{-1-0.7*cos(1.5*\x r)});
+	
+	\draw[very thick,green!70!blue,variable=\x,samples=\gsamples,domain=0:6,smooth]
+	plot ({\x},{(1+0.7*cos(1.5*\x r))*sin(26*\x r)}) (1.2,1.2) node[above] {$s(t)$};
+
+
+	\end{scope}
+	
+	\begin{scope}[xshift=10cm]
+	\draw (-3,0) -- (3,0);
+	\draw[->] (0,-1) -- (0,2) node[right] {$M(f)$};
+	
+	\draw[black!70!blue,ultra thick,->] (-0.7,0) node[below] {$-f_m$}-- ++(0,1.5);
+	\draw[black!70!blue,ultra thick,->] (0.7,0) node[below] {$f_m$}-- ++(0,1.5);
+	
+	\begin{scope}[yshift=-5cm]
+	\draw (-3,0) -- (3,0);
+	\draw[->] (0,-1) -- (0,2) node[right] {$C(f)$};
+	
+	\draw[blue!70!cyan,ultra thick,->] (-2.5,0) node[below] {$-f_c$}-- ++(0,1.5);
+	\draw[blue!70!cyan,ultra thick,->] (2.5,0) node[below] {$f_c$}-- ++(0,1.5);
+	\end{scope}
+	
+	\begin{scope}[yshift=-10cm]
+	\draw (-3,0) -- (4,0);
+	\draw[->] (0,-1) -- (0,2) node[right] {$S(f)$};
+	
+	\draw[blue!70!cyan,ultra thick,->] (-2.5,0) node[below] {$-f_c$}-- ++(0,1.5);
+	\draw[black!70!blue,very thick,->] (-2.8,0) -- ++(0,0.7);
+	\draw[black!70!blue,very thick,->] (-2.2,0) -- ++(0,0.7);
+	
+	\draw[blue!70!cyan,ultra thick,->] (2.5,0) node[below,scale=1] {$f_c$}-- ++(0,1.5);
+	\draw[black!70!blue,very thick,->] (2.2,0) node[below left,scale=.9] {$f_c-f_m$}-- ++(0,0.7);
+	\draw[black!70!blue,very thick,->] (2.8,0) node[below right,scale=.9] {$f_c+f_m$}-- ++(0,0.7);
+	\end{scope}
+	\end{scope}
+	\end{tikzpicture}
+\end{center}
 
 \[
 \underset{\substack{\downarrow\\\mathclap{\text{Bandwidth}}}}{\mathrm{B_T}}
