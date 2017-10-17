@@ -1190,4 +1190,202 @@ e_{\mathrm{ss}} = \lim_{s\to 0} se(s)
 Παρατηρούμε ότι η αλλαγή της θέσης του ολοκληρωτή \( \displaystyle \frac{1}{s} \) επηρεάζει
 και το σφάλμα του συστήματος.
 
+\subsection{Ασκήσεις (Δημήτρης)}
+\paragraph{Αντιστοιχίες ηλεκτρικού συστήματος σε μηχανικό σύστημα}
+
+\[
+\begin{array}{rcl}
+	\text{τάση } V & \rightarrow & \text{δύναμη } F \\
+	\text{ρεύμα } I & \rightarrow & \text{ταχύτητα } u \\
+	\text{αντίσταση } R=\frac{V}{I} & \rightarrow & \text{αποσβεστήρας } B = \frac{F}{u}
+	\todo{Shape 19} \\
+	\text{πυκνωτής } i_c=C\od{u_c}{t} & \rightarrow & \text{ελατήριο } \frac{1}{κ} \od{F}{t}
+	\rightsquigarrow F=kx \\
+	\text{πηνίο } u_L = L\od{i_L}{t} & \rightarrow & \text{αδράνεια } F = ma = m\od{u}{t}
+\end{array}
+\]
+
+Ένα παράδειγμα μηχανικού συστήματος είναι τα \textbf{αμορτισέρ}, τα οποία ουσιαστικά
+"κόβουν" τις υψηλές συχνότητες που μπορεί να οφείλονται σε ανομοιομορφίες του δρόμου, ώστε
+να νιώθουμε άνετα μέσα σε ένα αυτοκίνητο.
+
+\paragraph{Άσκηση 3.8} \hspace{0pt}
+
+\begin{infobox}{}
+	Οι αριθμοί των ασκήσεων συνήθως δίνονται από το βιβλίο του \textbf{Πετρίδη}.
+\end{infobox}
+
+\todo{Shape 20}
+
+\begin{circuitikz}
+	\draw (0,0)
+	to[spring={$K_1$}] (2,0)
+	to[short] (2.5,0);
+	;
+	\draw (0,0.5) -- ++(0,-1);
+	\draw (2.5,-0.5) rectangle ++(1,1) node[midway] {$m_1$};
+	\draw (3.5,0.35) to[spring={$K_2$}] (5,0.35);
+	\draw (3.5,-0.35) to[damper,l_={$B_1$}] (5,-0.35);
+	\draw (5,-0.5) rectangle ++(1,1) node[midway] {$m_2$};
+	\draw (6,0) to[damper={$B_2$}] (8,0);
+\end{circuitikz}
+
+Να υπολογιστεί η συνάρτηση μεταφοράς του παραπάνω (\textit{???}) συστήματος.
+Σαν έξοδος θεωρείται η μετατόπιση της \( m_1 \).
+
+\subparagraph{Λύση}
+Βρίσκουμε το άθροισμα των δυνάμεων που ασκούνται σε κάθε μάζα, και εφαρμόζουμε το
+νόμο του Νεύτωνα:
+\begin{align*}
+	\text{Για τη μάζα 2: } F = m_2\od[2]{l_2}{t}
+	&=
+	\underbrace{-K_2(l_2-l_1)}_{\text{ελατήριο}}
+	-\underbrace{B_2\od[2]{l_2}{t}}_{\text{αποσβ.}}
+	-\underbrace{B_1\left(
+	\od{l_2}{t}-\od{l_1}{t}
+	\right)}_{\text{αποσβεστήρας}}
+	\\
+	\text{Για τη μάζα 1: } F = m_1\od[2]{l_1}{t}
+	&=
+	-K_1(l_1-l_0)-B_1\left(\od{l_1}{t}-\od{l_2}{t}\right)
+	-K_2(l_1-l_2)
+\end{align*}
+
+Μετασχηματίζουμε τις δύο εξισώσεις κατά Laplace:
+\begin{align}
+	m_2s^2L_2 &= -K_2(L_2-L_1) - B_2sL_2 - B_1(sL_2-sL_1) \label{3.8.lap2} \\
+	m_1s^2L_1 &= -K_1(L_1-L_0) - B_1(sL_1-sL_2) - K_2(L_1-L_2) \label{3.8.lap1}
+\end{align}
+Θυμόμαστε ότι δεν λαμβάνουμε υπ' όψιν τις αρχικές συνθήκες, αφού αναζητούμε τη συνάρτηση
+μεταφοράς.
+
+Αναζητούμε μια σχέση της μορφής \( H(s) = \frac{L_0(s)}{L_1(s)} \), άρα πρέπει να απαλείψουμε
+το \( L_2 \) από τις δύο παραπάνω σχέσεις:
+\begin{align*}
+	\eqref{3.8.lap2} \implies L_2 &=
+	L_1 \frac{K_2+B_1s}{m_2s^2+K_2+(B_1+B_2)s} \xRightarrow{\eqref{3.8.lap1}} \\
+	\frac{L_1}{L_0}
+	&= \frac{K_1m_2s^2+K_1K_2+K_1(B_1+B_2)s}{
+		(m_1s+K_1+K_2+B_1s)\left(m_2s^2+K_2+(B_1+B_2)s\right)-(K_2+B_1s)^2}
+\end{align*}
+
+\paragraph{Άσκηση με brushed DC κινητήρα} \hspace{0pt}
+
+Έστω ένας brushed DC κινητήρας
+\todo{Sae Graph 21}
+
+με ισοδύναμο κύκλωμα δρομέα:
+
+\begin{circuitikz}[american]
+\draw
+(0,0) to[V=$V_t$] (0,-2)
+;
+\draw
+(0,0) to [R=$R_A$,i^={$i_A$}]
+(2,0) to[L=$L_A$]
+(4,0) to[V_=$V$,label={\small ηλεκτρεγερτική δύναμη λόγω περιστροφής}]
+(4,-2) to[short] (0,-2)
+;
+\end{circuitikz}
+
+Το ισοδύναμο κύκλωμα περιγράφεται από την εξίσωση:
+\begin{equation}
+V_t = R_Ai_A +L_a\od{i_A}{t}
++ K_v \od{\theta}{t} \label{ex.brusheddc.elec}
+\end{equation}
+και το μηχανικό ισοδύναμο:
+\begin{equation}
+\underbrace{(J_L+J_m)}_{\mathrm{\frac{Nms^2}{rad}}}
+\underbrace{\od[2]{θ}{t}}_{\mathrm{\frac{rad}{s^2}}}
+= \underbrace{K_T i_A}_{\mathrm{\frac{Nm}{A}}} \label{ex.brusheddc.mech}
+\end{equation}
+όπου \( J_L \) και \( J_m \) είναι οι ροπές αδράνειας του κάθε μέρους.
+
+Στη συγκεκριμένη άσκηση θεωρούμε σαν έξοδο τη \textit{γωνία του κινητήρα}, και σαν είσοδο
+την \textit{τάση του δρομέα} \( V_t \).
+
+Λύνουμε το σύστημα:
+\begin{align*}
+	\eqref{ex.brusheddc.mech} \implies
+	i_A &= \frac{(J_L+J_m)}{K_T} \od[2]{θ}{t}
+	\implies \\
+	I_A &= \frac{J_L+J_m}{K_T}s^2θ
+	\xRightarrow{\eqref{ex.brusheddc.elec}}
+	\\
+	V_T &= \left[(R_A+\cancelto{0\mathclap{\raisebox{3ex}{\text{\tiny(συνήθως αγνοούμε το $L_A$)}}}}{L_A}s)
+	\frac{J}{K_T}s^2+K_vs
+	\right]θ \implies \\
+	\frac{θ}{V} &= \frac{\sfrac{1}{K_v} }{\frac{R_AJ}{K_TK_v}s^2+s}
+\end{align*}
+
+Βέβαια σε πολλές περιπτώσεις μπορεί να τοποθετηθεί ένας \textbf{\textit{μειωτήρας}}
+μεταξύ του \( J_m \) και του \( J_L \):
+\todo{Graph 23}
+
+Ο μειωτήρας είναι το μηχανικό ισοδύναμο ενός ενισχυτή, που κατασκευάζεται ουσιαστικά με δύο
+γρανάζια, ώστε να αυξηθεί η δύναμη μειώνοντας την ταχύτητα ή αντίστροφα:
+\todo{Graph 24}
+
+Τότε θα έχουμε:
+\[
+J = J_m + \left(
+\frac{N_1}{N_2}
+\right)^2 J_L
+\]
+
+Βέβαια ένα πραγματικό σύστημα θα περιλαμβάνει και δυναμική τριβή με τη μορφή αποσβεστήρα.
+
+\paragraph{Παράδειγμα 3.5.2} \hspace{0pt}
+
+\begin{circuitikz}
+	\draw
+	(0,0) to [R={$R_{\gamma f}$},o-] (2,0)
+	to [L={$L_{\gamma f}$}] (2,-2)
+	to [short,-o,i^={$i_{\gamma f}$}] (0,-2)
+	to [open,v={$e_{\gamma f}$}] (0,0)
+	;
+\end{circuitikz}
+
+\todo{Graph 25}
+
+\begin{align*}
+	e_{\gamma f} &=
+	R_{\gamma f} \cdot i_{\gamma f}
+	+ L_{γf} \od{i_{γf}}{t} \\
+	e_γ &= K\cdot n \cdot i_{γf}\quad
+	\left(
+	i_{γf} = \frac{e_γ}{γ}
+	\right) \\
+	E_{γf} &= \left(
+	\frac{R_{γf}}{γ}
+	+ \frac{L_{γf}}{γ}s
+	\right)E_γ \\
+	J\od[2]{θ}{t} + B\od{θ}{t} + T_L &= K_m i_a
+	\rightarrow (Js^2+Bs)Θ + T_L &= K_mI_a \\
+	L\od{i_a}{t} + Ri_a + K\od{θ}{t} &= e_γ
+	\rightarrow L_sI_a + R\cdot I_A + R\cdot I_A + K_S Θ = E_γ \\
+	(Js^2+Bs)Θ + T_L &= K_m \left(
+	\frac{E_γ - K_sΘ}{Ls + R}
+	\right) \\[2ex]
+	\left( Js^2+Bs+\frac{K_mK_s}{Ls+R} \right)Θ
+	+T_L &= \frac{K_m}{Ls+R}\left(
+	\frac{1}{\frac{R_γf}{γ}}
+	+\frac{L_γ f}{γ}s
+	\right)E_{γf} \\
+	\left(
+	Js+B+\frac{K_mK}{Ls+R}
+	\right)
+	ω + T_L &= \frac{K_m}{Ls+R} \left(
+	\frac{1}{\frac{R_γ f}{γ} + \frac{L_γ f}{γ}s}
+	\right)E_{γf}
+\end{align*}
+
+Για \( T_L = 0 \):
+\[
+\frac{Ω}{E_{γf}} =
+\frac{γK_m}{\left(
+	(Js+B)(Ls+R)+KK_m
+	\right)(Lγ_f s + R_{γf})}
+\]
+
 \end{document}
