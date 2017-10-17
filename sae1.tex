@@ -1388,4 +1388,152 @@ J = J_m + \left(
 	\right)(Lγ_f s + R_{γf})}
 \]
 
+\paragraph{Τελεστικός ενισχυτής} \hspace{0pt}
+
+\begin{center}
+	\begin{circuitikz}[scale=2.5] \draw
+		(0,0) node[op amp] (opamp) {}
+		(opamp.+) to[short,-o] ++(-0.5,0)
+		(opamp.-) to[short,-o] ++(-0.5,0)
+		(opamp.out) to[short,-o] ++(0.5,0)
+	;\end{circuitikz}
+\end{center}
+
+Ο τελεστικός ενισχυτής είναι ιδανικά ένας διαφορικός ενισχυτής άπειρου κέρδους.
+Αν οι δύο είσοδοι είναι 0, τότε η έξοδος είναι 0, ενώ αν διαφέρουν, η είσοδος είναι άπειρη
+(ή \( V_{cc} \) σε πραγματικό ενισχυτή).
+
+Για τον ιδανικό τελεστικό ενισχυτή κάνουμε τις παραδοχές:
+\begin{itemize}
+	\item \( R_m = \infty \)
+	\item \( V_{+} = V_{-} \) για να έχουμε πεπερασμένη έξοδο
+\end{itemize}
+
+\paragraph{Άσκηση Α35}
+
+\todo{Graph 26}
+
+Μας ζητείται να βρούμε τον λόγο \( \displaystyle \frac{E_o}{E_i} \).
+
+Χρησιμοποιούμε τη δεύτερη παραδοχή του ιδανικού τελεστικού, και παρατηρούμε ότι:
+\[
+V_B = V_A = 0
+\]
+άρα:
+\begin{align*}
+	V_{AΓ} + V_{ΓB} &= 0 \\
+	\implies V_C + e_o &= 0 \\
+	\implies V_C &= - e_0
+\end{align*}
+
+Υπολογίζουμε τα ρεύματα μέσω κυκλωματικών νόμων, και λαμβάνοντας υπ' όψιν ότι (λόγω της
+άπειρης αντίστασης) δεν πηγαίνει ρεύμα στις εισόδους A και B του ενισχυτή:
+\begin{align}
+	I_i &= i_R + i_2 \label{ex.A35.cur} \\
+	I_i &=\frac{e_i}{R} \label{ex.A35.ohm}
+\end{align}
+άρα:
+\begin{align*}
+	\eqref{ex.A35.cur} + \eqref{ex.A35.ohm}
+	\implies \Aboxed{\frac{e_i}{R}&= -c\od{e_o}{t}-\frac{e_o}{R}}
+	\intertext{και}
+	i_R &= \frac{V_C}{R} = -\frac{e_o}{R}
+\end{align*}
+
+Μετασχηματίζοντας την παραπάνω εξίσωση κατά Laplace και λύνοντας, έχουμε:
+\[
+\boxed{\frac{E_o}{E_i} = \frac{1}{RCs+1}}
+\]
+
+\paragraph{Άσκηση 2.19}
+
+\todo{Graph 27}
+
+Θα μετασχηματίσουμε το σύστημα σε ένα ισοδύναμό του.
+
+Αρχικά, θυμόμαστε την ισοδυναμία:
+
+\todo{Graph 28}
+
+Μετασχηματίζουμε το κομμάτι από \( w_1 \) ως \( B \):
+\todo{Graph 29}
+και το κομμάτι από \( A \) ως \( w_1 \) (αφού κάνουμε τις πράξεις και βρούμε \( \frac{w_1}{A} = 1+\frac{s+3}{s+7} \)):
+\todo{Graph 30}
+
+Τα δύο παραπάνω μετασχηματισμένα διαγράμματα είναι συνδεδεμένα εν σειρά, άρα:
+\todo{Graph 31}
+(όπου θέσαμε για ευκολία \( G(s) = \frac{(2s+10)2s}{(s+7)\left(s(s+5)+2\right)} \))
+και το τμήμα του συστήματος εντός του βρόγχου ανάδρασης με το
+\begin{circuitikz}[baseline,scale=.8]
+	\draw (0,0) to[twoport,t=$8$,scale=.8] (2,0);
+\end{circuitikz}
+γίνεται:
+\todo{Graph 32}
+με \( 1+G(s) = \frac{\text{αριθμητής }N_3}{\text{παρονομαστής }D_3}
+= \frac{
+	(2s+10)2s+(s+7)\left[s(s+5)+2\right]}{
+	(s+7)\left[s(s+5)+2\right]} \)
+
+Άρα το τελικό σύστημα είναι:
+\todo{Graph 33}
+και επομένως προκύπτει από πράξεις:
+\begin{align*}
+	\frac{y}{u} &=
+	\frac{\frac{N_3}{D_3(s+6)}}{1+8\frac{N_3}{D_3}\frac{1}{s+6}}
+	\\ &= \frac{N_3}{D_3(s+6)+8N_3}
+	\\ &= \frac{N_3}{D_3(s+6)+8N_3}
+	\\ &= \frac{
+		(2s+10)2s+(s+7)(s^2+5s+2)
+		}{
+		(s+14)(s+7)(s^2+5s+2)+16(2s+10)s
+		}
+\end{align*}
+
+Η άσκηση αυτή μπορεί βεβαίως να λυθεί και αλγεβρικά. Συνοπτικά:
+\begin{align}
+	y &= A + B \label{ex.2.19.1} \\
+	B &= \frac{2}{s+5}w \label{ex.2.19.2} \\
+	A &= \frac{1}{s+6}e \label{ex.2.19.3} \\
+	e &= u-8y \label{3x.2.19.4} \\
+	w &= \left(1+\frac{s+3}{s+7}\right)A - \frac{1}{s}B \label{ex.2.19.5}
+\end{align}
+και λύνοντας το σύστημα μπορεί να βρεθεί η συνάρτηση μεταφοράς.
+
+\paragraph{Ασκήσεις στα σφάλματα}
+\begin{enumgreekparen}
+	\item Τι σφάλμα θέσης έχει το σύστημα
+	\( \displaystyle H(s) = \frac{s+9}{s^2+7s+3} \) αν συνδεθεί σε μοναδιαία αρνητική
+	ανάδραση;
+	\subparagraph{}
+	Η συνάρτηση μεταφοράς είναι \( H_c = \frac{H}{1+H}
+	= \frac{s+9}{s^2+7s+3+s+9} \). Το σφάλμα θέσης
+	στη μόνιμη κατάσταση είναι το \( \lim_{s\to 0} s
+	(1-H_C)\frac{1}{s} \), ή θυμόμαστε ότι \( e_{\mathrm{ss}} 
+	= \frac{1}{1+K_P}
+	\) όπου \( K_P = \lim_{s\to 0} t \).
+	
+	Ισχύει:
+	\begin{align*}
+		K_p &= \lim_{s\to 0} \cancel{8}
+		\frac{s+9}{s^2+7s+3} = 3\\
+		e_{\mathrm{ss}} &= \frac{1}{4} = 0.25\%
+	\end{align*}
+	\item
+	Έστω συνάρτηση μεταφοράς που συνδέεται σε μοναδιαία αρνητική ανάδραση:
+	\[
+	H(s) = \frac{2(s+10)}{s(s^2+2)(s+5)}
+	\]
+	
+	\subparagraph{}
+	Τότε τα σφάλματα είναι:
+	\begin{align*}
+		e_{\mathrm{sv}} &= \lim_{s\to 0} \cancel{s}(1-H_c)\frac{1}{s^{\cancel{2}}} \\
+		K_v &= \lim_{s\to 0} Hs \\
+		e_{\mathrm{sv}} &= \frac{1}{K_v} \\
+		e_{\mathrm{sa}} &= \lim_{s\to 0} \frac{1}{\cancel{2}}s(1-H_c)\frac{\cancel{2}}{s^3} \\
+		K_a &= \lim_{s\to 0} H(s) \\
+		e_{\mathrm{sa}} &= \frac{1}{K_a}
+	\end{align*}
+\end{enumgreekparen}
+
 \end{document}
