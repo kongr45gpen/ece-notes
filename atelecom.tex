@@ -681,7 +681,8 @@ plot ({\m}, {3-3*(\m/3)^2/(2+(\m/3)^2)});
 
 \subsubsection{Διαμορφωτής AM}
 Ένα ερώτημα που προκύπτει είναι ποιό κύκλωμα θα πραγματοποιήσει τον πολλαπλασιασμό του
-σήματος με το φέρον. Για αυτό παρουσιάζεται ο \textbf{διαμορφωτής AM (διακοπτικός - switching modulator)}:
+σήματος με το φέρον. Για αυτό παρουσιάζεται το παρακάτω κύκλωμα, που λειτουργεί
+ως \textbf{διαμορφωτής AM (διακοπτικός - switching modulator)}:
 
 \begin{circuitikz}[american,scale=1.3]
 	\draw (0,0) to[esource,label=$m(t)$] (0,2)
@@ -703,9 +704,26 @@ plot ({\m}, {3-3*(\m/3)^2/(2+(\m/3)^2)});
 \[
 u_1(t) = m(t)+A_c \cos(2πf_ct)
 \]
-\todo{Graph 13}
 
-Και, αφού θυμηθούμε την καμπύλη λειτουργίας της διόδου, \todo{Graph 14}, ισχύει:
+%\def\gsamples{700}
+\begin{tikzpicture}
+\draw (0,0) -- (6,0);
+\draw[->] (0,-2) -- (0,3) node[left] {$u_1(t)$};
+
+\draw[very thick,blue!50!black] plot
+[variable=\t,domain=0:5,samples=\gsamples,smooth]
+(\t,{2*cos(2*\t r)+0.2*cos(43.7*\t r)})
+;
+
+\draw[dashed] (2*pi/2,0) node[below] {$\sfrac{1}{f_c}$} -- ++(0,2);
+\end{tikzpicture}
+
+Και, αφού θυμηθούμε την καμπύλη λειτουργίας της διόδου, \begin{tikzpicture}[baseline,scale=0.4,every node/.style={scale=.7}]
+\draw (-2,0) -- (2,0) node[below] {$u_1(t)$};
+\draw[->] (0,-1) -- (0,2) node[above] {$u_2(t)$};
+
+\draw[very thick,blue!50!black] (-2,0) -- (0,0) -- (2,2);
+\end{tikzpicture}, ισχύει:
 \[
 u_2(t) \simeq \begin{cases}
 u_1(t), &\quad \text{όταν } c(t) > 0 \\
@@ -717,8 +735,28 @@ u_1(t), &\quad \text{όταν } c(t) > 0 \\
 εισόδου \( u_1(t) \) και μιας συνάρτησης \( g_{T_0} \) που μηδενίζεται για \( c(t) <0 \) και
 είναι μονάδα για \( c(t) > 0 \), δηλαδή μιας παλμοσειράς:
 
-\todo{Graph 15}
+\begin{center}
+\begin{tikzpicture}
+\draw (-4.2,0) node[left] {$\cdots$} -- (4.2,0) node[right] {$\cdots$};
+\draw[->] (0,-1.5) -- (0,2) node[right] {$g_{T_0}(t)$};
 
+\draw[blue!70!cyan,ultra thick,opacity=.1]
+plot[variable=\t,domain=-4.2:4.2,samples=\gsamples]
+(\t,{cos(2*pi/3*\t r}) (0,1) node[above left] {$u_1(t)$};
+
+\draw[very thick,draw=teal] (-0.75,0) node[below] {$-\sfrac{T_0}{4}$} -- ++(0,0.8) -- ++(1.5,0) -- ++(0,-0.8) node[below] {$\sfrac{T_0}{4}$} ;
+\draw[very thick,draw=teal] (2+0.25,0) node[below] {$\sfrac{3T_0}{4}$} -- ++(0,0.8) -- ++(1.5,0) -- ++(0,-0.8) node[below] {$\sfrac{5T_0}{4}$};
+\draw[very thick,draw=teal] (-4+0.25,0) -- ++(0,0.8) -- ++(1.5,0) -- ++(0,-0.8);
+
+\draw (0,0) node[below right] {$0$};
+\draw[dashed] (3,0) node[below] {$T_0$} -- ++(0,0.8);
+\draw[dashed] (-3,0) node[below] {$-T_0$} -- ++(0,0.8);
+
+\draw (0,0.8) node[above right] {$1$};
+
+\draw (current bounding box.east) node[above right] {$T_0 = \frac{1}{f_c}$};
+\end{tikzpicture}
+\end{center}
 \begin{align*}
 	u_2(t) &\simeq
 	\left[
@@ -749,7 +787,46 @@ u_1(t), &\quad \text{όταν } c(t) > 0 \\
 
 Αν σχεδιάσουμε τις συχνότητες που δίνει ο τύπος σε ένα διάγραμμα φάσματος:
 
-\todo{Graph 16}
+\begin{tikzpicture}[scale=1.2]
+\draw[->] (0,-2) -- (0,2) node[above] {$U_2(f)$}; % y axis
+
+\draw[orange!40!brown] (-0.5,0) -- (0,0.8) -- (0.5,0);
+\draw[orange!20!brown!90!black,very thick,->] (0,0) -- ++(0,1);
+
+\draw[blue!50!green,fill opacity=0.9,fill=green!5!white,blur shadow,shadow xshift=0cm,shadow yshift=0.3mm]
+(0.8,0) -- ++(0,1.2) -- ++(1+2*0.2,0) -- ++(0,-1.2);
+
+\begin{scope}[xshift=1.5cm]
+\draw[draw=orange!50!brown,thick,every node/.style={scale=.7}]
+(-0.5,0) node[below] {$f_c-w$} -- (0,0.8) -- (0.5,0) node[below] {$f_c+w$} ;
+\draw[orange!20!brown!90!black,very thick,->] (0,0) node[below,black] {$f_c$} -- ++(0,1);
+\end{scope}
+
+\foreach \i in {3,5}
+{
+	\begin{scope}[xshift={\i*1.5cm}]
+	\draw[orange!50!brown,thick] (-0.5,0) -- (0,0.8) -- (0.5,0);
+	\end{scope}
+}
+\foreach \i in {2,3,...,5}
+{
+	\begin{scope}[xshift={\i*1.5cm}]
+	\draw[orange!20!brown!90!black,very thick,->] (0,0) node[below,black] {$\i f_c$} -- ++(0,1);
+	\end{scope}
+}
+
+\draw (-1,0) -- (9,0); % x axis
+\draw (8.2,0.4) node[right] {$\cdots$};
+
+\draw[gray,->,thick] (-1.75,0) to[bend right=20] ++(0.5,0);
+\begin{scope}[xshift=-3.5cm]
+\draw (-1.5,0) -- (1.5,0);
+\draw (0,-2) -- (0,2) node[above] {$M(f)$};
+
+\draw[draw=orange!50!brown,thick,scale=1.7]
+(-0.5,0) node[below] {$-w$} -- (0,0.8) -- (0.5,0) node[below] {$w$};
+\end{scope}
+\end{tikzpicture}
 
 Παρατηρούμε ότι στο φάσμα υπάρχει το επιθυμητό διαμορφωμένο AM σήμα, όπως και ο
 πολλαπλασιασμός του \( m(t) \) με το φέρον. Επομένως, με ένα ζωνοπερατό φίλτρο, μπορούμε
