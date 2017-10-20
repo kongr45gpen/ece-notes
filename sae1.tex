@@ -131,6 +131,8 @@ m\ddot x_0 + b(\dot x_0 - \dot x_i) + \kappa (x_0-x_i) = 0
 	\Aboxed{\frac{X_0(s)}{X_1(s)} &= \frac{bs+\kappa}{ms^2+bs+\kappa} }
 \end{align*}
 
+
+
 Αυτή είναι μία απλή μέθοδος μοντελοποίησης συστημάτων, αλλά η μοντελοποίηση δεν είναι
 αντικείμενο αυτού του μαθήματος.
 
@@ -1198,7 +1200,11 @@ e_{\mathrm{ss}} = \lim_{s\to 0} se(s)
 	\text{τάση } V & \rightarrow & \text{δύναμη } F \\
 	\text{ρεύμα } I & \rightarrow & \text{ταχύτητα } u \\
 	\text{αντίσταση } R=\frac{V}{I} & \rightarrow & \text{αποσβεστήρας } B = \frac{F}{u}
-	\todo{Shape 19} \\
+	\quad
+	\begin{circuitikz}[scale=0.7]
+	\ctikzset{bipoles/length=.9cm}
+	\draw (0,0) to[damper] (1,0);
+	\end{circuitikz} \\
 	\text{πυκνωτής } i_c=C\od{u_c}{t} & \rightarrow & \text{ελατήριο } \frac{1}{κ} \od{F}{t}
 	\rightsquigarrow F=kx \\
 	\text{πηνίο } u_L = L\od{i_L}{t} & \rightarrow & \text{αδράνεια } F = ma = m\od{u}{t}
@@ -1215,9 +1221,19 @@ e_{\mathrm{ss}} = \lim_{s\to 0} se(s)
 	Οι αριθμοί των ασκήσεων συνήθως δίνονται από το βιβλίο του \textbf{Πετρίδη}.
 \end{infobox}
 
-\todo{Shape 20}
-
 \begin{circuitikz}
+	\draw (2.5+0.2,-0.7) circle (0.2);
+	\draw (3.5-0.2,-0.7) circle (0.2);
+	
+	\draw (5+0.2,-0.7) circle (0.2);
+	\draw (6-0.2,-0.7) circle (0.2);
+	
+	\draw (1,-0.9) -- (8,-0.9);
+	\fill[pattern=north east lines] (1,-0.9) rectangle (8,-1.5);
+	
+	\draw (8,-0.9) -- (8,1);
+	\fill[pattern=north east lines] (8,-1.5) rectangle (9,1);
+	
 	\draw (0,0)
 	to[spring={$K_1$}] (2,0)
 	to[short] (2.5,0);
@@ -1225,12 +1241,23 @@ e_{\mathrm{ss}} = \lim_{s\to 0} se(s)
 	\draw (0,0.5) -- ++(0,-1);
 	\draw (2.5,-0.5) rectangle ++(1,1) node[midway] {$m_1$};
 	\draw (3.5,0.35) to[spring={$K_2$}] (5,0.35);
-	\draw (3.5,-0.35) to[damper,l_={$B_1$}] (5,-0.35);
+	\draw (3.5,-0.35) to[damper] (5,-0.35);
 	\draw (5,-0.5) rectangle ++(1,1) node[midway] {$m_2$};
 	\draw (6,0) to[damper={$B_2$}] (8,0);
+	
+	%\draw (3.5/2+5/2) node [label={[inner sep=1pt, fill=white,text=black, fill opacity=0.75, text opacity=1]above left:$(65, 35)$}] {};
+	\draw ({(3.5+5)/2},-0.75) node[inner sep=1pt, fill=white,text=black, fill opacity=0.75, text opacity=1,below] {$B_1$};
+	
+	\draw[thick,orange!50!green,->] (-0.7,0) -- (0,0) node[midway,above] {$F$};
+	\draw[thick,green!80!blue,->] (0,0.8) -- ++(0,-0.2) ++(0,0.1) -- ++(0.7,0)
+	node[above,midway] {$R_0$};
+	\draw[thick,green!80!blue,->] (2.5,0.8) -- ++(0,-0.2) ++(0,0.1) -- ++(0.7,0)
+	node[above,midway] {$l_1$};
+	\draw[thick,green!80!blue,->] (5,0.8) -- ++(0,-0.2) ++(0,0.1) -- ++(0.7,0)
+	node[above,midway] {$l_2$};
 \end{circuitikz}
 
-Να υπολογιστεί η συνάρτηση μεταφοράς του παραπάνω (\textit{???}) συστήματος.
+Να υπολογιστεί η συνάρτηση μεταφοράς του παραπάνω συστήματος.
 Σαν έξοδος θεωρείται η μετατόπιση της \( m_1 \).
 
 \subparagraph{Λύση}
@@ -1271,8 +1298,41 @@ e_{\mathrm{ss}} = \lim_{s\to 0} se(s)
 
 \paragraph{Άσκηση με brushed DC κινητήρα} \hspace{0pt}
 
-Έστω ένας brushed DC κινητήρας
-\todo{Sae Graph 21}
+Έστω ένας brushed DC κινητήρας:
+
+\begin{tikzpicture}[scale=1.1]
+\draw (0,0.7) -- (2,0.7);
+\draw (0,0) -- (2,0);
+\draw (2,0.35) ellipse (0.2 and 0.35);
+
+\draw (2,0.35) ellipse (0.2/2 and 0.35/2);
+\draw (2,0.35+0.35/2) -- ++ (-0.17,0);
+\draw (2,0.35-0.35/2) -- ++ (-0.17,0);
+
+\draw (0,0.7) arc (120:242:0.4);
+
+\draw[fill=gray!50!white]
+(2,0.35+0.07) to[bend right] (2,0.35-0.07)
+-- ++(1.4,0)
+-- ++(0,2*0.07)
+-- cycle;
+%(2,0.35+0.07) arc (120:242:0.082)
+
+\begin{scope}[xshift=3.5cm]
+%,fill=gray!10!white,path fading=north
+\draw[top color=gray!5!white,bottom color=gray!10!white!90!blue] (0,0.7) arc (120:242:0.4) -- (2,0) -- (2,0.7)
+-- (0,0.7);
+\draw (0,0) -- (2,0);
+\draw[fill=white] (2,0.35) ellipse (0.2 and 0.35);
+\draw (0,0.7) arc (120:242:0.4);
+
+\draw[->,black!80!gray] (2.3,0.9) to [bend left] node[midway,right] {$θ$} (2.3,-0.2);
+\end{scope}
+
+\draw[->,gray!30!black] (1,1.5) node[right] {στάτης}  to[bend left=5] (0.7,0.7);
+\draw[->,gray!30!black] (3.5,1.5) node[right] {δρομέας}  to[bend right=10] (3,0.45);
+\draw[->,gray!70!black!80!green] (2.4,1) node[above right] {$J_m$}  to[bend right=10] (2,0.45);
+\end{tikzpicture}
 
 με ισοδύναμο κύκλωμα δρομέα:
 
@@ -1320,11 +1380,71 @@ V_t = R_Ai_A +L_a\od{i_A}{t}
 
 Βέβαια σε πολλές περιπτώσεις μπορεί να τοποθετηθεί ένας \textbf{\textit{μειωτήρας}}
 μεταξύ του \( J_m \) και του \( J_L \):
-\todo{Graph 23}
+
+\begin{tikzpicture}
+\draw (0,0.7) -- (2,0.7);
+\draw (0,0) -- (2,0);
+\draw (2,0.35) ellipse (0.2 and 0.35);
+
+\draw (2,0.35) ellipse (0.2/2 and 0.35/2);
+\draw (2,0.35+0.35/2) -- ++ (-0.17,0);
+\draw (2,0.35-0.35/2) -- ++ (-0.17,0);
+
+\draw (0,0.7) arc (120:242:0.4);
+
+\draw[fill=gray!50!white]
+(2,0.35+0.07) to[bend right] (2,0.35-0.07)
+-- ++(1.4,0)
+-- ++(0,2*0.07)
+-- cycle;
+%(2,0.35+0.07) arc (120:242:0.082)
+
+\begin{scope}[xshift=3.5cm]
+%,fill=gray!10!white,path fading=north
+\draw[top color=gray!5!white,bottom color=gray!10!white!90!blue] (0,0.7) arc (120:242:0.4) -- (2,0) -- (2,0.7)
+-- (0,0.7);
+\draw (0,0) -- (2,0);
+\draw[fill=white] (2,0.35) ellipse (0.2 and 0.35);
+\draw (0,0.7) arc (120:242:0.4);
+
+\draw[->,black!80!gray] (2.3,0.9) to [bend left] node[midway,right] {$θ$} (2.3,-0.2);
+\end{scope}
+
+\draw[fill=white] (2.45,0.35-0.25) rectangle ++(0.5,0.5);
+
+
+\draw[->,gray!70!black!80!green] (2.4,1) node[above] {$J_m$}  to[bend right=10] (2,0.45);
+\draw[->,gray!70!black!80!green] (3.2,0.9) node[above] {$J_L$}  to[bend right=10] (3.3,0.45);
+\end{tikzpicture}
 
 Ο μειωτήρας είναι το μηχανικό ισοδύναμο ενός ενισχυτή, που κατασκευάζεται ουσιαστικά με δύο
 γρανάζια, ώστε να αυξηθεί η δύναμη μειώνοντας την ταχύτητα ή αντίστροφα:
-\todo{Graph 24}
+
+\begin{tikzpicture}[scale=0.7]
+% Source: https://tex.stackexchange.com/a/58735
+
+% #1 number of teeths
+% #2 radius intern
+% #3 radius extern
+% #4 angle from start to end of the first arc
+% #5 angle to decale thesecond arc from the first
+\newcommand{\gear}[5]{%
+	\foreach \i in {1,...,#1} {%
+		[rotate=(\i-1)*360/#1] (0:#2) arc (0:#4:#2) {[rounded corners=1.5pt]
+			-- (#4+#5:#3) arc (#4+#5:360/#1-#5:#3)} -- (360/#1:#2)
+	}}
+	
+	\draw[thick]
+	\foreach \i in {1,2,...,10} {%
+		[rotate=(\i-1)*36]
+		(0:0.7) arc (0:18:0.7) {[rounded corners=2pt] -- ++(18: 0.3) arc (18:36:0.7+0.3) } -- ++(36: -0.3)
+	};
+	\draw[thick,xshift=3cm] \gear{22}{2}{2.3}{7}{2.6};
+	
+	\draw (-1,-1.3) node {$u_1F_1$};
+	\draw (5.7,-1.3) node {$u_2F_2$};
+\end{tikzpicture}
+
 
 Τότε θα έχουμε:
 \[
