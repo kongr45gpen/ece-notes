@@ -717,8 +717,6 @@ node[right,xshift=1mm,yshift=-1mm] {$-$};
 \draw (2,-1.5-0.5) rectangle (3.5,-1.5+0.5) node[midway] {$\frac{1}{s(Js+b)}$};
 \end{tikzpicture}
 
-\todo{πράξεις, + ή -?}
-
 Τότε προκύπτει (για είσοδο \( \frac{1}{s} \), αφού αναζητούμε σφάλμα θέσης):
 \begin{align*}
     T(s) &= \frac{1}{s(Js+b)}\frac{κ}{1+\frac{κ}{s(Js+b)}} 
@@ -1859,29 +1857,35 @@ V_B = V_A = 0
 \subsection{Ταχύτητα}
 Η δεύτερη προδιαγραφή που θα μελετήσουμε για τα συστήματα είναι η ταχύτητα, δηλαδή το πόσο
 γρήγορα φτάνει ένα σύστημα στην επιθυμητή κατάσταση. Για να μελετήσουμε αυτήν την
-προδιαγραφή θα χρησιμοποιήσουμε ως είσοδο τη \textbf{βηματική συνάρτηση}.
+προδιαγραφή θα χρησιμοποιήσουμε ως είσοδο τη \textbf{μοναδιαία βηματική συνάρτηση}
+\( u(t) = \begin{cases}
+0, &\quad t < 0\\
+1, &\quad t > 0
+\end{cases} \).
 
 Ως παράδειγμα, ας δούμε το παρακάτω σύστημα:
 
 \begin{tikzpicture}
-\draw (0,0) node[rectangle,draw,inner sep=10pt] (DM) {$H(s)$};
+\draw (0,0) node[rectangle,draw,inner sep=10pt] (DM) {$\frac{k}{s+a}$};
 \draw (DM.west) -- ++(-1,0) node[above right] {$r(s)$};
 \draw (DM.east) -- ++(1,0) node[above left] {$y(s)$};
 \end{tikzpicture}
 
-με \( 
-\displaystyle
-H(s) = \frac{a}{s+a}
+με \(
+H(s) = \frac{k}{s+a}
 \).
 
 Θυμόμαστε ότι το σφάλμα \( r(s)-y(s) \) στη μόνιμη κατάσταση (\( t\to \infty \))
 είναι ορισμένο, και κάνοντας υπολογισμούς, η έξοδος στη μόνιμη κατάσταση προκύπτει:
-\todo{πράξεις}
 \[
+\lim_{s\to 0} sy(s)
+=
+\lim_{s\to 0} \cancel{s}\cancel{\frac{1}{s}}\frac{k}{s+a}
+=
 \frac{k}{a}
 \]
 
-και για να μηδενιστεί το σφάλμα, πρέπει \( \frac{k}{a} = 1 \implies k=a \).
+και για να μηδενιστεί το σφάλμα, επιθυμούμε η έξοδος να είναι μοναδιαία, άρα πρέπει \( \frac{k}{a} = 1 \implies k=a \).
 
 Σε μορφή σταθεράς χρόνου, η \( H \) γράφεται:
 \[
@@ -1894,22 +1898,42 @@ H(s) = \frac{1}{τs+1}
 
 Έχουμε θεωρήσει ότι \( k=a \), επομένως το σφάλμα είναι μηδενικό.
 
-Μάλιστα, αν πάρουμε αντίστροφο μετασχηματισμό Laplace, για είσοδο τη βηματική
-συνάρτηση, η έξοδος θα είναι:
-\todo{πράξεις}
-\[
-y(t) = y_{\mathrm{ss}} \left( 1-e^{-\sfrac{t}{τ} } \right)
-\]
-(όπου \( y_{\mathrm{ss}} \) η έξοδος στη μόνιμη κατάσταση) ή, στο πεδίο της συχνότητας:
+Για να βρούμε την έξοδο στο πεδίο του χρόνου, έχουμε ότι:
 \[
 y(s) = \frac{1}{τs+1}\frac{1}{s} = \frac{1}{s}-\frac{τ}{τs+1}
 \]
+και, χρησιμοποιώντας αντίστροφο μετασχηματισμό Laplace:
+\[
+y(t) = y_{\mathrm{ss}} \left( 1-e^{-\sfrac{t}{τ} } \right)
+\]
 
-\todo{Graph 35}
+Έχουμε μια αποσβεννύμενη απόκριση που μοιάζει ως εξής:
 
-Έχουμε μια αποσβενύμενη απόκριση που μοιάζει:
+\begin{tikzpicture}[scale=2]
+\draw[->] (-0.5,0) -- (3.5,0) node[below right] {$t$};
+\draw (0,-0.5) -- (0,3);
 
-\todo{Graph 36}
+\draw[very thick,orange!50!red]
+(0,0) -- (0.8,0.8*2.5*1.5) node[midway,above,sloped] {$\sfrac{1}{\tau}$};
+
+\draw[very thick,blue,opacity=.7]
+plot [variable=\t,domain=0:6.5,samples=\gsamples]
+(\t,{2.5*(1-exp(-1.5*\t))});
+
+% not the real value to make the graph look better
+\draw[dashed] (0.15,0) node[below,xshift=1mm] (t1) {$t_1$}-- ++(0,0.503709453101557)
+-- (0,0.503709453101557) node[left] {$0.1y_{\mathrm{ss}}$};
+
+\draw[dashed] (1.53505672866270,0) node[below] (t2) {$t_2$}-- ++(0,2.25)
+-- (0,2.25) node[left] {$0.9y_{\mathrm{ss}}$};
+
+\draw[dashed] (2.60801533695210,0) node[below] {$t_s$}-- ++(0,2.45)
+-- (0,2.45);
+
+\draw[dashed] (0,2.5) node[left] {$y_{\mathrm{ss}}$} -- (3.5,2.5);
+
+\draw [decorate,decoration={brace,amplitude=10pt},green!20!black] (t2.south) -- (t1.south) node[below,midway,yshift=-4mm] {$t_r$};
+\end{tikzpicture}
 
 Θα ψάξουμε μετά από πόσο χρόνο έχει φτάσει η έξοδος στο 10\% και στο 90\% της επιθυμητής
 τιμής:
@@ -1980,14 +2004,29 @@ y(0) = \lim_{t\to0} y(t) = \lim_{s\to \infty} sy(s) = k
 \]
 δηλαδή αυτό το σύστημα δεν ξεκινάει από μηδενική αρχική τιμή.
 
-\todo{Graph 37}
+\begin{tikzpicture}[scale=1]
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+
+\draw[thick] (-1.5,0) node[circle,inner sep=2.7pt,draw,orange!80!black] {} node[below,yshift=-1mm] {$b$};
+\draw[thick] (-0.75,0) node[cross=4pt,red!80!black] {} node[below,yshift=-1mm] {$\vphantom{b}a$};
+
+\begin{scope}[xshift=3.5cm,yshift=-1cm]
+\draw[->] (-0.5,0) -- (3.5,0) node[below right] {$t$};
+\draw[->] (0,-0.5) -- (0,3) node[right] {$y(t)$};
+
+\draw[very thick,blue,opacity=.7]
+plot [variable=\t,domain=0:3.5,samples=\gsamples]
+(\t,{0.5+1.5*exp(-1.5*\t)});
+\end{scope}
+\end{tikzpicture}
 
 \paragraph{Μελέτη μηδενικών}
 Θα εξετάσουμε την επίδραση των μηδενικών στην έξοδο του συστήματος.
 
 Έστω ένα σύστημα με έξοδο στο χρόνο:
 \begin{align*}
-	y_z(t) &= \frac{kb}{a} s(t) + \frac{k(a-b)}{a}e^{-at}
+	y_z(t) &= \frac{kb}{a} + \frac{k(a-b)}{a}e^{-at}
 	\intertext{Το οποίο αναλύουμε περαιτέρω:}
 	&= \overbrace{\frac{kb}{a}}^{y_{\mathrm{ss}}}\left(1-e^{-at}\right)
 	+ ke^{-at}
@@ -1998,9 +2037,45 @@ y(0) = \lim_{t\to0} y(t) = \lim_{s\to \infty} sy(s) = k
 (Τοποθετήσαμε την παράγωγο στην τελευταία σχέση, επειδή μαθηματικά φαίνεται ότι
 \( y(t) = \frac{kb}{a} (1-e^{-at}) \implies \dot y = kbe^{-at} \)).
 
+Αναλύοντας κατά Laplace, προκύπτει:
+\[
+Y_z(s) =
+\frac{kb}{a}\frac{1}{s} + \frac{k(a-b)}{a}\frac{1}{s+a}
+= \frac{k(b+s)}{s(a+s)}
+\]
+και παρατηρούμε το μηδενικό στο \( -b \) και τους πόλους στο \( 0 \) και στο \( -a \).
+
 Γραφικά:
 
-\todo{Graph 38}
+\begin{tikzpicture}[scale=1]
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+
+\draw[thick] (-1,0) node[circle,inner sep=2.7pt,draw,orange!80!black,fill=white,fill opacity=.7] {} node[below,yshift=-2mm] {$-b$};
+
+\begin{scope}[xshift=3.5cm,yshift=-1cm]
+\draw[->] (-0.5,0) -- (4,0) node[below right] {$t$};
+\draw[->] (0,-0.5) -- (0,3) node[right] {$y(t)$};
+
+\draw[very thick,blue!20!green,opacity=.7]
+plot [variable=\t,domain=0:3.5,samples=\gsamples]
+(\t,{2*exp(-1*\t)})
+(3.5,0) node[above] {$\dot y(t)$};
+\draw[very thick,blue,opacity=.7]
+plot [variable=\t,domain=0:3.5,samples=\gsamples]
+(\t,{2*(1-exp(-1*\t))})
+(3.5,2) node[below] {$y(t)$};
+\draw[very thick,dashed,blue,opacity=.7]
+plot [variable=\t,domain=0:3.5,samples=\gsamples]
+(\t,{2*(1-exp(-3*\t))});
+
+\draw[blue!70!black,<-] (1.8,2) to[bend left=30] ++ (0.5,0.6)
+node[above,align=center,scale=.8]
+{μηδενικό πιο κοντά\\σε φανταστικό άξονα};
+\end{scope}
+\end{tikzpicture}
+
+Το μηδενικό \(-b\) της συνάρτησης εκφράζεται από την τιμή \( \frac{\dot y(t)}{b} \) στη συνάρτηση \( y_z(t) \).
 
 Παρατηρούμε ότι αν υπάρχει μηδενικό, και όσο πιο κοντά πλησιάζει στον φανταστικό άξονα, τόσο
 μεγαλύτερη επίδραση έχει στην έξοδο του συστήματος, αυξάνοντας την ταχύτητά του.
@@ -2013,9 +2088,19 @@ G(s) = \frac{1}{s+1}
 
 Αυτό έχει πόλο στο \( -1 \), και σταθερά χρόνου \( τ = 1 \), άρα χρόνο αποκατάστασης \( t_s = 4\ \mathrm{sec} \),
 κάτι που είναι πολύ μεγάλο και δεν μας αρέσει καθόλου. Επομένως, προσθέτουμε έναν βρόγχο ανάδρασης μαζί με τον
-απλούστερο ελεγκτή, που είναι το αναλογικό κέρδος \( \boxed{k} \):
+απλούστερο δυνατό ελεγκτή, που είναι το αναλογικό κέρδος \( \boxed{k} \):
 
-\todo{Graph 39}
+\begin{tikzpicture}[scale=1]
+\draw (0,0) node[circle,draw] (a1) {};
+\draw (0.9,0) node[rectangle,draw,minimum height=20pt,minimum width=20pt] (b1) {$k$};
+\draw (2.2,0) node[rectangle,draw] (b2) {$\frac{1}{s+1}$};
+
+\draw[->] (-1,0) -- (a1.west);
+\draw (a1.east) -- (b1.west);
+\draw (b1.east) -- (b2.west);
+\draw (b2.east) -- ++(1,0);
+\draw[->] (3,0) -- ++(0,-1) -- (a1 |- 0,-1) -- (a1.south) node[below right] {$-$};
+\end{tikzpicture}
 
 Απαιτούμε χρόνο αποκατάστασης \( t_s \leq 1\ \mathrm{sec} \), και το ζητούμενο της άσκησης είναι η περιοχή τιμών
 του \( k \) για τις οποίες ικανοποιείται αυτή η προδιαγραφή.
@@ -2039,7 +2124,31 @@ t_s \leq 1 \implies \frac{4}{k+1} \leq 1 \implies k \geq 3.
 \paragraph{Ένα παράδειγμα δευτεροβάθμιου συστήματος}
 Έστω το σύστημα ενός περιστρεφόμενου κυλίνδρου με απόσβεση:
 
-\todo{Graph 40}
+\begin{circuitikz}[scale=1]
+	\tikzstyle{reverseclip}=[insert path={(3,0.5) --
+		(3,-0.5) --
+		(0.8,-0.5) --
+		(0.8,0.5) --
+		(3,0.5)}
+	]
+	
+	\begin{scope}
+		%[top color=gray!5!white,bottom color=gray!10!white!90!blue]
+		\path[clip] (1,0) ellipse (0.3 and 0.4) [reverseclip];
+		
+		\fill[top color=gray!5!white,bottom color=gray!7!white!95!blue]
+		plot [smooth,tension=1.5]
+		coordinates {(1,0.4) (2,0) (1,-0.4)};
+	\end{scope}
+	
+	\draw (1,0) ellipse (0.3 and 0.4);
+	
+	\draw
+	plot [smooth,tension=1.5]
+	coordinates {(1,0.4) (2,0) (1,-0.4)};
+	
+	\draw (2,0) to[damper,l=$B$] (3,0);
+\end{circuitikz}
 \[
 u = J \ddot y + B\dot y
 \]
@@ -2051,27 +2160,44 @@ Js^2y(s) +Bsy(s) = u(s) \\
 \end{gather*}
 
 Αντίστοιχα με το προηγούμενο παράδειγμα, προσθέτουμε έναν ελεγκτή και έναν βρόγχο ανάδρασης:
-\todo{Graph 41}
+
+\begin{tikzpicture}[scale=1]
+\draw (0,0) node[circle,draw] (a1) {};
+\draw (0.9,0) node[rectangle,draw,minimum height=20pt,minimum width=20pt] (b1) {$k$};
+\draw (2.5,0) node[rectangle,draw] (b2) {$\frac{1}{s(Js+b)}$};
+
+\draw[->] (-1,0) -- (a1.west) node[above,pos=.7] {$r$};
+\draw (a1.east) -- (b1.west);
+\draw (b1.east) -- (b2.west);
+\draw[->] (b2.east) -- ++(1,0) node[above] {$y$};
+\draw[->] (3.7,0) -- ++(0,-1) -- (a1 |- 0,-1) -- (a1.south) node[below right] {$-$};
+\end{tikzpicture}
 
 με έξοδο:
-\todo{πράξεις}
 \[
 \frac{y(s)}{r(s)}
+= \frac{\frac{k}{s(Js+b)}}{1+\frac{k}{s(Js+b)}}
 = \frac{k}{Js^2+Bs+k}
 = \frac{\sfrac{k}{J} }{s^2 +\sfrac{B}{J}s + \sfrac{k}{J}   }
-= \frac{ω_n^2}{s^2+2ζω_n^2s+ω_n^2}
+= \frac{\omega_n^2}{s^2+2ζ\omega_ns+\omega_n^2}
+=
 \boxed{
-= \frac{ω_n^2}{(s+σ)^2 + ω_d^2}
+\frac{\omega_n^2}{(s+σ)^2 + \omega_d^2}
 }
 \]
 όπου θέσαμε:
-\begin{align*}
-	ω_n^2 &= \sfrac{k}{J}  \\
-	2ζω_ν &= \sfrac{B}{J}, \quad ζ \leq 1 \\
-	s_{1,2}  &= -σ \pm jω_d^2
-\end{align*}
+\begin{tcolorbox}[width=.6\textwidth]
+	\vspace{-17pt}
+\begin{alignat*}{3}
+	\omega_n^2 &= \sfrac{k}{J} && \implies \omega_n &&= \sqrt{\frac{k}{J}}  \\
+	2ζ\omega_n &= \sfrac{B}{J}, \quad ζ \leq 1 && \implies\ ζ &&= \frac{B}{2\sqrt{Jk}} \\
+	s_{1,2}  &= -σ \pm j\omega_d && &&\text{(ρίζες παρ/τή)} \\[3ex]
+	σ &= ζ\omega_n \\
+	\omega_d &= \omega_n\sqrt{1-ζ^2}
+\end{alignat*}
+\end{tcolorbox}
 
-Μετά από πράξεις που δεν παρουσιάζονται, η έξοδος του συστήματος είναι:
+Μετά από πράξεις που δεν παρουσιάζονται, η έξοδος του συστήματος ξεχωρίζεται στις δύο παρακάτω περιπτώσεις:
 \begin{itemize}
 	\item Αν έχουμε \textbf{δύο πραγματικούς πόλους} \( p1,\ p2 \):\[
 	y(t) = y_{\mathrm{ss}}
@@ -2085,98 +2211,199 @@ Js^2y(s) +Bsy(s) = u(s) \\
 	\right]
 	\]
 	
-	\todo{Graph 42}
+	\begin{tikzpicture}[scale=1]
+	\draw (-2,0) -- (2,0);
+	\draw (0,-1) -- (0,1);
 	
-	\todo{check spelling αποσβενύμενων}
-	Δηλαδή η απόκριση του συστήματος αποτελείται από το άθροισμα δύο εκθετικά αποσβενύμενων
+	\draw[thick] (-1.5,0) node[cross=4pt,red!80!black] {} node[below,yshift=-1mm] {$-b$};
+	\draw[thick] (-0.5,0) node[cross=4pt,red!80!black] {} node[below,yshift=-1mm] {$\vphantom{b}-a$};
+	\end{tikzpicture}
+
+	Δηλαδή η απόκριση του συστήματος αποτελείται από το άθροισμα δύο εκθετικά αποσβεννύμενων
 	αποσβέσεων. Πρακτικά, παίζει ρόλο ο πόλος που προκαλεί την πιο αργή απόσβεση (ειδικά αν
 	οι πόλοι απέχουν αρκετά μεγάλη απόσταση μεταξύ τους), καθώς η άλλη απόσβεση εξαλείφεται
 	γρήγορα. Ο αργός πόλος επιβάλλει το ρυθμό του.
-	\item Αν έχουμε \textbf{δύο μιγαδικές συζυγείς ρίζες} \( -σ \pm jω_δ^2 \):
-	\[
-	y(t) = y_{\mathrm{ss}}\left[
-	1-e^{-ζ\omega_nt} -
+	\item Αν έχουμε \textbf{δύο μιγαδικές συζυγείς ρίζες} \( -σ \pm j\omega_d^2 \):
+	\begin{align*}
+	y(t) &= y_{\mathrm{ss}}\left[
+	1-e^{-ζ\omega_nt} \cdot
 	\left(
-	\cos \omega_nt + \frac{ζ}{\sqrt{1-ζ^2}} \sin \omega_n t
+	\cos \omega_dt + \frac{ζ}{\sqrt{1-ζ^2}} \sin \omega_d t
 	\right)
 	\right]
-	\]
+	\\ &= y_{\mathrm{ss}}\left[
+	1 - \frac{e^{-ζ\omega_nt}}{\sqrt{1-ζ^2}}
+	\cdot \sin\left(\omega_d t + \tan^{-1}\frac{\sqrt{1-ζ^2}}{ζ}\right)
+	\right]
+	\end{align*}
+
 	
-	\todo{Graph 43}
-	\todo{Replace all ω with \omega}
+	Σε αυτήν την περίπτωση, η έξοδος του συστήματος μοιάζει κάπως έτσι:
 	
-	Σε αυτήν την περίπτωση, αποδεικνύεται μάλιστα ότι:
-	\[
-	t_s \approx \frac{4}{ζ\omega_n}
-	\]
+	\begin{tikzpicture}[scale=1.7]
+	\begin{scope}[xshift=-2cm,yshift=2cm,scale=0.7]
+	\draw (-2,0) -- (1.5,0);
+	\draw (0,-2) -- (0,2);
 	
-	Η έξοδος ενός τέτοιου συστήματος μοιάζει κάπως έτσι:
-	\todo{Graph 44}
+	\draw[dashed] (-1,1) -- ++ (1,0) node (xa) {};
+	\draw[dashed] (-1,-1) -- ++ (1,0) node (xb) {};
+	\draw[dashed] (0,0) -- (-1,1);
 	
-	Και ο χρόνος ανόδου ορίζεται διαφορετικά:
+	\draw[thick] (-1,1) node[cross=4pt,red!80!black] {};
+	\draw[thick] (-1,-1) node[cross=4pt,red!80!black] {};
+	
+	\draw[<->,orange!30!green!50!black] (xa.east) -- (xa.east |- 0,0) node[right,midway] {$\omega_d$};
+	\draw[<->,orange!30!green!50!black] (-1,-0.1) -- ++(1,0) node[midway,below] {$ζ\omega_n$};
+	
+	\draw (-45+180:0.3) to[bend right] node[midway,left,yshift=1mm] {$θ$} (-0.3,0);
+	\end{scope}
+	
+	\draw[->] (-0.5,0) -- (5,0) node[below right] {$t$};
+	\draw[->] (0,-0.5) -- (0,4) node[below left] {$y(t)$};
+	
+	\draw[thick,dashed] (0,2) node[left] {$y_\mathrm{ss}$} -- ++(6,0);
+
+	\draw[ultra thick,blue,opacity=.7]
+	plot [variable=\t,domain=0:6,samples=\gsamples]
+	(\t,{2*(1-1*exp(-0.8*\t)*cos(3.5*\t r))});
+	
+	\draw[very thick,cyan,opacity=.2]
+	plot [variable=\t,domain=0:6,samples=\gsamples]
+	(\t,{2*(1+1*exp(-0.8*\t))});
+	
+	\draw[dashed] (0.84,0) node[below,xshift=2mm] {$t_p$}-- ++(0,3)
+	-- (0,3) node[left] {$M_p$};
+	\draw[dashed] (0.44,0) node[below] {$t_r$} -- ++(0,2);
+	
+	\filldraw[thick,draw=orange,draw opacity=.5,fill=white!90!orange,fill opacity=.6]
+	(0.84,3) circle (1.7pt);
+	\filldraw[thick,draw=orange!50!green,draw opacity=.5,fill=orange!50!green!10!white,fill opacity=.6]
+	(0.44,2) circle (1.7pt);
+	
+	% not real but used for a nicer graph
+	\draw[dashed] (3.3,0) node[below] {$t_s$} -- ++(0,2);
+	\draw[thick,yellow!50!blue] (3.3,2) -- (3.3,{2*(1+1*exp(-0.8*3.3))})
+	node[midway,above,rotate=180,sloped,scale=.3] {2\%};
+	\end{tikzpicture}
+	
+	Αποδεικνύεται επίσης ότι ισχύουν αρκετές σχέσεις, που παρουσιάζονται παρακάτω.
+
+	\begin{theorem}{Χρόνος αποκατάστασης σε δευτεροβάθμιο σύστημα με συζυγείς πόλους}{}
+		\[
+		t_s \approx \frac{4}{ζ\omega_n}
+		\]
+		
+		({\color{red!50!black}Προσοχή!} Αυτή η σχέση ισχύει μόνο όταν έχουμε δύο συζυγείς μιγαδικές ρίζες, και όχι πραγματικές!)
+	\end{theorem}
+		
+	Ο χρόνος ανόδου ορίζεται διαφορετικά από τα πρωτοβάθμια συστήματα:
 	\begin{defn}{Χρόνος ανόδου σε δευτεροβάθμιο σύστημα με συζυγείς πόλους}{}
 		Ως \textbf{χρόνος ανόδου} ορίζεται ο χρόνος μέχρι η έξοδος να φτάσει την πρώτη
 		φορά στην επιθυμητή τιμή.
 		
 		Αποδεικνύεται ότι είναι ίσος με:
 		\[
-		\boxed{t_s = \frac{π-θ}{ω_d}}
+		\boxed{t_r = \frac{π-θ}{\omega_d}}
 		\]
 		
 		όπου \( θ \) η γωνία του ενός πόλου.
 	\end{defn}
 	
-	Ο χρόνος \( t_p \) (peak) μέχρι η έξοδος να φτάσει στην πρώτη κορυφή είναι:
+	\begin{defn}{Χρόνος Υπερύψωσης}{}
+	Ο χρόνος \( t_p \) (peak) μέχρι η έξοδος να φτάσει στην πρώτη κορυφή της ημιτονοειδούς κυματομορφής είναι:
 	\[
 	\boxed{t_p = \frac{π}{\omega_d}}
 	\]
+	\end{defn}
 	
 	Βλέπουμε ότι αρκετές στιγμές η έξοδος έχει τιμή μεγαλύτερη της εξόδου. Η υπερύψωση αυτή
 	μπορεί σε κάποιες περιπτώσεις να μην είναι επιθυμητή, επειδή για παράδειγμα δεν θέλουμε
 	το ρεύμα σε ένα κύκλωμα να ξεπεράσει μια μέγιστη τιμή, ή ο βραχίονας ενός ρομπότ να
-	φτάσει εκτός από κάποια όρια.
+	φτάσει έξω από κάποια όρια.
 	
-	Αποδεικνύεται ότι η πρώτη κορυφή φτάνει στην τιμή:
-	\todo{check}
-	\[
-	M_p =
-	e^{\left(
-		\frac{ζπ}{\sqrt{1-ζ^2}}
-		\right)}
+	\begin{defn}{Υπερύψωση}{}
+		Αποδεικνύεται ότι η πρώτη κορυφή φτάνει στην τιμή:
+		\[
+		M_p =
+		e^{-\left(
+			\frac{ζπ}{\sqrt{1-ζ^2}}
+			\right)}
 		= e^{-σ t_p}
-	\]
+		\]
+	\end{defn}
+	
+	Αυξάνοντας τη σταθερά \( k \), μειώνουμε τους χρόνους \( t_p \) και \( t_r \), καθώς και την \( M_p \),
+	αλλά αυξάνεται το \( ζ \) και η συχνότητα των αποσβεννύμενων ταλαντώσεων, δηλαδή το σύστημα γίνεται πιο "ζωηρό".
 	
 	Τέλος, για τη γωνία του πόλου, αποδεικνύεται ότι:
 	\[
 	\boxed{\cos θ = ζ}
 	\]
-	
-	\paragraph{Παράδειγμα συστήματος δεύτερης τάξης} \hspace{0pt}
-	
-	\todo{Graph 45}
-	
-	\subparagraph{(α)}
-	Η συνάρτηση μεταφοράς του συστήματος, μετά από πράξεις, είναι:
-	
-	\todo{πράξεις}
-	\[
-	H(s) = \frac{\sfrac{k}{J} }{s^2
-		+\left(\frac{B+kK_v}{J}\right)s + \sfrac{k}{J} 
-		}
-	\]
-	
-	\subparagraph{(β)}
-	Η συνάρτηση μεταφοράς είναι:
-	\[
-	H(s) =
-	\frac{\sfrac{K}{J}(1+K_vs) }{s^2 + \left(\frac{B+kK_v}{J}s\right)
-		+ \sfrac{K}{J} }
-	\]
-	
-	\subparagraph{}
-	Παρατηρούμε ότι τα δύο συστήματα έχουν παρόμοιες συναρτήσεις μεταφοράς, αλλά το
-	δεύτερο έχει ένα μηδενικό.
 \end{itemize}
+	
+\paragraph{Παραδείγματα συστήματος δεύτερης τάξης} \hspace{0pt}
+
+\begin{enumgreekparen}
+	\item
+	\begin{tikzpicture}[scale=1,baseline]
+	\tikzset{mbox/.style={rectangle,draw,minimum height=20pt,minimum width=17pt}}
+	\draw (-1,0) node[circle,draw] (a1) {};
+	\draw (0,0) node[circle,draw] (a2) {};
+	\draw (0.9,0) node[mbox] (b1) {$k$};
+	\draw (2.5,0) node[mbox] (b2) {$\frac{1}{Js+b}$};
+	\draw (4.3,0) node[mbox] (b3) {$\frac{1}{s}$};
+	\draw (1.6,-1) node[mbox] (b4) {$K_v$};
+	
+	\draw[->] (-2,0) -- (a1.west) node[above,pos=.7] {};
+	\draw (a1.east) -- (a2.west);
+	\draw (a2.east) -- (b1.west);
+	\draw (b1.east) -- (b2.west);
+	\draw (b2.east) -- (b3.west);
+	\draw[->] (b3.east) -- ++(1,0) node[above] {$φ$};
+	\draw (3.5,0) node[above] {$\omega$} -- ++(0,-1) -- (b4.east);
+	\draw[->] (b4.west) -- (a2 |- 0,-1) -- (a2.south) node[below right] {$-$};
+	\draw[->] (5,0) -- ++(0,-2) -- (a1 |- 0,-2) -- (a1.south) node[below right] {$-$};
+	\end{tikzpicture}
+	\item
+	\begin{tikzpicture}[scale=1.2,baseline]
+	\draw (0,0) node[circle,draw] (a1) {};
+	\draw (1.5,0) node[rectangle,draw,minimum height=20pt,minimum width=20pt] (b1) {$k(1+K_vs)$};
+	\draw (3.5,0) node[rectangle,draw] (b2) {$\frac{1}{s(Js+b)}$};
+	
+	\draw[->] (-1,0) -- (a1.west);
+	\draw (a1.east) -- (b1.west);
+	\draw (b1.east) -- (b2.west);
+	\draw[->] (b2.east) -- ++(1,0);
+	\draw[->] (4.5,0) -- ++(0,-1) -- (a1 |- 0,-1) -- (a1.south) node[below right] {$-$};
+	\end{tikzpicture}
+\end{enumgreekparen}
+
+\subparagraph{(α)}
+Εκτελούμε πράξεις για να βρούμε την απόκριση του συστήματος:
+\begin{alignat*}{2}
+	φ &= \frac{1}{s}\omega &&\implies\\
+	sφ &= \omega &&\implies \numberthis \label{example.2.secorder.omega} \\
+	sφ &= \frac{k}{Js+b}\cdot \left[r(s) - K_v \omega - \phi \right] &&\xRightarrow{\eqref{example.2.secorder.omega}} \\
+	sφ &= \frac{k}{Js+b}\left[ r(s) - sK_vφ - φ \right] &&\implies \\
+	sφ(Js+b) &= k\left[r(s) - sK_vφ - φ\right] &&\implies \\
+	φ\left[ Js^2 + bs + k K_v s + k \right] &= kr(s) && \implies \\
+	\frac{φ}{r} &= \frac{k}{Js^2 + (b+kK_v)s + k} && \implies \\
+	H(s) &= \frac{\sfrac{k}{J} }{s^2
+		+\left(\frac{B+kK_v}{J}\right)s + \sfrac{k}{J} 
+	}
+\end{alignat*}
+
+\subparagraph{(β)}
+Η συνάρτηση μεταφοράς είναι:
+\[
+H(s) =
+\frac{\sfrac{K}{J}(1+K_vs) }{s^2 + \left(\frac{B+kK_v}{J}s\right)
+	+ \sfrac{K}{J} }
+\]
+
+\subparagraph{}
+Παρατηρούμε ότι τα δύο συστήματα έχουν παρόμοιες συναρτήσεις μεταφοράς, αλλά το
+δεύτερο έχει ένα μηδενικό.
 
 
 \end{document}
