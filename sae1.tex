@@ -1466,7 +1466,65 @@ J = J_m + \left(
 	;
 \end{circuitikz}
 
-\todo{Graph 25}
+\begin{circuitikz}[scale=1.4]
+	\ctikzset{bipoles/length=1.2cm}
+	
+	\draw (0,1) node[elmech](motor1){};
+	\draw (4,1) node[elmech](motor2){};
+	
+	\draw
+	(motor1.north)
+	-- (0,2)
+	to[R] (1,2)
+	to[L] (2,2)
+	to[R] (3,2)
+	to[L] (4,2)
+	-- (motor2.north)
+	;
+	
+	\draw
+	(motor2.south)
+	-- (4,0)
+	to[short,i=$i_a$] (0,0)
+	-- (motor1.south)
+	;
+	
+	\draw
+	([xshift=4mm]motor1.south)
+	to[open,v=$e_\gamma$] ([xshift=4mm]motor1.north);
+	
+	\draw
+	(6,0) to[L,l_=$L_F$]
+	(6,2) to[R=$R_F$]
+	(8,2) to[battery1=$V_F$]
+	(8,0) -- (6,0);
+	
+	\draw[<-] (motor1) -- ++(-1,-1) node[below left]
+	{
+		$\underset{\mathclap{\substack{\downarrow\\ \text{σταθερό}}}}{n}
+		=\od{\theta}{t}$
+	};
+	
+	\def\l{0.4}
+	\draw[xshift=5cm,rotate=45] (0,0) ellipse (0.22 and 0.14);
+	\draw (5-0.17,0-0.14) -- ++(\l,-\l) node(C) {};
+	\draw (5+0.17,0+0.14) -- ++(\l,-\l) node(D) {};
+	\draw (C.center) to[bend right=65] node[midway,below] {$J,B,T_L$} (D.center);
+	
+	\def\d{0.04}
+	\path (4,1) ++(\d,\d) -- ++(1,-1) node[] (A) {};
+	\path (4,1) ++(-\d,-\d) -- ++(1,-1) node[] (B) {};
+	
+	\fill[white] (A.center) to[bend left] (B.center) -- ++(90+45:0.2) -- ++(2*\d,2*\d) -- cycle;
+	
+	\draw[<-] (A) ++ (45+70:0.6) node[above ] {$\omega$} to[bend left=60] ($(B) + (45+110:0.6)$);
+	
+	\draw (4,1) ++(\d,\d) -- ++(1,-1);
+	\draw (4,1) ++(-\d,-\d) -- ++(1,-1);
+	\draw (A.center) to[bend left] (B.center);
+	
+	\draw[->] (-0.5,0.5) ++ (45+90:0.2) to[bend left=60] ($(-0.5,0.5) + (45-90:0.2)$);
+\end{circuitikz}
 
 \begin{align*}
 	e_{\gamma f} &=
@@ -1526,12 +1584,31 @@ J = J_m + \left(
 Για τον ιδανικό τελεστικό ενισχυτή κάνουμε τις παραδοχές:
 \begin{itemize}
 	\item \( R_m = \infty \)
-	\item \( V_{+} = V_{-} \) για να έχουμε πεπερασμένη έξοδο
+	\item \( V_{+} = V_{-} \) (για να έχουμε πεπερασμένη έξοδο)
 \end{itemize}
 
-\paragraph{Άσκηση Α35}
+\paragraph{Άσκηση Α35} \hspace{0pt}
 
-\todo{Graph 26}
+\begin{circuitikz}[scale=1,american]
+	\draw (0,0) node[op amp] (opamp) {};
+	
+	\draw (opamp.+) to[short,-*] ++(-0.5,0) node[below right] {$B$}
+	to[short] ++(0,-1.2) node[ground] {};
+	
+	\draw (opamp.-) to[short,-*] ++(-0.5,0) node[above right] {$A$}
+	to[short] ++(0,1.5)
+	to[C] ++(3,0)
+	to[short,-*] (1.3,0) node[above right] {$\Gamma$};
+	
+	\draw (opamp.-) ++ (-0.5,0) to[short] ++(0,2.5)
+	to[R,i=$i_R$] ++(3,0) -- ++(0,-1);
+	
+	\draw (opamp.out) to[short,-o] ++ (3,0)
+	to[open,v=$e_0$] ++(0,-1.5) to[short,o-] ++(0,-0.2) node[ground] {};
+	
+	\draw (opamp.-) to[R=$R$,i<=$I_i$,-o] ++(-4,0)
+	to[open,v=$e_i$] ++(0,-2) to[short,o-] ++(0,-0.2) node[ground] {};
+\end{circuitikz}
 
 Μας ζητείται να βρούμε τον λόγο \( \displaystyle \frac{E_o}{E_i} \).
 
@@ -1565,37 +1642,150 @@ V_B = V_A = 0
 \boxed{\frac{E_o}{E_i} = \frac{1}{RCs+1}}
 \]
 
-\paragraph{Άσκηση 2.19}
+\paragraph{Άσκηση 2.19} \hspace{0pt}
 
-\todo{Graph 27}
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[mixer] (m1) {};
+	\draw (7,0) node[mixer] (m2) {};
+	\draw (12,0) node[mixer] (m3) {};
+	
+	\draw (m1.west) node[inputarrow] {} node[above left] {$+$} -- ++(-1.5,0) node[above,pos=.7] {$u$};
+	\draw (m1.east) to[twoport,t=$\frac{1}{s+6}$,i>_=$e$] (4,0)
+	to[twoport,t=$\frac{s+3}{s+7}$,>] (5.5,0) 
+	to[short,i^>=$w_1$] (m2.west) node[above,xshift=-1mm] {$+$};
+	\draw (3.5,0) node[above left] {$A$} to[short,*-] ++(0,1.5) node(V) {};
+	\draw (m2.north) node[inputarrow,rotate=-90] {} node[above right] {$+$} -- (m2.north |- 0,1.5) node[circ] {} -- (V.center);
+	\draw (m2.east) to[twoport,i>^=$w$,t=$\frac{2}{s+5}$,-*] (10.5,0) node (B) {} node[above] {$B$};
+	\draw (B.center) -- ++(0,-1.5) to[twoport,t=$\frac{1}{s}$] (m2 |- 0,-1.5)
+	to[short] (m2.south) node[inputarrow,rotate=90] {} node[below right] {$-$};
+	\draw (B.center) -- (m3.west) node[inputarrow] {};
+	\draw (V) -- (m3 |- 0,1.5) -- (m3.north) node[inputarrow,rotate=-90] {} node[above right] {$+$};
+	\draw (m3.east) -- ++(1,0) node[inputarrow] {} node[midway,above] {$y$};
+	
+	\draw (m3.east) ++(0.5,0) to[short,*-] ++(0,-3)
+	to[twoport,t=$8$] (m1 |- 0,-3)
+	-- (m1.south) node[inputarrow,rotate=90] {} node[below right] {$-$};
+\end{circuitikz}
 
-Θα μετασχηματίσουμε το σύστημα σε ένα ισοδύναμό του.
+Θα μετασχηματίσουμε το παραπάνω σύστημα σε ένα ισοδύναμό του.
 
 Αρχικά, θυμόμαστε την ισοδυναμία:
 
-\todo{Graph 28}
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[mixer] (m1) {};
+	
+	\draw (m1.west) node[inputarrow] {} node[above left] {$+$} -- ++(-1,0);
+	\draw (m1.east) to[twoport,t=$H_1$] (3,0) to[short,*-] (4,0) node[inputarrow] {};
+	\draw (3,0) -- (3,-2) to[twoport,t=$H_2$] (m1.east |- 0,-2) -- (m1 |- 0,-2) -- (m1.south)
+	node[inputarrow,rotate=90] {} node[below right] {$\pm$};
+	
+	\draw (current bounding box.east) node[right,scale=2] {$\equiv$};
+	\begin{scope}[xshift=5.2cm,yshift=-1cm]
+		\ctikzset{bipoles/length=2.4cm}
+		\draw (0,0) to[twoport,t=$\frac{H_1}{1\mp H_1H_2}$,>] (5,0) node[inputarrow] {};
+	\end{scope}
+\end{circuitikz}
 
 Μετασχηματίζουμε το κομμάτι από \( w_1 \) ως \( B \):
-\todo{Graph 29}
+
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[mixer] (m1) {};
+	
+	\draw (m1.west) node[inputarrow] {} node[above left] {$+$} -- ++(-1,0) node[pos=.8,above] {$w_1$};
+	\draw (m1.east) to[twoport,t=$\frac{2}{s+5}$] (3,0) node[above] {$B$}  to[short,*-] (4,0) node[inputarrow] {};
+	\draw (3,0) -- (3,-2) to[twoport,t=$\frac{1}{s}$] (m1.east |- 0,-2) -- (m1 |- 0,-2) -- (m1.south)
+	node[inputarrow,rotate=90] {} node[below right] {$-$};
+	\draw (m1.north) node[inputarrow,rotate=-90] {} -- ++(0,1);
+	
+	\draw (current bounding box.east |- 0,-1) node[right,scale=2] {$\equiv$};
+	\begin{scope}[xshift=7cm,yshift=-1cm]
+		\draw (0,0) node[mixer] (m2) {};
+		\draw (m2.west) node[inputarrow] {} node[above left] {$+$} -- ++(-1,0) node[pos=.8,above] {$w_1$};
+		\draw (m2.north) node[inputarrow,rotate=-90] {} -- ++(0,1);
+		\ctikzset{bipoles/length=2.4cm}
+		\draw (m2.east) to[twoport,t=$\frac{2s}{s(s+5)+2}$,>] (4,0) node[inputarrow] {};
+	\end{scope}
+\end{circuitikz}
+
 και το κομμάτι από \( A \) ως \( w_1 \) (αφού κάνουμε τις πράξεις και βρούμε \( \frac{w_1}{A} = 1+\frac{s+3}{s+7} \)):
-\todo{Graph 30}
+
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[mixer] (m1) {};
+	
+	\draw (m1.west) node[inputarrow] {} node[above left] {$+$};
+	\draw (-4,0) to[twoport,t=$\frac{s+3}{s+7}$,>] (m1.west);
+	\draw (-3.5,0) node[above left] {$A$} to[short,*-] ++(0,1.2) -- (m1 |- 0,1.2) -- (m1.north)
+	node[inputarrow,rotate=-90] {} node[above right] {$+$};
+	\draw (m1.east) -- ++(1,0) node[inputarrow] {} node[above] {$w_1$};
+	
+	\draw (2,0) node[right,scale=2] {$\equiv$};
+	\begin{scope}[xshift=3.5cm]
+		\ctikzset{bipoles/length=1.8cm}
+		\draw (0,0) to[twoport,t=$\frac{2s+10}{s+7}$,>] (4,0) node[inputarrow] {};
+	\end{scope}
+\end{circuitikz}
 
 Τα δύο παραπάνω μετασχηματισμένα διαγράμματα είναι συνδεδεμένα εν σειρά, άρα:
-\todo{Graph 31}
-(όπου θέσαμε για ευκολία \( G(s) = \frac{(2s+10)2s}{(s+7)\left(s(s+5)+2\right)} \))
+
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[above] {$A$}
+	to[twoport,t=$\frac{2s+10}{s+7}$,>] (2,0);
+	\ctikzset{bipoles/length=2.2cm}
+	\draw (2,0)
+	to[twoport,t=$\frac{2s}{s(s+5)+2}$,>] (4,0);
+	\ctikzset{bipoles/length=1.4cm}
+	\draw (4,0) -- ++(0.7,0)
+	node[above] {$B$} node[inputarrow] {};
+	
+	\draw (5,0) node[right,scale=2] {$\equiv$};
+	\begin{scope}[xshift=6cm]
+		\ctikzset{bipoles/length=3.4cm}
+		\draw (0,0) to[twoport,t=$\frac{(2s+10)2s}{(s+7)\left(s(s+5)+2\right)}$,>] (5,0) node[inputarrow] {};
+	\end{scope}
+\end{circuitikz}
+
+(όπου θέτουμε για ευκολία \( G(s) = \frac{(2s+10)2s}{(s+7)\left(s(s+5)+2\right)} \))
 και το τμήμα του συστήματος εντός του βρόγχου ανάδρασης με το
-\begin{circuitikz}[baseline,scale=.8]
-	\draw (0,0) to[twoport,t=$8$,scale=.8] (2,0);
+\begin{circuitikz}[baseline,scale=.7]
+	\ctikzset{bipoles/length=0.8cm}
+	\draw (0,0) to[twoport,t=$8$,scale=.7] (2,0);
 \end{circuitikz}
 γίνεται:
-\todo{Graph 32}
+
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[mixer] (m1) {};
+	
+	\draw (m1.west) node[inputarrow] {} node[above left] {$+$};
+	\draw (-3.5,0) to[twoport,t=$G(s)$,>] (m1.west);
+	\draw (-3.5,0) -- (-4,0);
+	\draw (-3.5,0) node[above left] {$A$} to[short,*-] ++(0,-1.2) -- (m1 |- 0,-1.2) -- (m1.south)
+	node[inputarrow,rotate=90] {} node[below right] {$+$};
+	\draw (m1.east) -- ++(1,0) node[inputarrow] {} node[above] {$w_1$};
+	
+	\draw (2,-0.5) node[right,scale=2] {$\equiv$};
+	\begin{scope}[xshift=3.5cm,yshift=-0.5cm]
+		\ctikzset{bipoles/length=2.2cm}
+		\draw (0,0) to[twoport,t=$1+G(s)$,>] (4,0) node[inputarrow] {};
+	\end{scope}
+\end{circuitikz}
+
 με \( 1+G(s) = \frac{\text{αριθμητής }N_3}{\text{παρονομαστής }D_3}
 = \frac{
 	(2s+10)2s+(s+7)\left[s(s+5)+2\right]}{
-	(s+7)\left[s(s+5)+2\right]} \)
+	(s+7)\left[s(s+5)+2\right]} \).
 
 Άρα το τελικό σύστημα είναι:
-\todo{Graph 33}
+
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[mixer] (m1) {};
+	
+	\draw (m1.west) node[inputarrow] {} node[above left] {$+$} -- ++(-1,0) node[above] {$u$};
+	\draw (m1.east) to[twoport,t=$H_1$] (2.5,0)
+	to[twoport,t=$\frac{N_3}{D_3}$] (4,0) -- (4.5,0) node[above] {$y$} to[short,*-] (5.5,0) node[inputarrow] {};
+	\draw (4.5,0) -- (4.5,-2) to[twoport,t=$8$] (m1.east |- 0,-2) -- (m1 |- 0,-1.5) -- (m1.south)
+	node[inputarrow,rotate=90] {} node[below right] {$-$};
+\end{circuitikz}
+
 και επομένως προκύπτει από πράξεις:
 \begin{align*}
 	\frac{y}{u} &=
@@ -1624,6 +1814,16 @@ V_B = V_A = 0
 	\item Τι σφάλμα θέσης έχει το σύστημα
 	\( \displaystyle H(s) = \frac{s+9}{s^2+7s+3} \) αν συνδεθεί σε μοναδιαία αρνητική
 	ανάδραση;
+	
+	\begin{circuitikz}[scale=1]
+		\draw (0,0) node[mixer] (m1) {};
+		
+		\draw (m1.west) node[inputarrow] {} node[above left] {$+$} -- ++(-1,0);
+		\draw (m1.east) to[twoport,t=$H(s)$] (3,0)  to[short,*-] (4.5,0) node[inputarrow] {};
+		\draw (3,0) -- (3,-1.5) -- (m1 |- 0,-1.5) -- (m1.south)
+		node[inputarrow,rotate=90] {} node[below right] {$-$};
+	\end{circuitikz}
+	
 	\subparagraph{}
 	Η συνάρτηση μεταφοράς είναι \( H_c = \frac{H}{1+H}
 	= \frac{s+9}{s^2+7s+3+s+9} \). Το σφάλμα θέσης
