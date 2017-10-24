@@ -1,0 +1,17 @@
+--ignore-file=ext:gz
+--ignore-file=ext:aux
+--ignore-file=ext:md5
+--ignore-file=ext:log
+--ignore-file=ext:dat
+--ignore-file=ext:pdf
+--ignore-file=ext:dvi
+--ignore-file=ext:toc
+--ignore-file=ext:out
+--ignore-file=ext:script
+--ignore-file=ext:table
+--ignore-file=ext:bbl
+--ignore-file=ext:blg
+--ignore-file=ext:auxlock
+--ignore-file=ext:bak
+--ignore-file=ext:orig
+--ignore-file=ext:html

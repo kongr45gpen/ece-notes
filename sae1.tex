@@ -1,0 +1,2686 @@
+\documentclass[11pt,a4paper,notitlepage,fleqn,draft]{article}
+
+\input{preamble.tex}
+
+\title{ΣΑΕ 1
+	\\
+	{ 
+		\normalsize Συστήματα Αυτομάτου Ελέγχου I
+		\\
+		\normalsize Σημειώσεις από τις παραδόσεις
+	}}
+\date{Οκτώβριος-Ιανουάριος 2017
+	\\
+	{ 
+		\small Τελευταία ενημέρωση: \today
+	}
+}
+\author{
+	Για τον κώδικα σε \LaTeX, ενημερώσεις και προτάσεις:
+	\\
+	\url{https://github.com/kongr45gpen/ece-notes}}
+
+\setallmainfonts(Digits,Latin,Greek){Asana Math}
+\setmainfont{Noto Serif}
+\setsansfont{Ubuntu}
+\usepackage{polyglossia}
+\newfontfamily\greekfont[Script=Greek,Scale=1.00]{Liberation Serif}
+
+\hypersetup{pdftitle = {ΣΑΕ 1}}
+
+
+\begin{document}
+\maketitle
+
+\hrule
+\vspace{50pt}
+	
+Συστήματα Αυτομάτου Ελέγχου
+	
+Υπεύθυνη καθηγήτρια: Ζωή Δουλγέρη, ασκήσεις από τον Παπαγεωργίου Δημήτρη - δεν υπάρχει διαχωρισμός ασκήσεων και θεωρίας.
+
+\section{Συστήματα}
+Γνωρίζουμε από τα προηγούμενα μαθήματα τι είναι το σύστημα. Σκοπός του μαθήματος είναι να σχεδιάσουμε έναν "ελεγκτή" ώστε ένα σύστημα να έχει μια επιθυμητή έξοδο.
+
+Για παράδειγμα, αν έχουμε έναν κινητήρα που επιθυμούμε να ελέγξουμε, μπορούμε να τον παραστήσουμε με το παρακάτω σχήμα:
+
+\begin{tikzpicture}
+\draw (0,0) rectangle (1,1) node[midway] {$\Sigma$};
+\draw[->] (1,0.5) -- ++(1,0) node[right] {$y$};
+\draw (1.5,0.5) -- (1.5,-1) -- (0,-1);
+\draw (0,-0.75) rectangle (-0.5,-1.25) node[midway] {$H$};
+\draw[->] (-0.5,-1) -- (-2,-1) -- (-2,0.25);
+\draw (-2,0.5) circle (0.25);
+\draw[->] (-3,0.5) -- (-2.25,0.5) node[above,midway] {$r$};
+\draw (-1.35,0.25) rectangle (-0.65,0.85) node[midway] {$E$};
+\draw (-1.75,0.5) -- (-1.35,0.5) ;
+\draw (-0.65,0.5) -- (0,0.5) node[above left] {$u$};
+\end{tikzpicture}
+
+όπου:
+\begin{itemize}
+	\item \( \Sigma \) είναι ο κινητήρας
+	\item \( u \) είναι η τάση εισόδου (που ρυθμίζουμε εμείς)
+	\item \( y \) είναι η έξοδος του συστήματος, εδώ η ταχύτητα του κινητήρα
+	\item Η ροπή του φορτίου εκφράζει την είσοδο της διαταραχής
+	\item \( H \) είναι ένας μετρητής που μπορούμε να έχουμε για να ελέγχουμε την ταχύτητα
+	του κινητήρα
+	\item \( E \) είναι ο ελεγκτής που θέλουμε να υλοποιήσουμε, ώστε να ρυθμίζει την
+	τάση \( u \) εισόδου του κινητήρα για να πετύχουμε την επιθυμητή ταχύτητα.
+\end{itemize}
+
+Έχουμε και μία \textbf{είσοδο αναφοράς} που καθορίζει την επιθυμητή έξοδο του συστήματος.
+
+Στα πλαίσια των ΣΑΕ βρίσκουμε το μαθηματικό μοντέλο του συστήματος, καθώς και το μαθηματικό
+μοντέλο του ελεγκτή, και τα υλοποιούμε με φυσικό τρόπο (για παράδειγμα μέσω κυκλωματικών
+στοιχείων, μικροελεγκτών, arduino κ.ά).
+
+Παραδείγματα συστημάτων αυτομάτου ελέγχου είναι: Τα αμορτισέρ του αυτοκινήτου, οι κινητήρες
+των CD drives, οι κινητήρες των γραμμών παραγωγής (ώστε για παράδειγμα να είμαστε σίγουροι
+ότι τα υλικά περνάν από έναν κλίβανο ακριβώς για 30 λεπτά, διατηρώντας σταθερή την
+ταχύτητα μεταφοράς τους), κ.ά.
+
+\subsection{Μοντελοποίηση συστημάτων}
+\paragraph{}
+Για το σύστημα ενός σώματος στο οποίο ασκείται δύναμη, έχουμε πολύ απλά:
+\[
+	F = m\ddot x
+\]
+
+Για μια δύναμη ελατηρίου, ισχύει \( F = \kappa \cdot \delta x \), και για μια δύναμη
+απόσβεσης/ιξώδους: \( F = d\dot x \)
+
+\paragraph{Ανάρτηση αυτοκινήτου}
+Θεωρούμε ότι η ανάρτηση ενός αυτοκινήτου αποτελείται από ένα ελατήριο και έναν αποσβεστήρα:
+
+\begin{tikzpicture}
+\draw (0,0) rectangle (2,1) node[midway] {$m$};
+\draw (0.5,0) -- ++(0,-0.4)
+-- ++(-30:0.2)
+-- ++(-150:0.4)
+-- ++(-30:0.4)
+-- ++(-150:0.4)
+-- ++(-30:0.4)
+-- ++(-150:0.4)
+-- ++(-30:0.2)
+-- (0.5,-2);
+;
+\draw (1.5,0) -- (1.5,-1);
+\draw (1.25,-1) -- (1.75,-1);
+\draw (1.1,-0.9) -- (1.1,-1.2) -- (1.9,-1.2) -- (1.9,-0.9);
+\draw (1.5,-1.2) -- (1.5,-2);
+
+\draw (-0.5,-2) -- (2.5,-2);
+\draw[gray] (2.5,1.2) -- (2.5,-2.7);
+
+\draw (1,-2) -- (1,-2.5);
+\filldraw (1,-2.5) circle(1pt) node[below left] {$\rho$};
+
+\draw[dashed] (0.5,0) -- (3,0) node[right] {$x_0$};
+\draw[dashed] (0.5,-2) -- (3,-2) node[right] {$x_i$};
+\end{tikzpicture}
+
+Και όπως πριν προκύπτει η σχέση:
+\[
+m\ddot x_0 + b(\dot x_0 - \dot x_i) + \kappa (x_0-x_i) = 0
+\]
+η οποία μπορεί να μετασχηματιστεί κατά Laplace:
+\begin{align*}
+	m\ddot x_0 + b\dot x_0 + \kappa x_0 &= b\dot x_i + \kappa \dot x_i \\
+	ms^2X_0(s) + bsX_0(s) + \kappa X_0(s) &= X_1(s)bs + \kappa X_1(s) \\
+	\Aboxed{\frac{X_0(s)}{X_1(s)} &= \frac{bs+\kappa}{ms^2+bs+\kappa} }
+\end{align*}
+
+
+
+Αυτή είναι μία απλή μέθοδος μοντελοποίησης συστημάτων, αλλά η μοντελοποίηση δεν είναι
+αντικείμενο αυτού του μαθήματος.
+
+\subsection{Ορισμοί}
+
+\begin{defn}{}{}
+	\begin{itemize}
+	\item
+	\textbf{Συνάρτηση μεταφοράς:} \(
+	\displaystyle G(s) = \frac{Y(s)\quad\text{\small (έξοδος)}}{U(s) \quad
+		\text{\small (είσοδος)} }
+	= \frac{N(s)\quad \text{\small (αριθμητής)}}{D(s)\quad \text{\small (παρονομαστής)} }
+	\)
+	\item \textbf{Χαρακτηριστικό πολυώνυμο:} \( D(s) \)
+    \end{itemize}
+\end{defn}
+Θυμόμαστε ότι στα φυσικά συστήματα δεν γίνεται να έχουμε βαθμό του αριθμητή μεγαλύτερο από
+το βαθμό του παρονομαστή.
+\begin{defn}{Μορφές έκφρασης συνάρτησης μεταφοράς}{}
+	\begin{align*}
+		H(s) &= \frac{K(s+z_1)\cdots(s+z_m)}{(s+p_1)\cdots(s+p_n)} \\
+		H(s) &= \frac{G(1+s\tau_{n+1})\cdots(1+s\tau_{n+m})}{(1+s\tau_1)\cdots(1+s\tau_n)}
+		\quad \text{όπου } G=\frac{kz_1\cdots z_m}{p_1\cdots p_m}
+	\end{align*}
+\end{defn}
+\begin{defn}{}{}
+	\begin{itemize}
+    \item \textbf{Πόλοι} ονομάζονται οι τιμές \( p \) για τις οποίες ισχύει:
+    \[
+    \mathlarger{\lim_{s\to p}  \left\lvert H(s) \right\rvert} = \infty
+    \]
+    \item \textbf{Μηδενικά} ονομάζονται οι τιμές \( z \) για τις οποίες ισχύει:
+    \[
+    \mathlarger{\lim_{s\to z}  \left\lvert H(s) \right\rvert} = 0
+    \]
+    \end{itemize}
+\end{defn}
+\begin{theorem}{Σύνδεση εν σειρά}{}
+	Όταν συνδέουμε δύο απομονωμένα συστήματα εν σειρά, για τις συναρτήσεις μεταφοράς τους
+	ισχύει:
+	\[
+	G(s) = G_1(s)G_2(s)
+	\]
+	
+	\begin{center}
+	\begin{tikzpicture}[scale=1.2]
+	\draw[->] (0,0) -- (1,0) node[above,midway] {$X_1(s)$};
+	\draw (1,-0.3) rectangle (2,0.3) node[midway] {$G_1(s)$};
+	\draw (2,0) -- (3,0) node[above,midway] {$X_2(s)$};
+	\draw (3,-0.3) rectangle (4,0.3) node[midway] {$G_2(s)$};
+	\draw[->] (4,0) -- (5,0) node[above,midway] {$X_3(s)$};
+	\end{tikzpicture}
+    \end{center}
+\end{theorem}
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+
+\begin{circuitikz}[american,scale=1.4]
+	\ctikzset{bipoles/thickness=3}
+	\draw (0,2) to [V=$u(s)$] (0,0);
+	\draw[color=green!50!black] (0,2)
+	to[R=$R_1$] (2,2)
+	to[C=$C_1$] (2,0)
+	-- (0,0);
+	
+	\draw[color=green!50!cyan!50!black] (2,2)
+	to[R=$R_2$] (4,2)
+	to[C=$C_2$] (4,0)
+	-- (2,0);
+	
+	\draw (4,2) to[short,-*] (5,2);
+	\draw (4,0) to[short,-*] (5,0);
+	\draw (5,2) to[open, v^=$y$] (5,0);
+\end{circuitikz}
+
+Για το παραπάνω κύκλωμα, αν και έχουμε δύο συστήματα ενωμένα σε σειρά, δεν μπορούμε να
+εφαρμόσουμε το θεώρημα στο παραπάνω κύκλωμα, αφού τα επιμέρους κυκλώματα δεν είναι απομονωμένα
+και παρουσιάζουν σύνθετες αντιστάσεις εισόδου και εξόδου. Πράγματι, αν επιλύσουμε το
+κύκλωμα:
+\begin{align*}
+	G_1(s)G_2(s) &= \frac{1}{(R_1C_1s+1)}\frac{1}{(R_2C_2s+1)} \\
+	\frac{y(s)}{u(s)} &= \frac{1}{R_1C_1R_2C_2s^2+(R_1C_1+R_2C_2+\underline{R_1C_2})s+1}
+\end{align*}
+Παρατηρούμε τον όρο \( R_1C_2s \) που δεν υπάρχει στον απλό πολλαπλασιασμό των δύο
+συστημάτων.
+
+\paragraph{Άσκηση}
+Ποιές από τις παρακάτω συναρτήσεις μεταφοράς έχουν \textbf{ρυθμούς} (ρίζες του παρονομαστή)
+που δεν είναι πόλοι;
+\begin{enumroman}
+	\item \( \displaystyle \frac{s+8}{(s+3)(s+10)} \)
+	\item \( \displaystyle \frac{s+1}{(s+1)^2(s+2)} \)
+	\item \( \displaystyle \frac{s+9}{(s+2)^2+9} \)
+	\item \( \displaystyle \frac{s+1}{(s+1)(s+2)} \)
+\end{enumroman}
+\subparagraph{Απάντηση}
+\begin{enumroman}
+	\item Έχει μηδενικό στο \( -8 \) και πόλλους στα \( -3 \) και \( -10 \).
+	\item Έχει μόνο έναν πόλο στο \( -1 \) και στο \( -2 \).
+	\item Έχει μηδενικό στο \( -9 \) και πόλους στα \( -2+j3 \) και \( -2-j3 \).
+	\item Έχει μόνο πόλο στο \( -2 \).
+\end{enumroman}
+
+Η λύση αυτή μπορεί να προκύψει από τους ορισμούς του πόλου και του μηδενικού.
+
+\subsection{Σύστημα κλειστού βρόγχου}
+
+\begin{tikzpicture}[scale=1.3]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0) node[above,midway,green!50!black,scale=0.8] {$w(s)$};
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$G(s)$};
+\draw (3,0) -- (3.75,0);
+\draw (4,0) circle (0.25);
+\draw[->] (4.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[<-] (4,0.25)  node[left] {$+$} --++ (0,0.5)
+node[above,rectangle,align=center,scale=0.8]
+{είσοδος\\διαταραχής\\$d(s)$};
+
+\draw (4.5,0) -- ++(0,-1.5) -- (3,-1.5);
+\draw (1.5,-2) rectangle (3,-1) node[midway] {$H(s)$};
+\draw[->] (1.5,-1.5) -- (0.75,-1.5) node[above,midway,green!50!black,scale=0.8] {$f(s)$} 
+-- ++(0,1.25) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+Ορίζουμε:
+\begin{alignat*}{2}
+	\text{συνάρτηση μεταφοράς κλειστού βρόγχου: } && T(s) &= \frac{y(s)}{r(s)} \\
+	\text{συνάρτηση μεταφοράς εισόδου διαταραχής: } && T_d(s) &= \frac{y(s)}{d(s)}
+\end{alignat*}
+
+Για να υπολογίσουμε την έξοδο του συστήματος, αν δεν λάβουμε υπ' όψιν
+την είσοδο διαταραχής:
+\begin{align*}
+	y(s) &= G(s)w(s)
+	\\ &= G(s)\left( r(s)-f(s) \right) \\
+	y(s) &= G(s)\left[ r(s)-H(s)y(s) \right] \\
+	y(s)\left[1+G(s)H(s)\right] &= G(s)r(s) \\
+	y(s) &= \frac{G(s)r(s)}{1+G(s)H(s)} \\
+	T(s) &= \frac{G(s)}{1+G(s)H(s)}
+\end{align*}
+
+Αν συμπεριλάβουμε και την είσοδο διαταραχής, το ζητούμενο είναι η είσοδος αυτή να μην
+επηρεάζει καθόλου (ή όσο το δυνατόν λιγότερο) την έξοδο. Έχουμε:
+\begin{align*}
+    y(s) &= d(s) + G(s)w(s)
+    \\ &= d(s) - G(s)f(s) \\ &= d(s) - G(s)H(s)y(s) \implies \\
+    y(s)\left[ 1+G(s)H(s) \right] &= d(s) \implies \\
+	T_d(s) &= \frac{y(s)}{d(s)} = \frac{1}{1+G(s)H(s)}
+\end{align*}
+
+Συνοπτικά:
+\begin{theorem}{Συναρτήσεις μεταφοράς σε σύστημα κλειστού βρόγχου}{}
+	Για ένα σύστημα κλειστού βρόγχου με είσοδο \( r(s) \), είσοδο διαταραχής
+	\( d(s) \), συνάρτηση \( G(s) \) στην ευθεία διαδρομή και \( H(s) \) στη
+	διαδρομή ανάδρασης, οι συναρτήσεις μεταφοράς είναι:
+	\begin{align*}
+		T(s) &= \left. \frac{y(s)}{r(s)} \right\rvert_{d(s) = 0}
+		= \frac{G(s)}{1+G(s)H(s)} \\
+		T_{d}(s) &= \left. \frac{y(s)}{d(s)} \right\rvert_{r(s) = 0}
+		=
+		\frac{1}{1+G(s)H(s)}
+	\end{align*}
+	και η συνολική έξοδος του συστήματος είναι:
+	\[
+	y(s) = T(s)r(s) + T_d(s)d(s)
+	\]
+\end{theorem}
+
+Παρατηρούμε ότι το χαρακτηριστικό πολυώνυμο είναι το ίδιο στις δύο συναρτήσεις μεταφοράς.
+
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+\begin{tikzpicture}
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$\displaystyle\frac{\kappa}{s+a}$};
+\draw (3,0) -- (4,0);
+\draw[->] (4,0) -- ++(1,0) node[above right] {$y$};
+
+\draw (4,0) -- ++(0,-1.5) -- (3,-1.5);
+\draw[dashed] (3,-1.5) -- (1.5,-1.5);
+\draw (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[below right] {$-$};
+\end{tikzpicture}
+
+Θα υπολογίσουμε την έξοδο του συστήματος \underline{χωρίς ανάδραση} και \underline{με ανάδραση} σε βηματική είσοδο \( r(s) \rightarrow \mathrm u(t) \).
+\subparagraph{Χωρίς ανάδραση} \hspace{0pt}
+
+Το σύστημα χωρίς ανάδραση είναι το παραπάνω χωρίς τον κάτω βρόχο:
+\begin{tikzpicture}[baseline,scale=0.7]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$\frac{\kappa}{s+a}$};
+\draw (3,0) -- (4,0);
+\draw[->] (4,0) -- ++(1,0) node[above right] {$y$};
+\end{tikzpicture}
+
+Και ισχύει:
+\begin{align*}
+	y(s) &= r(s)\frac{\kappa}{s+a} \\
+	y(s) &= \kappa\frac{1}{s}\frac{1}{s+a} \\
+	y(t) &= \kappa\left( 1-e^{\sfrac{-t}{\tau}} \right)
+\end{align*}
+(όπου η σταθερά χρόνου \( \tau = \frac{1}{a} \))
+
+Για \( t\to \infty \) το αποτέλεσμα είναι \( y(t) = \kappa \).
+
+\subparagraph{Με ανάδραση}
+\begin{align*}
+	y(s) &= \frac{G(s)r(s)}{1+G(s)} \implies \dots \implies
+	\tau' = \frac{1}{a+\kappa}
+\end{align*}
+Παρατηρούμε πως το σύστημα αυτό φτάνει πολύ πιο γρήγορα στην τελική του τιμή. Αυτό φαίνεται
+αν συγκρίνουμε τις σταθερές χρόνου μεταξύ τους, σκεπτόμενοι ότι λειτουργούν ως συντελεστές
+στην εκθετική συνάρτηση:
+
+\begin{tikzpicture}
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+
+\draw (-1.5,0) node[cross=4pt,thick,blue] {} node[below,yshift=-1mm] {$-a-\kappa$};
+\draw (-0.5,0) node[cross=4pt,thick,yellow!50!brown!50!red] {} node[above,yshift=1mm] {$-a$};
+
+\begin{scope}[xshift=4cm]
+\draw (-1,0) -- (3,0);
+\draw (0,-2) -- (0,2);
+
+\draw [very thick, color=blue, domain=0:3,variable=\t, samples=\gsamples, smooth]
+plot (\t,{ 1-exp(-\t) }) node[below] {$-a$};
+\draw [very thick, color=yellow!50!brown!50!red, domain=0:3,variable=\t, samples=\gsamples, smooth]
+plot (\t,{ 1-exp(-5*\t) }) node[above,xshift=-2cm] {$-a-k$};
+\end{scope}
+\end{tikzpicture}
+
+\subsection{Ισοδύναμα λειτουργικά διαγράμματα}
+Για τη διευκόλυνσή της εύρεσης της συνάρτησης μεταφοράς, μπορούμε αντί να βρούμε την έξοδο
+αλγεβρικά χρησιμοποιώντας ενδιάμεσες συναρτήσεις, να εφαρμόσουμε κανόνες όπως τους
+παρακάτω:
+\begin{infobox}{}
+	\begin{itemize}
+		\item
+		\begin{tikzpicture}[scale=1.3,baseline]
+		\begin{scope}[yshift=2mm]
+		\draw[->] (0,0) -- (0.75,0);
+		\draw (0.75,-0.7/2) rectangle ++(1,0.7) node[midway] {$H$};
+		\draw[->] (1.75,0) -- (2.5,0) node[right] {$y_1$};
+		\draw[->] (2,0) -- (2,-0.5) -- (2.5,-0.5) node[right] {$y_2$};
+		\end{scope}
+		
+		\draw[->,very thick,gray!20!black] (4,0) to[bend left=10] ++(1.5,0);
+		
+		\begin{scope}[xshift=6.5cm]
+		\draw (0,0) -- (0.5,0);
+		\draw (0.5,0) -- (0.5,0.3) -- (1,0.3);
+		\draw (0.5,0) -- (0.5,-0.3) -- (1,-0.3);
+		\draw (1,-0.5) rectangle (1.7,-0.1) node[midway] {$H$};
+		\draw[->] (1.7,-0.3) -- ++(0.5,0) node[right] {$y_2$};
+		\draw (1,0.5) rectangle (1.7,0.1) node[midway] {$H$};
+		\draw[->] (1.7,0.3) -- ++(0.5,0) node[right] {$y_1$};
+		\end{scope}
+		\end{tikzpicture}
+		\item
+		\begin{tikzpicture}[scale=1.3,baseline]
+		\begin{scope}[]
+		\draw[->] (0,0) -- (0.75,0) node[above,midway] {$u$};
+		\draw (0.75,0) -- (0.75,0.5) -- (1.25,0.5);
+		\draw (1.25,0.5-0.7/2) rectangle ++(1,0.7) node[midway] {$H$};
+		\draw[->] (2.25, 0.5) -- (2.75,0.5) node[right] {$y$};
+		\draw[->] (0.75,0) -- (0.75,-0.5) -- (2.75, -0.5) node[right]{$y_1$};
+		\end{scope}
+		
+		\draw[->,very thick,gray!20!black] (4,0) to[bend left=10] ++(1.5,0);
+		
+		\begin{scope}[xshift=6.5cm,yshift=0.3cm]
+		\draw[->] (0,0) -- (0.75,0) node[above,midway] {$u$};
+		\draw (0.75,-0.5/2) rectangle ++(0.75,0.5) node[midway] {$H$};
+		\draw[->] (1.5,0) -- (2.25,0) node[right] {$y$};
+		\draw[->] (1.75,0) -- (1.75,-0.5) -- (2.25,-0.5);
+		\draw (2.25,-0.5-0.5/2) rectangle ++(0.75,0.5) node[midway] {$\frac{1}{H}$};
+		\draw[->] (3,-0.5) -- ++(0.5,0) node[right] {$y_1$};
+		\end{scope}
+		\end{tikzpicture}
+		\item
+		\begin{tikzpicture}[scale=1.3,baseline]
+		\begin{scope}[]
+		\draw[->] (0,0.5) -- ++(0.75,0);
+		\draw (0.75,0.5-0.5/2) rectangle ++(0.75,0.5) node[midway] {$H_1$};
+		\draw[->] (1.5,0.5) -- (2.25,0.5) -- (2.25,0.2) node[right,yshift=1mm,xshift=1mm] {$+$};
+		\draw[->] (0,-0.5) -- ++(0.75,0);
+		\draw (0.75,-0.5-0.5/2) rectangle ++(0.75,0.5) node[midway] {$H_2$};
+		\draw[->] (1.5,-0.5) -- (2.25,-0.5) -- (2.25,-0.2);
+		\draw (2.25,0) circle (2mm);
+		\draw[->] (2.45,0) -- ++(0.75,0) node[above,pos=.9] {$y$};
+		\end{scope}
+		
+		\draw[->,very thick,gray!20!black] (4,0) to[bend left=10] ++(1.5,0);
+		
+		\begin{scope}[xshift=6.5cm]
+		\draw[] (0,0.5) -- ++(0.6,0);
+		\draw (0.6,0.5-0.5/2) rectangle ++(1,0.5) node[midway] {$\sfrac{H_1}{H_2}$};
+		\draw[->] (1.6,0.5) -- (2.25,0.5) -- (2.25,0.2) node[right,yshift=1mm,xshift=1mm] {$+$};
+		\draw[->] (0,-0.5) -- (2.25,-0.5) -- (2.25,-0.2);
+		\draw (2.25,0) circle (2mm);
+		\draw (3.05,-0.4/2) rectangle ++(0.8,0.4) node[midway] {$H_2$};
+		\draw[] (2.45,0) -- ++(0.6,0);
+		\draw[->] (3.85,0) -- ++(0.6,0) node[right] {$y$};
+		\end{scope}
+		\end{tikzpicture}
+	\end{itemize}
+\end{infobox}
+
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+\begin{tikzpicture}
+\def\h{0.6}
+\def\l{1}
+\def\ll{0.75}
+\draw[->] (0,0) node[green!70!black,scale=.8,opacity=.8,left] {$r(s)$} -- (1.5-0.2,0);
+\begin{scope}[xshift=1.5cm]
+\draw (0,0) circle (2mm);
+\draw (0.2,0) -- ++(0.75,0);
+\draw (0.2+0.75, -\h/2) rectangle ++(\l, \h) node[midway] {$H_1$};
+\draw[->] (\l+0.2+0.75,0) -- (2.8,0) node[green!70!black,scale=.8,opacity=.8,above,midway] {$w(s)$};
+\draw (3,0) circle (2mm);
+\end{scope}
+\begin{scope}[xshift=4.5cm]
+\draw (0.2,0) -- ++(0.75,0);
+\draw (0.2+0.75, -\h/2) rectangle ++(\l, \h) node[midway] {$H_2$};
+\draw[] (\l+0.2+0.75,0) -- (3.5,0) node[right] {$y(s)$};
+\end{scope}
+
+\draw (0.5,0) -- ++(0,1.5) -- (4.5,1.5) -- (4.5,1);
+\draw (4.5-\ll/2,1) rectangle (4.5+\ll/2,0.6) node[midway] {$\kappa$};
+\draw[->] (4.5,0.6) -- (4.5,0.2) node[right,xshift=1mm,yshift=1mm] {$+$};
+
+\draw[->] (4.5+2.5,0) -- ++(0,-1.5) -- (1.5,-1.5) -- (1.5,-0.2) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+Χρησιμοποιώντας τους παραπάνω κανόνες, ή την προηγούμενη μέθοδο, μπορούμε να βρούμε:
+\[
+T(s) = \frac{\kappa H_2(s)+H_2(s)H_1(s)}{1+H_1(s)H_2(s)}
+\]
+
+Ενδεικτικά, με βοηθητικές συναρτήσεις, οι πράξεις γίνονται ως εξής:
+\begin{align*}
+	y(s) &= H_2(s)\cdot\left( \kappa r(s) + w(s) \right)
+	\\ &= H_2 \cdot \left[ \kappa r + H_1 \left( r - y \right) \right]
+	\\ &= \kappa H_2 r + H_2H_1r - H_1H_2y \implies
+	\\ y \cdot (1+H_1H_2) &= \kappa H_2 r + H_2H_1 r \implies
+	\\ y &= \frac{\kappa H_2 r + H_2H_1 r}{1+H_1H_2} \implies
+	\\ T(s) &= \frac{\kappa H_2(s) + H_2(s)H_1(s) }{1+H_1(s)H_2(s)}
+\end{align*}
+
+
+\section{Προδιαγραφές}
+Ορίζουμε κάποιες προδιαγραφές που επιθυμούμε να πληροί η έξοδος του συστήματος, όπως η
+ακρίβεια θέσης, η ταχύτητα της απόκρισης, η ευστάθεια κλπ. Για να μετρήσουμε ποσοτικά αυτά
+τα κριτήρια, ορίζουμε νέα μεγέθη και χρησιμοποιούμε διάφορες συναρτήσεις ως
+"εισόδους αναφοράς", όπως την κρουστική \( \delta(t) \) (για μελέτη ευστάθειας),
+τη βηματική \( \mathrm u(t) \), την ράμπα, την ημιτονοειδή (για μελέτη
+απόκρισης συχνότητας και ταχύτητας) κλπ.
+
+\subsection{Ακρίβεια}
+Το ζητούμενο της ακρίβειας είναι η τελική έξοδος να είναι κοντά στην επιθυμητή είσοδο.
+
+Για να υπολογίσουμε την τελική έξοδο, δεν χρειάζεται να υπολογίσουμε τον αντίστροφο Μ/Σ
+Laplace της συνάρτησης για να πάμε στο πεδίο του χρόνου, αλλά αρκεί να χρησιμοποιηθεί το θεώρημα της τελικής τιμής:
+\[
+f(\infty) = \lim_{s\to 0} sF(s)
+ \]
+
+Για παράδειγμα, για βηματική είσοδο (\( \mathrm u(t) \rightarrow \frac{1}{s}\))
+σε ένα σύστημα (ss = steady state):
+\begin{align*}
+	y_{\mathrm{ss}} &= \lim_{s\to 0} sF(s) = \lim_{s\to 0} sH(s)\frac{1}{s} =
+	\lim_{s\to 0} H(s)
+\end{align*}
+
+\begin{comment}
+\begin{tikzpicture}
+\def\h{0.6}
+\def\l{1.2}
+\def\ll{0.75}
+\draw[->] (0,0) node[left] {$r(s)$} -- (1-0.2,0);
+\begin{scope}[xshift=1cm]
+\draw (0,0) circle (2mm);
+\draw (0.2,0) -- ++(0.75,0);
+\draw (0.2+0.75, -\h/2) rectangle ++(\l, \h) node[midway] {$G_1(s)$};
+\draw (\l+0.2+0.75,0) -- (3,0);
+\draw  (3, -\h/2) rectangle ++(\l, \h) node[midway] {$G_2(s)$};
+\draw (3+\l,0) -- (5-0.2,0);
+\draw[->] (5,1) -- ++(0,-1+0.2) node[midway,right] {$d(s)$};
+\draw (5,0) circle (2mm);
+\draw[->] (5+0.2,0) -- ++(1,0) node[right] {$y$};
+\end{scope}
+
+\draw[->] (4.5+2.2,0) -- ++(0,-1.5) -- (4,-1.5);
+\draw (4,-1.5-\h/2) rectangle ++(-\l,\h) node[midway] {$H(s)$};
+\draw[->] (4-\l,-1.5) -- (1,-1.5) -- (1,-0.2);
+\end{tikzpicture}
+\end{comment}
+
+Για να μελετήσουμε την ακρίβεια, ορίζουμε το σφάλμα:
+\begin{defn}{Σφάλμα}{}
+	\[
+	e(s) = r(s) - y(s)
+	\]
+\end{defn}
+
+Χρησιμοποιούμε διάφορες εισόδους για να βρούμε διάφορα είδη σφαλμάτων του συστήματος:
+
+\begin{alignat*}{5}
+\begin{tikzpicture}[scale=0.4,baseline]
+\draw (-0.2,0) -- (2,0);
+\draw (0,-0.2) -- (0,2);
+\draw [very thick, color=blue] (0,1.8) -- (2,1.8);
+\end{tikzpicture}\quad
+y(t) &= \mathrm u(t) &&\quad y(s) = \frac{1}{s} &\qquad e_{\mathrm ssp} & \quad{\text{σφάλμα θέσης}} \\
+\begin{tikzpicture}[scale=0.4,baseline]
+\draw (-0.2,0) -- (2,0);
+\draw (0,-0.2) -- (0,2);
+\draw [very thick, color=blue] (0,0) -- (2,2);
+\end{tikzpicture}\quad
+y(t) &= t &&\quad y(s) = \frac{1}{s^2} &\qquad e_{\mathrm ssv} & \quad{\text{σφάλμα ταχύτητας}} \\
+\begin{tikzpicture}[scale=0.4,baseline]
+\draw (-0.2,0) -- (2,0);
+\draw (0,-0.2) -- (0,2);
+\draw [very thick, color=blue, domain=0:2,variable=\t, samples=\gsamples, smooth]
+plot (\t,\t^2/2);
+\end{tikzpicture}\quad
+y(t) &= \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \quad{\text{σφάλμα επιτάχυνσης}}
+\end{alignat*}
+
+Για παράδειγμα, για το σύστημα κλειστού βρόγχου, θυμόμαστε ότι:
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H(s)$};
+\draw (3,0) -- (3.75,0);
+\draw[->] (3.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw (3.6,0) -- ++(0,-1.5) -- (3,-1.5) -- (1.5,-1.5);
+\draw[dashed] (1.5,-2) rectangle (3,-1) node[midway,opacity=.5] {$G(s)$};
+\draw[->] (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+Αν θεωρήσουμε ότι η \( G(s) \) είναι \( 1 \), τότε:
+\begin{align*}
+	\frac{y(s)}{r(s)} &= \frac{H(s)}{1+H(s)} \\
+	\text{όπου } H(s) &=
+	\frac{G(τ_{n+1}s+1)\cdots(τ_{n+m}s+1)}{s^N(1+sτ_1)\cdots(1+sτ_n)} \implies
+	\\
+	e(s) &= r(s)-y(s) = \frac{1}{1+H(s)}r(s) \\
+	e_{\mathrm{ss}} &= \lim_{s\to 0}se(s)
+\end{align*}
+(δηλαδή \( N \) είναι η τάξη του τυχόν πόλου στο 0).
+
+Εφαρμόζοντας τις διάφορες συναρτήσεις ως εισόδους, σύμφωνα με τα παραπάνω, έχουμε:
+\begin{alignat*}{3}
+	e_{\mathrm{ssp}} &= \frac{1}{\displaystyle 1+\underbrace{\lim_{s\to 0}H(s)}_{K_\mathrm{pos}}}
+	= \frac{1}{1+{\color{green!50!black}K_\mathrm{pos}}}
+	&&= \begin{cases}
+	\frac{1}{1+{\color{green!50!black}G}} \qquad &\text{για } N = 0 \\
+	\frac{1}{1+{\color{green!50!black}\infty}} = 0 \qquad &\text{για } N \geq 1
+	\end{cases}
+	\\
+	e_{\mathrm{ssv}} &= \frac{1}{\displaystyle \underbrace{\lim_{s\to 0} sH(s)}_{K_v} }
+	= \frac{1}{\color{cyan!50!black}K_v} &&=
+	\begin{cases}
+	\frac{1}{\color{cyan!50!black}0} = \infty \qquad &\text{για } N = 0
+	\\
+	\frac{1}{\color{cyan!50!black}G}\qquad &\text{για } N=1
+	\\
+	\frac{1}{\color{cyan!50!black}\infty} = 0\qquad &\text{για } N\geq 2
+	\end{cases}
+	\\
+	e_{\mathrm{ssa}} &= \frac{1}{\displaystyle \underbrace{\lim_{s\to 0} s^2H(s)}_{K_a}}
+	= \frac{1}{\color{orange!50!black}K_a}
+	&&= \begin{cases}
+	\infty \qquad &\text{για } N \leq 1 \\
+	\frac{1}{\color{orange!50!black} G} \qquad &\text{για } N = 2 \\
+	0 \qquad &\text{για } N > 2
+	\end{cases}
+\end{alignat*}
+
+Δε συζητάμε για ακρίβειες πέραν της επιτάχυνσης, επειδή σπάνια τα συστήματα έχουν πάνω από
+2 ολοκληρωτές.
+
+\begin{defn}{Ολοκληρωτής}{}
+	Ένας \textbf{πόλος στο 0} λειτουργεί σαν \textbf{ολοκληρωτής}, επειδή
+	έχει την ιδιότητα να ολοκληρώνει το σήμα εισόδου.
+\end{defn}
+\begin{defn}{Τύπος συστήματος}{}
+	Ο \textbf{τύπος του συστήματος} είναι ο αριθμός των ολοκληρωτών που έχει.
+\end{defn}
+
+\paragraph{Παράδειγμα}
+Έστω το σύστημα:
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H(s)$};
+\draw (3,0) -- (3.75,0);
+\draw (4,0) circle (0.25);
+\draw[->] (4.25,0) -- ++(1,0) node[above right] {$y$};
+\draw ({(3+1.5)/2},0.5) node[above] {$\frac{1}{s(s+a)}$};
+
+\draw[<-] (4,0.25)  node[right,xshift=1mm,yshift=1mm] {$+$} --++ (0,0.5)
+node[above,rectangle,align=center,scale=0.8]
+{$d(s)=\frac{1}{s}$};
+
+\draw[->] (4.5,0) -- ++(0,-1.5) -- (0.75,-1.5) -- ++(0,1.25)
+node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+Ποιά θα είναι η έξοδος του συστήματος στη μόνιμη κατάσταση αν προσθέσουμε την είσοδο
+διαταραχής;
+
+\subparagraph{}
+
+Γνωρίζουμε για το σύστημα κλειστού βρόχου ότι:
+\begin{align*}
+	\frac{y(s)}{d(s)} &= \frac{1}{1+H(s)} \\
+	\lim_{s\to 0}sy(s) &= \lim_{s\to 0} s\frac{d(s)}{1+H(s)}
+	= \lim_{s\to 0} s\frac{\frac{1}{s}}{1+H(s)} = \lim_{s\to 0}\frac{1}{1+H(s)} = 0
+%	\frac{y(s)}{r(s)} &= \frac{H(s)}{1+H(s)}\\
+%	y(s) &= \frac{H(s)}{1+H(s)}r(s) + \frac{1}{1+H(s)}d(s)
+\end{align*}
+Δηλαδή \( y_{\mathrm{ss}} = 0 \), άρα το σύστημα έχει πάλι τέλεια ακρίβεια, και σφάλμα θέσης
+0.
+
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+Το παρακάτω διάγραμμα αντιστοιχεί σε έναν κινητήρα:
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$κ$};
+\draw (3,0) -- (3.75,0);
+\draw (4,0) circle (0.25);
+\draw (5,-0.5) rectangle (6.5,0.5) node[midway] {$\frac{1}{s(Js+b)}$};
+\draw (4.25,0) -- (5,0);
+\draw[->] (6.5,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[<-] (4,0.25)  node[right,xshift=1mm,yshift=1mm] {$+$} --++ (0,0.5)
+node[above] {$d$};
+
+\draw[->] (7,0) -- ++(0,-1.5) -- (0.75,-1.5) -- ++(0,1.25)
+node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+Το μετασχηματίζουμε στο ισοδύναμό του, ώστε να εφαρμόσουμε τους τύπους κλειστού βρόγχου:
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$κ$};
+\draw (3,0) -- (3.75,0);
+\draw (4,0) circle (0.25);
+\draw (6,-0.5) rectangle (7.5,0.5) node[midway] {$\frac{1}{s(Js+b)}$};
+\draw (4.25,0) -- (6,0);
+\draw[->] (7.5,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[<-] (4,0.25)  node[right,xshift=1mm,yshift=1mm] {$+$} --++ (0,0.5)
+node[above] {$d$};
+
+
+\draw[->] (5,0) -- ++(0,-1.5) -- (3.5,-1.5);
+\draw[->]  (2,-1.5) -- (0.75,-1.5) -- ++(0,1.25)
+node[right,xshift=1mm,yshift=-1mm] {$-$};
+
+\draw (2,-1.5-0.5) rectangle (3.5,-1.5+0.5) node[midway] {$\frac{1}{s(Js+b)}$};
+\end{tikzpicture}
+
+Τότε προκύπτει (για είσοδο \( \frac{1}{s} \), αφού αναζητούμε σφάλμα θέσης):
+\begin{align*}
+    T(s) &= \frac{1}{s(Js+b)}\frac{κ}{1+\frac{κ}{s(Js+b)}} 
+    = \frac{κ}{s(Js+b)+κ}\\
+    T_{d}(s) &= \frac{1}{s(Js+b)}\frac{1}{1+\frac{κ}{s(Js+b)}}
+    = \frac{1}{s(Js+b)+κ}
+     \\
+    y(s) &= T(s)r(s) + T_d(s)d(s)
+    \\ &= \frac{1}{s}\frac{κ}{s(Js+b)+κ} + \frac{1}{s}\frac{1}{s(Js+b)+κ}
+    \\
+    e(s) &= r(s) - y(s) \\
+    e_{\mathrm{ssp}} &= \lim_{s\to 0} se(s)
+    \\ &= \lim_{s \to 0} s\left[
+    \frac{1}{s} - \frac{1}{s}\frac{κ}{s(Js+b)+κ} - \frac{1}{s}\frac{1}{s(Js+b)+κ}
+    \right]
+    \\
+    &= \lim_{s\to 0} \left[
+    1 - \frac{κ}{s(Js+b)+κ} - \frac{1}{s(Js+b)+κ}
+    \right] \\
+    &= 1-\frac{κ}{κ}-\frac{1}{κ} = -\frac{1}{κ}
+\end{align*}
+Δηλαδή βλέπουμε ότι η διαφορετική θέση της εισόδου διαταραχής επηρεάζει το σφάλμα θέσης του
+συστήματος.
+
+Αν, προσπαθώντας να μειώσουμε στο 0 το σφάλμα της εξόδου, προσθέσουμε έναν ολοκληρωτή
+πριν από την είσοδο διαταραχής:
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$\sfrac{κ}{\color{cyan!70!black} s}$};
+\draw (3,0) -- (3.75,0);
+\draw (4,0) circle (0.25);
+\draw (5,-0.5) rectangle (6.5,0.5) node[midway] {$\frac{1}{s(Js+b)}$};
+\draw (4.25,0) -- (5,0);
+\draw[->] (6.5,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[<-] (4,0.25)  node[right,xshift=1mm,yshift=1mm] {$+$} --++ (0,0.5)
+node[above] {$d$};
+
+\draw[->] (7,0) -- ++(0,-1.5) -- (0.75,-1.5) -- ++(0,1.25)
+node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+τότε το χαρακτηριστικό πολυώνυμο του συστήματος γίνεται:
+\[
+Js^3+bs^2+κ = 0
+\]
+που έχει ρίζες στο δεξί ημιεπίπεδο, άρα οδηγεί σε ασταθές σύστημα (θυμόμαστε από τα Κ3 ότι μόνο τα πολυώνυμα με θετικούς συντελεστές \textit{μπορεί} να οδηγήσουν σε ευστάθεια).
+
+Για να διορθώσουμε αυτήν την ατέλεια, χρησιμοποιούμε έναν \textbf{ελεγκτή PI}
+(Proportional \& Integral), δηλαδή πολλαπλασιάζουμε την είσοδό του \( e(t) \) 
+με \( K_P e(t) \) και ολοκληρώνουμε με
+\( K_I \int e(t) \).
+
+\begin{infobox}{Ελεγκτής PI}
+Σύμφωνα με την παραπάνω παράγραφο, η έξοδος \( u(t) \) ενός ελεγκτή PI είναι:
+\[
+u(t) = K_P\cdot e(t) + K_I \int e(t) \dif t
+\]
+(όπου \( e \) η είσοδος)
+και, μετασχηματίζοντας κατά Laplace:
+\[
+u(s) = \left( K_P + \frac{K_I}{s} \right) =
+\frac{K_P\left( s+\frac{K_I}{K_P} \right)}{s}
+= \frac{K_P(s+z)}{s}
+\]
+όπου \( z = \frac{K_P}{K_I} \) μία σταθερή τιμή.
+\end{infobox}
+
+Στο συγκεκριμένο παράδειγμα, αντικαθιστούμε τη συνάρτηση μεταφοράς \( \sfrac{κ}{s}  \) με
+τη συνάρτηση:
+\[
+K_p\left(\frac{s+z}{s}\right)
+\]
+όπου \( z = \frac{K_P}{K_I} \),
+και το χαρακτηριστικό πολυώνυμο γίνεται:
+\[
+x(s) = Js^3 + bs^2 + K_p s + K_I = 0
+\]
+που μπορεί να είναι ευσταθές με κατάλληλη επιλογή των σταθερών.
+
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+Στο σύστημα χωρίς βρόγχο:
+
+\begin{tikzpicture}[scale=0.9]
+\draw[->] (0,0) -- (1.5,0) node[above,midway] {$r(s)$};
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H_κ(s)$};
+\draw[->] (3,0) -- ++(1.5,0) node[above,midway] {$y(s)$};
+\end{tikzpicture}
+
+\begin{align*}
+	e_{\mathrm{ssp}} &= \lim_{s\to 0} se(s) = \lim_{s\to 0}\left(1-H_κ(s)\right) \\
+	e_{\mathrm{ssv}} &= \lim_{s\to 0} \frac{1-H_κ(s)}{s} \\
+	e_{\mathrm{ssa}} &= \lim_{s\to 0} \frac{1-H_κ(s)}{s^2}
+\end{align*}
+
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H(s)$};
+\draw (3,0) -- (3.75,0);
+\draw[->] (3.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[->]  (3.6,0) -- ++(0,-1.5) -- (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+\[
+H(s) = \frac{s+9}{s^2+7s+3}
+\]
+
+Τι σφάλμα θέσης έχει το παραπάνω σύστημα;
+
+\begin{align*}
+	e_{\mathrm{ssp}} &= \frac{1}{1+K_{\mathrm{pos}}} \\
+	K_{\mathrm{pos}} &= \lim_{s\to 0} H(s) = \frac{9}{3} = 3 \implies \\
+	e_{\mathrm{ssp}} &= \frac{1}{1+3} = \frac{1}{4}.
+\end{align*}
+
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H(s)$};
+\draw (3,0) -- (3.75,0);
+\draw[->] (3.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[->]  (3.6,0) -- ++(0,-1) -- (1.5,-1) -- (0.75,-1) -- ++(0,0.75) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+Στο παραπάνω σχήμα, θέτουμε:
+
+\[
+H(s) = \frac{2(s+10)}{s(s+2)(s+5)}
+\]
+
+Τι σφάλματα έχει το παραπάνω σύστημα;
+\subparagraph{}
+\begin{alignat*}{2}
+K_{\mathrm{pos}} &= \infty \\
+K_{\mathrm v}	 &= \lim_{s\to 0} sH(s) &&= \frac{20}{10} = 2 \\
+K_{\mathrm a}    &= 0 \\[2ex]
+e_{\mathrm{ssp}} &= \frac{1}{1+\infty} &&= 0 \\
+e_{\mathrm{ssv}} &= \frac{1}{K_{\mathrm v}} &&= \frac{1}{2} \\
+e_{\mathrm{ssa}} &= \frac{1}{0} &&= \infty
+\end{alignat*}
+
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H(s)$};
+\draw (3,0) -- (3.75,0);
+\draw[->] (3.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[->]  (3.6,0) -- ++(0,-1) -- (1.5,-1) -- (0.75,-1) -- ++(0,0.75) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+Στο παραπάνω σχήμα:
+\[
+H(s) = \frac{1.8κ}{s(s+3.3)}
+\]
+
+Ποιά πρέπει να είναι η σταθερά \( κ \) ώστε να ισχύει \( e_{\mathrm{ssv}} = 0.327 \);
+
+\begin{align*}
+	K_{\mathrm{v}} &= \lim_{s\to 0}
+	sH(s) = \lim_{s \to 0} \frac{1.8κ}{s+3.3} = \frac{18κ}{33} \\
+	e_{\mathrm{ssv}} &= \frac{1}{K_{\mathrm v}}
+	= \frac{33}{18κ} = 0.327 \implies \\
+	κ &= \frac{33}{18\cdot 0.327} \simeq 5.607
+\end{align*}
+
+\paragraph{Άσκηση}
+Έστω ένα σύστημα με συνάρτηση μεταφοράς:
+\[
+H_{κ}(s) = \frac{κs+b}{s^2+as+b}
+\]
+
+Ποιά είναι τα σφάλματα του συστήματος, και ποιά είναι η συνάρτηση μεταφοράς, αν προέρχεται
+από σύστημα κλειστού βρόγχου \textit{μοναδιαίας αρνητικής ανάδρασης};
+
+\subparagraph{Σφάλματα}
+\begin{alignat*}{2}
+	e_{\mathrm{ssp}} &= \lim_{s\to 0}\left[1-H_κ(s)\right] = 1-\frac{b}{b} &&= 0 \\
+	e_{\mathrm{ssv}} &= \lim_{s\to 0}\left[\frac{1-H_κ(s)}{s}\right] &&= \frac{a-κ}{b} \\
+	e_{\mathrm{ssa}} &= \lim_{s\to 0}\left[\frac{1-Η_κ(s)}{s^2}\right] &&= \infty
+\end{alignat*}
+\subparagraph{Συνάρτηση μεταφοράς} \hspace{0pt}
+
+\begin{tikzpicture}[scale=0.8,every node/.style={scale=.8}]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H(s)$};
+\draw (3,0) -- (3.75,0);
+\draw[->] (3.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[->]  (3.6,0) -- ++(0,-1.5) -- (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+Γνωρίζουμε ή βρίσκουμε ότι, για συστήματα κλειστού βρόγχου:
+\[
+H_κ(s) = \frac{H(s)}{1+H(s)}
+\]
+άρα:
+\begin{align*}
+	H_κ(1+H) &= H \implies \\
+	H_κ + H_κH &= H \implies \\
+	H(1-H_κ) &= H_κ \implies \\
+	H &= \frac{H_κ}{1-H_κ} \implies \\
+	H &= \frac{\frac{κs+b}{s^2+as+b}}{1-\frac{ks+b}{s^2+as+b}}
+	= \frac{\frac{κs+b}{\cancel{s^2+as+b}}}{\frac{s^2+as+b-ks-b}{\cancel{s^2+as+b}}}
+	\implies \\
+	\Aboxed{H(s) &= \frac{κs+b}{s(s+a-κ)}}
+\end{align*}
+
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+\begin{tikzpicture}
+\draw[->] (-0.1,0) -- (3,0) node[below right] {$t$};
+\draw[->] (0,-0.1) -- (0,3);
+
+\draw[dashed] (0,1.4) node[left] {$0.5$} -- ++(3,0);
+\draw[dashed] (0,2.8) node[left] {$1$} -- ++(3,0);
+
+\draw[very thick, blue!80!green]
+plot[samples=10,variable=\x,domain=0:3,smooth]
+({\x},{0.2/(0.01+2*\x)*sin(2*\x r)+1.4*(1-exp(-4*\x))})
+node[right] {$y(t)$};
+
+\foreach \i in {1,2,3}
+\draw(\i*2.5/3,0.05) -- ++(0,-0.1) node[below] {$\i$};
+\end{tikzpicture}
+
+Έστω το σύστημα με την παραπάνω απόκριση στη βηματική συνάρτηση. Ποιός είναι ο τύπος του
+συστήματος;
+
+\subparagraph{} \hspace{0pt}
+
+\begin{tikzpicture}
+\draw[dashed] (0,1.4) node[left] {$0.5$} -- ++(3,0);
+\draw[dashed] (0,2.8) node[left] {$1$} -- ++(3,0);
+
+\draw[very thick, blue!80!green]
+plot[samples=10,variable=\x,domain=0:3,smooth]
+({\x},{0.2/(0.01+2*\x)*sin(2*\x r)+1.4*(1-exp(-4*\x))})
+node[right] {$y(t)$};
+
+\draw[very thick, blue!40!cyan]
+(0,2.8) -- ++(3,0) node[right] {$r(s)$};
+
+\draw[thin,<->,blue!40!cyan]
+(1.5,2.7) -- ++(0,-1.2) node[midway,right,scale=.8] {$0.5$};
+
+\foreach \i in {1,2,3}
+\draw(\i*2.5/3,0.05) -- ++(0,-0.1) node[below] {$\i$};
+
+\draw[->] (-0.1,0) -- (3,0) node[below right] {$t$};
+\draw[->] (0,-0.1) -- (0,3);
+\end{tikzpicture}
+
+Η επιθυμητή έξοδος του συστήματος είναι 1, αλλά η έξοδός του στη μόνιμη κατάσταση είναι 0.5,
+επομένως υπάρχει σταθερό σφάλμα \( 0.5 \). Άρα το σύστημα έχει τύπο \( 0 \).
+
+Γνωρίζουμε ότι, αφού είναι τύπου \( 0 \), θα έχει άπειρο σφάλμα ταχύτητας. Πράγματι, αν
+βάλουμε ως είσοδο τη συνάρτηση ράμπας, το σφάλμα όσο \( t \to \infty \) θα αυξάνεται όλο
+και περισσότερο:
+
+\begin{tikzpicture}
+\draw[dashed] (0,2.6/3) node[left] {$1$} -- ++(3,0);
+\draw[dashed] (0,2.6) node[left] {$3$} -- ++(3,0);
+
+\begin{scope}
+\pgfmathsetseed{22}
+\clip  (0,0) --
+plot[samples=10,variable=\x,domain=0.1:3,smooth]
+({\x},{0.2*\x+0.1*rand}) -- (3,3) -- (0,0);
+\fill[draw=yellow!50!black,opacity=.5,fill=yellow!50!white,postaction={pattern=vertical lines}] (0,0) -- (3,3) -- (3,0) -- cycle;
+\end{scope}
+
+\pgfmathsetseed{22}
+\draw[very thick, blue!80!green] (0,0) --
+plot[samples=10,variable=\x,domain=0.1:3,smooth]
+({\x},{0.2*\x+0.1*rand})
+node[right] {$y(t)$};
+
+\draw[very thick, blue!40!cyan]
+(0,0) -- (3,3) node[right] {$r(s)$};
+
+\foreach \i in {1,2,3}
+\draw(\i*2.5/3,0.05) -- ++(0,-0.1) node[below] {$\i$};
+
+\draw[->] (-0.1,0) -- (3,0) node[below right] {$t$};
+\draw[->] (0,-0.1) -- (0,3);
+\end{tikzpicture}
+
+\paragraph{Άσκηση} \hspace{0pt}
+
+Ποιά είναι τα σφάλματα του παρακάτω συστήματος;
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$\displaystyle \frac{κ}{Js^2}$};
+\draw (3,0) -- (3.75,0);
+\draw[->] (3.25,0) -- ++(1,0) node[above right] {$y$};
+
+\draw (3.6,0) -- ++(0,-1.5) -- (3,-1.5);
+\draw (1.5,-2) rectangle (3,-1) node[midway] {$1+bs$};
+\draw[->] (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[right,xshift=1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+Επειδή δεν έχουμε μοναδιαία αρνητική ανάδραση, δεν μπορούμε να εφαρμόσουμε τους τύπους
+σφάλματος για συστήματα μοναδιαίας αρνητικής ανάδρασης.
+
+Βρίσκουμε τη συνάρτηση μεταφοράς κλειστού βρόγχου:
+\begin{align*}
+	y &= H(s)\left(r-G(s)y\right) = \dots = \frac{H(s)}{1+H(s)G(s)}
+	= \frac{\sfrac{κ}{Js^2} }{1+bs}
+	= \frac{κ}{Js^2 + κbs + κ}
+\end{align*}
+
+Επομένως μπορούμε να εφαρμόσουμε τους τύπους σφάλματος χωρίς βρόγχο:
+\[
+e_{\mathrm{ssp}} = 0 \hspace{100pt}
+e_{\mathrm{ssv}} = b \hspace{100pt}
+e_{\mathrm{ssa}} = \infty
+\]
+
+\paragraph{Άσκηση} \hspace{0pt}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.25,0) -- (0.5,0) node[above,midway] {$r(s)$};
+\draw (0.75,0) circle (0.25);
+\draw (1,0) -- ++(0.5,0);
+\draw (1.5,-0.5) rectangle (3,0.5) node[midway] {$H_1(s)$};
+\draw[->] (3,0) -- (3.75,0);
+\draw (4,0) circle (0.25);
+\draw (5,-0.5) rectangle (6.5,0.5) node[midway] {$H_2(s)$};
+\draw[->] (4.25,0) -- (5,0);
+\draw[->] (6.5,0) -- ++(1,0) node[above right] {$y$};
+
+\draw[<-] (4,0.25)  node[right,xshift=1mm,yshift=1mm] {$+$} --++ (0,0.5)
+node[above] {$d(s)$};
+
+\draw[->] (7,0) -- ++(0,-1.5) -- (0.75,-1.5) -- ++(0,1.25)
+node[left,xshift=-1mm,yshift=-1mm] {$-$};
+\end{tikzpicture}
+
+\begin{enumgreekparen}
+	\item
+	\( \displaystyle
+	H_1(s) = \frac{s+2}{s+1} \qquad
+	H_2(s) = \frac{10}{s(s+6)}
+	 \)
+	\item
+	\( \displaystyle
+	H_1(s) = \frac{s+2}{s(s+1)} \qquad
+	H_2(s) = \frac{10}{s+6}
+	 \)
+\end{enumgreekparen}
+Να βρεθούν και στις δύο περιπτώσεις τα σφάλματα θέσης και ταχύτητας με διάφορες
+περιπτώσεις διαταραχών.
+
+\subparagraph{Λύση, αν δεν υπάρχει διαταραχή d(s)}
+\begin{enumgreekparen}
+\item Έχουμε μοναδιαία αρνητική ανάδραση και το σύστημα έχει έναν ολοκληρωτή, άρα είναι τύπου 1.
+Το σφάλμα θέσης είναι \( e_{\mathrm{ssp}} = 0 \), και το σφάλμα ταχύτητας μία σταθερά
+\(
+\displaystyle e_{\mathrm{ssv}}=\frac{1}{K_{\mathrm v}} = \frac{1}{\lim_{s\to 0} sH(s)}
+= \frac{1}{\lim_{s\to 0}s\frac{s+2}{s+1}\frac{10}{s(s+6)}}
+=\frac{1}{\sfrac{20}{6} }=\frac{3}{10}
+ \).
+ 
+\item
+Αντίστοιχα με το προηγούμενο ερώτημα, έχουμε:
+\begin{align*}
+K_{\mathrm{pos}} &=
+\lim_{s\to 0} H(s) = \lim_{s\to 0}
+\frac{s+2}{s(s+1)}\frac{10}{s+6} = \infty \\
+K_{\mathrm{v}} &=
+\lim_{s\to 0}sH(s) = \lim_{s\to 0}
+\frac{s+2}{s+1}\frac{10}{s+6} = 2\cdot\frac{10}{6} = \frac{10}{3}
+\intertext{Άρα:}
+e_{\mathrm{ssp}} &= \frac{1}{1+K_{\mathrm{pos}}} = 0 \\
+e_{\mathrm{ssv}} &= \frac{1}{K_{\mathrm v}} = \frac{3}{10}
+\end{align*}
+\end{enumgreekparen}
+
+
+\subparagraph{Λύση με διαταραχή \( d(s) = \frac{A}{s} \)}
+Υπολογίζουμε:
+\begin{align*}
+	y &= H_2\left( d+H_1(r-y) \right) \implies \dots \\
+	\implies y &= \underbrace{\frac{H_1H_2}{1+H_1H_2}}_{y_1} r +
+	\underbrace{\frac{H_2}{1+H_1H_2}d}_{y_2}
+\end{align*}
+
+Φαίνεται η επαλληλία στη απόκριση του συστήματος, την οποία θα μπορούσαμε να εκμεταλλευτούμε.
+
+Θυμόμαστε ότι:
+\[
+e(s) = r(s)-y(s) \qquad \text{και} \qquad
+e_{\mathrm{ss}} = \lim_{s\to 0} se(s)
+\]
+
+Για την εύρεση του αποτελέσματος, θα χρησιμοποιήσουμε τον ορισμό του σφάλματος.
+
+\subparagraph{(α) σφάλμα θέσης}
+Για το σφάλμα θέσης, θεωρούμε \( r(s) = \frac{1}{s} \),  και έχουμε:
+\begin{align*}
+	e_{\mathrm{ssp}} &= \lim_{s\to 0}s\left[
+	\frac{1}{s} - \frac{H_1H_2}{1+H_1H_2} \frac{1}{s}
+	- \frac{H_2}{1+H_1H_2}\frac{A}{s}
+	\right]
+	\\ &=
+	\lim_{s\to 0} \left[
+	1 - \frac{\frac{s+2}{s+1}\frac{10}{s(s+6)}}{1+\frac{s+2}{s+1}\frac{10}{s(s+6)}}
+	- \frac{\frac{10}{s(s+6)}}{1+\frac{s+2}{s+1}\frac{10}{s(s+6)}}
+	\right]
+	\\ &= \lim_{s\to 0} \left[
+	1-\frac{\frac{10(s+2)}{\cancel{s(s+1)(s+6)}}}{\frac{s(s+1)(s+6)+10(s+2)}{\cancel{s(s+1)(s+6)}}} - A
+	\frac{\frac{10}{\cancel{s(s+6)}}}{\frac{s(s+1)(s+6)+10(s+2)}{\cancel{s(s+6)}(s+1)}}
+	\right]
+	\\ &= \lim_{s\to 0} \left[
+	1- \frac{10(s+2)}{s(s+1)(s+6)+10(s+2)}
+	-A\frac{10(s+1)}{s(s+1)(s+6)+10(s+2)}
+	\right]
+	\\ &= 1 - \frac{20}{20} - A\cdot\frac{10}{20}
+	\\ &= -\frac{A}{2}.
+\end{align*}
+\subparagraph{(β) σφάλμα θέσης}
+Αντίστοιχα με παραπάνω, βρίσκουμε:
+\begin{align*}
+    e_{\mathrm{ssp}} &= \lim_{s\to 0}s\left[
+    \frac{1}{s} - \frac{H_1H_2}{1+H_1H_2} \frac{1}{s}
+    - \frac{H_2}{1+H_1H_2}\frac{A}{s}
+    \right]
+    \\ &=
+    \lim_{s\to 0} \left[
+    1 - \frac{\frac{s+2}{s(s+1)}\frac{10}{s+6}}{1+\frac{s+2}{s(s+1)}\frac{10}{s+6}}
+    - A\frac{\frac{10}{s+6}}{1+\frac{s+2}{s(s+1)}\frac{10}{s+6}}
+    \right]
+    \\ &=
+    \lim_{s\to 0} \left[
+    1-
+    \frac{\frac{10(s+2)}{\cancel{s(s+1)(s+6)}}}{\frac{s(s+1)(s+6)+10(s+2)}{\cancel{s(s+1)(s+6)}}}
+    - A\frac{\frac{10}{\cancel{s+6}}}{
+    	\frac{s(s+1)(s+6)+10(s+2)}{s(s+1)\cancel{(s+6)}}
+    	}
+    \right]
+    \\ &=
+    \lim_{s\to 0} \left[
+    1 - \frac{10(s+2)}{s(s+1)(s+6)+10(s+2)}
+    - A \frac{10s(s+1)}{s(s+1)(s+6)+10(s+2)}
+    \right]
+    \\ &= 1 - \frac{20}{20} - A\cdot \frac{0}{20}
+    \\ &= 0.
+\end{align*}
+
+Παρατηρούμε ότι η αλλαγή της θέσης του ολοκληρωτή \( \displaystyle \frac{1}{s} \) επηρεάζει
+και το σφάλμα του συστήματος.
+
+\subsubsection{Ασκήσεις (Παπαγεωργίου)}
+\paragraph{Αντιστοιχίες ηλεκτρικού συστήματος σε μηχανικό σύστημα}
+
+\[
+\begin{array}{rcl}
+	\text{τάση } V & \rightarrow & \text{δύναμη } F \\
+	\text{ρεύμα } I & \rightarrow & \text{ταχύτητα } u \\
+	\text{αντίσταση } R=\frac{V}{I} & \rightarrow & \text{αποσβεστήρας } B = \frac{F}{u}
+	\quad
+	\begin{circuitikz}[scale=0.7]
+	\ctikzset{bipoles/length=.9cm}
+	\draw (0,0) to[damper] (1,0);
+	\end{circuitikz} \\
+	\text{πυκνωτής } i_c=C\od{u_c}{t} & \rightarrow & \text{ελατήριο } \frac{1}{κ} \od{F}{t}
+	\rightsquigarrow F=kx \\
+	\text{πηνίο } u_L = L\od{i_L}{t} & \rightarrow & \text{αδράνεια } F = ma = m\od{u}{t}
+\end{array}
+\]
+
+Ένα παράδειγμα μηχανικού συστήματος είναι τα \textbf{αμορτισέρ}, τα οποία ουσιαστικά
+"κόβουν" τις υψηλές συχνότητες που μπορεί να οφείλονται σε ανομοιομορφίες του δρόμου, ώστε
+να νιώθουμε άνετα μέσα σε ένα αυτοκίνητο.
+
+\paragraph{Άσκηση 3.8} \hspace{0pt}
+
+\begin{infobox}{}
+	Οι αριθμοί των ασκήσεων συνήθως δίνονται από το βιβλίο του \textbf{Πετρίδη}.
+\end{infobox}
+
+\begin{circuitikz}
+	\draw (2.5+0.2,-0.7) circle (0.2);
+	\draw (3.5-0.2,-0.7) circle (0.2);
+	
+	\draw (5+0.2,-0.7) circle (0.2);
+	\draw (6-0.2,-0.7) circle (0.2);
+	
+	\draw (1,-0.9) -- (8,-0.9);
+	\fill[pattern=north east lines] (1,-0.9) rectangle (8,-1.5);
+	
+	\draw (8,-0.9) -- (8,1);
+	\fill[pattern=north east lines] (8,-1.5) rectangle (9,1);
+	
+	\draw (0,0)
+	to[spring={$K_1$}] (2,0)
+	to[short] (2.5,0);
+	;
+	\draw (0,0.5) -- ++(0,-1);
+	\draw (2.5,-0.5) rectangle ++(1,1) node[midway] {$m_1$};
+	\draw (3.5,0.35) to[spring={$K_2$}] (5,0.35);
+	\draw (3.5,-0.35) to[damper] (5,-0.35);
+	\draw (5,-0.5) rectangle ++(1,1) node[midway] {$m_2$};
+	\draw (6,0) to[damper={$B_2$}] (8,0);
+	
+	%\draw (3.5/2+5/2) node [label={[inner sep=1pt, fill=white,text=black, fill opacity=0.75, text opacity=1]above left:$(65, 35)$}] {};
+	\draw ({(3.5+5)/2},-0.75) node[inner sep=1pt, fill=white,text=black, fill opacity=0.75, text opacity=1,below] {$B_1$};
+	
+	\draw[thick,orange!50!green,->] (-0.7,0) -- (0,0) node[midway,above] {$F$};
+	\draw[thick,green!80!blue,->] (0,0.8) -- ++(0,-0.2) ++(0,0.1) -- ++(0.7,0)
+	node[above,midway] {$R_0$};
+	\draw[thick,green!80!blue,->] (2.5,0.8) -- ++(0,-0.2) ++(0,0.1) -- ++(0.7,0)
+	node[above,midway] {$l_1$};
+	\draw[thick,green!80!blue,->] (5,0.8) -- ++(0,-0.2) ++(0,0.1) -- ++(0.7,0)
+	node[above,midway] {$l_2$};
+\end{circuitikz}
+
+Να υπολογιστεί η συνάρτηση μεταφοράς του παραπάνω συστήματος.
+Σαν έξοδος θεωρείται η μετατόπιση της \( m_1 \).
+
+\subparagraph{Λύση}
+Βρίσκουμε το άθροισμα των δυνάμεων που ασκούνται σε κάθε μάζα, και εφαρμόζουμε το
+νόμο του Νεύτωνα:
+\begin{align*}
+	\text{Για τη μάζα 2: } F = m_2\od[2]{l_2}{t}
+	&=
+	\underbrace{-K_2(l_2-l_1)}_{\text{ελατήριο}}
+	-\underbrace{B_2\od[2]{l_2}{t}}_{\text{αποσβ.}}
+	-\underbrace{B_1\left(
+	\od{l_2}{t}-\od{l_1}{t}
+	\right)}_{\text{αποσβεστήρας}}
+	\\
+	\text{Για τη μάζα 1: } F = m_1\od[2]{l_1}{t}
+	&=
+	-K_1(l_1-l_0)-B_1\left(\od{l_1}{t}-\od{l_2}{t}\right)
+	-K_2(l_1-l_2)
+\end{align*}
+
+Μετασχηματίζουμε τις δύο εξισώσεις κατά Laplace:
+\begin{align}
+	m_2s^2L_2 &= -K_2(L_2-L_1) - B_2sL_2 - B_1(sL_2-sL_1) \label{3.8.lap2} \\
+	m_1s^2L_1 &= -K_1(L_1-L_0) - B_1(sL_1-sL_2) - K_2(L_1-L_2) \label{3.8.lap1}
+\end{align}
+Θυμόμαστε ότι δεν λαμβάνουμε υπ' όψιν τις αρχικές συνθήκες, αφού αναζητούμε τη συνάρτηση
+μεταφοράς.
+
+Αναζητούμε μια σχέση της μορφής \( H(s) = \frac{L_0(s)}{L_1(s)} \), άρα πρέπει να απαλείψουμε
+το \( L_2 \) από τις δύο παραπάνω σχέσεις:
+\begin{align*}
+	\eqref{3.8.lap2} \implies L_2 &=
+	L_1 \frac{K_2+B_1s}{m_2s^2+K_2+(B_1+B_2)s} \xRightarrow{\eqref{3.8.lap1}} \\
+	\frac{L_1}{L_0}
+	&= \frac{K_1m_2s^2+K_1K_2+K_1(B_1+B_2)s}{
+		(m_1s+K_1+K_2+B_1s)\left(m_2s^2+K_2+(B_1+B_2)s\right)-(K_2+B_1s)^2}
+\end{align*}
+
+\paragraph{Άσκηση με brushed DC κινητήρα} \hspace{0pt}
+
+Έστω ένας brushed DC κινητήρας:
+
+\begin{tikzpicture}[scale=1.1]
+\draw (0,0.7) -- (2,0.7);
+\draw (0,0) -- (2,0);
+\draw (2,0.35) ellipse (0.2 and 0.35);
+
+\draw (2,0.35) ellipse (0.2/2 and 0.35/2);
+\draw (2,0.35+0.35/2) -- ++ (-0.17,0);
+\draw (2,0.35-0.35/2) -- ++ (-0.17,0);
+
+\draw (0,0.7) arc (120:242:0.4);
+
+\draw[fill=gray!50!white]
+(2,0.35+0.07) to[bend right] (2,0.35-0.07)
+-- ++(1.4,0)
+-- ++(0,2*0.07)
+-- cycle;
+%(2,0.35+0.07) arc (120:242:0.082)
+
+\begin{scope}[xshift=3.5cm]
+%,fill=gray!10!white,path fading=north
+\draw[top color=gray!5!white,bottom color=gray!10!white!90!blue] (0,0.7) arc (120:242:0.4) -- (2,0) -- (2,0.7)
+-- (0,0.7);
+\draw (0,0) -- (2,0);
+\draw[fill=white] (2,0.35) ellipse (0.2 and 0.35);
+\draw (0,0.7) arc (120:242:0.4);
+
+\draw[->,black!80!gray] (2.3,0.9) to [bend left] node[midway,right] {$θ$} (2.3,-0.2);
+\end{scope}
+
+\draw[->,gray!30!black] (1,1.5) node[right] {στάτης}  to[bend left=5] (0.7,0.7);
+\draw[->,gray!30!black] (3.5,1.5) node[right] {δρομέας}  to[bend right=10] (3,0.45);
+\draw[->,gray!70!black!80!green] (2.4,1) node[above right] {$J_m$}  to[bend right=10] (2,0.45);
+\end{tikzpicture}
+
+με ισοδύναμο κύκλωμα δρομέα:
+
+\begin{circuitikz}[american]
+\draw
+(0,0) to[V=$V_t$] (0,-2)
+;
+\draw
+(0,0) to [R=$R_A$,i^={$i_A$}]
+(2,0) to[L=$L_A$]
+(4,0) to[V_=$V$,label={\small ηλεκτρεγερτική δύναμη λόγω περιστροφής}]
+(4,-2) to[short] (0,-2)
+;
+\end{circuitikz}
+
+Το ισοδύναμο κύκλωμα περιγράφεται από την εξίσωση:
+\begin{equation}
+V_t = R_Ai_A +L_a\od{i_A}{t}
++ K_v \od{\theta}{t} \label{ex.brusheddc.elec}
+\end{equation}
+και το μηχανικό ισοδύναμο:
+\begin{equation}
+\underbrace{(J_L+J_m)}_{\mathrm{\frac{Nms^2}{rad}}}
+\underbrace{\od[2]{θ}{t}}_{\mathrm{\frac{rad}{s^2}}}
+= \underbrace{K_T i_A}_{\mathrm{\frac{Nm}{A}}} \label{ex.brusheddc.mech}
+\end{equation}
+όπου \( J_L \) και \( J_m \) είναι οι ροπές αδράνειας του κάθε μέρους.
+
+Στη συγκεκριμένη άσκηση θεωρούμε σαν έξοδο τη \textit{γωνία του κινητήρα}, και σαν είσοδο
+την \textit{τάση του δρομέα} \( V_t \).
+
+Λύνουμε το σύστημα:
+\begin{align*}
+	\eqref{ex.brusheddc.mech} \implies
+	i_A &= \frac{(J_L+J_m)}{K_T} \od[2]{θ}{t}
+	\implies \\
+	I_A &= \frac{J_L+J_m}{K_T}s^2θ
+	\xRightarrow{\eqref{ex.brusheddc.elec}}
+	\\
+	V_T &= \left[(R_A+\cancelto{0\mathclap{\raisebox{3ex}{\text{\tiny(συνήθως αγνοούμε το $L_A$)}}}}{L_A}s)
+	\frac{J}{K_T}s^2+K_vs
+	\right]θ \implies \\
+	\frac{θ}{V} &= \frac{\sfrac{1}{K_v} }{\frac{R_AJ}{K_TK_v}s^2+s}
+\end{align*}
+
+Βέβαια σε πολλές περιπτώσεις μπορεί να τοποθετηθεί ένας \textbf{\textit{μειωτήρας}}
+μεταξύ του \( J_m \) και του \( J_L \):
+
+\begin{tikzpicture}
+\draw (0,0.7) -- (2,0.7);
+\draw (0,0) -- (2,0);
+\draw (2,0.35) ellipse (0.2 and 0.35);
+
+\draw (2,0.35) ellipse (0.2/2 and 0.35/2);
+\draw (2,0.35+0.35/2) -- ++ (-0.17,0);
+\draw (2,0.35-0.35/2) -- ++ (-0.17,0);
+
+\draw (0,0.7) arc (120:242:0.4);
+
+\draw[fill=gray!50!white]
+(2,0.35+0.07) to[bend right] (2,0.35-0.07)
+-- ++(1.4,0)
+-- ++(0,2*0.07)
+-- cycle;
+%(2,0.35+0.07) arc (120:242:0.082)
+
+\begin{scope}[xshift=3.5cm]
+%,fill=gray!10!white,path fading=north
+\draw[top color=gray!5!white,bottom color=gray!10!white!90!blue] (0,0.7) arc (120:242:0.4) -- (2,0) -- (2,0.7)
+-- (0,0.7);
+\draw (0,0) -- (2,0);
+\draw[fill=white] (2,0.35) ellipse (0.2 and 0.35);
+\draw (0,0.7) arc (120:242:0.4);
+
+\draw[->,black!80!gray] (2.3,0.9) to [bend left] node[midway,right] {$θ$} (2.3,-0.2);
+\end{scope}
+
+\draw[fill=white] (2.45,0.35-0.25) rectangle ++(0.5,0.5);
+
+
+\draw[->,gray!70!black!80!green] (2.4,1) node[above] {$J_m$}  to[bend right=10] (2,0.45);
+\draw[->,gray!70!black!80!green] (3.2,0.9) node[above] {$J_L$}  to[bend right=10] (3.3,0.45);
+\end{tikzpicture}
+
+Ο μειωτήρας είναι το μηχανικό ισοδύναμο ενός ενισχυτή, που κατασκευάζεται ουσιαστικά με δύο
+γρανάζια, ώστε να αυξηθεί η δύναμη μειώνοντας την ταχύτητα ή αντίστροφα:
+
+\begin{tikzpicture}[scale=0.7]
+% Source: https://tex.stackexchange.com/a/58735
+
+% #1 number of teeths
+% #2 radius intern
+% #3 radius extern
+% #4 angle from start to end of the first arc
+% #5 angle to decale thesecond arc from the first
+\newcommand{\gear}[5]{%
+	\foreach \i in {1,...,#1} {%
+		[rotate=(\i-1)*360/#1] (0:#2) arc (0:#4:#2) {[rounded corners=1.5pt]
+			-- (#4+#5:#3) arc (#4+#5:360/#1-#5:#3)} -- (360/#1:#2)
+	}}
+	
+	\draw[thick]
+	\foreach \i in {1,2,...,10} {%
+		[rotate=(\i-1)*36]
+		(0:0.7) arc (0:18:0.7) {[rounded corners=2pt] -- ++(18: 0.3) arc (18:36:0.7+0.3) } -- ++(36: -0.3)
+	};
+	\draw[thick,xshift=3cm] \gear{22}{2}{2.3}{7}{2.6};
+	
+	\draw (-1,-1.3) node {$u_1F_1$};
+	\draw (5.7,-1.3) node {$u_2F_2$};
+\end{tikzpicture}
+
+
+Τότε θα έχουμε:
+\[
+J = J_m + \left(
+\frac{N_1}{N_2}
+\right)^2 J_L
+\]
+
+Βέβαια ένα πραγματικό σύστημα θα περιλαμβάνει και δυναμική τριβή με τη μορφή αποσβεστήρα.
+
+\paragraph{Παράδειγμα 3.5.2} \hspace{0pt}
+
+\begin{circuitikz}
+	\draw
+	(0,0) to [R={$R_{\gamma f}$},o-] (2,0)
+	to [L={$L_{\gamma f}$}] (2,-2)
+	to [short,-o,i^={$i_{\gamma f}$}] (0,-2)
+	to [open,v={$e_{\gamma f}$}] (0,0)
+	;
+\end{circuitikz}
+
+\begin{circuitikz}[scale=1.4]
+	\ctikzset{bipoles/length=1.2cm}
+	
+	\draw (0,1) node[elmech](motor1){};
+	\draw (4,1) node[elmech](motor2){};
+	
+	\draw
+	(motor1.north)
+	-- (0,2)
+	to[R] (1,2)
+	to[L] (2,2)
+	to[R] (3,2)
+	to[L] (4,2)
+	-- (motor2.north)
+	;
+	
+	\draw
+	(motor2.south)
+	-- (4,0)
+	to[short,i=$i_a$] (0,0)
+	-- (motor1.south)
+	;
+	
+	\draw
+	([xshift=4mm]motor1.south)
+	to[open,v=$e_\gamma$] ([xshift=4mm]motor1.north);
+	
+	\draw
+	(6,0) to[L,l_=$L_F$]
+	(6,2) to[R=$R_F$]
+	(8,2) to[battery1=$V_F$]
+	(8,0) -- (6,0);
+	
+	\draw[<-] (motor1) -- ++(-1,-1) node[below left]
+	{
+		$\underset{\mathclap{\substack{\downarrow\\ \text{σταθερό}}}}{n}
+		=\od{\theta}{t}$
+	};
+	
+	\def\l{0.4}
+	\draw[xshift=5cm,rotate=45] (0,0) ellipse (0.22 and 0.14);
+	\draw (5-0.17,0-0.14) -- ++(\l,-\l) node(C) {};
+	\draw (5+0.17,0+0.14) -- ++(\l,-\l) node(D) {};
+	\draw (C.center) to[bend right=65] node[midway,below] {$J,B,T_L$} (D.center);
+	
+	\def\d{0.04}
+	\path (4,1) ++(\d,\d) -- ++(1,-1) node[] (A) {};
+	\path (4,1) ++(-\d,-\d) -- ++(1,-1) node[] (B) {};
+	
+	\fill[white] (A.center) to[bend left] (B.center) -- ++(90+45:0.2) -- ++(2*\d,2*\d) -- cycle;
+	
+	\draw[<-] (A) ++ (45+70:0.6) node[above ] {$\omega$} to[bend left=60] ($(B) + (45+110:0.6)$);
+	
+	\draw (4,1) ++(\d,\d) -- ++(1,-1);
+	\draw (4,1) ++(-\d,-\d) -- ++(1,-1);
+	\draw (A.center) to[bend left] (B.center);
+	
+	\draw[->] (-0.5,0.5) ++ (45+90:0.2) to[bend left=60] ($(-0.5,0.5) + (45-90:0.2)$);
+\end{circuitikz}
+
+\begin{align*}
+	e_{\gamma f} &=
+	R_{\gamma f} \cdot i_{\gamma f}
+	+ L_{γf} \od{i_{γf}}{t} \\
+	e_γ &= K\cdot n \cdot i_{γf}\quad
+	\left(
+	i_{γf} = \frac{e_γ}{γ}
+	\right) \\
+	E_{γf} &= \left(
+	\frac{R_{γf}}{γ}
+	+ \frac{L_{γf}}{γ}s
+	\right)E_γ \\
+	J\od[2]{θ}{t} + B\od{θ}{t} + T_L &= K_m i_a
+	\rightarrow (Js^2+Bs)Θ + T_L &= K_mI_a \\
+	L\od{i_a}{t} + Ri_a + K\od{θ}{t} &= e_γ
+	\rightarrow L_sI_a + R\cdot I_A + R\cdot I_A + K_S Θ = E_γ \\
+	(Js^2+Bs)Θ + T_L &= K_m \left(
+	\frac{E_γ - K_sΘ}{Ls + R}
+	\right) \\[2ex]
+	\left( Js^2+Bs+\frac{K_mK_s}{Ls+R} \right)Θ
+	+T_L &= \frac{K_m}{Ls+R}\left(
+	\frac{1}{\frac{R_γf}{γ}}
+	+\frac{L_γ f}{γ}s
+	\right)E_{γf} \\
+	\left(
+	Js+B+\frac{K_mK}{Ls+R}
+	\right)
+	ω + T_L &= \frac{K_m}{Ls+R} \left(
+	\frac{1}{\frac{R_γ f}{γ} + \frac{L_γ f}{γ}s}
+	\right)E_{γf}
+\end{align*}
+
+Για \( T_L = 0 \):
+\[
+\frac{Ω}{E_{γf}} =
+\frac{γK_m}{\left(
+	(Js+B)(Ls+R)+KK_m
+	\right)(Lγ_f s + R_{γf})}
+\]
+
+\paragraph{Τελεστικός ενισχυτής} \hspace{0pt}
+
+\begin{center}
+	\begin{circuitikz}[scale=2.5] \draw
+		(0,0) node[op amp] (opamp) {}
+		(opamp.+) to[short,-o] ++(-0.5,0)
+		(opamp.-) to[short,-o] ++(-0.5,0)
+		(opamp.out) to[short,-o] ++(0.5,0)
+	;\end{circuitikz}
+\end{center}
+
+Ο τελεστικός ενισχυτής είναι ιδανικά ένας διαφορικός ενισχυτής άπειρου κέρδους.
+Αν οι δύο είσοδοι είναι 0, τότε η έξοδος είναι 0, ενώ αν διαφέρουν, η είσοδος είναι άπειρη
+(ή \( V_{cc} \) σε πραγματικό ενισχυτή).
+
+Για τον ιδανικό τελεστικό ενισχυτή κάνουμε τις παραδοχές:
+\begin{itemize}
+	\item \( R_m = \infty \)
+	\item \( V_{+} = V_{-} \) (για να έχουμε πεπερασμένη έξοδο)
+\end{itemize}
+
+\paragraph{Άσκηση Α35} \hspace{0pt}
+
+\begin{circuitikz}[scale=1,american]
+	\draw (0,0) node[op amp] (opamp) {};
+	
+	\draw (opamp.+) to[short,-*] ++(-0.5,0) node[below right] {$B$}
+	to[short] ++(0,-1.2) node[ground] {};
+	
+	\draw (opamp.-) to[short,-*] ++(-0.5,0) node[above right] {$A$}
+	to[short] ++(0,1.5)
+	to[C] ++(3,0)
+	to[short,-*] (1.3,0) node[above right] {$\Gamma$};
+	
+	\draw (opamp.-) ++ (-0.5,0) to[short] ++(0,2.5)
+	to[R,i=$i_R$] ++(3,0) -- ++(0,-1);
+	
+	\draw (opamp.out) to[short,-o] ++ (3,0)
+	to[open,v=$e_0$] ++(0,-1.5) to[short,o-] ++(0,-0.2) node[ground] {};
+	
+	\draw (opamp.-) to[R=$R$,i<=$I_i$,-o] ++(-4,0)
+	to[open,v=$e_i$] ++(0,-2) to[short,o-] ++(0,-0.2) node[ground] {};
+\end{circuitikz}
+
+Μας ζητείται να βρούμε τον λόγο \( \displaystyle \frac{E_o}{E_i} \).
+
+Χρησιμοποιούμε τη δεύτερη παραδοχή του ιδανικού τελεστικού, και παρατηρούμε ότι:
+\[
+V_B = V_A = 0
+\]
+άρα:
+\begin{align*}
+	V_{AΓ} + V_{ΓB} &= 0 \\
+	\implies V_C + e_o &= 0 \\
+	\implies V_C &= - e_0
+\end{align*}
+
+Υπολογίζουμε τα ρεύματα μέσω κυκλωματικών νόμων, και λαμβάνοντας υπ' όψιν ότι (λόγω της
+άπειρης αντίστασης) δεν πηγαίνει ρεύμα στις εισόδους A και B του ενισχυτή:
+\begin{align}
+	I_i &= i_R + i_2 \label{ex.A35.cur} \\
+	I_i &=\frac{e_i}{R} \label{ex.A35.ohm}
+\end{align}
+άρα:
+\begin{align*}
+	\eqref{ex.A35.cur} + \eqref{ex.A35.ohm}
+	\implies \Aboxed{\frac{e_i}{R}&= -c\od{e_o}{t}-\frac{e_o}{R}}
+	\intertext{και}
+	i_R &= \frac{V_C}{R} = -\frac{e_o}{R}
+\end{align*}
+
+Μετασχηματίζοντας την παραπάνω εξίσωση κατά Laplace και λύνοντας, έχουμε:
+\[
+\boxed{\frac{E_o}{E_i} = \frac{1}{RCs+1}}
+\]
+
+\paragraph{Άσκηση 2.19} \hspace{0pt}
+
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[mixer] (m1) {};
+	\draw (7,0) node[mixer] (m2) {};
+	\draw (12,0) node[mixer] (m3) {};
+	
+	\draw (m1.west) node[inputarrow] {} node[above left] {$+$} -- ++(-1.5,0) node[above,pos=.7] {$u$};
+	\draw (m1.east) to[twoport,t=$\frac{1}{s+6}$,i>_=$e$] (4,0)
+	to[twoport,t=$\frac{s+3}{s+7}$,>] (5.5,0) 
+	to[short,i^>=$w_1$] (m2.west) node[above,xshift=-1mm] {$+$};
+	\draw (3.5,0) node[above left] {$A$} to[short,*-] ++(0,1.5) node(V) {};
+	\draw (m2.north) node[inputarrow,rotate=-90] {} node[above right] {$+$} -- (m2.north |- 0,1.5) node[circ] {} -- (V.center);
+	\draw (m2.east) to[twoport,i>^=$w$,t=$\frac{2}{s+5}$,-*] (10.5,0) node (B) {} node[above] {$B$};
+	\draw (B.center) -- ++(0,-1.5) to[twoport,t=$\frac{1}{s}$] (m2 |- 0,-1.5)
+	to[short] (m2.south) node[inputarrow,rotate=90] {} node[below right] {$-$};
+	\draw (B.center) -- (m3.west) node[inputarrow] {};
+	\draw (V) -- (m3 |- 0,1.5) -- (m3.north) node[inputarrow,rotate=-90] {} node[above right] {$+$};
+	\draw (m3.east) -- ++(1,0) node[inputarrow] {} node[midway,above] {$y$};
+	
+	\draw (m3.east) ++(0.5,0) to[short,*-] ++(0,-3)
+	to[twoport,t=$8$] (m1 |- 0,-3)
+	-- (m1.south) node[inputarrow,rotate=90] {} node[below right] {$-$};
+\end{circuitikz}
+
+Θα μετασχηματίσουμε το παραπάνω σύστημα σε ένα ισοδύναμό του.
+
+Αρχικά, θυμόμαστε την ισοδυναμία:
+
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[mixer] (m1) {};
+	
+	\draw (m1.west) node[inputarrow] {} node[above left] {$+$} -- ++(-1,0);
+	\draw (m1.east) to[twoport,t=$H_1$] (3,0) to[short,*-] (4,0) node[inputarrow] {};
+	\draw (3,0) -- (3,-2) to[twoport,t=$H_2$] (m1.east |- 0,-2) -- (m1 |- 0,-2) -- (m1.south)
+	node[inputarrow,rotate=90] {} node[below right] {$\pm$};
+	
+	\draw (current bounding box.east) node[right,scale=2] {$\equiv$};
+	\begin{scope}[xshift=5.2cm,yshift=-1cm]
+		\ctikzset{bipoles/length=2.4cm}
+		\draw (0,0) to[twoport,t=$\frac{H_1}{1\mp H_1H_2}$,>] (5,0) node[inputarrow] {};
+	\end{scope}
+\end{circuitikz}
+
+Μετασχηματίζουμε το κομμάτι από \( w_1 \) ως \( B \):
+
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[mixer] (m1) {};
+	
+	\draw (m1.west) node[inputarrow] {} node[above left] {$+$} -- ++(-1,0) node[pos=.8,above] {$w_1$};
+	\draw (m1.east) to[twoport,t=$\frac{2}{s+5}$] (3,0) node[above] {$B$}  to[short,*-] (4,0) node[inputarrow] {};
+	\draw (3,0) -- (3,-2) to[twoport,t=$\frac{1}{s}$] (m1.east |- 0,-2) -- (m1 |- 0,-2) -- (m1.south)
+	node[inputarrow,rotate=90] {} node[below right] {$-$};
+	\draw (m1.north) node[inputarrow,rotate=-90] {} -- ++(0,1);
+	
+	\draw (current bounding box.east |- 0,-1) node[right,scale=2] {$\equiv$};
+	\begin{scope}[xshift=7cm,yshift=-1cm]
+		\draw (0,0) node[mixer] (m2) {};
+		\draw (m2.west) node[inputarrow] {} node[above left] {$+$} -- ++(-1,0) node[pos=.8,above] {$w_1$};
+		\draw (m2.north) node[inputarrow,rotate=-90] {} -- ++(0,1);
+		\ctikzset{bipoles/length=2.4cm}
+		\draw (m2.east) to[twoport,t=$\frac{2s}{s(s+5)+2}$,>] (4,0) node[inputarrow] {};
+	\end{scope}
+\end{circuitikz}
+
+και το κομμάτι από \( A \) ως \( w_1 \) (αφού κάνουμε τις πράξεις και βρούμε \( \frac{w_1}{A} = 1+\frac{s+3}{s+7} \)):
+
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[mixer] (m1) {};
+	
+	\draw (m1.west) node[inputarrow] {} node[above left] {$+$};
+	\draw (-4,0) to[twoport,t=$\frac{s+3}{s+7}$,>] (m1.west);
+	\draw (-3.5,0) node[above left] {$A$} to[short,*-] ++(0,1.2) -- (m1 |- 0,1.2) -- (m1.north)
+	node[inputarrow,rotate=-90] {} node[above right] {$+$};
+	\draw (m1.east) -- ++(1,0) node[inputarrow] {} node[above] {$w_1$};
+	
+	\draw (2,0) node[right,scale=2] {$\equiv$};
+	\begin{scope}[xshift=3.5cm]
+		\ctikzset{bipoles/length=1.8cm}
+		\draw (0,0) to[twoport,t=$\frac{2s+10}{s+7}$,>] (4,0) node[inputarrow] {};
+	\end{scope}
+\end{circuitikz}
+
+Τα δύο παραπάνω μετασχηματισμένα διαγράμματα είναι συνδεδεμένα εν σειρά, άρα:
+
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[above] {$A$}
+	to[twoport,t=$\frac{2s+10}{s+7}$,>] (2,0);
+	\ctikzset{bipoles/length=2.2cm}
+	\draw (2,0)
+	to[twoport,t=$\frac{2s}{s(s+5)+2}$,>] (4,0);
+	\ctikzset{bipoles/length=1.4cm}
+	\draw (4,0) -- ++(0.7,0)
+	node[above] {$B$} node[inputarrow] {};
+	
+	\draw (5,0) node[right,scale=2] {$\equiv$};
+	\begin{scope}[xshift=6cm]
+		\ctikzset{bipoles/length=3.4cm}
+		\draw (0,0) to[twoport,t=$\frac{(2s+10)2s}{(s+7)\left(s(s+5)+2\right)}$,>] (5,0) node[inputarrow] {};
+	\end{scope}
+\end{circuitikz}
+
+(όπου θέτουμε για ευκολία \( G(s) = \frac{(2s+10)2s}{(s+7)\left(s(s+5)+2\right)} \))
+και το τμήμα του συστήματος εντός του βρόγχου ανάδρασης με το
+\begin{circuitikz}[baseline,scale=.7]
+	\ctikzset{bipoles/length=0.8cm}
+	\draw (0,0) to[twoport,t=$8$,scale=.7] (2,0);
+\end{circuitikz}
+γίνεται:
+
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[mixer] (m1) {};
+	
+	\draw (m1.west) node[inputarrow] {} node[above left] {$+$};
+	\draw (-3.5,0) to[twoport,t=$G(s)$,>] (m1.west);
+	\draw (-3.5,0) -- (-4,0);
+	\draw (-3.5,0) node[above left] {$A$} to[short,*-] ++(0,-1.2) -- (m1 |- 0,-1.2) -- (m1.south)
+	node[inputarrow,rotate=90] {} node[below right] {$+$};
+	\draw (m1.east) -- ++(1,0) node[inputarrow] {} node[above] {$w_1$};
+	
+	\draw (2,-0.5) node[right,scale=2] {$\equiv$};
+	\begin{scope}[xshift=3.5cm,yshift=-0.5cm]
+		\ctikzset{bipoles/length=2.2cm}
+		\draw (0,0) to[twoport,t=$1+G(s)$,>] (4,0) node[inputarrow] {};
+	\end{scope}
+\end{circuitikz}
+
+με \( 1+G(s) = \frac{\text{αριθμητής }N_3}{\text{παρονομαστής }D_3}
+= \frac{
+	(2s+10)2s+(s+7)\left[s(s+5)+2\right]}{
+	(s+7)\left[s(s+5)+2\right]} \).
+
+Άρα το τελικό σύστημα είναι:
+
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[mixer] (m1) {};
+	
+	\draw (m1.west) node[inputarrow] {} node[above left] {$+$} -- ++(-1,0) node[above] {$u$};
+	\draw (m1.east) to[twoport,t=$H_1$] (2.5,0)
+	to[twoport,t=$\frac{N_3}{D_3}$] (4,0) -- (4.5,0) node[above] {$y$} to[short,*-] (5.5,0) node[inputarrow] {};
+	\draw (4.5,0) -- (4.5,-2) to[twoport,t=$8$] (m1.east |- 0,-2) -- (m1 |- 0,-1.5) -- (m1.south)
+	node[inputarrow,rotate=90] {} node[below right] {$-$};
+\end{circuitikz}
+
+και επομένως προκύπτει από πράξεις:
+\begin{align*}
+	\frac{y}{u} &=
+	\frac{\frac{N_3}{D_3(s+6)}}{1+8\frac{N_3}{D_3}\frac{1}{s+6}}
+	\\ &= \frac{N_3}{D_3(s+6)+8N_3}
+	\\ &= \frac{N_3}{D_3(s+6)+8N_3}
+	\\ &= \frac{
+		(2s+10)2s+(s+7)(s^2+5s+2)
+		}{
+		(s+14)(s+7)(s^2+5s+2)+16(2s+10)s
+		}
+\end{align*}
+
+Η άσκηση αυτή μπορεί βεβαίως να λυθεί και αλγεβρικά. Συνοπτικά:
+\begin{align}
+	y &= A + B \label{ex.2.19.1} \\
+	B &= \frac{2}{s+5}w \label{ex.2.19.2} \\
+	A &= \frac{1}{s+6}e \label{ex.2.19.3} \\
+	e &= u-8y \label{3x.2.19.4} \\
+	w &= \left(1+\frac{s+3}{s+7}\right)A - \frac{1}{s}B \label{ex.2.19.5}
+\end{align}
+και λύνοντας το σύστημα μπορεί να βρεθεί η συνάρτηση μεταφοράς.
+
+\paragraph{Ασκήσεις στα σφάλματα}
+\begin{enumgreekparen}
+	\item Τι σφάλμα θέσης έχει το σύστημα
+	\( \displaystyle H(s) = \frac{s+9}{s^2+7s+3} \) αν συνδεθεί σε μοναδιαία αρνητική
+	ανάδραση;
+	
+	\begin{circuitikz}[scale=1]
+		\draw (0,0) node[mixer] (m1) {};
+		
+		\draw (m1.west) node[inputarrow] {} node[above left] {$+$} -- ++(-1,0);
+		\draw (m1.east) to[twoport,t=$H(s)$] (3,0)  to[short,*-] (4.5,0) node[inputarrow] {};
+		\draw (3,0) -- (3,-1.5) -- (m1 |- 0,-1.5) -- (m1.south)
+		node[inputarrow,rotate=90] {} node[below right] {$-$};
+	\end{circuitikz}
+	
+	\subparagraph{}
+	Η συνάρτηση μεταφοράς είναι \( H_c = \frac{H}{1+H}
+	= \frac{s+9}{s^2+7s+3+s+9} \). Το σφάλμα θέσης
+	στη μόνιμη κατάσταση είναι το \( \lim_{s\to 0} s
+	(1-H_C)\frac{1}{s} \), ή θυμόμαστε ότι \( e_{\mathrm{ss}} 
+	= \frac{1}{1+K_P}
+	\) όπου \( K_P = \lim_{s\to 0} t \).
+	
+	Ισχύει:
+	\begin{align*}
+		K_p &= \lim_{s\to 0} \cancel{8}
+		\frac{s+9}{s^2+7s+3} = 3\\
+		e_{\mathrm{ss}} &= \frac{1}{4} = 0.25\%
+	\end{align*}
+	\item
+	Έστω συνάρτηση μεταφοράς που συνδέεται σε μοναδιαία αρνητική ανάδραση:
+	\[
+	H(s) = \frac{2(s+10)}{s(s^2+2)(s+5)}
+	\]
+	
+	\subparagraph{}
+	Τότε τα σφάλματα είναι:
+	\begin{align*}
+		e_{\mathrm{sv}} &= \lim_{s\to 0} \cancel{s}(1-H_c)\frac{1}{s^{\cancel{2}}} \\
+		K_v &= \lim_{s\to 0} Hs \\
+		e_{\mathrm{sv}} &= \frac{1}{K_v} \\
+		e_{\mathrm{sa}} &= \lim_{s\to 0} \frac{1}{\cancel{2}}s(1-H_c)\frac{\cancel{2}}{s^3} \\
+		K_a &= \lim_{s\to 0} H(s) \\
+		e_{\mathrm{sa}} &= \frac{1}{K_a}
+	\end{align*}
+\end{enumgreekparen}
+
+\subsection{Ταχύτητα}
+Η δεύτερη προδιαγραφή που θα μελετήσουμε για τα συστήματα είναι η ταχύτητα, δηλαδή το πόσο
+γρήγορα φτάνει ένα σύστημα στην επιθυμητή κατάσταση. Για να μελετήσουμε αυτήν την
+προδιαγραφή θα χρησιμοποιήσουμε ως είσοδο τη \textbf{μοναδιαία βηματική συνάρτηση}
+\( u(t) = \begin{cases}
+0, &\quad t < 0\\
+1, &\quad t > 0
+\end{cases} \).
+
+\subsubsection{Σε πρωτοβάθμια συστήματα}
+
+Ως παράδειγμα, ας δούμε το παρακάτω σύστημα:
+
+\begin{tikzpicture}
+\draw (0,0) node[rectangle,draw,inner sep=10pt] (DM) {$\frac{k}{s+a}$};
+\draw (DM.west) -- ++(-1,0) node[above right] {$r(s)$};
+\draw (DM.east) -- ++(1,0) node[above left] {$y(s)$};
+\end{tikzpicture}
+
+με \(
+H(s) = \frac{k}{s+a}
+\).
+
+Θυμόμαστε ότι το σφάλμα \( r(s)-y(s) \) στη μόνιμη κατάσταση (\( t\to \infty \))
+είναι ορισμένο, και κάνοντας υπολογισμούς, η έξοδος στη μόνιμη κατάσταση προκύπτει:
+\[
+\lim_{s\to 0} sy(s)
+=
+\lim_{s\to 0} \cancel{s}\cancel{\frac{1}{s}}\frac{k}{s+a}
+=
+\frac{k}{a}
+\]
+
+και για να μηδενιστεί το σφάλμα, επιθυμούμε η έξοδος να είναι μοναδιαία, άρα πρέπει \( \frac{k}{a} = 1 \implies k=a \).
+
+Σε μορφή σταθεράς χρόνου, η \( H \) γράφεται:
+\[
+H(s) = \frac{1}{τs+1}
+\]
+όπου
+\[
+τ = \frac{1}{a}
+\]
+
+Έχουμε θεωρήσει ότι \( k=a \), επομένως το σφάλμα είναι μηδενικό.
+
+Για να βρούμε την έξοδο στο πεδίο του χρόνου, έχουμε ότι:
+\[
+y(s) = \frac{1}{τs+1}\frac{1}{s} = \frac{1}{s}-\frac{τ}{τs+1}
+\]
+και, χρησιμοποιώντας αντίστροφο μετασχηματισμό Laplace:
+\[
+y(t) = y_{\mathrm{ss}} \left( 1-e^{-\sfrac{t}{τ} } \right)
+\]
+
+Έχουμε μια αποσβεννύμενη απόκριση που μοιάζει ως εξής:
+
+\begin{tikzpicture}[scale=2]
+\draw[->] (-0.5,0) -- (3.5,0) node[below right] {$t$};
+\draw (0,-0.5) -- (0,3);
+
+\draw[very thick,orange!50!red]
+(0,0) -- (0.8,0.8*2.5*1.5) node[midway,above,sloped] {$\sfrac{1}{\tau}$};
+
+\draw[very thick,blue,opacity=.7]
+plot [variable=\t,domain=0:6.5,samples=\gsamples]
+(\t,{2.5*(1-exp(-1.5*\t))});
+
+% not the real value to make the graph look better
+\draw[dashed] (0.15,0) node[below,xshift=1mm] (t1) {$t_1$}-- ++(0,0.503709453101557)
+-- (0,0.503709453101557) node[left] {$0.1y_{\mathrm{ss}}$};
+
+\draw[dashed] (1.53505672866270,0) node[below] (t2) {$t_2$}-- ++(0,2.25)
+-- (0,2.25) node[left] {$0.9y_{\mathrm{ss}}$};
+
+\draw[dashed] (2.60801533695210,0) node[below] {$t_s$}-- ++(0,2.45)
+-- (0,2.45);
+
+\draw[dashed] (0,2.5) node[left] {$y_{\mathrm{ss}}$} -- (3.5,2.5);
+
+\draw [decorate,decoration={brace,amplitude=10pt},green!20!black] (t2.south) -- (t1.south) node[below,midway,yshift=-4mm] {$t_r$};
+\end{tikzpicture}
+
+Θα ψάξουμε μετά από πόσο χρόνο έχει φτάσει η έξοδος στο 10\% και στο 90\% της επιθυμητής
+τιμής:
+\begin{gather*}
+	1-e^{\sfrac{-t_1}{τ} }
+	= 0.1 \implies t_1 = τ(\ln 10 - \ln 9)
+	\\
+	1-e^{\sfrac{-t_2}{τ} }
+	= 0.9 \implies t_2 = τ(\ln 10)
+\end{gather*}
+
+\begin{defn}{Χρόνος ανόδου σε πρωτοβάθμιο σύστημα}{}
+Υπολογίζουμε τον \textbf{χρόνο ανόδου} \( t_r \) (rise), δηλαδή τον χρόνο μεταξύ
+της στιγμής που η έξοδος είναι στο 10\% και στο 90\% της επιθυμητής:
+\[
+t_r = t_2-t_1 \implies \boxed{t_r = τ\ln 9 \approx 2.2τ}
+\]
+\end{defn}
+
+\begin{defn}{Χρόνος αποκατάστασης σε πρωτοβάθμιο σύστημα}{}
+Ορίζουμε το \textbf{χρόνο αποκατάστασης} \( t_s \) (steady), ως εξής:
+\[
+1-e^{\sfrac{-t_s}{τ} } = 0.98
+\implies \boxed{t_s \approx 4τ}
+\]
+\end{defn}
+
+Επιβεβαιώνουμε δηλαδή ότι η σταθερά χρόνου \( τ \) σχετίζεται με την ταχύτητα απόκρισης
+του συστήματος. Όσο μεγαλύτερη είναι η σταθερά χρόνου, τόσο μικρότερη είναι η ταχύτητά του.
+
+Μάλιστα, αν βρούμε το σφάλμα ταχύτητας του συστήματος αυτού, θα δούμε ότι γίνεται μικρότερο,
+όσο μεγαλώνει η ταχύτητά του.
+
+\paragraph{Συνδυασμός συστημάτων}
+Έστω δύο εν σειρά συστήματα:
+\[
+Y(s) = H(s)U(s)
+\]
+και πιο συγκεκριμένα:
+\[
+H(s) = \frac{N(s)}{D(s)} \qquad
+U(s) = \frac{N_u(s)}{D_u(s)}
+\]
+επομένως, αν σπάσουμε σε κλάσματα όπως γνωρίζουμε από τα μαθηματικά:
+\[
+Y(s) = \frac{N}{D}\frac{N_u}{D_u}
+= \frac{N_1}{D} + \frac{N_2}{D}
+\]
+που μπορεί να δώσει ένα αποτέλεσμα της μορφής:
+\begin{gather*}
+\frac{A}{s+p} + \cdots + \frac{B}{(s+p)^k} + \frac{C}{(s+a)^2+β}
+\intertext{ή, αντίστοιχα}
+(A_1+A_2t+\cdots)e^{-pt} + \dots
+\end{gather*}
+
+\paragraph{Παράδειγμα}
+Έστω το σύστημα:
+\[
+H_z(s) = \frac{k(s+b)}{s+a}
+\]
+με τελική τιμή (είσοδος = \( \frac{1}{s} \)):
+\[
+y_{ss} = \lim_{s\to 0} sy(s) = \lim_{s\to 0}s\frac{k(s+b)}{s+a}\frac{1}{s} = \frac{kb}{a}
+\]
+και αρχική τιμή (για \( t=0 \)):
+\[
+y(0) = \lim_{t\to0} y(t) = \lim_{s\to \infty} sy(s) = k
+\]
+δηλαδή αυτό το σύστημα δεν ξεκινάει από μηδενική αρχική τιμή.
+
+\begin{tikzpicture}[scale=1]
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+
+\draw[thick] (-1.5,0) node[circle,inner sep=2.7pt,draw,orange!80!black] {} node[below,yshift=-1mm] {$b$};
+\draw[thick] (-0.75,0) node[cross=4pt,red!80!black] {} node[below,yshift=-1mm] {$\vphantom{b}a$};
+
+\begin{scope}[xshift=3.5cm,yshift=-1cm]
+\draw[->] (-0.5,0) -- (3.5,0) node[below right] {$t$};
+\draw[->] (0,-0.5) -- (0,3) node[right] {$y(t)$};
+
+\draw[very thick,blue,opacity=.7]
+plot [variable=\t,domain=0:3.5,samples=\gsamples]
+(\t,{0.5+1.5*exp(-1.5*\t)});
+\end{scope}
+\end{tikzpicture}
+
+\paragraph{Μελέτη μηδενικών}
+Θα εξετάσουμε την επίδραση των μηδενικών στην έξοδο του συστήματος.
+
+Έστω ένα σύστημα με έξοδο στο χρόνο:
+\begin{align*}
+	y_z(t) &= \frac{kb}{a} + \frac{k(a-b)}{a}e^{-at}
+	\intertext{Το οποίο αναλύουμε περαιτέρω:}
+	&= \overbrace{\frac{kb}{a}}^{y_{\mathrm{ss}}}\left(1-e^{-at}\right)
+	+ ke^{-at}
+	\\ &=
+	y_{\mathrm{ss}}\left( 1-e^{-at} \right) + \frac{\dot{y}(t)}{b}
+\end{align*}
+
+(Τοποθετήσαμε την παράγωγο στην τελευταία σχέση, επειδή μαθηματικά φαίνεται ότι
+\( y(t) = \frac{kb}{a} (1-e^{-at}) \implies \dot y = kbe^{-at} \)).
+
+Αναλύοντας κατά Laplace, προκύπτει:
+\[
+Y_z(s) =
+\frac{kb}{a}\frac{1}{s} + \frac{k(a-b)}{a}\frac{1}{s+a}
+= \frac{k(b+s)}{s(a+s)}
+\]
+και παρατηρούμε το μηδενικό στο \( -b \) και τους πόλους στο \( 0 \) και στο \( -a \).
+
+Γραφικά:
+
+\begin{tikzpicture}[scale=1]
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+
+\draw[thick] (-1,0) node[circle,inner sep=2.7pt,draw,orange!80!black,fill=white,fill opacity=.7] {} node[below,yshift=-2mm] {$-b$};
+
+\begin{scope}[xshift=3.5cm,yshift=-1cm]
+\draw[->] (-0.5,0) -- (4,0) node[below right] {$t$};
+\draw[->] (0,-0.5) -- (0,3) node[right] {$y(t)$};
+
+\draw[very thick,blue!20!green,opacity=.7]
+plot [variable=\t,domain=0:3.5,samples=\gsamples]
+(\t,{2*exp(-1*\t)})
+(3.5,0) node[above] {$\dot y(t)$};
+\draw[very thick,blue,opacity=.7]
+plot [variable=\t,domain=0:3.5,samples=\gsamples]
+(\t,{2*(1-exp(-1*\t))})
+(3.5,2) node[below] {$y(t)$};
+\draw[very thick,dashed,blue,opacity=.7]
+plot [variable=\t,domain=0:3.5,samples=\gsamples]
+(\t,{2*(1-exp(-3*\t))});
+
+\draw[blue!70!black,<-] (1.8,2) to[bend left=30] ++ (0.5,0.6)
+node[above,align=center,scale=.8]
+{μηδενικό πιο κοντά\\σε φανταστικό άξονα};
+\end{scope}
+\end{tikzpicture}
+
+Το μηδενικό \(-b\) της συνάρτησης εκφράζεται από την τιμή \( \frac{\dot y(t)}{b} \) στη συνάρτηση \( y_z(t) \).
+
+Παρατηρούμε ότι αν υπάρχει μηδενικό, και όσο πιο κοντά πλησιάζει στον φανταστικό άξονα, τόσο
+μεγαλύτερη επίδραση έχει στην έξοδο του συστήματος, αυξάνοντας την ταχύτητά του.
+
+\paragraph{Ένα απλό πρόβλημα πρωτοβάθμιου συστήματος}
+Έστω ένα σύστημα:
+\[
+G(s) = \frac{1}{s+1}
+\]
+
+Αυτό έχει πόλο στο \( -1 \), και σταθερά χρόνου \( τ = 1 \), άρα χρόνο αποκατάστασης \( t_s = 4\ \mathrm{sec} \),
+κάτι που είναι πολύ μεγάλο και δεν μας αρέσει καθόλου. Επομένως, προσθέτουμε έναν βρόγχο ανάδρασης μαζί με τον
+απλούστερο δυνατό ελεγκτή, που είναι το αναλογικό κέρδος \( \boxed{k} \):
+
+\begin{tikzpicture}[scale=1]
+\draw (0,0) node[circle,draw] (a1) {};
+\draw (0.9,0) node[rectangle,draw,minimum height=20pt,minimum width=20pt] (b1) {$k$};
+\draw (2.2,0) node[rectangle,draw] (b2) {$\frac{1}{s+1}$};
+
+\draw[->] (-1,0) -- (a1.west);
+\draw (a1.east) -- (b1.west);
+\draw (b1.east) -- (b2.west);
+\draw (b2.east) -- ++(1,0);
+\draw[->] (3,0) -- ++(0,-1) -- (a1 |- 0,-1) -- (a1.south) node[below right] {$-$};
+\end{tikzpicture}
+
+Απαιτούμε χρόνο αποκατάστασης \( t_s \leq 1\ \mathrm{sec} \), και το ζητούμενο της άσκησης είναι η περιοχή τιμών
+του \( k \) για τις οποίες ικανοποιείται αυτή η προδιαγραφή.
+
+\subparagraph{Λύση}
+Αρχικά βρίσκουμε τη συνάρτηση μεταφοράς του συστήματος:
+\[
+H(s) = \frac{\frac{k}{s+1}}{1+\frac{k}{s+1}}
+= \frac{k}{s+(k+1)}
+\]
+Αυτό έχει σταθερά χρόνου \( τ = \frac{1}{k+1} \), επομένως:
+\[
+t_s \approx 4τ = \frac{4}{k+1}
+\]
+
+Πρέπει:
+\[
+t_s \leq 1 \implies \frac{4}{k+1} \leq 1 \implies k \geq 3.
+\]
+
+\subsubsection{Σε δευτεροβάθμια συστήματα}
+
+\paragraph{Ένα παράδειγμα δευτεροβάθμιου συστήματος}
+Έστω το σύστημα ενός περιστρεφόμενου κυλίνδρου με απόσβεση:
+
+\begin{circuitikz}[scale=1]
+	\tikzstyle{reverseclip}=[insert path={(3,0.5) --
+		(3,-0.5) --
+		(0.8,-0.5) --
+		(0.8,0.5) --
+		(3,0.5)}
+	]
+	
+	\begin{scope}
+		%[top color=gray!5!white,bottom color=gray!10!white!90!blue]
+		\path[clip] (1,0) ellipse (0.3 and 0.4) [reverseclip];
+		
+		\fill[top color=gray!5!white,bottom color=gray!7!white!95!blue]
+		plot [smooth,tension=1.5]
+		coordinates {(1,0.4) (2,0) (1,-0.4)};
+	\end{scope}
+	
+	\draw (1,0) ellipse (0.3 and 0.4);
+	
+	\draw
+	plot [smooth,tension=1.5]
+	coordinates {(1,0.4) (2,0) (1,-0.4)};
+	
+	\draw (2,0) to[damper,l=$B$] (3,0);
+\end{circuitikz}
+\[
+u = J \ddot y + B\dot y
+\]
+
+Παραπάνω δίνεται η διαφορική εξίσωση του συστήματος, που θα μετασχηματίσουμε κατά Laplace:
+\begin{gather*}
+Js^2y(s) +Bsy(s) = u(s) \\
+\frac{y(s)}{u(s)} = \frac{1}{s(Js+b)}
+\end{gather*}
+
+Αντίστοιχα με το προηγούμενο παράδειγμα, προσθέτουμε έναν ελεγκτή και έναν βρόγχο ανάδρασης:
+
+\begin{tikzpicture}[scale=1]
+\draw (0,0) node[circle,draw] (a1) {};
+\draw (0.9,0) node[rectangle,draw,minimum height=20pt,minimum width=20pt] (b1) {$k$};
+\draw (2.5,0) node[rectangle,draw] (b2) {$\frac{1}{s(Js+b)}$};
+
+\draw[->] (-1,0) -- (a1.west) node[above,pos=.7] {$r$};
+\draw (a1.east) -- (b1.west);
+\draw (b1.east) -- (b2.west);
+\draw[->] (b2.east) -- ++(1,0) node[above] {$y$};
+\draw[->] (3.7,0) -- ++(0,-1) -- (a1 |- 0,-1) -- (a1.south) node[below right] {$-$};
+\end{tikzpicture}
+
+με έξοδο:
+\[
+\frac{y(s)}{r(s)}
+= \frac{\frac{k}{s(Js+b)}}{1+\frac{k}{s(Js+b)}}
+= \frac{k}{Js^2+Bs+k}
+= \frac{\sfrac{k}{J} }{s^2 +\sfrac{B}{J}s + \sfrac{k}{J}   }
+= \frac{\omega_n^2}{s^2+2ζ\omega_ns+\omega_n^2}
+=
+\boxed{
+\frac{\omega_n^2}{(s+σ)^2 + \omega_d^2}
+}
+\]
+όπου θέσαμε:
+\begin{tcolorbox}[width=.6\textwidth]
+	\vspace{-17pt}
+\begin{alignat*}{3}
+	\omega_n^2 &= \sfrac{k}{J} && \implies \omega_n &&= \sqrt{\frac{k}{J}}  \\
+	2ζ\omega_n &= \sfrac{B}{J}, \quad ζ \leq 1 && \implies\ ζ &&= \frac{B}{2\sqrt{Jk}} \\
+	s_{1,2}  &= -σ \pm j\omega_d && &&\text{(ρίζες παρ/τή)} \\[3ex]
+	σ &= ζ\omega_n \\
+	\omega_d &= \omega_n\sqrt{1-ζ^2}
+\end{alignat*}
+\end{tcolorbox}
+
+Μετά από πράξεις που δεν παρουσιάζονται, η έξοδος του συστήματος ξεχωρίζεται στις δύο παρακάτω περιπτώσεις:
+\begin{itemize}
+	\item Αν έχουμε \textbf{δύο πραγματικούς πόλους} \( p1,\ p2 \):\[
+	y(t) = y_{\mathrm{ss}}
+	\left[
+	1+\frac{p_1p_2}{p_1-p_2}
+	\left(
+	\frac{e^{p_1t}}{p_1}
+	-
+	\frac{e^{p_2t}}{p_2}
+	\right)
+	\right]
+	\]
+	
+	\begin{tikzpicture}[scale=1]
+	\draw (-2,0) -- (2,0);
+	\draw (0,-1) -- (0,1);
+	
+	\draw[thick] (-1.5,0) node[cross=4pt,red!80!black] {} node[below,yshift=-1mm] {$-b$};
+	\draw[thick] (-0.5,0) node[cross=4pt,red!80!black] {} node[below,yshift=-1mm] {$\vphantom{b}-a$};
+	\end{tikzpicture}
+
+	Δηλαδή η απόκριση του συστήματος αποτελείται από το άθροισμα δύο εκθετικά αποσβεννύμενων
+	αποσβέσεων. Πρακτικά, παίζει ρόλο ο πόλος που προκαλεί την πιο αργή απόσβεση (ειδικά αν
+	οι πόλοι απέχουν αρκετά μεγάλη απόσταση μεταξύ τους), καθώς η άλλη απόσβεση εξαλείφεται
+	γρήγορα. Ο αργός πόλος επιβάλλει το ρυθμό του.
+	\item Αν έχουμε \textbf{δύο μιγαδικές συζυγείς ρίζες} \( -σ \pm j\omega_d^2 \):
+	\begin{align*}
+	y(t) &= y_{\mathrm{ss}}\left[
+	1-e^{-ζ\omega_nt} \cdot
+	\left(
+	\cos \omega_dt + \frac{ζ}{\sqrt{1-ζ^2}} \sin \omega_d t
+	\right)
+	\right]
+	\\ &= y_{\mathrm{ss}}\left[
+	1 - \frac{e^{-ζ\omega_nt}}{\sqrt{1-ζ^2}}
+	\cdot \sin\left(\omega_d t + \tan^{-1}\frac{\sqrt{1-ζ^2}}{ζ}\right)
+	\right]
+	\end{align*}
+
+	
+	Σε αυτήν την περίπτωση, η έξοδος του συστήματος μοιάζει κάπως έτσι:
+	
+	\begin{tikzpicture}[scale=1.7]
+	\begin{scope}[xshift=-2cm,yshift=2cm,scale=0.7]
+	\draw (-2,0) -- (1.5,0);
+	\draw (0,-2) -- (0,2);
+	
+	\draw[dashed] (-1,1) -- ++ (1,0) node (xa) {};
+	\draw[dashed] (-1,-1) -- ++ (1,0) node (xb) {};
+	\draw[dashed] (0,0) -- (-1,1);
+	
+	\draw[thick] (-1,1) node[cross=4pt,red!80!black] {};
+	\draw[thick] (-1,-1) node[cross=4pt,red!80!black] {};
+	
+	\draw[<->,orange!30!green!50!black] (xa.east) -- (xa.east |- 0,0) node[right,midway] {$\omega_d$};
+	\draw[<->,orange!30!green!50!black] (-1,-0.1) -- ++(1,0) node[midway,below] {$ζ\omega_n$};
+	
+	\draw (-45+180:0.3) to[bend right] node[midway,left,yshift=1mm] {$θ$} (-0.3,0);
+	\end{scope}
+	
+	\draw[->] (-0.5,0) -- (5,0) node[below right] {$t$};
+	\draw[->] (0,-0.5) -- (0,4) node[below left] {$y(t)$};
+	
+	\draw[thick,dashed] (0,2) node[left] {$y_\mathrm{ss}$} -- ++(6,0);
+
+	\draw[ultra thick,blue,opacity=.7]
+	plot [variable=\t,domain=0:6,samples=\gsamples]
+	(\t,{2*(1-1*exp(-0.8*\t)*cos(3.5*\t r))});
+	
+	\draw[very thick,cyan,opacity=.2]
+	plot [variable=\t,domain=0:6,samples=\gsamples]
+	(\t,{2*(1+1*exp(-0.8*\t))});
+	
+	\draw[dashed] (0.84,0) node[below,xshift=2mm] {$t_p$}-- ++(0,3)
+	-- (0,3) node[left] {$M_p$};
+	\draw[dashed] (0.44,0) node[below] {$t_r$} -- ++(0,2);
+	
+	\filldraw[thick,draw=orange,draw opacity=.5,fill=white!90!orange,fill opacity=.6]
+	(0.84,3) circle (1.7pt);
+	\filldraw[thick,draw=orange!50!green,draw opacity=.5,fill=orange!50!green!10!white,fill opacity=.6]
+	(0.44,2) circle (1.7pt);
+	
+	% not real but used for a nicer graph
+	\draw[dashed] (3.3,0) node[below] {$t_s$} -- ++(0,2);
+	\draw[thick,yellow!50!blue] (3.3,{2*(1-1*exp(-0.8*3.3))}) -- (3.3,{2*(1+1*exp(-0.8*3.3))})
+	node[midway,above,rotate=180,sloped,scale=.3] {2\%};
+	\end{tikzpicture}
+	
+	Αποδεικνύεται επίσης ότι ισχύουν αρκετές σχέσεις, που παρουσιάζονται παρακάτω.
+
+	\begin{theorem}{Χρόνος αποκατάστασης σε δευτεροβάθμιο σύστημα με συζυγείς πόλους}{}
+		\[
+		t_s \approx \frac{4}{ζ\omega_n}
+		\]
+		
+		({\color{red!50!black}Προσοχή!} Αυτή η σχέση ισχύει μόνο όταν έχουμε δύο συζυγείς μιγαδικές ρίζες, και όχι πραγματικές!)
+	\end{theorem}
+		
+	Ο χρόνος ανόδου ορίζεται διαφορετικά από τα πρωτοβάθμια συστήματα:
+	\begin{defn}{Χρόνος ανόδου σε δευτεροβάθμιο σύστημα με συζυγείς πόλους}{}
+		Ως \textbf{χρόνος ανόδου} ορίζεται ο χρόνος μέχρι η έξοδος να φτάσει την πρώτη
+		φορά στην επιθυμητή τιμή.
+		
+		Αποδεικνύεται ότι είναι ίσος με:
+		\[
+		\boxed{t_r = \frac{π-θ}{\omega_d}}
+		\]
+		
+		όπου \( θ \) η γωνία του ενός πόλου.
+	\end{defn}
+	
+	\begin{defn}{Χρόνος Υπερύψωσης}{}
+	Ο χρόνος \( t_p \) (peak) μέχρι η έξοδος να φτάσει στην πρώτη κορυφή της ημιτονοειδούς κυματομορφής είναι:
+	\[
+	\boxed{t_p = \frac{π}{\omega_d}}
+	\]
+	\end{defn}
+	
+	Βλέπουμε ότι αρκετές στιγμές η έξοδος έχει τιμή μεγαλύτερη της εξόδου. Η υπερύψωση αυτή
+	μπορεί σε κάποιες περιπτώσεις να μην είναι επιθυμητή, επειδή για παράδειγμα δεν θέλουμε
+	το ρεύμα σε ένα κύκλωμα να ξεπεράσει μια μέγιστη τιμή, ή ο βραχίονας ενός ρομπότ να
+	φτάσει έξω από κάποια όρια.
+	
+	\begin{defn}{Υπερύψωση}{}
+		Αποδεικνύεται ότι η πρώτη κορυφή φτάνει στην τιμή:
+		\[
+		M_p =
+		e^{-\left(
+			\frac{ζπ}{\sqrt{1-ζ^2}}
+			\right)}
+		= e^{-σ t_p}
+		\]
+	\end{defn}
+	
+	Αυξάνοντας τη σταθερά \( k \), μειώνουμε τους χρόνους \( t_p \) και \( t_r \), καθώς και την \( M_p \),
+	αλλά αυξάνεται το \( ζ \) και η συχνότητα των αποσβεννύμενων ταλαντώσεων, δηλαδή το σύστημα γίνεται πιο "ζωηρό".
+	
+	Τέλος, για τη γωνία του πόλου, αποδεικνύεται ότι:
+	\[
+	\boxed{\cos θ = ζ}
+	\]
+\end{itemize}
+	
+\paragraph{Παραδείγματα συστήματος δεύτερης τάξης} \hspace{0pt}
+
+\begin{enumgreekparen}
+	\item
+	\begin{tikzpicture}[scale=1,baseline]
+	\tikzset{mbox/.style={rectangle,draw,minimum height=20pt,minimum width=17pt}}
+	\draw (-1,0) node[circle,draw] (a1) {};
+	\draw (0,0) node[circle,draw] (a2) {};
+	\draw (0.9,0) node[mbox] (b1) {$k$};
+	\draw (2.5,0) node[mbox] (b2) {$\frac{1}{Js+b}$};
+	\draw (4.3,0) node[mbox] (b3) {$\frac{1}{s}$};
+	\draw (1.6,-1) node[mbox] (b4) {$K_v$};
+	
+	\draw[->] (-2,0) -- (a1.west) node[above,pos=.7] {};
+	\draw (a1.east) -- (a2.west);
+	\draw (a2.east) -- (b1.west);
+	\draw (b1.east) -- (b2.west);
+	\draw (b2.east) -- (b3.west);
+	\draw[->] (b3.east) -- ++(1,0) node[above] {$φ$};
+	\draw (3.5,0) node[above] {$\omega$} -- ++(0,-1) -- (b4.east);
+	\draw[->] (b4.west) -- (a2 |- 0,-1) -- (a2.south) node[below right] {$-$};
+	\draw[->] (5,0) -- ++(0,-2) -- (a1 |- 0,-2) -- (a1.south) node[below right] {$-$};
+	\end{tikzpicture}
+	\item
+	\begin{tikzpicture}[scale=1.2,baseline]
+	\draw (0,0) node[circle,draw] (a1) {};
+	\draw (1.5,0) node[rectangle,draw,minimum height=20pt,minimum width=20pt] (b1) {$k(1+K_vs)$};
+	\draw (3.5,0) node[rectangle,draw] (b2) {$\frac{1}{s(Js+b)}$};
+	
+	\draw[->] (-1,0) -- (a1.west);
+	\draw (a1.east) -- (b1.west);
+	\draw (b1.east) -- (b2.west);
+	\draw[->] (b2.east) -- ++(1,0);
+	\draw[->] (4.5,0) -- ++(0,-1) -- (a1 |- 0,-1) -- (a1.south) node[below right] {$-$};
+	\end{tikzpicture}
+\end{enumgreekparen}
+
+\subparagraph{(α)}
+Εκτελούμε πράξεις για να βρούμε την απόκριση του συστήματος:
+\begin{alignat*}{2}
+	φ &= \frac{1}{s}\omega &&\implies\\
+	sφ &= \omega &&\implies \numberthis \label{example.2.secorder.omega} \\
+	sφ &= \frac{k}{Js+b}\cdot \left[r(s) - K_v \omega - \phi \right] &&\xRightarrow{\eqref{example.2.secorder.omega}} \\
+	sφ &= \frac{k}{Js+b}\left[ r(s) - sK_vφ - φ \right] &&\implies \\
+	sφ(Js+b) &= k\left[r(s) - sK_vφ - φ\right] &&\implies \\
+	φ\left[ Js^2 + bs + k K_v s + k \right] &= kr(s) && \implies \\
+	\frac{φ}{r} &= \frac{k}{Js^2 + (b+kK_v)s + k} && \implies \\
+	H(s) &= \frac{\sfrac{k}{J} }{s^2
+		+\left(\frac{B+kK_v}{J}\right)s + \sfrac{k}{J} 
+	}
+\end{alignat*}
+
+\subparagraph{(β)}
+Η συνάρτηση μεταφοράς είναι:
+\[
+H(s) =
+\frac{\sfrac{K}{J}(1+K_vs) }{s^2 + \left(\frac{B+kK_v}{J}s\right)
+	+ \sfrac{K}{J} }
+\]
+
+\subparagraph{}
+Παρατηρούμε ότι τα δύο συστήματα έχουν παρόμοιες συναρτήσεις μεταφοράς, αλλά το
+δεύτερο έχει ένα μηδενικό.
+
+\paragraph{Παράδειγμα με μηδενικό}
+Έστω μια συνάρτηση μεταφοράς που έχει μηδενικό στο \( -z \):
+\begin{align*}
+	H_z(s) &= \frac{b(s+z)}{s^2+a_1s+a_0}
+	\\ &= y_{\mathrm{ss}}\frac{\sfrac{\omega_n^2}{z} (s+z) }{s^2+2ζ\omega_ns+\omega_n^2}
+	\\ &= y_{\mathrm{ss}} \boxed{
+		\frac{\omega_n^2}{s^2+2ζ\omega_ns+\omega_n^2}
+		+\frac{s}{z}
+		\left(
+		    \frac{\omega_n^2}{s^2+2ζ\omega_n+\omega_n^2}
+		\right)
+		}
+\end{align*}
+
+Η τελευταία σχέση, αν παρατηρήσουμε ότι ο τελεστής \( s \) εκφράζει την \textbf{παραγώγιση}
+μιας συνάρτησης στο πεδίο του χρόνου, βλέπουμε ότι ισχύει η σχέση
+\( y_z(t) = y(t) + \frac{\dot y(t)}{z} \):
+\[
+\boxed{
+	y_z(t) = \underbrace{y(t)}_{\text{έξοδος χωρίς μηδενικό}} +
+	\underbrace{\frac{\dot y(t)}{z}}_{\text{επίδραση μηδενικού}}
+	}
+\]
+
+\paragraph{Συνάρτηση χωρίς και με μηδενικό}
+Έστω οι συναρτήσεις μεταφοράς:
+\[
+H_a = \frac{14}{(s+1)^2+6},\quad
+H_b = \frac{7(s+2)}{(s+1)^2+6}
+\]
+
+με τελική έξοδο (είσοδος βηματική):
+\begin{align*}
+	y_{\mathrm{ss}_1} &= \lim_{s\to 0} s\frac{14}{(s+1)^2+6}\frac{1}{s} = 2 \\
+	y_{\mathrm{ss}_2} &= \lim_{s\to 0} s\frac{7(s+2)}{(s+1)^2+6}\frac{1}{s} = 2
+\end{align*}
+
+Αν προσομοιώσουμε/εφαρμόσουμε τύπους, η έξοδος των συστημάτων θα είναι:
+\todo{Graph 46}
+
+Βλέπουμε ότι το σύστημα με το μηδενικό έχει πιο γρήγορη απόκριση, αλλά ταυτόχρονα αυξάνεται
+και η υπερύψωση.
+
+Συνήθως το \( ζ \) ως προδιαγραφή είναι ανάμεσα στο 0.4 και 0.8, ενώ αν δεν θέλουμε καθόλου
+υπερύψωση, παίρνουμε \( ζ \geq 1 \), που οδηγεί πραγματικές ρίζες.
+
+\paragraph{Άσκηση}
+Ποιό από τα παρακάτω συστήματα θα εμφανίσει τη μεγαλύτερη υπερύψωση, ως απόκριση στη μοναδιαία
+βηματική συνάρτηση;
+\begin{enumgreekparen}
+	\item \( \displaystyle \frac{8}{s^2+2s+1} \)
+	\item \( \displaystyle \frac{48}{s^2+2s+16} \)
+	\item \( \displaystyle \frac{48}{s^2+8s+16} \)
+	\item \( \displaystyle \frac{8}{s^2+2s+4} \)
+\end{enumgreekparen}
+
+Η σωστή απάντηση είναι η (β).
+
+\todo{why?}
+
+\paragraph{Άσκηση}
+Ποιό από τα παρακάτω συστήματα έχει ταχύτερη απόκριση;
+\begin{enumgreekparen}
+	\item \( \displaystyle \frac{s+10}{(s+2)(s+5)} \)
+	\item \( \displaystyle \frac{s+1}{(s+2)(s+5)} \)
+	\item \( \displaystyle \frac{10}{(s+2)(s+5)} \)
+	\item \( \displaystyle \frac{s+3}{(s+2)(s+5)} \)
+\end{enumgreekparen}
+
+Το ταχύτερο σύστημα είναι αυτό με το πιο "σημαντικό" μηδενικό, δηλαδή αυτό που βρίσκεται πιο
+κοντά στον φανταστικό άξονα, άρα το \textbf{(β)}, με μηδενικό \( z = -1 \).
+
+\paragraph{Άσκηση}
+Να συγκριθούν τα συστήματα ως προς ταχύτητα απόκρισης:
+\begin{enumgreekparen}
+	\item \( \displaystyle \frac{10}{(s+5)^2+3} \)
+	\item \( \displaystyle \frac{10(s+2)}{(s+5)^2+3} \)
+	\item \( \displaystyle \frac{10(s+3)}{(s+5)^2+3} \)
+\end{enumgreekparen}
+
+Το (β) είναι το (α) με πρόσθεση της παραγώγου του (α) διά 2, ενώ το (γ) είναι το (α) με
+πρόσθεση της παραγώγου του (α) διά 3. Επομένως το \textbf{(β)}, που έχει πιο σημαντικό
+μηδενικό, είναι ταχύτερο.
+
+\paragraph{Άσκηση}
+Έστω ένα σύστημα κλειστού βρόγχου:
+\begin{tikzpicture}[scale=1.2]
+\draw (0,0) node[circle,draw] (a1) {};
+\draw (0.9,0) node[rectangle,draw,minimum height=20pt,minimum width=20pt] (b1) {$k$};
+\draw (2.5,0) node[rectangle,draw] (b2) {$H(s)$};
+
+\draw[->] (-1,0) -- (a1.west) node[above,pos=.7] {$r$};
+\draw (a1.east) -- (b1.west);
+\draw (b1.east) -- (b2.west);
+\draw[->] (b2.east) -- ++(1,0) node[above] {$y$};
+\draw[->] (3.7,0) -- ++(0,-1) -- (a1 |- 0,-1) -- (a1.south) node[below right] {$-$};
+\end{tikzpicture}
+όπου \( \displaystyle H(s) = \frac{10}{(s+6)(s+7)} \).
+
+Θέλουμε να βρεθεί η περιοχή τιμών της σταθεράς \( k \), ώστε να ικανοποιούνται οι
+παρακάτω προδιαγραφές:
+\begin{align*}
+	e_{\mathrm{ss}} &< 0.5 \\
+	M_p &< 0.1 \\
+	t_s &< 660\ \mathrm{ms}
+\end{align*}
+
+Έχουμε:
+\todo{πράξεις}
+\begin{enumerate}
+	\item Για το \( e_{\mathrm{ss}} \):
+	\begin{align*}
+		e_{\mathrm{ss}} &= \frac{1}{1+K_{\mathrm{pos}}}
+		= \frac{1}{1+\lim_{s\to 0}kH(s)}
+		= \frac{1}{1+\lim_{s\to 0}k\frac{10}{(s+6)(s+7)}}
+		= \frac{1}{1+k\frac{10}{6\cdot 7}} \\
+		e_{\mathrm{ss}} &< 0.5 \implies \boxed{k > 4.2}
+	\end{align*}
+	\item Για το \( M_p < 0.1 \):
+	\begin{align*}
+		\ln M_p &= \frac{ζπ}{\sqrt{1-ζ^2}}\\
+		\implies ζ &= \frac{\left\lvert \ln M_p \right\rvert}{
+			\sqrt{\ln^2 M_p - π^2}
+			}\\
+		\implies ζ &> \frac{|\ln 0.1 |}{\sqrt{\ln^2 0.1 + π^2}}
+		\implies \boxed{ζ > 0.59}
+	\end{align*}
+	
+	Για να χρησιμοποιήσουμε το αποτέλεσμα που βρήκαμε για το \( ζ \), πρέπει να το
+	εφαρμόσουμε επάνω στο χαρακτηριστικό πολυώνυμο του συστήματος, που μετά από πράξεις
+	προκύπτει:
+	\[
+	s^2+
+	\underbrace{13}_{ζ\omega_n}s
+	+\underbrace{10k+42}_{\omega_n^2}
+	\]
+	
+	Επομένως θέλουμε:
+	\[
+	ζ = \frac{13}{2\sqrt{42+10k}} > 0.59
+	\implies \boxed{k < 8.3}
+	\]
+	
+	\item
+	Αν για τις παραπάνω προδιαγραφές υπολογίσουμε το χρόνο αποκατάστασης
+	\[
+	t_s \approx \frac{4}{ζ\omega_n}
+	= \frac{4}{13} \simeq 0.3077 \simeq 308\ \mathrm{ms}
+	\]
+	φαίνεται ότι ήδη πληροί την προδιαγραφή \( t_s < 660\ \mathrm{ms} \).
+	
+	Σε διαφορετική περίπτωση, αν δηλαδή για αυτό το σύστημα μάς δινόταν μια προδιαγραφή
+	που δεν ικανοποιούνταν (π.χ. \( t_s < 220\ \mathrm{ms} \)), δεν θα ήταν δυνατό να
+	λυθεί η άσκηση με αυτό το σύστημα, αλλά θα έπρεπε να προστεθεί ένας ακόμα ελεγκτής.
+\end{enumerate}
+
+\subsubsection{Για συστήματα μεγαλύτερου βαθμού}
+Ένα σύστημα μεγαλύτερου από 2 βαθμού μπορεί να έχει τη μορφή:
+\todo{check}
+\[
+\frac{y(s)}{r(s)}
+= \frac{k(s+z_1)\cdots(s+z_n)}{(s+p_1)\cdots(s+p_n)\left[
+	(s+ζ_κ\omega_k)^2+(\omega_d)^2
+	\right]}
+\]
+
+Αν αναλύσουμε σε απλά κλάσματα το παραπάνω, χωρίζοντας πραγματικούς και μιγαδικούς συζυγείς
+πόλους, λαμβάνουμε:
+\begin{align*}
+	y(s) &= \frac{a}{s}
+	+ \sum_{i}^{n} \frac{a_i}{s+p_i}
+	+ \sum_{k}^q \frac{b_k(s+ζ_k\omega_k)+c_k\omega_{kd}}{s^2+2ζ_k\omega_k s + \omega_k^2}
+\intertext{Και, μετασχηματίζοντας αντίστροφα κατά Laplace}
+    y(t) &= a
+    + \sum a_i e^{-p_it}
+    + \sum b_k e^{-ζ_k\omega_k t}\cos \omega_d t
+    + \sum c_k e^{-ζ_k\omega_k t}\sin \omega_d t
+\end{align*}
+
+\paragraph{Απλοποίηση συστημάτων}
+
+Σε αυτό το σημείο κάνουμε μια σημαντική παρατήρηση: Αν έχουμε δύο μακρινούς πόλους,
+για παράδειγμα \(-2\) και \( -20 \), που δίνουν αντίστοιχα αποκρίσεις:
+\[
+\mathlarger{e^{-2t}}, \quad \mathlarger{e^{-20t}}
+\]
+\todo{add a graph}%
+Η πιο \textit{αργή} απόκριση \( e^{-2t} \) κυριαρχεί τη \textit{γρηγορότερη} απόκριση
+\( e^{-20t} \), η οποία αποσβένεται γρήγορα και δεν επηρεάζει το τελικό αποτέλεσμα.
+
+Επομένως, \textbf{μόνο όταν ασχολούμαστε με την ταχύτητα απόκρισης ενός συστήματος}, μπορούμε
+προσεγγιστικά να απαλλαγούμε από τους γρήγορους πόλους, αυτούς δηλαδή που βρίσκονται
+\textit{πιο μακριά από τον φανταστικό ημιάξονα}.
+
+\paragraph{Παράδειγμα}
+Στη συνάρτηση μεταφοράς \( \frac{10}{\left[(s+2)^2+5\right](s+10)} \) μπορούμε να
+απαλλαχθούμε από τον πόλο \( p=-10 \), αλλά προσέχουμε ώστε \textbf{να παραμείνει ίδιο το
+	DC κέρδος} του απλοποιημένου συστήματος. Δηλαδή η απλοποιημένη συνάρτηση μεταφοράς θα
+προκύψει:
+\[
+\frac{1}{(s+2)^2+5}
+\]
+\todo{πράξεις}
+
+\paragraph{Παράδειγμα}
+Έστω η συνάρτηση μεταφοράς:
+\[
+H(s) = \frac{100(s+20)}{(s+2)(s+5)(s+50)(s+100)}
+\]
+\todo{πράξεις}
+
+\paragraph{Παράδειγμα}
+Έστω η συνάρτηση μεταφοράς:
+\[
+\frac{100(s+20)}{(s+2)(s+50)}
+\]
+
+Επειδή εδώ έχουμε μηδενικό, δεν μπορούμε να απαλλαγούμε από τον πόλο, διότι θα αλλάξει
+εντελώς η απόκριση της συνάρτησης.
+
+Επομένως γενικά προσέχουμε:
+\begin{infobox}{Προϋποθέσεις απλοποίησης πόλου}
+\begin{enumpar}
+	\item Ίδιο DC κέρδος
+	\item Προσοχή στην κανονικότητα του συστήματος \todo{συμπλ} (διαφορά αριθμού ριζών αριθμητή και παρονομαστή)
+	\item Προσοχή σε μηδενικά κοντά σε πόλο
+\end{enumpar}
+\end{infobox}
+
+\paragraph{Παράδειγμα με τρία συστήματα}
+Να βρεθούν οι βηματικές αποκρίσεις των παρακάτω συστημάτων στο χρόνο:
+\begin{align*}
+	H_1 &= \frac{3}{s+3} \\
+	H_2 &=\frac{60}{(s+3)(s+20)} \\
+	H_3 &= \frac{18.75(s+3.2)}{(s+3)(s+20)}
+\end{align*}
+
+\begin{enumpar}
+	\item
+	Πολλαπλασιάζουμε τη συνάρτηση μεταφοράς με την είσοδο \( \frac{1}{s} \):
+	\begin{align*}
+		y(s) &= \frac{3}{(s+3)s} = \frac{A_1}{s} - \frac{B_1}{s+3}
+		\\ &\overset{\cdots}{=} \frac{1}{s} - \frac{1}{s+3}
+		\intertext{Άρα}
+		y(t) &= 1-e^{-3t}
+	\end{align*}
+	
+	\todo{Graph 47}
+	\item
+	Εικάζουμε ότι η απόκριση του συστήματος \( H_2 \) είναι παρόμοια με αυτήν του
+	\( H_1 \), αφού (αν κάνουμε τις πράξεις) έχουν ίδιο DC κέρδος, και απλώς προστέθηκε ένας
+	μακρινός πόλος στη συνάρτηση μεταφοράς.
+	\todo{Πράξεις και graph}
+	
+	\[
+	y(t) = 1-1.17e^{-3t}+0.17e^{-20t}
+	\]
+	
+	\item
+	Εδώ έχουμε ένα μηδενικό \( z=-3.2 \) κοντά στον πόλο \( p_1=-3 \), επομένως λύνουμε
+	αναλυτικά:
+	\begin{align*}
+		y(s) &= H_3\frac{1}{s} = \frac{A}{s} + \frac{B}{s+3} + \frac{Γ}{s+20}
+		\\ & \overset{\cdots}{=} \frac{1}{s} - \frac{0.0735}{s+3} - \frac{0.92}{s+20}
+		\intertext{Άρα}
+		y(t) &= 1 - 0.0735e^{-3t} - 0.92e^{-20t}
+	\end{align*}
+	\todo{Graph 48}
+	
+	Εδώ το μηδενικό επηρεάζει το αποτέλεσμα, και η γρήγορη απόκριση του \( (s+20) \)
+	κυριαρχεί, οπότε δε θα ήταν σωστό να την αγνοήσουμε.
+\end{enumpar}
+
+
+\end{document}

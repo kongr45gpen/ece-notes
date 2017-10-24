@@ -48,6 +48,8 @@
     }
 }
 
+\def\gsamples{200}
+
 \begin{document}
 <>
 \end{document}

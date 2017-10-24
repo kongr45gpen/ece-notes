@@ -3,7 +3,7 @@
 \usepackage{amssymb}
 \usepackage{libs/commath2}
 \usepackage[table]{xcolor}
-\usepackage[hidelinks,draft=false]{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage[skins,theorems]{tcolorbox}
 \usepackage{titlesec}
 \usepackage{circuitikz}
@@ -12,18 +12,18 @@
 \usepackage[makeroom]{cancel}
 \usepackage{mathrsfs}
 \usepackage{wrapfig}
-%\usepackage{subcaption}
-%\usepackage{floatrow}
+\usepackage{subcaption}
+\usepackage{floatrow}
 \usepackage{esint}
 \usepackage{enumitem}
-%\usepackage{bm}
+\usepackage{bm}
 \usepackage{relsize}
 \usepackage{xfrac}
 \usepackage{comment}
-%\usepackage{siunitx}
-%\usepackage{MnSymbol}
-\usepackage[obeyDraft,disable]{todonotes}
-%\usepackage[linesnumbered,lined]{algorithm2e}
+\usepackage{siunitx}
+\usepackage{MnSymbol}
+\usepackage[obeyDraft]{todonotes}
+\usepackage[linesnumbered,lined]{algorithm2e}
 
 
 \pgfplotsset{compat=1.13}
@@ -35,13 +35,12 @@
 \usetikzlibrary{shapes.misc}
 \usetikzlibrary{shapes.multipart}
 \usetikzlibrary{shadows.blur}
+\usetikzlibrary{snakes}
 \usetikzlibrary{fadings}
 \usetikzlibrary{intersections}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{calc}
 \usetikzlibrary{matrix}
-\usetikzlibrary{positioning}
-\usetikzlibrary{shapes}
 
 \tcbuselibrary{breakable}
 
@@ -61,22 +60,6 @@
         }
     }
 }
-\makeatletter
-\tikzset{
-  use path for main/.code={%
-    \tikz@addmode{%
-      \expandafter\pgfsyssoftpath@setcurrentpath\csname tikz@intersect@path@name@#1\endcsname
-    }%
-  },
-  use path for actions/.code={%
-    \expandafter\def\expandafter\tikz@preactions\expandafter{\tikz@preactions\expandafter\let\expandafter\tikz@actions@path\csname tikz@intersect@path@name@#1\endcsname}%
-  },
-  use path/.style={%
-    use path for main=#1,
-    use path for actions=#1,
-  }
-}
-\makeatother
 
 \pgfmathdeclarefunction{sinc}{1}{%
 	\pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
@@ -89,21 +72,22 @@
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
 %\usepackage[no-math]{fontspec}
-%\usepackage{fontspec}
-\usepackage{mathspec}
-%\usepackage{newtxtext,newtxmath}
-%\usepackage{unicode-math}
-%\setmainfont{texgyretermes-regular.otf}
-%\setsansfont{texgyreheros-regular.otf}
+\usepackage{fontspec}
+%\usepackage{mathspec}
+\usepackage{unicode-math}
+\setmainfont{texgyretermes-regular.otf}
+\setsansfont{texgyreheros-regular.otf}
 %\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
 %\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
 \usepackage{polyglossia}
-%\newfontfamily\greekfont[Script=Greek]{texgyretermes-regular.otf}
+\newfontfamily\greekfont[Script=Greek]{texgyretermes-regular.otf}
 \newfontfamily\greekfontsf[Script=Greek]{texgyreheros-regular.otf}
 \newfontfamily\greekfonttt[Script=Greek]{Latin Modern Mono}
 %\usepackage[greek]{babel}
 \setdefaultlanguage{greek}
 \setotherlanguage{english}
+\newcommand{\textlatin}[1]{#1}
+%\newcommand{\mathlarger}{}
 
 %\usepackage[utf8]{inputenc}
 %\usepackage[greek]{babel}
@@ -145,8 +129,6 @@
 \tcbset{highlight math style={enhanced,colframe=red,colback=white,%
         arc=0pt,boxrule=1pt,shrink tight,boxsep=1.5mm,extrude by=0.5mm}}
 \newcommand{\attnboxed}[1]{\tcbhighmath[colback=red!5!white,drop fuzzy shadow,arc=0mm]{#1}}
-\newcommand{\infoboxed}[1]{%
-	\tcbhighmath[colframe=blue!50!white,colback=blue!5!white,arc=0mm]{#1}}
 \titleformat{\section}{\bf\Large}{Κεφάλαιο \thesection}{1em}{}
 \newtcolorbox{attnbox}[1]{colback=red!5!white,%
     colframe=red!75!black,fonttitle=\bfseries,title=#1}
@@ -196,15 +178,6 @@
 }
 \fi
 
-% Global amount of samples
-% Set to a higher value (e.g. 200) for nicer graphs
-% Set to a low value (e.g. 10) for performance
-\newcommand*{\gsamples}{70}
-
-% Equals command as a workaround for CircuiTikZ bug
-% not allowing the = sign in labels
-\newcommand*{\equals}{=}
-
 \newcommand{\nesearrow}{%
 	\,%
 	\smash{\raisebox{-1.1ex}
@@ -213,7 +186,6 @@
 			$}}%
 }
 \newcommand{\degree}{^{\circ}} % not great
-\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % add an equation number to a number-less math environment
 
 \newtcbtheorem[number within=section]{theorem}{Θεώρημα}%
 {colback=green!5,colframe=green!35!black,colbacktitle=green!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-7mm},width=.9\textwidth,arc=.7mm}{th}
