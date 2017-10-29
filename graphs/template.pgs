@@ -8,6 +8,7 @@
 \usepackage{lmodern}
 \usepackage{amsfonts}
 \usepackage[utf8]{inputenc}
+\usetikzlibrary{calc}
 \usetikzlibrary{fadings}
 \usetikzlibrary{patterns}
 \usetikzlibrary{intersections}
@@ -17,6 +18,8 @@
 \usepackage[greek]{babel}
 %\usepackage{color}
 \usepackage[active,pdftex,tightpage]{preview}
+
+\usepackage{/home/kongr45gpen/ece/notes/libs/circuitikz}
 
 \pgfplotsset{compat=1.13}
 
