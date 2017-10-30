@@ -263,7 +263,7 @@ t
 \section{Διαμόρφωση Πλάτους}
 
 \subsection{AM}
-Έστω το φέρον:
+Έστω το \emph{φέρον}:
 \[
 c(t) = A_c\cos(2\pi f_c t)
 \]
@@ -280,13 +280,17 @@ f_c \gg w
 
 Το σήμα που εκπέμπουμε κατά AM είναι το εξής:
 \[
-s(t) = A_c\left[ 1 + k_a \cdot m(t) \right]\cos(2\pi f_c t)
+\mathlarger{
+	\mathlarger{
+		\mathlarger{
+			s(t) = A_c\left[ 1 + k_a \cdot m(t) \right]\cos(2\pi f_c t)
+		}
+	}
+}
 \]
 το οποίο μπορεί να εκφράζεται σε Volt ή Ampere και ίσως εκπέμπεται από κάποια κεραία.
 
-Γραφικά:
-
-\begin{center}
+Γραφικά: \\* {\centering
 \begin{tikzpicture}[scale=1.2,xscale=1.3]
 \def\f{1.3+0.30362*\x-6.94276*\x^2+5.23511*\x^3-0.0466465*\x^4-0.696833*\x^5+0.128634*\x^6}
 %coordinates {(0,1.5) (0.7,0) (1.2,-0.5) (1.5,0) (2,1.5)  (3,1.5) (3.2,1.5)}
@@ -327,7 +331,7 @@ plot ({\x},{(\f+1)*sin(\x r*40)}) (1.3+1,0);
 \draw (0,0) -- (3,0);
 \end{scope}
 \end{tikzpicture}
-\end{center}
+}
 
 Η περιβάλλουσα του διαμορφωμένου σήματος περιέχει την πληροφορία που θέλουμε.
 
@@ -1023,11 +1027,26 @@ file{/home/kongr45gpen/ece/notes/data/AM_capacitor_2.data};
 αν \( \left| k_a m(t) \right| > 1 \), τότε η αποδιαμόρφωση δεν θα δώσει το επιθυμητό
 αποτέλεσμα, όπως είχαμε αναφέρει και παραπάνω:
 
-\todo{Graph 22}
+\begin{tikzpicture}[scale=1.1]
+\draw (0,-2) -- (0,2) node[right] {$s(t)$};
+\draw (0,0) -- (6,0);
 
-Αυτό μπορεί να διορθωθεί με διαφορετική επιλογή της σταθεράς \( k_a \).
+\def\f{2*3.14*0.22};
+\def\fc{2*3.14*5};
+\def\sc{1.4}
 
-\paragraph{Και άλλοι αποδιαμορφωτές}
+\draw[very thick,green!50!cyan] plot[smooth,domain=0:6,variable=\t,samples=\gsamples,yscale=\sc]
+(\t,{sin(\fc*(\t r))*(0.2+0.8*cos(\f*(\t r)))});
+
+\draw[thick,green!50!blue,dashed] plot[smooth,domain=0:6,variable=\t,yscale=\sc]
+(\t,{(0.2+0.8*cos(\f*(\t r)))})
+plot[smooth,domain=0:6,variable=\t,yscale=\sc]
+(\t,{-(0.2+0.8*cos(\f*(\t r)))});
+\end{tikzpicture}
+
+Αυτό μπορεί να διορθωθεί με διαφορετική επιλογή της σταθεράς \( k_a \), έτσι ώστε \( 1 + k_am(t) \geq 0 \).
+
+\subsubsection{Και άλλοι αποδιαμορφωτές}
 Ο παραπάνω αποδιαμορφωτής, όπως και ο διαμορφωτής, λειτουργεί με χρήση ενός μη γραμμικού
 στοιχείου, της διόδου.
 
@@ -1063,21 +1082,60 @@ node[below,yshift=-3mm] {$u_2(t) = a_1u_1(t) + a_2u_1^2(t)$};
 	u_1(t) &= s(t) = A_c\left[ 1+k_am(t) \right]\cos(2π f_c t) \\
 	u_2(t) &= a_1A_c\left[1+k_am(t)^2\right]\cos 2πf_c t
 	+ a_2A_c^2\left[ 1+k_a m(t) \right]^2 \cos^2 2πf_c t \\
-	&= a_1A_c \cos 2πf_ct \\
-	&\hphantom{=} +a_1A_ck_am(t)\cos 2πf_c t \\
-	&\hphantom{=} +a_2\frac{A_c^2}{2} \\
-	&\hphantom{=} +2a_2\frac{A_c^2}{2}k_a m(t) \\
-	&\hphantom{=} +a_2\frac{A_c^2}{2}k_a^2 m^2(t) \\
-	&\hphantom{=} + a_2\frac{A_c^2}{2}\cos 2π2f_c t \\
-	&\hphantom{=} + a_2\frac{A_c^2}{2} k_a m(t) \cos 2π2f_ct \\
-	&\hphantom{=} + a_2\frac{A_c^2}{2}k_a^2 m^2(t) \cos 2π2f_ct
+	&=             {\color{orange!20!brown!70!black} a_1A_c \cos 2πf_ct} \\
+	&\hphantom{=} +{\color{cyan!80!black}            a_1A_ck_am(t)\cos 2πf_c t} \\
+	&\hphantom{=} +{\color{orange!20!brown!70!black} a_2\frac{A_c^2}{2}} \\
+	&\hphantom{=} +{\color{blue!80!black}            2a_2\frac{A_c^2}{2}k_a m(t)} \\
+	&\hphantom{=} +{\color{magenta!80!black}         a_2\frac{A_c^2}{2}k_a^2 m^2(t)} \\
+	&\hphantom{=} +{\color{cyan!80!black}            a_2\frac{A_c^2}{2}\cos 2π2f_c t} \\
+	&\hphantom{=} +{\color{cyan!80!black}            a_2\frac{A_c^2}{2} k_a m(t) \cos 2π2f_ct} \\
+	&\hphantom{=} +{\color{magenta!80!black}         a_2\frac{A_c^2}{2}k_a^2 m^2(t) \cos 2π2f_ct}
 \end{align*}
 
 Από μία ύψωση στο τετράγωνο δηλαδή προκύπτουν πολλές καινούριες συχνότητες:
 
-\todo{Graph 24}
+\begin{tikzpicture}[scale=1.1,yscale=1.4]
+\draw[->] (-2.5,0) -- (12.5,0) node[below right] {f};
+\draw[->] (0,-1) -- (0,2) node[right] {$Y_2(f)$};
 
-Φαίνεται, όπως είδαμε και στο προηγούμενο κύκλωμα, ο DC όρος στο μηδέν, τα ripples στις
+\draw (0,0) node[below right] {$0$};
+\draw (1,0) node[below] {$\vphantom{2}w$};
+\draw (2,0) node[below] {$2w$};
+\draw (-1,0) node[below] {$-\vphantom{2}w$};
+\draw (-2,0) node[below] {$-2w$};
+
+\begin{scope}
+\clip (-1,0) -- (0,1) -- (1,0);
+\fill[red!50!green, opacity=.4, postaction={pattern=north east lines}] plot[smooth]
+coordinates {(-2,0) (-1,0.4) (1,0.4) (2,0)};
+\end{scope}
+
+\begin{scope}
+\clip plot[smooth]
+coordinates {(-2,0) (-1,0.4) (1,0.4) (2,0)};
+\fill[even odd rule,orange!90!green, opacity=.2, postaction={pattern=north west lines}] plot[smooth]
+coordinates {(-2,0) (-1,0.4) (1,0.4) (2,0)} (-1,0) -- (0,1) -- (1,0);
+\end{scope}
+
+\draw[orange!20!brown!90!black,very thick,->] (0,0)  -- ++(0,1.5);
+\draw[blue!80!black,very thick] (-1,0) -- (0,1) node[right] {$m(f)$} -- (1,0);
+\draw[magenta!90!blue, very thick] plot[smooth] 
+coordinates {(-2,0) (-1,0.4) (1,0.4) (2,0)} (1,0.3) node[above right] {$m^2(f)=m*m$};
+
+\begin{scope}[xshift=5cm]
+\draw[orange!20!brown!90!black,very thick,->] (0,0) node[below,black] {$f_c$} -- ++(0,1.5);
+\draw[cyan!80!black,very thick] (-1,0) -- (0,1)  -- (1,0);
+\end{scope}
+
+\begin{scope}[xshift=10cm]
+\draw[orange!20!brown!90!black,very thick,->] (0,0) node[below,black] {$2f_c$} -- ++(0,1.5);
+\draw[cyan!80!black,very thick] (-1,0) -- (0,1)  -- (1,0);
+\draw[magenta!90!blue, very thick] plot[smooth] 
+coordinates {(-2,0) (-1,0.4) (1,0.4) (2,0)} (1,0.3);
+\end{scope}
+\end{tikzpicture}
+
+Φαίνεται, όπως είδαμε και στο προηγούμενο κύκλωμα, ο DC όρος στο \( f=0 \), τα ripples στις
 υψηλότερες συχνότητες, αλλά και μία παραμόρφωση που οφείλεται στον όρο \( m^2(t) \), η
 οποία, αφού προκύπτει από συνέλιξη του \( m(t) \) (εύρος ζώνης \( w \)) με τον εαυτό του,
 έχει εύρος ζώνης:
@@ -1123,10 +1181,63 @@ M(f-f_c) + M(f+f_c)
 Δηλαδή το σήμα εξόδου αποτελείται από το αρχικό σήμα, μετατοπισμένο
 μόνο κατά τη συχνότητα:
 
-\todo{Graph 26}
+\begin{center}
+\begin{tikzpicture}[scale=1]
+\draw[draw=orange!50!brown,very thick]
+(-0.8,0) node[below] {$-w$}
+-- (0,1.4) node[right] {$M(0)$}
+-- (0.8,0) node[below] {$w$}
+;
+
+\draw (-2,0) -- (2,0);
+\draw (0,-0.5) -- (0,2.5) node[right] {$M(f)$};
+
+\draw[->,very thick, blue!60!black]
+(2.5,1.25) -- ++(2,0);
+
+\begin{scope}[xshift=9cm]
+\draw[xshift=-2cm,draw=brown!50!orange,very thick,every node/.style={scale=.9}]
+(-0.8,0)
+-- (0,1.4)
+-- (0.8,0)
+(0,0) node[below] {$-f_c$}
+;
+\draw[xshift=2cm,draw=brown!50!orange,very thick]
+(-0.8,0)
+-- (0,1.4)
+-- (0.8,0)
+(0,0) node[below] {$f_c$}
+;
+
+\draw (-4,0) -- (4,0);
+\draw[->] (0,-0.5) -- (0,2.5) node[right] {$S(f)$};
+
+\draw[dashed] (-2.1,1.4) --++(4.2,0);
+\draw (0,1.4) node[above right] {$\sfrac{1}{2}k_aA_cM(0)$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
 
 Στο πεδίο του χρόνου, το σήμα φαίνεται κάπως έτσι:
-\todo{Graph 25}
+
+\begin{tikzpicture}[scale=1.1]
+\draw (0,-2) -- (0,2);
+\draw (0,0) -- (6,0);
+
+\def\f{2*3.14*0.22};
+\def\fc{2*3.14*5};
+\def\sc{1.4}
+
+\draw[very thick,blue!50!black] plot[smooth,domain=0:6,variable=\t,samples=\gsamples,yscale=\sc]
+(\t,{(1-0.1*\t)*sin(\fc*(\t r))*(0.2+0.8*cos(\f*(\t r)))});
+
+\draw[thick,green!50!blue] plot[smooth,domain=0:6,variable=\t,yscale=\sc*1.1]
+(\t,{(1-0.1*\t)*(0.2+0.8*cos(\f*(\t r)))});
+\draw[thick,green!80!cyan] plot[smooth,domain=0:6,variable=\t,yscale=\sc*1.1]
+(\t,{-(1-0.1*\t)*(0.2+0.8*cos(\f*(\t r)))});
+\end{tikzpicture}
+
 
 Παρατηρούμε την αρχική κυματομορφή, η οποία αποκτά και αρνητικές τιμές,
 με αποτέλεσμα η χρήση του αποδιαμορφωτή AM που χρησιμοποιήσαμε και
@@ -1140,10 +1251,19 @@ M(f-f_c) + M(f+f_c)
 
 Σχεδιάζουμε το κύκλωμα του αποδιαμορφωτή ως έναν πολλαπλασιαστή
 του φέροντος με το διαμορφωμένο σήμα, φροντίζοντας να μην ξεχάσουμε
-το φέρον να έχει την \textbf{κατάλληλη φάση} \( φ \) που να αντιστοιχεί
+το δικό μας φέρον να έχει την \textbf{κατάλληλη φάση} \( φ \) που να αντιστοιχεί
 στη φάση του φέροντος του λαμβανόμενου σήματος:
 
-\todo{Graph 27}
+\begin{circuitikz}[scale=2]
+	\draw (0,0) node[xshift=4.9mm,oscillator] (osc) {}
+	node[above right,xshift=5mm] {$A_c' \cos(2πf_c t + φ)$};
+	\draw (0,1) node[rectangle,draw,minimum width=15mm,minimum height=10mm] (mult) {}
+	node[scale=1.5] {$\times$};
+	
+	\draw[<-] (mult.west) -- ++(-1,0) node[above,midway] {$s(t)$};
+	\draw[->] (mult.east) -- ++(1,0) node[above,midway] {$u(t)$};
+	\draw[->] (osc.north) -- (mult.south);
+\end{circuitikz}
 
 Τότε, με λίγα μαθηματικά έχουμε:
 \begin{align*}
@@ -1153,8 +1273,33 @@ M(f-f_c) + M(f+f_c)
 	\\ &=
 	\frac{1}{2} A_c A_c'
 	m(t) \cos(2π2f_ct + φ) + \frac{1}{2}A_cA_c' m(t)\cos φ
-	\intertext{Και, εφαρμόζοντας ένα φίλτρο LPF που κόβει
-		τις υψηλές συχνότητες \( 2π2f_c \):}
+\end{align*}
+Και, εφαρμόζοντας ένα φίλτρο LPF που κόβει τις υψηλές συχνότητες \( 2π2f_c \):
+\begin{tikzpicture}[scale=0.3,baseline]
+\filldraw[fill=green!80!black,fill opacity=.1] (-1.2,0) -- (-1,1.8) -- (1,1.8) -- (1.2,0);
+
+\draw[draw=blue!50!brown,very thick]
+(-0.8,0)
+-- (0,1.4)
+-- (0.8,0)
+;
+
+\draw[draw=red,opacity=.8,xshift=3cm,thick]
+(-0.8,0)
+-- (0,1.4)
+-- (0.8,0)
+;
+
+\draw[draw=red,opacity=.8,xshift=-3cm,thick]
+(-0.8,0)
+-- (0,1.4)
+-- (0.8,0)
+;
+
+\draw (-5,0) -- (5,0);
+\draw (0,-0.5) -- (0,2.5);
+\end{tikzpicture}%
+\begin{align*}
 	\left. u(t) \right\lvert_{\mathrm{LPF}}
 	&= \frac{1}{2} A_c A_c' m(t) \cos φ
 \end{align*}
@@ -1176,22 +1321,96 @@ M(f-f_c) + M(f+f_c)
 αυτομάτου ελέγχου PLL (Phase-Locked Loop).
 
 Τελικά, το κύκλωμα προκύπτει:
-\todo{Graph 28}
+
+\begin{circuitikz}[scale=2]
+	\draw (0,0) node[xshift=4.9mm,oscillator] (osc) {}
+	node[above right,xshift=5mm] {$A_c' \cos(2πf_c t + φ)$};
+	\draw (0,1) node[rectangle,draw,minimum width=15mm,minimum height=10mm] (mult) {}
+	node[scale=1.5] {$\times$};
+	\draw (1.3,1) node[rectangle,draw,minimum width=15mm,minimum height=10mm] (lpf) {}
+	node[] {LPF};
+	
+	\draw[<-] (mult.west) -- ++(-1,0) node[above,midway] {$s(t)$};
+	\draw(mult.east) -- (lpf.west);
+	\draw[->] (lpf.east) -- ++(0.5,0);
+	\draw[->] (osc.north) -- (mult.south);
+\end{circuitikz}
 
 \subsubsection{Δακτυλιοειδής διαμορφωτής (ring modulator)}
 Προκύπτει το ερώτημα πώς μπορούμε να υλοποιήσουμε κυκλωματικά
-έναν πολλαπλασιαστή. Έστω ότι θέλουμε να πολλαπλασιάσουμε
+έναν πολλαπλασιαστή. Έστω λοιπόν ότι θέλουμε να πολλαπλασιάσουμε
 ένα σήμα \( m(t) \) με ένα φέρον \( A_c\cos2π f_ct \).
 
 Για αυτόν τον λόγο υπάρχει ένα κύκλωμα που ονομάζεται
 \textbf{δακτυλιοειδής διαμορφωτής (ring modulator)}, με είσοδο
 το \( m(t) \) και μια τετραγωνική κυματομορφή \( c(t) \) συχνότητας
 \( f_c \):
-\todo{Graph 30}
+
+\begin{circuitikz}[scale=1,american]
+	\draw (0,0) node[transformer core] (t1) {};
+	\draw (6,0) node[transformer core] (t2) {};
+	
+	\draw (t1.A1) to[open,v=$m(t)$] (t1.A2);
+	\draw (t2.B1) to[open,v^=$s(t)$] (t2.B2);
+	
+	\draw (t1.B1) node[above] {$a$} to[diode,*-*] (t2.A1);
+	\draw (t2.A1) node[above] {$b$} to[diode] ($(t2.A1)!0.6!(t1.B2)$) -- (t1.B2);
+	\draw (t1.B2) node[below] {$c$} to[diode,*-*] (t2.A2);
+	\draw (t2.A2) node[below] {$d$} --
+	($(t2.A2)!0.48!(t1.B1)$) to[bend left=90] ($(t2.A2)!0.525!(t1.B1)$)
+	to[diode] ($(t2.A2)!0.9!(t1.B1)$) 
+	-- (t1.B1);
+	
+	\coordinate (C1) at ($(t1.B1)!0.5!(t1.B2) - (0.4,0)$);
+	\coordinate (C2) at ($(t2.A1)!0.5!(t2.A2) + (0.4,0)$);
+	
+	\def\m{0.2}
+	\def\h{2.5}
+	\def\l{1.7}
+	\draw (C1) to[short,*-] ++(\m,0) -- ++(0,-\h) to[short,-*] ++(\l,0) node (l1) {};
+	\draw (C2) to[short,*-] ++(-\m,0) -- ++(0,-\h) to[short,-*] ++(-\l,0) node (l2) {};
+	\draw (l1) to[open,v=$c(t)$] (l2);
+\end{circuitikz}
 
 Αυτό το κύκλωμα ουσιαστικά εναλλάσει την αλλαγή ή όχι του προσήμου
 της κυματομορφής εισόδου:
-\todo{Graph 31}
+
+\begin{tikzpicture}[scale=0.7]
+\pgfmathdeclarefunction{mysquare}{1}{%
+	\pgfmathparse{int(mod(4*#1,2))}%
+	\ifnum\pgfmathresult>0 \pgfmathparse{-1}\else\pgfmathparse{1}\fi%
+}
+
+\draw (0,0) -- (5,0);
+\draw (0,-2) -- (0,2) node[above right] {$c(t)$};
+
+\def\step{0.25}
+\def\ampl{1.8}
+\foreach \x in {0,0.5,...,4.5} {
+	\draw[thick,blue] (\x,\ampl) -- ++(\step,0) -- ++(0,-2*\ampl) -- ++(\step,0) -- ++(0,2*\ampl);
+}
+
+\draw[orange!50!brown!50!black,<->,yshift=-2mm] (0,0) -- (2*\step,0) node[midway,below,scale=.8] {$\sfrac{1}{f_c}$};
+
+\begin{scope}[xshift=6cm]
+\draw (0,0) -- (5,0);
+\draw (0,-2) -- (0,2) node[above right] {$c(t)$};
+
+\draw[very thick,blue!50!black] plot [variable=\x,domain=0:5,samples=\gsamples] (\x,{1.5*cos(\x r)});
+\end{scope}
+
+\begin{scope}[xshift=12cm]
+\draw (0,0) -- (5,0);
+\draw (0,-2) -- (0,2) node[above right] {$s(t)$};
+
+\draw[blue!50!black,densely dashed,opacity=.9]
+plot [variable=\x,domain=0:5,samples=\gsamples] (\x,{1.5*cos(\x r)})
+plot [variable=\x,domain=0:5,samples=\gsamples] (\x,{-1.5*cos(\x r)});
+
+\draw[very thick,orange!50!red] plot [variable=\x,domain=0:5,samples=\gsamples]
+(\x,{mysquare(\x)*1.5*cos(\x r)});
+\end{scope}
+\end{tikzpicture}
 
 Πρακτικά, πολλαπλασιάζει το \( c(t) \) με το \( m(t) \). Μαθηματικά,
 παίρνουμε τη σειρά Fourier του \( c \) και βλέπουμε:
@@ -1211,19 +1430,54 @@ M(f-f_c) + M(f+f_c)
 Ακριβώς όπως μελετήσαμε τον διαμορφωτή και τον αποδιαμορφωτή AM,
 ίσως μέσα στις συχνότητες της παραπάνω συνάρτησης υπάρχει και το
 σήμα που θέλουμε:
-\begin{alignat*}{2}
-	n=1\qquad && \infoboxed{m(t)\frac{4}{π}\cos2πf_c t}\\
-	n=2\qquad && m(t)\frac{4}{π}\cos2π3f_c t\\
-	n=3\qquad && m(t)\frac{4}{π}\cos2π5f_c t
-\end{alignat*}
+\begin{align*}
+	n=1\qquad & \infoboxed{m(t)\frac{4}{π}\cos2πf_c t} \qquad \leftarrow \text{το επιθυμητό σήμα} \\
+	n=2\qquad & m(t)\frac{4}{π}\cos2π3f_c t\\
+	n=3\qquad & m(t)\frac{4}{π}\cos2π5f_c t
+\end{align*}
 
-\todo{graph fourier output}
+\begin{tikzpicture}[scale=1]
+\filldraw[fill=blue!80!black,fill opacity=.1]
+(1.5-0.8,0) -- (1.5-0.7,1.8)
+to node[midway,above,opacity=1,black] {BPF} (1.5+0.7,1.8) -- (1.5+0.8,0);
+
+\draw[dashed] (1.5,0) node[below] {$f_c$}-- ++(0,1.4);
+\draw[draw=orange!90!brown!80!black,opacity=.8,xshift=1.5cm,very thick] (-0.6,0) -- (0,1.4) -- (0.6,0);
+
+\draw[dashed] (3.5,0) node[below] {$3f_c$}-- ++(0,1.4);
+\draw[draw=orange!70!brown!70!black,opacity=.8,xshift=3.5cm,thick] (-0.6,0) -- (0,1.4) -- (0.6,0);
+
+\draw[dashed] (5.5,0) node[below] {$5f_c$}-- ++(0,1.4);
+\draw[draw=orange!70!brown!70!black,opacity=.8,xshift=5.5cm,thick] (-0.6,0) -- (0,1.4) -- (0.6,0);
+
+\draw (6.3,0.7) node[right] {$\cdots$};
+
+\begin{scope}[xscale=-1]
+\filldraw[fill=blue!80!black,fill opacity=.1]
+(1.5-0.8,0) -- (1.5-0.7,1.8)
+to (1.5+0.7,1.8) -- (1.5+0.8,0);
+
+\draw[dashed] (1.5,0) node[below] {$-f_c$}-- ++(0,1.4);
+\draw[draw=orange!70!brown!70!black,opacity=.8,xshift=1.5cm,thick] (-0.6,0) -- (0,1.4) -- (0.6,0);
+
+\draw[dashed] (3.5,0) node[below] {$-3f_c$}-- ++(0,1.4);
+\draw[draw=orange!70!brown!70!black,opacity=.8,xshift=3.5cm,thick] (-0.6,0) -- (0,1.4) -- (0.6,0);
+
+\draw[dashed] (5.5,0) node[below] {$-5f_c$}-- ++(0,1.4);
+\draw[draw=orange!70!brown!70!black,opacity=.8,xshift=5.5cm,thick] (-0.6,0) -- (0,1.4) -- (0.6,0);
+
+\draw (6.3,0.7) node[left] {$\cdots$};
+\end{scope}
+
+\draw (-6.3,0) -- (6.3,0);
+\draw (0,-0.5) -- (0,2.5);
+\end{tikzpicture}
 
 Επομένως, παίρνουμε ένα band pass φίλτρο μόνο για τις συχνότητες
 του \( n=1 \) και προκύπτει η ζητούμενη έξοδος \( m(t)\frac{4}{π}
 \cos2πf_c t \).
 
-Αυτά τα κυκλώματα, σε συνδυασμό με το Band Pass Filter, είναι
+Τέτοιου είδους κυκλώματα, σε συνδυασμό με το Band Pass Filter, είναι
 διαθέσιμα στο εμπόριο και ονομάζονται \textbf{μίκτες (mixers)}.
 
 Να σημειωθεί βέβαια πως για να λειτουργήσει σωστά αυτή η διάταξη,
@@ -1234,7 +1488,24 @@ M(f-f_c) + M(f+f_c)
 ένα κύκλωμα που ονομάζεται double-balanced modulator και λειτουργεί
 με δύο όμοιους διαμορφωτές AM:
 
-\todo{Graph 33}
+\begin{circuitikz}[scale=0.7]
+	\draw(-1,0) node[oscillator,xshift=4.9mm] (osc) {};
+	\draw (2,2) node[draw,rectangle,align=left,inner sep=5pt,scale=.7] (am1) {AM\\διαμορφωτής};
+	\draw (2,-2) node[draw,rectangle,align=left,inner sep=5pt,scale=.7] (am2) {AM\\διαμορφωτής};
+	\draw (5,0) node[draw,circle,scale=1.4,thick] (add) {$+$};
+	\draw (-1,-2.2) node[draw,rectangle] (o1) {$-1$};
+	\draw (0,-1) node[draw,rectangle] (o2) {$-1$};
+	
+	\draw[->] (-3,2.2) -- (am1.west |- 0,2.2);
+	\draw[<-] (o1.west) -- ++(-1,0) -- ++(0,2.2+2.2) node[circ] {};
+	\draw[->] (o1.east) -- (am2.west |- 0,-2.2);
+	\draw[->] (osc.east) -| (o2.north);
+	\draw[->] (o2.south) |- (am2.west |- 0,-1.8);
+	\draw[->] (osc.north) |- (am1.west |- 0,1.8);
+	\draw[->] (am1.east) -| (add.north);
+	\draw[->] (am2.east) -| (add.south);
+	\draw[->] (add.east) -- ++(1,0);
+\end{circuitikz}
 
 \subsubsection{Δέκτης Costas}
 Θυμόμαστε ότι για ένα σήμα:
@@ -1248,7 +1519,42 @@ s(t) = A_cm(t) \cdot \cos(2πf_ct + φ)
 Σχεδιάζουμε έναν νέο δέκτη, ο οποίος αποτελείται από δύο απλούς
 αποδιαμορφωτές της ενότητας \ref{dsbsc.demodulator}:
 
-\todo{Graph 45}
+\begin{circuitikz}[scale=1.1]
+	\draw (0,-0.75) node[draw,rectangle] (ps) {$-90\degree$};
+	\draw (0,2) node[draw,rectangle,scale=2,outer sep=0] (m1) {$\times$};
+	\draw (0,-2) node[draw,rectangle,scale=2, outer sep=0] (m2) {$\times$};
+	\draw (3,0) node[draw,rectangle,inner sep=5pt] (osc) {Ταλαντωτής}
+	node[below,yshift=-3.5mm,scale=.7] {ελεγχόμενος από τάση};
+	\draw (2,2) node[draw,rectangle,inner sep=5pt] (lpf1) {LPF};
+	\draw (2,-2) node[draw,rectangle,inner sep=5pt] (lpf2) {LPF};
+	\draw (6.5,0) node[draw,rectangle,inner sep=5pt,align=center] (pd) {Διευκρινιστής\\φάσης};
+	
+	\coordinate (M) at (-2,0);
+	
+	\draw (M) -- ++(-3,0) node[midway,above] {$A_m(t)\cos(2πft)$};
+	\draw[->] (M) |- node[above right,blue!50!black] {\textbf{I}} (m1.west);
+	\draw[->] (M) |- node[below right,blue!50!black] {\textbf{Q}} (m2.west);
+	\draw[->] (osc) -| (m1);
+	\draw[->] (osc) -| (ps) -- (m2);
+	\draw[->] (m1) -- (lpf1);
+	\draw[->] (lpf1) -| (pd);
+	\draw[->] (m2) -- (lpf2);
+	\draw[->] (lpf2) -| (pd);
+	\draw[->] (pd) -- (osc);
+	
+	\draw (osc.north east) node[right,xshift=-1mm,yshift=2mm,orange!50!brown!50!black]
+	{$\overbrace{-\phi}^{\mathclap{\text{αρνητική ανάδραση}}}$};
+	\draw[blue!80!cyan,<-] ($(pd.south)!0.5!(pd.south east)$) to[bend right] ++(0.7,-0.5) node[right,scale=.9,align=center]
+	{Διαιρεί τα σήματα\\$\frac{\cos\phi}{\sin\phi}=\tan\phi$};
+	
+	\draw[->] (pd.north |- lpf1.east) -- ++(1.5,0);
+	\draw[->] (pd.south |- lpf2.east) -- ++(1.5,0);
+	
+	\path (lpf1) -- (pd |- lpf1) node[midway,above] {$\sfrac{1}{2}A_c\cos\phi\; m(t)$};
+	\path (lpf2) -- (pd |- lpf2) node[midway,below] {$\sfrac{1}{2}A_c\sin\phi\; m(t)$};
+	\path (osc -| ps) -- (m1.south) node[midway,right] {$\cos(2πf_ct)$};
+	\path (ps.south) -- (m2.north) node[midway,right] {$\sin(2πf_ct)$};
+\end{circuitikz}
 
 Ο δέκτης αυτός ονομάζεται \textbf{δέκτης Costas}, και αποτελείται
 από έναν ταλαντωτή \( \cos(2π f_c t + φ) \), και δύο κλάδους
@@ -1267,7 +1573,35 @@ s(t) = A_cm(t) \cdot \cos(2πf_ct + φ)
 με φέρον \( A_c\cos 2π f_c t \), και το άλλο με φέρον
 \( A_c\sin 2πf_c t \), δηλαδή φάση μικρότερη κατά \( 90\degree \).
 Στο τέλος, προσθέτουμε τα δύο διαμορφωμένα σήματα:
-\todo{Graph 36}
+
+\begin{circuitikz}[scale=1.2]
+	\draw (0,-0.75) node[draw,rectangle] (ps) {$-90\degree$};
+	\draw (0,2) node[draw,rectangle,scale=2,outer sep=0] (m1) {$\times$};
+	\draw (0,-2) node[draw,rectangle,scale=2, outer sep=0] (m2) {$\times$};
+	\draw (2,0) node[oscillator,xshift=4.9mm] (osc) {};
+	\draw (3,2) node[draw,circle,scale=1.2,thick] (sum) {$\sum$};
+	
+	\draw[->] (osc.west) -| (m1);
+	\draw[->] (osc.west) -| (ps) -- (m2);
+	\draw[->] (m1) -- (sum) node[above,midway] {$s(t)$};
+	\draw[->] (m2) -| (sum);
+	\draw[->] (sum) -- ++(2,0) node[above right,pos=.2]
+	{$s(t)=A_cm(t)\cos 2πf_c t + A_cm(t)\sin2πf_ct$};
+	\draw[<-] (m1) -- ++(-2,0) node[above,midway] {$m_1(t)$};
+	\draw[<-] (m2) -- ++(-2,0) node[below,midway] {$m_2(t)$};
+	
+	\path (m2) -- (m2 -| sum) node[pos=0,below right] {$s'(t) = A_cm(t)\sin2πf_ct$};
+	\path (osc -| ps) -- (m1.south) node[midway,right,scale=.8] {$\cos(2πf_ct+\phi)$};
+	\path (ps.south) -- (m2.north) node[midway,right,scale=.8] {$\sin(2πf_ct+\phi)$};
+	
+	\draw (m1.north) node[above,blue!50!black,scale=1.2] (I) {I};
+	\draw (I) node[above,blue!50!black,scale=.7,yshift=2mm] {in phase};
+	\draw (m2.south) node[below,blue!50!black,scale=1.2] (Q) {Q};
+	\draw (Q) node[below,blue!50!black,scale=.7,yshift=-2mm] {quadrature};
+	
+	\draw[<-,green!50!gray] (m1.north east) to[bend left] ++(0.7,0.5)
+	node[right,scale=.9] {διαμορφωτής (πολλαπλασιασμού)};
+\end{circuitikz}
 
 Δηλαδή η έξοδος είναι:
 \[
@@ -1287,22 +1621,99 @@ s(t) = A_c m(t)\cos 2π  f_c t
 
 Δηλαδή το πεδίο της συχνότητας περιέχει τιμές στο μιγαδικό επίπεδο,
 οι οποίες μπορούν να παρουσιαστούν ως εξής:
-\todo{Graph 38}
+
+\begin{tikzpicture}[scale=1]
+\draw[brown!50!orange!50!blue,ultra thick,->]
+(2,0) node[below,black,xshift=1mm] {$f_c$} -- ++(0,1.4) node[right] {$\cos t$};
+\draw[brown!30!orange!30!blue,ultra thick,->]
+(2,0) -- ++(0,0,2.5) node[below right] {$\sin t$};
+
+\draw[brown!50!orange!50!blue,ultra thick,->]
+(-2,0) node[below,black,xshift=2mm] {$-f_c$} -- ++(0,1.4);
+\draw[brown!30!orange!30!blue,ultra thick,->]
+(-2,0) -- ++(0,0,2.5);
+
+\draw[->] (-4,0) -- (4,0) node[right] {$f$};
+\draw[->] (0,-2) -- (0,2.5) node[right] {Re};
+\draw[->] (0,0,0) -- (0,0,5) node[below right] {Im};
+\draw[path fading=east] (0,0,0) -- (0,0,-5);
+\end{tikzpicture}
 
 Άρα το σήμα έχει μορφή:
-\todo{Graph 37}
 
-Να σημειωθεί πως το γεγονός ότι υπάρχουν και τιμές στον πραγματικό
+\begin{tikzpicture}[scale=1]
+\draw[draw=orange!50!brown,very thick]
+(-0.8,0) node[below] {$-w$}
+-- (0,1.4)
+-- (0.8,0) node[below] {$w$}
+;
+
+\draw (-2,0) -- (2,0);
+\draw (0,-2.5) -- (0,2.5) node[right] {$M(f)$};
+
+\draw[->,very thick, black]
+(2.5,0) -- ++(2,0);
+
+\begin{scope}[xshift=9cm]
+\draw[opacity=.5,dashed] (-2,0) -- ++(0,1.4);
+\draw[opacity=.5,dashed] (2,0) -- ++(0,1.4);
+
+\draw[orange!50!black,opacity=.5] (2-1,0) |- (2,0.6) -| node[above right,scale=.8] {$2w$} (2+1,0);
+
+\draw[xshift=-2cm,draw=brown!50!orange,very thick,every node/.style={scale=.9}]
+(-0.8,0) -- (0,1.4) -- (0.8,0)
+(0,0) node[below] {$-f_c$};
+
+\draw[xshift=-2cm,draw=brown!50!orange,very thick,fill=red,fill opacity=.1,postaction={pattern=north east lines,opacity=.3}]
+(-0.8,0,0) -- (0,0,3) -- (0.8,0,0);
+\draw[xshift=2cm,draw=brown!50!orange,very thick,fill=red,fill opacity=.1,postaction={pattern=north east lines,opacity=.3}]
+(-0.8,0,0) -- (0,0,3) -- (0.8,0,0);
+
+\draw[xshift=2cm,draw=brown!50!orange,very thick]
+(-0.8,0) node[below,scale=.7] {$f_c-w$}
+-- (0,1.4)
+-- (0.8,0) node[below,scale=.7] {$f_c+w$}
+(0,0) node[below] {$f_c$}
+;
+
+\draw (-4,0) -- (4,0);
+\draw[->] (0,-1.5) -- (0,2.5) node[right] {Re};
+\draw[->] (0,0,0) -- (0,0,5) node[below right] {Im};
+\end{scope}
+\end{tikzpicture}
+
+Να σημειωθεί πως το γεγονός ότι υπάρχουν και τιμές στον φανταστικό
 άξονα, δεν σημαίνει ότι το σήμα δεν υφίσταται στην πραγματικότητα,
-αλλά ότι περιέρχει και δεδομένα στην φάση του!
+αλλά ότι περιέχει και δεδομένα στην φάση του!
 
 Η διαδικασία της αποδιαμόρφωσης μπορεί να μας επιστρέψει και τα
 δύο σήματα, όπως και στον αποδιαμορφωτή DSB-SC, πολλαπλασιάζοντας
 την είσοδο αρχικά με \( \cos2π f_c t \), και μετά με \( \sin 2π f_c t \):
-\todo{Graph 39}
 
-Οπότε η έξοδος
-\todo{check}
+\begin{circuitikz}[scale=1.2,yscale=0.7]
+	\draw (0,-0.75) node[draw,rectangle] (ps) {$-90\degree$};
+	\draw (0,2) node[draw,rectangle,scale=2,outer sep=0] (m1) {$\times$};
+	\draw (0,-2) node[draw,rectangle,scale=2, outer sep=0] (m2) {$\times$};
+	\draw (2,0) node[oscillator,xshift=4.9mm] (osc) {};
+	\draw (2,2) node[draw,rectangle,inner sep=5pt] (lpf1) {LPF};
+	\draw (2,-2) node[draw,rectangle,inner sep=5pt] (lpf2) {LPF};
+	
+	\coordinate (M) at (-1.5,0);
+	
+	\draw[<-] (M) -- ++(-1,0) node[midway,above] {$s(t)$};
+	\draw[->] (M) |- (m1.west);
+	\draw[->] (M) |- (m2.west);
+	\draw[->] (osc.west) -| (m1);
+	\draw[->] (osc.west) -| (ps) -- (m2);
+	\draw[->] (m1) -- (lpf1);
+	\draw[->] (m2) -- (lpf2);
+	\draw[->] (lpf1) -- ++(2,0) node[above] {$A_c m_1(t)$};
+	\draw[->] (lpf2) -- ++(2,0) node[below] {$A_c m_2(t)$};
+	
+	\path (ps.south) -- (m2.north) node[midway,right,scale=.7] {$\sin(2πf_ct)$};
+\end{circuitikz}
+
+Οπότε, π.χ η πρώτη έξοδος είναι:
 \begin{align*}
 	s(t) \cos 2π f_c t
 	&= 2 A_c m_1(t) \cos^2 2π f_c t + 2A_c m_2(t)\cos2π f_c t
