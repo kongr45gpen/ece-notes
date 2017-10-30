@@ -1394,7 +1394,7 @@ M(f-f_c) + M(f+f_c)
 
 \begin{scope}[xshift=6cm]
 \draw (0,0) -- (5,0);
-\draw (0,-2) -- (0,2) node[above right] {$c(t)$};
+\draw (0,-2) -- (0,2) node[above right] {$m(t)$};
 
 \draw[very thick,blue!50!black] plot [variable=\x,domain=0:5,samples=\gsamples] (\x,{1.5*cos(\x r)});
 \end{scope}
@@ -1733,7 +1733,47 @@ s(t) = A_c m(t)\cos 2π  f_c t
 διαμορφωθούν, ξοδεύουν εύρος ζώνης \( 2w \), και το σήμα εμφανίζεται
 δύο φορές γύρω από τη συχνότητα \( f_c \).
 
-\todo{Graph 40}
+\begin{tikzpicture}[scale=1]
+\draw[draw=orange!50!brown,very thick]
+(-0.8,0) node[below] {$-w$}
+-- (0,1.4)
+-- (0.8,0) node[below] {$w$}
+;
+
+\draw (-2,0) -- (2,0);
+\draw (0,-0.5) -- (0,2.5);
+
+\draw[->,very thick, black]
+(2.5,1) -- ++(2,0);
+
+\begin{scope}[xshift=9cm]
+\fill[opacity=.5,path fading=east,green!30!gray] (2,0) -- ++(0,1.6) -- ++(25:1.5) -- ++(0,-3.1) -- (2,-0.2);
+
+\draw[opacity=.5] (2,0) -- ++(0,1.6) edge[path fading=north] ++(25:1.5)
+(2,0) -- ++(0,-0.2) edge[path fading=south] ++(-25:1.5);
+
+
+\draw[opacity=.5,dashed] (-2,0) -- ++(0,1.4);
+\draw[opacity=.5,dashed] (2,0) -- ++(0,1.4);
+
+\draw[orange!50!black,opacity=.8] (2-1,0) |- (2,-0.6) -| node[below right,scale=.8] {$2w$} (2+1,0);
+\draw[orange!70!black,opacity=.8] (2,0) |- (2,-0.3) -| (2+0.8,0) node[midway,below,scale=.7] {$w$};
+
+\draw[xshift=-2cm,draw=brown!50!orange,very thick,every node/.style={scale=.9}]
+(-0.8,0) -- (0,1.4) -- (0.8,0)
+(0,0);
+
+\draw[xshift=2cm,draw=brown!50!orange,very thick]
+(-0.8,0)
+-- (0,1.4)
+-- (0.8,0)
+(0,0) node[above right] {$f_c$}
+;
+
+\draw (-4,0) -- (4,0);
+\draw[->] (0,-0.5) -- (0,2.5);
+\end{scope}
+\end{tikzpicture}
 
 Αν μπορούσαμε να "κόψουμε" το ένα (π.χ. το αριστερό) κομμάτι του
 διαμορφωμένου σήματος, θα είχαμε την ίδια πληροφορία, αλλά θα
@@ -1744,11 +1784,66 @@ s(t) = A_c m(t)\cos 2π  f_c t
 οπτικά/σήματα δεδομένων, επειδή τα ακουστικά σήματα ξεκινούν από
 συχνότητες 20-600 Hz, και δεν έχουν DC κομμάτι:
 
-\todo{Graph 41}
+\begin{tikzpicture}[scale=1.2]
+\draw (-3,0) -- (3,0);
+\draw[->] (0,-1.5) -- (0,2.5);
 
+\def\s{1.4}
+
+\begin{scope}
+\clip (-3,0) rectangle (3,2); % clip below 0
+
+\draw[xshift=-\s cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates {(-0.8,0) (-0.5,0.2) (0,1.4) (0.5,0.2) (0.8,0)}
+;
+
+\draw[xshift=\s cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates {(-0.8,0) (-0.5,0.2) (0,1.4) (0.5,0.2) (0.8,0)}
+;
+\end{scope}
+
+\draw (-0.8+\s,0) node[below] {$f_a$};
+\draw (0.8+\s,0) node[below] {$f_b$};
+\draw (0.8-\s,0) node[below] {$-f_a$};
+\draw (-0.8-\s,0) node[below] {$-f_b$};
+
+\draw[dashed,opacity=.5,path fading=north] (\s-0.8,0) -- ++(0,2);
+\draw[dashed,opacity=.5,path fading=north] (-\s+0.8,0) -- ++(0,2);
+
+\draw (current bounding box.east) node[right] {ακουστικό σήμα};
+\end{tikzpicture}
+
+\pagebreak[4]
 Αρχικά, διαμορφώνουμε το σήμα κατά τα γνωστά, με
-\hyperref[dsb-sc]{DSB-SC}:
-\todo{Graph 42}
+\hyperref[dsb-sc]{DSB-SC}:\\*%
+\begin{tikzpicture}[scale=1]
+\draw (-7,0) -- (7,0);
+\draw[->] (0,-1.5) -- (0,2.5) node[right] {DSB-SC};
+
+\def\s{3.5}
+\def\four{(-0.6,0) (-0.4,0.2) (0,1) (0.4,0.2) (0.6,0)}
+
+\begin{scope}
+\clip (-6,0) rectangle (6,2); % clip below 0
+
+\draw[xshift=-\s cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates \four
+;
+\draw[xshift=-\s cm-1.6 cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates \four
+;
+
+\draw[xshift=\s cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates \four
+;
+\draw[xshift=\s cm+1.6 cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates \four
+;
+\end{scope}
+
+\draw (\s+0.8,0) node[below] {$f_c$};
+\draw (-\s-0.8,0) node[below] {$-f_c$};
+\end{tikzpicture}
 
 και χρησιμοποιούμε ένα Band Pass φίλτρο για να πάρουμε μόνο το δεξί
 μέρος του διαμορφωμένου φάσματος. Το γεγονός ότι χρησιμοποιούμε
