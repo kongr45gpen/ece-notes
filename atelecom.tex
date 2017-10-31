@@ -1850,13 +1850,99 @@ coordinates \four
 το δεξί κομμάτι οφείλεται στην ονομασία
 \textbf{USB (Upper Side Band)} της διαδικασίας
 (δεν έχει σχέση με το USB του υπολογιστή!):
-\todo{Graph 43}
+
+\begin{tikzpicture}[scale=1]
+\filldraw[fill=blue!40!cyan!80!black,fill opacity=.3]
+(5-0.6,0) -- ++(0.1,1.2) -- ++(1.2,0) -- ++(0.1,-1.2);
+\filldraw[fill=blue!40!cyan!80!black,fill opacity=.3,xscale=-1]
+(5-0.6,0) -- ++(0.1,1.2) -- ++(1.2,0) -- ++(0.1,-1.2);
+
+\draw (-7,0) -- (7,0);
+\draw[->] (0,-1.5) -- (0,2.5) node[right] {DSB-SC};
+
+\def\s{3.5}
+\def\four{(-0.6,0) (-0.4,0.2) (0,1) (0.4,0.2) (0.6,0)}
+
+\begin{scope}
+\clip (-6,0) rectangle (6,2); % clip below 0
+
+\draw[xshift=-\s cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates \four
+;
+\draw[xshift=-\s cm-1.6 cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates \four
+;
+
+\draw[xshift=\s cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates \four
+;
+\draw[xshift=\s cm+1.6 cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates \four
+;
+\end{scope}
+
+\draw (\s+0.8,0) node[below] {$f_c$};
+\draw (-\s-0.8,0) node[below] {$-f_c$};
+
+\begin{scope}[yshift=-5cm]
+\draw (-7,0) -- (7,0);
+\draw[->] (0,-1.5) -- (0,2.5);
+
+\begin{scope}
+\clip (-6,0) rectangle (6,2); % clip below 0
+
+\draw[xshift=-\s cm-1.6 cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates \four
+;
+
+\draw[xshift=\s cm+1.6 cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates \four
+;
+\end{scope}
+
+\draw (\s+0.8,0) node[below] {$f_c$};
+\draw (-\s-0.8,0) node[below] {$-f_c$};
+\end{scope}
+\end{tikzpicture}
 
 Έτσι πήραμε το τελικό διαμορφωμένο σήμα. Για την αποδιαμόρφωση,
 πολλαπλασιάζουμε ως γνωστόν με το φέρον \( \cos 2πf_c t \), και
 παίρνουμε γραφικά τις συνελίξεις:
-\todo{Graph 44}
-που με ένα απλό Low Pass Filter μάς δίνουν το αρικό ακουστικό σήμα.
+
+\begin{tikzpicture}[scale=1]
+\filldraw[fill=blue!40!cyan!80!black,fill opacity=.15]
+(-1.6,0) -- ++(0.1,1.2) -- ++(3,0) -- ++(0.1,-1.2);
+
+\draw (-7,0) -- (7,0);
+\draw[->] (0,-1) -- (0,2.5);
+
+\def\s{2.5}
+\def\four{(-0.6,0) (-0.4,0.2) (0,1) (0.4,0.2) (0.6,0)}
+
+\begin{scope}
+\clip (-6,0) rectangle (6,2); % clip below 0
+
+\draw[xshift=-0.8 cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates \four
+;
+\draw[xshift=0.8 cm,draw=brown!70!orange,very thick] plot[smooth]
+coordinates \four
+;
+
+\draw[xshift=-2*\s cm,draw=brown!50!orange!80!cyan,very thick] plot[smooth]
+coordinates \four
+;
+
+\draw[xshift=2*\s cm,draw=brown!50!orange!80!cyan,very thick] plot[smooth]
+coordinates \four
+;
+\end{scope}
+
+\draw[ultra thick,->] (\s+0.4,0) node[below] {$f_c$} node[circle,fill,inner sep=2pt] {} -- ++(0,1.5);
+\draw[ultra thick,->] (-\s-0.4,0) node[below] {$-f_c$} node[circle,fill,inner sep=2pt] {} -- ++(0,1.5);
+\end{tikzpicture}
+
+που με ένα απλό Low Pass Filter μάς δίνουν το αρχικό ακουστικό σήμα.
 
 Αν και παραστήσαμε αυτές τις αλλαγές στο πεδίο της συχνότητας, τώρα
 πρέπει να τις υλοποιήσουμε. Η δυσκολία της υλοποίησης έγκειται στο
