@@ -1944,12 +1944,45 @@ coordinates \four
 
 που με ένα απλό Low Pass Filter μάς δίνουν το αρχικό ακουστικό σήμα.
 
-Αν και παραστήσαμε αυτές τις αλλαγές στο πεδίο της συχνότητας, τώρα
-πρέπει να τις υλοποιήσουμε. Η δυσκολία της υλοποίησης έγκειται στο
-ότι το φίλτρο που αποκόπτει το επάνω μέρος πρέπει να έχει πολύ
-μικρή ζώνη μετάβασης. Αν μελετήσουμε την τυπική απόκριση συχνότητας 
-ενός band pass filter:
-\todo{Graph 45}
+\vbox{
+	Αν και παραστήσαμε αυτές τις αλλαγές στο πεδίο της συχνότητας, τώρα
+	πρέπει να τις υλοποιήσουμε. Η δυσκολία της υλοποίησης έγκειται στο
+	ότι το φίλτρο που αποκόπτει το επάνω μέρος πρέπει να έχει πολύ
+	μικρή ζώνη μετάβασης. Αν μελετήσουμε την τυπική απόκριση συχνότητας 
+	ενός band pass filter:
+
+	\begin{tikzpicture}[scale=1.9]
+	\draw[->] (0,-0.5) -- (0,2);
+	\draw[->] (-0.5,0) -- (6,0);
+	
+	\def\four{(-0.6,0) (-0.4,0.2) (0,1) (0.4,0.2) (0.6,0)}
+	
+	\begin{scope}
+	\clip (0,0) rectangle (6,2); % clip below 0
+	
+	\draw[xshift=2 cm,draw=brown!70!orange,very thick] plot[smooth]
+	coordinates \four;
+	\draw[xshift=4 cm,draw=brown!70!orange,very thick] plot[smooth]
+	coordinates \four;
+	\end{scope}
+	
+	\draw[dashed] (2+0.6,-0.1) node[below,xshift=-3mm,scale=.9] {$f_c-f_a$} -- ++(0,3);
+	\draw[dashed,opacity=.5] (3,-0.1) -- ++(0,0.3);
+	\draw (3,-0.1) node[below] {$f_c$};
+	\draw[dashed] (4-0.6,-0.1) node[below,xshift=3mm,scale=.9] {$f_c+f_a$} -- ++(0,3);
+	
+	\draw[very thick,blue!50!cyan]
+	(1,0) -- plot[smooth,tension=0.5]
+	coordinates {(2+0.6,0) (2+0.6+0.3,0.2) (4-0.6,1.2) (4,1.34) (4+0.6,1.2) ({-0.3+4+0.6+(4-0.6)-(2+0.6))},0.2) ({4+0.6+(4-0.6)-(2+0.6))},0)}
+	-- (5.9,0)
+	(4,1.3) node[above,scale=.9] {BPF};
+	;
+	
+	\draw[<->] (2+0.6,2) -- (4-0.6,2) node[above,midway,scale=.9] {600 Hz};
+	\draw (3,2.5) node[above,scale=.77,green!40!black,align=center] {ζώνη\\μετάβασης};
+	\end{tikzpicture}
+}
+
 
 Βλέπουμε ότι η ζώνη μετάβασης είναι αρκετά στενή, και η υλοποίηση
 ενός τέτοιου φίλτρου γίνεται όλο και δυσκολότερη όσο αυξάνεται
@@ -1971,7 +2004,51 @@ coordinates \four
 αλλά αυξάνοντας τη
 συχνότητα μόνο κατά κάποια μικρή τιμή, π.χ. 10 kHz, και όχι αμέσως
 1 Mhz:
-\todo{Graph 47}
+
+\begin{tikzpicture}[scale=.7]
+\def\bw{0.6}
+\def\A{1}
+
+\def\fa{3+\bw}
+\def\fb{5.8}
+\def\tz{0.2}
+
+\draw[dashed,brown] (3+\bw,0) -- ++(0,3);
+\draw[dashed,brown] (4.6-\bw,0) -- ++(0,3);
+\draw[brown,<->,drop shadow] (3+\bw,2.5) -- (4.6-\bw,2.5)
+node[right,brown!60!black,scale=.7] {600 Hz};
+
+\filldraw[fill=blue!40!cyan!80!black,fill opacity=.15] plot[smooth,tension=0.1] coordinates {
+	(\fa,0) (\fa+\tz,1.2) (\fb-\tz,1.2) (\fb,0)
+};
+\draw ({(\fa+\fb)/2},1.2) node[above,scale=.9,yshift=1mm] {BPF1};
+
+\draw[->] (-6,0) -- (6,0) node[below] {$f$};
+\draw (0,-1) -- (0,3);
+
+\def\spectrum{plot[smooth,tension=1] coordinates {(-\bw,0) (0,\A) (+\bw,0)}}
+
+\draw[very thick,blue!50!cyan,xshift=-4.6cm] \spectrum;
+\draw[very thick,blue!50!cyan,xshift=-3cm] \spectrum;
+
+\draw[very thick,blue!50!cyan,xshift=3cm] \spectrum;
+\draw[very thick,blue!50!cyan,xshift=4.6cm] \spectrum;
+
+\draw (3.8,0) node[below,scale=.9] {10 kHz} ++ (45+90:0.1) -- ++(-45:0.2);
+
+\draw[very thick, brown!50!gray!20!black,>->] (6.5,0.5) -- ++(1,0);
+
+\begin{scope}[xshift=12cm]
+\draw[->] (-4,0) -- (4,0) node[below] {$f$};
+\draw (0,-1) -- (0,3) node[right] {(1)};
+
+\draw[very thick,blue!50!cyan,xshift=-3cm] \spectrum;
+\draw[very thick,blue!50!cyan,xshift=3cm] \spectrum;
+
+\draw (-2.25,0) node[below,scale=.8] {-10 kHz} ++ (90+45:0.1) -- ++(-45:0.2);
+\draw (2.25,0) node[below,scale=.8] {10 kHz} ++ (45+90:0.1) -- ++(-45:0.2);
+\end{scope}
+\end{tikzpicture}
 
 Πράγματι, το νέο αυτό φίλτρο έχει ζώνη μετάβασης \(
  \frac{2\cdot300}{10k} = 6\% \) που είναι όντως υλοποιήσιμο!
@@ -1979,13 +2056,100 @@ coordinates \four
 Συνεχίζουμε την ίδια διαδικασία, διαμορφώνοντας και 
 μετακινώντας το σήμα μας αυτήν τη
 φορά από τα 10 kHz μέχρι τα 100 kHz:
-\todo{Graph 48}
+
+\begin{tikzpicture}[scale=.7]
+\def\bw{0.55}
+\def\A{1}
+
+\def\fa{3+\bw}
+\def\fb{5.8}
+\def\tz{0.2}
+
+\draw[dashed,brown] (3+\bw,0) -- ++(0,3);
+\draw[dashed,brown] (4.6-\bw,0) -- ++(0,3);
+\draw[brown,<->,drop shadow] (3+\bw,2.5) -- (4.6-\bw,2.5)
+node[right,brown!60!black,scale=.7] {$2\cdot10300$ Hz};
+
+\filldraw[fill=blue!60!cyan!80!black,fill opacity=.15] plot[smooth,tension=0.1] coordinates {
+	(\fa,0) (\fa+\tz,1.2) (\fb-\tz,1.2) (\fb,0)
+};
+\draw ({(\fa+\fb)/2},1.2) node[above,scale=.9,yshift=1mm] {BPF2};
+
+\draw[->] (-6,0) -- (6,0) node[below] {$f$};
+\draw (0,-1) -- (0,3);
+
+\def\spectrum{plot[smooth,tension=1] coordinates {(-\bw,0) (0,\A) (+\bw,0)}}
+
+\draw[very thick,blue!70!cyan,xshift=-4.6cm] \spectrum;
+\draw[very thick,blue!70!cyan,xshift=-3cm] \spectrum;
+
+\draw[very thick,blue!70!cyan,xshift=3cm] \spectrum;
+\draw[very thick,blue!70!cyan,xshift=4.6cm] \spectrum;
+
+\draw (3.8,0) node[below,scale=.9] {100 kHz} ++ (45+90:0.1) -- ++(-45:0.2);
+
+\draw[very thick, brown!50!gray!20!black,>->] (6.5,0.5) -- ++(1,0);
+
+\begin{scope}[xshift=12cm]
+\draw[->] (-4,0) -- (4,0) node[below] {$f$};
+\draw (0,-1) -- (0,3) node[right] {(2)};
+
+\draw[very thick,blue!70!cyan,xshift=-3cm] \spectrum;
+\draw[very thick,blue!70!cyan,xshift=3cm] \spectrum;
+
+\draw (2.3,0) node[below,scale=.8] {100 kHz} ++ (45+90:0.1) -- ++(-45:0.2);
+\end{scope}
+\end{tikzpicture}
 
 Με ζώνη μετάβασης \( \frac{2\cdot 10600}{100\cdot 10^3} 
 = 21.2 \% \), που είναι απόλυτα υλοποιήσιμη.
 
 Και ξανά για 100 kHz σε 1 Mhz:
-\todo{Graph 49}
+
+\begin{tikzpicture}[scale=.7]
+\def\bw{0.55}
+\def\A{1}
+
+\def\fa{3+\bw}
+\def\fb{5.8}
+\def\tz{0.2}
+
+\draw[dashed,brown] (3+\bw,0) -- ++(0,3);
+\draw[dashed,brown] (4.6-\bw,0) -- ++(0,3);
+\draw[brown,<->,drop shadow] (3+\bw,2.5) -- (4.6-\bw,2.5)
+node[right,brown!60!black,scale=.7] {$2\cdot110300$ Hz};
+
+\filldraw[fill=blue!80!cyan!80!black,fill opacity=.15] plot[smooth,tension=0.1] coordinates {
+	(\fa,0) (\fa+\tz,1.2) (\fb-\tz,1.2) (\fb,0)
+};
+\draw ({(\fa+\fb)/2},1.2) node[above,scale=.9,yshift=1mm] {BPF3};
+
+\draw[->] (-6,0) -- (6,0) node[below] {$f$};
+\draw (0,-1) -- (0,3);
+
+\def\spectrum{plot[smooth,tension=1] coordinates {(-\bw,0) (0,\A) (+\bw,0)}}
+
+\draw[very thick,blue!90!cyan,xshift=-4.6cm] \spectrum;
+\draw[very thick,blue!90!cyan,xshift=-3cm] \spectrum;
+
+\draw[very thick,blue!90!cyan,xshift=3cm] \spectrum;
+\draw[very thick,blue!90!cyan,xshift=4.6cm] \spectrum;
+
+\draw (3.8,0) node[below,scale=.9] {1000 kHz} ++ (45+90:0.1) -- ++(-45:0.2);
+
+\draw[very thick, brown!50!gray!20!black,>->] (6.5,0.5) -- ++(1,0);
+
+\begin{scope}[xshift=12cm]
+\draw[->] (-4,0) -- (4,0) node[below] {$f$};
+\draw (0,-1) -- (0,3) node[right] {(3)};
+
+\draw[very thick,blue!90!cyan,xshift=-3cm] \spectrum;
+\draw[very thick,blue!90!cyan,xshift=3cm] \spectrum;
+
+\draw (-2.25,0) node[below,scale=.8] {-1 MHz} ++ (90+45:0.1) -- ++(-45:0.2);
+\draw (2.25,0) node[below,scale=.8] {1 MHz} ++ (45+90:0.1) -- ++(-45:0.2);
+\end{scope}
+\end{tikzpicture}
 
 Με ζώνη μετάβασης \( \frac{2\cdot 110600}{10^6} 
 = 22.12\%\), που είναι και αυτό υλοποιήσιμο φίλτρο, και έχουμε φτάσει
@@ -1993,15 +2157,46 @@ coordinates \four
 
 Συνοπτικά, το κύκλωμα αποτελείται από μια σειρά
 πολλαπλαστικών διαμορφωτών και φίλτρων:
-\todo{Graph 46}
+
+\begin{circuitikz}
+	\draw (1,0) node[rectangle,draw,minimum width=8mm,minimum height=8mm] (mult1) {}
+	node[scale=1.5] {$\times$};
+	\draw (3,0) node[rectangle,draw,minimum width=15mm,minimum height=10mm] (bpf1) {}
+	node[scale=1] {BPF\textsubscript{1}};
+	\draw (6.5,0) node[rectangle,draw,minimum width=8mm,minimum height=8mm] (mult2) {}
+	node[scale=1.5] {$\times$};
+	\draw (8.5,0) node[rectangle,draw,minimum width=15mm,minimum height=10mm] (bpf2) {}
+	node[scale=1] {BPF\textsubscript{2}};
+	\draw (12,0) node[rectangle,draw,minimum width=8mm,minimum height=8mm] (mult3) {}
+	node[scale=1.5] {$\times$};
+	\draw (14,0) node[rectangle,draw,minimum width=15mm,minimum height=10mm] (bpf3) {}
+	node[scale=1] {BPF\textsubscript{3}};
+	
+	\draw (mult1) ++(0,-2) node[xshift=4.9mm,oscillator] (osc1) {} node[right,xshift=4.9mm] {10 kHz};
+	\draw (mult2) ++(0,-2) node[xshift=4.9mm,oscillator] (osc2) {} node[right,xshift=4.9mm] {100 kHz};
+	\draw (mult3) ++(0,-2) node[xshift=4.9mm,oscillator] (osc3) {} node[right,xshift=4.9mm] {1 MHz};
+	
+	\draw[<-] (mult1) -- ++(-2,0) node[above,midway] {$m(t)$};
+	\draw[->] (osc1.north) -- (mult1);
+	\draw[->] (osc2.north) -- (mult2);
+	\draw[->] (osc3.north) -- (mult3);
+	\draw[->] (mult1) -- (bpf1);
+	\draw[->] (bpf1.east) node[above right] {(1)} -- (mult2);
+	\draw[->] (mult2) -- (bpf2);
+	\draw[->] (bpf2.east) node[above right] {(2)} -- (mult3);
+	\draw[->] (mult3) -- (bpf3);
+	\draw[->] (bpf3.east) -- ++ (1,0);
+\end{circuitikz}
 
 Και, αν θέλουμε, μειώνουμε τη συχνότητα του τελευταίου ταλαντωτή
 ώστε το σήμα να πέσει ακριβώς επάνω στην \( f_c \) του φέροντος.
 
-\subsubsection{Στο πεδίο του χρόνου}
-Έστω ότι το σήμα μας είναι ένα ημίτονο:
+\subsubsection{Μελέτη στο πεδίο του χρόνου}
+Ας μελετήσουμε και τις χρονικές εξισώσεις του LSB.
+
+Για ευκολία, θεωρούμε ότι το σήμα μας είναι ένα ημίτονο:
 \[
-m(t) = A_m \cos 2π f_m(t)
+m(t) = A_m \cos 2π f_m(t) % ωχ! ένα συνημίτονο αντί για ημίτονο!
 \]
 και έχουμε και το φέρον:
 \[
@@ -2016,8 +2211,34 @@ s_{\mathrm{DSB-SC}} = \frac{1}{2}
 A_cA_m\cos\left[ 2π(f_c+f_m)t \right] + \frac{1}{2}A_cA_m\cos[2π(f_c-f_m)t]
 \]
 
-\todo{Graph 50}
-\todo{Check sign}
+\begin{tikzpicture}[scale=1]
+\draw (-6,0) -- (6,0);
+\draw (0,-1) -- (0,3);
+
+\def\a{1.4}
+
+\def\fa{-4}
+\def\fb{4}
+\def\tz{0.2}
+\filldraw[fill=blue!80!cyan!80!black,fill opacity=.12]
+(\fa,0) -- (\fa+\tz,1.8) -- (\fb-\tz,1.8) node[above left,opacity=1] {LSB} -- (\fb,0);
+\def\fa{4}
+\def\fb{\fa+2}
+\filldraw[fill=brown!80!orange!80!black,fill opacity=.25,path fading=east]
+(\fa,0) -- (\fa+\tz,1.8) -- ++(2,0) -- ++(0,-1.8);
+\draw (\fa+\tz,1.8) node[above right,opacity=1] {USB};
+\filldraw[fill=brown!80!orange!80!black,fill opacity=.25,xscale=-1,path fading=west]
+(\fa,0) -- (\fa+\tz,1.8) -- ++(2,0) -- ++(0,-1.8);
+
+
+\draw[->,ultra thick,blue!80!brown] (-5,0) node[below] {$-f_c-f_m$} -- ++(0,\a);
+\draw[->,ultra thick,blue!80!brown] (-3,0) node[below] {$-f_c+f_m$} -- ++(0,\a);
+\draw[->,ultra thick,blue!80!brown] (3,0) node[below] {$-f_c-f_m$} -- ++(0,\a);
+\draw[->,ultra thick,blue!80!brown] (5,0) node[below] {$-f_c+f_m$} -- ++(0,\a);
+
+\draw[dashed] (-6,\a) -- (6,\a) node[midway,below right,scale=.8] {$\sfrac{1}{2}A_cA_m$};
+\end{tikzpicture}
+
 και για να εφαρμόσουμε USB παίρνουμε ένα υψιπερατό/ζωνοπερατό φίλτρο,
 όπως φαίνεται στο διάγραμμα:
 \begin{align*}
@@ -2033,14 +2254,32 @@ s_{\mathrm{LSSB}} =
 Επομένως, μπορούμε να κατασκευάσουμε έναν διαμορφωτή, ο οποίος αφαιρεί ουσιαστικά την
 κάτω πλευρική ζώνη, με βάση τους παραπάνω τύπους:
 
-\todo{Graph 51}
+\begin{circuitikz}[scale=1]
+	\draw (0,-0.75) node[draw,rectangle] (ps1) {$-90\degree$};
+	\draw (0,2) node[draw,rectangle,scale=2,outer sep=0] (m1) {$\times$};
+	\draw (0,-2) node[draw,rectangle,scale=2, outer sep=0] (m2) {$\times$};
+	\draw (2,0) node[oscillator,xshift=4.9mm] (osc) {};
+	\draw (4,0) node[draw,circle,scale=1.2,thick] (sum) {$\sum$};
+	
+	\draw[->] (osc.west) -| (m1);
+	\draw[->] (osc.west) -| (ps1) -- (m2);
+	\draw[->] (m1) -| (sum);
+	\draw[->] (m2) -| (sum.south) node[yshift=-2mm,right] {$\pm$};
+	\draw[->] (sum) -- ++(1.5,0) node[right]
+	{$s_{\mathrm{USSB}}(t)\Big/s_{\mathrm{LSSB}}(t)$};
+	\draw[<-] (m1) -- ++(-5,0) node[above,midway] {$m(t)=A\cos2πf_m(t)$} node[pos=.5] (p) {};
+	\draw (p |- 0,-2) node[draw,rectangle] (ps2) {$-90\degree$};
+	\draw[->] (p.center) node[circ] {} -- (ps2) |- (m2);
+	
+	\path (ps1.south) -- (m2.north) node[midway,right,scale=.8] {$\sfrac{1}{2}A_c\sin2πf_ct$};
+\end{circuitikz}
 
 Αυτός ο υπολογισμός πραγματοποιήθηκε για έναν απλό τόνο. Ας τον εφαρμόσουμε ξανά για μια
 περιοδική κυματομορφή (δηλαδή ένα άθροισμα ημιτόνων):
 \[
 m(t) = \sum_{n} a_n \cos(2πfnt)
 \]
-\todo{check sign}
+
 και τότε θα προκύψει π.χ.
 \[
 s_{\mathrm{USSB}}(t)
@@ -2055,7 +2294,27 @@ s_{\mathrm{USSB}}(t)
 σήματός μας κατά \( 90\degree \), που μπορεί να πραγματοποιηθεί ακόμα και για μη περιοδικά
 σήματα.
 
-\todo{Graph 53}
+\begin{circuitikz}[scale=0.7,every node/.style={scale=.7}]
+	\draw (0,-0.75) node[draw,rectangle] (ps1) {$-90\degree$};
+	\draw (0,2) node[draw,rectangle,scale=2,outer sep=0] (m1) {$\times$};
+	\draw (0,-2) node[draw,rectangle,scale=2, outer sep=0] (m2) {$\times$};
+	\draw (2,0) node[oscillator,xshift=4.9mm] (osc) {};
+	\draw (4,0) node[draw,circle,scale=1.2,thick] (sum) {$\sum$};
+	
+	\draw[->] (osc.west) -| (m1);
+	\draw[->] (osc.west) -| (ps1) -- (m2);
+	\draw[->] (m1) -| (sum);
+	\draw[->] (m2) -| (sum.south) node[yshift=-2mm,right] {$\pm$};
+	\draw[->] (sum) -- ++(1.5,0) node[right]
+	{$s_{\mathrm{USSB}}(t)\Big/s_{\mathrm{LSSB}}(t)$};
+	\draw[<-] (m1) -- ++(-5,0) node[above,midway] {$m(t)=A\cos2πf_m(t)$} node[pos=.5] (p) {};
+	\draw (p |- 0,-2) node[draw,rectangle] (ps2) {$-90\degree$};
+	\draw[->] (p.center) node[circ] {} -- (ps2) -- (m2);
+	\draw (ps2.north) node[above,fill=white,draw=white!90!black,scale=1.4,fill opacity=.8,text opacity=1,outer sep=2pt] {Hilbert};
+	
+	\path (ps1.south) -- (m2.north) node[midway,right,scale=.8] {$\sfrac{1}{2}A_c\sin2πf_ct$};
+\end{circuitikz}
+
 
 \subsubsection{Μετασχηματισμός Hilbert}
 \begin{defn}{Μετασχηματισμός Hilbert}{}
@@ -2064,7 +2323,14 @@ s_{\mathrm{USSB}}(t)
 	\mathlarger{H(f) = -j \sgn f}
 	\]
 \end{defn}
-(θυμόμαστε τη συνάρτηση \( \sgn \): \todo{graph 54})
+Θυμόμαστε τη συνάρτηση \( \sgn \): \begin{tikzpicture}[scale=.5,baseline]
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+
+\draw[red!60!orange!90!blue,ultra thick] (-2,-1) -- (0,-1) (0,1) -- (2,1) node[above] {$\sgn(f)$};
+\filldraw[red!50!black,fill=white] (0,-1) circle (3pt) (0,1) circle(3pt);
+%\filldraw[] (0,0) circle (2pt);
+\end{tikzpicture}
 
 Έχει κρουστική απόκριση:
 \[
@@ -2075,12 +2341,67 @@ h(t) = \frac{1}{πt}
 Πιο συγκεκριμένα, μεταβάλλει το σήμα κατά \( -90\degree \) στις θετικές συχνότητες, και
 \( 90\degree \) στις αρνητικές συχνότητες.
 Για παράδειγμα:
-\todo{Graph 54}
+
+\begin{tikzpicture}[scale=1]
+\draw[draw=blue!50!cyan,very thick]
+(-0.8,0)-- (0,1.4)-- (0.8,0);
+\draw (0,1.4) node[above right] {$M(0)$};
+
+\draw[->] (-2,0) -- (2,0) node[below] {$f$};
+\draw (0,-2.5) -- (0,2.5) node[right] {$M(f)$} node[left] {Re};
+
+\draw[>->,very thick, black]
+(2.5,0) -- ++(1.5,0) node[above,midway] {Μ.H.};
+
+\begin{scope}[xshift=7.5cm]
+\draw[shading=color wheel,opacity=.2] (1.2,0,0) -- (0,0,-3) -- (0,0,0);
+\draw[shading=color wheel,opacity=.2] (-1.2,0,0) -- (0,0,3) -- (0,0,0);
+\draw[draw=blue!50!cyan,very thick,fill=red,fill opacity=.1,postaction={pattern=north east lines,opacity=.2}]
+(-1.2,0,0) -- (0,0,3) -- (0,0,0);
+\draw[draw=blue!50!cyan,very thick,fill=red,fill opacity=.1,postaction={pattern=north east lines,opacity=.2}]
+(1.2,0,0) -- (0,0,-3) -- (0,0,0);
+
+\draw (-1.2,0) node[above] {$-w$};
+\draw (1.2,0) node[below] {$w$};
+\draw (0,0) node[above left] {$0$};
+
+\draw[->] (-3,0) -- (3,0) node[below] {$f$};
+\draw[->] (0,-1.5) -- (0,2.5) node[right] {Re};
+\draw[->] (0,0,0) -- (0,0,5) node[below right] {Im};
+\draw[path fading=east] (0,0,0) -- (0,0,-5);
+\end{scope}
+\end{tikzpicture}
 
 Ο μετασχηματισμός Hilbert είναι ένας Wide-Band Phase Shifter (WBPS). Και εδώ βρίσκεται το
 πρόβλημα. Ο μετασχηματισμός Hilbert είναι ένα ιδανικό φίλτρο που δεν μπορεί να εφαρμοστεί
 στην πραγματικότητα:
-\todo{Graph 55}
+
+\begin{tikzpicture}[scale=1]
+\draw[ultra thick,blue!70!green] (-3,0,2) -- (0,0,2);
+\draw[ultra thick,blue!70!green] (0,0,-2) -- (3,0,-2)  node[pos=.5] (p1) {};
+\fill[blue!70!green] (0,0,-2) circle(2pt) (0,0,2) circle(2pt);
+
+\def\act{red!80!yellow}
+\begin{scope}
+\clip (0,0,2) rectangle (0,0,-2);
+\draw[very thick,\act,mark position=0.38(p2)] plot[smooth,tension=1] coordinates
+{(-3,0,2) (0,0,1.8) (0,0,-1.8) (3,0,-2)};
+\end{scope}
+\draw[very thick,\act] (3,0,-1.8) -- (0,0,-1.8);
+\draw[very thick,\act] (0,0,1.8) -- (-3,0,1.8);
+
+\draw[blue!70!green,<-] (p1.center) to[bend left] ++(0.5,1) node[right] {ιδανική απόκριση};
+\draw[\act!80!black,<-] (p2) to[bend right] ++(0.5,-1) node[right] {πραγματική απόκριση};
+
+\draw (-1.2,0) node[above] {$-w$};
+\draw (1.2,0) node[below] {$w$};
+\draw (0,0) node[above left] {$0$};
+
+\draw[->] (-3,0) -- (3,0) node[below] {$f$};
+\draw[->] (0,-1.5) -- (0,2.5) node[right] {Re};
+\draw[->] (0,0,0) -- (0,0,5) node[below right] {Im};
+\draw[path fading=east] (0,0,0) -- (0,0,-5);
+\end{tikzpicture}
 
 Σε ακουστικά σήματα οι ατέλειες αυτές μπορούν να παραβλεφθο, αλλά σε άλλα σήματα μπορεί να
 υπάρχει αισθητή παραμόρφωση.
@@ -2088,7 +2409,7 @@ h(t) = \frac{1}{πt}
 Επομένως, και οι δύο διαμορφωτές παρουσιάζουν προβλήματα, ο πρώτος στην υλοποίηση του
 φίλτρου, και ο δεύτερος στην υλοποίηση του phase shifter.
 
-\subsubsection{Στο πεδίο των συχνοτήτων}
+\subsubsection{Επιστροφή στο πεδίο των συχνοτήτων}
 Θυμόμαστε το σήμα κατά SSB:
 \[
 s_{\mathrm{USSB}}(t) = \frac{1}{2}A_c m(t) \cos 2πf_c t - \frac{1}{2}A_c \hat m(t)
