@@ -437,7 +437,7 @@ node[above] {$\sfrac{A_c}{2}$};
 \right]
  \).
  
-Αν έχουμε \textbf{μικρή συχνότητα} \( f_c \), τότε το φάσμα του σήματος δεν περνάει το 0:
+Αν έχουμε \textbf{μικρή συχνότητα} \( f_c \), τότε το φάσμα του σήματος περνάει το 0:
 
 \begin{tikzpicture}[scale=1]
 \draw[dashed] (0.7,0) -- ++(0,1.8);
@@ -2015,7 +2015,7 @@ coordinates \four
 
 \draw[dashed,brown] (3+\bw,0) -- ++(0,3);
 \draw[dashed,brown] (4.6-\bw,0) -- ++(0,3);
-\draw[brown,<->,drop shadow] (3+\bw,2.5) -- (4.6-\bw,2.5)
+\draw[brown,<->] (3+\bw,2.5) -- (4.6-\bw,2.5)
 node[right,brown!60!black,scale=.7] {600 Hz};
 
 \filldraw[fill=blue!40!cyan!80!black,fill opacity=.15] plot[smooth,tension=0.1] coordinates {
@@ -2067,7 +2067,7 @@ node[right,brown!60!black,scale=.7] {600 Hz};
 
 \draw[dashed,brown] (3+\bw,0) -- ++(0,3);
 \draw[dashed,brown] (4.6-\bw,0) -- ++(0,3);
-\draw[brown,<->,drop shadow] (3+\bw,2.5) -- (4.6-\bw,2.5)
+\draw[brown,<->] (3+\bw,2.5) -- (4.6-\bw,2.5)
 node[right,brown!60!black,scale=.7] {$2\cdot10300$ Hz};
 
 \filldraw[fill=blue!60!cyan!80!black,fill opacity=.15] plot[smooth,tension=0.1] coordinates {
@@ -2116,7 +2116,7 @@ node[right,brown!60!black,scale=.7] {$2\cdot10300$ Hz};
 
 \draw[dashed,brown] (3+\bw,0) -- ++(0,3);
 \draw[dashed,brown] (4.6-\bw,0) -- ++(0,3);
-\draw[brown,<->,drop shadow] (3+\bw,2.5) -- (4.6-\bw,2.5)
+\draw[brown,<->] (3+\bw,2.5) -- (4.6-\bw,2.5)
 node[right,brown!60!black,scale=.7] {$2\cdot110300$ Hz};
 
 \filldraw[fill=blue!80!cyan!80!black,fill opacity=.15] plot[smooth,tension=0.1] coordinates {
@@ -2263,8 +2263,8 @@ s_{\mathrm{LSSB}} =
 	
 	\draw[->] (osc.west) -| (m1);
 	\draw[->] (osc.west) -| (ps1) -- (m2);
-	\draw[->] (m1) -| (sum);
-	\draw[->] (m2) -| (sum.south) node[yshift=-2mm,right] {$\pm$};
+	\draw[->] (m1) -| node[above right] {(1)} (sum);
+	\draw[->] (m2) -| node[below right] {(2)} (sum.south) node[yshift=-2mm,right] {$\pm$};
 	\draw[->] (sum) -- ++(1.5,0) node[right]
 	{$s_{\mathrm{USSB}}(t)\Big/s_{\mathrm{LSSB}}(t)$};
 	\draw[<-] (m1) -- ++(-5,0) node[above,midway] {$m(t)=A\cos2πf_m(t)$} node[pos=.5] (p) {};
@@ -2393,8 +2393,6 @@ h(t) = \frac{1}{πt}
 \draw[blue!70!green,<-] (p1.center) to[bend left] ++(0.5,1) node[right] {ιδανική απόκριση};
 \draw[\act!80!black,<-] (p2) to[bend right] ++(0.5,-1) node[right] {πραγματική απόκριση};
 
-\draw (-1.2,0) node[above] {$-w$};
-\draw (1.2,0) node[below] {$w$};
 \draw (0,0) node[above left] {$0$};
 
 \draw[->] (-3,0) -- (3,0) node[below] {$f$};
@@ -2410,6 +2408,30 @@ h(t) = \frac{1}{πt}
 φίλτρου, και ο δεύτερος στην υλοποίηση του phase shifter.
 
 \subsubsection{Επιστροφή στο πεδίο των συχνοτήτων}
+Θα αναλύσουμε το παραπάνω κύκλωμα στη συχνότητα:
+
+\begin{circuitikz}[scale=0.9,every node/.style={scale=.9}]
+	\draw (0,-0.75) node[draw,rectangle] (ps1) {$-90\degree$};
+	\draw (0,2) node[draw,rectangle,scale=2,outer sep=0] (m1) {$\times$};
+	\draw (0,-2) node[draw,rectangle,scale=2, outer sep=0] (m2) {$\times$};
+	\draw (2,0) node[oscillator,xshift=4.9mm] (osc) {};
+	\draw (4,0) node[draw,circle,scale=1.2,thick] (sum) {$\sum$};
+	
+	\draw[->] (osc.west) -| (m1);
+	\draw[] (osc.west) -| (ps1);
+	\draw[->,orange] (ps1) -- (m2);
+	\draw[->,orange] (m1) -| node[above right] {(1)} (sum);
+	\draw[->,magenta!70!cyan] (m2) -| node[below right] {(2)} (sum.south) node[yshift=-2mm,right] {$\pm$};
+	\draw[->,black!80!brown] (sum) -- ++(1.5,0) node[right]
+	{$s_{\mathrm{USSB}}(t)\Big/s_{\mathrm{LSSB}}(t)$};
+	\draw[<-,draw=blue!70!cyan] (m1) -- ++(-5,0) node[above,midway] {$m(t)=A\cos2πf_m(t)$} node[pos=.5] (p) {};
+	\draw[blue!70!green] (p |- 0,-2) node[draw,rectangle] (ps2) {$-90\degree$};
+	\draw[blue!70!cyan] (p.center) node[circ] {} -- (ps2);
+	\draw[->,orange!50!green] (ps2) -- (m2);
+	
+	\path (ps1.south) -- (m2.north) node[midway,right,scale=.8] {$\sfrac{1}{2}A_c\sin2πf_ct$};
+\end{circuitikz}
+
 Θυμόμαστε το σήμα κατά SSB:
 \[
 s_{\mathrm{USSB}}(t) = \frac{1}{2}A_c m(t) \cos 2πf_c t - \frac{1}{2}A_c \hat m(t)
@@ -2417,20 +2439,112 @@ s_{\mathrm{USSB}}(t) = \frac{1}{2}A_c m(t) \cos 2πf_c t - \frac{1}{2}A_c \hat m
 \]
 
 και βλέπουμε στο πεδίο των συχνοτήτων:
-\todo{Graph 56}
+\\*
+\begin{tikzpicture}[scale=1]
+\draw[ultra thick,blue!70!cyan] (-1,0) -- (0,1.6) -- (1,0);
 
-Μετά από τη συνέλιξη, πολλαπλασιάζονται τα φανταστικά μέρη, \( j\cdot j = -1 \), επομένως
-τα σήματα που πηγαίνουν στον αθροιστή επιστρέφουν στο πραγματικό επίπεδο, και μοιάζουν
+\draw (-1.2,0) node[below] {$-w$};
+\draw (1.2,0) node[below] {$w$};
+\draw (0,0) node[above left] {$0$};
+
+\draw[->] (-3,0) -- (3,0) node[below] {$f$};
+\draw[->] (0,-1.5) -- (0,2.5) node[right] {Re} node[below left,blue!70!cyan] {$M(f)$};
+
+\begin{scope}[xshift=8cm]
+\draw[ultra thick,blue!70!green] (-3,0,2) -- (0,0,2);
+\draw[ultra thick,blue!70!green] (0,0,-2) -- (3,0,-2);
+\fill[blue!70!green] (0,0,-2) circle(2pt) (0,0,2) circle(2pt);
+
+\draw (0,0) node[above left] {$0$};
+
+\draw[->] (-3,0) -- (3,0) node[below] {$f$};
+\draw[->] (0,-1.5) -- (0,2.5) node[right] {Re} node[below left,blue!70!green] {$H(f)$};
+\draw[->] (0,0,0) -- (0,0,5) node[below right] {Im};
+\draw[path fading=east] (0,0,0) -- (0,0,-5);
+\end{scope}
+
+\begin{scope}[yshift=-6cm]
+\draw[ultra thick,orange!50!green] (-1,0,0) -- (0,0,2);
+\draw[ultra thick,orange!50!green] (0,0,-2) -- (1,0,0);
+\fill[orange!50!green] (0,0,-2) circle(2pt) (0,0,2) circle(2pt);
+
+\draw (-1,0) node[above] {$-w$};
+\draw (1,0) node[below] {$w$};
+\draw (0,0) node[above left] {$0$};
+
+\draw[->] (-3,0) -- (3,0) node[below] {$f$};
+\draw[->] (0,-1.5) -- (0,2.5) node[right] {Re} node[below left,orange!50!green] {$H(f)M(f)$};
+\draw[->] (0,0,0) -- (0,0,5) node[below right] {Im};
+\draw[path fading=east] (0,0,0) -- (0,0,-5);
+
+\begin{scope}[xshift=8cm]
+\draw[ultra thick,orange!50!red,->] (1.6,0,0) -- ++(0,0,-3);
+\draw[ultra thick,orange!50!red,->] (-1.6,0,0) -- ++(0,0,3);
+\fill[orange!50!red] (1.6,0,0) circle(2pt) (-1.6,0,0) circle(2pt);
+
+\draw (-1.6,0) node[above] {$-f_c$};
+\draw (1.6,0) node[below] {$f_c$};
+\draw (0,0) node[above left] {$0$};
+
+\draw[->] (-3,0) -- (3,0) node[below] {$f$};
+\draw[->] (0,-1.5) -- (0,2.5) node[right] {Re} node[below left,orange!50!red]
+{$\mathrm{MF}\left[\sin(2πf_ct)\right]$};
+\draw[->] (0,0,0) -- (0,0,5) node[below right] {Im};
+\draw[path fading=east] (0,0,0) -- (0,0,-5);
+\end{scope}
+\end{scope}
+\end{tikzpicture}
+
+Μετά από τη συνέλιξη του \( H(f)M(f) \) με το μετασχηματισμό του \( \sin(2πf_ct) \),
+πολλαπλασιάζονται τα φανταστικά μέρη, \( j\cdot j = -1 \), επομένως
+τα σήματα που πηγαίνουν στον αθροιστή επιστρέφουν στο πραγματικό επίπεδο και μοιάζουν
 κάπως έτσι:
-\todo{Graph 57}
+
+\begin{tikzpicture}[scale=0.8]
+\draw[ultra thick,magenta!70!cyan,xshift=-3cm] (-1,0) -- (0,1.6) -- (0,-1.6) -- (1,0);
+\draw[ultra thick,magenta!70!cyan,xshift=+3cm] (-1,0) -- (0,1.6) -- (0,-1.6) -- (1,0) node[midway,below right] {(1)};
+\draw[ultra thick,orange,xshift=-3cm,scale=1.09] (-1,0) -- (0,1.6) -- (1,0);
+\draw[ultra thick,orange,xshift=3cm,scale=1.09] (-1,0) -- (0,1.6) -- (1,0) node[midway,above right] {(2)};
+
+\draw (-3,0) node[below] {$-f_c$};
+\draw ( 3,0) node[below] {$f_c$};
+
+\draw[->] (-6,0) -- (6,0) node[below] {$f$};
+\draw[->] (0,-2.5) -- (0,2.5) node[right] {Re} node[below left]
+{$\mathrm{MF}\left(m(t)\sin(2πf_ct)\right)$};
+\end{tikzpicture}
 
 Και τελικά, καθώς προστίθενται, ουσιαστικά αφαιρείται η κάτω πλευρική ζώνη, και παραμένει
 μόνο η επάνω πλευρική ζώνη:
-\todo{Graph 58}
+
+\begin{tikzpicture}[scale=0.8]
+\draw[ultra thick,black!80!brown,xshift=-3cm] (-1,0) -- (-0.5,1.6) -- (0,0);
+\draw[ultra thick,black!80!brown,xshift=+3cm] (1,0) -- (0.5,1.6) -- (0,0);
+
+\draw (-3,0) node[below] {$-f_c$};
+\draw ( 3,0) node[below] {$f_c$};
+
+\draw[->] (-6,0) -- (6,0) node[below] {$f$};
+\draw[->] (0,-1.5) -- (0,2.5) node[right] {Re} node[below left]
+{$S_{\mathrm{USSB}}(f)$};
+\end{tikzpicture}
 
 \subsubsection{Αποδιαμόρφωση}
 Το διάγραμμα του αποδιαμορφωτή είναι το εξής:
-\todo{Graph 59}
+
+\begin{circuitikz}[scale=1.6]
+	\draw (0,0) node[xshift=4.9mm,oscillator] (osc) {}
+	node[above right,xshift=5mm] {$A_c' \cos(2πf_c t + φ)$};
+	\draw (0,1) node[rectangle,draw,minimum width=15mm,minimum height=10mm] (mult) {}
+	node[scale=1.5] {$\times$};
+	\draw (2,1) node[rectangle,draw,minimum width=15mm,minimum height=10mm] (lpf) {}
+	node[] {LPF};
+	
+	\draw[<-] (mult.west) node[above left] {$s(t)$}  -- ++(-2,0) node[above right] {SSB};
+	\draw[->] (mult.east) -- (lpf.west) node[above,midway,orange!20!black] {$v(t)$};
+	\draw[->] (lpf.east) -- ++(0.5,0) node[right] {$u_o(t)$};
+	\draw[->] (osc.north) -- (mult.south);
+\end{circuitikz}
 
 Κάνουμε τις πράξεις:
 \begin{align*}
@@ -2457,7 +2571,35 @@ Hilbert. Αυτός ο όρος εισάγει μια διαφορά φάσης,
 Η παραπάνω ανάλυση έχει νόημα όταν μιλάμε για ακουστικά σήματα, τα οποία δεν ξεκινάνε από
 τα 0 Hz, αλλά π.χ από τα 300 Hz, επιτρέποντας την ευκολότερη υλοποίηση του φίλτρου ή του
 μεταφορέα φάσης. Σε υπόλοιπα (π.χ. τηλεοπτικά) σήματα όμως δεν ισχύει αυτό:
-\todo{Graph 60}
+
+\begin{center}
+\begin{tikzpicture}
+\draw (-2,0) -- (2,0);
+\draw (0,-1) -- (0,2);
+
+\draw[dashed] plot[smooth,tension=1]
+coordinates {(-1.8,0) (0,1.7) (1.8,0)};
+
+\draw[xshift=1cm,blue!50!cyan,ultra thick] plot [smooth]
+coordinates {(-0.5,0) (-0.4,0.1) (0,0.6) (0.4,0.1) (0.5,0)};
+\draw[xshift=-1cm,blue!50!cyan,ultra thick] plot [smooth]
+coordinates {(-0.5,0) (-0.4,0.1) (0,0.6) (0.4,0.1) (0.5,0)};
+
+\draw[green!50!yellow!50!black,<->,yshift=2mm] (-1+0.5,0) -- (+1-0.5,0) node[above,midway,scale=.7] {600 Hz};
+
+\draw (0,-1) node[below] {ακουστικό σήμα};
+
+\begin{scope}[xshift=5cm]
+\draw (-2,0) -- (2,0);
+\draw (0,-1) -- (0,2);
+
+\draw[red!50!yellow,ultra thick,scale=.8] plot[smooth,tension=1]
+coordinates {(-1.8,0) (0,1.7) (1.8,0)};
+
+\draw (0,-1) node[below] {τηλεοπτικό σήμα};
+\end{scope}
+\end{tikzpicture}
+\end{center}
 
 Για αυτό το λόγο, σκεφτόμαστε ένα άλλο είδος διαμόρφωσης, στο οποίο δεν κόβουμε ολόκληρη την
 π.χ. κάτω πλευρική ζώνη της πληροφορίας, αλλά επιτρέπουμε να περάσει και ένα κομμάτι από
@@ -2465,7 +2607,48 @@ Hilbert. Αυτός ο όρος εισάγει μια διαφορά φάσης,
 \todo{Improvise a graph}
 
 Αυτή η διαμόρφωση ονομάζεται \textbf{VSB (Vestigial Side Band)} και έχει απόκριση της μορφής:
-\todo{Graph 61}
+
+\begin{tikzpicture}
+\draw (-6,0) -- (6,0);
+\draw (0,-1) -- (0,3);
+
+\def\fa{2+0.15}
+\def\fb{5.8}
+\def\tz{1}
+\def\A{2}
+\filldraw[fill=blue!80!cyan!80!black,fill opacity=.15,path fading=east,thick]
+plot[smooth,tension=1] coordinates {
+	(\fa-\tz,0) (\fa-\tz+\tz/4,\A/8) (\fa-\tz/2,\A/2) (\fa-\tz/4,7*\A/8) (\fa,\A)
+}
+--
+plot[smooth,tension=1] coordinates {
+	(\fb,\A) (\fb+\tz/4,7*\A/8) (\fb+\tz/2,\A/2) (\fb+3*\tz/4,\A/8) (\fb+\tz,0)
+}
+;
+
+\draw[xshift=2cm,blue!70!black] (-1.5,0) -- (0,2) -- (1.5,0);
+
+
+\draw[dashed] (2,0) node[below] {$f_c$} -- ++(0,2);
+\draw[dashed,path fading=north] (\fa-\tz,0) -- ++(0,2);
+\draw (\fa-\tz,0) node[below,scale=.8] {$f_c-f_v$};
+\draw (2+1.5,0) node[below,scale=.8] {$f_c+w$};
+
+\begin{scope}[xscale=-1]
+\filldraw[fill=blue!80!cyan!80!black,fill opacity=.15,path fading=west]
+plot[smooth,tension=1] coordinates {
+	(\fa-\tz,0) (\fa-\tz+\tz/4,\A/8) (\fa-\tz/2,\A/2) (\fa-\tz/4,7*\A/8) (\fa,\A)
+}
+--
+plot[smooth,tension=1] coordinates {
+	(\fb,\A) (\fb+\tz/4,7*\A/8) (\fb+\tz/2,\A/2) (\fb+3*\tz/4,\A/8) (\fb+\tz,0)
+}
+;
+
+
+\draw[dashed] (2,0) node[below] {$-f_c$} -- ++(0,1) edge[path fading=north] ++(0,1);
+\end{scope}
+\end{tikzpicture}
 
 Βέβαια παρατηρούμε ένα πρόβλημα, το οποίο θα προσπαθήσουμε να διορθώσουμε αργότερα.
 Συγκεκριμένα ότι το σήμα εξόδου μετά το φίλτρο δεν θα
@@ -2474,7 +2657,23 @@ Hilbert. Αυτός ο όρος εισάγει μια διαφορά φάσης,
 \todo{Improvise a graph}
 
 Ο διαμορφωτής μοιάζει κάπως έτσι:
-\todo{Graph 62}
+
+\begin{circuitikz}[scale=1.6]
+	\draw (0,-0.5) node[xshift=4.9mm,oscillator] (osc) {}
+	node[above right,xshift=5mm] {$A_c' \cos(2πf_c t + φ)$};
+	\draw (0,1) node[rectangle,draw,minimum width=15mm,minimum height=10mm] (mult) {}
+	node[scale=1.5] {$\times$};
+	\draw (2.5,1) node[rectangle,draw,minimum width=15mm,minimum height=10mm] (bpf) {}
+	node[] {$H(f)$};
+	
+	\draw[<-] (mult.west)  -- ++(-1,0) node[midway,below] {$m(t)$};
+	\draw[->] (mult.east) -- (bpf.west) node[above,midway,orange!20!black] {$u(t)$} node[below,midway] {DSB-SC};
+	\draw[->] (bpf.east) -- ++(1,0) node[above,midway] {$s(t)$} node[below,midway] {VSB};
+	\draw[->] (osc.north) -- (mult.south);
+	
+	\draw (bpf.north) node[above,scale=.9] {BPF};
+\end{circuitikz}
+
 και πολύ απλά εφαρμόζει το παραπάνω φίλτρο στην εκπεμπόμενη συχνότητα:
 \begin{align*}
 	S(f) &= U(f)H(f) = \frac{A_c}{2}\left[ M(f-f_c)+M(f+f_c) \right]
