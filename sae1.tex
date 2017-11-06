@@ -2447,7 +2447,35 @@ H_b = \frac{7(s+2)}{(s+1)^2+6}
 \end{align*}
 
 Αν προσομοιώσουμε/εφαρμόσουμε τύπους, η έξοδος των συστημάτων θα είναι:
-\todo{Graph 46}
+
+\def\gsamples{200}
+
+\begin{tikzpicture}[scale=1.2]
+\draw[->] (-1,0) -- (5,0) node[below] {$t$};
+\draw (0,-0.5) -- (0,3.4);
+
+\def\sqrtsix{2.45}
+
+\draw[dashed] (4,0) node[below] {$4$} -- (4,2);
+\draw[dashed] (1.27,0) node[below] {$1.27$} -- (1.27,2.55) -- (0,2.55) node[left] {$2.55$};
+\draw[dashed] (0.75,3.19) -- (0,3.19) node[left] {$3.19$};
+\draw[dashed,path fading=east] (0,2) -- (5,2);
+\draw (0,2) node[left] {$2$};
+
+\draw[very thick,blue!50!black]
+plot[variable=\t,domain=0:5,samples=\gsamples]
+(\t,{-1/3*(\sqrtsix*sin(\sqrtsix*\t r) + 6*cos(\sqrtsix*\t r))*exp(-\t) + 2});
+
+\draw[very thick,blue!50!cyan]
+plot[variable=\t,domain=0:5,samples=\gsamples]
+(\t,{1/6*(5*\sqrtsix*sin(\sqrtsix*\t r) - 12*cos(\sqrtsix*\t r))*exp(-\t) + 2});
+
+\draw (current bounding box.north east) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=blue!50!black] (a) {};
+\draw (a.south) ++(0,-0.5) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=blue!50!cyan] (b) {};
+
+\draw (a.east) node[right] {$ \frac{14}{(s+1)^2+6}\frac{1}{s}$};
+\draw (b.east) node[right] {$ \frac{7(s+2)}{(s+1)^2+6}\frac{1}{s}$};
+\end{tikzpicture}
 
 Βλέπουμε ότι το σύστημα με το μηδενικό έχει πιο γρήγορη απόκριση, αλλά ταυτόχρονα αυξάνεται
 και η υπερύψωση.
@@ -2495,7 +2523,7 @@ H_b = \frac{7(s+2)}{(s+1)^2+6}
 
 \paragraph{Άσκηση}
 Έστω ένα σύστημα κλειστού βρόγχου:
-\begin{tikzpicture}[scale=1.2]
+\begin{tikzpicture}[scale=1.2,baseline]
 \draw (0,0) node[circle,draw] (a1) {};
 \draw (0.9,0) node[rectangle,draw,minimum height=20pt,minimum width=20pt] (b1) {$k$};
 \draw (2.5,0) node[rectangle,draw] (b2) {$H(s)$};
@@ -2656,7 +2684,23 @@ H(s) = \frac{100(s+20)}{(s+2)(s+5)(s+50)(s+100)}
 		y(t) &= 1-e^{-3t}
 	\end{align*}
 	
-	\todo{Graph 47}
+	\begin{tikzpicture}[scale=1.2]
+	\draw[->] (-1,0) -- (5,0) node[below] {$t$};
+	\draw (0,-0.5) -- (0,3.4);
+	
+	\def\sqrtsix{2.45}
+	
+	\draw (0,2.5) node[left] {$1$};
+	\draw[dashed,path fading=east] (0,2.5) -- (4,2.5);
+	\draw[dashed] (3,0) -- (3,2.5);
+	\draw (2.2,0) node[circle,fill,inner sep=0.5pt] {} node[below] {$1$};
+	\draw (4.4,0) node[circle,fill,inner sep=0.5pt] {} node[below] {$2$};
+	
+	\draw[blue!70!cyan,very thick]
+	plot[smooth,samples=28,variable=\t,domain=0:5]
+	(\t,{2.5*(1-exp(-1.5*\t)))});
+	\end{tikzpicture}
+	
 	\item
 	Εικάζουμε ότι η απόκριση του συστήματος \( H_2 \) είναι παρόμοια με αυτήν του
 	\( H_1 \), αφού (αν κάνουμε τις πράξεις) έχουν ίδιο DC κέρδος, και απλώς προστέθηκε ένας
@@ -2676,11 +2720,234 @@ H(s) = \frac{100(s+20)}{(s+2)(s+5)(s+50)(s+100)}
 		\intertext{Άρα}
 		y(t) &= 1 - 0.0735e^{-3t} - 0.92e^{-20t}
 	\end{align*}
-	\todo{Graph 48}
+	
+
+	\begin{tikzpicture}[scale=1]
+	\draw[->] (-1,0) -- (5,0) node[below] {$t$};
+	\draw (0,-0.5) -- (0,3.4);
+	
+	\def\sqrtsix{2.45}
+	
+	\draw (0,2.5) node[left] {$1$};
+	\draw[dashed] (3,0) -- (3,2.5);
+	\draw (2.2,0) node[circle,fill,inner sep=0.5pt] {} node[below] {$1$};
+	\draw (4.4,0) node[circle,fill,inner sep=0.5pt] {} node[below] {$2$};
+	
+	\draw[blue!70!cyan,very thick]
+	plot[smooth,samples=28,variable=\t,domain=0:5]
+	(\t,{2.5*(1-exp(-1.5*\t)))});
+	
+	\draw[green!70!cyan,very thick]
+	plot[smooth,samples=28,variable=\t,domain=0:5]
+	(\t,{2.5*(1-exp(-7*\t)))});
+	
+	\draw[dashed,path fading=east] (0,2.5) -- (4,2.5);
+	\end{tikzpicture}
 	
 	Εδώ το μηδενικό επηρεάζει το αποτέλεσμα, και η γρήγορη απόκριση του \( (s+20) \)
 	κυριαρχεί, οπότε δε θα ήταν σωστό να την αγνοήσουμε.
 \end{enumpar}
+
+\subsubsection{Ασκήσεις}
+\paragraph{Άσκηση}
+Έχουμε τέσσερις συναρτήσεις μεταφοράς:
+\begin{align*}
+G_1 &= \frac{16}{(s+2)(s+8)} \\
+G_2 &= \frac{16}{5}\frac{s+5}{(s+2)(s+8)} \\
+G_3 &= \frac{16}{2+\Delta_z}\frac{s+2+\Delta_z}{(s+2)(s+8)}\\
+G_4 &= 16\frac{s+1}{(s+2)(s+8)}
+\end{align*}
+Να υπολογιστεί και να σχεδιαστεί η κρουστική απόκριση των παραπάνω συστημάτων.
+\subparagraph{Λύση}
+Ουσιαστικά θα πάρουμε έναν αντίστροφο μετασχηματισμό Laplace.
+
+\todo{Να μπει κάπου ο ορισμός του DC κέρδους}
+
+\paragraph{\( G_1 \)}
+
+Δουλεύουμε πάνω στο \( G_1 \) κλασικά, σπάζοντας σε επιμέρους κλάσματα:
+\begin{align*}
+G_1 &= \frac{A}{s+2} + \frac{B}{s+8} \\
+\intertext{και με κάποιον τρόπο βρίσκουμε τους συντελεστές:}
+A &= \left. \frac{16}{s+8} \right|_{s=-2} = \frac{16}{6} \\
+B &= \left. \frac{16}{s+2} \right|_{s=-8} = -\frac{16}{6}
+\end{align*}
+
+και ο αντίστροφος Laplace είναι:
+\[
+\mathscr{L}^{-1}\left\lbrace G_1 \right\rbrace
+= \frac{16}{6}\left( e^{-2t} - e^{-8t} \right)
+\]
+
+\subparagraph{\( G_2 \)}
+Αντίστοιχα:
+\begin{align*}
+G_2 &= \frac{A}{s+2} + \frac{B}{s+8} \\
+A &= \left. \frac{16}{5} \frac{s+5}{s+8} \right|_{s=-2} = \frac{8}{5} \\
+B &= \left. \frac{16}{5} \frac{s+5}{s+2} \right|_{s=-8} = \frac{8}{5}
+\end{align*}
+άρα:
+\[
+\mathscr{L}^{-1}\left\lbrace G_2 \right\rbrace = \frac{8}{5}\left( e^{-2t} + e^{-8t} \right)
+\]
+
+Παρατηρούμε και στις δύο παραπάνω απαντήσεις την επίδραση του κυρίαρχου, δηλαδή του πιο
+αργού πόλου \( s=-2 \) (αντιστοιχεί στο \( e^{-2t} \)), ο οποίος είναι πιο κοντά στο 0.
+
+\subparagraph{\( G_3 \)}
+Έχουμε:
+\begin{gather*}
+	G_3 = \frac{A}{s+2} + \frac{B}{s+8} \\
+	A = \left. \frac{16}{2+\Delta_z} \frac{s+2+\Delta_z}{s+8} \right|_{s=-2}
+	= \frac{16}{6}\frac{\Delta_z}{2+Δ_z} \\
+	B = \left. \frac{16}{2+Δ_z}\frac{s+2+Δ_z}{s+2} \right|_{s=-8} = -\frac{16}{6}
+	+\frac{16}{6}\frac{Δ_z}{6} \\
+	\mathscr{L}^{-1} \left\lbrace G_3 \right\rbrace =
+	\frac{16}{6}\left(
+	    \frac{Δ_z}{2+Δ_z}e^{-2t} + \left(\frac{Δ_z}{6} - 1\right)e^{-8t}
+	\right)
+\end{gather*}
+
+Παρατηρούμε ότι όσο πιο μικρό (κοντά στο 0) είναι το \( Δ_z \), τόσο λιγότερη σημασία
+έχει ο όρος \( e^{-2t} \), και επικρατεί ο γρηγορότερος \( e^{-8t} \). Αυτό μπορούμε να
+το διαπιστώσουμε και από τη συνάρτηση μεταφοράς: Aν θεωρήσουμε ότι \( Δ_z \to 0 \),
+τότε εξαφανίζονται τα \( (s+2) \) στον αριθμητή και παρονομαστή, και η συνάρτηση γίνεται
+\( \frac{16}{2+0} \frac{1}{(s+8)} \).
+
+Για παράδειγμα, αν θέσουμε:
+\[
+Δ_z = 0.1
+\]
+τότε η έξοδος θα γίνει:
+\[
+\frac{16}{6}(
+\underbrace{0.047e^{-2t}}_{\mathclap{\text{μικρός όρος}}}
+- 0.98e^{-8t}
+)
+\]
+
+Στην ουσία δηλαδή, το μηδανικό στη θέση \( -(2+Δ_z) \to -2 \) ακυρώνει τον πόλο \( s=-2 \):
+\todo{Graph 63}
+
+Μπορούμε επίσης να υπολογίσουμε το χρόνο αποκατάστασης του συστήματος:
+\[
+t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
+\hphantom{\leftarrow \text{ πόλος}} = \frac{1}{2} = 0.5
+\]
+
+\paragraph{Άσκηση}
+Ποιό από τα παρακάτω συστήματα έχει τη βηματική απόκριση που φαίνεται στο σχήμα;
+\todo{Graph 64}
+
+\begin{enumpar}
+	\item \( \displaystyle \frac{12}{s+2} \)
+	\item \( \displaystyle \frac{2(s+6)}{s+3} \)
+	\item \( \displaystyle \frac{2(s+3)}{s+2} \)
+	\item \( \displaystyle \frac{6}{s+3} \)
+\end{enumpar}
+
+Για το κάθε σύστημα ψάχνουμε αρχική και τελική τιμή, ώστε να επιβεβαιώσουμε την απόκριση:
+\begin{enumpar}
+	\item \( \displaystyle \lim_{s\to \infty}
+	\frac{1}{s} \frac{12}{s+3} s = 0
+	 \) άρα δεν βολεύει.
+	\item \( \displaystyle \lim_{s\to \infty} \frac{1}{s}\frac{2(s+6)}{s+3}s=2 \)
+	και \( \displaystyle \lim_{s\to 0} \frac{1}{s}\frac{2(s+6)}{s+3}s=4  \), που είναι οι
+	επιθυμητές τιμές.
+\end{enumpar}
+
+Άρα η σωστή απάντηση είναι η \textbf{(b)}.
+
+\paragraph{Άσκηση}
+Ποιά είναι η σωστή απάντηση;
+\todo{Graph 65}
+\todo{EXPLAIN!}
+
+\begin{enumlatin}
+	\item \( \displaystyle \frac{4}{s+2} \)
+	\item \( \displaystyle \frac{6}{s+2} \)
+	\item \( \displaystyle \frac{3(s+2)}{s+3} \)
+	\item \( \displaystyle \frac{s+4}{s+2} \)
+\end{enumlatin}
+
+\paragraph{Άσκηση}
+Ποιά συνάρτηση μοιάζει με την παραπάνω απόκριση;
+\todo{Graph 66}
+\todo{EXPLAIN!}
+
+\begin{enumlatin}
+    \item \( \displaystyle \frac{10}{s+5} \)
+	\item \( \displaystyle \frac{20}{s+2} \)
+	\item \( \displaystyle \frac{50}{s+2} \)
+	\item \( \displaystyle \frac{50}{s+5} \)
+\end{enumlatin}
+
+Η σωστή απάντηση είναι η \textbf{(d)}.
+
+\paragraph{Άσκηση}
+Ποιό από τα παρακάτω συστήματα έχει τη μεγαλύτερη ταχύτητα ανόδου;
+
+\begin{enumlatin}
+	\item \( \displaystyle \frac{s+10}{(s+2)^2+5} \)
+	\item \( \displaystyle \frac{s+3}{(s+2)^2+5} \)
+	\item \( \displaystyle \frac{s+10}{(s+2)^2+10} \)
+	\item \( \displaystyle \frac{s+3}{(s+2)^2+10} \)
+\end{enumlatin}
+
+\subparagraph{Λύση}
+Θυμίζουμε ότι οι παρονομαστές των παραπάνω συναρτήσεων έχουν γραφεί με τη μορφή
+\( (s+σ)^2 + \omega_d^2 \), και έχουν λύση \underline{\( -σ\pm j\omega_d \)}.
+
+Θυμόμαστε επίσης ότι για μεγαλύτερο \( \omega_d \), έχουμε μικρότερο χρόνο ανόδου \( t_r \).
+
+Η ταχύτητα ανόδου εξαρτάται από τον χρόνο ανόδου, και το πόσο έχει ανεβεί η τιμή της
+συνάρτησης μέσα σε αυτόν τον χρόνο:
+\todo{Graph 67}
+
+Η σωστή απάντηση είναι η \textbf{(δ)}, επειδή φτάνει τη μεγαλύτερη τιμή σε μικρότερο χρόνο,
+λόγω του μηδενικού.
+Η (γ) έχει dc κέρδος \( \mathrm{d_c} = \frac{10}{14} \), και η (δ) έχει \( \mathrm{d_c} = \frac{3}{14} \), ενώ οι (α) και (β) έχουν μικρότερο \( \omega_d \), άρα μεγαλύτερο χρόνο
+ανόδου.
+
+(Βέβαια γρήγορη ταχύτητα ανόδου δεν σημαίνει και γρήγορη απόκριση).
+
+\paragraph{Άσκηση}
+Πόσο πρέπει να είναι τα \( k_p \) ώστε να έχουμε μοναδιαίο DC κέρδος, και ποιός είναι ο
+χρόνος αποκατάστασης του κάθε συστήματος;
+
+\begin{enumlatin}
+	\item \( \displaystyle \frac{k_{p_1}}{s+3} \)
+	\item \( \displaystyle \frac{k_{p_2}}{(s+3)(s+20)} \)
+\end{enumlatin}
+
+\subparagraph{Απάντηση}
+\begin{enumlatin}
+	\item \( k_{p_1} = 3 \), η χρονική σταθερά είναι \( τ=\frac{1}{3} \), άρα
+	ο χρόνος αποκατάστασης προκύπτει
+	\( t_s = \frac{4}{3} \).
+	\item \( k_{p_2} = 60 \), ο κυρίαρχος πόλος είναι ο πιο κοντινός (\( s=-3 \)), και
+	επομένως \( τ=\frac{1}{4} \) και \( t_s = \frac{4}{3} \).
+\end{enumlatin}
+
+Σε περίπτωση που μας δινόταν \( \displaystyle \frac{K_{p_2}(s+3.1)}{(s+3)(s+20)} \), το
+μηδενικό στο -3.1 θα αλληλοαναιρούνταν με τον πόλο στο -3, και επομένως ο κυρίαρχος πόλος θα
+ήταν στο -20.
+
+\paragraph{Άσκηση}
+Έστω η συνάρτηση μεταφοράς:
+\[
+\frac{18}{s^2+11s+18}
+\]
+Ποιός είναι ο χρόνος αποκατάστασής της;
+
+\begin{attnbox}{}
+	Έχουμε \textbf{δύο πραγματικές ρίζες}, οπότε δεν είναι σωστό να ακολουθήσουμε τη
+	μεθοδολογία με τα \( σ \) και \( \omega_d \).
+\end{attnbox}
+
+Οι πόλοι του συστήματος βγαίνουν -2 και -9, ο κυρίαρχος είναι ο -2, επομένως \( t_s=\frac{4}{2} = 2 \).
+
+
 
 \subsection{Εύρος ζώνης}
 Το \textbf{εύρος ζώνης} είναι μία προδιαγραφή του συστήματος που σχετίζεται με το πεδίο
@@ -2692,7 +2959,16 @@ H(s) = \frac{100(s+20)}{(s+2)(s+5)(s+50)(s+100)}
 για κάθε συχνότητα.
 
 Ο έλεγχος γίνεται δίνοντας ως είσοδο στο σύστημα ένα μεγάλο εύρος συχνοτήτων:
-\todo{Graph 49}
+
+\begin{circuitikz}
+	\draw (0,0) node[rectangle,draw,minimum height=7mm,minimum width=5mm]
+	(h) {$H(s)$};
+	
+	\draw (-1,0) node[oscillator] (osc) {};
+	
+	\draw (h.east) to[short,-o] ++(1,0);
+	\draw (h.west) to[short,-*] (osc.east);
+\end{circuitikz}
 
 και στη συνέχεια κατασκευάζουμε δύο διαγράμματα, ένα για το πλάτος ως συνάρτηση της
 συχνότητας, και ένα για τη φάση, ως εξής:
