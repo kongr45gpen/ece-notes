@@ -2972,7 +2972,31 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 
 και στη συνέχεια κατασκευάζουμε δύο διαγράμματα, ένα για το πλάτος ως συνάρτηση της
 συχνότητας, και ένα για τη φάση, ως εξής:
-\todo{Graph 50}
+
+\begin{tikzpicture}
+\draw[->] (0,-5.5) -- (0,3);
+\draw[->] (-1,0) -- (6,0) node[below right] {$\omega$};
+
+\draw[very thick,blue!50!cyan!70!black,name path=FR] plot[smooth,tension=1]
+coordinates {(0,1.5) (1.5,1.6) (3,2.5) (4.5,1.4) (6,0.7) };
+
+\path[name path=l] (0,1.5*0.707)-- ++(6,0);
+
+\path [name intersections={of=FR and l,by=G}];
+\draw[dashed] (G) -- (G -| 0,0) node[left] {$0.707$};
+\draw (0,1.5) node[left] {$1$};
+\draw[dashed] (3,2.5) -- (3,0);
+\draw[dashed] (G) -- (G |- 0,0) node[below] {$\omega_b$};
+
+\draw[->] (0,-2.2) -- ++(6,0) node[right] {$\omega$};
+
+\draw[very thick,blue!50!cyan!50!green!70!black,name path=FR,yshift=-4cm] plot[smooth,variable=\x,domain=0:6,samples=18]
+(\x,{3*atan((-\x +3)*3)/180});
+
+\draw (0,-2.6) node[left] {$0\degree$};
+\draw[dashed] (0,{(-2.6-5.3)/2}) node[left] {$45\degree$} -- ++(3,0);
+\draw (0,-5.3) node[left] {$90\degree$};
+\end{tikzpicture}
 
 Τα περισσότερα συστήματα είναι χαμηλοπερατά.
 
@@ -2981,7 +3005,17 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 που έχει συχνότητες που εκτείνονται μέχρι το άπειρο (αν θυμηθούμε τις σειρές Fourier),
 επομένως ένα σύστημα που θέλει να την αναπαραστήσει, όσο μεγαλύτερο εύρος ζώνης έχει,
 τόσο πιο γρήγορα θα αποκριθεί στην είσοδο.
-\todo{Graph 51}
+
+\begin{tikzpicture}
+\draw[very thick,blue!50!cyan!]
+plot[smooth,tension=.6]
+%plot[smooth,variable=\x,domain=0:6,samples=12]
+%(\x,{4/pi*1/1*sin(1*pi*\x r) + 4/pi*1/3*sin(3*pi*\x r)});
+coordinates {(0,0) (0.5,1) (0.8,0.7) (1,0) (1.5,0) (2,0) (2.3,0.8) (2.9,1) (3,0) (4,0) (4.2,1) (4.8,1) (4.9,0) (5.2,0)};
+
+\draw[very thick] plot[const plot]
+coordinates {(0,0) (0,1) (1,0) (2,1) (3,0) (4,1) (5,0) };
+\end{tikzpicture}
 
 Επομένως, είναι επιθυμητό να έχουμε μεγάλο εύρος ζώνης για να αυξήσουμε την ταχύτητα, αλλά
 πρέπει να λάβουμε σε αυτήν την περίπτωση υπ' όψιν και τον θόρυβο, ο οποίος βρίσκεται κυρίως
@@ -2989,10 +3023,27 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 
 Τα διαγράμματα Bode γίνονται συνήθως σε λογαριθμική κλίμακα, που ορίζεται ως εξής:
 \[
-20\log|\dots|
+20\log\left\lvert \frac{\omega}{\omega_0} \right\rvert
 \]
-\todo{Graph 52}
-\todo{εξήγηση}
+
+\begin{tikzpicture}
+\draw[->] (0,-4) -- (0,1.5);
+\draw[->] (0,0) -- (6,0);
+
+\draw[very thick,blue!50!cyan!70!black,name path=FR,mark position=0.9(c)] plot[smooth,tension=0.7,yscale=1.2]
+coordinates {(0,0) (1.7,0.7)  (4.5,-0.3) (6,-0.5)};
+
+\draw (0,0) node[left] {0 dB};
+\draw[dashed] (c) -- (c -| 0,0) node[left] {-3 dB};
+
+\path[name path=l] (0,1.5*0.707)-- ++(6,0);
+
+\draw[->] (0,-2.2) -- ++(6,0);
+
+\draw[very thick,blue!50!cyan!50!green!70!black,name path=FR,yshift=-3cm] plot[smooth,variable=\x,domain=0:6,samples=18]
+(\x,{1.5*atan((-\x +3)*3)/180});
+\end{tikzpicture}
+
 και ορίζουμε το εύρος ζώνης να είναι η απόσταση μεταξύ των συχνοτήτων στις οποίες η έξοδος
 έχει τιμή \(-3\) dB, που αντιστοιχεί στην τιμή 0.707, αν το πλάτος 1 αντιστοιχεί σε 0 dB.
 
@@ -3000,7 +3051,7 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 αρχή των αξόνων δεν έχουμε τη συχνότητα 0, αλλά απλώς μία μικρή συχνότητα.
 
 \subsubsection{Σε πρωτοβάθμια συστήματα}
-Για το σύστημα \( \displaystyle H(s)=\frac{1}{1+sτ} \):
+Ας ασχοληθούμε με το σύστημα \( \displaystyle H(s)=\frac{1}{1+sτ} \).
 
 Στην απόκριση συχνότητας μάς ενδιαφέρει η έξοδος του συστήματος σε ημιτονοειδείς όρους,
 δηλαδή για \( s = j\omega  \), οπότε:
@@ -3010,7 +3061,16 @@ H(j\omega ) = \frac{1}{1+j\omega τ}
 
 Η απόκριση φάσης είναι:
 \[
-φ(\omega) = -\tan^{-1}(\omega t)
+φ(\omega) = \arg\left( H(j\omega) \right) = \arg\left(\frac{1-j\omega τ}{(1+j\omega τ)(1-j\omega τ)}\right)
+= -\tan^{-1}
+\frac{
+	\overbrace{
+	\frac{-\omega τ}{(1+j\omega τ)(1-j\omega τ)}
+}^{\mathclap{\text{φανταστικό μέρος}}}
+}{
+	\underbrace{\frac{1}{(1+j\omega τ)(1-j\omega τ)}}_{\mathclap{\text{πραγματικό μέρος}}}
+} =
+-\tan^{-1}(\omega τ)
 \]
 
 Η απόκριση συχνότητας τότε θα είναι:
@@ -3024,17 +3084,34 @@ H(j\omega ) = \frac{1}{1+j\omega τ}
 Ο σκοπός όμως είναι την παραπάνω έκφραση να γνωρίζουμε προσεγγιστικά πώς μπορεί να
 παρουσιαστεί σε διάγραμμα.
 
-Για την παραπάνω σχέση, έχουμε:
+Ψάχνουμε τις ασύμπτωτες για την παραπάνω σχέση, και έχουμε:
 \[
 \begin{cases}
 \text{για } \omega \ll \frac{1}{τ} &\quad =0\ \mathrm{dB} \\
-\text{για } \omega \gg \frac{1}{τ} &\quad -20\log \omega τ = \underbrace{-20\log\omega}_{\omega_c=\frac{1}{\tau}} -20\log\tau
+\text{για } \omega \gg \frac{1}{τ} &\quad =-20\log \omega τ = \underbrace{-20\log\omega}_{\omega_c=\frac{1}{\tau}} -20\log\tau
 \end{cases}
 \]
 (όπου ονομάζουμε την \( \omega_c = \frac{1}{\tau} \) χαρακτηριστική συχνότητα του συστήματος)
 
 Έτσι, έχουμε δύο ασύμπτωτες ευθείες, και μπορούμε να προσεγγίσουμε τη συνάρτηση:
-\todo{Graph 54}
+
+\begin{tikzpicture}[scale=1.2]
+\draw[->] (0,-3) -- (0,2);
+\draw[->] (0,0) -- (4,0) node[below] {$\omega$};
+
+\draw[ultra thick,blue!50!cyan!70!black,mark position=0.67(c)]
+plot[variable=\x,domain=0:4,samples=18,smooth,yshift=-1pt]
+(\x,{-10*0.06*ln(1+    ( (exp(ln(10)*(\x-3)))/1  )^2     )});
+
+\draw[ultra thick,orange!90!blue!90!black,opacity=.7]
+(0,0) -- (3,0) -- ++(-68:3);
+
+\draw (current bounding box.north east) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=orange!90!blue!90!black] (a) {};
+\draw (a.south) ++(0,-0.5) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=blue!50!cyan!70!black] (b) {};
+
+\draw (a.east) node[right] {προσεγγιστική απόκριση};
+\draw (b.east) node[right] {πραγματική απόκριση};
+\end{tikzpicture}
 
 (Η χειρότερη προσέγγιση ίσως γίνεται στο σημείο όπου τέμνονται οι ευθείες, στο οποίο η
 πραγματική τιμή είναι \( -10\log2 = -3\ \mathrm{dB} \)).
@@ -3048,12 +3125,95 @@ H(j\omega ) = \frac{1}{1+j\omega τ}
 \end{cases}
 \]
 
-\todo{Graph 55}
+\begin{tikzpicture}
+\draw[->] (0,-3.5) -- (0,2);
+\draw[->] (0,0) -- (4,0) node[below] {$\omega$};
+
+\draw[ultra thick,blue!50!cyan!70!black,mark position=0.67(c)]
+plot[variable=\x,domain=0:3.5,samples=18,smooth,yshift=-1pt]
+(\x,{-10*0.02*ln(1+    ( (exp(ln(10)*(\x-2)))/1  )^2     )});
+
+\draw[ultra thick,orange!90!blue!90!black,opacity=.7]
+(0,0) -- (2,0) -- ++(-40:2);
+
+\draw (current bounding box.north east) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=orange!90!blue!90!black] (a) {};
+\draw (a.south) ++(0,-0.5) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=blue!50!cyan!70!black] (b) {};
+%\draw (a.east) ++(0.25,0) node[minimum width=2mm,minimum height=2mm,rectangle] (a) {};
+\draw (b.east) ++(0.25,0) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=blue!50!cyan!50!green!70!black] (b) {};
+
+\draw (a.east) node[right] {προσεγγιστική απόκριση};
+\draw (b.east) node[right] {πραγματική απόκριση};
+
+\def\plh{-2.2}
+\def\ptl{0.15}
+
+\draw[->] (0,\plh) -- ++(4.5,0);
+
+\begin{scope}[every node/.style={scale=.8,yshift=2pt}]
+\draw (0,\plh) node[above right] {$\sfrac{0.01}{τ}$};
+\draw (1,\plh) node[above] {$\sfrac{0.1}{τ}$} ++(0,\ptl/2) -- ++(0,-\ptl);
+\draw (2,\plh) node[above] {$\sfrac{1}{τ}$} ++(0,\ptl/2) -- ++(0,-\ptl);
+\draw (3,\plh) node[above] {$\sfrac{10}{τ}$} ++(0,\ptl/2) -- ++(0,-\ptl);
+\draw (4,\plh) node[above] {$\sfrac{100}{τ}$} ++(0,\ptl/2) -- ++(0,-\ptl);
+
+\draw[dashed] (0,-2.7) node[left] {$-45\degree$} -| (2,0);
+\draw (0,-2.7-0.5) node[left] {$-90\degree$};
+\draw[->] (0,-2.7-0.5) -- ++(4.5,0);
+\end{scope}
+
+\draw[very thick,blue!50!cyan!50!green!70!black,name path=FR,yshift=-2.7cm] plot[smooth,variable=\x,domain=0:4.4,samples=18]
+(\x,{1*atan((-\x +2)*5)/180});
+\end{tikzpicture}
 
 Επίσης, μπορούμε να κάνουμε μια γραμμική προσέγγιση αυτής της εξόδου στη φάση, θεωρώντας
 οριζόντια έξοδο μία δεκάδα πριν και μετά από τη χαρακτηριστική συχνότητα, και γραμμική
 ανάμεσα:
-\todo{Graph 56}
+
+\begin{tikzpicture}[scale=1.2]
+\draw[->] (0,-3.5) -- (0,2);
+\draw[->] (0,0) -- (4,0) node[below] {$\omega$};
+
+\draw[ultra thick,blue!50!cyan!70!black,mark position=0.67(c)]
+plot[variable=\x,domain=0:3.5,samples=18,smooth,yshift=-1pt]
+(\x,{-10*0.02*ln(1+    ( (exp(ln(10)*(\x-2)))/1  )^2     )});
+
+\draw[ultra thick,orange!90!blue!90!black,opacity=.7]
+(0,0) -- (2,0) -- ++(-40:2);
+
+\draw (current bounding box.north east) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=orange!90!blue!90!black] (a) {};
+\draw (a.south) ++(0,-0.5) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=blue!50!cyan!70!black] (b) {};
+\draw (a.east) ++(0.25,0) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=magenta] (a) {};
+\draw (b.east) ++(0.25,0) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=blue!50!cyan!50!green!70!black] (b) {};
+
+\draw (a.east) node[right] {προσεγγιστική απόκριση};
+\draw (b.east) node[right] {πραγματική απόκριση};
+
+\def\plh{-2.2}
+\def\ptl{0.15}
+
+\draw[->] (0,\plh) -- ++(4.5,0);
+
+\begin{scope}[every node/.style={scale=.8,yshift=2pt}]
+\draw (0,\plh) node[above right] {$\sfrac{0.01}{τ}$};
+\draw (1,\plh) node[above] {$\sfrac{0.1}{τ}$} ++(0,\ptl/2) -- ++(0,-\ptl);
+\draw (2,\plh) node[above] {$\sfrac{1}{τ}$} ++(0,\ptl/2) -- ++(0,-\ptl);
+\draw (3,\plh) node[above] {$\sfrac{10}{τ}$} ++(0,\ptl/2) -- ++(0,-\ptl);
+\draw (4,\plh) node[above] {$\sfrac{100}{τ}$} ++(0,\ptl/2) -- ++(0,-\ptl);
+
+\draw[dashed] (0,-2.7) node[left] {$-45\degree$} -| (2,0);
+\draw (0,-2.7-0.5) node[left] {$-90\degree$};
+\draw[->] (0,-2.7-0.5) -- ++(4.5,0);
+\end{scope}
+
+\draw[very thick,blue!50!cyan!50!green!70!black,name path=FR,yshift=-2.7cm] plot[smooth,variable=\x,domain=0:4.4,samples=18]
+(\x,{1*atan((-\x +2)*5)/180});
+
+\draw[gray,dashed] (3,\plh) -- ++(0,-1);
+
+\draw[ultra thick,magenta,yshift=-2.7cm]
+(0,0.5) -- (1,0.5) -- (3,-0.5) -- (4.4,-0.5);
+\end{tikzpicture}
+
 δηλαδή:
 \[
 φ = -45-45\log|\omega_t|
@@ -3147,7 +3307,16 @@ H(s) = \frac{\omega_n^2}{s^2+2ζ\omega_n s + \omega_n^2}
 
 \paragraph{Άσκηση}
 Έστω ένα σύστημα:
-\todo{Graph 60}
+
+\begin{circuitikz}
+	\draw (0,0) node[circle,inner sep=2mm,draw] (sum) {};
+	\draw (1.5,0) node[rectangle,minimum height=5mm,draw] (H) {$\frac{k}{s(s+a)}$};
+	
+	\draw[<-] (sum) -- ++(-1.5,0);
+	\draw (sum) -- (H);
+	\draw[->] (H) -- ++(2,0) node[midway] (P) {};
+	\draw[->] (P.center) -- ++(0,-1)  -| (sum);
+\end{circuitikz}
 
 Ζητείται να βρεθούν οι σταθερές \( k \) και \( a \), ώστε η υπερύψωση συχνότητας να είναι
 \( Μ_{\mathrm{pr}} = 1.04 \) για \( \omega_r = 11.54 \ \sfrac{\mathrm{rad}}{s} \). Και από
