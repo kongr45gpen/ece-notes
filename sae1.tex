@@ -2200,6 +2200,13 @@ Js^2y(s) +Bsy(s) = u(s) \\
 	\omega_d &= \omega_n\sqrt{1-ζ^2}
 \end{alignat*}
 \end{tcolorbox}
+\begin{defn}[width=.6\textwidth]{}{}
+	\begin{itemize}
+		\item \( \omega_n \): \textbf{φυσική συχνότητα}
+		\item \( ζ \): \textbf{συντελεστής απόσβεσης}
+		\item \( \omega_d \): \textbf{συχνότητα ταλαντώσεων}
+	\end{itemize}
+\end{defn}
 
 Μετά από πράξεις που δεν παρουσιάζονται, η έξοδος του συστήματος ξεχωρίζεται στις δύο παρακάτω περιπτώσεις:
 \begin{itemize}
@@ -2803,8 +2810,8 @@ B &= \left. \frac{16}{5} \frac{s+5}{s+2} \right|_{s=-8} = \frac{8}{5}
 	B = \left. \frac{16}{2+Δ_z}\frac{s+2+Δ_z}{s+2} \right|_{s=-8} = -\frac{16}{6}
 	+\frac{16}{6}\frac{Δ_z}{6} \\
 	\mathscr{L}^{-1} \left\lbrace G_3 \right\rbrace =
-	\frac{16}{6}\left(
-	    \frac{Δ_z}{2+Δ_z}e^{-2t} + \left(\frac{Δ_z}{6} - 1\right)e^{-8t}
+	\frac{16}{2+Δ_z}\left(
+	\frac{Δ_z}{6}e^{-2t} + \left(1-\frac{Δ_z}{6}\right)e^{-8t}
 	\right)
 \end{gather*}
 
@@ -2839,24 +2846,24 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 Ποιό από τα παρακάτω συστήματα έχει τη βηματική απόκριση που φαίνεται στο σχήμα;
 \todo{Graph 64}
 
-\begin{enumpar}
+\begin{enumlatin}
 	\item \( \displaystyle \frac{12}{s+2} \)
 	\item \( \displaystyle \frac{2(s+6)}{s+3} \)
 	\item \( \displaystyle \frac{2(s+3)}{s+2} \)
 	\item \( \displaystyle \frac{6}{s+3} \)
-\end{enumpar}
+\end{enumlatin}
 
 Για το κάθε σύστημα ψάχνουμε αρχική και τελική τιμή, ώστε να επιβεβαιώσουμε την απόκριση:
-\begin{enumpar}
+\begin{enumlatin}
 	\item \( \displaystyle \lim_{s\to \infty}
 	\frac{1}{s} \frac{12}{s+3} s = 0
 	 \) άρα δεν βολεύει.
 	\item \( \displaystyle \lim_{s\to \infty} \frac{1}{s}\frac{2(s+6)}{s+3}s=2 \)
 	και \( \displaystyle \lim_{s\to 0} \frac{1}{s}\frac{2(s+6)}{s+3}s=4  \), που είναι οι
 	επιθυμητές τιμές.
-\end{enumpar}
+\end{enumlatin}
 
-Άρα η σωστή απάντηση είναι η \textbf{(b)}.
+Άρα η σωστή απάντηση είναι η \textbf{(β)}.
 
 \paragraph{Άσκηση}
 Ποιά είναι η σωστή απάντηση;
@@ -2882,7 +2889,7 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 	\item \( \displaystyle \frac{50}{s+5} \)
 \end{enumlatin}
 
-Η σωστή απάντηση είναι η \textbf{(d)}.
+Η σωστή απάντηση είναι η \textbf{(δ)}.
 
 \paragraph{Άσκηση}
 Ποιό από τα παρακάτω συστήματα έχει τη μεγαλύτερη ταχύτητα ανόδου;
@@ -2898,16 +2905,16 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 Θυμίζουμε ότι οι παρονομαστές των παραπάνω συναρτήσεων έχουν γραφεί με τη μορφή
 \( (s+σ)^2 + \omega_d^2 \), και έχουν λύση \underline{\( -σ\pm j\omega_d \)}.
 
-Θυμόμαστε επίσης ότι για μεγαλύτερο \( \omega_d \), έχουμε μικρότερο χρόνο ανόδου \( t_r \).
+Η ταχύτητα ανόδου εξαρτάται από τον χρόνο ανόδου.
 
-Η ταχύτητα ανόδου εξαρτάται από τον χρόνο ανόδου, και το πόσο έχει ανεβεί η τιμή της
-συνάρτησης μέσα σε αυτόν τον χρόνο:
-\todo{Graph 67}
+Θυμόμαστε επίσης ότι για μεγαλύτερο \( \omega_d \) ή μηδενικό \( z \) κοντά στον
+φανταστικό άξονα, έχουμε μικρότερο χρόνο ανόδου \( t_r \),
+ενώ ο χρόνος ανόδου ορίζεται ως ο χρόνος που απαιτείται μέχρι η απόκριση να φτάσει από
+το 10\% ως το 90\%:
+\todo{Graph 68}
 
-Η σωστή απάντηση είναι η \textbf{(δ)}, επειδή φτάνει τη μεγαλύτερη τιμή σε μικρότερο χρόνο,
-λόγω του μηδενικού.
-Η (γ) έχει dc κέρδος \( \mathrm{d_c} = \frac{10}{14} \), και η (δ) έχει \( \mathrm{d_c} = \frac{3}{14} \), ενώ οι (α) και (β) έχουν μικρότερο \( \omega_d \), άρα μεγαλύτερο χρόνο
-ανόδου.
+Η σωστή απάντηση είναι η \textbf{(δ)}, η οποία έχει το μεγαλύτερο \( \omega_d \) και το
+μηδενικό \( z=-3 \) που είναι κοντινότερο στον άξονα.
 
 (Βέβαια γρήγορη ταχύτητα ανόδου δεν σημαίνει και γρήγορη απόκριση).
 
@@ -2974,7 +2981,7 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 συχνότητας, και ένα για τη φάση, ως εξής:
 
 \begin{tikzpicture}
-\draw[->] (0,-5.5) -- (0,3);
+\draw[->] (0,-5.5) -- (0,3) node[above left] {$|A|$};
 \draw[->] (-1,0) -- (6,0) node[below right] {$\omega$};
 
 \draw[very thick,blue!50!cyan!70!black,name path=FR] plot[smooth,tension=1]
@@ -2988,7 +2995,7 @@ coordinates {(0,1.5) (1.5,1.6) (3,2.5) (4.5,1.4) (6,0.7) };
 \draw[dashed] (3,2.5) -- (3,0);
 \draw[dashed] (G) -- (G |- 0,0) node[below] {$\omega_b$};
 
-\draw[->] (0,-2.2) -- ++(6,0) node[right] {$\omega$};
+\draw[->] (0,-2.2) node[above left] {$φ$} -- ++(6,0) node[right] {$\omega$};
 
 \draw[very thick,blue!50!cyan!50!green!70!black,name path=FR,yshift=-4cm] plot[smooth,variable=\x,domain=0:6,samples=18]
 (\x,{3*atan((-\x +3)*3)/180});
@@ -3358,7 +3365,7 @@ H(s) = \frac{G}{s^n}\frac{(τ_js+1)\cdots}{(t_is+1)\cdots}
 	η έξοδος θα είναι αντίθετη, από την ιδιότητα του λογαρίθμου.
 	
 \paragraph{}
-Για το απλό σύστημα \( \displaystyle H(s)\frac{G}{s} \), έχουμε:
+Για το απλό σύστημα \( \displaystyle H(s)=\frac{G}{s} \), έχουμε:
 \begin{align*}
 	|H|_{\mathrm{dB}} &= 20\log G + 20\log\omega \\
 	φ &= -\sfrac{π}{2} 
@@ -3366,5 +3373,142 @@ H(s) = \frac{G}{s^n}\frac{(τ_js+1)\cdots}{(t_is+1)\cdots}
 
 και το διάγραμμα Bode γίνεται (σε συνδυασμό με το \( H(s) = Gs \)):
 \todo{Graph 62}
+
+Γενικά, μπορούμε να συνθέσουμε οποιαδήποτε συνάρτηση μεταφοράς με τα παρακάτω στοιχεία:
+\begin{itemize}
+	\item \( H_0 = Gs^ν \)
+	\item \( \displaystyle H_1 = \left( \frac{s}{ρ}+1 \right) \) για \( p>0 \)
+	\item \( \displaystyle H_2 = \left( \frac{s^2}{\omega_n^2} + \frac{2Js}{\omega_n} + 1 \right) \) για \( \omega_n > 0 \) και \( 0<ζ<1 \).
+\end{itemize}
+
+Για παράδειγμα, \( \frac{s(s+3)}{(s+4)\left( (s+5)^2+4 \right)} \). \todo{solve}
+
+\todo{add warning above that log != ln}
+Για καθεμία από αυτές, έχουμε:
+\begin{itemize}
+	\item
+	\( \displaystyle \left\lvert H_0(j\omega)\right\rvert_{\mathrm{dB}} 
+	= 20\log G\omega^ν = 20\log G + 20ν\log ω
+	\)
+	
+	Και το αντίστοιχο διάγραμμα Bode είναι:
+	\todo{Graph 69}
+	όπου παρατηρούμε ότι έχουμε αύξηση της απόκρισης κατά 20 dB ανά δεκάδα.
+	
+	Η ευθεία αυτή θα έχει αντίθετη κλίση αν το \( H_0(s) \) βρίσκεται στον παρονομαστή
+	
+	\item
+	\( \displaystyle \left\lvert H_1(jω)\right\rvert_{\mathrm{dB}} \approx
+	\begin{cases}
+	0 \qquad & \text{αν } \omega < p \\
+	20\log ω -20\log p \qquad & \text{αν} \omega > p
+	\end{cases} \)\\
+	και:\\
+	\( φ_1 \approx \begin{cases}
+	0\degree \qquad & \text{αν } \omega < 0.1p \\
+	45\degree + 45\degree \log\frac{\omega}{p} \qquad & \text{αν } 0.1p < \omega < 10p \\
+	90\degree \qquad & \text{αν } \omega > 10p
+	\end{cases} \)
+	
+	Άρα η απόκριση γίνεται:
+	\todo{Graph 70}
+	\item \( 
+	\displaystyle H_2 = \frac{s^2}{\omega_n^2} + \frac{2J}{\omega_n}s+1
+	 \) και αποδεικνύεται ότι:
+	 \begin{align*}
+	 	\left\lvert H_2(j\omega )\right\rvert_{\mathrm{dB}}
+	 	&\approx \begin{cases}
+	 	0&\qquad \text{αν } \omega < \omega_n \\
+	 	40\log \omega - 40\log \omega_n &\qquad \text{αν } \omega > \omega_n
+	 	\end{cases} \\
+	 	φ_2 &\approx \begin{cases}
+	 	0\degree &\qquad \text{αν } \omega< 0.1\omega_n\\
+	 	90\degree +90\degree\log\frac{\omega}{\omega_n} &\qquad 
+	 	\text{αν }0.1\omega_n < \omega < 10\omega_n \\
+	 	180\degree &\qquad \text{αν } \omega>10\omega_n
+	 	\end{cases}
+	 \end{align*}
+	 
+	 \todo{Graph 71}
+\end{itemize}
+
+\subsubsection{Ασκήσεις}
+\paragraph{Παράδειγμα}
+Έστω η συνάρτηση μεταφοράς \( \displaystyle\frac{(s+3)}{(s+1)(s+7)} \). Πώς μπορούμε να
+κατασκευάσουμε το διάγραμμα Bode της;
+
+\subparagraph{Λύση}
+Αρχικά προσπαθώ να τη μετασχηματίσω σε συνδυασμό των απλών μορφών που παρουσιάστηκαν παραπάνω:
+\begin{align*}
+	\frac{(s+3)}{(s+1)(s+7)} &=
+	\frac{3\left(\frac{s}{3}+1\right)}{\left(\frac{s}{1} + 1\right)\cdot 7\left(\frac{s}{7} + 1\right)}
+	\\ &= \frac{3}{7} \frac{H_{1a}}{H_{1b}\cdot H_{1c}}
+	\intertext{όπου οι συναρτήσεις \( H_1 \) είναι της μορφής \( \left(\frac{s}{ρ}+1\right)
+		 \), με \( p_a=3 \), \( p_b=1 \) και \( p_c=7 \)}
+	&= \frac{3}{7}\cdot \left( \frac{s}{3}+1 \right)
+	\cdot \left(\frac{1}{\frac{s}{7}+1}\right)\cdot \frac{1}{s+1}
+\end{align*}
+\todo{continue or remove}
+
+\paragraph{Άσκηση}
+Να βρεθεί η απόκριση συχνότητας του \( \displaystyle
+H(s) = \frac{40(s+1)}{s^2(s^2+s+4)} \)
+\subparagraph{Απάντηση}
+
+Έχουμε:
+\[
+H(s) = \underset{\substack{\downarrow\\H_0}}{(10)}
+\cdot
+\underset{\substack{\downarrow\\H_1\\p=1}}{(s+1)}
+\cdot
+\underset{\substack{\downarrow\\H_0^{-1}\\ν=2}}{\frac{1}{s^2}}
+\cdot
+\underset{\substack{\downarrow\\H_2^{-1}\\ \omega_n=2}}{\frac{1}{\frac{s^2}{4}+\frac{s}{4}+1}}
+= G_1\cdot G_3 \cdot G_2 \cdot G_4
+\]
+
+και εργαζόμαστε για κάθε συνάρτηση ξεχωριστά, σχεδιάζοντας το διάγραμμα Bode της, ώστε
+να τα συνδυάσουμε στο τέλος:
+\begin{itemize}
+	\item \( |G_1|_{\mathrm{dB}} = 20\log10 +\cancelto{0}{20\cdot 0 \cdot\log \omega }  \)
+	\\ \( φ =\frac{νπ}{2} = 0 \)
+	
+	\todo{Graph 72}
+	\item \( |G_3|_{\mathrm{dB}} \approx \begin{cases}
+    0 \qquad & \text{για } \omega < 1 \\
+    20\log\omega - \cancelto{0}{20\log 1} &\text{για } \omega > 1
+	\end{cases} \)\\
+	\( 
+	φ_3 \approx  \begin{cases}
+	0\degree \qquad & \text{αν } \omega < 0.1p \\
+	45\degree + 45\degree \log\frac{\omega}{p} \qquad & \text{αν } 0.1p < \omega < 10p \\
+	90\degree \qquad & \text{αν } \omega > 10p
+	\end{cases}
+	 \)
+	
+	\todo{Graph 73}
+	
+	\item \( |G_2|_{\mathrm{dB}} = \cancelto{0}{20\log 1} + 20(-2)\log \omega = -40\log \omega  \) \\
+	\( φ=\frac{νπ}{2} = -π \)
+	
+	\todo{Graph 74}
+	
+	\item \( |G_4|_{\mathrm{dB}} \approx \begin{cases}
+	0\qquad&\text{για } \omega  < 2 \ \mathrm{rad/s}
+	\\ -40\log\omega + 40\log 2 \qquad &\text{για } \omega > 2
+	\end{cases} \) \\
+	\( φ =  \begin{cases}
+	0\degree &\qquad \text{αν } \omega< 0.2_n\\
+	90\degree +90\degree\log\frac{\omega}{2} &\qquad 
+	\text{αν }0.1\omega_n < \omega < 20 \\
+	180\degree &\qquad \text{αν } \omega>20
+	\end{cases} \)
+	
+	\todo{Graph 75}
+\end{itemize}
+
+Τελικά, για να βρούμε τη σωστή απάντηση, προσθέτουμε όλα τα παραπάνω διαγράμματα
+(αφού ο πολλαπλασιασμός γίνεται πρόσθεση μετά την εφαρμογή του λογαρίθμου):
+\todo{Graph 76 and calculations}
 
 \end{document}
