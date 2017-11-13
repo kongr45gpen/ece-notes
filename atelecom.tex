@@ -1213,7 +1213,7 @@ M(f-f_c) + M(f+f_c)
 \draw[->] (0,-0.5) -- (0,2.5) node[right] {$S(f)$};
 
 \draw[dashed] (-2.1,1.4) --++(4.2,0);
-\draw (0,1.4) node[above right] {$\sfrac{1}{2}k_aA_cM(0)$};
+\draw (0,1.4) node[above right] {$\sfrac{1}{2}A_cM(0)$};
 \end{scope}
 \end{tikzpicture}
 \end{center}
@@ -1724,7 +1724,7 @@ s(t) = A_c m(t)\cos 2π  f_c t
 Αυτή η τεχνική εκμεταλλεύεται την ορθογωνικότητα του ημιτόνου και του
 συνημιτόνου ώστε να μεταδώσει διπλάσιο σήμα στο ίδιο εύρος ζώνης.
 Είναι μία τεχνική \textbf{πολυπλεξίας}, και ονομάζεται
-\textbf{QAM (Qudrature Amplitude Modulation - Διαμόρφωση ορθογωνικών
+\textbf{QAM (Quadrature Amplitude Modulation - Διαμόρφωση ορθογωνικών
 	φερόντων)}. Δεν χρησιμοποιούνταν σε εμπορικές εφαρμογές λόγω
 του κόστους των πολλών διαμορφωτών και του κυκλώματος συγχρονισμού.
 
@@ -2549,7 +2549,7 @@ s_{\mathrm{USSB}}(t) = \frac{1}{2}A_c m(t) \cos 2πf_c t - \frac{1}{2}A_c \hat m
 Κάνουμε τις πράξεις:
 \begin{align*}
 	\left. s(t)\cdot A_c' \cos(2πf_ct+φ) \right|_{\mathrm{LPF}}
-	&= \frac{A_cA_c'}{4}\sin φ\cos φ
+	&= \frac{A_cA_c'}{4}m(t)\sin φ\cos φ
 	\mp \frac{A_cA_c'}{4}\hat m(t) \sin φ
 \end{align*}
 

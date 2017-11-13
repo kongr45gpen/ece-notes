@@ -21,7 +21,7 @@
 \usepackage{relsize}
 \usepackage{xfrac}
 \usepackage{comment}
-%\usepackage{siunitx}
+\usepackage{siunitx}
 %\usepackage{MnSymbol}
 \usepackage[obeyDraft,disable]{todonotes}
 %\usepackage[linesnumbered,lined]{algorithm2e}
@@ -197,6 +197,9 @@
 }{
 }
 \fi
+
+\DeclareSIUnit \voltampere { VA } %apparent power 
+\DeclareSIUnit \var { VAr } %volt-ampere reactive - idle power 
 
 % Global amount of samples
 % Set to a higher value (e.g. 200) for nicer graphs
