@@ -3516,15 +3516,30 @@ H(s) = \underset{\substack{\downarrow\\H_0}}{(10)}
 \paragraph{Άσκηση}
 Ποιά είναι η συνάρτηση μεταφοράς της οποίας το προσεγγιστικό διάγραμμα Bode φαίνεται στο
 παρακάτω σχήμα;
-\todo{Graph 77}
+
+\begin{tikzpicture}[scale=1.2]
+\draw[->] (0,-0.2) -- (0,3);
+\draw[->] (-0.2,0) -- (4.5,0) node[below] {$\omega$};
+
+\draw[ultra thick,blue!50!cyan!70!black
+(0,2) -- (1,2) -- (1.3,1.5) -- (3,1.5) -- (4,-.5/3);
+
+\draw (0,2) node[left] {$20\log 0.8$};
+\draw[dashed] (1,2) -- (1,0) node[below,scale=.9,xshift=-1mm] {$0.5$};
+\draw[dashed] (0,1.5) node[left] {$-14\ \mathrm{dB}$} -| (1.3,0) node[below,scale=.9,xshift=0.5mm] {$2$};
+\draw[dashed] (3,1.5) -- (3,0) node[below] {$10$};
+
+\draw[blue!50!black] (1.2,1.7) node[above right] {$-20 \ \mathrm{db/dec}$};
+\draw[blue!50!black] (3.5,0.8) node[above right] {$-20 \ \mathrm{db/dec}$};
+\end{tikzpicture}
 
 Επιέξετε μία από τις πιθανές απαντήσεις
-\begin{enumgreek}
+\begin{enumgreekparen}
 	\item \( \displaystyle \frac{10(s+1)(s+2)}{(s+0.5)(5s+10)(s+10)} \)
 	\item \( \displaystyle \frac{10(s+0.5)}{(s+2)(s+10)} \)
 	\item \( \displaystyle \frac{10(s+1)(s+2)}{(s+0.5)(5s+5)(s+10)} \)
 	\item \( \displaystyle \frac{10(s+10)}{(s+0.5)(s+2)} \)
-\end{enumgreek}
+\end{enumgreekparen}
 
 \subparagraph{Λύση}
 Κανονικά, φέρνουμε όλες τις συναρτήσεις μεταφοράς στη μορφή (π.χ. για την \textbf{(α)}):
@@ -3549,7 +3564,7 @@ H(s) = \underset{\substack{\downarrow\\H_0}}{(10)}
 μεταφοράς, που πρέπει να είναι \( 20\log 0.8 \SI{}{\decibel} \), άρα να έχει μέτρο \( 0.8 \).
 
 Έτσι, για κάθε απάντηση έχουμε:
-\begin{enumgreek}
+\begin{enumgreekparen}
 	\item \( \displaystyle \frac{10\cdot 1\cdot 2}{0.5\cdot 10 \cdot 10} 
 	= 0.4 \xrightarrow{\si{\decibel}} 20\log 0.4 \neq 20\log 0.8 \)
 	\item \( \displaystyle \frac{10\cdot 0.5}{2\cdot 10} = 0.25 \nrightarrow 20\log 0.8 \)
@@ -3557,11 +3572,11 @@ H(s) = \underset{\substack{\downarrow\\H_0}}{(10)}
 	\rightarrow 20\log 0.8 \quad \checkmark \)
 	\item \( \displaystyle \frac{10\cdot 10}{0.5\cdot 2} = 100
 	\nrightarrow 20\log 0.8 \)
-\end{enumgreek}
+\end{enumgreekparen}
 
 \paragraph{Άσκηση}
 Τι τιμή έχει το προσεγγιστικό διάγραμμα μέτρου και φάσης στη συνάρτηση μεταφοράς
-\( \displaystyle \frac{100}{(s+1)^2(s+10)} \) στη συχνότητα \( \omega = 1\ \sfrac{\mathrm{rad}}{\mathrm{s}} \)
+\( \displaystyle \frac{100}{(s+1)^2(s+10)} \) στη συχνότητα \( \omega = 1\ \sfrac{\mathrm{rad}}{\mathrm{s}} \);
 
 \begin{attnbox}{}
 	Εδώ μας ζητείται η τιμή του προσεγγιστικού διαγράμματος, όχι η ακριβής τιμή.
@@ -3581,7 +3596,25 @@ H(s) = \underset{\substack{\downarrow\\H_0}}{(10)}
 πτώση \( \SI{20}{\decibel/\decade} \) σε εκείνη τη συχνότητα, και έναν διπλό πόλο
 \( \omega  = \SI{1}{\decibel/\decade} \), του οποίου η επίδραση είναι μια πτώση κατά
 \( 2\cdot20 = \SI{40}{\decibel/\decade} \). Άρα το προσεγγιστικό διάγραμμα μοιάζει κάπως έτσι:
-\todo{Graph 78}
+
+\begin{tikzpicture}[scale=1.4]
+\draw[gray!70!white] (0,1.5) node[left,scale=.8] {$0 \ \mathrm{dB}$} -- ++(4.5,0);
+\draw[->] (0,-1.5) -- (0,3);
+\draw[->] (-0.2,0.3) -- (5,0.3) node[right] {$\omega\ \mathsmaller{(\mathrm{rad/s})}$};
+
+\draw[ultra thick,blue!50!cyan!70!black]
+(0,2) -- (2,2) -- (4,0) -- (5,-1.5);
+\fill[blue!50!cyan!70!black]
+(2,2) circle (2pt) node[above right,scale=0.8] {$20\ \mathrm{dB}$}
+(4,0) circle (2pt);
+
+\draw (0,2) node[left,align=right] {$20\log 10 $\\$=20\ \mathrm{dB}$};
+\draw[dashed] (2,2) -- ++(0,-1.7) node[below] {$p=1$};
+\draw[dashed] (4,0) -- (4,0.3) node[above] {$10$};
+
+\draw[blue!50!black] (3,1) node[above right] {$-40 \ \mathrm{db/dec}$};
+\draw[blue!50!black] (4.7,-1) node[above right] {$-60 \ \mathrm{db/dec}$};
+\end{tikzpicture}
 
 Το διάγραμμα φάσης είναι λίγο πιο δύσκολο, επειδή η απόκριση επηρεάζεται μία δεκάδα πριν
 και μία δεκάδα μετά από τη συχνότητα του κάθε πόλου.
