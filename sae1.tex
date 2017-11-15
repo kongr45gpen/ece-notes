@@ -1248,7 +1248,7 @@ e_{\mathrm{ss}} = \lim_{s\to 0} se(s)
 	
 	\draw[thick,orange!50!green,->] (-0.7,0) -- (0,0) node[midway,above] {$F$};
 	\draw[thick,green!80!blue,->] (0,0.8) -- ++(0,-0.2) ++(0,0.1) -- ++(0.7,0)
-	node[above,midway] {$R_0$};
+	node[above,midway] {$I_0$};
 	\draw[thick,green!80!blue,->] (2.5,0.8) -- ++(0,-0.2) ++(0,0.1) -- ++(0.7,0)
 	node[above,midway] {$l_1$};
 	\draw[thick,green!80!blue,->] (5,0.8) -- ++(0,-0.2) ++(0,0.1) -- ++(0.7,0)
@@ -1265,7 +1265,7 @@ e_{\mathrm{ss}} = \lim_{s\to 0} se(s)
 	\text{Για τη μάζα 2: } F = m_2\od[2]{l_2}{t}
 	&=
 	\underbrace{-K_2(l_2-l_1)}_{\text{ελατήριο}}
-	-\underbrace{B_2\od[2]{l_2}{t}}_{\text{αποσβ.}}
+	-\underbrace{B_2\od{l_2}{t}}_{\text{αποσβ.}}
 	-\underbrace{B_1\left(
 	\od{l_2}{t}-\od{l_1}{t}
 	\right)}_{\text{αποσβεστήρας}}
@@ -1355,7 +1355,7 @@ V_t = R_Ai_A +L_a\od{i_A}{t}
 \begin{equation}
 \underbrace{(J_L+J_m)}_{\mathrm{\frac{Nms^2}{rad}}}
 \underbrace{\od[2]{θ}{t}}_{\mathrm{\frac{rad}{s^2}}}
-= \underbrace{K_T i_A}_{\mathrm{\frac{Nm}{A}}} \label{ex.brusheddc.mech}
+= \underbrace{K_T}_{\mathrm{\frac{Nm}{A}}} i_A \label{ex.brusheddc.mech}
 \end{equation}
 όπου \( J_L \) και \( J_m \) είναι οι ροπές αδράνειας του κάθε μέρους.
 
@@ -1537,7 +1537,7 @@ J = J_m + \left(
 	+ \frac{L_{γf}}{γ}s
 	\right)E_γ \\
 	J\od[2]{θ}{t} + B\od{θ}{t} + T_L &= K_m i_a
-	\rightarrow (Js^2+Bs)Θ + T_L &= K_mI_a \\
+	\rightarrow (Js^2+Bs)Θ + T_L = K_mI_a \\
 	L\od{i_a}{t} + Ri_a + K\od{θ}{t} &= e_γ
 	\rightarrow L_sI_a + R\cdot I_A + R\cdot I_A + K_S Θ = E_γ \\
 	(Js^2+Bs)Θ + T_L &= K_m \left(
@@ -2234,7 +2234,7 @@ Js^2y(s) +Bsy(s) = u(s) \\
 	αποσβέσεων. Πρακτικά, παίζει ρόλο ο πόλος που προκαλεί την πιο αργή απόσβεση (ειδικά αν
 	οι πόλοι απέχουν αρκετά μεγάλη απόσταση μεταξύ τους), καθώς η άλλη απόσβεση εξαλείφεται
 	γρήγορα. Ο αργός πόλος επιβάλλει το ρυθμό του.
-	\item Αν έχουμε \textbf{δύο μιγαδικές συζυγείς ρίζες} \( -σ \pm j\omega_d^2 \):
+	\item Αν έχουμε \textbf{δύο μιγαδικές συζυγείς ρίζες} \( -σ \pm j\omega_d \):
 	\begin{align*}
 	y(t) &= y_{\mathrm{ss}}\left[
 	1-e^{-ζ\omega_nt} \cdot
