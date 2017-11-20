@@ -3258,10 +3258,55 @@ H(s) = \frac{\omega_n^2}{s^2+2ζ\omega_n s + \omega_n^2}
 %	\omega = \omega_n &\quad 0 \ \mathrm{dB}
 \end{cases}
 \]
-\todo{Graph 57}
+
+\begin{tikzpicture}[scale=1.2]
+\draw[->] (0,-2) -- (0,1);
+\draw[->] (0,0) -- (4,0) node[below] {$\omega$};
+
+\draw[ultra thick,orange!90!blue!80!black,opacity=1]
+(0,0) -- (2,0) -- ++(-40:3)
+node[midway,right] {-40 dB/dec};
+
+\filldraw (2,0) circle (1pt) node[above] {$\omega_n$};
+
+\draw (current bounding box.north east) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=orange!90!blue!80!black] (a) {};
+
+\draw (a.east) node[right] {προσεγγιστική απόκριση};
+\end{tikzpicture}
 
 Στην πραγματικότητα, η απόκριση συχνότητας μοιάζει ως εξής, και εξαρτάται από το \( ζ \):
-\todo{Graph 58}
+
+\begin{tikzpicture}[scale=1.2]
+\draw[->] (0,-2) -- (0,1.5);
+\draw[->] (0,0) -- (4,0) node[below] {$\omega$};
+
+%\draw[ultra thick,blue!50!cyan!70!black,mark position=0.67(c)] plot[variable=\x,domain=0:4,samples=18,smooth,yshift=-1pt] (\x,{-10*0.06*ln(1+    ( (exp(ln(5)*(\x-3)))/1  )^2     ) +10*0.02*ln(1+    ( (exp(ln(10/4)*(\x-1)))/1  )^2     ) });
+
+\draw[blue!50!cyan!70!black]
+(2.25,0) -- ++(0,1);
+
+\draw[ultra thick,blue!50!cyan!70!black,mark position=0.67(c)]
+plot[smooth] coordinates {(0,0) (1.5,0.05) (2.5,0.1) (4.4,-1.8)};
+\draw[ultra thick,blue!50!cyan!70!black,mark position=0.67(c)]
+plot[smooth] coordinates {(0,0) (1.5,0.2) (2.5,0.5) (4.4,-1.75)};
+\draw[ultra thick,blue!50!cyan!70!black,mark position=0.67(c)]
+plot[smooth,tension=.6] coordinates {(0,0) (1.5,0.4) (2.5,0.9) (4.4,-1.7)};
+
+\filldraw[blue!50!cyan!70!black]
+(2.25,0) circle (1pt) node[below right,scale=.9] {$\omega_r$};
+
+\draw[ultra thick,orange!90!blue!80!black,opacity=1]
+(0,0) -- (2,0) -- ++(-40:3)
+node[midway,below left] {-40 dB/dec};
+
+\filldraw (2,0) circle (1pt) node[above] {$\omega_n$};
+
+\draw (current bounding box.north east) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=orange!90!blue!80!black] (a) {};
+\draw (a.south) ++(0,-0.5) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=blue!50!cyan!70!black] (b) {};
+
+\draw (a.east) node[right] {προσεγγιστική απόκριση};
+\draw (b.east) node[right] {πραγματική απόκριση};
+\end{tikzpicture}
 
 Παρατηρούμε μία υπερύψωση κοντά στο \( \omega_n \) (αλλά όχι ακριβώς επάνω του), που αυξάνεται
 όσο μειώνεται το \( ζ \), και συχνά δεν είναι επιθυμητή.
