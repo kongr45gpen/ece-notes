@@ -3167,54 +3167,9 @@ k_as_{\mathrm{VSB}}(t) \), δηλαδή VSB μαζί όμως με το φέρο
 	Όλες οι ασκήσεις είναι ανεβασμένες στην ιστοσελίδα.
 \end{attnbox}
 
-\paragraph{Άσκηση}
-Δίνεται το σύστημα:
-\todo{Graph 84}
-και ο φίλος μας ισχυρίζεται ότι μπορεί να διαμορφώσει κατά AM. Να βρεθούν τα χαρακτηριστικά
-του φίλτρου και του μη γραμμικού στοιχείου ώστε να μπορεί να πραγματοποιηθεί αυτό.
-
-Δίνεται και η γραφική παράσταση του \( X(f) \):
-\todo{Graph 85}
-
-\subparagraph{Λύση}
-Η είσοδος είναι \( e_i = x(t) + \cos 2π f_c t \). Επομένως, από τη δοθείσα σχέση του
-μη γραμμικού στοιχείου είναι:
-
-\begin{align*}
-	e_0 &= a_1e_i+a_2e_i^2 \implies \\
-	e_0(t) &= a_1\left(x(t) + \cos 2πf_c t\right)
-	+ a_2\left( x(t)+\cos 2πf_ct \right)^2 \\
-	&= a_2x^2(t) + a_1x(t) + \frac{a_2}{2}\left( 1+\cos 2π2f_c t \right)
-	+ \infoboxed{a_1\left(1+\frac{2a_2}{a_1}x(t)\right) \cos 2πf_c t }
-\end{align*}
-
-Βλέπουμε ότι αν αναπτύξουμε τη σχέση, εμφανίζεται και το AM σήμα στην έξοδο του μη
-γραμμικού στοιχείου, εκτός των άλλων πραγμάτων:
-\begin{alignat*}{2}
-	\text{AM:}\quad && s(t) &= A_c\left(1+k_am(t)\right)\cos 2πf_c t \\
-	&& e_0(t) &= a_1\left(1+\frac{2a_2}{a_1}x(t)\right)\cos2πf_c t
-\end{alignat*}
-άρα \( A_c = a_1 \) και \( k_a = \frac{2a_2}{a_1} \).
-
-Τώρα πρέπει να ελέγξουμε αν κάποιος από τους υπόλοιπους όρους "ενοχλεί" τον επιθυμητό.
-Μελετάμε το φάσμα του κάθε όρου:
-\begin{enumpar}
-	\item \( \displaystyle a_1x(t) \to a_1X(f) \)
-	\todo{Graph 86}
-	\item \( \displaystyle \frac{a_2}{2} \left( 1+\cos 2π2f_c t \right) 
-	\to \frac{a_2}{2}\delta(f) + \frac{a_2}{4}\left(
-	\delta(f-2f_c)+\delta(f+2f_c)
-	\right)
-	\)
-	\todo{Graph 88}
-	\item \( \displaystyle a_1\left(1+\frac{2a_2}{a_1}x(t)\right)\cos 2πf_c t \)
-	\todo{Graph 89}
-	
-	Φροντίζουμε ώστε το φέρον στις AM συχνότητες να φαίνεται πιο ψηλά από το σήμα, ώστε
-	να εκφράζεται η μεγαλύτερη ισχύς που κουβαλάει.
-	\item ...
-	
-	Η συνέχεια προσεχώς...
-\end{enumpar}
+Έγιναν οι ασκήσεις:
+\begin{itemize}
+	\item \textbf{2} από το σετ \textit{Διαμόρφωση Πλάτους 1}
+\end{itemize}
 
 \end{document}
