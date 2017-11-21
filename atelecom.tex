@@ -3169,7 +3169,49 @@ k_as_{\mathrm{VSB}}(t) \), δηλαδή VSB μαζί όμως με το φέρο
 
 Έγιναν οι ασκήσεις:
 \begin{itemize}
-	\item \textbf{2} από το σετ \textit{Διαμόρφωση Πλάτους 1}
+	\item \textbf{2} από το σετ
+	\href{https://genesis.ee.auth.gr/dimakis/greek/courses/telesysI/exers/am.pdf}{Διαμόρφωση Πλάτους 1}
+	\item \textbf{3} από το σετ
+	\href{https://genesis.ee.auth.gr/dimakis/greek/courses/telesysI/exers/am.pdf}{Διαμόρφωση Πλάτους 1}, ερώτημα i
 \end{itemize}
+
+\paragraph{Παράδειγμα}
+Δίνεται ένα μήνυμα πληροφορίας \( m(t) \) για το οποίο οι ελάχιστες και μέγιστες τιμές
+είναι:
+\begin{align*}
+\min\left[m(t)\right] &= -2\\
+\max\left[m(t)\right] &= +3
+\end{align*}
+
+Ποιά είναι η μέγιστη τιμή που μπορεί να πάρει ο συντελεστής \( k_a \) σύμφωνα με τη
+λιγότερο αυστηρή συνθήκη για την αποφυγή υπερδιαμόρφωσης;
+
+(Για \( s(t) = A_c(1+k_am(t)) \cos2πf_ct \))
+
+\subparagraph{Λύση}
+
+Θυμόμαστε τη μέθοδο αποδιαμόρφωσης του AM σήματος:
+\todo{Graph 84}
+
+Παρατηρούμε ότι ο φωρατής βγάζει ως έξοδο το \( A_c\left|1+k_a m(t)\right| \),
+ενώ η επιθυμητή έξοδος είναι η \( A_c\left(1+k_a m(t)\right) \). Αυτές οι δύο τιμές είναι
+ίσες μόνο όταν ισχύει \( 1+k_a m(t) \geq 0 
+\implies \boxed{k_am(t)} \geq -1 \), που είναι η συνθήκη για να μην υπάρχει
+υπερδιαμόρφωση.
+
+Η συνθήκη όμως που γνωρίζουμε από τη θεωρία είναι η εξής:
+\[
+\left| k_am(t) \right| \leq 1 \implies -1 \leq k_a m(t) \leq 1
+\]
+που περιλαμβάνει και το κομμάτι \( k_am(t) \leq 1 \), το οποίο όμως δεν επηρεάζει την
+ύπαρξη ή όχι της υπερδιαμόρφωσης.
+
+Επομένως, για εμάς πρέπει να ισχύει:
+\begin{align*}
+	1+\min\left[ k_am(t) \right] \geq 0 &\implies
+	k_a\min\left[ m(t) \right] \geq 1 \implies \\ &\implies \boxed{
+		k_a \leq \frac{1}{2}
+		}
+\end{align*}
 
 \end{document}
