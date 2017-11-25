@@ -2613,7 +2613,7 @@ coordinates {(-1.8,0) (0,1.7) (1.8,0)};
 
 \begin{tikzpicture}
 \draw (-6,0) -- (6,0);
-\draw (0,-1) -- (0,3);
+\draw (0,-1) -- (0,3) node[right] {$H(f)$};
 
 \def\fa{2+0.15}
 \def\fb{5.8}
@@ -2657,7 +2657,28 @@ plot[smooth,tension=1] coordinates {
 Συγκεκριμένα ότι το σήμα εξόδου μετά το φίλτρο δεν θα
 περιέχει μόνο την πάνω πλευρική ζώνη, αλλά και ένα μέρος της κάτω, οδηγώντας σε κάποια
 παραμόρφωση:
-\todo{Improvise a graph}
+\\*
+\begin{tikzpicture}[scale=1.2]
+\draw (-1,0) -- (5,0);
+\draw (0,-0.5) -- (0,3);
+
+\def\fa{2+0.15}
+\def\fb{5.8}
+\def\tz{1}
+\def\A{2}
+
+\fill[red!70!blue,opacity=.2,postaction={pattern=north east lines},xshift=2cm]
+plot[smooth,tension=0.5] coordinates {(0.15-1,0) (0.15-1+2.2/4,3/8) (0,2) } -- ++(0,-2);
+
+\draw[very thick,xshift=2cm,blue!70!black]
+plot[smooth,tension=0.5] coordinates {(0.15-1,0) (0.15-1+2.2/4,3/8) (0,2) } -- (1.5,0);
+
+
+\draw[dashed] (2,0) node[below] {$f_c$} -- ++(0,2);
+\draw[dashed,path fading=north] (\fa-\tz,0) -- ++(0,2);
+\draw (\fa-\tz,0) node[below,scale=.8] {$f_c-f_v$};
+\draw (2+1.5,0) node[below,scale=.8] {$f_c+w$};
+\end{tikzpicture}
 
 Ο διαμορφωτής μοιάζει κάπως έτσι:
 
@@ -2777,7 +2798,8 @@ plot[smooth,tension=1] coordinates {
 \end{tikzpicture}
 
 Ως \underline{άσκηση για το σπίτι} αφήνεται η γεωμετρική απόδειξη του ότι η απλή συμμετρία
-του φίλτρου σημαίνει ότι και το ύψος του αθροίσματος θα παραμένει σταθερό.
+του φίλτρου σημαίνει ότι και το ύψος του αθροίσματος θα παραμένει σταθερό (βλ. \textbf{\hyperref[sec:interesting-question]{Κεφάλαιο
+	 \ref*{sec:interesting-question}}}).
 
 Με βάση αυτήν τη διαμόρφωση λειτουργεί η αναλογική τηλεόραση.
 
@@ -2971,7 +2993,8 @@ plot[variable=\x,domain=4:5,samples=\gsamples]
 	+ \frac{1}{2}(1-k)A_cA_m\cos 2π (f_c-f_m)t \\
 	&= \frac{1}{2}kA_cA_m\left(
 	\cos2πf_ct\cos2πf_mt-\sin2πf_ct\sin2πf_mt
-	\right) + \frac{1}{2}(1-k)A_cA_m\left(
+	\right)
+	\\ &\hphantom{=} + \frac{1}{2}(1-k)A_cA_m\left(
 	\cos2πf_ct\cos2πf_mt+\sin2πf_ct\sin2πf_mt
 	\right)
 	\\ &=
@@ -3143,6 +3166,7 @@ k_as_{\mathrm{VSB}}(t) \), δηλαδή VSB μαζί όμως με το φέρο
 \todo{συμπλήρωση?}
 
 \subsection{Ένα μαθηματικό ερώτημα που τέθηκε παραπάνω}
+\label{sec:interesting-question}
 \begin{infobox}{}
 	Έστω \( H(f) \) είναι η χαρακτηριστική μεταφοράς πλάτους ενός ζωνοπερατού φίλτρου,
 	η οποία περιγράφεται \textbf{στις θετικές συχνότητες} από τη σχέση:

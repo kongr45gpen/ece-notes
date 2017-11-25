@@ -2833,8 +2833,25 @@ B &= \left. \frac{16}{5} \frac{s+5}{s+2} \right|_{s=-8} = \frac{8}{5}
 )
 \]
 
-Στην ουσία δηλαδή, το μηδανικό στη θέση \( -(2+Δ_z) \to -2 \) ακυρώνει τον πόλο \( s=-2 \):
-\todo{Graph 63}
+Στην ουσία δηλαδή, το μηδενικό στη θέση \( -(2+Δ_z) \to -2 \) ακυρώνει τον πόλο \( s=-2 \):
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (0,-0.5) -- (0,3);
+\draw[->] (0,0) -- (4.5,0) node[below] {t};
+
+\draw[dashed] (2.7,2.5) -- ++(0,-2.5) node[below] {0.5};
+
+\draw[thick,cyan!70!blue!70!black,mark position=0.5(a)]
+plot[domain=0:4,variable=\x,samples=18,smooth]
+(\x,{2.5/2*(2-exp(-4*\x)-exp(-2*\x))});
+\draw[cyan!70!blue!50!black,<-]
+([yshift=2pt]a) to[bend left] ++(0.5,0.5) node[above right] {$\frac{1}{s+2}$};
+\draw[ultra thick,cyan!50!blue!70!black,mark position=0.55(b)]
+plot[domain=0:4,variable=\x,samples=15,smooth]
+(\x,{2.5*(1-exp(-1.5*\x))});
+\draw[cyan!70!blue!50!black,<-]
+([yshift=-2pt]b) to[bend left=20] ++(0.5,-0.5) node[below,xshift=-4mm] {$\frac{s+2+\Delta x^{(0.1)}}{(s+2)(s+8)}$};
+\end{tikzpicture}
 
 Μπορούμε επίσης να υπολογίσουμε το χρόνο αποκατάστασης του συστήματος:
 \[
@@ -3353,7 +3370,45 @@ node[midway,below left] {-40 dB/dec};
 \]
 
 και συμπληρώνουμε το διάγραμμα Bode:
-\todo{Graph 59}
+
+\begin{tikzpicture}[scale=1.2]
+\draw[->] (0,-4) -- (0,1.5);
+\draw[->] (0,0) -- (4,0) node[below] {$\omega$};
+\draw[->] (0,-2) -- ++(4.5,0);
+
+%\draw[ultra thick,blue!50!cyan!70!black,mark position=0.67(c)] plot[variable=\x,domain=0:4,samples=18,smooth,yshift=-1pt] (\x,{-10*0.06*ln(1+    ( (exp(ln(5)*(\x-3)))/1  )^2     ) +10*0.02*ln(1+    ( (exp(ln(10/4)*(\x-1)))/1  )^2     ) });
+
+\draw[dashed] (2,0) -- ++(0,-3) -- ++(-2,0);
+
+\draw[blue!50!cyan!70!black]
+(2.25,0) -- ++(0,1);
+
+\draw[ultra thick,blue!50!cyan!70!black,mark position=0.67(c)]
+plot[smooth] coordinates {(0,0) (1.5,0.05) (2.5,0.1) (4.4,-1.8)};
+\draw[ultra thick,blue!50!cyan!70!black,mark position=0.67(c)]
+plot[smooth] coordinates {(0,0) (1.5,0.2) (2.5,0.5) (4.4,-1.75)};
+\draw[ultra thick,blue!50!cyan!70!black,mark position=0.67(c)]
+plot[smooth,tension=.6] coordinates {(0,0) (1.5,0.4) (2.5,0.9) (4.4,-1.7)};
+
+\filldraw[blue!50!cyan!70!black]
+(2.25,0) circle (1pt) node[below right,scale=.9] {$\omega_r$};
+
+\draw[ultra thick,orange!90!blue!80!black,opacity=1]
+(0,0) -- (2,0) -- ++(-40:3)
+node[midway,below left] {-40 dB/dec};
+
+\filldraw (2,0) circle (1pt) node[above] {$\omega_n$};
+
+\draw (current bounding box.north east) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=orange!90!blue!80!black] (a) {};
+\draw (a.south) ++(0,-0.5) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=blue!50!cyan!70!black] (b) {};
+\draw (a.east) ++(0.25,0) node[minimum width=2mm,minimum height=2mm,rectangle,draw,fill=magenta] (a) {};
+
+\draw (a.east) node[right] {προσεγγιστική απόκριση};
+\draw (b.east) node[right] {πραγματική απόκριση};
+
+\draw[ultra thick,magenta,name path=FR,yshift=-3cm] plot[smooth,variable=\x,domain=0:4.4,samples=18]
+(\x,{1.5*atan((-\x +2)*5)/180});
+\end{tikzpicture}
 
 Βέβαια η πραγματική συμπεριφορά εξαρτάται πάλι από το \( ζ \).
 
@@ -3409,6 +3464,33 @@ H(s) = \frac{G}{s^n}\frac{(τ_js+1)\cdots}{(t_is+1)\cdots}
 Επίσης, αν έχουμε ένα σύστημα \( \frac{1}{τs+1} \), και το αντιστρέψουμε, \(\frac{τs+1}{1} \),
 	η έξοδος θα είναι αντίθετη, από την ιδιότητα του λογαρίθμου.
 	
+\begin{tikzpicture}[scale=0.89]
+\draw[->] (0,-3) -- (0,1.5);
+\draw[->] (0,0) -- (4.5,0) node[below] {$\omega$};
+\draw[->] (0,-2) -- ++(4.5,0);
+
+\draw[ultra thick,blue!50!cyan!70!black,mark position=0.67(c)]
+plot[variable=\x,domain=0:4,samples=18,smooth]
+(\x,{-10*0.02*ln(1+    ( (exp(ln(10)*(\x-2.2)))/1  )^2     )});
+\draw[very thick,blue!50!cyan!50!green!70!black,name path=FR,yshift=-2.7cm] plot[smooth,variable=\x,domain=0:4.4,samples=18]
+(\x,{1*atan((-\x +2)*5)/180});
+
+\draw[very thick,>->] (5,-1) -- ++(0.7,0);
+
+\begin{scope}[xshift=6cm]
+\draw[->] (0,-3) -- (0,1.5);
+\draw[->] (0,0) -- (4.5,0) node[below] {$\omega$};
+\draw[->] (0,-2) -- ++(4.5,0);
+
+\draw[ultra thick,blue!50!cyan!70!black,mark position=0.67(c)]
+plot[variable=\x,domain=0:4,samples=18,smooth]
+(\x,{10*0.02*ln(1+    ( (exp(ln(10)*(\x-2.2)))/1  )^2     )});
+\draw[very thick,blue!50!cyan!50!green!70!black,name path=FR,yshift=-1.4cm] plot[smooth,variable=\x,domain=0:4.4,samples=18]
+(\x,{-1*atan((-\x +2)*5)/180});
+\end{scope}
+
+\end{tikzpicture}
+	
 \paragraph{}
 Για το απλό σύστημα \( \displaystyle H(s)=\frac{G}{s} \), έχουμε:
 \begin{align*}
@@ -3417,7 +3499,21 @@ H(s) = \frac{G}{s^n}\frac{(τ_js+1)\cdots}{(t_is+1)\cdots}
 \end{align*}
 
 και το διάγραμμα Bode γίνεται (σε συνδυασμό με το \( H(s) = Gs \)):
-\todo{Graph 62}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (0,-3) -- (0,1.5);
+\draw[->] (0,0) node[left] {0 dB} -- (4.5,0) node[below] {$\omega$};
+\draw[->] (0,-1.5) -- ++(4.5,0);
+
+\draw[ultra thick,orange!90!blue!80!black]
+(0,1.4) -- (4,-0.7) node[pos=.3,above,sloped] {-20 dB/dec};
+\draw[ultra thick,orange!50!blue!80!black]
+(0,-0.7) -- (4,1.4) node[pos=.08,below right] {+20 dB/dec};
+\draw[ultra thick,magenta,yshift=-2.4cm] (0,0) node[left] {$\ang{90}$} -- ++(4.5,0);
+
+\filldraw (2.68,0) circle(1pt) node[above right] {$G$};
+\filldraw (1.34,0) circle(1pt) node[below right] {$\frac{1}{G}$};
+\end{tikzpicture}
 
 Γενικά, μπορούμε να συνθέσουμε οποιαδήποτε συνάρτηση μεταφοράς με τα παρακάτω στοιχεία:
 \begin{itemize}

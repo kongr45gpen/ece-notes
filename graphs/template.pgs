@@ -18,6 +18,7 @@
 \usepackage[greek]{babel}
 %\usepackage{color}
 \usepackage[active,pdftex,tightpage]{preview}
+\usepackage[outline]{contour}
 
 \usepackage{/home/kongr45gpen/ece/notes/libs/circuitikz}
 
