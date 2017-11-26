@@ -2861,7 +2861,20 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 
 \paragraph{Άσκηση}
 Ποιό από τα παρακάτω συστήματα έχει τη βηματική απόκριση που φαίνεται στο σχήμα;
-\todo{Graph 64}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (0,-0.5) -- (0,3);
+\draw[->] (0,0) -- (6,0) node[below] {t};
+
+\draw[dashed] (0,2) -- ++(3,0);
+
+\draw[ultra thick,cyan!50!blue!70!black]
+plot[domain=0:6,variable=\x,samples=20,smooth]
+(\x,{1+1*(1-exp(-2*\x))});
+
+\filldraw (0,1) circle(1pt) node[left] {$2$};
+\filldraw (0,2) circle(1pt) node[left] {$4$};
+\end{tikzpicture}
 
 \begin{enumlatin}
 	\item \( \displaystyle \frac{12}{s+2} \)
@@ -2883,9 +2896,21 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 Άρα η σωστή απάντηση είναι η \textbf{(β)}.
 
 \paragraph{Άσκηση}
-Ποιά είναι η σωστή απάντηση;
-\todo{Graph 65}
-\todo{EXPLAIN!}
+Ποιό από τα παρακάτω συστήματα έχει τη βηματική απόκριση που φαίνεται στο σχήμα;
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (0,-0.5) -- (0,3);
+\draw[->] (0,0) -- (6,0) node[below] {t};
+
+\draw[dashed] (0,2) -- ++(3,0);
+
+\draw[ultra thick,cyan!50!blue!70!black]
+plot[domain=0:6,variable=\x,samples=20,smooth]
+(\x,{0.75+1.25*(1-exp(-\x))});
+
+\filldraw (0,0.75) circle(1pt) node[left] {$1$};
+\filldraw (0,2) circle(1pt) node[left] {$2$};
+\end{tikzpicture}
 
 \begin{enumlatin}
 	\item \( \displaystyle \frac{4}{s+2} \)
@@ -2894,10 +2919,23 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 	\item \( \displaystyle \frac{s+4}{s+2} \)
 \end{enumlatin}
 
+Αντίστοιχα με παραπάνω, υπολογίζουμε αρχική και τελική τιμή για κάθε σύστημα. Η σωστή απάντηση είναι η
+\textbf{(δ)}, αφού ισχύει \( \lim_{s\to \infty} \frac{s+4}{s+2} = 1 \) και \( \lim_{s\to 0} \frac{s+4}{s+2} = 2 \).
+
 \paragraph{Άσκηση}
-Ποιά συνάρτηση μοιάζει με την παραπάνω απόκριση;
-\todo{Graph 66}
-\todo{EXPLAIN!}
+Ποιά συνάρτηση μοιάζει με την παρακάτω απόκριση;
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (0,-0.5) -- (0,4);
+\draw[->] (0,0) -- (5,0) node[below] {t};
+
+\draw[ultra thick,cyan!50!blue!70!black,mark position=0.9(b),mark position=0.57(a)]
+plot[domain=0:5,variable=\x,samples=14,smooth]
+(\x,{3.5*(1-exp(-0.8*\x))});
+
+\draw[dashed] (a |- 0,0) node[circle,fill,inner sep=1pt] {} node[below] {$0.6$} |- (a -| 0,0) node[circle,fill,inner sep=1pt] {} node[left] {$9$};
+\draw[dashed] (b |- 0,0) node[circle,fill,inner sep=1pt] {} node[below] {$1.2$} |- (b -| 0,0) node[circle,fill,inner sep=1pt] {} node[left] {$10$};
+\end{tikzpicture}
 
 \begin{enumlatin}
     \item \( \displaystyle \frac{10}{s+5} \)
@@ -2906,7 +2944,14 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 	\item \( \displaystyle \frac{50}{s+5} \)
 \end{enumlatin}
 
-Η σωστή απάντηση είναι η \textbf{(δ)}.
+Η τελική τιμή της συνάρτησης είναι το 10, επομένως οι απαντήσεις (α) και (γ) απορρίπτονται, αφού το όριό τους στο \( \infty \)
+δεν είναι 10.
+
+Για να βρούμε τη σωστή απάντηση, μπορούμε να βρούμε τον αντίστροφο μετασχηματισμό Laplace των εναπομείναντων συναρτήσεων, ή
+πιο εύκολα, να παρατηρήσουμε ότι στα \( \SI{1.2}{s} \) η συνάρτηση φτάνει πολύ κοντά στην τελική της τιμή, δηλαδή
+για τη σταθερά χρόνου ισχύει
+\( 4τ \approx 1.2 \implies τ \approx 0.3 \). Αυτή η σταθερά χρόνου αντιστοιχεί σε μια συνάρτηση μεταφοράς \( \frac{α}{0.3s+1}
+\approx \frac{α'}{s+3.33} \). Άρα η σωστή απάντηση είναι η \textbf{(δ)}.
 
 \paragraph{Άσκηση}
 Ποιό από τα παρακάτω συστήματα έχει τη μεγαλύτερη ταχύτητα ανόδου;
@@ -2925,10 +2970,46 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 Η ταχύτητα ανόδου εξαρτάται από τον χρόνο ανόδου.
 
 Θυμόμαστε επίσης ότι για μεγαλύτερο \( \omega_d \) ή μηδενικό \( z \) κοντά στον
-φανταστικό άξονα, έχουμε μικρότερο χρόνο ανόδου \( t_r \),
-ενώ ο χρόνος ανόδου ορίζεται ως ο χρόνος που απαιτείται μέχρι η απόκριση να φτάσει από
-το 10\% ως το 90\%:
-\todo{Graph 68}
+φανταστικό άξονα, έχουμε μικρότερο χρόνο ανόδου \( t_{r_1} \),
+ενώ ο χρόνος ανόδου \( t_{r_1} \) ορίζεται ως ο χρόνος που απαιτείται μέχρι η απόκριση να φτάσει από
+το 10\% ως το 90\% (προσοχή στη διαφορά από το χρόνο \( t_r\) μέχρι την πρώτη φορά που φτάνουμε στην επιθυμητή τιμή):
+
+\begin{tikzpicture}[scale=1.4]
+\draw[->] (-0.5,0) -- (5,0) node[below right] {$t$};
+\draw[->] (0,-0.5) -- (0,4) node[below left] {$y(t)$};
+
+\draw[thick,dashed] (0,2) node[left] {$y_\mathrm{ss}$} -- ++(6,0);
+
+\draw[dashed] (0.1,-0.1) |- (0,0.2) node[left,scale=.7] {$0.1y_{\mathrm{ss}}$};
+\draw[dashed] (0.4,-0.1) |- (0,1.8) node[left,scale=.7] {$0.9y_{\mathrm{ss}}$};
+
+\draw[ultra thick,blue,opacity=.7]
+plot [variable=\t,domain=0:6,samples=\gsamples]
+(\t,{2*(1-1*exp(-0.8*\t)*cos(3.5*\t r))});
+
+\draw[very thick,cyan,opacity=.2]
+plot [variable=\t,domain=0:6,samples=\gsamples]
+(\t,{2*(1+1*exp(-0.8*\t))});
+\draw[very thick,cyan,opacity=.2]
+plot [variable=\t,domain=0:6,samples=\gsamples]
+(\t,{2*(1-1*exp(-0.8*\t))});
+
+\draw[dashed] (0.84,0) node[below,xshift=2mm] {$t_p$}-- ++(0,3)
+-- (0,3) node[left] {$M_p$};
+\draw[dashed] (0.44,0) node[below] {$t_r$} -- ++(0,2);
+
+\filldraw[thick,draw=orange,draw opacity=.5,fill=white!90!orange,fill opacity=.6]
+(0.84,3) circle (1.7pt);
+\filldraw[thick,draw=orange!50!green,draw opacity=.5,fill=orange!50!green!10!white,fill opacity=.6]
+(0.44,2) circle (1.7pt);
+
+\draw[dashed] (3.3,0) node[below] {$t_s\approx\frac{4}{τ}=\frac{4}{ζ\omega_n}$} -- ++(0,2);
+
+\draw[gray] ([yshift=-1mm]0.1,0) -- ++(0,-0.6) node (a) {};
+\draw[gray] ([yshift=-1mm]0.4,0) -- ++(0,-0.6) node (b) {};
+
+\draw[<->] ([xshift=1pt]a.north) -- ([xshift=-1pt]b.north) node[below,midway,scale=.7] {$t_{r_1}$};
+\end{tikzpicture}
 
 Η σωστή απάντηση είναι η \textbf{(δ)}, η οποία έχει το μεγαλύτερο \( \omega_d \) και το
 μηδενικό \( z=-3 \) που είναι κοντινότερο στον άξονα.
@@ -3535,7 +3616,31 @@ plot[variable=\x,domain=0:4,samples=18,smooth]
 	\( \phi_0 = ν\cdot 90\degree \)
 	
 	Και το αντίστοιχο διάγραμμα Bode είναι:
-	\todo{Graph 69}
+	
+	\begin{tikzpicture}[scale=1]
+	\draw[->] (0,-3) -- (0,3.5) node[left,scale=1.2] {$H_0$};
+	\draw[->] (0,0) -- (4.5,0) node[above] {$\omega$};
+	\draw[->] (0,-2.5) -- ++(4.5,0) node[above] {$\omega$};
+	
+	\draw[ultra thick,orange!90!blue!80!black]
+	(0,0) -- (4.5,3/4*4.5);
+	
+	\draw (0,2*3/4) node[left] (a) {};
+	\draw (0,3*3/4) node[left] (b) {};
+	\draw[<->] (a) -- (b) node[midway,left] {20 dB};
+	
+	
+	\foreach \x in {1,2,...,4} {
+		\pgfmathsetmacro\result{10^\x/10}
+		\draw (\x,-0.1) node[below] {$\pgfmathprintnumber\result$} -- ++(0,0.2);
+		\draw[dashed] (\x,0) |- (0,\x*3/4);
+	}
+	\draw (0,-0.1) node[below right] {$0.1$};
+	
+	\draw[ultra thick,magenta]
+	(0,-1.7) -- ++(4.5,0);
+	\end{tikzpicture}
+	
 	όπου παρατηρούμε ότι έχουμε αύξηση της απόκρισης κατά 20 dB ανά δεκάδα.
 	
 	Η ευθεία αυτή θα έχει αντίθετη κλίση αν το \( H_0(s) \) βρίσκεται στον παρονομαστή
@@ -3554,7 +3659,42 @@ plot[variable=\x,domain=0:4,samples=18,smooth]
 	\end{cases} \)
 	
 	Άρα η απόκριση γίνεται:
-	\todo{Graph 70}
+	
+	\begin{tikzpicture}[scale=1]
+	\draw[->] (0,-3) -- (0,3.5) node[left,scale=1.2] {$H_1$};
+	\draw[->] (0,0) -- (4.5,0) node[above] {$\omega$};
+	\draw[->] (0,-2.7) -- ++(4.5,0) node[above] {$\omega$};
+	
+	\draw[gray,dashed] (2,-2.7) -- (2,0);
+	
+	\draw[ultra thick,orange!90!blue!80!black]
+	(0,0) -- (2,0) -- (4,2) node[orange!90!blue!40!black,above] {για $ρ=10$};
+	
+	\draw[dashed] (3,0) |- (0,1) node[left] {20 dB};
+	
+	\foreach \x in {1,2,...,4} {
+		\pgfmathsetmacro\result{10^\x/10}
+		\draw (\x,-0.1) node[below] {$\pgfmathprintnumber\result$} -- ++(0,0.2);
+		%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	}
+	\draw (0,-0.1) node[below right] {$0.1$};
+	
+	\draw[ultra thick,magenta,yshift=-2.7cm]
+	(0,0) -- (1,0) -- (3,1.5) -- ++(1.2,0);
+	
+	\foreach \x in {1,2,...,3} {
+		\pgfmathsetmacro\result{10^\x/10}
+		\draw (\x,-2.7-0.1) node[below] {$\pgfmathprintnumber\result$} -- ++(0,0.2);
+		%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	}
+	
+	\draw[dashed,yshift=-2.7cm] (2,0) |- (0,1.5/2) node[left] {$\ang{45}$};
+	\draw[dashed,yshift=-2.7cm] (3,0) |- (0,1.5) node[left] {$\ang{90}$};
+	\draw[yshift=-2.7cm] node[left] {$\ang{0}$};
+	
+	\draw[magenta!50!black,fill=white,opacity=.8,fill opacity=.3] (2,-2.7+1.5/2) circle(3pt);
+	\end{tikzpicture}
+	
 	\item \( 
 	\displaystyle H_2 = \frac{s^2}{\omega_n^2} + \frac{2J}{\omega_n}s+1
 	 \) και αποδεικνύεται ότι:
@@ -3572,25 +3712,62 @@ plot[variable=\x,domain=0:4,samples=18,smooth]
 	 	\end{cases}
 	 \end{align*}
 	 
-	 \todo{Graph 71}
+	 \begin{tikzpicture}[scale=1]
+	 \draw[->] (0,-3.9) -- (0,3.5) node[left,scale=1.2] {$H_2$};
+	 \draw[->] (0,0) -- (4.5,0) node[above] {$\omega$};
+	 \draw[->] (0,-3.6) -- ++(4.5,0) node[above] {$\omega$};
+	 
+	 \draw[gray,dashed] (2,-3.6) -- (2,0);
+	 
+	 \draw[ultra thick,orange!90!blue!80!black]
+	 (0,0) -- (2,0) -- (4,4);
+	 
+	 \draw[dashed] (3,0) |- (0,2) node[left] {40 dB};
+	 
+	 \foreach \x in {1,2,...,4} {
+	 	\pgfmathsetmacro\result{10^\x/10}
+	 	\draw (\x,-0.1) node[below] {$\pgfmathprintnumber\result$} -- ++(0,0.2);
+	 	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	 }
+	 \draw (0,-0.1) node[below right] {$0.1$};
+	 
+	 \draw[ultra thick,magenta,yshift=-3.6cm]
+	 (0,0) -- (1,0) -- (3,2.2) -- ++(1.2,0);
+	 
+	 \foreach \x in {1,2,...,3} {
+	 	\pgfmathsetmacro\result{10^\x/10}
+	 	\draw (\x,-3.6-0.1) node[below] {$\pgfmathprintnumber\result$} -- ++(0,0.2);
+	 	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	 }
+	 
+	 \draw[dashed,yshift=-3.6cm] (2,0) |- (0,2.2/2) node[left] {$\ang{90}$};
+	 \draw[dashed,yshift=-3.6cm] (3,0) |- (0,2.2) node[left] {$\ang{180}$};
+	 \draw[yshift=-3.6cm] node[left] {$\ang{0}$};
+	 
+	 \draw[magenta!50!black,fill=white,opacity=.8,fill opacity=.3] (2,-3.6+2.2/2) circle(3pt);
+	 \end{tikzpicture}
 \end{itemize}
 
 \subsubsection{Ασκήσεις}
-\paragraph{Παράδειγμα}
-Έστω η συνάρτηση μεταφοράς \( \displaystyle\frac{(s+3)}{(s+1)(s+7)} \). Πώς μπορούμε να
-κατασκευάσουμε το διάγραμμα Bode της;
 
-\subparagraph{Λύση}
-Αρχικά προσπαθώ να τη μετασχηματίσω σε συνδυασμό των απλών μορφών που παρουσιάστηκαν παραπάνω:
-\begin{align*}
+\begin{comment}
+	\paragraph{Παράδειγμα}
+	Έστω η συνάρτηση μεταφοράς \( \displaystyle\frac{(s+3)}{(s+1)(s+7)} \). Πώς μπορούμε να
+	κατασκευάσουμε το διάγραμμα Bode της;
+	
+	\subparagraph{Λύση}
+	Αρχικά προσπαθώ να τη μετασχηματίσω σε συνδυασμό των απλών μορφών που παρουσιάστηκαν παραπάνω:
+	\begin{align*}
 	\frac{(s+3)}{(s+1)(s+7)} &=
 	\frac{3\left(\frac{s}{3}+1\right)}{\left(\frac{s}{1} + 1\right)\cdot 7\left(\frac{s}{7} + 1\right)}
 	\\ &= \frac{3}{7} \frac{H_{1a}}{H_{1b}\cdot H_{1c}}
 	\intertext{όπου οι συναρτήσεις \( H_1 \) είναι της μορφής \( \left(\frac{s}{ρ}+1\right)
-		 \), με \( p_a=3 \), \( p_b=1 \) και \( p_c=7 \)}
+	\), με \( p_a=3 \), \( p_b=1 \) και \( p_c=7 \)}
 	&= \frac{3}{7}\cdot \left( \frac{s}{3}+1 \right)
 	\cdot \left(\frac{1}{\frac{s}{7}+1}\right)\cdot \frac{1}{s+1}
-\end{align*}
+	\end{align*}
+\end{comment}
+
 \todo{continue or remove}
 
 \paragraph{Άσκηση}
@@ -3616,7 +3793,35 @@ H(s) = \underset{\substack{\downarrow\\H_0}}{(10)}
 	\item \( |G_1|_{\mathrm{dB}} = 20\log10 +\cancelto{0}{20\cdot 0 \cdot\log \omega }  \)
 	\\ \( φ =\frac{νπ}{2} = 0 \)
 	
-	\todo{Graph 72}
+	
+	\begin{tikzpicture}[scale=1,xscale=0.8]
+	\def\phasedown{-1.5}
+	
+	\draw[->] (0,\phasedown-0.3) -- (0,3);
+	\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+	
+	\draw[ultra thick,orange!90!blue!80!black]
+	(0,1.5) -- ++(4,0);
+	
+	\draw[dashed] (0,1.5) node[left] {20 dB};
+	
+	%\foreach \x in {1,2,...,3} {
+	%	\pgfmathsetmacro\result{10^\x/10}
+	%	\draw (\x,-3.6-0.1) node[below] {$\pgfmathprintnumber\result$} -- ++(0,0.2);
+	%	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	%}
+	
+	\begin{scope}[yshift=\phasedown cm]
+	\draw[->] (0,0) -- ++(4.5,0);
+	
+	%\draw[dashed] (2,0) |- (0,2.2/2) node[left] {$\ang{90}$};
+	%\draw[dashed] (3,0) |- (0,2.2) node[left] {$\ang{180}$};
+	\draw node[left] {$\ang{0}$};
+	
+	\draw[ultra thick,magenta,path fading=east] (0,0) -- ++(4,0);
+	\end{scope}
+	\end{tikzpicture}
+	
 	\item \( |G_3|_{\mathrm{dB}} \approx \begin{cases}
     0 \qquad & \text{για } \omega < 1 \\
     20\log\omega - \cancelto{0}{20\log 1} &\text{για } \omega > 1
