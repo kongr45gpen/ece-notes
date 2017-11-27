@@ -4360,7 +4360,6 @@ H(s) = 10 \frac{1}{\left(\frac{s}{4}+1\right)^2\left(\frac{s}{40}+1\right)}
 Αν το τοποθετήσουμε σε κλειστό βρόγχο:
 
 \begin{tikzpicture}
-
 \draw (2,0) node[rectangle,draw] (h) {$\displaystyle 10\frac{1}{\left(\frac{s}{4}+1\right)^2\left(\frac{s}{40}+1\right)}$};
 \draw (h.west) ++(-1,0) node[circle,draw,minimum size=5mm] (mix) {};
 
@@ -4368,7 +4367,6 @@ H(s) = 10 \frac{1}{\left(\frac{s}{4}+1\right)^2\left(\frac{s}{40}+1\right)}
 \draw[->] (mix) -- (h);
 \draw[->] (h.east) -- ++(2,0) node[midway] (fb) {};
 \draw[->] (fb.center) -- ++(0,-1) -| (mix);
-
 \end{tikzpicture}
 
 Το σύστημα έχει τύπο 0 (αφού δεν υπάρχουν ολοκληρωτές), άρα και πεπερασμένο σφάλμα θέσης:
@@ -5003,7 +5001,7 @@ Nyquist της:
 Στο παραπάνω διάγραμμα, το περιθώριο κέρδους εκφράζεται από τον αριθμό με τον
 οποίο μπορούμε να πολλαπλασιάσουμε το κέρδος της συνάρτησης στο σημείο τομής με τον
 πραγματικό άξονα μέχρι να συναντήσουμε το κρίσιμο σημείο, ενώ το περιθώριο
-φάσης εκφράζει το πόσο μπορούμε να περιστρέψουμε τη φάση της συνάρτησηςγια να
+φάσης εκφράζει το πόσο μπορούμε να περιστρέψουμε τη φάση της συνάρτησης για να
 έχουμε ευστάθεια, και αντιστοιχεί στη γωνία \( \phi_M \).
 
 \paragraph{Παράδειγμα}
@@ -5161,7 +5159,212 @@ N = Z-P \implies \boxed{Z = N+P = 2}
 με το -1, και θα υπάρχει αστάθεια. Στη συγκεκριμένη άσκηση βέβαια, όσο κι αν μεγαλώσουμε
 την καμπύλη, αυτή δεν πρόκειται να φτάσει στο -1.
 
-\textit{???}
+\paragraph{Άσκηση}
+Δίνεται το διάγραμμα Bode της \( A(s) \):
+\todo{Graph}
+Ποιό είναι το περιθώριο φάσης;
+
+\subparagraph{Λύση}
+\todo{Graph}
+Αν \( \omega_c \) είναι η συχνότητα στην οποία η συνάρτηση έχει μηδενικό κέρδος, θα έχουμε:
+\[
+\phi_M = \measuredangle A(j\omega_c) - (\ang{-180}) = \ang{180} + \measuredangle A(j\omega_c)
+\]
+
+Από το διάγραμμα παρατηρούμε ότι \( \measuredangle A(j\omega_c) \in (\ang{-102},\ \ang{-92}) \), ή, προσεγγιστικά,
+\( \measuredangle A(j\omega_c) = \ang{-98} \).
+
+Άρα:
+\[
+\phi_M = \ang{180} - \ang{98} = \ang{102}
+\]
+
+\paragraph{Άσκηση}
+Δίνεται το διάγραμμα Bode της \( A(s) \):
+\todo{Graph}
+
+Είναι το σύστημα ευσταθές;
+
+\subparagraph{Λύση}
+Για το \textbf{περιθώριο φάσης} ισχύει:
+\[
+\phi_M = \ang{180} + \measuredangle A(j\omega_c)
+\]
+
+Όμως για τη γωνία \( \measuredangle A(j\omega_c) \) παρατηρούμε από το διάγραμμα ότι ισχύει \( \measuredangle A(j\omega_c) < \ang{-180} \). Επομένως:
+\[
+\phi_M < 0
+\]
+άρα το σύστημα είναι \textit{ασταθές}.
+
+\paragraph{Άσκηση}
+Ποιό είναι το περιθώριο κέρδους για το παρακάτω διάγραμμα Bode;
+\todo{Graph}
+
+\subparagraph{Λύση}
+Για το περιθώριο κέρδους ισχύει:
+\[
+g_m = 0 - \left|A(\omega_1)\right|_{\mathrm{dB}}
+\]
+όμως για τη συχνότητα \( \omega_1 \) στην οποία η φάση είναι \( \ang{-180} \) ισχύει περίπου \( \left|A(\omega_1)\right|_{\mathrm{dB}} = \SI{-45}{\decibel} \), άρα:
+\[
+g_m = 0 - (-45) = \SI{45}{\decibel}
+\]
+
+\paragraph{Άσκηση}
+Να εξεταστεί η ευστάθεια του συστήματος με χαρακτηριστική συνάρτηση:
+\[
+s^4+8s^3+18s^2+16s+5=0
+\]
+
+\subparagraph{Λύση}
+Εδώ μπορούμε να εφαρμόσουμε το κριτήριο ευστάθειας Routh:
+
+\[
+\begin{array}{r|rrc}
+s^4 & 1 & 18 & 5\\
+s^3 & 8 & 16 & 0\\
+s^2 & \frac{8\cdot18-1\cdot16}{8} = 16 & \frac{8\cdot5-1\cdot0}{8} = 5\\
+s^1 & 13.5 & 0 \\
+s^0 & 5
+\end{array}
+\]
+
+Εφ' όσον δεν υπάρχει αλλαγή προσήμου στην πρώτη στήλη, το σύστημα είναι ευσταθές.
+
+\paragraph{Άσκηση}
+Να εξεταστεί η ευστάθεια του συστήματος με χαρακτηριστική εξίσωση:
+\[
+s^5+s^4+2s^3+2s^2+3s+5=0
+\]
+
+\subparagraph{Λύση}
+Εφαρμόζουμε κριτήριο Routh:
+\begin{multicols*}{2}
+	\[
+	\begin{array}{r|ccc}
+	s^5 & \textcolor{green!50!black}{1} & 2 & 3 \\
+	s^4 & \textcolor{green!50!black}{1} & 2 & 5\\
+	s^3 & \textcolor{green!50!black}{ε} & -2 & \\
+	s^2 & \textcolor{green!50!black}{\frac{2ε+2}{ε}} & 5 &\\
+	s^1 & \textcolor{red!50!black}{\frac{4ε-4-5ε^2}{2ε+2}} & 0 \\
+	s^0 & \textcolor{green!50!black}{5}
+	\end{array}
+	\]
+	\columnbreak
+
+	Στην 3η σειρά προκύπτει 0. Για αυτό θεωρούμε έναν αριθμό \( ε>0 \) αλλά πολύ μικρό. Όταν προκύπτει 0 στην πρώτη θέση στήλης,
+	τότε έχουμε πόλο στον φανταστικό άξονα ή στο δεξί ημιεπίπεδο.
+	
+	Ο πρώτος όρος της προτελευταίας γραμμής είναι αρνητικός, αφού:
+	\[
+	\lim_{\epsilon\to0^+} \frac{-4ε-4-5ε^2}{2ε+2} = -2
+	\]
+	
+	Οι υπόλοιποι όροι της πρώτης στήλης είναι θετικοί.
+\end{multicols*}
+
+Αφού έχουμε 2 εναλλαγές προσήμου στην 1\textsuperscript{η} στήλη, έχουμε 2 ρίζες στο δεξί ημιεπίπεδο, και το σύστημα είναι ασταθές.
+
+\paragraph{Άσκηση}
+Έστω το σύστημα:
+
+\begin{tikzpicture}
+\draw (2,0) node[rectangle,draw] (h) {$\displaystyle \frac{k}{s(s^2+s+1)(s+4)}$};
+\draw (h.west) ++(-1,0) node[circle,draw,minimum size=5mm] (mix) {};
+
+\draw[<-] (mix) -- ++(-1,0);
+\draw[->] (mix) -- (h);
+\draw[->] (h.east) -- ++(2,0) node[midway] (fb) {};
+\draw[->] (fb.center) -- ++(0,-1) -| (mix);
+\end{tikzpicture}
+
+Είναι το σύστημα ευσταθές για κάποιο εύρος \( k \), και ποιό είναι αυτό;
+
+\subparagraph{Λύση}
+Αρχικά υπολογίζουμε τη συνάρτηση μεταφοράς του συστήματος (αν θεωρήσουμε ότι η συνάρτηση μεταφοράς \textit{ανοιχτού} βρόχου είναι
+\(G\)):
+\[
+G_{\text{ΣΜΚΒ}}(s) = \frac{G}{1+G} = \frac{k}{s(s^2+s+1)(s+4)+k} = \frac{k}{s^4+5s^3+5s^2+4s+k}
+\]
+
+Και εφρμόζουμε το κριτήριο Routh:
+\[
+\begin{array}{r|ccc}
+s^4&1&5&k\\
+s^3&5&4&0\\
+s^2&\frac{21}{5}&\\
+s^1&\frac{84-25k}{21} & 0\\
+s^0&k
+\end{array}
+\]
+
+Για να είναι ευσταθές το σύστημα θέλουμε να μην υπάρχει καμία εναλλαγή προσήμου στην πρώτη στήλη, δηλαδή:
+\[
+\left.
+\begin{aligned}
+84-25k > 0 \implies k &< 3.36 \\
+k&>0
+\end{aligned}
+\right\rbrace \implies 0 < k < 3.36
+\]
+
+\paragraph{Άσκηση}
+Δίνεται το παρακάτω σύστημα:
+
+\begin{tikzpicture}
+	\tikzstyle{transfer}=[rectangle,draw,minimum height=9mm]
+	\draw (2,0) node[transfer] (h1) {$\displaystyle \frac{5}{s(s+2)}$};
+	\draw (0,0) node[circle,draw,minimum size=5mm] (mix) {};
+	\draw (h1.south) ++(0,-1) node[transfer] (h2) {$\displaystyle \frac{4}{s+5}$};
+	
+	\draw[<-] (mix) -- ++(-1,0);
+	\draw[->] (mix) -- (h1);
+	\draw[->] (h1.east) -- +(1,0) node[midway] (fb) {};
+	\draw[->] (fb.center) |- (h2) -| (mix);
+	\draw (mix.south);
+\end{tikzpicture}
+
+Να προσδιοριστούν το περιθώριο φάσης και το περιθώριο κέρδους.
+
+\subparagraph{Λύση}
+\begin{enumgreekparen}
+	\item Για το περιθώριο φάσης βρίσκουμε τη συνάρτηση μεταφοράς ανοιχτού βρόχου και σχεδιάζουμε το διάγραμμα Bode:
+	\[
+	G(s) = \frac{5}{s(s+2)}\frac{4}{s+5} = \frac{20}{s(s+2)(s+5)}
+	\]
+	
+	\todo{Graph}
+	
+	Βρίσκουμε την \( \omega_c \) ώστε \( \left|A(j\omega_c)\right| = 1 \):
+	\[
+	G(s) = \frac{20}{j\omega\left(\frac{j\omega}{2}+1\right)\left(\frac{j\omega}{5}+1\right)\cdot 2\cdot5}
+	\]
+	
+	\begin{enumroman}
+		\item Για \( \omega_c \ll 2\):
+		\[
+		G(s) \approx \frac{20}{2\cdot 5 j\omega}
+		\]
+		Και \( |G| = 1 \implies \omega_c = 2 \), άτοπο αφού υποθέσαμε ότι \( \omega_c \ll 2 \).
+		
+		\item
+		Για \( 2<\omega_c<5 \):
+		\[
+		G(s) \approx \frac{20}{2.5(j\omega)\left(\frac{j\omega}{2}+1\right)}
+		\]
+		
+		Λύνουμε την εξίσωση \( G(s) = 1 \) και έχουμε:
+		\begin{align*}
+			\left| G(s) \right| &= 1 \implies \\
+			\left|\frac{20}{5s(s+2)}\right| &= 1 \implies \\
+			\frac{4}{\left| -\omega^2 + 2j\omega \right|} &= 1 \implies \\
+			16 &= \left|-\omega^2+2j\omega\right|^2 \implies \\
+			\omega^4+4\omega^2&=16 \implies \underline{\omega_c = 1.57}
+		\end{align*}
+	\end{enumroman}
+\end{enumgreekparen}
+
 \todo{MORE}
 
 \section{Γεωμετρικός τόπος ριζών}
