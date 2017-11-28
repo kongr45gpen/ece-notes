@@ -5349,7 +5349,7 @@ k&>0
 		Και \( |G| = 1 \implies \omega_c = 2 \), άτοπο αφού υποθέσαμε ότι \( \omega_c \ll 2 \).
 		
 		\item
-		Για \( 2<\omega_c<5 \):
+		Για \( \omega_c \ll 5 \):
 		\[
 		G(s) \approx \frac{20}{2.5(j\omega)\left(\frac{j\omega}{2}+1\right)}
 		\]
@@ -5363,9 +5363,209 @@ k&>0
 			\omega^4+4\omega^2&=16 \implies \underline{\omega_c = 1.57}
 		\end{align*}
 	\end{enumroman}
+
+	Επομένως, για \( \omega_c = \SI{1.57}{\radian/\second} \), έχουμε (για τον κάθε πόλο):
+	\[
+	\left.
+	\begin{aligned}
+	\measuredangle \frac{1}{s} &= \ang{-90} \\
+	\measuredangle \frac{1}{s+2} &= \measuredangle \frac{1}{1.57j+2}
+	= \tan^{-1} \left(\frac{1.57}{2}\right) = \ang{-38} \\
+	\measuredangle \frac{1}{s+5} &= \ang{-17}
+	\end{aligned}
+	\right\rbrace \xRightarrow{+} \measuredangle A(j\omega_c) = \ang{-145}
+	\]
+	
+	Άρα τελικά:
+	\[
+	\phi_M = \measuredangle A(j\omega_c) - (\ang{-180}) = \ang{35}
+	\]
+	
+	Μάλιστα, μπορούμε να σχεδιάσουμε αναλυτικά το προσεγγιστικό διάγραμμα Bode, υπολογίζοντας την τιμή για \( \omega=1 \),
+	η οποία προκύπτει \( 20\log 2 \si{\decibel} \):
+	\todo{Graph}
+	
+	Συγκεκριμένα, έχουμε:
+	\[
+	\begin{cases}
+	\text{για } \omega \in [1,2] \implies &\quad |A|_{\mathrm{dB}} = 20\log2 - 20\log(\omega) \\
+	\text{για } \omega \in [2,5] \implies &\quad |A|_{\mathrm{dB}} = 20\log2 - 20\log(\omega) -20\log\left(\frac{\omega}{2}\right) \\
+	\text{για } \omega \in [5,\infty) \implies &\quad |A|_{\mathrm{dB}} = 20\log2 - 20\log(\omega) -20\log\left(\frac{\omega}{2}\right) -20\log\left(\frac{\omega}{5}\right) \\
+	\end{cases}
+	\]
+	
+	\item Για να βρούμε το περιθώριο κέρδους, πρώτα ψάχνουμε τη συχνότητα \( \omega_a \) για την οποία ισχύει \( \measuredangle
+	A(j\omega_a) = \ang{-180} \):
+	\begin{align*}
+		\left(\measuredangle\frac{1}{s}\right)+ \left(\measuredangle\frac{1}{s+2}\right)
+		+ \left(\measuredangle\frac{1}{s+5}\right) &= \ang{-180}\\
+		-\ang{90} + \measuredangle \frac{1}{j\omega_a+2} + \measuredangle \frac{1}{j\omega_a+5} &= \ang{-180} \\
+		-\ang{90} -\tan^{-1}\left(\frac{\omega_a}{2}\right)-\tan^{-1}\left(\frac{\omega_a}{5}\right) &= \ang{-180} \\
+		-\tan^{-1}\left(\frac{\omega_a}{2}\right)-\tan^{-1}\left(\frac{\omega_a}{5}\right) &= \ang{-90}
+	\end{align*}
+	
+	Για να προχωρήσουμε χρησιμοποιούμε την ταυτότητα:
+	\[
+	\infoboxed{
+		\tan^{-1}(x) + \tan^{-1}(y) = \tan^{-1} \left( \frac{x+y}{1-xy} \right)	
+	}
+	\]
+	
+	Άρα:
+	\[
+	\tan^{-1}\left(\frac{\frac{7\omega_a}{10}}{1-\frac{\omega_a^2}{10}}\right)
+	= \tan^{-1}\left(\frac{\frac{7\omega_a}{10}}{\frac{10-\omega_a^2}{10}}\right)
+	= \tan^{-1}\left(\frac{7\omega_a}{10-\omega_a^2}\right) = \ang{90}
+	\]
+	
+	Για να τείνει η γωνία στις \( \ang{90} \) πρέπει:
+	\[
+	\frac{7\omega_a}{10-\omega_a^2} \to \infty \implies 10-\omega_a^2 = 0 \implies \underline{\omega_a = \sqrt{10} \approx 3.16}
+	\]
+	
+	Εφ' όσον \( \omega_a \in (2,5] \) παίρνουμε την κατάλληλη προσέγγιση για το πλάτος της συνάρτησης:
+	\[
+	\left| A(j\omega_a) \right|_{\mathrm{dB}} = 20\log 2-20\log(3.16)-20\log\left(\frac{3.16}{2}\right) \approx
+	\SI{-7.95}{\decibel}
+	\]
+	
+	Άρα τελικά:
+	\[
+	g_m = - |A| = \SI{7.95}{\decibel}
+	\]
+	
+	\subparagraph{}
+	Εναλλακτικά, για να βρούμε το περιθώριο κέρδους μπορούμε να χρησιμοποιήσουμε το κριτήριο Routh, και να ψάξουμε ποιός
+	είναι ο μέγιστος όρος με τον οποίο μπορούμε να πολλαπλάσιασουμε τη συνάρτηση ανοιχτού βρόχου και να παραμείνουμε στην
+	ευστάθεια.
+	
+	Για αυτό χρειάζεται να θεωρήσουμε το σύστημα:
+	\todo{Graph}
+	με συνάρτηση μεταφοράς:
+	\[
+	H_c = \frac{G}{1+GF} = \frac{5k(s+5)}{s(s+2)(s+5)+k\cdot 20}
+	\]
+	και χαρακτηριστική εξίσωση:
+	\[ s(s+2)(s+5)+20k = 0 \iff s^3+7s^2+10s+20k = 0 \]
+	
+	Εφαρμόζουμε το κριτήριο Routh:
+	\[
+	\begin{array}{r|cc}
+	s^3&1&10 \\
+	s^2&7&20k \\
+	s^1 & \frac{70-20k}{7} & 0\\
+	s^0 & 20k
+	\end{array}
+	\]
+	
+	Θέλουμε \(
+		\begin{cases}
+		\frac{70-20k}{7}> 0 \implies 70-20k > 0 \implies k<\frac{7}{2}\\
+		20k > 0 \implies k>0
+		\end{cases}
+	\), δηλαδή \( k_{\max} = \frac{7}{2} \).
+	
+	Επομένως:
+	\[
+	g_m = k_{\max} = 3.5 \to 20\log\left( \frac{7}{2} \right) = 10.88
+	\]
+	\todo{looks wrong}
 \end{enumgreekparen}
 
-\todo{MORE}
+\paragraph{Άσκηση}
+Να σχεδιαστεί διαγραμμα Nyquist και να εξεταστεί η ευστάθεια του συστήματος κλειστού βρόχου, αν η συνάρτηση ανοιχτού βρόχου είναι:
+\[
+A(s) = \frac{s+2}{(s+3)(s+5)}
+\]
+\subparagraph{Λύση}
+Πρώτα βρίσκουμε τις ακραίες τιμές:
+\begin{align*}
+	A(0) &= 0.133 + j0 \\
+	\left|A(\infty)\right| &= 0 + j0
+\end{align*}
+
+Αφού έχουμε ένα μηδενικό (\( \ang{+90} \)) και δύο πόλους (\( 2\cdot(\ang{-90}) \)), η γωνία στο \( \infty \) γίνεται:
+\[
+\phi(\omega\to\infty) = \ang{-90}
+\]
+
+Για να ελέγξουμε από ποιά μεριά είναι το διάγραμμα, θεωρούμε:
+\begin{align*}
+\frac{s+2}{s^2+8s+15} &= \frac{j\omega+2}{-\omega^2+8j\omega+15} = \frac{(j\omega+2)(15-\omega^2-8j\omega)}{(-\omega^2+15+8j\omega)(15-\omega^2-8j\omega)}\\
+&=\frac{15j\omega-j\omega^3-8j^2\omega^2+30-2\omega^2-16j\omega}{(15-\omega^2)^2+(8\omega)^2}
+=\underbrace{\frac{30+6\omega^2}{\omega^4+34\omega^2+225}}_{>0}
+\underbrace{-j\frac{\omega(\omega^2+1)}{\omega^4+34\omega^2+225}}_{<0}
+\end{align*}
+
+Με τη μελέτη της μορφής του μιγαδικού, μπορούμε να καταλάβουμε ότι το μηδέν προσεγγίζεται από κάτω. Εναλλακτικοί τρόποι
+προσέγγισής του είναι οι εξής:
+\todo{Graph}
+
+Τελικά, το διάγραμμα Nyquist είναι:
+\todo{Graph}
+
+Αφού δεν περικυκλώνεται το -1, το σύστημα είναι ευσταθές.
+
+\paragraph{Άσκηση}
+Να σχεδιαστεί το διάγραμμα Nyquist:
+\[
+G(s) = \frac{10(s+2)}{(s+3)^2+25}
+\]
+\subparagraph{Λύση}
+Έχουμε:
+\[
+A(j\omega) = \frac{10\left( 4\omega^2+68-j\omega(\omega^2-22) \right)}{\omega^4-32\omega^2+1156}
+\]
+και επιπλέον:
+\begin{alignat*}{2}
+	\omega=0 : &&\quad A(j\omega) &= 0.588 \\
+	\omega\to \infty : &&\quad \left|A(j\omega)\right| &= 0
+\end{alignat*}
+
+Θα ψάξουμε ακόμα τα σημεία τομής με τον πραγματικό άξονα:
+\[
+\Im\left[A(j\omega)\right] = 0 \implies \omega(\omega^2-22) = 0 \implies \begin{cases}
+\omega &= 0\\
+\omega &= \sqrt{22} = 4.69
+\end{cases}
+\]
+
+Τέλος, παρατηρούμε ότι \( \Re\left[A(j\omega)\right] = 1.66 \), ότι για \( \omega \in [0,\ 4.69] \implies \omega^2-22 < 0
+\implies \Im\left[A(j\omega)\right] > 0 \), άρα προσεγγίζουμε από επάνω, και ότι στον φανταστικό άξονα πηγαίνουμε μόνο όταν
+\( \Re\left[A(j\omega)\right] = 0 \implies \omega \to \infty \):
+\todo{Graph}
+
+Αφού το -1 δεν περικυκλώνεται, έχουμε \( N= 0\). Επειδή δεν υπάρχουν πόλοι δεξιά, ισχύει \( P = 0\). Άρα τελικά \( Z=0\), και
+το σύστημα είναι ευσταθές.
+
+\paragraph{Άσκηση}
+Να σχεδιαστεί το διάγραμμα Nyquist και να εξεταστεί η ευστάθεια:
+\todo{Graph}
+\subparagraph{Λύση}
+Η (ισοδύναμη) συνάρτηση μεταφοράς είναι:
+\[
+A(s) = \frac{6}{s+1}\frac{7}{s^2+5s+2}\frac{8}{s+2} = \frac{336}{s^4+8s^3+19s^2+16s+4}
+\]
+άρα:
+\[
+A(j\omega) = \frac{336}{\omega^4-j8\omega^3-19\omega^2+j16\omega+4}
+= \frac{336\left[ (\omega^4-19\omega^2+4)+j(8\omega^3-16\omega) \right]}{\omega^8 + 26\omega^6 + 113\omega^4 + 104\omega^2+16}
+\]
+
+Αντίστοιχα με την προηγούμενη άσκηση, υπολογίζουμε:
+\begin{align*}
+	A(0) &= 84\\
+	\left|A(\infty)\right| &= 0 \\
+	\Im\left[ A(j\omega) \right] &= 0 \implies 8\omega^3-16\omega = 0 \implies \omega = 0 \text{ ή } \omega=\sqrt{2} \\
+	\Im\left[A(j\omega)\right] &<0 \quad \text{(άρα προσεγγίζουμε από κάτω)} \\
+	A(j\sqrt{2}) &= -11.2 \\
+	\phi(\infty) &= -\ang{90}-\ang{90}-\ang{90}-\ang{90} = \ang{-360}
+\end{align*}
+
+Άρα το διάγραμμα γίνεται:
+\todo{Graph}
+
+Παρατηρούμε ότι έχουμε \( N=2 \) και \( P=0 \), άρα \( Z=2\), δηλαδή το σύστημα είναι ασταθές.
 
 \section{Γεωμετρικός τόπος ριζών}
 Έστω ότι έχουμε το σύστημα:
