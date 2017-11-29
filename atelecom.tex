@@ -3677,7 +3677,91 @@ FM στενής ζώνης (Narrow Band FM ‒ NBFM).
 φροντίζοντας ώστε να αλλάξουμε την κατεύθυνση του διανύσματος με γωνία
 \( -2πf_m t \), αφού έχει αρνητικό πρόσημο. Τελικά θα πάρουμε ως άθροισμα ένα
 διάνυσμα με μία ελαφριά διαφορά γωνίας από αυτήν του \( A_c \), δηλαδή θα
-"τρεμοπαίζει" συνεχώς στο χρόνο. Αυτό το τρεμόοπαιγμα περιέχει και την πληροφορία.
+"τρεμοπαίζει" συνεχώς στο χρόνο. Αυτό το τρεμόπαιγμα περιέχει και την πληροφορία.
 \todo{Graph 95}
+
+\subsubsection{Ισχύς}
+Έστω ένα σήμα διαμορφωμένο κατά DSB-SC:
+\[
+u(t) = A_c m(t) \cos (2πf_c t)
+\]
+
+Για την συνάρτηση αυτοσυσχέτισης του σήματος ισχύει:
+\begin{align*}
+	\mathcal R_{u(τ)}
+	&= \lim_{T\to \infty} \frac{1}{T} \int_{-\sfrac{T}{2} }^{\sfrac{T}{2} }
+	u(t)u(t-τ)\dif t \\
+	&= \lim_{Τ\to \infty}\frac{1}{T} \int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
+	A_c^2 m(t) m(t-τ) \cos(2πf_c t)\cos(2πf_c(t-τ)) \dif t
+	\\ &= \frac{A_c^2}{2} \lim_{T\to \infty}\frac{1}{T}
+	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } m(t)m(t-τ)
+	\left[ \cos(4πf_ct-2πf_cτ) + \cos(2πf_cτ) \right]\dif t
+\end{align*}
+
+Θα αναλύσουμε ξεχωριστά τον όρο \( \int_{-\infty}^{\infty} m(t)m(t-τ) \cos(
+4πf_ct - 2πf_c τ
+) \dif t \).
+
+Από το θεώρημα του Parseval ισχύει:
+\[
+\int_{-\infty}^{\infty} x(t) y^*(t)\dif t
+= \int_{-\infty}^{\infty} X(f) Y*(f)\dif f
+\]
+άρα έχουμε:
+\begin{align*}
+	\int_{-\infty}^{\infty} m(t)m(t-τ) \cos (4πf_c t - 2πf_c τ)\dif τ &=
+	\int_{-\infty}^{\infty} F\left[m(t-τ)\right] \left\lbrace 
+	    F\left[m(t)\cos(4πf_ct-2πf_cτ)\right]
+	 \right\rbrace^* \dif t
+	 \\ &= \int_{-\infty}^{\infty} e^{-j2πf_c t}M(f)
+	 \left[
+	      -\frac{M(f-2f_c)e^{-j2πf_ct}}{2}
+	      +\frac{M(f+2f_c)e^{-j2πf_ct}}{2}
+	 \right]^* \dif t
+\end{align*}
+
+Επειδή θεωρούμε το \( f_c \) πολύ μεγάλο, δεν υπάρχει περίπτωση ο πολλαπλασιασμός των δύο
+παραπάνω όρων να δώσει τιμή διαφορετική του 0 (αφού τα φάσματα βρίσκονται σε διαφορετικό
+σημείο \begin{tikzpicture}[baseline,scale=.4,every node/.style={scale=.5}]
+\draw (-4,0) -- (4,0);
+
+\draw [blue!50!cyan!90!orange,very thick]
+(-0.7,0) -- (0,1) node[above] {$M(f)$} -- (0.7,0);
+\draw [blue!90!cyan!80!orange,very thick]
+[xshift=-3cm] (-0.7,0) -- (0,1) -- (0.7,0)
+[xshift=6cm] (-0.7,0) -- (0,1) -- (0.7,0)
+;
+
+\foreach \x in {-3,0,...,3}
+\draw[dashed] (\x,0) -- ++(0,1);
+
+\draw (-3,0) node[below] {$-2f_c$};
+\draw (3,0)  node[below] {$+2f_c$};
+\end{tikzpicture} άρα το παραπάνω ολοκλήρωμα είναι 0).
+
+Επομένως:
+\begin{align*}
+	\mathcal R_{u}(τ) &= \frac{Ac^2}{2} \cos 2π f_c τ \lim_{T\to \infty}\frac{1}{T}
+	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } m(t) m (t-τ)\dif t
+	\\ &= \frac{A_c^2}{2} \mathcal{R}_m(τ)\cos 2πf_c τ
+\end{align*}
+
+Άρα για την \textbf{ισχύ} του σήματος ισχύει:
+\[
+P_u = \mathcal{R}_u(0) = \frac{A_c^2}{2}\mathcal{R}_u(0) = \frac{1}{2}A_c^2P_m
+\]
+όπου \( P_m \) η ισχύς του \( m(t) \).
+
+Θυμόμαστε τον ορισμό της ισχύος:
+\begin{align*}
+	P_u &= \lim_{T\to \infty} \frac{1}{T}
+	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } A_c^2m^2(t) \cancelto{\frac{1}{2}+\frac{1}{2}\cos2π2f_ct}{cos^2 2πf_c t}\dif t
+	\\ &= \frac{A_c^2}{2} \cancelto{P_m}{\lim_{T\to \infty}\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } m^2(t)\dif t}
+	+ \frac{A_c^2}{2} \lim_{T\to \infty}\frac{1}{T}
+	\cancelto{0}{\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } m^2(t)\cos(2π2f_ct) \dif t}
+	\\ &= \frac{A_c^2}{2}P_m
+\end{align*}
+Το δεύτερο ολοκλήρωμα ήταν 0, αφού ήταν ολοκλήρωμα στο άπειρο με μία συμμετρική συνάρτηση
+(\( \cos \)) πολλαπλασιασμένη με μια πολύ αργή (άρα πρακτικά σταθερή).
 
 \end{document}
