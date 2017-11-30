@@ -3663,7 +3663,71 @@ FM στενής ζώνης (Narrow Band FM ‒ NBFM).
 \end{align*}
 Τα δύο σήματα φαίνονται παρόμοια, και μπορούμε να συγκρίνουμε τις υλοποιήσεις
 του διαμορφωτή και τα φάσματα εξόδου:
-\todo{Graph 93 (il)}
+\\*
+\begin{tikzpicture}
+\node[rectangle,draw,scale=2] (mult) at (0,0) {$\times$};
+\node[oscillator,xshift=14pt] (osc) at (0,-2) {};
+\node[circle,draw,minimum size=10mm] (sum) at (2,0) {$\sum$};
+
+\draw (mult) -- ++(-3,0) node[midway,above] {$m(t)$} node[midway,below] {$A_m\cos 2πf_c t$};
+
+\draw[->] (mult) -- (sum.west) node[above left] {$+$};
+\draw[->] (osc.north) -- (mult);
+\draw[->] (osc.east) -| (sum.south) node[below left] {$+$};
+\draw[->] (sum) -- ++(2,0) node[below] {$s_{\mathrm{AM}}(t)$};
+
+\draw (osc.west) node[left] {$A_c\cos 2πf_c t$};
+
+\node[above left] at (-2,1) {AM};
+
+\begin{scope}[xshift=8cm,yshift=-2cm]
+\draw (-3,0) -- (3,0);
+\draw (0,-0.5) -- (0,2)  node[right] {$s_{\mathrm{AM}}$};
+
+\draw[draw=blue!50!cyan!80!orange,very thick,every node/.style={scale=.4}]
+(-1.5,0) node[below] {$-f_c$} edge[->] ++(0,1)
+(-2,0) node[below] {$-f_c-f_m$} edge[->] ++(0,0.7)
+(-1,0) node[below] {$-f_c+f_m$} edge[->] ++(0,0.7)
+(1.5,0) node[below] {$f_c$} edge[->] ++(0,1)
+(2,0) node[below] {$f_c+f_m$} edge[->] ++(0,0.7)
+(1,0) node[below] {$f_c-f_m$} edge[->] ++(0,0.7)
+;
+\end{scope}
+
+\begin{scope}[yshift=-6cm]
+\node[rectangle,draw,scale=2] (mult) at (0,0) {$\times$};
+\node[oscillator,xshift=14pt] (osc) at (0,-4) {};
+\node[circle,draw,minimum size=10mm] (sum) at (2,0) {$\sum$};
+\node[rectangle,draw] (ps1) at (-2,0) {$-\ang{90}$};
+\node[rectangle,draw] (ps2) at (0,-2) {$-\ang{90}$};
+
+\draw (mult) -- (ps1) edge[<-] ++(-1,0);
+
+\draw[->] (mult) -- (sum.west) node[above left] {$-$};
+\draw[->] (osc.north) -- (ps2) -- (mult);
+\draw[->] (osc.east) -| (sum.south) node[below left] {$+$};
+\draw[->] (sum) -- ++(2,0) node[below] {$s_{\mathrm{NBFM}}(t)$};
+
+\draw (osc.west) node[left] {$A_c\cos 2πf_c t$};
+
+\node[above left] at (-2,1) {NBFM};
+
+\begin{scope}[xshift=8cm,yshift=-2cm]
+\draw (-3,0) -- (3,0);
+\draw (0,-0.5) -- (0,2) node[right] {$s_{\mathrm{NBFM}}$};
+
+\draw[draw=blue!50!cyan!80!orange,very thick,every node/.style={scale=.4}]
+(-1.5,0) node[below] {$-f_c$} edge[->] ++(0,1)
+(-2,0) node[below] {$-f_c-f_B$} edge[->] ++(0,0.7)
+(-1,0) node[above] {$-f_c+f_B$} edge[->] ++(0,-0.7)
+(1.5,0) node[below] {$f_c$} edge[->] ++(0,1)
+(2,0) node[below] {$f_c+f_B$} edge[->] ++(0,0.7)
+(1,0) node[above] {$f_c-f_B$} edge[->] ++(0,-0.7)
+;
+\end{scope}
+\end{scope}
+
+\end{tikzpicture}
 
 Αν παραστήσουμε την έκφραση του AM σε μορφή φασιθετών, θα έχουμε ένα διάνυσμα
 \( A_c \) που περιστρέφεται με ταχύτητα \( \omega_c = 2π f_c \), και στο τέλος
