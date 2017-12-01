@@ -170,33 +170,11 @@
 \DeclareMathOperator{\erf}{erf}
 \DeclareMathOperator{\cov}{cov}
 
-\newif\ifhidetikz
-\hidetikzfalse
-%\hidetikztrue   % <---- comment/uncomment that line
-
-\ifhidetikz
-
-\let\oldtikzpicture\tikzpicture
-\let\oldendtikzpicture\endtikzpicture
-
-\renewenvironment{tikzpicture}{
-    \tiny
-    \tt
-    \color{blue}
-    \newcommand{\draw}{\textit{draw}}
-    \newcommand{\filldraw}{\textit{filldraw}}
-    %\newcommand{\x}{\textit{x}}
-    %\newcommand{\p}{\textit{x}}
-    \newcommand{\x1}{\textit{x1}}
-    \newcommand{\y1}{\textit{y1}}
-    \newcommand{\p1}{\textit{p1}}
-}{
-}
-\newenvironment{axis}{
-    \newcommand{\addplot}{\textit{addplot}}
-}{
-}
-\fi
+\newenvironment{absolutelynopagebreak}
+{\par\nobreak\vfil\penalty0\vfilneg
+	\vtop\bgroup}
+{\par\xdef\tpd{\the\prevdepth}\egroup
+	\prevdepth=\tpd}
 
 \DeclareSIUnit \voltampere { VA } %apparent power 
 \DeclareSIUnit \var { VAr } %volt-ampere reactive - idle power 
@@ -220,6 +198,10 @@
 }
 \newcommand{\degree}{^{\circ}} % not great
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % add an equation number to a number-less math environment
+
+% Provided commands
+\providecommand\dif{d}
+\providecommand\od[2]{\frac{#1}{#2}}
 
 \newtcbtheorem[number within=section]{theorem}{Θεώρημα}%
 {colback=green!5,colframe=green!35!black,colbacktitle=green!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-7mm},width=.9\textwidth,arc=.7mm}{th}

@@ -3834,12 +3834,96 @@ H(s) = \underset{\substack{\downarrow\\H_0}}{(10)}
 	\end{cases}
 	 \)
 	
-	\todo{Graph 73}
+	\begin{tikzpicture}[scale=1,xscale=0.8]
+	\pgfplotsset{
+		/pgf/number format/freq/.style={
+			fixed,
+			%  fixed zerofill,
+			%  precision=0,
+		},
+	}
+	\def\phasedown{-2}
+	
+	\draw[->] (0,\phasedown-0.3) -- (0,3);
+	\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+	
+	\draw[gray,dashed] (2,\phasedown) -- (2,0);
+	\draw[gray,dashed] (3,\phasedown) -- (3,0);
+	
+	\draw[ultra thick,orange!90!blue!80!black]
+	(0,0) -- ++(2,0) -- ++(1,1.5) -- ++(1,1.5);
+	
+	\draw[dashed] (0,1.5) node[left] {20 dB} -| (3,0);
+	
+	\foreach \x in {1,2,...,3} {
+		\pgfmathsetmacro\result{10^\x/100}
+		\draw (\x,-0.1) node[below] {$\pgfmathprintnumber[freq]\result$} -- ++(0,0.2);
+		%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	}
+	\foreach \x in {1,2,...,3} {
+		\pgfmathsetmacro\result{10^\x/100}
+		\draw (\x,\phasedown-0.1) node[below] {$\pgfmathprintnumber[freq]\result$} -- ++(0,0.2);
+		%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	}
+	
+	\begin{scope}[yshift=\phasedown cm]
+	\draw[->] (0,0) -- ++(4.5,0);
+	
+	\draw[dashed] (2,0) |- (0,1/2) node[left] {$\ang{45}$};
+	\draw[dashed] (3,0) |- (0,1) node[left] {$\ang{90}$};
+	%\draw node[left] {$\ang{0}$};
+	
+	\draw[ultra thick,magenta] (0,0) -- (1,0) -- (3,1) -- (4,1);
+	\end{scope}
+	\end{tikzpicture}
 	
 	\item \( |G_2|_{\mathrm{dB}} = \cancelto{0}{20\log 1} + 20(-2)\log \omega = -40\log \omega  \) \\
 	\( φ=\frac{νπ}{2} = -π \)
 	
-	\todo{Graph 74}
+	\begin{tikzpicture}[scale=1,xscale=0.8]
+	\pgfplotsset{
+		/pgf/number format/freq/.style={
+			fixed,
+			%  fixed zerofill,
+			%  precision=0,
+		},
+	}
+	\def\phasedown{-1.5}
+	\def\phaseextra{-1.5}
+	
+	\draw[->] (0,\phasedown+\phaseextra) -- (0,3);
+	\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+	
+	%\draw[gray,dashed] (2,\phasedown) -- (2,0);
+	%\draw[gray,dashed] (3,\phasedown) -- (3,0);
+	
+	\draw[ultra thick,orange!90!blue!80!black]
+	(0,2.5) -- (3.5,-1) node[midway, above right] {-40 dB/dec};
+	
+	\draw[dashed] (0,2.5) node[left] {40 dB};
+	
+	\foreach \x in {1,2,...,3} {
+		\pgfmathsetmacro\result{10^\x/100}
+		\draw (\x,-0.1) node[below] {$\pgfmathprintnumber[freq]\result$} -- ++(0,0.2);
+		%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	}
+	\foreach \x in {1,2,...,3} {
+		\pgfmathsetmacro\result{10^\x/100}
+		\draw (\x,\phasedown-0.1) node[below] {$\pgfmathprintnumber[freq]\result$} -- ++(0,0.2);
+		%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	}
+	
+	\begin{scope}[yshift=\phasedown cm]
+	\draw[->] (0,0) -- ++(4.5,0);
+	
+	%\draw[dashed] (2.5,0) |- (0,1/2) node[left] {$\ang{45}$};
+	%\draw[dashed] (3,0) |- (0,1) node[left] {$\ang{90}$};
+	\draw node[left] {$\ang{0}$};
+	\draw (0,-1) node[left] {$\ang{-180}$};
+	
+	\draw[ultra thick,magenta] (0,-1) -- (4.5,-1);
+	\end{scope}
+	\end{tikzpicture}
 	
 	\item \( |G_4|_{\mathrm{dB}} \approx \begin{cases}
 	0\qquad&\text{για } \omega  < 2 \ \mathrm{rad/s}
@@ -3852,12 +3936,121 @@ H(s) = \underset{\substack{\downarrow\\H_0}}{(10)}
 	180\degree &\qquad \text{αν } \omega>20
 	\end{cases} \)
 	
-	\todo{Graph 75}
+	\begin{tikzpicture}[scale=1,xscale=0.8]
+	\pgfplotsset{
+		/pgf/number format/freq/.style={
+			fixed,
+			%  fixed zerofill,
+			%  precision=0,
+		},
+	}
+	\def\phasedown{-3}
+	\def\phaseextra{-1.5}
+	
+	\draw[->] (0,\phasedown+\phaseextra) -- (0,1);
+	\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+	
+	%\draw[gray,dashed] (2,\phasedown) -- (2,0);
+	%\draw[gray,dashed] (3,\phasedown) -- (3,0);
+	
+	\draw[ultra thick,orange!90!blue!80!black]
+	(0,0) -- (1.3010,0) -- (4.5,-2) node[midway, above right] {-40 dB/dec};
+	
+	%\draw[dashed] (0,2.5) node[left] {40 dB};
+	
+	\foreach \x in {1,1.3010,2.3010} {
+		\pgfmathsetmacro\result{10^\x/10}
+		\draw (\x,-0.1) node[below] {$\pgfmathprintnumber[freq]\result$} -- ++(0,0.2);
+	}
+	\foreach \x in {1,1.3010,2.3010} {
+		\pgfmathsetmacro\result{10^\x/10}
+		\draw (\x,\phasedown-0.1) node[below] {$\pgfmathprintnumber[freq]\result$} -- ++(0,0.2);
+	}
+	
+	\begin{scope}[yshift=\phasedown cm]
+	\draw[->] (0,0) -- ++(4.5,0);
+	
+	\draw[dashed] (1.3010,0) |- (0,-1.5/2) node[left] {$\ang{-90}$};
+	\draw[dashed] (2.3010,0) |- (0,-1.5) node[left] {$\ang{-180}$};
+	\draw node[left] {$\ang{0}$};
+	
+	\draw[ultra thick,magenta] (0,0) -- (0.3010,0) -- (2.3010,-1.5) -- (4.5,-1.5);
+	\end{scope}
+	\end{tikzpicture}
 \end{itemize}
 
 Τελικά, για να βρούμε τη σωστή απάντηση, προσθέτουμε όλα τα παραπάνω διαγράμματα
 (αφού ο πολλαπλασιασμός γίνεται πρόσθεση μετά την εφαρμογή του λογαρίθμου):
-\todo{Graph 76 and calculations}
+
+\begin{tikzpicture}[scale=1,xscale=1]
+\pgfplotsset{
+	/pgf/number format/freq/.style={
+		fixed,
+		%  fixed zerofill,
+		%  precision=0,
+	},
+}
+\def\phasedown{-3}
+\def\phaseextra{-4}
+
+\draw[->] (0,\phasedown+\phaseextra) -- (0,3);
+\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+
+\foreach \x in {1,1.3010,2,2.3010,3,3.3010} {
+	\draw[densely dotted] (\x,\phasedown) -- (\x,0);
+}
+
+\def\at{20}
+\draw[ultra thick,orange!90!blue!80!black]
+(0,2.5) 
+-- ++(-2*\at:{1/cos(2*\at)}) node(c1) {} node[above right] {-40 dB/dec}
+-- ++(-2*\at:{1/cos(2*\at)}) node(c2) {}
+-- ++(-1*\at:{0.3010/cos(1*\at)}) node(c3) {} node[midway,above right] {-20 dB/dec}
+-- ++(-3*\at:{1/cos(3*\at)}) node(c4) {} node[pos=1,right] {-60 dB/dec}
+;
+
+\foreach \p in {c1,c2,c3,c4} {
+	\draw[densely dashed] (\p.center) -- (\p.center |- 0,0) (\p.center) -- (\p.center -| 0,0);
+}
+\draw (c1 -| 0,0) node[left] {60 dB};
+\draw (c2 -| 0,0) node[left,yshift=1mm] {20 dB};
+\draw (c3 -| 0,0) node[left,yshift=-1mm] {14 dB};
+
+\foreach \x in {1,2,2.3010,3.3010} {
+	\pgfmathsetmacro\result{10^\x/100}
+	\draw (\x,-0.1) node[below] {$\pgfmathprintnumber[freq]\result$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+\foreach \x in {1.3010,2,2.3010,3} {
+	\pgfmathsetmacro\result{10^\x/100}
+	\draw (\x,\phasedown-0.1) node[below] {$\pgfmathprintnumber[freq]\result$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+
+\begin{scope}[yshift=\phasedown cm]
+\draw[->] (0,0) -- ++(4.5,0);
+\def\at{40}
+
+\draw[ultra thick,magenta]
+(0,0) -- (1,0)
+-- ++(1*\at:{0.3010/cos(1*\at)}) node(c1) {} node[above,scale=.9] {$\ang{45}$/dec}
+-- ++(-1*\at:{1.7000/cos(1*\at)}) node(c3) {} node[pos=.6,below left] {-$\ang{45}$/dec}
+-- ++(-2*\at:{0.3010/cos(2*\at)}) node(c4) {} node[midway,right,xshift=1mm] {-$\ang{90}$/dec}
+-- ++(1,0)
+;
+
+\foreach \p in {c1,c3,c4} {
+	\draw[dashed,gray] (\p.center) -- (\p.center |- 0,0) (\p.center) -- (\p.center -| 0,0);
+}
+
+\draw[every node/.style={scale=.8}]
+(c1 -| 0,0) node[left] {$-\ang{153}$}
+(c3 -| 0,0) node[left] {$-\ang{243}$}
+(c4 -| 0,0) node[left] {$-\ang{270}$}
+;
+\end{scope}
+
+\end{tikzpicture}
 
 \paragraph{Άσκηση}
 Ποιά είναι η συνάρτηση μεταφοράς της οποίας το προσεγγιστικό διάγραμμα Bode φαίνεται στο

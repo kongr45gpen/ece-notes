@@ -2973,9 +2973,48 @@ plot[variable=\x,domain=4:5,samples=\gsamples]
 	c(t) &= A_c\cos(2πf_c t)
 \end{align*}
 
-Έστω ότι θέλουμε να το διαμορφώσουμε κατά SSB. Πρώτα το διαμορφώνουμε κατά DSB, και μετά
+Έστω ότι θέλουμε να διαμορφώσουμε την πληροφορία κατά SSB. Πρώτα τη διαμορφώνουμε κατά DSB, και μετά
 εφαρμόζουμε ένα φίλτρο:
-\todo{Graph 73}
+
+\begin{tikzpicture}[scale=1,yscale=1.4]
+\draw[top color=blue!30!cyan!60!black,bottom color=blue!20!white,fill opacity=.3]
+(2-0.8,0.8) -- (2+0.8,0) -- (2-0.8,0) -- cycle;
+\draw[top color=blue!30!cyan!60!black,bottom color=blue!20!white,fill opacity=.3,xscale=-1]
+(2-0.8,0.8) -- (2+0.8,0) -- (2-0.8,0) -- cycle;
+
+\draw (-4,0) -- (4,0);
+\draw[->] (0,-1) -- (0,2);
+
+\draw[gray!50!brown,dashed] (-4,1) -- (4,1) node[pos=.7,above] {$A$};
+
+\draw[black!80!orange,very thick]
+(2-0.5,0) edge[->] ++(0,1)
+(2+0.5,0) edge[->] ++(0,1)
+;
+\draw[blue!50!cyan,ultra thick]
+(2-0.5,0) edge[->] node[above right,pos=1,scale=.6] {$(1-k)A$} ++(0,0.65)
+(2+0.5,0) edge[->] node[above right,pos=1,scale=.7] {$kA$} ++(0,0.15)
+;
+
+\draw (2-0.5,0) node[below,scale=.5,xshift=-3mm] {$f_c-f_m$};
+\draw (2,0) node[below,scale=.5] {$f_c$};
+\draw (2+0.5,0) node[below,scale=.5,xshift=3mm] {$f_c+f_m$};
+
+\begin{scope}[xscale=-1]
+\draw[black!80!orange,very thick]
+(2-0.5,0) edge[->] ++(0,1)
+(2+0.5,0) edge[->] ++(0,1)
+;
+\draw[blue!50!cyan,ultra thick]
+(2-0.5,0) edge[->] ++(0,0.65)
+(2+0.5,0) edge[->] ++(0,0.15)
+;
+
+\draw (2-0.5,0) node[below,scale=.45,xshift=3mm] {$-f_c-f_m$};
+\draw (2,0) node[below,scale=.5] {$-f_c$};
+\draw (2+0.5,0) node[below,scale=.45,xshift=-3mm] {$-f_c+f_m$};
+\end{scope}
+\end{tikzpicture}
 
 Το φίλτρο αυτό κόβει την κάτω πλευρική ζώνη και αφήνει να περάσει ένα ίχνος της, και κόβει
 και την πάνω πλευρική ζώνη, αφήνοντας να περάσει ένα ακόμα μικρότερο ίχνος της.
@@ -2985,7 +3024,25 @@ plot[variable=\x,domain=4:5,samples=\gsamples]
  ότι το φίλτρο είναι συμμετρικό).
  
 Το αποδιαμορφωμένο σήμα θα μοιάζει κάπως έτσι:
-\todo{Graph 74}
+
+\begin{tikzpicture}[scale=1,yscale=1.4]
+\draw (-4,0) -- (4,0);
+\draw[->] (0,-1) -- (0,1.5);
+
+\draw[blue!50!cyan,ultra thick]
+(1-0.5,0) edge[->] ++(0,0.65)
+(1,0) edge[->] ++(0,0.15)
+;
+\draw (1-0.25,0) node[below] {$f_m$};
+
+\begin{scope}[xscale=-1]
+\draw[blue!50!cyan,ultra thick]
+(1-0.5,0) edge[->] ++(0,0.65)
+(1,0) edge[->] ++(0,0.15)
+;
+\draw (1-0.25,0) node[below] {$-f_m$};
+\end{scope}
+\end{tikzpicture}
 
 Το διαμορφωμένο σήμα, όπως παρατηρούμε από το πεδίο των συχνοτήτων, θα έχει τη μορφή:
 \begin{align*}
@@ -3081,8 +3138,24 @@ k_as_{\mathrm{VSB}}(t) \), δηλαδή VSB μαζί όμως με το φέρο
 του φίλτρου.
 
 \paragraph{3.}
-Θυμόμαστε τη βασική λειτουργία του πολλαπλασιαστικού διαμορφωτή:
-\todo{Graph 75}
+Θυμόμαστε τη βασική λειτουργία του πολλαπλασιαστικού διαμορφωτή
+(όπου \( f_1 \) η συχνότητα φέροντος του εισερχόμενου σήματος, και \(f_l\) η συχνότητα του τοπικού ταλαντωτή):
+\\*
+\begin{circuitikz}[scale=1]
+	\draw (0,0) node[rectangle,draw,scale=2] (mult) {$\times$};
+	\draw (2,0) node[rectangle,draw] (bpf) {BPF};
+	\draw (0,-3) node[oscillator,scale=1,xshift=4.91mm] (osc) {};
+	
+	\draw (osc.east)  node[right] {$A_c\cos2πf_lt$};
+	\draw[<-] (mult) -- ++(-5,0) node[midway,above] (ml) {$m(t)\cdot \cos2πf_1 t$} node[midway,below] {$s_1(t)$};
+	\draw (ml) node[above,yshift=5pt] {DSB};
+	\draw (mult) -- (bpf) node[above,midway] {$s'(t)$};
+	\draw[->] (bpf) -- ++(3,0) node[below] {$s_2(t)$};
+	\draw[->] (osc.north) -- (mult.south);
+	
+	\draw[thick,blue!30!black] (-1,1) rectangle (3,-2)
+	(3,1) node[above] {Μίκτης};
+\end{circuitikz}
 
 με έξοδο:
 \begin{align*}
@@ -3096,7 +3169,31 @@ k_as_{\mathrm{VSB}}(t) \), δηλαδή VSB μαζί όμως με το φέρο
 από το Band Pass φίλτρο. Με κατάλληλη επιλογή της \( f_l \) και του φίλτρου, μπορούμε να
 ελέγξουμε ποιά συχνότητα εξόδου θέλουμε να πολλαπλασιάσουμε με το σήμα, ώστε να έχουμε
 όποια μετατόπιση θέλουμε στην έξοδο:
-\todo{Graph 76}
+
+\begin{tikzpicture}[scale=1]
+	\draw (-2,0) -- (7,0);
+	\draw (0,-0.5) -- (0,1);
+	
+	\draw[very thick,blue!50!cyan]
+	(-0.6,0) .. controls (-0.4,0.8) and (-0.7,0.8) .. (0,0.8) .. controls (0.7,0.8) and (0.4,0.8) .. (0.6,0);
+	\draw[very thick,blue!50!cyan,xshift=2cm]
+	(-0.6,0) .. controls (-0.4,0.8) and (-0.7,0.8) .. (0,0.8) .. controls (0.7,0.8) and (0.4,0.8) .. (0.6,0);
+	\draw[very thick,blue!50!cyan,xshift=4cm]
+	(-0.6,0) .. controls (-0.4,0.8) and (-0.7,0.8) .. (0,0.8) .. controls (0.7,0.8) and (0.4,0.8) .. (0.6,0);
+	\draw[very thick,blue!50!cyan,xshift=6cm]
+	(-0.6,0) .. controls (-0.4,0.8) and (-0.7,0.8) .. (0,0.8) .. controls (0.7,0.8) and (0.4,0.8) .. (0.6,0);
+	
+	\draw[dashed]
+	(0,0) node[below] {$f_1-f_l$}
+	(2,0) node[below] {$f_1-f_l$} -- ++(0,0.8)
+	(4,0) node[below] {$f_1$} -- ++(0,0.8)
+	(6,0) node[below] {$f_1+f_l$}  -- ++(0,0.8)
+	;
+	
+	\draw[green!50!black,<-] (0.8,0.4) -- ++(0.4,0);
+	\draw[green!50!black,<-] (2+0.8,0.4) -- ++(0.4,0);
+	\draw[red!50!black,->] (4+0.8,0.4) -- ++(0.4,0);
+\end{tikzpicture}
 
 \paragraph{4. Πολυπλεξία (multiplexing)}
 Είναι γνωστό πως στον αέρα σήμερα υπάρχει μεγάλος αριθμός διαμορφωμένων τηλεοπτικών,
@@ -3661,9 +3758,11 @@ FM στενής ζώνης (Narrow Band FM ‒ NBFM).
 	\cos 2π(f_c+f_m)t + \cos 2π(f_c-f_m)t
 	\right]
 \end{align*}
+
+\begin{absolutelynopagebreak}
 Τα δύο σήματα φαίνονται παρόμοια, και μπορούμε να συγκρίνουμε τις υλοποιήσεις
 του διαμορφωτή και τα φάσματα εξόδου:
-\\*
+
 \begin{tikzpicture}
 \node[rectangle,draw,scale=2] (mult) at (0,0) {$\times$};
 \node[oscillator,xshift=14pt] (osc) at (0,-2) {};
@@ -3728,6 +3827,7 @@ FM στενής ζώνης (Narrow Band FM ‒ NBFM).
 \end{scope}
 
 \end{tikzpicture}
+\end{absolutelynopagebreak}
 
 Αν παραστήσουμε την έκφραση του AM σε μορφή φασιθετών, θα έχουμε ένα διάνυσμα
 \( A_c \) που περιστρέφεται με ταχύτητα \( \omega_c = 2π f_c \), και στο τέλος
@@ -3735,14 +3835,89 @@ FM στενής ζώνης (Narrow Band FM ‒ NBFM).
 \( 2π(f_c+f_m) \) και \( 2π(f_c-f_m) \). Το πρώτο περιστρέφεται πιο γρήγορα
 από το \( \omega_c \), και το δεύτερο πιο αργά. Όμως η συνιστώσα τους είναι προς
 την κατεύθυνση του \( A_c \), και το πλάτος της αυξάνεται και μειώνεται ημιτονοειδώς:
-\todo{Graph 94}
+
+\begin{tikzpicture}[scale=1]
+\draw[very thick,->] (0,0) -- (4,0) node[near start,below] {$A_c$};
+
+\draw[yshift=2mm,cyan,->]
+(1,0) to[bend right] node[midway,above right,scale=.8] {$\omega_c=2πf_c$} ++(-0.4,0.4);
+
+\filldraw[xshift=3cm,yshift=0.1cm,draw=gray,bottom color=cyan!50!gray,top color=white]
+(0,0) -- +(-0.1,-0.1)
+(0,0) -- +(0.1,-0.1)
+(0,0) -- +(0,0.4)
+(0,0.5) circle (0.1)
+(0,0.4) -- ++(0.1,-0.1)
+(0,0.4) -- ++(-0.1,-0.1)
+;
+
+\draw[->] (4,0) -- ++(45:1);
+\draw[->] (4,0) -- ++(-45:1);
+\draw[dashed,gray] (4,0) ++(45:1) -- ++(45-90:1);
+\draw[dashed,gray] (4,0) ++(-45:1) -- ++(-45+90:1);
+\draw[very thin,->] (4,0) -- ({4+sqrt(2)+0.05},0);
+\draw (4,0) ++(45:0.2) to[bend left] node[near start,right,gray!50!brown!30!black,scale=.7] {$2πf_mt$} (4.2,0);
+\draw (4,0) ++(-45:0.3) to[bend right] node[very near start,right,gray!50!brown!30!black,scale=.7] {$-2πf_mt$} (4.3,0);
+
+\draw (4,0) ++(45:0.5) node (a) {};
+\draw (a) ++(45+90:0.2) node(a1) {};
+\draw (a) ++(45-90:0.15) node(a2) {};
+\draw[<-,cyan!50!black] (a1.center) to[bend left] (a2.center);
+
+\draw (4,0) ++(-45:0.5) node (a) {};
+\draw (a) ++(-45+90:0.15) node(a1) {};
+\draw (a) ++(-45-90:0.2) node(a2) {};
+\draw[->,cyan!50!black] (a1.center) to[bend left] (a2.center);
+\end{tikzpicture}
 
 Αντίστοιχα, για το NBFM μπορούμε να πραγματοποιήσουμε μια παρόμοια ανάλυση,
 φροντίζοντας ώστε να αλλάξουμε την κατεύθυνση του διανύσματος με γωνία
 \( -2πf_m t \), αφού έχει αρνητικό πρόσημο. Τελικά θα πάρουμε ως άθροισμα ένα
 διάνυσμα με μία ελαφριά διαφορά γωνίας από αυτήν του \( A_c \), δηλαδή θα
 "τρεμοπαίζει" συνεχώς στο χρόνο. Αυτό το τρεμόπαιγμα περιέχει και την πληροφορία.
-\todo{Graph 95}
+
+\begin{tikzpicture}[scale=1]
+\fill[top color=yellow,bottom color=white,->]
+(1,0) to[bend right] ({atan(sqrt(2)/4)}:1) -- (0,0);
+
+\draw[cyan,->]
+(2,-0.2) to[bend right] node[midway,above right,scale=.8] {$\omega_c$} (1.8,0.2);
+
+\filldraw[xshift=3cm,yshift=0.1cm,draw=gray,bottom color=cyan!50!gray,top color=white]
+(0,0) -- +(-0.1,-0.1)
+(0,0) -- +(0.1,-0.1)
+(0,0) -- +(0,0.4)
+(0,0.5) circle (0.1)
+(0,0.4) -- ++(0.1,-0.1)
+(0,0.4) -- ++(-0.1,-0.1)
+;
+
+\draw[->] (4,0) -- ++(45:1);
+\draw[dashed,->,red] (4,0) -- ++(-45:1);
+\draw[->] (4,0) -- ++(90+45:1);
+\draw[dashed,gray] (4,0) ++(45:1) -- ++(45+90:1);
+\draw[dashed,gray] (4,0) ++(90+45:1) -- ++(-45+90:1);
+\draw[very thin,gray] (4,0) -- ({4+sqrt(2)+0.05},0);
+\draw[thick,->] (4,0) -- (4,{sqrt(2)+0.05});
+\draw (4,0) ++(45:0.2) to[bend left] node[near start,right,gray!50!brown!30!black,scale=.7] {$2πf_mt$} (4.2,0);
+\draw (4,0) ++(-45:0.3) to[bend right] node[very near start,right,gray!50!brown!30!black,scale=.7] {$-2πf_mt$} (4.3,0);
+
+\draw (4,0) ++(45:0.5) node (a) {};
+\draw (a) ++(45+90:0.2) node(a1) {};
+\draw (a) ++(45-90:0.15) node(a2) {};
+\draw[<-,cyan!50!black,opacity=.5] (a1.center) to[bend left] (a2.center);
+
+\draw (4,0) ++(-45:0.5) node (a) {};
+\draw (a) ++(-45+90:0.15) node(a1) {};
+\draw (a) ++(-45-90:0.2) node(a2) {};
+\draw[->,cyan!50!black,opacity=.5] (a1.center) to[bend left] (a2.center);
+
+\draw[orange!70!black,ultra thick,->] (0,0) -- (4,{sqrt(2)});
+\draw[very thick,->] (0,0) -- (4,0) node[near start,below] {$A_c$};
+
+\draw[->]
+(1,0) to[bend right] ({atan(sqrt(2)/4)}:1);
+\end{tikzpicture}
 
 \subsubsection{Ισχύς}
 Έστω ένα σήμα διαμορφωμένο κατά DSB-SC:
@@ -3773,7 +3948,7 @@ u(t) = A_c m(t) \cos (2πf_c t)
 \]
 άρα έχουμε:
 \begin{align*}
-	\int_{-\infty}^{\infty} m(t)m(t-τ) \cos (4πf_c t - 2πf_c τ)\dif τ &=
+	&\hphantom{=}\int_{-\infty}^{\infty} m(t)m(t-τ) \cos (4πf_c t - 2πf_c τ)\dif τ\\ &=
 	\int_{-\infty}^{\infty} F\left[m(t-τ)\right] \left\lbrace 
 	    F\left[m(t)\cos(4πf_ct-2πf_cτ)\right]
 	 \right\rbrace^* \dif t

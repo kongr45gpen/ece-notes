@@ -3,7 +3,6 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{mathtools}
-\usepackage{relsize}
 \usepackage{mathrsfs}
 \usepackage{lmodern}
 \usepackage{amsfonts}
@@ -18,9 +17,8 @@
 \usepackage[greek]{babel}
 %\usepackage{color}
 \usepackage[active,pdftex,tightpage]{preview}
-\usepackage[outline]{contour}
 
-\usepackage{/home/kongr45gpen/ece/notes/libs/circuitikz}
+\usepackage{circuitikz}
 
 \pgfplotsset{compat=1.13}
 
@@ -30,10 +28,10 @@
 \SetSymbolFont{symbolsb}{bold}{OMS}{cmsy}{b}{n}
 \DeclareSymbolFontAlphabet{\mathcal}{symbolsb}
 \newcommand{\sfrac}{\frac}
-    \pgfmathdeclarefunction{sinc}{1}{%
-        \pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
-        \ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%
-    }
+\pgfmathdeclarefunction{sinc}{1}{%
+    \pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
+    \ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%
+}
 
 \tikzset{cross/.style={cross out, draw,
         minimum size=2*(#1-\pgflinewidth),
@@ -53,6 +51,12 @@
 }
 
 \def\gsamples{200}
+\def\ang#1{#1^o}
+
+\def\si{}
+\def\hertz{Hz}
+\def\radian{rad}
+\def\second{s}
 
 \begin{document}
 <>
