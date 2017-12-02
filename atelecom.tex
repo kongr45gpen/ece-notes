@@ -3204,11 +3204,133 @@ k_as_{\mathrm{VSB}}(t) \), δηλαδή VSB μαζί όμως με το φέρο
 Προφανώς αν στείλουμε δύο διαμορφωμένα σήματα στην ίδια συχνότητα ταυτόχρονα χωρίς παραπάνω
 επεξεργασία, ο δέκτης θα αποδιαμορφώσει το άθροισμα τους, και δεν μπορούμε να
 πάρουμε το καθένα ξεχωριστά.
-\todo{Graph 77}
+
+\begin{tikzpicture}[scale=.9]
+\draw (-2,0) -- (9,0);
+\draw (0,2) node[right] {$m(t)$} -- (0,-3);
+
+\draw[very thick,draw=blue!50!black,xshift=2mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0) node[below] {$w$};
+\draw[very thick,draw=blue!50!black,xscale=-1,xshift=2mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0) node[below] {$-w$};
+
+\begin{scope}[yshift=-2cm]
+\draw (-2,0) -- (9,0);
+\draw[very thick,draw=blue!50!cyan!80!black,xshift=2mm]
+(0,0) -- (0.5,1.1) -- (1,0) node[below] {$w$};
+\draw[very thick,draw=blue!50!cyan!80!black,xscale=-1,xshift=2mm]
+(0,0) -- (0.5,1.1) -- (1,0) node[below] {$-w$};
+\end{scope}
+
+\begin{scope}[xshift=5cm]
+\draw (0,2) node[right] {$s(t)$} -- (0,-3);
+
+\draw[very thick,draw=blue!50!black,xshift=2mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0);
+\draw[very thick,draw=blue!50!black,xshift=1cm+4mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0);
+
+\draw[] (1.3,0) node[below] {$f_1$};
+
+\begin{scope}[yshift=-2cm]
+\draw[very thick,draw=blue!50!cyan!80!black,xshift=2mm]
+(0,0) -- (0.5,1.1) -- (1,0);
+\draw[very thick,draw=blue!50!cyan!80!black,xshift=1cm+4mm]
+(0,0) -- (0.5,1.1) -- (1,0);
+
+\draw[] (1.3,0) node[below] {$f_1$};
+\end{scope}
+\end{scope}
+
+\draw[thick,>->] (9.1,-0.5) -- ++(0.8,0);
+
+\begin{scope}[xshift=12cm]
+\draw (-2,0) -- (2,0);
+\draw (0,2) node[right,align=left] {αποδιαμορφωμένο\\$m(t)$} -- (0,-3);
+
+\draw[very thick,draw=blue!50!black,xshift=2mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0);
+\draw[very thick,draw=blue!50!black,xscale=-1,xshift=2mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0);
+\draw[very thick,draw=blue!50!cyan!80!black,xshift=2mm]
+(0,0) -- (0.5,1.1) -- (1,0);
+\draw[very thick,draw=blue!50!cyan!80!black,xscale=-1,xshift=2mm]
+(0,0) -- (0.5,1.1) -- (1,0);
+
+\begin{scope}[yshift=-2cm]
+\draw (-2,0) -- (2,0);
+\draw[very thick,draw=blue!50!black,xshift=2mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0);
+\draw[very thick,draw=blue!50!black,xscale=-1,xshift=2mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0);
+\draw[very thick,draw=blue!50!cyan!80!black,xshift=2mm]
+(0,0) -- (0.5,1.1) -- (1,0);
+\draw[very thick,draw=blue!50!cyan!80!black,xscale=-1,xshift=2mm]
+(0,0) -- (0.5,1.1) -- (1,0);
+\end{scope}
+\end{scope}
+\end{tikzpicture}
 
 Αν όμως δώσουμε στο κάθε σήμα τη δική του συχνότητα, τότε ο κάθε δέκτης μπορεί να
 συντονιστεί στο επιθυμητό σημείο και να δώσει κάθε σήμα ξεχωριστά, όπως επιθυμούμε:
-\todo{Graph 78}
+
+\begin{tikzpicture}[scale=.9]
+\draw (-2,0) -- (11,0);
+\draw (0,2) node[right] {$m(t)$} -- (0,-3);
+
+\draw[very thick,draw=blue!50!black,xshift=2mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0) node[below] {$w$};
+\draw[very thick,draw=blue!50!black,xscale=-1,xshift=2mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0) node[below] {$-w$};
+
+\begin{scope}[yshift=-2cm]
+\draw (-2,0) -- (11,0);
+\draw[very thick,draw=blue!50!cyan!80!black,xshift=2mm]
+(0,0) -- (0.5,1.1) -- (1,0) node[below] {$w$};
+\draw[very thick,draw=blue!50!cyan!80!black,xscale=-1,xshift=2mm]
+(0,0) -- (0.5,1.1) -- (1,0) node[below] {$-w$};
+\end{scope}
+
+\begin{scope}[xshift=5cm]
+\draw (0,2) node[right] {$s(t)$} -- (0,-3);
+
+\draw[very thick,draw=blue!50!black,xshift=2mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0);
+\draw[very thick,draw=blue!50!black,xshift=1cm+4mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0);
+
+\draw[] (1.3,0) node[below] {$f_1$};
+
+\begin{scope}[yshift=-2cm,xshift=3cm]
+\draw[very thick,draw=blue!50!cyan!80!black,xshift=2mm]
+(0,0) -- (0.5,1.1) -- (1,0);
+\draw[very thick,draw=blue!50!cyan!80!black,xshift=1cm+4mm]
+(0,0) -- (0.5,1.1) -- (1,0);
+
+\draw[] (1.3,0) node[below] {$f_2$};
+\end{scope}
+\end{scope}
+
+\draw[thick,>->] (9.1+2,-0.5) -- ++(0.8,0);
+
+\begin{scope}[xshift=14cm]
+\draw (-2,0) -- (2,0);
+\draw (0,2) node[right,align=left] {αποδ.\\$m(t)$} -- (0,-3);
+
+\draw[very thick,draw=blue!50!black,xshift=2mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0);
+\draw[very thick,draw=blue!50!black,xscale=-1,xshift=2mm]
+(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0);
+
+\begin{scope}[yshift=-2cm]
+\draw (-2,0) -- (2,0);
+\draw[very thick,draw=blue!50!cyan!80!black,xshift=2mm]
+(0,0) -- (0.5,1.1) -- (1,0);
+\draw[very thick,draw=blue!50!cyan!80!black,xscale=-1,xshift=2mm]
+(0,0) -- (0.5,1.1) -- (1,0);
+\end{scope}
+\end{scope}
+\end{tikzpicture}
 
 Αυτή η τεχνική ονομάζεται \textbf{Frequency-Division Multiple Access (FDMA)}, δηλαδή
 πολυπλεξία στη συχνότητα.
@@ -3220,13 +3342,122 @@ k_as_{\mathrm{VSB}}(t) \), δηλαδή VSB μαζί όμως με το φέρο
 Για παράδειγμα, αν έχουμε \( N \) φωνητικά σήματα (θεωρούμε ότι έχουν εύρος ζώνης
 μεταξύ 300-3300 Hz, δηλαδή περίπου 4 kHz), τότε πρέπει να διαμορφώσουμε το καθένα
 ξεχωριστά, με πολλαπλάσια μιας βασικής συχνότητας φέροντος (π.χ. 4 kHz):
-\todo{Graph 79}
+
+\begin{tikzpicture}
+\tikzstyle{filter} = [rectangle,draw,minimum height=7mm]
+\tikzstyle{mod} = [rectangle,draw,minimum width=15mm]
+
+\draw (0,0) node[filter] (lpf1) {LPF};
+\draw (0,-1) node[filter] (lpf2) {LPF};
+\draw (0,-3) node[filter] (lpfn) {LPF};
+
+\draw (3,0) node[mod] (mod1) {MOD};
+\draw (3,-1) node[mod] (mod2) {MOD};
+\draw (3,-3) node[mod] (modn) {MOD};
+
+\draw (5.5,0) node[filter] (bpf1) {BPF\textsubscript{1}};
+\draw (5.5,-1) node[filter] (bpf2) {BPF\textsubscript{2}};
+\draw (5.5,-3) node[filter] (bpfn) {BPF\textsubscript{$N$}};
+
+\draw (7.5,-1.5) node[adder] (add) {};
+\draw (9,-1.5) node[rectangle,draw] (chan) {Κανάλι};
+\draw (1.5,-5) node[rectangle,draw] (osc) {$\sim$\quad\begin{tabular}{c}Τροφοδοσία\\Φέροντος\end{tabular}};
+
+\begin{scope}[every node/.style={scale=.8}]
+\draw (lpf1.north) node[above,align=center] {300-3300\\kHz};
+\draw (bpf1.north) node[above] {4 kHz};
+\draw (bpf2.north) node[above,yshift=-1mm] {8 kHz};
+\end{scope}
+
+\draw[<-] (lpf1) -- ++(-2,0) node[left] {$1$} node[above,midway] {$m_1(t)$};
+\draw[<-] (lpf2) -- ++(-2,0) node[left] {$2$} node[above,midway] {$m_2(t)$};
+\draw[<-] (lpfn) -- ++(-2,0) node[left] {$N$};
+
+\draw[<-] (mod1) -- ++(0,-0.5) -| (osc);
+\draw[<-] (mod2) -- ++(0,-0.5) -| (osc);
+\draw[<-] (modn) -- ++(0,-0.5) -| (osc);
+\draw[->] (lpf1) -- (mod1);
+\draw[->] (lpf2) -- (mod2);
+\draw[->] (lpfn) -- (modn);
+\draw[->] (mod1) -- (bpf1) node[above,midway] {$f_1$};
+\draw[->] (mod2) -- (bpf2) node[above,midway] {$f_2$};
+\draw[->] (modn) -- (bpfn) node[above,midway] {$f_N$};
+\draw (bpf1) -| (add.north);
+\draw (bpf2) |- (add.west);
+\draw (bpfn) -| (add.south);
+\draw[->] (add.east) -- (chan) node[near start] (link) {};
+
+\draw (0,-2) node {$\vdots$};
+\draw (3,-2) node {$\vdots$};
+\draw (5.5,-2) node {$\vdots$};
+
+\draw[brown,->] (link.center) to[bend left] ++(0.1,-0.7) to[bend right] ++(0,-0.5)
+node[below right,scale=.7] {$\displaystyle s(t) = \sum_{i=1}^n\left[\frac{1}{2}m_i(t)\cos2πf_it-\frac{1}{2}\hat m_i(t)\sin2πf_it \right]$};
+\end{tikzpicture}
 
 Έτσι, στο φάσμα των συχνοτήτων έχουμε πολλά σήματα κολλημένα μεταξύ τους:
-\todo{Graph 80}
+
+\begin{tikzpicture}
+\draw[->] (-1,0) -- (8,0);
+\draw (0,-0.5) -- (0,2);
+
+\foreach \x in {1,2,3,5} {
+	\filldraw[fill=black, draw=gray, fill opacity=0.07,xshift=1.3*\x cm]
+	(-0.08,0) -- ++(0.08,1.2) -- ++(1,0) node[midway,above,opacity=1,scale=.9] {\ifthenelse{\equal{\x}{1}}{4 kHz}{}} -- ++(0.08,-1.2);
+	
+	\draw[very thick,draw=blue!50!cyan,xshift=1.3*\x cm]
+	(0,0) .. controls (0.255,1) .. (0.5,1) .. controls (1-0.255,1) .. (1,0);
+	
+	\draw[xshift=1.3*\x cm] (0.5,0.1) -- ++(0,-0.2) node[below] {\ifthenelse{\equal{\x}{5}}%
+		{$f_N$}%
+		{$f_\x$}};
+}
+
+\draw (1.3*4+0.5,0.5) node {$\cdots$};
+\end{tikzpicture}
 
 Και ο αποδιαμορφωτής ακολουθεί ακριβώς την αντίστροφη διαδικασία:
-\todo{Graph 81}
+
+\begin{tikzpicture}
+\tikzstyle{filter} = [rectangle,draw,minimum height=7mm]
+\tikzstyle{mod} = [rectangle,draw,minimum width=15mm]
+
+\draw (5.5,0) node[filter] (lpf1) {LPF};
+\draw (5.5,-1) node[filter] (lpf2) {LPF};
+\draw (5.5,-3) node[filter] (lpfn) {LPF};
+
+\draw (3,0) node[mod] (mod1) {DEM};
+\draw (3,-1) node[mod] (mod2) {DEM};
+\draw (3,-3) node[mod] (modn) {DEM};
+
+\draw (0,0) node[filter] (bpf1) {BPF\textsubscript{1}};
+\draw (0,-1) node[filter] (bpf2) {BPF\textsubscript{2}};
+\draw (0,-3) node[filter] (bpfn) {BPF\textsubscript{$N$}};
+
+\draw (1.5,-5) node[rectangle,draw] (osc) {$\sim$\quad\begin{tabular}{c}Τροφοδοσία\\Φέροντος\end{tabular}};
+\draw (-1.5,-5) node (m) {$m(t)$};
+
+\draw[->] (lpf1) -- ++(2,0) node[right] {$m_1(t)$};
+\draw[->] (lpf2) -- ++(2,0) node[right] {$m_2(t)$};
+\draw[->] (lpfn) -- ++(2,0) node[right] {$m_N(t)$};
+
+\draw (m) |- (bpf1);
+\draw (m) |- (bpf2);
+\draw (m) |- (bpfn);
+\draw[<-] (mod1) -- ++(0,-0.5) -| (osc);
+\draw[<-] (mod2) -- ++(0,-0.5) -| (osc);
+\draw[<-] (modn) -- ++(0,-0.5) -| (osc);
+\draw[->] (bpf1) -- (mod1);
+\draw[->] (bpf2) -- (mod2);
+\draw[->] (bpfn) -- (modn);
+\draw[->] (mod1) -- (lpf1);
+\draw[->] (mod2) -- (lpf2);
+\draw[->] (modn) -- (lpfn);
+
+\draw (0,-2) node {$\vdots$};
+\draw (3,-2) node {$\vdots$};
+\draw (5.5,-2) node {$\vdots$};
+\end{tikzpicture}
 
 Για τον επιπλέον έλεγχο του φάσματος, τα σήματα μπορεί να ενώνονται σε ομάδες, οι οποίες
 ενώνονται σε υπερομάδες, και στη συνέχεια σε super-groups, ενώ για δημόσια κανάλια
@@ -3236,12 +3467,82 @@ k_as_{\mathrm{VSB}}(t) \), δηλαδή VSB μαζί όμως με το φέρο
 \subparagraph{TDMA}
 Η ιδέα του \textbf{Time-Division Multiple Access (TDMA)} βασίζεται στο ότι για να πάρουμε
 τις τιμές ενός σήματος το δειγματοληπτούμε ανά τακτά χρονικά διαστήματα:
-\todo{Graph  83}
+
+\begin{tikzpicture}[scale=1.6]
+\draw (0,0) -- (4,0);
+\draw[ultra thick,blue!70!cyan]
+plot[domain=0:4,variable=\t,smooth,samples=18]
+(\t,{1+0.32*cos(2.33*\t r)});
+
+\foreach \x in {0,0.35,...,4} {
+	\draw[thick,->] (\x,0) -- ++(0,{1+0.32*cos(2.33*\x r)});
+}
+\end{tikzpicture}
 
 Σκεφτόμαστε αν π.χ. έχουμε 3 σήματα, κάθε φορά που δειγματοληπτείται το πρώτο, μετά από
 λίγο να δειγματοληπτείται το δεύτερο, μετά το τρίτο, και μετά να ξεκινάμε ξανά από την
 αρχή, δειγματοληπτώντας το πρώτο, το δεύτερο, κ.ό.κ:
-\todo{Graph 84}
+
+\begin{tikzpicture}[scale=1.4]
+\foreach \x in {0,0.333,0.667} {
+	\draw[gray,dashed] (\x,-9) -- (\x,0);
+}
+
+\draw (-0.5,0) -- (4,0);
+\draw[ultra thick,blue!70!cyan]
+plot[domain=-0.5:4,variable=\t,smooth,samples=16]
+(\t,{1+0.32*cos(2.33*\t r)});
+
+\foreach \x in {0,1,...,3} {
+	\draw[thick,->] (\x,0) -- ++(0,{1+0.32*cos(2.33*\x r)});
+}
+
+\begin{scope}[yshift=-3cm]
+\draw (-0.5,0) -- (4,0);
+\draw[ultra thick,blue!70!cyan]
+plot[domain=-0.5:4,variable=\t,smooth,samples=16]
+(\t,{1+0.5*sin(1.2*\t r)});
+
+\foreach \x in {0.333,1.333,...,3.333} {
+	\draw[thick,->] (\x,0) -- ++(0,{1+0.5*sin(1.2*\x r)});
+}
+\end{scope}
+
+\begin{scope}[yshift=-6cm]
+\draw (-0.5,0) -- (4,0);
+\draw[ultra thick,blue!70!cyan]
+plot[domain=-0.5:4,variable=\t,smooth,samples=30]
+(\t,{1+0.4*sin(2.1*\t r)});
+
+\foreach \x in {0.667,1.667,...,3.667} {
+	\draw[thick,->] (\x,0) -- ++(0,{1+0.4*sin(2.1*\x r)});
+}
+\end{scope}
+
+\begin{scope}[yshift=-9cm]
+\draw (-0.5,0) -- (4,0);
+
+\foreach \x in {0.667,1.667,...,3.667} {
+	\draw[thick,->] (\x,0) -- ++(0,{1+0.4*sin(2.1*\x r)});
+}
+
+\begin{scope}[green!30!black,every node/.style={scale=.9}]
+\foreach \x in {0,1,...,3} {
+	\draw[thick,->] (\x,0) -- ++(0,{1+0.32*cos(2.33*\x r)}) node[above,blue!50!black,fill=white] {1};
+}
+\foreach \x in {0.333,1.333,...,3.333} {
+	\draw[thick,->] (\x,0) -- ++(0,{1+0.5*sin(1.2*\x r)}) node[above,red!50!black,fill=white] {2};
+}
+\foreach \x in {0.667,1.667,...,3.667} {
+	\draw[thick,->] (\x,0) -- ++(0,{1+0.4*sin(2.1*\x r)}) node[above,purple!50!black,fill=white] {3};
+}
+\end{scope}
+
+\draw (-0.2,0.01) -- ++(0,-0.2) -- (0.667+0.2,-0.19) node[midway,below] {frame} -- ++(0,0.21);
+
+\draw (-1,1) node[adder,scale=.7] {};
+\end{scope}
+\end{tikzpicture}
 
 Έτσι, μέσα σε κάθε frame (χρονοθυρίδα),
 μπορούμε να δειγματοληπτήσουμε πολλά (π.χ. 100) διαφορετικά σήματα.
@@ -3254,7 +3555,46 @@ k_as_{\mathrm{VSB}}(t) \), δηλαδή VSB μαζί όμως με το φέρο
 ότι μπορούν να λάβουν π.χ. μόνο τις τιμές 1 ή -1.
 
 Έστω δύο σήματα:
-\todo{Graph 84}
+
+\begin{tikzpicture}[scale=0.6,every node/.style={scale=.7}]
+\draw (-0.5,0) -- (3.5,0);
+\draw (0,2) -- (0,-5.5);
+
+\draw (0,0) node[above left] {$s_1(t)$};
+
+\begin{scope}[yshift=-4cm]
+\draw (-0.5,0) -- (3.5,0);
+\draw (0,0) node[above left] {$s_2(t)$};
+
+\draw[thick,blue!60!cyan!80!black,xscale=.5]
+plot [const plot] coordinates {(0,1) (1,1) (2,-1) (3,1) (4,1) (5,1) (6,0)};
+
+\begin{scope}[every node/.style={blue!60!cyan!90!black,scale=.7},xscale=.5]
+\draw (0,1) node[above right] {1};
+\draw (1.5,1) node[above] {1};
+\draw (2.5,1) node[above] {-1};
+\draw (3.5,1) node[above] {1};
+\draw (4.5,1) node[above] {1};
+\draw (5.5,1) node[above] {1};
+\draw[dashed] (1,0) -- ++(0,1);
+\draw[dashed] (4,0) -- ++(0,1);
+\draw[dashed] (5,0) -- ++(0,1);
+\end{scope}
+\end{scope}
+
+\draw[thick,blue!60!cyan!80!black,xscale=.5]
+plot [const plot] coordinates {(0,1) (1,-1) (2,1) (4,-1) (5,1) (6,0)};
+
+\begin{scope}[every node/.style={blue!60!cyan!90!black,scale=.7},xscale=.5]
+\draw (0,1) node[above right] {1};
+\draw (1.5,1) node[above] {-1};
+\draw (2.5,1) node[above] {1};
+\draw (3.5,1) node[above] {1};
+\draw (4.5,1) node[above] {-1};
+\draw (5.5,1) node[above] {1};
+\draw[dashed] (3,0) -- ++(0,1);
+\end{scope}
+\end{tikzpicture}
 
 Με κατάλληλο πολλαπλασιασμό, άθροιση και ολοκλήρωση, θα λάβουμε ένα σήμα ευρείας μπάντας
 που περιέχει τα δεδομένα μας, ενώ θα είναι αντιληπτό μόνο ως θόρυβος σε κάποιον άλλον ακροατή,

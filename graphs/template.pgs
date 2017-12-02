@@ -51,18 +51,12 @@
 }
 
 \def\gsamples{200}
-<<<<<<< HEAD
 \def\ang#1{#1^o}
 
 \def\si{}
 \def\hertz{Hz}
 \def\radian{rad}
 \def\second{s}
-=======
-\def\si{}
-\def\hertz{Hz}
-\def\ang[#1]{#1^o}
->>>>>>> 31103a8... Update templates
 
 \begin{document}
 <>
