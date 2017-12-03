@@ -52,6 +52,9 @@
 
 \def\gsamples{200}
 \def\ang#1{#1^o}
+\def\mathsmaller#1{\text{\footnotesize $#1$}}
+
+\def\measuredangle{<}
 
 \def\si{}
 \def\hertz{Hz}

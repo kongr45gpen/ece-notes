@@ -4161,14 +4161,87 @@ H(s) = \underset{\substack{\downarrow\\H_0}}{(10)}
 Έτσι, για \( p=1 \) (διπλός πόλος), η επίδραση ξεκινάει από την \( \omega = 0.1p =
 \SI{0.1}{\radian/\second}  \), με μία κλίση \( 2\cdot\ang{45} = \ang{90}/\si{\decade} \),
 μέχρι και την \( \omega = 10p = \SI{10}{\radian/\second} \).
-\todo{Graph 79}
+
+\begin{tikzpicture}[scale=1,yscale=0.8]
+\draw[dashed] (1,-4) -- ++(0,2);
+\draw[dashed] (2,-4) -- ++(0,2);
+\draw[dashed] (3,-4) -- ++(0,2);
+
+\draw (0,-1.5) -- (0,-4.5);
+\draw[->] (0,-2) -- ++(4,0);
+\draw[->] (0,-4) -- ++(4,0);
+
+\draw[ultra thick,magenta!90!black,yshift=-2cm,yscale=.8,every node/.style={inner sep=3pt}]
+(0,0) -- (1,0)
+-- (3,-2) node[midway,above right,fill=white] {$\ang{-90} \mathrm{/dec}$}
+-- (4,-2);
+
+\draw (1,-4) node[below] {$0.1$};
+\draw (2,-4) node[below] {$1$};
+\draw (3,-4) node[below] {$10$};
+\end{tikzpicture}
 
 Αντίστοιχα, για τον απλό πόλο \( p=10 \), ξεκινάμε από \( \SI{1}{\radian/\second} \) μέχρι
 τα \( \SI{100}{\radian/\second} \) με κλίση \( -\ang{45}/\si{\decade} \).
-\todo{Προαιρετικό αντίστοιχο με το παραπάνω διάγραμμα}
+
+\begin{tikzpicture}[scale=1,yscale=0.8]
+\draw[dashed] (1,-4) -- ++(0,2);
+\draw[dashed] (2,-4) -- ++(0,2);
+\draw[dashed] (3,-4) -- ++(0,2);
+
+\draw (0,-1.5) -- (0,-4.5);
+\draw[->] (0,-2) -- ++(4,0);
+\draw[->] (0,-4) -- ++(4,0);
+
+\draw[ultra thick,magenta!90!black,yshift=-2cm,yscale=.6,every node/.style={inner sep=1pt}]
+(0,0) -- (1,0)
+-- (3,-2) node[midway,above right,yshift=-2pt,xshift=2pt,fill=white] {$\ang{-45} \mathrm{/dec}$}
+-- (4,-2);
+
+\draw (1,-4) node[below] {$1$};
+\draw (2,-4) node[below] {$10$};
+\draw (3,-4) node[below] {$100$};
+\end{tikzpicture}
 
 Προσθέτοντας τα δύο παραπάνω διαγράμματα για τις φάσεις, έχουμε:
-\todo{Graph 80}
+
+\begin{tikzpicture}[scale=1.4]
+\draw[dashed] (1,-4) -- ++(0,4.3);
+\draw[dashed] (2,-4) -- ++(0,4.3);
+\draw[dashed] (3,-4) -- ++(0,4.3);
+
+\draw[gray!70!white] (0,1.5) node[left,scale=.8] {$0 \ \mathrm{dB}$} -- ++(4.5,0);
+\draw[->] (0,-4.5) -- (0,3);
+\draw[->] (-0.2,0.3) -- (5,0.3) node[right] {$\omega\ \mathsmaller{(\mathrm{rad/s})}$};
+
+\draw[ultra thick,blue!50!cyan!70!black]
+(0,2) -- (2,2) -- (3,0) -- (3.5,-1.5);
+\fill[blue!50!cyan!70!black]
+(2,2) circle (2pt) node[above right,scale=0.8] {$20\ \mathrm{dB}$}
+(3,0) circle (2pt);
+
+\draw (0,2) node[left,align=right] {$20\log 10 $\\$=20\ \mathrm{dB}$};
+\draw[dashed] (2,2) -- ++(0,-1.7) node[below,fill=white,yshift=-1pt] {$p=1$};
+\draw[dashed] (3,0) -- (3,0.3) node[above] {$10$};
+
+\draw[blue!50!black] (3,1) node[above right] {$-40 \ \mathrm{db/dec}$};
+\draw[blue!50!black] (3.5,-1) node[above right] {$-60 \ \mathrm{db/dec}$};
+
+\draw[->] (0,-2) -- ++(5,0);
+\draw[->] (0,-4) node[left] {$\ang{-270}$} -- ++(5,0);
+
+\draw[ultra thick,magenta!90!black,yshift=-2cm,yscale=2/3]
+(0,0) -- (1,0)
+-- (2,-1) node[midway,below left,fill=white] {$\ang{-90} \mathrm{/dec}$}
+-- (3,-2.5) node[midway,above right,fill=white] {$\ang{-135} \mathrm{/dec}$}
+-- (4,-3) node[midway,above right,fill=white] {$\ang{-45} \mathrm{/dec}$}
+-- ++(0.5,0);
+
+\draw (1,-4) node[below] {$0.1$};
+\draw (2,-4) node[below] {$1$};
+\draw (3,-4) node[below] {$10$};
+\draw (4,-4) node[below] {$100$};
+\end{tikzpicture}
 
 Γενικά είναι εύκολο να εργαζόμαστε με συναρτήσεις μεταφοράς των οποίων οι πόλοι και τα
 μηδενικά είναι μεταξύ τους πολλαπλασιασμένα με παράγοντες του 10.
@@ -4210,6 +4283,61 @@ H(s) = \underset{\substack{\downarrow\\H_0}}{(10)}
 η αντίστοιχη συνάρτηση μεταφοράς, και το σφάλμα θέσης αν την τοποθετήσουμε σε σύστημα κλειστού
 βρόγχου μοναδιαίας αρνητικής ανάδρασης.
 
+\begin{minipage}{15cm}
+	\centering
+	\raisebox{-0.5\height}{
+\begin{tikzpicture}[scale=1,xscale=1]
+\pgfplotsset{
+	/pgf/number format/freq/.style={
+		fixed,
+		%  fixed zerofill,
+		%  precision=0,
+	},
+}
+\def\phasedown{-3}
+\def\phaseextra{-4}
+
+\draw[->] (0,-5) -- (0,3);
+\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+
+
+\def\at{60}
+\draw[ultra thick,orange!90!blue!80!black]
+(0,1)
+-- ++(1.6021,0) node(c1) {}
+-- ++(-1*\at:{1/cos(1*\at)}) node(c2) {} node[near start,above right] {-40 dB/dec}
+-- ++(-1.2*\at:{1/cos(1.2*\at)}) node(c3) {} node[near start,below left,fill=white] {-60 dB/dec}
+-- ++(-1.2*\at:0.2)
+;
+
+\foreach \p in {c1,c2,c3} {
+	\draw[densely dashed] (\p.center) -- (\p.center |- 0,0) (\p.center) -- (\p.center -| 0,0);
+}
+\draw (c1 -| 0,0) node[left] {20 dB};
+\draw (c2 -| 0,0) node[left,yshift=1mm] {-20 dB};
+\draw (c3 -| 0,0) node[left,yshift=-1mm] {-80 dB};
+
+\foreach \x in {1.6021,2.6021,3.6021} {
+	\pgfmathsetmacro\result{10^\x/10}
+	\draw (\x,-0.1) node[below] {$\pgfmathprintnumber[freq]\result$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+\end{tikzpicture}}
+\hspace{2cm}
+\raisebox{-0.5\height}{
+\begin{tikzpicture}
+\draw (0,-0.2) -- (0,3);
+\draw[->] (-0.2,0) -- (5,0) node[right] {$t$};
+
+\draw[path fading=east,dashed] (0,2) -- (3.5,2);
+\draw (0,2) node[left] {$1$};
+
+\draw[very thick,blue!80!cyan!80!black]
+plot[domain=0:5,variable=\t,smooth,samples=18]
+(\t,{2*(1-exp(-1.4*\t))});
+\end{tikzpicture}}
+\end{minipage}
+
 \subparagraph{Λύση}
 Παρατηρούμε μία πτώση κατά \( \SI{-40}{\decibel/\decade} \) στη συνάρτηση μεταφοράς. Οπότε,
 προκύπτει το ερώτημα αν αυτή προέρχεται από δύο απλούς πραγματικούς πόλους, ή από δύο
@@ -4230,7 +4358,18 @@ H(s) = 10 \frac{1}{\left(\frac{s}{4}+1\right)^2\left(\frac{s}{40}+1\right)}
 \]
 
 Αν το τοποθετήσουμε σε κλειστό βρόγχο:
-\todo{Graph 82}
+
+\begin{tikzpicture}
+
+\draw (2,0) node[rectangle,draw] (h) {$\displaystyle 10\frac{1}{\left(\frac{s}{4}+1\right)^2\left(\frac{s}{40}+1\right)}$};
+\draw (h.west) ++(-1,0) node[circle,draw,minimum size=5mm] (mix) {};
+
+\draw[<-] (mix) -- ++(-1,0);
+\draw[->] (mix) -- (h);
+\draw[->] (h.east) -- ++(2,0) node[midway] (fb) {};
+\draw[->] (fb.center) -- ++(0,-1) -| (mix);
+
+\end{tikzpicture}
 
 Το σύστημα έχει τύπο 0 (αφού δεν υπάρχουν ολοκληρωτές), άρα και πεπερασμένο σφάλμα θέσης:
 \begin{align*}
@@ -4240,7 +4379,41 @@ H(s) = 10 \frac{1}{\left(\frac{s}{4}+1\right)^2\left(\frac{s}{40}+1\right)}
 
 \paragraph{Παράδειγμα}
 Να βρεθεί η συνάρτηση μεταφοράς με το παρακάτω προσεγγιστικό διάγραμμα Bode:
-\todo{Graph 83}
+
+\begin{tikzpicture}[scale=1,xscale=1]
+\pgfplotsset{
+	/pgf/number format/freq/.style={
+		fixed,
+		%  fixed zerofill,
+		%  precision=0,
+	},
+}
+\def\phasedown{-3}
+\def\phaseextra{-4}
+
+\draw[->] (0,-3) -- (0,3);
+\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+\draw[opacity=.8] (0,0) node[above left] {dB};
+
+
+\def\at{30}
+\draw[ultra thick,orange!90!blue!80!black]
+(0,2)
+-- (2.5,0) node[midway,above right] {-20 dB/dec}
+-- (3.5,-1) node(c1) {}
+-- (4.1,-3) node[midway,above right] {-40 dB/dec}
+;
+
+\foreach \p in {c1} {
+	\draw[densely dashed] (\p.center) -- (\p.center |- 0,0);
+}
+
+\foreach \x in {2.5,3.5} {
+	\pgfmathsetmacro\result{5*\x-7.5}
+	\draw (\x,0.1) node[above] {$\pgfmathprintnumber[freq]\result$} -- ++(0,-0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+\end{tikzpicture}
 
 \subparagraph{Λύση}
 Έχουμε πτώση \( \SI{-20}{\decibel/\decade} \) από τη συχνότητα \( \omega = 0 \), άρα έχουμε
@@ -4261,32 +4434,205 @@ H(s) = \frac{5}{s\left(\frac{s}{10}+1\right)} = \frac{50}{s(s+10)}
 αν έχει πόλους μόνο στο αριστερό ημιεπίπεδο, και οριακά ευσταθές
 αν έχει συζυγείς πόλους (ή πραγματικό πόλο) πολλαπλότητας 1 επάνω
 στον φανταστικό άξονα:
-\todo{Graph 84}
+\\*
+\begin{tikzpicture}[scale=1,xscale=1]
+\def\xp{8cm}
+\def\yp{5cm}
+
+\tikzstyle{pole}=[cross=4pt,red!80!black,very thick]
+\draw[->] (-1.5,0) -- (5,0) node[below] {$t$};
+\draw (0,-2) -- (0,2);
+\draw (2,-2) -- (2,2);
+
+\draw (-0.5,0) node[pole] {};
+
+\draw[very thick,blue!50!cyan!80!white,xshift=2cm]
+plot[variable=\x,domain=0:3,samples=18,smooth]
+(\x,{-1.5+3*exp(-1.1*\x)});
+
+\begin{scope}[xshift=\xp]
+\draw[->] (-1.5,0) -- (5,0) node[below] {$t$};
+\draw (0,-2) -- (0,2);
+\draw (2,-2) -- (2,2);
+
+\draw (0.5,1) node[pole] {};
+\draw (0.5,-1) node[pole] {};
+
+\draw[very thick,blue!50!cyan!80!white,xshift=2cm]
+plot[variable=\x,domain=0:3,samples=\gsamples/2.5,smooth]
+(\x,{sin(7*\x r)*(-1+exp(\x/3.5))});
+\end{scope}
+
+\begin{scope}[yshift=-\yp]
+\draw[->] (-1.5,0) -- (5,0) node[below] {$t$};
+\draw (0,-2) -- (0,2);
+\draw (2,-2) -- (2,2);
+
+\draw (-0.5,1) node[pole] {};
+\draw (-0.5,-1) node[pole] {};
+
+\draw[very thick,blue!50!cyan!80!white,xshift=2cm]
+plot[variable=\x,domain=0:3,samples=\gsamples/2.5,smooth]
+(\x,{cos(9*\x r)*(1.5*exp(-\x))});
+\end{scope}
+
+\begin{scope}[xshift=\xp,yshift=-\yp]
+\draw[->] (-1.5,0) -- (5,0) node[below] {$t$};
+\draw (0,-2) -- (0,2);
+\draw (2,-2) -- (2,2);
+
+\draw (0,0) node[pole] {};
+
+\draw[very thick,blue!50!cyan!80!white,xshift=2cm]
+(0,1) -- (3,1);
+\end{scope}
+\end{tikzpicture}
 
 Θα ασχοληθούμε επίσης με τη \textbf{σχετική ευστάθεια}, που δηλώνει
 το πόσο ευσταθές είναι ένα σύστημα σε σχέση με ένα άλλο. Για παράδειγμα,
 αν έχουμε δύο συστήματα
 \( A \) και \( B \) με πόλους στο αριστερό ημιεπίπεδο:
-\todo{Graph 85}
+
+\begin{tikzpicture}[scale=.7]
+\fill[green,path fading=west,fill opacity=.4] (-3,3) rectangle (0,-3);
+
+\tikzstyle{pole}=[cross=4pt,red!80!black,very thick]
+
+\draw (-3,0) -- (3,0);
+\draw (0,-3) -- (0,3);
+
+\draw (-1,2) node[pole] (pa1) {};
+\draw (-1,-2) node[pole] (pa2) {};
+\draw (-2,2) node[pole] (pb1) {};
+\draw (-2,-2) node[pole] (pb2) {};
+
+\draw[dashed] (pa1.center) -- (pa2.center);
+\draw[dashed] (pb1.center) -- (pb2.center);
+
+\draw (pa1.north) node[above] {A};
+\draw (pb1.north) node[above] {B};
+\end{tikzpicture}
+
 Τότε παρατηρούμε ότι και τα δύο είναι ευσταθή, αλλά το \( A \) έχει
 πόλους πιο κοντά στον φανταστικό άξονα, άρα μπορούμε να θεωρήσουμε
 ότι είναι "λιγότερο ευσταθές".
 
 Έστω δύο συστήματα με συναρτήσεις μεταφοράς κλειστού βρόγχου \( T_1 \) και \( T_2 \):
-\todo{Graph 86}
+
+\begin{tikzpicture}
+\tikzstyle{transfer}=[rectangle,draw,minimum height=9mm]
+
+\draw (2,0) node[transfer] (h1) {$\displaystyle H_1(s)$};
+\draw (h1.west) ++(-1,0) node[circle,draw,minimum size=5mm] (mix) {};
+\draw (h1.east) ++(1.2,0) node[transfer] (h2) {$\displaystyle H_2(s)$};
+
+\draw[<-] (mix) -- ++(-1,0);
+\draw[->] (mix) -- (h1);
+\draw (h1) -- (h2);
+\draw[->] (h2.east) -- ++(1,0) node (end) {} node[midway] (fb) {};
+\draw[->] (fb.center) -- ++(0,-1) -| (mix);
+\draw (mix.south) node[below left] {$-$};
+
+\draw(-1,0) node[left] {$\displaystyle T_1(s) = \frac{H_1H_2}{1+H_1H_2}$};
+
+\begin{scope}[yshift=-2cm]
+\draw (3,0) node[transfer] (h1) {$\displaystyle H_1(s)$};
+\draw (mix |- 0,0) node[circle,draw,minimum size=5mm] (mix) {};
+\draw (h1.south) ++(0,-1) node[transfer] (h2) {$\displaystyle H_2(s)$};
+
+\draw[<-] (mix) -- ++(-1,0);
+\draw[->] (mix) -- (h1);
+\draw[->] (h1.east) -- (end |- 0,0) node[midway] (fb) {};
+\draw[->] (fb.center) |- (h2) -| (mix);
+\draw (mix.south) node[below left] {$-$};
+
+\draw(-1,0) node[left] {$\displaystyle T_1(s) = \frac{H_1}{1+H_1H_2}$};
+\end{scope}
+\end{tikzpicture}
+
 και τα δύο έχουν τον ίδιο παρονομαστή (άρα και χαρακτηριστικό πολυώνυμο) στη συνάρτηση
 μεταφοράς, επομένως είναι ισοδύναμα ως προς την ευστάθεια.
 
 Επομένως μπορούμε να μελετάμε τα παρακάτω ισοδύναμα συστήματα, με συνάρτηση μεταφοράς ανοιχτού
 βρόγχου \( A(s) = H_1H_2 \):
-\todo{Graph 87}
+\\*
+\begin{tikzpicture}
+\tikzstyle{transfer}=[rectangle,draw,minimum height=9mm,minimum width=10mm]
+
+\draw (2,0) node[transfer] (h1) {$\displaystyle H_1$};
+\draw (h1.west) ++(-1,0) node[circle,draw,minimum size=5mm] (mix) {};
+\draw (h1.east) ++(1.2,0) node[transfer] (h2) {$\displaystyle H_2$};
+
+\draw[<-] (mix) -- ++(-1,0);
+\draw[->] (mix) -- (h1);
+\draw (h1) -- (h2) node[midway] (center) {};
+\draw[->] (h2.east) -- ++(0.5,0) node (end) {} node[midway] (fb) {};
+\draw[->] (fb.center) -- ++(0,-1.5) -| (mix);
+\draw (mix.south);
+
+\draw[->,thick] (center.center |- 0,-1.5/2) arc [start angle=120,end angle=-170,radius=2mm];
+
+\begin{scope}[yshift=-2.5cm]
+\draw (3,0) node[transfer] (h1) {$\displaystyle H_1$};
+\draw (mix |- 0,0) node[circle,draw,minimum size=5mm] (mix) {};
+\draw (h1.south) ++(0,-1) node[transfer] (h2) {$\displaystyle H_2$};
+
+\draw[<-] (mix) -- ++(-1,0);
+\draw[->] (mix) -- (h1);
+\draw[->] (h1.east) -- (end |- 0,0) node[midway] (fb) {};
+\draw[->] (fb.center) |- (h2) -| (mix);
+\draw (mix.south);
+\end{scope}
+\end{tikzpicture}
 
 Για τη μελέτη της ευστάθειας, ορίζουμε το \textbf{περιθώριο φάσης} και το \textbf{περιθώριο κέρδους}.
 \begin{defn}{Περιθώριο φάσης}{}
 	\textbf{Περιθώριο φάσης} ονομάζεται η απόσταση της φάσης της συνάρτησης μεταφοράς
 	από τις \( \ang{180} \), στο σημείο στο οποίο το πλάτος της είναι \( \SI{0}{\decibel} \)
 	ή 1:
-	\todo{Graph 88}
+
+	\begin{tikzpicture}[scale=1.2]
+	\pgfplotsset{
+		/pgf/number format/freq/.style={
+			fixed,
+		},
+	}
+	\def\phasedown{-2.2}
+	\def\phaseextra{-2}
+	
+	\draw[->] (0,\phasedown+\phaseextra) -- (0,2);
+	\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+	
+	\def\at{20}
+	\draw[ultra thick,orange!90!blue!90!black]
+	(0.7,1.2) -- (2.8,0)
+	.. controls (3.5,-0.5) and (4,-1) .. (4,-2);
+	
+	\draw[dashed] (2.8,0) -- ++(0,\phasedown-1.215);
+	
+	\draw (0,0) node[above left,orange!90!blue!50!black] {$20\log\left|A(j\omega)\right|$};
+	
+	\filldraw[orange!90!blue!90!black,fill opacity=.6] (2.8,0) circle (1mm)
+	node[above,orange!90!blue!40!black,yshift=1mm,opacity=1] {$\omega_c$};
+	
+	\begin{scope}[yshift=\phasedown cm]
+	\draw[->] (0,0) -- ++(4.5,0);
+	
+	\draw[dashed] (2.8,-1.215) -- +(-0.7,0) node[midway] (mp) {} -- +(0.7,0);
+	\draw[<-,thick] (mp.center) -- (mp.center |- 0,-1.7) node[midway,left] {$\phi_M$};
+	
+	\draw (0,-0.3) node[left,scale=.8] {$\ang{-90}$};
+	\draw[dashed] (0,-1.7) node[left,scale=.8] {$\ang{-180}$} -- ++(4,0);
+	\draw (0,-1) node[left,blue!50!cyan!50!green!50!black] {$\measuredangle\ A(j\omega)$};
+	
+	\draw[very thick,blue!50!cyan!50!green!70!black]
+	plot[smooth,variable=\x,domain=0:4.4,samples=30]
+	(\x,{-1+1.5*atan((-\x +2.7)*5)/180});
+	
+	\filldraw[very thin,blue!50!cyan!50!green!70!black,fill opacity=.4] (2.8,-1.215) circle (.6mm);
+	\end{scope}
+	
+	\end{tikzpicture}
 	
 	Το περιθώριο φάσης συμβολίζεται \( \phi_M \) (margin) και έχει τύπο:
 	\[
@@ -4298,8 +4644,21 @@ H(s) = \frac{5}{s\left(\frac{s}{10}+1\right)} = \frac{50}{s(s+10)}
 
 Για να καταλάβουμε ποιοτικά τη σημασία της απόστασης της φάσης από τις \( \ang{180} \),
 δίνουμε ένα ημιτονοειδές σήμα σε ένα σύστημα μοναδιαίας αρνητικής ανάδρασης:
-\todo{Graph 89}
-αν η συνάρτηση \( A(j\omega) \) προκαλεί σε εκείνο το σημείο διαφορά φάσης \( \ang{180} \),
+
+\begin{tikzpicture}
+\tikzstyle{transfer}=[rectangle,draw,minimum height=9mm]
+
+\draw (2,0) node[transfer] (h1) {$\displaystyle A(j\omega)$};
+\draw (h1.west) ++(-1,0) node[circle,draw,minimum size=5mm] (mix) {};
+
+\draw[<-] (mix) -- ++(-1,0) node[above] {$\sim$};
+\draw[->] (mix) -- (h1);
+\draw (h1.east) -- ++(1,0) node (end) {} node[midway] (fb) {} node[above right] {$\sim$};
+\draw[->] (fb.center) -- ++(0,-1) -| (mix);
+\draw (mix.south) node[below left] {$-$};
+\end{tikzpicture}
+
+Αν η συνάρτηση \( A(j\omega) \) προκαλεί σε εκείνο το σημείο διαφορά φάσης \( \ang{180} \),
 τότε στην έξοδο εμφανίζεται αρχικά ένα αντίθετο ημίτονο (αφού \( \sin(t-\ang{180})=-\sin(t)
  \)). Αυτό όμως αφαιρείται από την είσοδο λόγω της ανάδρασης, άρα η είσοδος διπλασιάζεται,
 και αυτή η διαδικασία επαναλαμβάνεται συνεχώς, οδηγώντας σε συνεχώς αυξανόμενη και άρα
@@ -4329,7 +4688,44 @@ H(s) = \frac{5}{s\left(\frac{s}{10}+1\right)} = \frac{50}{s(s+10)}
 	Δηλαδή το περιθώριο φάσης είναι η απόσταση (από κάτω προς τα επάνω) του πλάτους της
 	\( A \), όταν η φάση της είναι \( \ang{180} \).
 	
-    \todo{Graph 90}
+    \begin{tikzpicture}[scale=1.2]
+    \pgfplotsset{
+    	/pgf/number format/freq/.style={
+    		fixed,
+    	},
+    }
+    \def\phasedown{-1.2}
+    \def\phaseextra{-2}
+    
+    \draw[->] (0,\phasedown+\phaseextra) -- (0,2);
+    \draw[->] (0,1.1) -- (4.5,1.1) node[above] {$\si{\radian/\second}$};
+    
+    \def\at{20}
+    \draw[ultra thick,orange!90!blue!90!black]
+    (0.2,1.4) -- (1.5,1.4)
+    .. controls (3,1.4) and (4,-1) .. (4,-1);
+    
+    \draw[dashed] (2.82,0.775) -- (2.82,\phasedown-1.48);
+    
+    \draw (0,0) node[above left,orange!90!blue!50!black] {$20\log\left|A(j\omega)\right|$};
+    
+    \filldraw[orange!90!blue!50!black,fill opacity=.4] (2.82,0.775) circle (.65mm) node (circ) {};
+    \draw[very thick,->] ([yshift=.65mm]circ.center) -- (2.82,1.1) node[midway,right,yshift=-2mm,xshift=2mm] {$20\log g_M$};
+    
+    \begin{scope}[yshift=\phasedown cm]
+    \draw[->] (0,0) -- ++(4.5,0);
+    
+    \draw[dashed] (0,-1.48) node[left,scale=.8] {$\ang{-180}$} -- ++(4,0);
+    \draw (0,-1) node[left,blue!50!cyan!50!green!50!black] {$\measuredangle\ A(j\omega)$};
+    
+    \draw[very thick,blue!50!cyan!50!green!70!black]
+    plot[smooth,variable=\x,domain=0:4.4,samples=30]
+    (\x,{-1+1.5*atan((-\x +2.5)*5)/180});
+    
+    \filldraw[blue!50!cyan!50!green!70!black,fill opacity=.4] (2.82,-1.48) circle (1mm) node[opacity=1,below,yshift=-1mm] {$\omega_1$};
+    \end{scope}
+    
+    \end{tikzpicture}
 \end{defn}
 
 Παρατηρούμε πως όσο αυξάνεται το πλάτος της συνάρτησης μεταφοράς, τόσο πιο κοντά στον
@@ -4338,7 +4734,25 @@ H(s) = \frac{5}{s\left(\frac{s}{10}+1\right)} = \frac{50}{s(s+10)}
 
 \paragraph{Εφαρμογή}
 Για το παρακάτω σύστημα:
-\todo{Graph 91}
+
+\begin{tikzpicture}
+\tikzstyle{transfer}=[rectangle,draw,minimum height=9mm,minimum width=10mm]
+
+\draw (2,0) node[transfer] (h1) {$\displaystyle H_i(s)$};
+\draw (h1.west) ++(-1,0) node[circle,draw,minimum size=5mm] (mix) {};
+\draw (h1.east) ++(1.2,0) node[transfer] (h2) {$\displaystyle H(s)$};
+\draw (h2.east) ++(1.5,0) node[circle,draw,minimum size=5mm] (d) {};
+
+\draw[<-] (mix) -- ++(-1,0);
+\draw[->] (mix) -- (h1);
+\draw (h1) -- (h2) node[midway] (center) {} -- (d);
+\draw[<-] (d) -- ++(0,1.2) node[right] {$d$};
+\draw[->] (d.east) -- ++(1,0) node (end) {} node[midway] (fb) {} node[right] {$y$};
+\draw[->] (fb.center) -- ++(0,-1.5) -| (mix);
+\draw (mix.south);
+
+\draw (h2.north) node[above] {$H(s)=\frac{6}{s+6}$};
+\end{tikzpicture}
 
 Να σχεδιαστεί ο ελεγκτής \( H_i(s) \) ώστε να τηρούνται ταυτόχρονα οι προδιαγραφές:
 \begin{enumpar}
@@ -4349,7 +4763,7 @@ H(s) = \frac{5}{s\left(\frac{s}{10}+1\right)} = \frac{50}{s(s+10)}
 \end{enumpar}
 
 \subparagraph{Λύση}
-Θυμόμαστε ότι η συνάρτηση \( H_1(s) \) θα πρέπει να περιέχει έναν ολοκληρωτή
+Θυμόμαστε ότι η συνάρτηση \( H_i(s) \) θα πρέπει να περιέχει έναν ολοκληρωτή
 για να καλύπτει την πρώτη προδιαγραφή, άρα
 να έχει τη μορφή \( \underbrace{\frac{κ}{s}}_{\mathclap{\text{ελεγκτής } I}} \) ή
 τη μορφή \( \underbrace{\frac{κ(s+z)}{s}}_{\mathclap{\text{ελεγκτής } PI}} \).
