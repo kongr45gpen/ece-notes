@@ -4809,7 +4809,45 @@ plot[variable=\x,domain=0:3,samples=\gsamples/2.5,smooth]
 \]
 και έχει διάγραμμα Bode:
 
-\todo{Graph 92}
+\begin{tikzpicture}[scale=1,xscale=1]
+\pgfplotsset{/pgf/number format/freq/.style={fixed}}
+\def\phasedown{-3}
+\def\phaseextra{-2}
+
+\draw[->] (0,\phasedown+\phaseextra) -- (0,3);
+\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+
+\foreach \x in {1,3} {
+	\draw[dashed] (\x,\phasedown) -- (\x,0);
+}
+
+\def\at{20}
+\draw[ultra thick,orange!90!blue!80!black]
+(0,0) -- (2,0) -- (4,2) node[near end,above,sloped] {+20 dB/dec}
+;
+
+\foreach \x in {2} {
+	%\pgfmathsetmacro\result{10^\x/100}
+	\draw (\x,-0.1) node[below] {$a=\frac{1}{τ}$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+\foreach \x in {1,3} {
+	\pgfmathsetmacro\result{10^\x/100}
+	\draw (\x,\phasedown-0.1) node[below] {$\pgfmathprintnumber[freq]\result a$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+
+\begin{scope}[yshift=\phasedown cm]
+\draw[->] (0,0) -- ++(4.5,0);
+\def\at{40}
+
+\draw[ultra thick,magenta!60!blue,yshift=-1pt]
+(0,0) -- (1,0) -- (3,-1) -- (4,-1) node[near end,below] {$1-j\omega t$};
+\draw[ultra thick,magenta]
+(0,0) -- (1,0) -- (3,1) -- (4,1) node[near end,above] {$1+j\omega t$};
+\end{scope}
+
+\end{tikzpicture}
 
 Παρατηρούμε ότι το μέτρο παραμένει σταθερό ανεξάρτητα από το
 πρόσημο του \( a \), αλλά η φάση αλλάζει προσανατολισμό ανάλογα
@@ -4839,7 +4877,16 @@ y(s) = e^{-sT} u(s)
 \]
 
 Δηλαδή το σύστημα είναι μία πολύ απλή συνάρτηση:
-\todo{Graph 93}
+
+\begin{tikzpicture}[scale=1,xscale=1]
+\tikzstyle{transfer}=[rectangle,draw,minimum height=9mm]
+
+\draw (0,0) node[transfer] (H) {$e^{-sT}$};
+\draw (H.north) node[above] {$H(s)$};
+\draw[->] (H.east) -- ++(1,0) node[above] {$y$};
+\draw[<-] (H.west) node[above left] {$u$} -- ++(-1,0);
+
+\end{tikzpicture}
 
 και για να κατασκευάσουμε το διάγραμμα Bode, θεωρούμε \( s=j\omega \),
 και:
@@ -4973,7 +5020,44 @@ g_M κ = 0.93 \implies \boxed{κ=0.31}
 
 Μπορούμε επομένως να κατασκευάσουμε ένα διάγραμμα τοποθετώντας τα τρία παραπάνω
 σημεία στο μιγαδικό επίπεδο:
-\todo{Graph 94}
+
+\begin{tikzpicture}[scale=1.3]
+% Sage Math code used:
+% var('w')
+% assume(w,'real')
+%
+% f(w) = 1/(1+i*w)
+% show(real(f))
+% show(imag(f))
+
+\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+
+\def\scale{2.5}
+\pgfmathdeclarefunction{f}{1}{%
+	\pgfmathparse{-#1*(sqrt(1/#1)-1)}%
+}
+
+%\pgfkeys{/pgf/fpu=true}
+\draw[blue!50!cyan,very thick]
+(0,0) --
+plot[variable=\x,domain=0.001:1,samples=\gsamples,smooth,scale=\scale]
+( \x, {f(\x)} );
+
+\def\arrow{1}
+
+\pgfmathsetmacro\xa{\arrow}
+\pgfmathsetmacro\xb{\arrow + 0.1}
+\pgfmathsetmacro\fa{\scale*f(\xa/\scale)}
+\pgfmathsetmacro\fb{\scale*f(\xb/\scale)}
+
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{<}}}] (\xa,\fa) to (\xb,\fb);
+
+\filldraw[blue!70!cyan,fill=blue!80!cyan] (0,0) circle(2pt) node[above right] {$\omega\to \infty$};
+\filldraw[blue!70!cyan,fill=blue!80!cyan] (\scale,0) circle(2pt) node[above] {$\omega = 0$};
+\filldraw[draw=blue!70!cyan,fill=blue!80!cyan!30!black] (-\scale,0) circle(2pt) node[above] {$-1+j0$};
+
+\end{tikzpicture}
 
 \paragraph{Παράδειγμα}
 Έστω η συνάρτηση μεταφοράς με ολοκληρωτή:
@@ -5567,7 +5651,7 @@ A(j\omega) = \frac{336}{\omega^4-j8\omega^3-19\omega^2+j16\omega+4}
 
 Παρατηρούμε ότι έχουμε \( N=2 \) και \( P=0 \), άρα \( Z=2\), δηλαδή το σύστημα είναι ασταθές.
 
-\section{Γεωμετρικός τόπος ριζών}
+\subsection{Γεωμετρικός τόπος ριζών}
 Έστω ότι έχουμε το σύστημα:
 \todo{Graph 110}
 

@@ -64,6 +64,19 @@
         }
     }
 }
+\tikzset{
+	arrow at/.style args={#1}{
+		postaction={
+			decorate,
+			decoration={
+				post length=1mm, % ??? Magic to fix "Dimension
+				pre length=1mm, % ???  too large" errors.
+				markings,
+				mark=at position #1 with {\arrow{>}};
+			}
+		}
+	}
+}
 \makeatletter
 \tikzset{
   use path for main/.code={%

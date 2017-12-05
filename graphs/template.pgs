@@ -17,6 +17,8 @@
 \usepackage[greek]{babel}
 %\usepackage{color}
 \usepackage[active,pdftex,tightpage]{preview}
+\usepackage{pgfkeys}
+
 
 \usepackage{circuitikz}
 
@@ -48,6 +50,19 @@
             }
         }
     }
+}
+\tikzset{
+  arrow at/.style args={#1}{
+    postaction={
+      decorate,
+      decoration={
+        post length=1pt, % ??? Magic to fix "Dimension
+        pre length=1pt, % ???  too large" errors.
+        markings,
+        mark=at position #1 with {\arrow{>}};
+      }
+    }
+  }
 }
 
 \def\gsamples{200}
