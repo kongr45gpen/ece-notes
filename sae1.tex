@@ -553,20 +553,20 @@ f(\infty) = \lim_{s\to 0} sF(s)
 \draw (0,-0.2) -- (0,2);
 \draw [very thick, color=blue] (0,1.8) -- (2,1.8);
 \end{tikzpicture}\quad
-y(t) &= \mathrm u(t) &&\quad y(s) = \frac{1}{s} &\qquad e_{\mathrm ssp} & \quad{\text{σφάλμα θέσης}} \\
+r(t) &= \mathrm u(t) &&\quad r(s) = \frac{1}{s} &\qquad e_{\mathrm ssp} & \quad{\text{σφάλμα θέσης}} \\
 \begin{tikzpicture}[scale=0.4,baseline]
 \draw (-0.2,0) -- (2,0);
 \draw (0,-0.2) -- (0,2);
 \draw [very thick, color=blue] (0,0) -- (2,2);
 \end{tikzpicture}\quad
-y(t) &= t &&\quad y(s) = \frac{1}{s^2} &\qquad e_{\mathrm ssv} & \quad{\text{σφάλμα ταχύτητας}} \\
+r(t) &= t &&\quad r(s) = \frac{1}{s^2} &\qquad e_{\mathrm ssv} & \quad{\text{σφάλμα ταχύτητας}} \\
 \begin{tikzpicture}[scale=0.4,baseline]
 \draw (-0.2,0) -- (2,0);
 \draw (0,-0.2) -- (0,2);
 \draw [very thick, color=blue, domain=0:2,variable=\t, samples=\gsamples, smooth]
 plot (\t,\t^2/2);
 \end{tikzpicture}\quad
-y(t) &= \sfrac{t^2}{2} &&\quad y(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \quad{\text{σφάλμα επιτάχυνσης}}
+r(t) &= \sfrac{t^2}{2} &&\quad r(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \quad{\text{σφάλμα επιτάχυνσης}}
 \end{alignat*}
 
 Για παράδειγμα, για το σύστημα κλειστού βρόγχου, θυμόμαστε ότι:
