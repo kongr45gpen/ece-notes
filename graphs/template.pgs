@@ -14,7 +14,7 @@
 \usetikzlibrary{decorations.markings}
 \usetikzlibrary{decorations.pathmorphing}
 \tikzset{snake/.style={decorate, decoration=snake}}
-\usepackage[greek]{babel}
+\usepackage[english,greek]{babel}
 %\usepackage{color}
 \usepackage[active,pdftex,tightpage]{preview}
 \usepackage{pgfkeys}

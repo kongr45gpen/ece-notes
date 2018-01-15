@@ -3660,7 +3660,13 @@ plot [const plot] coordinates {(0,1) (1,-1) (2,1) (4,-1) (5,1) (6,0)};
 \subparagraph{Λύση}
 
 Θυμόμαστε τη μέθοδο αποδιαμόρφωσης του AM σήματος:
-\todo{Graph 84}
+
+\begin{tikzpicture}[scale=1]
+\draw (0,0) node[draw,rectangle,align=center,inner sep=10pt] (M) {φωρατής\\περιβάλλουσας};
+\draw[-<] (M.west) -| ++(-0.5,0.5) -- ++(-0.5,0) node[left] {$s(t)$};
+\draw[->] (M.east) -- ++(0.5,0) node[right]
+{$\displaystyle A_c\left| 1 +k_am(t)\right| \overset{?}{=} A_c\left(1+k_am(t)\right)$};
+\end{tikzpicture}
 
 Παρατηρούμε ότι ο φωρατής βγάζει ως έξοδο το \( A_c\left|1+k_a m(t)\right| \),
 ενώ η επιθυμητή έξοδος είναι η \( A_c\left(1+k_a m(t)\right) \). Αυτές οι δύο τιμές είναι
@@ -4096,7 +4102,24 @@ f_{Δt}(t) = \frac{\theta_i(t+\Delta t) - \theta_i(t)}{2π Δ t}
 μεταβαλλόμενη συχνότητα σημαίνει ότι το συνημίτονο δεν θα συναντάει τον οριζόντιο άξονα
 σε σημεία με ίσες αποστάσεις μεταξύ τους, αλλά σε διαφορετικές.
 
-\todo{Graph 85}
+\begin{tikzpicture}[scale=1]
+\draw[name path=x] (-0.5,0) -- (3,0);
+\draw (0,-1.5) -- (0,1.5);
+
+\draw[very thick,blue!70!cyan,name path=cos1]
+plot[smooth,samples=\gsamples,variable=\t,domain=0:3]
+(\t,{cos(2.7 * \t r)});
+
+\draw[very thick,blue!40!cyan,name path=cos2]
+plot[smooth,samples=\gsamples,variable=\t,domain=0:3]
+(\t,{cos(3.1 * \t r)});
+
+\path [name intersections={of=x and cos1}];
+\filldraw[fill opacity=.3] (intersection-2) circle (2pt) node[opacity=1,below right] {$\frac{1}{f_c}$};
+\path [name intersections={of=x and cos2}];
+\filldraw[blue!50!black, fill opacity=.3] (intersection-2) circle (2pt) node[opacity=1,above left] {$\frac{1}{f_c'}$};
+
+\end{tikzpicture}
 
 \subsubsection{Διαμορφώσεις PM \& AM}
 Τώρα μπορούμε να δώσουμε τις μαθηματικές εκφράσεις για τις διαμορφώσεις φάσης και συχνότητας:
@@ -4164,9 +4187,23 @@ P_w = \frac{1}{2}A_c^2
 
 \paragraph{Ένα παράδειγμα}
 Έστω ότι θέλουμε να στείλουμε ένα σήμα:
-\todo{Graph 86}
 
-με συχνότητα φέροντος \( f_c = \frac{1}{4} \), πρώτα με \textit{διαμόρφωση φάσης} με
+\begin{tikzpicture}[scale=1]
+\draw[->] (0,-0.5) -- (0,2) node[right] {$\mathrm m(t)$};
+\draw[->] (-2,0) -- (2,0) node[below] {$t$};
+
+\draw (0,0) node[below right] {$0$};
+
+\draw[very thick,blue] (-2,0) -- (0,0) -- (1.5,1.5);
+
+\draw (current bounding box.west) node[left]
+{$\displaystyle m(t) = \begin{cases}
+	at,\ & t \geq0 \\
+	0, \ & t <0
+	\end{cases}$};
+\end{tikzpicture}
+
+με συχνότητα φέροντος \( f_c = \frac{1}{4} \si{\hertz} \), πρώτα με \textit{διαμόρφωση φάσης} με
 \( k_p = \frac{π}{2}\ \si{\radian/\volt} \),
 και μετά με \textit{διαμόρφωση συχνότητας} με \( k_f = \SI{1}{\hertz/\volt} \).
 
@@ -4202,7 +4239,21 @@ A_c\cos(\sfrac{πt}{2} ) &\qquad t < 0
 	f_i(t) &= \frac{1}{2π}\od{\theta(t)}{t} = \frac{1}{2}\cdot \left(\frac{1}{2}+2πt\right)
 \end{align*}
 δηλαδή η συχνότητα του εκπεμπόμενου σήματος θα αυξάνεται συνεχώς:
-\todo{Graph 88}
+
+\begin{tikzpicture}[scale=1.2]
+\draw[->] (-4,0) -- (7.1,0) node[right] {$t$};
+\draw (0,-1.5) -- (0,1.5);
+
+\draw[very thick,blue!70!cyan]
+plot[smooth,samples=\gsamples,variable=\t,domain=-4:0]
+(\t,{cos(2.7 * \t r)});
+
+\draw[very thick,blue!70!cyan]
+plot[smooth,samples=\gsamples,variable=\t,domain=0:7]
+% It's not really t^2, but it makes the graph easier to see
+(\t,{cos((2.7+\t*\t/8) * \t r)});
+
+\end{tikzpicture}
 
 Αντίστοιχα, αν θέλουμε να υπολογίσουμε τα σημεία στα οποία περνάμε από το 0, θέλουμε:
 \begin{align*}
@@ -4210,9 +4261,19 @@ A_c\cos(\sfrac{πt}{2} ) &\qquad t < 0
 	t_n^2 + \frac{1}{2} t_n -n -\frac{1}{2} &= 0 \implies
 	t_n = \frac{1}{4} \left( -1 + \sqrt{9+16n} \right)
 \end{align*}
-\todo{Improvise a graph like Graph 89}
+
+\begin{tikzpicture}[scale=.5]
+\draw[->] (-2,0) -- (5,0) node[below left] {$n$};
+\draw[->] (0,-1.5) -- (0,3) node[right] {$t_n$};
+
+\draw[very thick,black!70!brown]
+plot[smooth,samples=28,variable=\t,domain=-0.5:5]
+% It's not really t^2, but it makes the graph easier to see
+(\t,{-1 + 0.4* (-1+sqrt(9+16*\t))});
+\end{tikzpicture}
 
 \subsubsection{Δυαδικότητα των διαμορφώσεων}
+Οι τύποι του PM και FM είναι, όπως είδαμε παραπάνω:
 
 \begin{align*}
 	\text{PM}: &\quad A_c\cos\left[2πf_c t + k_p m(t)\right] \\
@@ -4221,7 +4282,24 @@ A_c\cos(\sfrac{πt}{2} ) &\qquad t < 0
 
 Παρατηρούμε ότι ουσιαστικά οι διαμορφωτές FM και PM διαφέρουν μόνο κατά μία ολοκλήρωση
 ή παραγώγιση της πληροφορίας:
-\todo{Graph 90}
+
+\begin{tikzpicture}[scale=1]
+
+\draw (0,0) node[draw,rectangle,scale=1.5,minimum height=25pt] (I) {$\int$};
+\draw (2,0) node[draw,rectangle,scale=1.1,minimum width=35pt,inner sep=5pt] (M) {PM};
+\draw (I.west) -- ++(-1,0) node[above,midway] {$m(t)$};
+\draw (I) -- (M);
+\draw[->] (M.east) -- ++(1,0) node[right] {FM};
+
+\begin{scope}[yshift=-2cm]
+\draw (0,0) node[draw,rectangle,scale=1.5,minimum height=25pt] (I) {$\sfrac{\dif}{\dif t}$};
+\draw (2,0) node[draw,rectangle,scale=1.1,minimum width=35pt,inner sep=5pt] (M) {FM};
+\draw (I.west) -- ++(-1,0) node[above,midway] {$m(t)$};
+\draw (I) -- (M);
+\draw[->] (M.east) -- ++(1,0) node[right] {PM};
+\end{scope}
+
+\end{tikzpicture}
 
 Δηλαδή αν στην είσοδο ενός διαμορφωτή PM βάλουμε ένα ολοκληρωμένο σήμα, θα πάρουμε FM.
 Αν στην είσοδο ενός διαμορφωτή FM βάλουμε ένα σήμα που έχει παραγωγιστεί, θα πάρουμε PM.
