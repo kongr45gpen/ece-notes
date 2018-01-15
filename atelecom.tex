@@ -3792,7 +3792,7 @@ f_{\mathrm{LO}} = f_C + \SI{455}{\kilo\hertz}
 	\item Ζωγραφίστε ποιοτικά το φάσμα στην είσοδο
 	του RF φίλτρου
 	\item Δικαιολογήστε ότι αυτό επιτυγχάνεται εάν η συχνότητα
-	\( f_{\mathrm{LO}} \) του τοπικού ταλαντωτή παίνρι τιμές στο διάστημα \( [995,\;2055]\si{\kilo\hertz} \). Συνοδεύστε την απάντησή σας με ένα παράδειγμα.
+	\( f_{\mathrm{LO}} \) του τοπικού ταλαντωτή παίνρι τιμές στο διάστημα \( [995,\;2055]\ \si{\kilo\hertz} \). Συνοδεύστε την απάντησή σας με ένα παράδειγμα.
 	\item Βρείτε το δεύτερο διάστημα τιμών στο οποίο
 	μπορεί να κυμαίνεται η \( f_{\mathrm{LO}} \), ώστε
 	να ετεροδυνώνεται στα \( \SI{455}{kHz} \)
@@ -3821,6 +3821,7 @@ f_{\mathrm{LO}} = f_C + \SI{455}{\kilo\hertz}
 	Ουσιαστικά εδώ έχουμε ένα κύκλωμα που ταλαντώνεται σε μία συχνότητα. Είναι
 	πιο δύσκολο να κατασκευάσουμε μία τέτοια διάταξη με μεγαλύτερο εύρος ζώνης,
 	αφού απαιτούνται μεγαλύτεροι μεταβλητοί πυκνωτές.
+	\todo{solve the exercise}
 \end{enumgreekparen}
 
 \paragraph{Παράδειγμα}
@@ -3839,15 +3840,110 @@ f_{\mathrm{LO}} = f_C + \SI{455}{\kilo\hertz}
 \paragraph{Άσκηση}
 Δίνεται ένα σήμα διαμορφωμένο κατά USB, και πολυπλεγμένο στη συχνότητα:
 
-\todo{Graph 97}
+\begin{tikzpicture}[scale=1]
+%\filldraw[fill=blue!40!cyan!80!black,fill opacity=.15]
+%(-1.6,0) -- ++(0.1,1.2) -- ++(3,0) -- ++(0.1,-1.2);
+
+\def\s{2}
+\def\four{(-0.8,0) (-0.6,0.2) (0,1) (0.6,0.2) (0.8,0)}
+
+\begin{scope}
+\clip (0,0) rectangle (6,2); % clip below 0
+
+\draw[xshift=1.2 cm,draw=brown!70!orange,very thick,mark position=0(a),mark position=1(b)] plot[smooth]
+coordinates \four
+;
+
+\draw[xshift=2*\s cm,draw=brown!70!orange,very thick,mark position=0(c),mark position=1(d)] plot[smooth]
+coordinates \four
+;
+\end{scope}
+
+\draw (a) node[below] {$1$};
+\draw (b) node[below] {$1.004$};
+\draw (c) node[below] {$1.0041$};
+\draw (d) node[below] {$1.0081$};
+
+%\draw[ultra thick,->] (\s+0.4,0) node[below] {$f_c$} node[circle,fill,inner sep=2pt] {} -- ++(0,1.5);
+
+\draw[->] (-1,0) -- (7,0) node[below] {$f(\mathrm{MHz})$};
+\draw[->] (0,-1) -- (0,2) node[right] {$M(f)$};
+\end{tikzpicture}
 
 Θέλουμε να το αποδιαμορφώσουμε ώστε να πάρουμε μόνο το ένα σήμα στη βασική ζώνη. Για αυτό
 χρησιμοποιούμε την παρακάτω διάταξη αποδιαμορφωτή:
 
-\todo{Graph 98}
+\begin{circuitikz}
+	
+	\draw (0,0) node[mixer] (m1) {};
+	\draw (m1) ++ (3,0) node[rectangle,draw,inner sep=5pt,align=center] (bpf)
+	{BPF\quad $B(f)$\\$f_{\text{κεντρ}}=\SI{102}{\kilo\hertz}$\\$\mathrm{BW}=\SI{12}{\kilo\hertz}$};
+	\draw (bpf) ++(3,0) node[mixer] (m2) {};
+	\draw (m2) ++ (3,0) node[rectangle,draw,inner sep=5pt,align=center] (lpf)
+	{LPF\quad $L(f)$\\$\mathrm{BW}=\SI{8}{\kilo\hertz}$};
+	
+	\draw[<-] (m1.west) -- ++(-1.2,0) node[above,midway] {$m(t)$};
+	\draw[->] (m1.east) node[above right] {$A$} -- (bpf);
+	\draw[<-] (m1.north) -- ++(0,1) node[above] {$\cos 2\pi \cdot 900\cdot 10^3t$};
+	\draw[->] (bpf.east) node[above right] {$B$} -- (m2.west);
+	\draw[<-] (m2.north) -- ++(0,1) node[above] {$\cos 2\pi \cdot 100\cdot 10^3t$};
+	\draw[->] (m2.east) node[above right] {$\Gamma$} -- (lpf);
+	\draw[->] (lpf.east) node[above right] {$\Delta$} -- ++(1,0);
+	
+	\draw (bpf.south) node[below] {$96-108\si{\kilo\hertz}$};
+	
+\end{circuitikz}
 
-όπου δίνεται και η απόκριση \( B(f) \) του φίλτρου:
-\todo{Graph 99}
+όπου δίνονται και οι αποκρίσεις \( B(f) \) και \( L(f) \) των φίλτρων:
+
+\begin{tikzpicture}[scale=.8]
+\draw[->] (-0.5,0) -- (8,0) node[below] {$f(\si{\kilo\hertz})$};
+\draw[->] (0,-1) -- (0,3) node[right] {$B(f)$};
+
+\def\fa{3+0.15}
+\def\fb{5.8}
+\def\tz{1.5}
+\def\fb{\fa+\tz}
+\def\A{2}
+\filldraw[bottom color=white,fill opacity=.15,thick,top color=blue!80!cyan!80!black]
+plot[smooth,tension=0.75] coordinates {
+	(\fa-\tz,0) (\fa-\tz+\tz/4,\A/8) (\fa-\tz/2,\A/2) (\fa-\tz/4,7*\A/8) (\fa,\A)
+}
+--
+plot[smooth,tension=1] coordinates {
+	(\fb,\A) (\fb+\tz/4,7*\A/8) (\fb+\tz/2,\A/2) (\fb+3*\tz/4,\A/8) (\fb+\tz,0)
+}
+;
+
+\draw[dashed] (0,\A) -- (\fa,\A);
+\draw[dashed,path fading=north] (\fa-\tz,0) -- ++(0,2);
+\draw (\fa-\tz,0) node[below,scale=.8] {$96$};
+\draw (\fb+\tz,0) node[below,scale=.8] {$108$};
+\draw[dashed] (\fa,0) node[below,scale=.8] {$100$} -- ++(0,2);
+\draw[dashed] ({(\fa+\fb)/2},0) node[below,scale=.8] {$102$} -- ++(0,2);
+\draw[dashed] (\fb,0) node[below,scale=.8] {$104$} -- ++(0,2);
+\draw[dashed,path fading=north] ({(\fa+\fb)/2},0) -- ++(0,2);
+
+\begin{scope}[xshift=12cm]
+\draw[->] (-0.5,0) -- (5,0) node[below] {$f(\si{\kilo\hertz})$};
+\draw[->] (0,-1) -- (0,3) node[right] {$L(f)$};
+
+\def\fa{0}
+\def\fb{1.5}
+\def\tz{1.5}
+\def\A{2}
+\filldraw[bottom color=white,fill opacity=.12,thick,top color=blue!80!green!80!black]
+(0,0) -- (\fa,\A) -- (\fb,\A) --
+plot[smooth,tension=0.7] coordinates {
+	(\fb,\A) (\fb+\tz/4,7*\A/8) (\fb+\tz/2,\A/2) (\fb+3*\tz/4,\A/8) (\fb+\tz,0)
+}
+;
+
+\draw[dashed] (0,\A) -- (\fa,\A);
+\draw (\fb+\tz,0) node[below,scale=1] {$8$};
+\draw[dashed] (\fb,0) node[below,scale=1] {$4$} -- ++(0,2);
+\end{scope}
+\end{tikzpicture}
 
 \begin{enumgreekparen}
 	\item Να ζωγραφίσετε ποιοτικά τα φάσματα στα σημεία Α, Β, Γ και Δ.
@@ -3869,25 +3965,307 @@ f_{\mathrm{LO}} = f_C + \SI{455}{\kilo\hertz}
 		συνέλιξη του σήματος με δύο δέλτα. Επομένως ένα αντίγραφο του σήματος θα μετατοπιστεί
 		κατά 900 kHz στα αριστερά, και ένα άλλο θα μετατοπιστεί στα δεξιά:
 		
-		\todo{Graph 101}
+		\begin{tikzpicture}[scale=1]
+		%\filldraw[fill=blue!40!cyan!80!black,fill opacity=.15]
+		%(-1.6,0) -- ++(0.1,1.2) -- ++(3,0) -- ++(0.1,-1.2);
+		
+		\def\s{2}
+		\def\d{7}
+		\def\four{(-0.8,0) (-0.6,0.2) (0,1.2) (0.6,0.2) (0.8,0)}
+		
+		\begin{scope}
+		\clip (0,0) rectangle (15,2); % clip below 0
+		
+		\draw[xshift=1.2 cm,draw=brown!70!orange,very thick,mark position=0(a1),mark position=1(a2)] plot[smooth]
+		coordinates \four
+		;
+		
+		\draw[xshift=2*\s cm,draw=brown!70!orange,very thick,mark position=0(b1),mark position=1(b2)] plot[smooth]
+		coordinates \four
+		;
+		
+		\draw[xshift=\d cm+1.2 cm,draw=brown!70!orange,very thick,mark position=0(c1),mark position=1(c2)] plot[smooth]
+		coordinates \four
+		;
+		
+		\draw[xshift=\d cm+2*\s cm,draw=brown!70!orange,very thick,mark position=0(d1),mark position=1(d2)] plot[smooth]
+		coordinates \four
+		;
+		\end{scope}
+		
+		\draw (a1) node[below] {$100$};
+		\draw (a2) node[below] {$104$};
+		\draw (b1) node[below] {$104.1$};
+		\draw (b2) node[below] {$108.1$};
+		
+		\draw (c1) node[below] {$1900$};
+		\draw (c2) node[below] {$1904$};
+		\draw (d1) node[below] {$1904.1$};
+		\draw (d2) node[below] {$1908.1$};
+		
+		%\draw[ultra thick,->] (\s+0.4,0) node[below] {$f_c$} node[circle,fill,inner sep=2pt] {} -- ++(0,1.5);
+		
+		\draw[->] (-1,0) -- ({\d-1},0) -- ++(0.1,0.1) -- ++(0.1,-0.2) -- ++(0.1,0.1) -- (13.5,0) node[below] {$f(\mathrm{MHz})$};
+		\draw[->] (0,-1) -- (0,2) node[left,circle,draw,inner sep=2pt,outer sep=4pt] {$A$};
+		\end{tikzpicture}
 		
 		\item Το σημείο Β προκύπτει από το προηγούμενο σήμα, στο οποίο εφαρμόσαμε ένα φίλτρο:
-		\todo{Graph 102}
+		
+		\begin{tikzpicture}[scale=1]
+		%\filldraw[fill=blue!40!cyan!80!black,fill opacity=.15]
+		%(-1.6,0) -- ++(0.1,1.2) -- ++(3,0) -- ++(0.1,-1.2);
+		
+		\def\s{2}
+		\def\d{7}
+		\def\four{(-0.8,0) (-0.6,0.2) (0,1.2) (0.6,0.2) (0.8,0)}
+		
+		\begin{scope}
+		\clip (0,0) rectangle (15,2); % clip below 0
+		
+		\draw[xshift=1.2 cm,draw=brown!70!orange,very thick,mark position=0(a1),mark position=1(a2)] plot[smooth]
+		coordinates \four
+		;
+		
+		\draw[xshift=2*\s cm,draw=brown!70!orange,very thick,mark position=0(b1),mark position=1(b2)] plot[smooth]
+		coordinates \four
+		;
+		
+		\draw[xshift=\d cm+1.2 cm,draw=brown!70!orange,very thick,mark position=0(c1),mark position=1(c2)] plot[smooth]
+		coordinates \four
+		;
+		
+		\draw[xshift=\d cm+2*\s cm,draw=brown!70!orange,very thick,mark position=0(d1),mark position=1(d2)] plot[smooth]
+		coordinates \four
+		;
+		\end{scope}
+		
+		\draw (a1) node[below] {$100$};
+		\draw (a2) node[below] {$104$};
+		\draw (b1) node[below] {$104.1$};
+		\draw (b2) node[below] {$108.1$};
+		
+		\draw (c1) node[below] {$1900$};
+		\draw (c2) node[below] {$1904$};
+		\draw (d1) node[below] {$1904.1$};
+		\draw (d2) node[below] {$1908.1$};
+		
+		%\draw[ultra thick,->] (\s+0.4,0) node[below] {$f_c$} node[circle,fill,inner sep=2pt] {} -- ++(0,1.5);
+		
+		\draw[->] (-1,0) -- ({\d-1},0) -- ++(0.1,0.1) -- ++(0.1,-0.2) -- ++(0.1,0.1) -- (13.5,0) node[below] {$f(\mathrm{MHz})$};
+		\draw[->] (0,-1) -- (0,2) node[left,circle,draw,inner sep=2pt,outer sep=4pt] {$A$};
+		
+		%FILTER
+		\def\fa{0.4}
+		\def\fb{3}
+		\def\tz{1.8}
+		\def\A{1.7}
+		\begin{scope}
+		\clip (0,0) rectangle (10,2);
+		\filldraw[bottom color=white,fill opacity=.15,thick,top color=blue!80!cyan!80!black]
+		plot[smooth,tension=0.75] coordinates {
+			(\fa-\tz,0) (\fa-\tz+\tz/4,\A/8) (\fa-\tz/2,\A/2) (\fa-\tz/4,7*\A/8) (\fa,\A)
+		}
+		--
+		plot[smooth,tension=1] coordinates {
+			(\fb,\A) (\fb+\tz/4,7*\A/8) (\fb+\tz/2,\A/2) (\fb+3*\tz/4,\A/8) (\fb+\tz,0)
+		}
+		;
+		\end{scope}
+		
+		
+		\draw (\fb+\tz,0) node[below,scale=1.2,fill=white!80!cyan!70!blue,fill opacity=.7,text opacity=1] {$108$};
+		
+		
+		\end{tikzpicture}
 		
 		Δηλαδή το σήμα που προκύπτει είναι το πρώτο αριστερό σήμα, και το δεύτερο με
 		μειωμένο πλάτος, ενώ οι συχνότητες από τα 1900 kHz και μετά θα έχουν
 		αποκοπεί πλήρως από το φίλτρο:
-		\todo{Graph 103}
+		
+		\begin{tikzpicture}[scale=1]
+		%\filldraw[fill=blue!40!cyan!80!black,fill opacity=.15]
+		%(-1.6,0) -- ++(0.1,1.2) -- ++(3,0) -- ++(0.1,-1.2);
+		
+		\def\s{2}
+		\def\d{7}
+		\def\four{(-0.8,0) (-0.6,0.2) (0,1.2) (0.6,0.2) (0.8,0)}
+		
+		\begin{scope}
+		\clip (0,0) rectangle (6,2); % clip below 0
+		
+		\draw[xshift=1.2 cm,draw=brown!70!orange,very thick,mark position=0(a1),mark position=1(a2)] plot[smooth]
+		coordinates \four
+		;
+		
+		\draw[xshift=2*\s cm,draw=brown!70!orange,very thick,mark position=0(b1),mark position=1(b2)] plot[smooth]
+		coordinates {(-0.8,0) (-0.6,0.1) (-0.2,0.35) (0.6,0.02) (0.8,0)}
+		;
+		
+		
+		\end{scope}
+		
+		\draw (a1) node[below] {$100$};
+		\draw (a2) node[below] {$104$};
+		\draw (b1) node[below] {$104.1$};
+		\draw (b2) node[below] {$108$};
+		
+		
+		%\draw[ultra thick,->] (\s+0.4,0) node[below] {$f_c$} node[circle,fill,inner sep=2pt] {} -- ++(0,1.5);
+		
+		\draw[->] (-1,0) -- ({\d-1},0) node[below] {$f(\mathrm{MHz})$};
+		\draw[->] (0,-1) -- (0,2) node[left,circle,draw,inner sep=2pt,outer sep=4pt] {$B$};
+		\end{tikzpicture}
 		
 		\item Στη συνέχεια πολλαπλασιάζουμε με ένα ημίτονο 100 kHz, άρα δύο αντίγραφα
 		του σήματος στο \textit{Β} μετατοπίζονται στα αριστερά και στα δεξιά:
-		\todo{Graph 104}
+		
+		\begin{tikzpicture}[scale=1]
+		%\filldraw[fill=blue!40!cyan!80!black,fill opacity=.15]
+		%(-1.6,0) -- ++(0.1,1.2) -- ++(3,0) -- ++(0.1,-1.2);
+		
+		\def\s{1.7}
+		\def\d{6.2}
+		\def\four{(-0.8,0) (-0.6,0.2) (0,1.2) (0.6,0.2) (0.8,0)}
+		\def\five{(-0.8,0) (-0.6,0.1) (-0.2,0.35) (0.6,0.02) (0.8,0)}
+		
+		\begin{scope}
+		\clip (0,0) rectangle (15,2); % clip below 0
+		
+		\draw[xshift=0.8 cm,draw=brown!70!orange,very thick,mark position=0(a1),mark position=1(a2)] plot[smooth]
+		coordinates \four
+		;
+		
+		\draw[xshift=2*\s cm,draw=brown!70!orange,very thick,mark position=0(b1),mark position=1(b2)] plot[smooth]
+		coordinates \five
+		;
+		
+		\draw[xshift=\d cm+0.8 cm,draw=brown!70!orange,very thick,mark position=0(c1),mark position=1(c2)] plot[smooth]
+		coordinates \four
+		;
+		
+		\draw[xshift=\d cm+2*\s cm,draw=brown!70!orange,very thick,mark position=0(d1),mark position=1(d2)] plot[smooth]
+		coordinates \five
+		;
+		\end{scope}
+		
+		\draw (a1) node[below] {};
+		\draw (a2) node[below] {$4$};
+		\draw (b1) node[below] {$4.1$};
+		\draw (b2) node[below] {$8$};
+		
+		\draw (c1) node[below] {$200$};
+		\draw (c2) node[below] {$204$};
+		\draw (d1) node[below] {$204.1$};
+		\draw (d2) node[below] {$208$};
+		
+		%\draw[ultra thick,->] (\s+0.4,0) node[below] {$f_c$} node[circle,fill,inner sep=2pt] {} -- ++(0,1.5);
+		
+		\draw[->] (-1,0) -- ({\d-1.2},0) -- ++(0.1,0.1) -- ++(0.1,-0.2) -- ++(0.1,0.1) -- (12,0) node[below] {$f(\mathrm{MHz})$};
+		\draw[->] (0,-1) -- (0,2) node[left,circle,draw,inner sep=2pt,outer sep=4pt] {$\Gamma$};
+		\end{tikzpicture}
 		
 		\item Η απόκριση του χαμηλοπερατού φίλτρου εφαρμόζεται επάνω στο σήμα \textit{Γ}:
-		\todo{Graph 105}
+		
+		\begin{tikzpicture}[scale=1]
+		%\filldraw[fill=blue!40!cyan!80!black,fill opacity=.15]
+		%(-1.6,0) -- ++(0.1,1.2) -- ++(3,0) -- ++(0.1,-1.2);
+		
+		\def\s{1.7}
+		\def\d{6.2}
+		\def\four{(-0.8,0) (-0.6,0.2) (0,1.2) (0.6,0.2) (0.8,0)}
+		\def\five{(-0.8,0) (-0.6,0.1) (-0.2,0.35) (0.6,0.02) (0.8,0)}
+		
+		\begin{scope}
+		\clip (0,0) rectangle (15,2); % clip below 0
+		
+		\draw[xshift=0.8 cm,draw=brown!70!orange,very thick,mark position=0(a1),mark position=1(a2)] plot[smooth]
+		coordinates \four
+		;
+		
+		\draw[xshift=2*\s cm,draw=brown!70!orange,very thick,mark position=0(b1),mark position=1(b2)] plot[smooth]
+		coordinates \five
+		;
+		
+		\draw[xshift=\d cm+0.8 cm,draw=brown!70!orange,very thick,mark position=0(c1),mark position=1(c2)] plot[smooth]
+		coordinates \four
+		;
+		
+		\draw[xshift=\d cm+2*\s cm,draw=brown!70!orange,very thick,mark position=0(d1),mark position=1(d2)] plot[smooth]
+		coordinates \five
+		;
+		\end{scope}
+		
+		\draw (a1) node[below] {};
+		\draw (a2) node[below] {$4$};
+		\draw (b1) node[below] {$4.1$};
+		\draw (b2) node[below] {$8$};
+		
+		\draw (c1) node[below] {$200$};
+		\draw (c2) node[below] {$204$};
+		\draw (d1) node[below] {$204.1$};
+		\draw (d2) node[below] {$208$};
+		
+		%\draw[ultra thick,->] (\s+0.4,0) node[below] {$f_c$} node[circle,fill,inner sep=2pt] {} -- ++(0,1.5);
+		
+		\draw[->] (-1,0) -- ({\d-1.2},0) -- ++(0.1,0.1) -- ++(0.1,-0.2) -- ++(0.1,0.1) -- (12,0) node[below] {$f(\mathrm{MHz})$};
+		\draw[->] (0,-1) -- (0,2) node[left,circle,draw,inner sep=2pt,outer sep=4pt] {$\Gamma$};
+		
+		%FILTER
+		\def\fa{0}
+		\def\fb{1.4}
+		\def\tz{2.6}
+		\def\A{1.7}
+		\begin{scope}
+		\clip (0,0) rectangle (10,2);
+		\filldraw[bottom color=white,fill opacity=.15,thick,top color=blue!80!green!80!black]
+		(0,0) -- (\fa,\A)
+		--
+		plot[smooth,tension=.7] coordinates {
+			(\fb,\A) (\fb+\tz/4,7*\A/8) (\fb+\tz/2,\A/2) (\fb+3*\tz/4,\A/8) (\fb+\tz,0)
+		}
+		;
+		\end{scope}
+		
+		
+		\draw (\fb+\tz,0) node[below,scale=1.2,fill=white!80!cyan!70!blue!80!green,fill opacity=.7,text opacity=1] {$8$};
+		\end{tikzpicture}
 		
 		Άρα τελικά το σήμα εξόδου είναι:
-		\todo{Graph 106}
+		
+		\begin{tikzpicture}[scale=1]
+		%\filldraw[fill=blue!40!cyan!80!black,fill opacity=.15]
+		%(-1.6,0) -- ++(0.1,1.2) -- ++(3,0) -- ++(0.1,-1.2);
+		
+		\def\s{1.7}
+		\def\d{6.2}
+		\def\four{(-0.8,0) (-0.6,0.2) (0,1.2) (0.6,0.2) (0.8,0)}
+		\def\five{(-0.8,0) (-0.75,0.07) (-0.3,0.2) (0.6,0.01) (0.8,0)}
+		
+		\begin{scope}
+		\clip (0,0) rectangle (6,2); % clip below 0
+		
+		\draw[xshift=0.8 cm,draw=brown!70!orange,very thick,mark position=0(a1),mark position=1(a2)] plot[smooth]
+		coordinates \four
+		;
+		
+		\draw[xshift=2*\s cm,draw=brown!70!orange,very thick,mark position=0(b1),mark position=1(b2)] plot[smooth]
+		coordinates \five
+		;
+		
+		
+		\end{scope}
+		
+		\draw (a1) node[below] {};
+		\draw (a2) node[below] {$4$};
+		\draw (b1) node[below] {$4.1$};
+		\draw (b2) node[below] {$8$};
+		
+		%\draw[ultra thick,->] (\s+0.4,0) node[below] {$f_c$} node[circle,fill,inner sep=2pt] {} -- ++(0,1.5);
+		
+		\draw[->] (-1,0) -- ({\d-1.2},0) node[below] {$f(\si{\kilo\hertz})$};
+		\draw[->] (0,-1) -- (0,2) ;
+		
+		\end{tikzpicture}
 	\end{itemize}
 	
 	Παρατηρούμε ότι στο τελικό σήμα δεν έχει κοπεί το δεύτερο κανάλι, αλλά έχει μόνο
@@ -4711,7 +5089,29 @@ s(t) &= \Re\left[ A_c \exp(j2πf_c t +jβ\sin 2π f_m t) \right]
 	αριθμομηχανές ή υπολογιστές.
 \end{defn}
 
-\todo{Graph 92}
+\begin{tikzpicture}[xscale=0.75,yscale=1.7]
+
+\draw[blue!75!magenta] (0,1) node[left] {$1$};
+\draw[blue!75!magenta,dashed] (0,-0.402759395702553) node[left,scale=.9] {$-0.4$} -- ++(3.831705970207527,0);
+\draw[blue!45!cyan,dashed] (0,0.581865224281596) node[left,scale=.9] {$0.58$} -- ++(1.841183781340689,0);
+
+\draw[very thick,yellow!50!cyan] plot[smooth] file{data/bessel_J_2.data}
+(3.5,0.4) node[above right] {$J_2(\beta)$};
+\draw[very thick,blue!45!cyan] plot[smooth] file{data/bessel_J_1.data}
+(1.6,0.55) node[above right] {$J_1(\beta)$};
+\draw[very thick,blue!75!magenta] plot[smooth] file{data/bessel_J_0.data}
+(0.4,0.88) node[above right] {$J_0(\beta)$};
+
+
+\draw (-1,0) -- (20,0) node[below] {$\beta$};
+\draw (0,-1) -- (0,1.1);
+
+\def\l{0.07}
+\foreach \x in {2,4,...,18} {
+	\draw[opacity=.8] (\x,-\l) node[below,scale=.8,fill=white,fill opacity=.4,inner sep=3pt,text opacity=.8] {$\x$} -- ++(0,2*\l);
+}
+
+\end{tikzpicture}
 
 Επομένως μπορούμε τώρα να θέσουμε:
 \[
@@ -4754,14 +5154,36 @@ S(f) = \frac{A_c}{2}\sum_{n=-\infty}^{\infty} J_n(β)
 \]
 
 Το φάσμα δηλαδή αποκτάει μια μορφή:
-\todo{Graph 93}
+
+\begin{tikzpicture}[yscale=1.5,xscale=0.7]
+\draw[->] (-1,0) -- (20,0) node[below] {$f$};
+\draw (0,-0.5) -- (0,1);
+
+\begin{scope}[very thick,->,yscale=1.2]
+\draw[blue!55!cyan] (9,0)  -- ++(0,-0.4);
+\draw[blue!43!cyan] (8,0)  -- ++(0,0.2);
+\draw[blue!60!cyan] (7,0)  -- ++(0,-0.45);
+\draw[blue!50!cyan] (6,0)  -- ++(0,0.18);
+\draw[blue!70!cyan] (5,0)  -- ++(0,-0.25);
+\draw[blue!75!cyan] (4,0)  -- ++(0,0.12);
+\draw[blue!80!cyan] (10,0) node[below] {$f_c$} -- ++(0,0.7);
+\draw[blue!50!cyan] (11,0) node[below,scale=.7] {$f_c+m$} -- ++(0,0.4);
+\draw[blue!80!cyan] (12,0)  -- ++(0,0.2);
+\draw[blue!30!cyan] (13,0)  -- ++(0,0.45);
+\draw[blue!40!cyan] (14,0)  -- ++(0,0.18);
+\draw[blue!70!cyan] (15,0)  -- ++(0,0.25);
+\draw[blue!60!cyan] (16,0)  -- ++(0,0.12);
+\end{scope}
+\draw (17.5,0) node[above right] {$\cdots$};
+
+\end{tikzpicture}
 
 Σε συνδυασμό με το διάγραμμα της συνάρτησης Bessel, μπορούμε να δούμε πως όσο απομακρυνόμαστε
 από τη συχνότητα του φέροντος \( f_c \), μειώνεται και το πλάτος των συχνοτήτων. Υπάρχει
 περιεχόμενο και στη συχνότητα \( f_c \), αλλά για μερικές τιμές του \( β \) μπορεί να μηδενιστεί.
 
-\paragraph{Ιδιότητες συναρτήσεων Bessel}
-
+\paragraph{Ιδιότητες συναρτήσεων Bessel} \hspace{0pt}
+\\*
 \begin{itemize}
 \item Ισχύει:
 \[
@@ -4810,8 +5232,83 @@ P = \frac{A_c^2}{2} \cancelto{1}{\sum_{n=-\infty}^{\infty} J_n^2(β)}
 \end{align*}
 
 Μπορούμε να μεταβάλλουμε τα \( A_m \) και \( f_m \), και να παρατηρήσουμε τη μεταβολή
-στο φάσμα των συχνοτήτων:
-\todo{Graph 94}
+στο φάσμα των συχνοτήτων. Για παράδειγμα, αν μεταβάλλουμε το \(β\) διατηρώντας σταθερή τη συχνότητα του
+σήματος και μεταβάλλοντας το πλάτος:
+
+\begin{tikzpicture}[yscale=1.5,xscale=0.5]
+\draw[gray,top color=white!80!yellow!85!brown,bottom color=white!80!brown,opacity=.3]
+plot [smooth cycle] coordinates {
+	(6,-1)  (8,1)  (12,1)  (14,-1)  (17,-3.5) (3,-3.5)
+};
+
+\draw[->] (-1,0) -- (20,0) node[below] {$f$};
+\draw (0,-0.5) -- (0,1);
+\draw (0,0) node[below right] {$\beta=1$};
+
+\begin{scope}[very thick,->]
+\draw[blue!55!cyan] (9,0)  -- ++(0,-0.440050585744933);
+\draw[blue!43!cyan] (8,0)  -- ++(0,0.114903484931900);
+%\draw[blue!60!cyan] (7,0)  -- ++(0,-0.45);
+%\draw[blue!50!cyan] (6,0)  -- ++(0,0.18);
+%\draw[blue!70!cyan] (5,0)  -- ++(0,-0.25);
+%\draw[blue!75!cyan] (4,0)  -- ++(0,0.12);
+\draw[blue!80!cyan] (10,0) node[below] {$f_c$} -- ++(0,0.765197686557967);
+\draw[blue!50!cyan] (11,0) node[below,scale=.7] {$f_c+m$} -- ++(0,0.440050585744933);
+\draw[blue!80!cyan] (12,0)  -- ++(0,0.114903484931900);
+%\draw[blue!30!cyan] (13,0)  -- ++(0,0.0195633539826684);
+%\draw[blue!40!cyan] (14,0)  -- ++(0,0.18);
+%\draw[blue!70!cyan] (15,0)  -- ++(0,0.25);
+%\draw[blue!60!cyan] (16,0)  -- ++(0,0.12);
+\end{scope}
+\draw (17.5,0) node[above right] {$\cdots$};
+
+\begin{scope}[yshift=-1.5cm]
+\draw[->] (-1,0) -- (20,0) node[below] {$f$};
+\draw (0,-0.5) -- (0,1);
+\draw (0,0) node[below right] {$\beta=2$};
+
+\begin{scope}[very thick,->]
+\draw[blue!55!cyan] (9,0)  -- ++(0,-0.576724807756873);
+\draw[blue!43!cyan] (8,0)  -- ++(0,0.352834028615638);
+\draw[blue!60!cyan] (7,0)  -- ++(0,-0.128943249474402);
+%\draw[blue!50!cyan] (6,0)  -- ++(0,0.18);
+%\draw[blue!70!cyan] (5,0)  -- ++(0,-0.25);
+%\draw[blue!75!cyan] (4,0)  -- ++(0,0.12);
+\draw[blue!80!cyan] (10,0) node[below] {$f_c$} -- ++(0,0.223890779141236);
+\draw[blue!50!cyan] (11,0)  -- ++(0,0.576724807756873);
+\draw[blue!80!cyan] (12,0)  -- ++(0,0.352834028615638);
+\draw[blue!30!cyan] (13,0)  -- ++(0,0.128943249474402);
+%\draw[blue!40!cyan] (14,0)  -- ++(0,0.0339957198075684);
+%\draw[blue!70!cyan] (15,0)  -- ++(0,0.25);
+%\draw[blue!60!cyan] (16,0)  -- ++(0,0.12);
+\end{scope}
+\draw (17.5,0) node[above right] {$\cdots$};
+\end{scope}
+
+\begin{scope}[yshift=-3cm]
+\draw[->] (-1,0) -- (20,0) node[below] {$f$};
+\draw (0,-0.5) -- (0,1);
+\draw (0,0) node[below right] {$\beta=5$};
+
+\begin{scope}[very thick,->]
+\draw[blue!55!cyan] (9,0)  -- ++(0,0.327579137591465);
+%\draw[blue!43!cyan] (8,0)  -- ++(0,0.0465651162777522);
+\draw[blue!60!cyan] (7,0)  -- ++(0,-0.364831230613667);
+\draw[blue!50!cyan] (6,0)  -- ++(0,0.391232360458648);
+\draw[blue!70!cyan] (5,0)  -- ++(0,-0.261140546120170);
+\draw[blue!75!cyan] (4,0)  -- ++(0,0.131048731781692);
+\draw[blue!80!cyan] (10,0) node[above] {$f_c$} -- ++(0,-0.177596771314338);
+\draw[blue!50!cyan] (11,0)  -- ++(0,-0.327579137591465);
+%\draw[blue!80!cyan] (12,0)  -- ++(0,0.0465651162777522);
+\draw[blue!30!cyan] (13,0)  -- ++(0,0.364831230613667);
+\draw[blue!40!cyan] (14,0)  -- ++(0,0.391232360458648);
+\draw[blue!70!cyan] (15,0)  -- ++(0,0.261140546120170);
+\draw[blue!60!cyan] (16,0)  -- ++(0,0.131048731781692);
+\end{scope}
+\draw (17.5,0) node[above right] {$\cdots$};
+\end{scope}
+
+\end{tikzpicture}
 
 Γενικά όμως βλέπουμε ότι οι πιο ισχυρές συχνότητες βρίσκονται \( \underline{Δf} \) αριστερά
 και δεξιά της \( f_c \). Επομένως, αν λάβουμε υπ' όψιν και μία ακόμα πλευρική ζώνη,
@@ -4840,7 +5337,7 @@ B_T = 2n_{\max}f_m
 μικρότερο από το 1\% του \( A_c \)}. Υπάρχουν
 μάλιστα πίνακες ή διαγράμματα που δείχνουν πόσες συχνότητες χρειάζεται να λάβουμε υπ' όψιν 
 για κάθε επιλογή του \( β \).
-\todo{Graph 95}
+
 Εναλλακτικά, θα μπορούσαμε να συμπεριλαμβάνουμε συχνότητες μέχρι να φτάσουμε στο
 98\% της ισχύος του εκπεμπόμενου σήματος.
 
@@ -4850,7 +5347,17 @@ B_T = 2n_{\max}f_m
 να θεωρήσουμε ένα ημιτονοειδές σήμα συχνότητας \( w \), και να λάβουμε \textit{ασφαλή}
 αποτελέσματα, αφού θεωρούμε την πιο δυσμενή περίπτωση.
 
-\todo{Graph 96}
+\begin{center}
+\begin{tikzpicture}[xscale=4]
+\draw (-2,0) -- (2,0) node[below] {$f$};
+\draw (0,-0.5) -- (0,2) node[right] {$M(f)$};
+
+\draw[->,blue!70!green,very thick] (1,0) node[below] {$w$} -- ++(0,1.4);
+\draw[->,blue!70!green,very thick] (-1,0) node[below] {$-w$} -- ++(0,1.4);
+\draw[blue!70!green,thick,fill=cyan!60!blue,fill opacity=.15,draw opacity=.9,densely dashed] plot[smooth,tension=1]
+coordinates {(-1,0) (0,1.2) (1,0)};
+\end{tikzpicture}
+\end{center}
 
 \begin{defn}{Ανάλυση τυχαίου σήματος FM στη συχνότητα}{}
 Σε αυτήν την ανάλυση, επανααντιστοιχίζουμε τα ονόματα των μεταβλητών ως εξής:

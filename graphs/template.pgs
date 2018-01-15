@@ -72,9 +72,11 @@
 \def\measuredangle{<}
 
 \def\si{}
+\def\SI{}
 \def\hertz{Hz}
 \def\radian{rad}
 \def\second{s}
+\def\kilo{k}
 
 \begin{document}
 <>
