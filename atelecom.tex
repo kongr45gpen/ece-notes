@@ -3949,7 +3949,39 @@ plot[smooth,tension=0.7] coordinates {
 	\item Να ζωγραφίσετε ποιοτικά τα φάσματα στα σημεία Α, Β, Γ και Δ.
 	
 	\item Να ζωγραφίσετε τα φάσματα στα Α' και Δ' μιας εναλλακτικής διάταξης διαμόρφωσης:
-	\todo{Graph 107}
+	
+	\begin{tikzpicture}[scale=.85]
+	
+	\draw (0,0) node[mixer] (m1) {};
+	\draw (m1) ++ (3,0) node[rectangle,draw,inner sep=5pt,align=center] (lpf)
+	{LPF\quad $L'(f)$\\$\mathrm{BW}=\SI{4.1}{\kilo\hertz}$};
+	
+	\draw[<-] (m1.west) -- ++(-1.2,0) node[above,midway] {$m(t)$};
+	\draw[->] (m1.east) node[above right] {$A'$} -- (lpf);
+	\draw[<-] (m1.south) -- ++(0,-1) node[below] {$\cos 2\pi \cdot 900\cdot 10^3t$};
+
+	\draw[->] (lpf.east) node[above right] {$\Delta'$} -- ++(1,0);
+
+	
+	\begin{scope}[xshift=8cm,yshift=-5mm]
+	\draw[->] (-0.5,0) -- (3.5,0) node[below] {$f(\si{\kilo\hertz})$};
+	\draw[->] (0,-1) -- (0,3) node[right] {$L(f)$};
+	\def\fa{0}
+	\def\fb{1.5}
+	\def\tz{0.4}
+	\def\A{2}
+	\filldraw[bottom color=white,fill opacity=.12,thick,top color=blue!80!green!80!black]
+	(0,0) -- (\fa,\A) -- (\fb,\A) --
+	plot[smooth,tension=0.7] coordinates {
+		(\fb,\A) (\fb+\tz/2,9*\A/8) (\fb+\tz,0)
+	}
+	;
+	
+	\draw[dashed] (0,\A) -- (\fa,\A);
+	\draw (\fb+\tz,0) node[below,scale=1] {$4.1$};
+	\draw[dashed] (\fb,0) node[below,scale=1] {$4$} -- ++(0,2);
+	\end{scope}
+	\end{tikzpicture}
 	
 	\item Να συγκρίνετε τα σήματα στα σημεία Δ και Δ', και να σχολιάσετε τι πλεονέκτημα
 	τεχνοοικονομικής φύσης προσφέρει ο αποδιαμορφωτής δύο σταδίων (του 1\textsuperscript{ου}
@@ -4074,8 +4106,6 @@ plot[smooth,tension=0.7] coordinates {
 		
 		
 		\draw (\fb+\tz,0) node[below,scale=1.2,fill=white!80!cyan!70!blue,fill opacity=.7,text opacity=1] {$108$};
-		
-		
 		\end{tikzpicture}
 		
 		Δηλαδή το σήμα που προκύπτει είναι το πρώτο αριστερό σήμα, και το δεύτερο με
@@ -4275,7 +4305,84 @@ plot[smooth,tension=0.7] coordinates {
 	το σήμα στην επιθυμητή συχνότητα, αλλά το φέρνει πρώτα σε μια ενδιάμεση.
 	
 	\item Αντίστοιχα με παραπάνω, έχουμε:
-	\todo{Graph 108}
+
+	\begin{tikzpicture}[scale=1]
+	%\filldraw[fill=blue!40!cyan!80!black,fill opacity=.15]
+	%(-1.6,0) -- ++(0.1,1.2) -- ++(3,0) -- ++(0.1,-1.2);
+	
+	\def\s{1.6}
+	\def\d{6}
+	\def\four{(-0.8,0) (-0.6,0.2) (0,1.2) (0.6,0.2) (0.8,0)}
+	
+	\begin{scope}
+	\clip (0,0) rectangle (15,2); % clip below 0
+	
+	\draw[xshift=1.2 cm,draw=brown!70!orange,very thick] plot[smooth]
+	coordinates \four
+	;
+	
+	\draw[xshift=2*\s cm,draw=brown!70!orange,very thick] plot[smooth]
+	coordinates \four
+	;
+	
+	\draw[xshift=\d cm+1.2 cm,draw=brown!70!orange,very thick] plot[smooth]
+	coordinates \four
+	;
+	
+	\draw[xshift=\d cm+2*\s cm,draw=brown!70!orange,very thick] plot[smooth]
+	coordinates \four
+	;
+	\end{scope}
+	
+	\draw (1.2-0.8,0) node[below] {$0.004$};
+	\draw (1.2+0.8,0) node[below,scale=.8] {$0.004$};
+	\draw (2*\s-0.8,0) node[below right,scale=.8] {$0.0041$};
+	\draw (2*\s+0.8,0) node[below] {$0.008$};
+	
+	\draw (\d+1.2-0.8,0) node[below] {$2$};
+	\draw (\d+1.2+0.8,0) node[below left,scale=.9] {$2.004$};
+	\draw (\d+2*\s-0.8,0) node[below right,scale=.9] {$2.0041$};
+	\draw (\d+2*\s+0.8,0) node[below] {$2.008$};
+	
+	%\draw[ultra thick,->] (\s+0.4,0) node[below] {$f_c$} node[circle,fill,inner sep=2pt] {} -- ++(0,1.5);
+	
+	\draw[->] (-1,0) -- ({\d-1},0) -- ++(0.1,0.1) -- ++(0.1,-0.2) -- ++(0.1,0.1) -- (13.5,0) node[below] {$f(\mathrm{MHz})$};
+	\draw[->] (0,-1) -- (0,2) node[left,circle,draw,inner sep=2pt,outer sep=4pt] {$A'$};
+	
+	\begin{scope}[yshift=-4cm]
+	\begin{scope}
+	\clip (0,0) rectangle (15,2); % clip below 0
+	
+	\draw[xshift=1.2 cm,draw=brown!70!orange,very thick] plot[smooth]
+	coordinates \four
+	;
+	
+	\end{scope}
+	
+	\draw (1.2+0.8,0) node[below] {$4$};
+	
+	
+	%\draw[ultra thick,->] (\s+0.4,0) node[below] {$f_c$} node[circle,fill,inner sep=2pt] {} -- ++(0,1.5);
+	
+	\draw[->] (-1,0)  -- (13.5,0) node[below] {$f(\mathrm{kHz})$};
+	\draw[->] (0,-1) -- (0,2) node[left,circle,draw,inner sep=2pt,outer sep=4pt] {$\Delta'$};
+	\end{scope}
+	
+	%FILTER
+	\def\fa{0}
+	\def\fb{1.8}
+	\def\tz{0.55}
+	\def\A{1.7}
+	\begin{scope}
+	\clip (0,0) rectangle (10,2.5);
+	\filldraw[bottom color=white,fill opacity=.12,thick,top color=blue!80!green!80!black]
+	(0,0) -- (\fa,\A) -- (\fb,\A) --
+	plot[smooth,tension=0.7] coordinates {
+		(\fb,\A) (\fb+\tz/2,9*\A/8) (\fb+\tz,0)
+	}
+	;
+	\end{scope}
+	\end{tikzpicture}
 	
     \item Ο ετερόδυνος αποδιαμορφωτής έχει πιο εύκολα υλοποιήσιμα φίλτρα, αφού η απόκρισή
     τους στη συχνότητα είναι πολύ λιγότερο απότομη σε σχέση με αυτήν του ομόδυνου, επομένως
@@ -4286,8 +4393,35 @@ plot[smooth,tension=0.7] coordinates {
 \paragraph{Ερώτημα}
 Αιτιολογήστε γιατί το παρακάτω φίλτρο φαίνεται ότι μπορεί να χρησιμοποιηθεί για διαμόρφωση
 VSB:
+\\*
+\begin{tikzpicture}
+\draw[->] (-1,0) -- (6,0) node[below right] {$f$};
+\draw[->] (0,-1) -- (0,3) node[right] {$H(f)$};
 
-\todo{Graph 109}
+\def\fa{2}
+\def\fb{4}
+\def\tz{1.2}
+\def\A{2}
+\filldraw[top color=blue!80!cyan!80!black,fill opacity=.15,thick,bottom color=white]
+plot[smooth,tension=1] coordinates {
+	(\fa-\tz,0) (\fa-\tz+\tz/4,\A/8) (\fa-\tz/2,\A/2) (\fa-\tz/4,7*\A/8) (\fa,\A)
+}
+--
+plot[smooth,tension=1] coordinates {
+	(\fb,\A) (\fb+\tz/4,7*\A/8) (\fb+\tz/2,\A/2) (\fb+3*\tz/4,\A/8) (\fb+\tz,0)
+}
+;
+
+
+\draw[dashed] (\fb,\A) -- (0,\A) node[left] {$1$};
+\draw[dashed] ({\fa-(\tz/2)},0) node[below,scale=1] {$f_c$} -- ++(0,\A/2);
+\draw[dashed] ({\fb+(\tz)/2},0) node[below,scale=1] {$f_c'$} -- ++(0,\A/2) -- (0,\A/2) node[left] {$0.5$};
+\draw ({(\fa+\fb)/2},0) -- +(0,0.1) -- +(0,-0.1);
+
+\foreach \x in {\fa-\tz/2,\fb+\tz/2} {
+	\filldraw[top color=red,bottom color=blue,fill opacity=.25] ({\x},\A/2) circle (2.5pt);
+}
+\end{tikzpicture}
 
 \subparagraph{Λύση}
 Το φίλτρο αυτό φαίνεται ότι έχει περιττή συμμετρία γύρω από τα κεντρικά σημεία των ζωνών
@@ -4296,14 +4430,90 @@ VSB:
 Για να σχηματίσουμε ένα VSB σήμα, θυμόμαστε ότι πρώτα σχεδιάζουμε ένα DSB (διπλής
 πλευρικής ζώνης), και σε αυτό εφαρμόζουμε το παραπάνω φίλτρο, τοποθετώντας τη συχνότητα
 φέροντος \( f_c \) επάνω στην κεντρική \( f_0 \) ή \( f_0' \) του φίλτρου.
-\todo{Graph 110}
+
+\begin{center}
+\begin{tikzpicture}
+\draw[->] (-5,0) -- (7.5,0) node[below right] {$f$};
+\draw[->] (0,-1) -- (0,3);
+
+\def\fa{4}
+\def\fb{6}
+\def\tz{1.2}
+\def\A{2}
+\foreach \xs in {0,-3.2} {
+	\filldraw[top color=blue!80!cyan!80!black,fill opacity=.15,thick,bottom color=white,xshift=\xs cm]
+	plot[smooth,tension=1] coordinates {
+		(\fa-\tz,0) (\fa-\tz+\tz/4,\A/8) (\fa-\tz/2,\A/2) (\fa-\tz/4,7*\A/8) (\fa,\A)
+	}
+	--
+	plot[smooth,tension=1] coordinates {
+		(\fb,\A) (\fb+\tz/4,7*\A/8) (\fb+\tz/2,\A/2) (\fb+3*\tz/4,\A/8) (\fb+\tz,0)
+	}
+	;
+}
+
+\draw[xshift=3.4cm,blue!70!black,very thick] (-1.5,0) node[below] {$-w$} -- (0,2.5) -- (1.5,0) node[below] {$w$};
+\draw[path fading=west,xscale=-1,xshift=3.4cm,blue!70!black,very thick] (-1.5,0) node[below,scale=.8] {$-w$} -- (0,2.5) -- (1.5,0) node[below,scale=.8] {$w$};
+\draw[dashed] ({-(\fa-(\tz/2))},0) node[below,scale=.8] {$-f_c$};
+
+\draw[dashed,green!50!black] (3.4,0) -- ++(0,2.5);
+\draw[dashed] (\fb,\A) -- (0,\A) node[left] {$1$};
+\draw[dashed] ({\fa-(\tz/2)},0) node[below,scale=1,align=center] {$f_c$\\$\mathsmaller{(f_0)}$} -- ++(0,\A/2);
+
+\foreach \x in {\fa-\tz/2,\fb+\tz/2} {
+	\filldraw[top color=red,bottom color=blue,fill opacity=.25] ({\x},\A/2) circle (2.5pt);
+}
+\end{tikzpicture}
+\end{center}
+
 
 Και μετά την εφαρμογή του φίλτρου προκύπτει:
-\todo{Graph 111}
+
+\begin{tikzpicture}[scale=.9]
+\draw (-1,0) -- (5,0);
+\draw (0,-0.5) -- (0,2.5);
+
+\def\fa{2+0.15}
+\def\fb{5.8}
+\def\tz{1}
+\def\A{2}
+
+\fill[red!70!blue,opacity=.2,postaction={pattern=north east lines},xshift=2cm]
+plot[smooth,tension=0.5] coordinates {(0.15-1,0) (0.15-1+2.2/4,3/8) (0,2) } -- ++(0,-2);
+
+\draw[very thick,xshift=2cm,blue!70!black]
+plot[smooth,tension=0.5] coordinates {(0.15-1,0) (0.15-1+2.2/4,3/8) (0,2) } -- (1.5,0);
+
+
+\draw[dashed] (2,0) node[below] {$f_c$} -- ++(0,2);
+\draw[dashed,path fading=north] (\fa-\tz,0) -- ++(0,2);
+\draw (\fa-\tz,0) node[below,scale=.8] {$f_c-f_v$};
+\draw (2+1.5,0) node[below,scale=.8] {$f_c+w$};
+\end{tikzpicture}
+
 όπου είναι κατάλοιπη η κάτω πλευρική ζώνη, ή, αν έχουμε ως κατάλοιπη την επάνω πλευρική
 ζώνη:
 
-\todo{Graph 112}
+\begin{tikzpicture}[scale=.9]
+\draw (-1,0) -- (5,0);
+\draw (0,-0.5) -- (0,2.5);
+
+\def\fa{2+0.15}
+\def\fb{5.8}
+\def\tz{1}
+\def\A{2}
+
+\fill[red!70!blue,opacity=.2,postaction={pattern=north east lines},xshift=2cm,xscale=-1]
+plot[smooth,tension=0.5] coordinates {(0.15-1,0) (0.15-1+2.2/4,3/8) (0,2) } -- ++(0,-2);
+
+\draw[very thick,xshift=2cm,blue!70!black,xscale=-1]
+plot[smooth,tension=0.5] coordinates {(0.15-1,0) (0.15-1+2.2/4,3/8) (0,2) } -- (1.5,0);
+
+
+\draw[dashed] (2,0) node[below] {$f_c$} -- ++(0,2);
+\draw (\fa+\tz,0) node[below,scale=.8] {$f_c-f_v$};
+\draw (2-1.5,0) node[below,scale=.8] {$f_c+w$};
+\end{tikzpicture}
 
 Τα σημεία \( f_0 \) του φίλτρου είναι τα:
 \[
@@ -5155,7 +5365,7 @@ S(f) = \frac{A_c}{2}\sum_{n=-\infty}^{\infty} J_n(β)
 
 Το φάσμα δηλαδή αποκτάει μια μορφή:
 
-\begin{tikzpicture}[yscale=1.5,xscale=0.7]
+\begin{tikzpicture}[yscale=1.8,xscale=0.7]
 \draw[->] (-1,0) -- (20,0) node[below] {$f$};
 \draw (0,-0.5) -- (0,1);
 
@@ -5233,7 +5443,7 @@ P = \frac{A_c^2}{2} \cancelto{1}{\sum_{n=-\infty}^{\infty} J_n^2(β)}
 
 Μπορούμε να μεταβάλλουμε τα \( A_m \) και \( f_m \), και να παρατηρήσουμε τη μεταβολή
 στο φάσμα των συχνοτήτων. Για παράδειγμα, αν μεταβάλλουμε το \(β\) διατηρώντας σταθερή τη συχνότητα του
-σήματος και μεταβάλλοντας το πλάτος:
+σήματος και μεταβάλλοντας το πλάτος: %TODO check distance
 
 \begin{tikzpicture}[yscale=1.5,xscale=0.5]
 \draw[gray,top color=white!80!yellow!85!brown,bottom color=white!80!brown,opacity=.3]
@@ -5377,11 +5587,152 @@ coordinates {(-1,0) (0,1.2) (1,0)};
 Αντίστοιχα με τα NBFM, μπορούμε να παραστήσουμε τις δέλτα από τις οποίες αποτελείται
 σαν φασιθέτες (phasors). Για παράδειγμα, αν λάβουμε υπ' όψιν την κεντρική συνιστώσα και
 δύο πλευρικές, και θεωρήσουμε ότι βρισκόμαστε επάνω στο κινούμενο διάνυσμα της κεντρικής:
-\todo{Graph 113}
+
+\begin{tikzpicture}[scale=.9]
+\fill[top color=yellow,bottom color=white,->]
+(1,0) to[bend right] ({atan(sqrt(2)/4)}:1) -- (0,0);
+
+\draw[cyan,->]
+(2,-0.2) to[bend right] node[midway,above right,scale=.8] {$\omega_c$} (1.8,0.2);
+
+\filldraw[xshift=3cm,yshift=0.1cm,draw=gray,bottom color=cyan!50!gray,top color=white]
+(0,0) -- +(-0.1,-0.1)
+(0,0) -- +(0.1,-0.1)
+(0,0) -- +(0,0.4)
+(0,0.5) circle (0.1)
+(0,0.4) -- ++(0.1,-0.1)
+(0,0.4) -- ++(-0.1,-0.1)
+;
+
+\draw[->] (4,0) -- ++(45:1);
+\draw[dashed,->,red] (4,0) -- ++(-45:1);
+\draw[->] (4,0) -- ++(90+45:1);
+\draw[dashed,gray] (4,0) ++(45:1) -- ++(45+90:1);
+\draw[dashed,gray] (4,0) ++(90+45:1) -- ++(-45+90:1);
+\draw[very thin,gray] (4,0) -- ({4+sqrt(2)+0.05},0);
+\draw[thick,->] (4,0) -- (4,{sqrt(2)+0.05});
+\draw (4,0) ++(45:0.2) to[bend left] node[near start,right,gray!50!brown!30!black,scale=.7] {$2πf_mt$} (4.2,0);
+\draw (4,0) ++(-45:0.3) to[bend right] node[very near start,right,gray!50!brown!30!black,scale=.7] {$-2πf_mt$} (4.3,0);
+
+\draw (4,0) ++(45:0.5) node (a) {};
+\draw (a) ++(45+90:0.2) node(a1) {};
+\draw (a) ++(45-90:0.15) node(a2) {};
+\draw[<-,cyan!50!black,opacity=.5] (a1.center) to[bend left] (a2.center);
+
+\draw (4,0) ++(-45:0.5) node (a) {};
+\draw (a) ++(-45+90:0.15) node(a1) {};
+\draw (a) ++(-45-90:0.2) node(a2) {};
+\draw[->,cyan!50!black,opacity=.5] (a1.center) to[bend left] (a2.center);
+
+\draw[orange!70!black,ultra thick,->] (0,0) -- (4,{sqrt(2)});
+\draw[very thick,->] (0,0) -- (4,0) node[near start,below] {$A_c$};
+
+\draw[->]
+(1,0) to[bend right] ({atan(sqrt(2)/4)}:1);
+\end{tikzpicture}
 
 Αν μάλιστα προσθέσουμε και τις υπόλοιπες συνιστώσες, θα παρατηρήσουμε ότι επηρεάζουν
 παραπάνω το τελικό διάνυσμα:
-\todo{Graph 114}
+
+\begin{tikzpicture}[scale=1]
+\fill[top color=yellow,bottom color=white,->]
+(2,0) to[bend right] (7:2) -- (0,0);
+
+\draw[cyan,->]
+(6,-0.2) to[bend right] node[midway,above right,scale=.8] {$f_c$} (5.1,2);
+
+\filldraw[xshift=3cm,yshift=0.1cm,draw=gray,bottom color=cyan!50!gray,top color=white]
+(0,0) -- +(-0.1,-0.1)
+(0,0) -- +(0.1,-0.1)
+(0,0) -- +(0,0.4)
+(0,0.5) circle (0.1)
+(0,0.4) -- ++(0.1,-0.1)
+(0,0.4) -- ++(-0.1,-0.1)
+;
+
+\draw[->] (4,0) -- ++(45:1);
+\draw[dashed,->,red] (4,0) -- ++(-45:1);
+\draw[->] (4,0) -- ++(90+45:1);
+\draw[dashed,gray] (4,0) ++(45:1) -- ++(45+90:1);
+\draw[dashed,gray] (4,0) ++(90+45:1) -- ++(-45+90:1);
+\draw[very thin,gray] (4,0) -- ({4+sqrt(2)+0.05},0);
+\draw[thick,->] (4,0) -- (4,{sqrt(2)+0.05}) node (P1) {};
+\draw (4,0) ++(45:0.2) to[bend left] node[near start,right,gray!50!brown!30!black,scale=.7] {$2πf_mt$} (4.2,0);
+\draw (4,0) ++(-45:0.3) to[bend right] node[very near start,right,gray!50!brown!30!black,scale=.7] {$-2πf_mt$} (4.3,0);
+
+\draw[->,thick,orange!50!red] (P1.center) -- ++(1,0);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,0.5) -- ++(0.5,-0.5);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,-0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,-0.5) -- ++(0.5,0.5) node (P1) {};
+
+\begin{scope}[rotate=90,scale=.7]
+\draw[->,thick,orange!50!red] (P1.center) -- ++(1,0);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,0.5) -- ++(0.5,-0.5);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,-0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,-0.5) -- ++(0.5,0.5) node (P1) {};
+\end{scope}
+\begin{scope}[rotate=00,scale=.6]
+\draw[->,thick,orange!50!red] (P1.center) -- ++(1,0);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,0.5) -- ++(0.5,-0.5);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,-0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,-0.5) -- ++(0.5,0.5) node (P1) {};
+\end{scope}
+\begin{scope}[rotate=-90,scale=.5]
+\draw[->,thick,orange!50!red] (P1.center) -- ++(1,0);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,0.5) -- ++(0.5,-0.5);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,-0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,-0.5) -- ++(0.5,0.5) node (P1) {};
+\end{scope}
+\begin{scope}[rotate=0,scale=.3]
+\draw[->,thick,orange!50!red] (P1.center) -- ++(1,0);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,0.5) -- ++(0.5,-0.5);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,-0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,-0.5) -- ++(0.5,0.5) node (P1) {};
+\end{scope}
+\begin{scope}[rotate=-90,scale=.5]
+\draw[->,thick,orange!50!red] (P1.center) -- ++(1,0);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,0.5) -- ++(0.5,-0.5);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,-0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,-0.5) -- ++(0.5,0.5) node (P1) {};
+\end{scope}
+\begin{scope}[rotate=-180,scale=.6]
+\draw[->,thick,orange!50!red] (P1.center) -- ++(1,0);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,0.5) -- ++(0.5,-0.5);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,-0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,-0.5) -- ++(0.5,0.5) node (P1) {};
+\end{scope}
+\begin{scope}[rotate=-90,scale=.4]
+\draw[->,thick,orange!50!red] (P1.center) -- ++(1,0);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,0.5) -- ++(0.5,-0.5);
+\draw[->,gray!50!black] (P1.center) -- ++(0.5,-0.5);
+\draw[dashed,gray] (P1.center) ++ (0.5,-0.5) -- ++(0.5,0.5) node (P1) {};
+\end{scope}
+
+
+\draw (4,0) ++(45:0.5) node (a) {};
+\draw (a) ++(45+90:0.2) node(a1) {};
+\draw (a) ++(45-90:0.15) node(a2) {};
+\draw[<-,cyan!50!black,opacity=.5] (a1.center) to[bend left] (a2.center);
+
+\draw (4,0) ++(-45:0.5) node (a) {};
+\draw (a) ++(-45+90:0.15) node(a1) {};
+\draw (a) ++(-45-90:0.2) node(a2) {};
+\draw[->,cyan!50!black,opacity=.5] (a1.center) to[bend left] (a2.center);
+
+\draw[orange!70!black,ultra thick,->] (0,0) -- (P1.center);
+\draw[very thick,->] (0,0) -- (4,0) node[near start,below] {$A_c$};
+
+\draw[->]
+(2,0) to[bend right] (7:2);
+\end{tikzpicture}
 
 Κάθε χρονική στιγμή το σήμα είναι το άθροισμα όλων αυτών των συνημιτόνων, και έχει μια
 ταχύτητα που επηρεάζεται από αυτά (με μέση τιμή \( \omega_c \)), αλλά το συνολικό πλάτος του
@@ -5415,7 +5766,14 @@ B_T = 2(D+1)w = 2\cdot(5+1)\cdot 15 = \SI{180}{\kilo\hertz}
 Τέτοιος ταλαντωτής μπορεί να είναι \textbf{Voltage Controlled Οscillator (VCO)}, δηλαδή ταλαντωτής του οποίου η συχνότητα μεταβάλλεται από τάση.
 
 Ένα τέτοιο κύκλωμα είναι:
-\todo{Graph 115}
+
+\begin{circuitikz}[american voltages]
+	\draw (0,0) node[npn] (t) {};
+	\draw (t.C) to[R=$R$] ++(2,0) node (r) {};
+	\draw (t.E) to[L=$L_2$] ++(2,0) to[C,v<={$$}] (r.center);
+	\draw[] (t.E) to[L=$L_1$,mirror] ++(-2,0) node (cs) {} |- (t.B);
+	\draw (cs.center) -- ++(0,-1) to[variable capacitor] ++(4,0) -- ++(0,1);
+	\end{circuitikz}
 
 όπου ο μεταβλητός πυκνωτής (varicap/varactor) μπορεί να υλοποιηθεί
 από μια ανάστροφα πολωμένη δίοδο
