@@ -46,19 +46,18 @@
 	Στη λίστα θα στέλνονται ασκήσεις χρήσιμες για τις εξετάσεις και λοιπές ανακοινώσεις.
 \end{attnbox}
 
-\begin{attnbox}{Μάθημα}
-	Το μάθημα της Παρασκευής καταργείται.
-	Θα γίνονται μαθήματα σε κοινό τμήμα την Τρίτη και την Τετάρτη.
-	
-	Την Τρίτη θα γίνονται ασκήσεις, και την Τετάρτη θεωρία.
-\end{attnbox}
-
 Εξετάσεις: Όλα ανοιχτά.
 
 Το μάθημα θα γίνει με βάση το βιβλίο του Haykin.
 
 Ιστοσελίδα Ασκήσεων:
 \url{http://genesis.ee.auth.gr/dimakis/greek/courses/telesysI}
+
+\newpage
+
+\tableofcontents
+
+\newpage
 
 \section{Εισαγωγή}
 Επικοινωνία είναι η μεταφορά μηνυμάτων, που μπορεί να έχουν τη μορφή απλών συμβόλων / φθόγγων
@@ -260,6 +259,8 @@ t
 	\item[FM] Διαμόρφωση Συχνότητας (Frequency Modulation)
 	\item[PM] Διαμόρφωση Φάσης (Phase Modulation)
 \end{description}
+
+\newpage
 
 \section{Διαμόρφωση Πλάτους}
 
@@ -4550,7 +4551,44 @@ T, \qquad & |f| \leq \frac{1}{4T}\\
 
 \subparagraph{Λύση}
 \begin{enumgreekparen}
-	\item \todo{Graph 118}
+	\item \begin{tikzpicture}[scale=1,baseline=(current bounding box.north)]
+	\draw[->] (-5,0) -- (5,0) node[below] {$f$};
+	\draw[->] (0,-1) -- (0,3);
+	
+	\def\fa{-1.5}
+	\def\fb{1.5}
+	\def\tz{1.5}
+	%\def\fb{\fa+\tz}
+	\def\A{2}
+	\filldraw[bottom color=white,fill opacity=.15,very thick,blue!20!black,top color=blue!80!cyan!80!black]
+	plot[smooth,tension=0.75] coordinates {
+		(\fa-\tz,0) (\fa-\tz+\tz/4,\A/8) (\fa-\tz/2,\A/2) (\fa-\tz/4,7*\A/8) (\fa,\A)
+	}
+	--
+	plot[smooth,tension=1] coordinates {
+		(\fb,\A) (\fb+\tz/4,7*\A/8) (\fb+\tz/2,\A/2) (\fb+3*\tz/4,\A/8) (\fb+\tz,0)
+	}
+	(\fb,\A) node[above right,opacity=1] {$X_{rc}(f)$}
+	;
+	
+	\draw[dashed] (0,\A) -- (\fa,\A);
+	\draw[dashed,path fading=north] (\fa-\tz,0) -- ++(0,2);
+	\draw (\fa-\tz,0) node[below,scale=1] {$-\frac{3}{4T}$};
+	\draw (\fb+\tz,0) node[below,scale=1] {$\frac{3}{4T}$};
+	\draw[dashed] (\fa,0) node[below,scale=1] {$-\frac{1}{4T}$} -- ++(0,2);
+	\draw[dashed] (\fb,0) node[below,scale=1] {$\frac{1}{4T}$} -- ++(0,2);
+	\draw[dashed,path fading=north] ({(\fa+\fb)/2},0) -- ++(0,2);
+	
+	\draw[dashed,gray] (\fa-\tz/2,\A/2) -- (\fb+\tz/2,\A/2);
+	\draw[dashed,gray] (\fb+\tz/2,0) node[below] {$f_0$} -- ++(0,\A/2);
+	\foreach \x in {\fa-\tz/2,\fb+\tz/2,0} {
+		\draw[top color=yellow, bottom color=green, fill opacity=.4] (\x,\A/2) circle (2.5pt);
+	}
+	\draw (0,\A/2) node[above right,scale=.8] {$\sfrac{T}{2}$};
+	\draw[top color=yellow, bottom color=red, fill opacity=.4] (0,\A) circle (2.5pt)
+	node[above right,scale=.8,opacity=1] {$T$};
+	
+	\end{tikzpicture}
 	\item Αφού το φίλτρο είναι στη βασική ζώνη και έχουμε συμμετρία γύρω από το 0, θα εξετάσουμε μόνο το άνω σκέλος (και όχι και το κάτω), προσπαθώντας να αποδείξουμε
 	ότι έχει περιττή συμμετρία γύρω από κάποιο κεντρικό σημείο.
 	
@@ -4581,7 +4619,51 @@ T, \qquad & |f| \leq \frac{1}{4T}\\
 	ένα \( β \in [ 0, \cancelto{\frac{1}{4T}}{f_v} ] \), που είναι η απόσταση από το
 	σημείο \( \frac{1}{2T} \).
 	
-	\todo{Graph 119}
+	\begin{tikzpicture}[scale=.8]
+	\draw[->] (-5,0) -- (5,0) node[below] {$f$};
+	\draw[->] (0,-1) -- (0,3);
+	
+	\def\fa{-1.5}
+	\def\fb{1.5}
+	\def\tz{1.5}
+	%\def\fb{\fa+\tz}
+	\def\A{2}
+	\def\bz{0.4}
+	\filldraw[bottom color=white,fill opacity=.15,very thick,blue!20!black,top color=blue!80!cyan!80!black]
+	plot[smooth,tension=0.75] coordinates {
+		(\fa-\tz,0) (\fa-\tz+\tz/4,\A/8) (\fa-\tz/2,\A/2) (\fa-\tz/4,7*\A/8) (\fa,\A)
+	}
+	--
+	plot[smooth,tension=1] coordinates {
+		(\fb,\A) (\fb+\tz/4,7*\A/8) (\fb+\tz/2,\A/2) (\fb+3*\tz/4,\A/8) (\fb+\tz,0)
+	}
+	(\fb,\A) node[above right,opacity=1] {$X_{rc}(f)$}
+	;
+	
+	\draw[dashed] (0,\A) -- (\fa,\A);
+	\draw[dashed,path fading=north] (\fa-\tz,0) -- ++(0,2);
+	\draw (\fa-\tz,0) node[below,scale=1] {$-\frac{3}{4T}$};
+	\draw (\fb+\tz,0) node[below,scale=.5,opacity=.6] {$\frac{3}{4T}$};
+	\draw[dashed] (\fa,0) node[below,scale=1] {$-\frac{1}{4T}$} -- ++(0,2);
+	\draw[dashed] (\fb,0) node[below,scale=.5,opacity=.6] {$\frac{1}{4T}$} -- ++(0,2);
+	\draw[dashed,path fading=north] ({(\fa+\fb)/2},0) -- ++(0,2);
+	
+	\draw[dashed,gray] (\fa-\tz/2,\A/2) -- (\fb+\tz/2,\A/2);
+	\draw[dashed,gray] (\fb+\tz/2,0) node[below,scale=.6] {$f_0$} -- ++(0,\A/2);
+	\foreach \x in {\fa-\tz/2,\fb+\tz/2,0} {
+		\draw[top color=yellow, bottom color=green, fill opacity=.4] (\x,\A/2) circle (2.5pt);
+	}
+	\draw (0,\A/2) node[above right,scale=.8] {$\sfrac{T}{2}$};
+	\draw[top color=yellow, bottom color=red, fill opacity=.4] (0,\A) circle (2.5pt)
+	node[above right,scale=.8,opacity=1] {$T$};
+	
+	\foreach \x in {+,-} {
+		\draw (\fb+\tz/2\x\bz,0) node[below,scale=.7,green!50!black] {$\mathbf{\x \beta}$};
+		\draw[green!70!black,dashed] (\fb+\tz/2\x\bz,-0.1) -- ++ (0,1.5);
+	}
+	\filldraw[path fading=north,fill opacity=0.7,green!90!black] (\fb+\tz/2-\bz,0.02) rectangle (\fb+\tz/2+\bz,1.5);
+	
+	\end{tikzpicture}
 	
 	Τότε:
 	\begin{itemize}
@@ -4610,7 +4692,74 @@ T, \qquad & |f| \leq \frac{1}{4T}\\
 	\end{align*}
 	
 	\item Θα μετατοπίσουμε αριστερά και δεξιά την απόκριση συχνότητας του φίλτρου:
-	\todo{Graph 120}
+	
+	\begin{tikzpicture}[scale=.9,baseline=(current bounding box.north)]
+	\draw[->] (-8,0) -- (8.5,0) node[below] {$f$};
+	\draw[->] (0,-1) -- (0,3);
+	
+	\def\fa{2.5}
+	\def\fb{5.5}
+	\def\tz{1.5}
+	%\def\fb{\fa+\tz}
+	\def\A{2}
+	\def\fad{0.15}
+	
+	
+	
+	\filldraw[bottom color=white,fill opacity=.15,very thick,blue!20!black,top color=blue!80!cyan!80!black]
+	plot[smooth,tension=0.75] coordinates {
+		(\fa-\tz,0) (\fa-\tz+\tz/4,\A/8) (\fa-\tz/2,\A/2) (\fa-\tz/4,7*\A/8) (\fa,\A)
+	}
+	--
+	plot[smooth,tension=1] coordinates {
+		(\fb,\A) (\fb+\tz/4,7*\A/8) (\fb+\tz/2,\A/2) (\fb+3*\tz/4,\A/8) (\fb+\tz,0)
+	}
+	({(\fa+\fb)/2},\A) node[above,opacity=1] {$X_{rc}(f-f_i)$}
+	;
+	
+	\draw[very thick,blue!50!cyan,xshift=0.5mm]
+	plot[smooth,tension=0.5] coordinates {(\fa-\tz,0) (\fa-3*\tz/4-\fad/2,0.7) (\fa-\tz/2-\fad,0)};
+	\draw[very thick,blue!50!cyan,xshift={\fad cm-0.5mm+0.5*\tz cm}]
+	plot[smooth,tension=0.5] coordinates {(\fa-\tz,0) (\fa-3*\tz/4-\fad/2,0.7) (\fa-\tz/2-\fad,0)};
+	
+	\begin{scope}[xshift={\fb cm - \fa cm + \tz cm}]
+	\draw[very thick,blue!50!white,xshift=0.5mm]
+	plot[smooth,tension=0.5] coordinates {(\fa-\tz,0) (\fa-3*\tz/4-\fad/2,0.7) (\fa-\tz/2-\fad,0)};
+	\draw[very thick,blue!50!white,xshift={\fad cm-0.5mm+0.5*\tz cm}]
+	plot[smooth,tension=0.5] coordinates {(\fa-\tz,0) (\fa-3*\tz/4-\fad/2,0.7) (\fa-\tz/2-\fad,0)};
+	\end{scope}
+	
+	\draw[dashed] (0,\A) -- (\fa,\A);
+	\draw[dashed,path fading=north] (\fa-\tz,0) -- ++(0,2);
+	\draw ({(\fa+\fb)/2},0) node[below,scale=1.2,blue!50!black] {$f_i$};
+	\draw (\fa-\tz,0) node[below left,scale=1] {$-\frac{3}{4T}$};
+	\draw (\fb+\tz,0) node[below right,scale=1] {$+\frac{3}{4T}$};
+	\draw[dashed,path fading=north] ({(\fa+\fb)/2},0) -- ++(0,2);
+	
+	\draw[dashed,gray] (\fa-\tz/2,\A/2) -- (\fb+\tz/2,\A/2);
+	\draw[dashed,gray] (\fb+\tz/2,0) node[below,black] {$+\frac{2}{4T}$} -- ++(0,\A/2);
+	\draw[dashed,gray] (\fa-\tz/2,0) node[below,black] {$-\frac{2}{4T}$} -- ++(0,\A/2);
+	\foreach \x in {\fa-\tz/2,\fb+\tz/2} {
+		\draw[top color=yellow, bottom color=green, fill opacity=.4] (\x,\A/2) circle (2.5pt);
+	}
+	
+	\begin{scope}[xscale=-1]
+	\filldraw[bottom color=white,fill opacity=.15,very thick,blue!20!black,top color=blue!80!cyan!80!black]
+	plot[smooth,tension=0.75] coordinates {
+		(\fa-\tz,0) (\fa-\tz+\tz/4,\A/8) (\fa-\tz/2,\A/2) (\fa-\tz/4,7*\A/8) (\fa,\A)
+	}
+	--
+	plot[smooth,tension=1] coordinates {
+		(\fb,\A) (\fb+\tz/4,7*\A/8) (\fb+\tz/2,\A/2) (\fb+3*\tz/4,\A/8) (\fb+\tz,0)
+	}
+	({(\fa+\fb)/2},\A) node[above,opacity=1] {$X_{rc}(f+f_i)$}
+	;
+	
+	\draw ({(\fa+\fb)/2},0) node[below,scale=1.2,blue!50!black] {$-f_i$};
+	\draw[dashed,path fading=north] ({(\fa+\fb)/2},0) -- ++(0,2);
+	
+	\end{scope}
+	\end{tikzpicture}
 	
 	\item Σε προηγούμενο ερώτημα είδαμε ότι η κεντρική συχνότητα \( f_0 \) της ζώνης
 	μετάβασης (στη βασική ζώνη) είναι \( f_0 = \frac{1}{2T} \). Επομένως, στις υψηλές
@@ -4618,8 +4767,6 @@ T, \qquad & |f| \leq \frac{1}{4T}\\
 	
 	Εναλλακτικά, μπορούμε να κεντράρουμε στην \( f_c = f_i - \frac{1}{2T} \) και να είναι
 	κατάλοιπη η κάτω πλευρική ζώνη.
-	
-	\todo{Graph 121}
 \end{enumgreekparen}
 
 \paragraph{Άσκηση}
@@ -4639,6 +4786,8 @@ T, \qquad & |f| \leq \frac{1}{4T}\\
 Μία πιο σωστή διαμόρφωση θα ήταν:
 \todo{Graph 122}
 
+\newpage
+
 \section{Διαμόρφωση Γωνίας}
 Μέχρι στιγμής ασχοληθήκαμε με διαμορφώσεις πλάτους, που μετέβαλλαν μόνο το πλάτος
 του σήματος (ίσως και τη φάση με κάποιον τρόπο, όπως εξηγήσαμε σε \hyperref[application.am-phase]{μια εφαρμογή}).
@@ -4653,7 +4802,7 @@ A_c \cos(\underbrace{2πf_ct + \vartheta}_{\theta(t)})
 Η διαμόρφωση αυτή ονομάζεται \textbf{Phase Modulation (PM)} ή \textbf{Frequency Modulation
 	 (FM)}, εμφανίστηκε το 1930, και άρχισε να χρησιμοποιείται για broadcasting το 1960-1970.
 Έχει το πλεονέκτημα ότι, παρ' όλο που απαιτεί ένα πιο ακριβό και πολύπλοκο σύστημα, έχει
-καλύτερη ποιότητα πληροφορίας, επειδή δεν επηρεάζεται από τον θόρυβο όσο και τα AM.
+καλύτερη ποιότητα πληροφορίας, επειδή δεν επηρεάζεται από τον θόρυβο όσο επηρεάζονται και τα AM.
 
 \subsection{Βασικοί ορισμοί}
 Έστω ένα σήμα:
@@ -5783,7 +5932,15 @@ B_T = 2(D+1)w = 2\cdot(5+1)\cdot 15 = \SI{180}{\kilo\hertz}
 της οποίας η χωρητικότητα μεταβάλλεται ανάλογα με την εφαρμοζόμενη τάση.
 
 Ισοδύναμα, μπορούμε να απλουστεύσουμε το κύκλωμα ως εξής:
-\todo{Graph 116}
+
+\begin{circuitikz}[scale=.8]
+\draw (0,0) to[esource,l=$m(t)$] (0,1.5);
+\draw (0,1.5) to[C=$C_v$] (0,3);
+\draw (2,0) to[C=$C_0$] (2,3);
+\draw (4,0) to[L=$L_1+L_2$,mirror] (4,3);
+\draw (0,0) to[short,-o] (6,0);
+\draw (0,3) to[short,-o] (6,3);
+\end{circuitikz}
 
 Αυτό το κύκλωμα έχει μια μεταβλητή συχνότητα που, με γνώσεις από ανάλυση κυκλωμάτων, είναι:
 \[
@@ -5824,7 +5981,31 @@ FM. Θυμόμαστε ότι το σήμα NBFM είναι ένα FM με χα�
 
 Τότε, χρησιμοποιώντας πολλαπλασιαστές συχνότητας, που είναι στοιχεία που κατασκευάζονται
 με μη γραμμικά στοιχεία (π.χ διόδους), κατασκευάζουμε τον εξής διαμορφωτή:
-\todo{Graph 117}
+
+\begin{tikzpicture}[xscale=1.1]
+\draw[every node/.style={rectangle,draw,align=center,minimum height=25pt,minimum width=35pt}] (0,0)
+node (nbfm) {$f_0$\\NBFM\\$f_m$}
+++(3,0)
+node (m1) {Πολλαπλασιαστής\\συχνότητας\\$n_1$}
+++(3,0)
+node (m) {Μίκτης\\$x$}
+++(3,0)
+node (m2) {Πολλαπλασιαστής\\συχνότητας\\$n_2$}
+++(3,0)
+node (bpf) {BPF}
+;
+
+\draw (m) ++(0,-2) node[oscillator,xshift=4.9mm] (osc) {};
+\draw[->] (osc.north) -- (m);
+\draw (osc.east) node[right] {$f_l$};
+
+\draw[->] (nbfm) -- (m1) node[below,near start,brown!50!black] {$1$};
+\draw[->] (m1) -- (m) node[below,near start,brown!50!black] {$2$};
+\draw[->] (m) -- (m2) node[below,near start,brown!50!black] {$3$};
+\draw[->] (m2) -- (bpf) node[below,near start,brown!50!black] {$4$};
+\draw[->] (bpf) -- ++(2,0) node[below,near start,brown!50!black] {$5$} node[above,near end] {FM};
+
+\end{tikzpicture}
 
 Σε κάθε σημείο του διαμορφωτή αυτού θα έχουμε το σήμα:
 \begin{enumpar}
@@ -6109,8 +6290,10 @@ f_i(t) = f_c + \frac{k_p}{2π}m'(t)
 Με την ίδια λογική με παραπάνω, δεν έχουμε κάποια ιδιαίτερη απαίτηση από το φάσμα, δεδομένου
 ότι έχουμε πολύ μικρό αριθμό πελατών, και μπορούμε να ξοδέψουμε κάποιο εύρος συχνοτήτων.
 
-Αντίθετα, το AM ξοδεύει μεγάλη ποσότητα της ενέργειας στο σήμα του φέροντος, κάτι που θα
-καθιστούσε τις συσκευές πολύ μεγάλες.
+Αντίθετα, το AM ξοδεύει μεγάλη ποσότητα της ενέργειας στο σήμα του φέροντος
+(τουλάχιστον τα \( \sfrac{2}{3} \) της συνολικής), κάτι που θα
+καθιστούσε τις συσκευές πολύ μεγάλες, επειδή θα απαιτούσαν τεράστια ισχύ για να πετύχουν
+την ίδια εμβέλεια με το FM.
 
 \paragraph{Άσκηση}
 Το αδιαμόρφωτο φέρον ενός διαμορφωτή FM έχει συχνότητα \( f_c = \SI{1.4}{MHz} \) πλάτους
