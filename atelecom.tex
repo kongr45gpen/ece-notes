@@ -4770,9 +4770,53 @@ T, \qquad & |f| \leq \frac{1}{4T}\\
 \end{enumgreekparen}
 
 \paragraph{Άσκηση}
-Αναζητώντας στο διαδίκτυο περισσότερες πληροφορίες για την διαμόρφωση DSB σημάτων, βρήκατε
+Αναζητώντας περισσότερες πληροφορίες για την διαμόρφωση DSB σημάτων, βρήκατε
 στο διαδίκτυο την εξής εικόνα:
-\todo{Graph 121}
+
+\begin{tikzpicture}
+\draw[->] (0,-7) -- (0,2);
+
+\def\fc{2.5}
+\def\w{1}
+\def\A{1}
+
+\draw[dashed,opacity=.7] (\fc,0) -- ++(0,-6);
+\draw[dashed,opacity=.7] (-\fc,0) -- ++(0,-6);
+
+\draw[->] (-5,0) -- (5,0) node[right] {$f$};
+\draw[very thick,blue!70!cyan] (\fc,0) -- ++(\w,\A) -- +(0,-\A);
+\draw[very thick,blue!70!cyan] (\fc,0) -- ++(-\w,\A) -- +(0,-\A);
+\draw (\fc,0) node[below] {$f_c$};
+\begin{scope}[xscale=-1]
+\draw[very thick,blue!70!cyan] (\fc,0) -- ++(\w,\A) -- +(0,-\A);
+\draw[very thick,blue!70!cyan] (\fc,0) -- ++(-\w,\A) -- +(0,-\A);
+\draw (\fc,0) node[below] {$-f_c$};
+\end{scope}
+\draw (-6,\A/2) node {σήμα};
+
+\begin{scope}[yshift=-3cm]
+\draw[->] (-5,0) -- (5,0) node[right] {$f$};
+\draw[very thick,blue!20!black,top color=blue,bottom color=white!50!gray,fill opacity=.3] (\fc-0.4,0) -- ++(0,\A) -| (\fc+\w,0);
+\begin{scope}[xscale=-1]
+\draw[very thick,blue!20!black,top color=blue,bottom color=white!50!gray,fill opacity=.3] (\fc-0.4,0) -- ++(0,\A) -| (\fc+\w,0);
+\end{scope}
+\draw (-6,\A/2) node {φίλτρο};
+\end{scope}
+
+\begin{scope}[yshift=-6cm]
+\draw[->] (-5,0) -- (5,0) node[right] {$f$};
+\draw[very thick,blue!70!cyan] (\fc,0) -- ++(\w,\A) -- +(0,-\A);
+\draw[very thick,blue!70!cyan] (\fc,0) -- +(-0.4,\A*0.4/\w) -- +(-0.4,0);
+\draw (\fc,0) node[below] {$f_c$};
+\begin{scope}[xscale=-1]
+\draw[very thick,blue!70!cyan] (\fc,0) -- ++(\w,\A) -- +(0,-\A);
+\draw[very thick,blue!70!cyan] (\fc,0) -- +(-0.4,\A*0.4/\w) -- +(-0.4,0);
+\draw (\fc,0) node[below] {$-f_c$};
+\end{scope}
+\draw (-6,\A/2) node[align=center] {φιλτραρισμένο\\σήμα};
+\end{scope}
+
+\end{tikzpicture}
 
 Το σχήμα αυτό παρουσιάζει ένα αρχικό σήμα κατά DSB, ένα φίλτρο από το οποίο το περνάμε,
 και το τελικό σήμα μετά το φίλτρο.
@@ -4784,7 +4828,51 @@ T, \qquad & |f| \leq \frac{1}{4T}\\
 μετάβασης, επομένως δεν μπορεί να χρησιμοποιηθεί σαν VSB φίλτρο.
 
 Μία πιο σωστή διαμόρφωση θα ήταν:
-\todo{Graph 122}
+
+\begin{tikzpicture}[scale=.9]
+\draw[->] (0,-7) -- (0,2);
+
+\def\fc{2.5}
+\def\w{1}
+\def\A{1}
+
+\draw[dashed,opacity=.7] (\fc,0) -- ++(0,-6);
+\draw[dashed,opacity=.7] (-\fc,0) -- ++(0,-6);
+
+\draw[->] (-5,0) -- (5,0) node[right] {$f$};
+\draw[very thick,blue!70!cyan] (\fc,0) -- ++(\w,\A) -- +(0,-\A);
+\draw[very thick,blue!70!cyan] (\fc,0) -- ++(-\w,\A) -- +(0,-\A);
+\draw (\fc,0) node[below] {$f_c$};
+\begin{scope}[xscale=-1]
+\draw[very thick,blue!70!cyan] (\fc,0) -- ++(\w,\A) -- +(0,-\A);
+\draw[very thick,blue!70!cyan] (\fc,0) -- ++(-\w,\A) -- +(0,-\A);
+\draw (\fc,0) node[below] {$-f_c$};
+\end{scope}
+\draw (-6,\A/2) node {σήμα};
+
+\begin{scope}[yshift=-3cm]
+\draw[->] (-5,0) -- (5,0) node[right] {$f$};
+\draw[very thick,blue!20!black,top color=blue,bottom color=white!50!gray,fill opacity=.3] (\fc-\w,0) -- ++(\w,\A) -| (\fc+\w,0);
+\begin{scope}[xscale=-1]
+\draw[very thick,blue!20!black,top color=blue,bottom color=white!50!gray,fill opacity=.3] (\fc-\w,0) -- ++(\w,\A) -| (\fc+\w,0);
+\end{scope}
+\draw (-6,\A/2) node {φίλτρο};
+\end{scope}
+
+\begin{scope}[yshift=-6cm]
+\draw[->] (-5,0) -- (5,0) node[right] {$f$};
+\draw[very thick,blue!70!cyan] (\fc,0) -- ++(\w,\A) -- +(0,-\A);
+\draw[very thick,blue!70!cyan] plot[smooth,tension=1] coordinates {(\fc,0)  (\fc-0.4,\A*0.3/\w)  (\fc-\w,0)};
+\draw (\fc,0) node[below] {$f_c$};
+\begin{scope}[xscale=-1]
+\draw[very thick,blue!70!cyan] (\fc,0) -- ++(\w,\A) -- +(0,-\A);
+\draw[very thick,blue!70!cyan] plot[smooth,tension=1] coordinates {(\fc,0)  (\fc-0.4,\A*0.3/\w)  (\fc-\w,0)};
+\draw (\fc,0) node[below] {$-f_c$};
+\end{scope}
+\draw (-6,\A/2) node[align=center] {φιλτραρισμένο\\σήμα};
+\end{scope}
+
+\end{tikzpicture}
 
 \newpage
 
@@ -5919,7 +6007,7 @@ B_T = 2(D+1)w = 2\cdot(5+1)\cdot 15 = \SI{180}{\kilo\hertz}
 \begin{circuitikz}[american voltages]
 	\draw (0,0) node[npn] (t) {};
 	\draw (t.C) to[R=$R$] ++(2,0) node (r) {};
-	\draw (t.E) to[L=$L_2$] ++(2,0) to[C,v<={$$}] (r.center);
+	\draw (t.E) to[L=$L_2$] ++(2,0) to[C,v<={$ $}] (r.center);
 	\draw[] (t.E) to[L=$L_1$,mirror] ++(-2,0) node (cs) {} |- (t.B);
 	\draw (cs.center) -- ++(0,-1) to[variable capacitor] ++(4,0) -- ++(0,1);
 	\end{circuitikz}
@@ -6041,7 +6129,33 @@ node (bpf) {BPF}
 
 Για να το καταφέρουμε αυτό, προσθέτουμε ως αρνητική ανάδραση τη διαφορά της συχνότητας
 του εξαγόμενου σήματος από μία τοπική συχνότητα:
-\todo{Graph 123}
+
+\begin{tikzpicture}
+
+\begin{scope}[every node/.style={rectangle,draw,minimum width=30pt,align=center}]
+\draw (-2,0) node[scale=1.4] (vco) {VCO};
+\draw (2,-1) node(bpf) {BPF};
+\draw (2,-2) node(x) {$\times$};
+\draw (4.5,-2) node[scale=.9] (osc) {Κρυσταλλικός\\Ταλαντωτής};
+\draw (0,-2) node[scale=.9] (pd) {Διευκρινιστής\\Συχνότητας};
+\draw (-2,-2) node (lpf) {LPF};
+\end{scope}
+
+\draw[->] (vco.east) node[above right] {$f_c$} -- ++(6,0) node[above] {FM};
+\draw (0,0 -| bpf) node (m) {};
+\draw (m.center) node[circ] {} -- (bpf) -- (x);
+\draw (x) edge[->] (pd);
+\draw (pd) edge[->] (lpf);
+\draw[->] (lpf) -- (vco.south) node[below right] {$-$};
+\draw[->] (osc) -- (x);
+\draw[<-] (vco) -- ++(-2,0) node[above,midway] {$m(t)$};
+
+\draw (osc.south) node[below] {$f_{c_0}$};
+\draw[<-] (pd.east) ++(0.1,-0.1) to[bend right,gray] ++(0.5,-0.7) node[right] {$f_c-f_{c_0}$};
+\draw (vco.north) node[above] {$\SI{100}{\mega\hertz}$};
+
+
+\end{tikzpicture}
 
 \subsubsection{Αποδιαμόρφωση FM}
 Το FM σήμα φαίνεται αρχικά δύσκολο να αποδιαμορφωθεί:
@@ -6067,9 +6181,37 @@ s(t) = \Re\left[ \tilde s(t)\exp j2πf_c t \right], \qquad
 \tilde{s}(t) = A_c\exp\left[ jβ\sin(2πf_mt) \right]
 \]
 και τη λειτουργία μιας συνάρτησης μεταφοράς με κρουστική απόκριση \( h(t) \):
-\todo{Graph 124}
+
+\begin{tikzpicture}
+
+\begin{scope}[every node/.style={rectangle,draw,minimum width=30pt,align=center}]
+\draw (0,0) node (h) {$h(t)$};
+\end{scope}
+
+\draw (h.north) node[above] {$h(t) = \Re\left[\tilde h(t)\exp(j\cdot 2\pi f_c t)\right]$};
+\draw (h.south) node[below] {$H(f)$};
+\draw[->] (h) -- ++(5,0) node[below] {$\begin{aligned}
+	y(t) = \Re\left[\tilde y(t)\exp(j2\pi f_c t)\right] &= x(t) * h(t) \\ Y(f) &= X(f)H(f)
+	\end{aligned}
+	$};
+\draw[<-] (h) -- ++(-4,0) node[below] {$x(t)=\Re\left[\tilde x(t)\exp\left(j2\pi f_c t\right)\right]$};
+
+\end{tikzpicture}
+
 Μπορούμε να βρούμε για ευκολία το ισοδύναμο χωρίς την επίδραση της συχνότητας:
-\todo{Graph 125}
+
+\begin{tikzpicture}
+
+\begin{scope}[every node/.style={rectangle,draw,minimum width=30pt,align=center}]
+\draw (0,0) node (h) {$\tilde h(t)$};
+\end{scope}
+
+\draw (h.south) node[below] {$\tilde h(t) \leftrightarrow \tilde H(f)$};
+\draw[->] (h) -- ++(2,0) node[above,midway] {$2\tilde y(t)$};
+\draw[<-] (h) -- ++(-2,0) node[above,midway] {$\tilde x(t)$};
+
+\end{tikzpicture}
+
 όπου μαθηματικά αποδεικνύεται ότι:
 \[
 \tilde{H}(f-f_c) = 2H(f) \iff \tilde{H}(f) = 2H(f+f_c)
@@ -6096,7 +6238,37 @@ j2πα\left( f+f_c-\sfrac{B_T}{2}  \right),&\quad -f_c-\sfrac{B_T}{2}  \leq f \l
 \end{cases}
 \]
 που έχει τη μορφή:
-\todo{Graph 126}
+
+\begin{tikzpicture}
+\draw (-4,0) -- (4,0);
+\draw (0,-3) -- (0,3) node[right] {$\sfrac{H(f)}{j}$};
+
+\def\fc{2}
+\def\w{1}
+\def\A{1.7}
+
+\draw[dashed] (-\fc-\w,\A) -- (\fc+\w,\A);
+\draw (0,\A) node[above right] {$2\pi A B_T$};
+
+\draw (\fc-\w,0) node[below,scale=.8] {$f_c-\sfrac{B_T}{2}$};
+\draw (\fc,0) node[below,scale=.82] {$f_c$};
+\draw (\fc+\w,0) node[below,scale=.8] {$f_c+\sfrac{B_T}{2}$};
+\foreach \x in {\fc-\w,\fc,\fc+\w} {
+	\draw (\x,-0.05) -- (\x,0.05);
+}
+\draw[very thick,blue!70!cyan] (\fc-\w,0) -- (\fc+\w,\A) -- ++(0,-\A);
+
+\begin{scope}[xscale=-1,yscale=-1]
+\draw (\fc-\w,0) node[above,scale=.8] {$f_c-\sfrac{B_T}{2}$};
+\draw (\fc,0) node[above,scale=.82] {$f_c$};
+\draw (\fc+\w,0) node[above,scale=.8] {$f_c+\sfrac{B_T}{2}$};
+\foreach \x in {\fc-\w,\fc,\fc+\w} {
+	\draw (\x,-0.05) -- (\x,0.05);
+}
+\draw[very thick,blue!70!cyan] (\fc-\w,0) -- (\fc+\w,\A) -- ++(0,-\A);
+\end{scope}
+
+\end{tikzpicture}
 
 Αν χρησιμοποιήσουμε τις μιγαδικές περιβάλλουσες (που μεταφέρουν το φίλτρο στη βασική ζώνη):
 \[
@@ -6105,7 +6277,27 @@ j4πα\left(f+\sfrac{B_T}{2} \right),\qquad& \sfrac{-B_T}{2}  \leq f \leq \sfrac
 0,\qquad&\text{αλλού}
 \end{cases}
 \]
-\todo{Graph 127}
+
+\begin{tikzpicture}
+\draw[->] (-2,0) -- (2,0) node[right] {$f$};
+\draw (0,-1) -- (0,3) node[right] {$\tilde{H_1}(f) = 2H_1(f_1+f_2)$};
+
+\def\fc{0}
+\def\w{1}
+\def\A{1.7}
+
+\draw[dashed,path fading=west] (-\fc-\w,\A) -- (\fc+\w,\A);
+\draw (0,\A) node[above right] {$4\pi A B_T$};
+
+\draw (\fc-\w,0) node[below,scale=1] {$-\sfrac{B_T}{2}$};
+\draw (\fc+\w,0) node[below,scale=1] {$\sfrac{B_T}{2}$};
+\foreach \x in {\fc-\w,\fc,\fc+\w} {
+	\draw (\x,-0.05) -- (\x,0.05);
+}
+\draw[very thick,blue!90!cyan] (\fc-\w,0) -- (\fc+\w,\A) -- ++(0,-\A);
+
+\end{tikzpicture}
+
 και με είσοδο το FM σήμα \( \tilde{s}(t) = A_c\exp\left[j2πk_f\int_{0}^{t}m(λ)\dif λ\right] \), σύμφωνα με τη θεωρία που παρουσιάσαμε παραπάνω η έξοδος μετά την εφαρμογή του φίλτρου
 θα είναι:
 \begin{align*}
@@ -6156,7 +6348,40 @@ j2παf\tilde{S}(f)
 
 Για να πάρουμε την καθαρή πληροφορία, μπορούμε να εφαρμόσουμε και ένα δεύτερο φίλτρο
 \( H_2 \):
-\todo{Graph 128}
+
+\begin{tikzpicture}
+\draw (-4,0) -- (4,0);
+\draw (0,-3) -- (0,3) node[right] {$\sfrac{H_2(f)}{j}$};
+
+\def\fc{2}
+\def\w{1}
+\def\A{1.7}
+
+\draw[dashed] (-\fc-\w,\A) -- (\fc+\w,\A);
+\draw (0,\A) node[above right] {$2\pi A B_T$};
+
+\draw (\fc-\w,0) node[below,scale=.8] {$f_c-\sfrac{B_T}{2}$};
+\draw (\fc,0) node[below,scale=.82] {$f_c$};
+\draw (\fc+\w,0) node[below,scale=.8] {$f_c+\sfrac{B_T}{2}$};
+\foreach \x in {\fc-\w,\fc,\fc+\w} {
+	\draw (\x,-0.05) -- (\x,0.05);
+}
+\draw[thick,blue!70!cyan,opacity=.4] (\fc-\w,0) -- (\fc+\w,\A) -- ++(0,-\A);
+\draw[very thick,blue!60!cyan] (\fc+\w,0) -- (\fc-\w,\A) -- ++(0,-\A);
+
+\begin{scope}[xscale=-1,yscale=-1]
+\draw (\fc-\w,0) node[above,scale=.8] {$f_c-\sfrac{B_T}{2}$};
+\draw (\fc,0) node[above,scale=.82] {$f_c$};
+\draw (\fc+\w,0) node[above,scale=.8] {$f_c+\sfrac{B_T}{2}$};
+\foreach \x in {\fc-\w,\fc,\fc+\w} {
+	\draw (\x,-0.05) -- (\x,0.05);
+}
+\draw[ thick,blue!70!cyan,opacity=.4] (\fc-\w,0) -- (\fc+\w,\A) -- ++(0,-\A);
+\draw[very thick,blue!60!cyan] (\fc+\w,0) -- (\fc-\w,\A) -- ++(0,-\A);
+\end{scope}
+
+\end{tikzpicture}
+
 που δίνει έξοδο:
 \[
 \left| \tilde{s_2}(t) \right| = πB_TaA_c\left[
@@ -6171,7 +6396,32 @@ s_o(t) = \left|\tilde{s_1}(t)\right| - \left|\tilde{s_2}(t)\right|
 \]
 
 Τελικά το διάγραμμα του αποδιαμορφωτή μοιάζει κάπως έτσι:
-\todo{Graph 129}
+
+\begin{tikzpicture}
+\begin{scope}[every node/.style={rectangle,draw,minimum width=30pt,align=center}]
+\draw (0,1) node (h1) {$H_1(t)$};
+\draw (0,-1) node (h2) {$H_2(t)$};
+
+\draw (2.5,1) node(d1) {Φωρατής\\περιβάλλουσας};
+\draw (2.5,-1) node(d2) {Φωρατής\\περιβάλλουσας};
+
+\draw (5,0) node[circle,scale=1] (s) {$\sum$};
+\end{scope}
+
+\draw (-1,0) node (sp) {};
+
+\draw (sp.center) -- (-2.5,0) node[midway,above] {$s(t)$} node[midway,below] {FM};
+\draw[->] (sp.center) |- (h1);
+\draw[->] (sp.center) |- (h2);
+\draw[->] (h1) -- (d1);
+\draw[->] (h2) -- (d2);
+\draw[->] (d1) -| (s.north) node[above right] {$+$};
+\draw[->] (d2) -| (s.south);
+\draw[->] (s) -- ++(2,0) node[below left] {$m(t)$};
+
+
+\end{tikzpicture}
+
 Ο αποδιαμορφωτής αυτός ονομάζεται \textbf{balanced frequency discriminator}.
 
 Η αφαίρεση μάλιστα των εξόδων των δύο φίλτρων βοηθάει ώστε να πραγματοποιηθεί η παραγώγιση
@@ -6185,7 +6435,45 @@ s_o(t) = \left|\tilde{s_1}(t)\right| - \left|\tilde{s_2}(t)\right|
 Η στερεοφωνική διαμόρφωση λειτουργεί στέλνοντας το άθροισμα και τη διαφορά των δύο σημάτων
 (αριστερού και δεξιού). Στη συνέχεια, κρατάμε το άθροισμα, μετακινούμε τη διαφορά λίγο
 πιο πάνω στη συχνότητα, και προσθέτουμε έναν πιλοτικό τόνο ανάμεσα στα δύο κανάλια:
-\todo{Graph 130}
+
+\begin{tikzpicture}
+\begin{scope}[every node/.style={rectangle,draw,minimum width=30pt,align=center}]
+\draw (0,0) node[thick,circle,scale=1] (s) {$\sum$};
+\draw (0,-2) node[mixer] (m2) {};
+\draw (-2,-3) node (x2) {$\times 2$};
+\draw (-2,-1) node[mixer] (m1) {};
+
+\draw (-6,1) node[thick,circle,scale=.7] (s1) {$\sum$};
+\draw (-6,-1) node[thick,circle,scale=.7] (s2) {$\sum$};
+\end{scope}
+
+\draw (-8.5,1) node[circ] (i1) {} node[left] {$m_1$};
+\draw (-8.5,-1) node[circ] (i2) {} node[left] {$m_2$};
+
+\draw (m2) ++(0,-2) node[align=center] (osc) {$\cos2\pi f_c t$\\$\SI{19}{\kilo\hertz}$};
+
+\draw[->] (s) -- ++(2,0) node[right,align=center] {FM\\$s(t)$};
+\draw (m2.east) -- ++(1,0) node[right] {$k$};
+\draw[->] (osc) -- (m2.south);
+\draw (osc) -| (x2);
+\draw[->] (x2) -- (m1.south);
+\draw[->] (m1.east)  -- ++(0.5,0) |- (s.west);
+\draw[->] (m2.north) -- (s);
+
+\draw[->] (s1) -| (s);
+\draw[->] (s2) -- (m1.west);
+\draw[->] (i1.center) -- (s1.west) node[above left] {$+$} node[near end] (si1) {};
+\draw[->] (i2.center) -- (s2.west) node[below left] {$-$} node[near end] (si2) {};
+\draw (si1.center) node[circ,scale=.7] {};
+\draw (si2.center) node[circ,scale=.6] {};
+\draw[->] (si1.center) to[bend right] (s2.north) node[above right] {$+$};
+\draw[->] (si2.center) to[bend right] (s1.south) node[below right] {$+$};
+
+\draw (-7.5,1.5) rectangle (-5,-1.5);
+\draw (-5,1) node[above right] {$m_1(t)+m_2(t)$};
+\draw (-5,-1) node[above right] {$m_1(t)-m_2(t)$};
+\end{tikzpicture}
+
 \todo{Graph 131}
 
 Έτσι, ο αποδιαμορφωτής του στερεοφωνικού FM χρειάζεται ένα Low Pass φίλτρο για να πάρει
