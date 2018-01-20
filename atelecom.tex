@@ -2914,7 +2914,7 @@ plot[smooth,tension=.2] coordinates {(3,0) (3.2,1.4) (4.8,1.4) (5,0)};
 \label{application.am-phase}
 Μερικές διαμορφώσεις:
 \begin{alignat*}{2}
-	\text{AM} \quad && s(t) &= \left(1+k_am(t)\right)\cos 2πf_c t \\
+	\text{AM} \quad && s(t) &= A_c \left(1+k_am(t)\right)\cos 2πf_c t \\
 	\text{DSB-SC} \quad && s(t) &= A_c m(t)\cos 2πf_c t\\
 	\text{SSB} \quad && s(t) &= \frac{1}{2} A_cm(t)\cos 2πf_c t \mp \frac{1}{2}A_c\hat m(t)\sin2π
 	f_c t
@@ -3723,9 +3723,9 @@ A_c\left( a+0.75m(t) \right)\cos 2πf_c t
 	διπλασιάσω τον όρο \( a+0.75m(t) \) χωρίς να υπερδιαμορφώνω το σήμα, δηλαδή:
 	
 	\begin{align*}
-		1+\frac{0.75}{a}\cdot m(t) &= 0.5 \\
+		1+\frac{0.75}{a}\cdot m(t) &\geq 0.5 \\
 		\implies 1+\frac{0.75}{a}\min\left[ m(t) \right] &= 0.5 \\
-		\implies \boxed{a=0.5}
+		\implies \Aboxed{a&=1.5}
 	\end{align*}
 \end{enumgreekparen}
 
@@ -5065,7 +5065,7 @@ A_c\cos(\sfrac{πt}{2} ) &\qquad t < 0
 
 Μάλιστα, δεξιά του 0, η στιγμιαία συχνότητα θα είναι:
 \begin{align*}
-	f_i(t) &= \frac{1}{2π}\od{\theta(t)}{t} = \frac{1}{2}\cdot \left(\frac{1}{2}+2πt\right)
+	f_i(t) &= \frac{1}{2π}\od{\theta(t)}{t} = \frac{1}{2}\cdot \left(\frac{1}{2}+2t\right)
 \end{align*}
 δηλαδή η συχνότητα του εκπεμπόμενου σήματος θα αυξάνεται συνεχώς:
 
