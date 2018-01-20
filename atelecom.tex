@@ -53,6 +53,55 @@
 Ιστοσελίδα Ασκήσεων:
 \url{http://genesis.ee.auth.gr/dimakis/greek/courses/telesysI}
 
+\begin{attnbox}{Εγγραφή στη λίστα}
+	Μήνυμα στο \href{mailto:dimakis@auth.gr}{\texttt{dimakis@auth.gr}} με θέμα
+	\textit{\textbf{Αναλογικές Τηλεπικοινωνίες}}.
+	
+	\tcblower
+	
+	Στη λίστα θα στέλνονται ασκήσεις χρήσιμες για τις εξετάσεις και λοιπές ανακοινώσεις.
+\end{attnbox}
+
+\begin{attnbox}{Προσοχή στο συμβολισμό!}
+	Σε \textbf{αντίθεση} με τα ΣΑΕ, τα διαγράμματα των Αναλογικών Τηλεπικοινωνιών περιέχουν \textbf{αθροιστές}
+	και \textbf{πολλαπλασιαστές} που εκφράζονται ως εξής:
+	\begin{itemize}
+		\item 
+		\textbf{Αθροιστής:}
+		\begin{circuitikz}[baseline]
+			\draw (0,0) node[circle,thick,draw] (s) {$\sum$};
+			
+			\draw[<-] (s) -- (-1,0) node[left] {$i_2$};
+			\draw[<-] (s.north west) -- (-0.5,0.5) -- (-1,0.5) node[left] {$i_1$};
+			\draw[<-] (s.south west) -- (-0.5,-0.5) -- (-1,-0.5) node[left] {$i_3$};
+			
+			\draw[gray,->] (s) -- ++(1,0) node[right] {$o$};
+		\end{circuitikz}
+	ή \begin{circuitikz}[baseline,scale=1.05]
+		\draw (0,0) node[circle,thick,draw] (s) {$+$};
+		
+		\draw[<-] (s) -- (-1,0) node[left] {$i_2$};
+		\draw[<-] (s.north west) -- (-0.5,0.5) -- (-1,0.5) node[left] {$i_1$};
+		\draw[<-] (s.south west) -- (-0.5,-0.5) -- (-1,-0.5) node[left] {$i_3$};
+		
+		\draw[gray,->] (s) -- ++(1,0) node[right] {$o$};
+	\end{circuitikz} \quad
+	\( o = i_1 + i_2 + i_3 \)
+		\item
+		\textbf{Πολλαπλασιαστής}
+		\begin{circuitikz}[baseline,scale=.9]
+			\draw (0,0) node[mixer] (s) {};
+			
+			\draw[<-] (s.west) -- (-1,0) node[left] {$i_2$};
+			\draw[<-] (s.north) |- (-1,0.8) node[left] {$i_1$};
+			\draw[<-] (s.south) |- (-1,-0.8) node[left] {$i_3$};
+			
+			\draw[gray,->] (s.east) -- (1,0) node[right] {$o$};
+		\end{circuitikz}
+	\quad \( o = i_1\cdot i_2\cdot i_3 \)
+	\end{itemize}
+\end{attnbox}
+
 \newpage
 
 \tableofcontents
