@@ -3687,12 +3687,12 @@ plot [const plot] coordinates {(0,1) (1,-1) (2,1) (4,-1) (5,1) (6,0)};
 	\[
 	H(f) = \begin{cases}
 	c, \qquad & f \in \left[ f_c+f_v,\ f_c+w \right]\text{ (ζώνη διέλευσης)} \\
-	G(f),\qquad & f\in \left[f_c-f_v,\ f_c+f_v\right]\text{ (ζώνη μετάδοσης)} \\
+	G(f),\qquad & f\in \left[f_c-f_v,\ f_c+f_v\right]\text{ (ζώνη μετάβασης)} \\
 	0,\qquad & \text{αλλού}
 	\end{cases}
 	\]
 	
-	Η απαίτηση \( H(f+f_c) + H(f-f_c) = c \) στο διάστημα \( [-f_v,+f_v] \) απαιτεί από
+	Η απαίτηση \( H(f_c+f) + H(f_c-f) = c \) στο διάστημα \( f \in [-f_v,+f_v] \) απαιτεί από
 	το τμήμα \( G(f) \) της χαρακτηριστικής να παρουσιάζει περιττή συμμετρία γύρω από το
 	σημείο \( \left(f_c,\ H(f_c)\right) \).
 	
