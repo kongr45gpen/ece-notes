@@ -6490,8 +6490,6 @@ s_o(t) = \left|\tilde{s_1}(t)\right| - \left|\tilde{s_2}(t)\right|
 \draw[->] (d1) -| (s.north) node[above right] {$+$};
 \draw[->] (d2) -| (s.south);
 \draw[->] (s) -- ++(2,0) node[below left] {$m(t)$};
-
-
 \end{tikzpicture}
 
 Ο αποδιαμορφωτής αυτός ονομάζεται \textbf{balanced frequency discriminator}.
@@ -6546,15 +6544,98 @@ s_o(t) = \left|\tilde{s_1}(t)\right| - \left|\tilde{s_2}(t)\right|
 \draw (-5,-1) node[above right] {$m_1(t)-m_2(t)$};
 \end{tikzpicture}
 
-\todo{Graph 131}
+\begin{circuitikz}[xscale=1.2]
+	\draw[->] (0.06,-1) -- (0.06,2.2) node[right] {$s(t)$};
+	\draw[->] (-1,0) -- (5.5,0) node[above right] {$\si{\kilo\hertz}$};
+	
+	\draw[very thick,blue!50!cyan]
+	plot [smooth,tension=.5] coordinates {(0.1,0) (0.3,1) (0.9,1) (1.1,0)}
+	(0.3/2+0.9/2,1.1) node[above,xshift=2mm] {$M_1+M_2$};
+	
+	\draw[->,ultra thick,blue!70!cyan] (2,0) -- ++(0,1.2);
+	
+	\draw[very thick,blue!50!cyan,xshift=2.8cm]
+	plot [smooth,tension=.5] coordinates {(0.1,0) (0.3,1) (0.9,1) (1.1,0)};
+	\draw[very thick,blue!50!cyan,xshift=3.8cm]
+	plot [smooth,tension=.5] coordinates {(0.1,0) (0.3,1) (0.9,1) (1.1,0)};
+	
+	\draw (1.1,0) node[below] {$15$};
+	\draw (2,0) node[below] {$19$};
+	\draw (2.9,0) node[below] {$23$};
+	\draw (3.9,0) node[below] {$38$};
+	\draw (4.9,0) node[below] {$53$};
+\end{circuitikz}
 
 Έτσι, ο αποδιαμορφωτής του στερεοφωνικού FM χρειάζεται ένα Low Pass φίλτρο για να πάρει
 το αριστερό κανάλι, και ένα Band Pass φίλτρο για να πάρει το δεξί κανάλι. Στη συνέχεια,
 πολλαπλασιάζει το δεξί κανάλι με τον πιλοτικό τόνο σε έναν μίκτη, έτσι ώστε να το μεταφέρει
 στη βασική ζώνη. Στο τέλος, προσθαφαιρούνται κατάλληλα τα σήματα ώστε από τα \( m_1+m_2 \)
 και \( m_1-m_2 \) να εξαχθούν τα \( m_1 \) και \( m_2 \):
-\todo{Graph 133}
-\todo{Graph 132}
+
+\begin{circuitikz}[xscale=1.2]
+	\draw[->] (0.06,-1) -- (0.06,2.2) node[right] {$s(t)$};
+	\draw[->] (-1,0) -- (5.5,0) node[above right] {$\si{\kilo\hertz}$};
+	
+	\filldraw[bottom color=white,fill opacity=.15,thick,blue!20!black,top color=blue!80!cyan!80!black]
+	(0.06,0) -- (0.06,1.8) -- ++(1.2,0) -- (1.7,0);
+	\filldraw[bottom color=white,fill opacity=.15,thick,blue!20!black,top color=blue!80!cyan!80!black]
+	(1.8,0) -- (1.84,1.8) -- (2.16,1.8) -- (2.2,0);
+	\filldraw[bottom color=white,fill opacity=.15,thick,blue!20!black,top color=blue!80!cyan!80!black]
+	(2.6,0) -- ++(0.5,1.8) -- (1.1+3.8+0.3-0.5,1.8) -- ++ (0.5,-1.8);
+	
+	\draw[very thick,blue!50!cyan]
+	plot [smooth,tension=.5] coordinates {(0.1,0) (0.3,1) (0.9,1) (1.1,0)}
+	(0.3/2+0.9/2,1.1) node[above,xshift=1.4mm] {$M_1+M_2$};
+	
+	\draw[->,ultra thick,blue!70!cyan] (2,0) -- ++(0,1.2);
+	
+	\draw[very thick,blue!50!cyan,xshift=2.8cm]
+	plot [smooth,tension=.5] coordinates {(0.1,0) (0.3,1) (0.9,1) (1.1,0)};
+	\draw[very thick,blue!50!cyan,xshift=3.8cm]
+	plot [smooth,tension=.5] coordinates {(0.1,0) (0.3,1) (0.9,1) (1.1,0)};
+	
+	\draw (1.1,0) node[below] {$15$};
+	\draw (2,0) node[below] {$19$};
+	\draw (2.9,0) node[below] {$23$};
+	\draw (3.9,0) node[below] {$38$};
+	\draw (4.9,0) node[below] {$53$};
+\end{circuitikz}
+
+\begin{tikzpicture}[yscale=1.4]
+\begin{scope}[every node/.style={rectangle,draw,minimum width=40pt,align=center}]
+\draw (0,1) node (lpf) {LPF};
+\draw (0,0) node (bpf1) {BPF\\$\SI{38}{\kilo\hertz}$};
+\draw (0,-1) node (bpf2) {BPF\\$\SI{19}{\kilo\hertz}$};
+
+\draw (2.5,-1) node (x2) {$\times 2$};
+\end{scope}
+\draw (5,1) node[circle,draw,scale=1] (s1) {$\sum$};
+\draw (5,0) node[circle,draw,scale=1] (s2) {$\sum$};
+\draw (2.5,0) node[mixer] (mult) {};
+
+\draw (-1.5,0) node (sp) {};
+
+\draw (bpf1.south) node[below,scale=.8] {$\pm\SI{15}{\kilo\hertz}$};
+\draw (bpf2.south) node[below,scale=.8] {Narrow Band};
+
+\draw (sp.center) -- (-2.5,0) node[midway,above] {FM};
+\draw[->] (sp.center) |- (lpf);
+\draw[->] (sp.center) |- (bpf2);
+\draw[->] (sp.center) -- (bpf1);
+\draw[->] (lpf.east) node[above right] {$m_1+m_2$} -- (s1.west) node[above left] {$+$};
+\draw[->] (bpf2) -- (x2);
+\draw[->] (bpf1) -- (mult.west);
+\draw[->] (x2) -- (mult.south);
+\draw[->] (mult.east) -- (s2.west) node[above left] {$-$} node[midway,below] {$m_1+m_2$} node[midway] (m2) {};
+\draw (m2.center |- 0,1) node (m1) {};
+\draw[->] (s1) -- ++(1.5,0) node[right] {$2m_1(t)$};
+\draw[->] (s2) -- ++(1.5,0) node[right] {$2m_2(t)$};
+
+\draw (m1) node[circ,scale=.6] {};
+\draw (m2) node[circ,scale=.6] {};
+\draw[->] (m2.center) to[bend left] (s1.south west) node[below] {$+$};
+\draw[->] (m1.center) to[bend left] (s2.north west) node[above right,xshift=-1mm] {$+$};
+\end{tikzpicture}
 
 Ταυτόχρονα, με αυτόν τον τρόπο, οι δέκτες που δεν υποστηρίζουν stereo "βλέπουν" μόνο
 το σήμα \( s(t) \) μέχρι τα 15 kHz (που είναι το άθροισμα του αριστερού και του δεξιού),
@@ -6595,7 +6676,24 @@ f_i = 2π\od{\theta(t)}{t}
 
 \paragraph{Ερώτηση}
 Δίνεται το \textbf{διαμορφωμένο κατά PM} σήμα:
-\todo{text}
+
+\begin{tikzpicture}
+\begin{axis}[
+no markers, samples=3*\gsamples,
+axis y line=left,axis x line=bottom, xlabel=$t\ (\si{\second})$,
+%every axis y label/.style={at=(current axis.above origin),anchor=south},
+%every axis x label/.style={at=(current axis.right of origin),anchor=west},
+height=5cm, width=12cm,
+xtick={0,0.5,1,1.5,2},ytick={-1,0,1},
+enlargelimits=false, clip=false,
+grid = major
+]
+\addplot [very thick,cyan!50!blue,domain=0:0.5] {sin(30*\x r)};
+\addplot [very thick,cyan!50!blue,domain=0.5:1] {sin((80*\x +0.13)r)};
+\addplot [very thick,cyan!50!blue,domain=1:1.5] {sin(30*\x r)};
+\addplot [very thick,cyan!50!blue,domain=1.5:2] {sin((80*\x +0.38)r)};
+\end{axis}
+\end{tikzpicture}
 
 Το αρχικό σήμα είναι ένας τόνος \( f_m = \SI{1}{\hertz} \). Αυτός ο τόνος
 είναι ημίτονο ή συνημίτονο;
@@ -6621,11 +6719,48 @@ f_i(t) = f_c + \frac{k_p}{2π}m'(t)
 Λαμβάνουμε περιπτώσεις:
 \begin{itemize}
 	\item Έστω \( m'(t) = \sin 2πτ \)
-	\todo{Graph 135}
+	
+	\begin{tikzpicture}
+	\draw[->] (0,-1) -- (0,2) node[below right] {$m'(t)$};
+	\draw[->] (-1,0) -- (5,0) node[above right] {$t$};
+	
+	\draw[very thick,blue!50!cyan]
+	plot[samples=\gsamples,domain=0:5,variable=\t]
+	(\t,{sin(1.4*\t r)});
+	
+	\draw (pi/1.4,0.1) -- ++(0,-0.2) node[midway,above right] {$0.5$};
+	\draw (2*pi/1.4,0.1) -- ++(0,-0.2) node[midway,above left] {$1$};
+	\end{tikzpicture}
+	
 	\item Έστω \( m'(t) = \cos 2πτ \)
-	\todo{Graph 136}
+	
+	
+	\begin{tikzpicture}
+	\draw[->] (0,-1) -- (0,2) node[below right] {$m'(t)$};
+	\draw[->] (-1,0) -- (5,0) node[above right] {$t$};
+	
+	\draw[very thick,blue!50!cyan!50!green]
+	plot[samples=\gsamples,domain=0:5,variable=\t]
+	(\t,{cos(1.4*\t r)});
+	
+	\draw[dashed] (pi/1.4,0) -- ++(0,-1);
+	\draw[dashed] (2*pi/1.4,0) -- ++(0,1);
+	\draw (pi/1.4,0.1) -- ++(0,-0.2) node[midway,above right] {$0.5$};
+	\draw (2*pi/1.4,0.1) -- ++(0,-0.2) node[midway,above left] {$1$};
+	\end{tikzpicture}
 	\item Έστω \( m'(t) = -\sin 2πτ \)
-	\todo{Graph 137}
+	
+	\begin{tikzpicture}
+	\draw[->] (0,-1) -- (0,2) node[below right] {$m'(t)$};
+	\draw[->] (-1,0) -- (5,0) node[above right] {$t$};
+	
+	\draw[very thick,blue!50!cyan!75!white]
+	plot[samples=\gsamples,domain=0:5,variable=\t]
+	(\t,{-sin(1.4*\t r)});
+	
+	\draw (pi/1.4,0.1) -- ++(0,-0.2) node[midway,below right] {$0.5$};
+	\draw (2*pi/1.4,0.1) -- ++(0,-0.2) node[midway,below left] {$1$};
+	\end{tikzpicture}
 \end{itemize}
 
 Τα αραιώματα αντιστοιχούν σε αρνητική τιμή της \( m'(t) \), ενώ τα πυκνώματα σε θετική. Η
