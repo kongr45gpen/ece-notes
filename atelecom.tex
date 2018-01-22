@@ -2773,7 +2773,7 @@ coordinates {(-1.8,0) (0,1.7) (1.8,0)};
 \draw (-6,0) -- (6,0);
 \draw (0,-1) -- (0,3) node[right] {$H(f)$};
 
-\def\fa{2+0.15}
+\def\fa{2+\tz/2}
 \def\fb{5.8}
 \def\tz{1}
 \def\A{2}
@@ -2790,10 +2790,12 @@ plot[smooth,tension=1] coordinates {
 \draw[xshift=2cm,blue!70!black] (-1.5,0) -- (0,2) -- (1.5,0);
 
 
-\draw[dashed] (2,0) node[below] {$f_c$} -- ++(0,2);
+\draw[dashed] (2,0) node[below,xshift=1mm] {$f_c$} -- ++(0,2);
 \draw[dashed,path fading=north] (\fa-\tz,0) -- ++(0,2);
-\draw (\fa-\tz,0) node[below,scale=.8] {$f_c-f_v$};
+\draw (\fa-\tz,0) node[below,scale=.8,xshift=-2mm] {$f_c-f_v$};
 \draw (2+1.5,0) node[below,scale=.8] {$f_c+w$};
+
+\filldraw[top color=red,bottom color=blue,fill opacity=.25] (2,\A/2) circle (2.5pt);
 
 \begin{scope}[xscale=-1]
 \filldraw[fill=blue!80!cyan!80!black,fill opacity=.15,path fading=west]
