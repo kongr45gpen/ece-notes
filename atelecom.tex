@@ -1152,7 +1152,6 @@ node[below] {$u_2(t) = a_1u_1(t) + a_2u_1^2(t)$};
 Θα πραγματοποιήσουμε μια ανάλυση παρόμοια με τον διαμορφωτή, μελετώντας την έξοδο
 του παραπάνω συστήματος στο πεδίο συχνότητας:
 
-\todo{infobox importants}
 \begin{align*}
 	u_1(t) &= s(t) = A_c\left[ 1+k_am(t) \right]\cos(2π f_c t) \\
 	u_2(t) &= a_1A_c\left[1+k_am(t)^2\right]\cos 2πf_c t
@@ -2862,7 +2861,7 @@ plot[smooth,tension=0.5] coordinates {(0.15-1,0) (0.15-1+2.2/4,3/8) (0,2) } -- (
 	S(f) &= U(f)H(f) = \frac{A_c}{2}\left[ M(f-f_c)+M(f+f_c) \right]
 \end{align*}
 
-Ο αποδιαμορφωτής είναι ομόδυνος:
+Ο \textbf{αποδιαμορφωτής} είναι ομόδυνος:
 
 \begin{circuitikz}[scale=1.6]
 	\draw (0,0) node[xshift=4.9mm,oscillator] (osc) {}
@@ -2888,7 +2887,57 @@ plot[smooth,tension=0.5] coordinates {(0.15-1,0) (0.15-1+2.2/4,3/8) (0,2) } -- (
 	+ \frac{A_c'A_c}{4}\left[M(f-2f_c)H(f-f_c)+M(f+2f_c)H(f+f_c)\right]
 \end{align*}
 Ας δούμε έναν-έναν τους όρους:
-\todo{Graph 64}
+
+\begin{tikzpicture}[scale=.85]
+\draw[->] (-9,0) -- (9,0) node[below right] {$f$};
+\draw[->] (0,-1) -- (0,3);
+
+\draw[blue!70!black,ultra thick] (-1.5,0) -- (0,2.5) -- (1.5,0);
+
+
+\def\fa{-1}
+\def\fb{1}
+\def\tz{1.2}
+\def\A{2}
+
+\foreach \xs in {-1.6,1.6} {
+	\filldraw[top color=blue!80!cyan!80!black,fill opacity=.15,thick,bottom color=white,xshift=\xs cm]
+	plot[smooth,tension=1] coordinates {
+		(\fa-\tz,0) (\fa-\tz+\tz/4,\A/8) (\fa-\tz/2,\A/2) (\fa-\tz/4,7*\A/8) (\fa,\A)
+	}
+	--
+	plot[smooth,tension=1] coordinates {
+		(\fb,\A) (\fb+\tz/4,7*\A/8) (\fb+\tz/2,\A/2) (\fb+3*\tz/4,\A/8) (\fb+\tz,0)
+	}
+	;
+}
+
+\filldraw[top color=blue!80!cyan!80!black,fill opacity=.15,thick,bottom color=white,xshift=7 cm,path fading=east]
+plot[smooth,tension=1] coordinates {
+	(\fa-\tz,0) (\fa-\tz+\tz/4,\A/8) (\fa-\tz/2,\A/2) (\fa-\tz/4,7*\A/8) (\fa,\A)
+}
+-- ++(2,0) -- ++(0,-\A)
+;
+\filldraw[top color=blue!80!cyan!80!black,fill opacity=.15,thick,bottom color=white,xscale=-1,xshift=7 cm,path fading=west]
+plot[smooth,tension=1] coordinates {
+	(\fa-\tz,0) (\fa-\tz+\tz/4,\A/8) (\fa-\tz/2,\A/2) (\fa-\tz/4,7*\A/8) (\fa,\A)
+}
+-- ++(2,0) -- ++(0,-\A)
+;
+
+\draw[xshift=5.4cm,blue!70!black,very thick] (-1.5,0) -- (0,2.5) -- (1.5,0);
+\draw[dashed] (5.4,0) node[below,scale=1] {$2f_c$} -- ++(0,2.5);
+
+\draw[xscale=-1,xshift=5.4cm,blue!70!black,very thick] (-1.5,0) -- (0,2.5) -- (1.5,0);
+\draw[dashed] (-5.4,0) node[below,scale=1] {$-2f_c$} -- ++(0,2.5);
+
+\draw[dashed,green!50!black] (3.4,0) -- ++(0,2.5);
+\draw[dashed] (\fb,\A) -- (0,\A);
+
+\foreach \x in {\fa-\tz/2+1.6,-5.4,5.4} {
+	\filldraw[top color=red,bottom color=blue,fill opacity=.25] ({\x},\A/2) circle (2.5pt);
+}
+\end{tikzpicture}
 
 Παρατηρούμε ότι στο κέντρο υπάρχει η επίδραση και των δύο φίλτρων επάνω στο σήμα. Για
 να πάρουμε το αρχικό, θα πρέπει η πρόσθεσή τους να μην επηρεάζει την έξοδο, δηλαδή:
