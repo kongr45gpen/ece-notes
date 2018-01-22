@@ -9,7 +9,7 @@
 		\\
 		\normalsize Σημειώσεις από τις παραδόσεις
 	}}
-\date{Οκτώβριος-Ιανουάριος 2017
+\date{Οκτώβριος\textendash Ιανουάριος 2017 \textendash~2018
 	\\
 	{ 
 		\small Τελευταία ενημέρωση: \today
@@ -34,10 +34,27 @@
 
 \hrule
 \vspace{50pt}
+
+\begin{infobox}{Λάθη \& Διορθώσεις}
+	Οι τελευταίες εκδόσεις των σημειώσεων βρίσκονται στο Github
+	(\url{https://github.com/kongr45gpen/ece-notes/raw/master/sae1.pdf}) ή
+	στη διεύθυνση \url{http://helit.org/ece-notes/sae1.pdf}.
 	
-Συστήματα Αυτομάτου Ελέγχου
+	Περιέχουν διορθώσεις σε λάθη και τυχόν βελτιώσεις.
+	
+	\tcblower
+	
+	Μπορείτε να ενημερώνετε για οποιοδήποτε λάθος και πρόταση
+	μέσω PM στο forum, issue στο Github, ή οποιουδήποτε άλλου τρόπου!
+\end{infobox}
 	
 Υπεύθυνη καθηγήτρια: Ζωή Δουλγέρη, ασκήσεις από τον Παπαγεωργίου Δημήτρη - δεν υπάρχει διαχωρισμός ασκήσεων και θεωρίας.
+
+\newpage
+
+\tableofcontents
+
+\newpage
 
 \section{Συστήματα}
 Γνωρίζουμε από τα προηγούμενα μαθήματα τι είναι το σύστημα. Σκοπός του μαθήματος είναι να σχεδιάσουμε έναν "ελεγκτή" ώστε ένα σύστημα να έχει μια επιθυμητή έξοδο.
@@ -138,7 +155,7 @@ m\ddot x_0 + b(\dot x_0 - \dot x_i) + \kappa (x_0-x_i) = 0
 
 \subsection{Ορισμοί}
 
-\begin{defn}{}{}
+\begin{defn}{Συνάρτηση μεταφοράς}{}
 	\begin{itemize}
 	\item
 	\textbf{Συνάρτηση μεταφοράς:} \(
@@ -158,7 +175,7 @@ m\ddot x_0 + b(\dot x_0 - \dot x_i) + \kappa (x_0-x_i) = 0
 		\quad \text{όπου } G=\frac{kz_1\cdots z_m}{p_1\cdots p_m}
 	\end{align*}
 \end{defn}
-\begin{defn}{}{}
+\begin{defn}{Πόλοι \& Μηδενικά}{}
 	\begin{itemize}
     \item \textbf{Πόλοι} ονομάζονται οι τιμές \( p \) για τις οποίες ισχύει:
     \[
@@ -169,6 +186,15 @@ m\ddot x_0 + b(\dot x_0 - \dot x_i) + \kappa (x_0-x_i) = 0
     \mathlarger{\lim_{s\to z}  \left\lvert H(s) \right\rvert} = 0
     \]
     \end{itemize}
+\end{defn}
+\begin{defn}{DC κέρδος}{}
+	\textbf{DC κέρδος} ονομάζεται η τιμή της συνάρτησης μεταφοράς για \( s = 0\):
+	\[
+	\text{dc gain} = H(0)
+	\]
+	
+	Ουσιαστικά αντιστοιχεί στην τιμή της απόκρισης σε μοναδιαία βηματική συνάρτηση για
+	\( t\to\infty \).
 \end{defn}
 \begin{theorem}{Σύνδεση εν σειρά}{}
 	Όταν συνδέουμε δύο απομονωμένα συστήματα εν σειρά, για τις συναρτήσεις μεταφοράς τους
@@ -261,9 +287,10 @@ node[above,rectangle,align=center,scale=0.8]
 
 Ορίζουμε:
 \begin{alignat*}{2}
-	\text{συνάρτηση μεταφοράς κλειστού βρόγχου: } && T(s) &= \frac{y(s)}{r(s)} \\
-	\text{συνάρτηση μεταφοράς εισόδου διαταραχής: } && T_d(s) &= \frac{y(s)}{d(s)}
+\text{\textbf{συνάρτηση μεταφοράς κλειστού βρόγχου}: } && T(s) &= \frac{y(s)}{r(s)} \\
+\text{\textbf{συνάρτηση μεταφοράς εισόδου διαταραχής}: } && T_d(s) &= \frac{y(s)}{d(s)}
 \end{alignat*}
+
 
 Για να υπολογίσουμε την έξοδο του συστήματος, αν δεν λάβουμε υπ' όψιν
 την είσοδο διαταραχής:
@@ -489,6 +516,7 @@ T(s) = \frac{\kappa H_2(s)+H_2(s)H_1(s)}{1+H_1(s)H_2(s)}
 	\\ T(s) &= \frac{\kappa H_2(s) + H_2(s)H_1(s) }{1+H_1(s)H_2(s)}
 \end{align*}
 
+\newpage
 
 \section{Προδιαγραφές}
 Ορίζουμε κάποιες προδιαγραφές που επιθυμούμε να πληροί η έξοδος του συστήματος, όπως η
@@ -2200,7 +2228,7 @@ Js^2y(s) +Bsy(s) = u(s) \\
 	\omega_d &= \omega_n\sqrt{1-ζ^2}
 \end{alignat*}
 \end{tcolorbox}
-\begin{defn}[width=.6\textwidth]{}{}
+\begin{defn}[width=.6\textwidth]{Σταθερές Συστημάτων 2\textsuperscript{ου} βαθμού}{}
 	\begin{itemize}
 		\item \( \omega_n \): \textbf{φυσική συχνότητα}
 		\item \( ζ \): \textbf{συντελεστής απόσβεσης}
@@ -6732,6 +6760,8 @@ A(s) = \frac{k(s+p)}{(s+1)(s+3)(s+6)}
    \todo{Graph 144}
 \end{enumgreekpar}
 
+\newpage
+
 \section{Ασκήσεις}
 \paragraph{Άσκηση}
 Δίνεται ένα σύστημα με συνάρτηση μεταφοράς:
@@ -7530,7 +7560,8 @@ G_1(s) = \frac{τs+1}{aτs+1},\quad \text{με } 0<a<1
 \end{enumgreekparen}
 
 \appendix
-\listoftodos
-\tableofcontents
+\tcblistof[\section*]{defn}{Ορισμοί}
+\tcblistof[\section*]{thm}{Θεωρήματα}
+
 
 \end{document}

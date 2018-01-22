@@ -200,7 +200,7 @@
 % Global amount of samples
 % Set to a higher value (e.g. 200) for nicer graphs
 % Set to a low value (e.g. 10) for performance
-\newcommand*{\gsamples}{300}
+\newcommand*{\gsamples}{50}
 
 % Equals command as a workaround for CircuiTikZ bug
 % not allowing the = sign in labels
@@ -220,9 +220,9 @@
 \providecommand\dif{d}
 \providecommand\od[2]{\frac{#1}{#2}}
 
-\newtcbtheorem[number within=section]{theorem}{Θεώρημα}%
+\newtcbtheorem[number within=section,list inside=thm]{theorem}{Θεώρημα}%
 {colback=green!5,colframe=green!35!black,colbacktitle=green!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-7mm},width=.9\textwidth,arc=.7mm}{th}
-\newtcbtheorem[number within=section]{defn}{Ορισμός}%
+\newtcbtheorem[number within=section,list inside=defn]{defn}{Ορισμός}%
 {colback=blue!5,colframe=cyan!35!black,colbacktitle=blue!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-2mm}}{def}
 \newtcbtheorem[number within=section]{exercise}{Άσκηση}%
 {colback=gray!3,colframe=gray!35!black,colbacktitle=gray!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-2mm}}{exc}
