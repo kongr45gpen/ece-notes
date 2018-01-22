@@ -1636,10 +1636,94 @@ s(t) = A_cm(t) \cdot \cos(2πf_ct + φ)
 αποδιαμορφωτών, από τους οποίους ο ένας πολλαπλασιάζεται με φέρον
 φάσης \( φ \), και ο δεύτερος με φέρον φάσης \( φ-90\degree \).
 Στη συνέχεια, τα δύο σήματα διαιρούνται ώστε να βρούμε τη γωνία
-\( φ \approx \tan φ = \frac{\cos φ}{\sin φ}
-= \frac{\sfrac{1}{2}A_c \cos φ m(t) }{\sfrac{1}{2} A_c \sin φ m(t) } \). Η γωνία αυτή πηγαίνει ως είσοδος στον ταλαντωτή, έτσι ώστε να
+\( φ \approx \tan φ = \frac{\sin φ}{\cos φ}
+= \frac{\sfrac{1}{2}A_c \sin φ\ m(t) }{\sfrac{1}{2} A_c \cos φ\ m(t) } \). Η γωνία αυτή πηγαίνει ως είσοδος στον ταλαντωτή, έτσι ώστε να
 διορθωθεί η φάση του σήματος που δίνει ως έξοδο μέσω μιας διαδικασίας
 αρνητικής ανάδρασης.
+
+\subsubsection{Ισχύς}
+Έστω ένα σήμα διαμορφωμένο κατά DSB-SC:
+\[
+u(t) = A_c m(t) \cos (2πf_c t)
+\]
+
+Για την συνάρτηση αυτοσυσχέτισης του σήματος ισχύει:
+\begin{align*}
+\mathcal R_{u(τ)}
+&= \lim_{T\to \infty} \frac{1}{T} \int_{-\sfrac{T}{2} }^{\sfrac{T}{2} }
+u(t)u(t-τ)\dif t \\
+&= \lim_{Τ\to \infty}\frac{1}{T} \int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
+A_c^2 m(t) m(t-τ) \cos(2πf_c t)\cos(2πf_c(t-τ)) \dif t
+\\ &= \frac{A_c^2}{2} \lim_{T\to \infty}\frac{1}{T}
+\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } m(t)m(t-τ)
+\left[ \cos(4πf_ct-2πf_cτ) + \cos(2πf_cτ) \right]\dif t
+\end{align*}
+
+Θα αναλύσουμε ξεχωριστά τον όρο \( \int_{-\infty}^{\infty} m(t)m(t-τ) \cos(
+4πf_ct - 2πf_c τ
+) \dif t \).
+
+Από το θεώρημα του Parseval ισχύει:
+\[
+\int_{-\infty}^{\infty} x(t) y^*(t)\dif t
+= \int_{-\infty}^{\infty} X(f) Y^*(f)\dif f
+\]
+άρα έχουμε:
+\begin{align*}
+&\hphantom{=}\int_{-\infty}^{\infty} m(t)m(t-τ) \cos (4πf_c t - 2πf_c τ)\dif τ\\ &=
+\int_{-\infty}^{\infty} F\left[m(t-τ)\right] \left\lbrace 
+F\left[m(t)\cos(4πf_ct-2πf_cτ)\right]
+\right\rbrace^* \dif t
+\\ &= \int_{-\infty}^{\infty} e^{-j2πf_c t}M(f)
+\left[
+-\frac{M(f-2f_c)e^{-j2πf_ct}}{2}
++\frac{M(f+2f_c)e^{-j2πf_ct}}{2}
+\right]^* \dif t
+\end{align*}
+
+Επειδή θεωρούμε το \( f_c \) πολύ μεγάλο, δεν υπάρχει περίπτωση ο πολλαπλασιασμός των δύο
+παραπάνω όρων να δώσει τιμή διαφορετική του 0 (αφού τα φάσματα βρίσκονται σε διαφορετικό
+σημείο \begin{tikzpicture}[baseline,scale=.4,every node/.style={scale=.5}]
+\draw (-4,0) -- (4,0);
+
+\draw [blue!50!cyan!90!orange,very thick]
+(-0.7,0) -- (0,1) node[above] {$M(f)$} -- (0.7,0);
+\draw [blue!90!cyan!80!orange,very thick]
+[xshift=-3cm] (-0.7,0) -- (0,1) -- (0.7,0)
+[xshift=6cm] (-0.7,0) -- (0,1) -- (0.7,0)
+;
+
+\foreach \x in {-3,0,...,3}
+\draw[dashed] (\x,0) -- ++(0,1);
+
+\draw (-3,0) node[below] {$-2f_c$};
+\draw (3,0)  node[below] {$+2f_c$};
+\end{tikzpicture} άρα το παραπάνω ολοκλήρωμα είναι 0).
+
+Επομένως:
+\begin{align*}
+\mathcal R_{u}(τ) &= \frac{Ac^2}{2} \cos 2π f_c τ \lim_{T\to \infty}\frac{1}{T}
+\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } m(t) m (t-τ)\dif t
+\\ &= \frac{A_c^2}{2} \mathcal{R}_m(τ)\cos 2πf_c τ
+\end{align*}
+
+Άρα για την \textbf{ισχύ} του σήματος ισχύει:
+\[
+P_u = \mathcal{R}_u(0) = \frac{A_c^2}{2}\mathcal{R}_m(0) = \frac{1}{2}A_c^2P_m
+\]
+όπου \( P_m \) η ισχύς του \( m(t) \).
+
+Εναλλακτικά, θυμόμαστε τον ορισμό της ισχύος:
+\begin{align*}
+P_u &= \lim_{T\to \infty} \frac{1}{T}
+\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } A_c^2m^2(t) \cancelto{\frac{1}{2}+\frac{1}{2}\cos2π2f_ct}{cos^2 2πf_c t}\dif t
+\\ &= \frac{A_c^2}{2} \cancelto{P_m}{\lim_{T\to \infty}\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } m^2(t)\dif t}
++ \frac{A_c^2}{2} \lim_{T\to \infty}\frac{1}{T}
+\cancelto{0}{\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } m^2(t)\cos(2π2f_ct) \dif t}
+\\ &= \frac{A_c^2}{2}P_m
+\end{align*}
+Το δεύτερο ολοκλήρωμα ήταν 0, αφού ήταν ολοκλήρωμα στο άπειρο με μία συμμετρική συνάρτηση
+(\( \cos \)) πολλαπλασιασμένη με μια πολύ αργή (άρα πρακτικά σταθερή).
 
 \subsection{QAM}
 Έστω ότι έχουμε δύο σήματα, \( m_1(t) \) και \( m_2(t) \), καθώς και το γνωστό φέρον
@@ -1858,8 +1942,6 @@ s(t) = A_c m(t)\cos 2π  f_c t
 διαμορφωμένου σήματος, θα είχαμε την ίδια πληροφορία, αλλά θα
 καταναλώναμε μισό εύρος ζώνης. Για αυτό παρουσιάζουμε παρακάτω
 τη διαμόρφωση \textbf{SSB (Single Side Band)}.
-
-\pagebreak
 
 Η διαμόρφωση αυτή λειτουργεί καλύτερα σε ακουστικά και όχι
 οπτικά/σήματα δεδομένων, επειδή τα ακουστικά σήματα ξεκινούν από
@@ -2357,13 +2439,13 @@ s_{\mathrm{LSSB}} =
 Αυτός ο υπολογισμός πραγματοποιήθηκε για έναν απλό τόνο. Ας τον εφαρμόσουμε ξανά για μια
 περιοδική κυματομορφή (δηλαδή ένα άθροισμα ημιτόνων):
 \[
-m(t) = \sum_{n} a_n \cos(2πfnt)
+m(t) = A_m\sum_{n} a_n \cos(2πfnt)
 \]
 
 και τότε θα προκύψει π.χ.
 \[
 s_{\mathrm{USSB}}(t)
-= \frac{1}{2} A_cA_m \cos 2π f_c t + \sum_n a_n\cos(2πfnt)
+= \frac{1}{2} A_cA_m \cos 2π f_c t \sum_n a_n\cos(2πfnt)
 -\frac{1}{2}A_cA_m \sin 2πf_ct\sum_n a_n\sin(2πfnt)
 \]
 και το κύκλωμα διαμόρφωσης θα λειτουργεί ακριβώς με τον ίδιο τρόπο. Ακόμα και η περιστροφή
@@ -2412,7 +2494,7 @@ s_{\mathrm{USSB}}(t)
 %\filldraw[] (0,0) circle (2pt);
 \end{tikzpicture}
 
-Έχει κρουστική απόκριση:
+Ο Μ/Σ Hilbert έχει κρουστική απόκριση:
 \[
 h(t) = \frac{1}{πt}
 \]
@@ -3810,7 +3892,90 @@ A_c\left( a+0.75m(t) \right)\cos 2πf_c t
 
 \subparagraph{Λύση}
 Το φάσμα που λαμβάνει η κεραία μοιάζει κάπως έτσι:
-\todo{Graph 91}
+
+\begin{tikzpicture}[xscale=.7,scale=.65]
+\def\s{2}
+\def\da{0.6}
+\def\db{10.3}
+\def\four{(-0.8,0) (-0.6,0.2) (0,1.2) (0.6,0.2) (0.8,0)}
+\def\bw{2.6}
+
+\def\spectrum{
+	\begin{scope}[xshift=2 cm+\shift cm,xscale=\bw/3.6]
+	\draw[draw=brown!70!orange,very thick,yscale=.8] 
+	plot[smooth] coordinates \four;
+	\draw[->,ultra thick,brown!70!blue] (0.9,0) node[black,below,scale=1] {$\freq$} -- ++(0,1.5);
+	\draw[xshift=1.8cm,draw=brown!70!orange,very thick,yscale=.8] 
+	plot[smooth] coordinates \four;
+	\end{scope}
+}
+
+
+\begin{scope}	
+\def\shift{0}
+\def\freq{540}
+\spectrum
+
+\def\shift{\bw}
+\def\freq{550}
+\spectrum
+
+\def\shift{2*\bw}
+\def\freq{560}
+\spectrum
+
+\def\shift{4*\bw}
+\def\freq{1590}
+\spectrum
+
+\def\shift{5*\bw}
+\def\freq{1600}
+\spectrum
+\end{scope}
+
+\draw[<->,gray] (2+\bw/3.6,2) -- ++(\bw/2,0) node[above,midway] {$\SI{5}{\kilo\hertz}$};
+
+\draw (10.5,0.5) node[scale=2] {$\dots$};
+
+%\draw[ultra thick,->] (\s+0.4,0) node[below] {$f_c$} node[circle,fill,inner sep=2pt] {} -- ++(0,1.5);
+
+\draw[->] (0,-1) -- (0,2.5);
+\draw[->] (0,0) 
+-- (\da,0) -- ++(0.1,0.1) -- ++(0.1,-0.2) -- ++(0.1,0.1) 
+-- (\db,0) -- ++(0.1,0.1) -- ++(0.1,-0.2) -- ++(0.1,0.1) 
+-- (18,0) node[below] {$f(\mathrm{kHz})$};
+
+\begin{scope}[xscale=-1]
+\begin{scope}	
+\def\shift{0}
+\def\freq{-540}
+\spectrum
+
+\def\shift{\bw}
+\def\freq{-550}
+\spectrum
+
+\def\shift{2*\bw}
+\def\freq{-560}
+\spectrum
+
+\def\shift{4*\bw}
+\def\freq{-1590}
+\spectrum
+
+\def\shift{5*\bw}
+\def\freq{-1600}
+\spectrum
+\end{scope}
+
+\draw (10.5,0.5) node[scale=2] {$\dots$};
+
+\draw[->] (0,0) 
+-- (\da,0) -- ++(0.1,0.1) -- ++(0.1,-0.2) -- ++(0.1,0.1) 
+-- (\db,0) -- ++(0.1,0.1) -- ++(0.1,-0.2) -- ++(0.1,0.1) 
+-- (18,0);
+\end{scope}
+\end{tikzpicture}
 
 Εμείς όμως θέλουμε να ακούσουμε μόνο το σταθμό στα \( \SI{700}{\kilo\hertz} \).
 
@@ -3846,8 +4011,20 @@ A_c\left( a+0.75m(t) \right)\cos 2πf_c t
 
 \todo{Improvise a graph}
 
-\paragraph{Παράδειγμα}
-\todo{Graph 92, από 3 Σεπτ. 17}
+\paragraph{Παράδειγμα} \hspace{0pt}
+
+\begin{tikzpicture}
+\draw (-1,0) node[rxantenna,xscale=-1] (ant) {};
+\draw (0,0) node[rectangle,draw,align=left] (f1) {RF\\φίλτρο};
+\draw (2,0) node[rectangle,draw] (m) {μίκτης};
+\draw (4,0) node[rectangle,draw,align=left] (f2) {IF\\φίλτρο};
+\draw (6,0) node[rectangle,draw,align=center] (amp) {φωρατής};
+
+\draw[<-] (m) -- ++(0,-1) node[below] (osc) {$f_{LO}$};
+\draw (ant) -- (f1) -- (m) -- (f2) -- (amp);
+\draw (f2.south) node[below,align=center] {$f_{\mathrm{centre}} = $ 455 kHz\\BW $ = $ 10 kHz};
+\draw[->] (amp.east) -- ++(1,0) node[near end, above] {μήνυμα};
+\end{tikzpicture}
 
 Δίνεται ένας υπερετερόδυνος δέκτης, όπου η κεραία λαμβάνει το φάσμα των AM ραδιοφωνικών σταθμών
 (540 - 1600 kHz) με εύρος ζώνης του καθενός 10 kHz.
@@ -3860,27 +4037,155 @@ f_{\mathrm{RF}} = f_{\mathrm{LO}} - \SI{5}{\kilo\hertz}
 ενώ για τη συχνότητα \( f_c \) του σταθμού που θέλουμε
 να ακούσουμε ισχύει:
 \[
-f_{\mathrm{LO}} = f_C + \SI{455}{\kilo\hertz}
+f_{\mathrm{LO}} = f_c + \SI{455}{\kilo\hertz}
 \]
 \begin{enumgreekparen}
 	\item Ζωγραφίστε ποιοτικά το φάσμα στην είσοδο
-	του RF φίλτρου
+	του RF φίλτρου.
 	\item Δικαιολογήστε ότι αυτό επιτυγχάνεται εάν η συχνότητα
-	\( f_{\mathrm{LO}} \) του τοπικού ταλαντωτή παίνρι τιμές στο διάστημα \( [995,\;2055]\ \si{\kilo\hertz} \). Συνοδεύστε την απάντησή σας με ένα παράδειγμα.
+	\( f_{\mathrm{LO}} \) του τοπικού ταλαντωτή παίρνει τιμές στο διάστημα \( [995,\;2055]\ \si{\kilo\hertz} \). Συνοδεύστε την απάντησή σας με ένα παράδειγμα.
 	\item Βρείτε το δεύτερο διάστημα τιμών στο οποίο
 	μπορεί να κυμαίνεται η \( f_{\mathrm{LO}} \), ώστε
-	να ετεροδυνώνεται στα \( \SI{455}{kHz} \)
+	να ετεροδυνώνεται στα \( \SI{455}{kHz} \).
 	\item Υπολογίστε το λόγο της μέγιστης προς την ελάχιστη \( f_{\mathrm{LO}} \)
 	για καθένα από τα παραπάνω διαστήματα συχνοτήτων.
 	Η επιλογή ποιού από τα δύο καταλήγει σε υλοποίηση του τοπικού ταλαντωτή
-	τεχνοοικονομικά πιο συμφέρουσα;
+	τεχνοοικονομικά πιο συμφέρουσα; (Χωρίς να ληφθούν υπ' όψιν τυχόν είδωλα)
+	\item Ποιό πρέπει να είναι το εύρος ζώνης του RF φίλτρου, ώστε αφενός να επιτρέπει τη
+	διέλευση του σταθμού στην \( f_c \), και αφετέρου να απορρίπτει αυτόν στη συχνότητα-είδωλο
+	\(f_c'\); Απαντήστε για μια αριθμητική εφαρμογή των \( f_c \) και \( f_c' \).
 \end{enumgreekparen}
 
 \subparagraph{Λύση}
 \begin{enumgreekparen}
-	\item \todo{Graph 91 (again)}
-	\item[(γ)] \(  f_c=540,\ f_{IF}=455,\ f_{LO} = 85, f_C' = \SI{70}{\kilo\hertz}  \)
-	\item[(δ)] \(
+	\item \hspace{0pt}\\
+	
+	\begin{tikzpicture}[xscale=.7,scale=.65]
+	\def\s{2}
+	\def\da{0.6}
+	\def\db{10.3}
+	\def\four{(-0.8,0) (-0.6,0.2) (0,1.2) (0.6,0.2) (0.8,0)}
+	\def\bw{2.6}
+	
+	\def\spectrum{
+		\begin{scope}[xshift=2 cm+\shift cm,xscale=\bw/3.6]
+		\draw[draw=brown!70!orange,very thick,yscale=.8] 
+		plot[smooth] coordinates \four;
+		\draw[->,ultra thick,brown!70!blue] (0.9,0) node[black,below,scale=1] {$\freq$} -- ++(0,1.5);
+		\draw[xshift=1.8cm,draw=brown!70!orange,very thick,yscale=.8] 
+		plot[smooth] coordinates \four;
+		\end{scope}
+	}
+	
+	
+	\begin{scope}	
+	\def\shift{0}
+	\def\freq{540}
+	\spectrum
+	
+	\def\shift{\bw}
+	\def\freq{550}
+	\spectrum
+	
+	\def\shift{2*\bw}
+	\def\freq{560}
+	\spectrum
+	
+	\def\shift{4*\bw}
+	\def\freq{1590}
+	\spectrum
+	
+	\def\shift{5*\bw}
+	\def\freq{1600}
+	\spectrum
+	\end{scope}
+	
+	\draw[<->,gray] (2+\bw/3.6,2) -- ++(\bw/2,0) node[above,midway] {$\SI{5}{\kilo\hertz}$};
+	
+	\draw (10.5,0.5) node[scale=2] {$\dots$};
+	
+	%\draw[ultra thick,->] (\s+0.4,0) node[below] {$f_c$} node[circle,fill,inner sep=2pt] {} -- ++(0,1.5);
+	
+	\draw[->] (0,-1) -- (0,2.5);
+	\draw[->] (0,0) 
+	-- (\da,0) -- ++(0.1,0.1) -- ++(0.1,-0.2) -- ++(0.1,0.1) 
+	-- (\db,0) -- ++(0.1,0.1) -- ++(0.1,-0.2) -- ++(0.1,0.1) 
+	-- (18,0) node[below] {$f(\mathrm{kHz})$};
+	
+	\begin{scope}[xscale=-1]
+	\begin{scope}	
+	\def\shift{0}
+	\def\freq{-540}
+	\spectrum
+	
+	\def\shift{\bw}
+	\def\freq{-550}
+	\spectrum
+	
+	\def\shift{2*\bw}
+	\def\freq{-560}
+	\spectrum
+	
+	\def\shift{4*\bw}
+	\def\freq{-1590}
+	\spectrum
+	
+	\def\shift{5*\bw}
+	\def\freq{-1600}
+	\spectrum
+	\end{scope}
+	
+	\draw (10.5,0.5) node[scale=2] {$\dots$};
+	
+	\draw[->] (0,0) 
+	-- (\da,0) -- ++(0.1,0.1) -- ++(0.1,-0.2) -- ++(0.1,0.1) 
+	-- (\db,0) -- ++(0.1,0.1) -- ++(0.1,-0.2) -- ++(0.1,0.1) 
+	-- (18,0);
+	\end{scope}
+	\end{tikzpicture}
+	
+	\item
+	Έστω ότι συντονιζόμαστε στο σταθμό στα \( \SI{540}{\kilo\hertz} \), που είναι ο πρώτος σταθμός.
+	Τότε η έξοδος του μίκτη θα αποτελείται από δύο σήματα, με συχνότητες:
+	\begin{align*}
+		f_{\mathrm{high}} &= f_c + f_{\mathrm{LO}} = 540+995 = \SI{1535}{\kilo\hertz}\\
+		f_{\mathrm{low}} &=  \left| f_c - f_{\mathrm{LO}}\right|= |540-995| = \SI{455}{\kilo\hertz}
+	\end{align*}
+	
+	Ο σχεδιαστής του υπερετερόδυνου δέκτη μπορεί, εφαρμόζοντας ένα band-pass φίλτρο, να επιλέξει ποιά από τις παραπάνω
+	δύο συχνότητες θα χρησιμοποιήσει ως ενδιάμεση. Στη συγκεκριμένη άσκηση μας δίνεται η κεντρική συχνότητα του φίλτρου, η οποία είναι \( \SI{455}{\kilo\hertz} \), επομένως επιλέγεται η \(f_\mathrm{low}\).
+	
+	Αντίστοιχα, για τον τελευταίο σταθμό στην απέναντι άκρη του φάσματος (\SI{1600}{\kilo\hertz}):
+	\[
+	f_{\mathrm{low}} = \left| f_c - f_{\mathrm{LO}}\right|= |1600-2055| = \SI{455}{\kilo\hertz}
+	\]
+	που αντιστοιχεί πάλι στην επιλεγμένη τιμή του φίλτρου.
+	
+	\item
+	Θέλουμε να βρούμε ένα εύρος \( f_{\mathrm{LO}} \) για το οποίο ο όρος \( |f_c-f_{\mathrm{LO}}| \) να είναι
+	ίσος με \( f_{\mathrm{IF}} = \SI{455}{\kilo\hertz}  \).
+	
+	Ισχύει \( 540 \leq f_c \leq 1600 \), άρα:
+	\[
+	540-f_{\mathrm{LO}} \leq f_c - f_{\mathrm{LO}} \leq 1600 - f_{\mathrm{LO}}
+	\]
+	
+	Εφ' όσον στο \textit{(β)} ερώτημα ο όρος \( \left[f_c - f_{\mathrm{LO}}\right] \) ήταν αρνητικός, τώρα θα υποθέσουμε
+	ότι είναι θετικός, επομένως μπορούμε να τοποθετήσουμε άφοβα απόλυτη τιμή:
+	\[
+	540-f_{\mathrm{LO}} \leq \left|f_c - f_{\mathrm{LO}}\right| \leq 1600 - f_{\mathrm{LO}}
+	\implies
+	540-f_{\mathrm{LO}} \leq 455 \leq 1600 - f_{\mathrm{LO}}
+	\]
+	επομένως:
+	\[
+	f_{\mathrm{LO}} \in \left[
+	85,\ 1145
+	\right] \si{\kilo\hertz}
+	\]
+	
+	%\(  f_c=540,\ f_{IF}=455,\ f_{LO} = 85, f_C' = \SI{70}{\kilo\hertz}  \)
+	\item \(
 	\begin{aligned}[t]
 		\frac{f_{LO_{\max}}}{f_{LO_{\min}}}
 		= \frac{2055}{995} &= 2.065 \\
@@ -3894,13 +4199,73 @@ f_{\mathrm{LO}} = f_C + \SI{455}{\kilo\hertz}
 	
 	Ουσιαστικά εδώ έχουμε ένα κύκλωμα που ταλαντώνεται σε μία συχνότητα. Είναι
 	πιο δύσκολο να κατασκευάσουμε μία τέτοια διάταξη με μεγαλύτερο εύρος ζώνης,
-	αφού απαιτούνται μεγαλύτεροι μεταβλητοί πυκνωτές.
-	\todo{solve the exercise}
+	αφού απαιτούνται μεγαλύτεροι μεταβλητοί πυκνωτές. Άρα από αυτήν την άποψη είναι προτιμότερη η πρώτη επιλογή
+	εύρους συχνοτήτων.
+	
+	\item
+	Έστω ότι συντονιζόμαστε στο σταθμό των \( \SI{540}{\kilo\hertz} \). Τότε, σύμφωνα με τα παραπάνω, ο τοπικός
+	ταλαντωτής συντονίζεται στη συχνότητα:
+	\[
+	f_{\mathrm{LO}} = f_c + 455 = \SI{995}{\kilo\hertz}
+	\]
+	
+	Και η ενδιάμεση (IF) συχνότητα του υπερετερόδυνου, η οποία είναι η έξοδος του μίκτη, υπολογίζεται από τον τύπο:
+	\[
+	f_{\mathrm{low}} = |f_c - f_\mathrm{LO}| = |540-995| = \SI{995}{\kilo\hertz}
+	\]
+	
+	Όμως φαίνεται ότι η συχνότητα \( f_c = \SI{540}{\kilo\hertz} \) δεν είναι η μόνη που μπορεί να προκαλέσει έξοδο
+	του μίκτη στα \( \SI{995}{\kilo\hertz} \). Πράγματι, υπάρχει και μία άλλη συχνότητα \( f_c' \), η οποία ονομάζεται
+	\textbf{συχνότητα-είδωλο}, και αν εισέλθει \textit{ως \textbf{είσοδος στο μίκτη}}, θα προστεθεί και αυτή στην
+	έξοδο, παραμορφώνοντας το επιθυμητό σήμα.
+	
+	Πράγματι:
+	\[
+	f_{\mathrm{low}} = |f_c' - f_\mathrm{LO}| = 455 \implies 455=|f_c' - 995| \implies
+	\underline{f_c' = \SI{1450}{\kilo\hertz}}
+	\]
+	
+	Αυτό σημαίνει πως ο σταθμός που βρίσκεται στα \( \SI{1450}{\kilo\hertz} \) θα παρεμβάλλεται στην έξοδό μας, αν και
+	έχουμε συντονιστεί στο σταθμό στα \( f_c = \SI{540}{\kilo\hertz} \)!
+	
+	Αντίστοιχα, αν συντονιστούμε σε επόμενους σταθμούς, π.χ. \( f_c = \SI{600}{\kilo\hertz} \), προκύπτουν μεγαλύτερες
+	συχνότητες-είδωλα. π.χ. \( f_c' = \SI{1510}{\kilo\hertz} \).
+	
+	Για να διορθώσουμε αυτό το πρόβλημα, χρησιμοποιούμε ένα \textbf{band-pass φίλτρο} πριν την είσοδο του μίκτη, απαιτώντας
+	να αποκόπτει τις συχνότητες-είδωλα πριν εισέλθουν σε αυτόν. Η προδιαγραφή αυτή δεν είναι δύσκολο να υλοποιηθεί,
+	επομένως το φίλτρο αυτό είναι εύκολα υλοποιήσιμο.
+	
+	Στο σταθμό των \( \SI{540}{\kilo\hertz} \), το RF φίλτρο έχει κεντρική συχνότητα
+	\( f_{\mathrm{RF}} = f_{\mathrm{LO}} -5 = f_c + 455 - 5 = \SI{990}{\kilo\hertz}  \).
+	Θέλουμε αφήνει ανεπηρέαστο το σταθμό (\( 535-545 \si{\kilo\hertz} \), δηλαδή \( 990-535 = \SI{455}{\kilo\hertz} \)
+	κάτω από την κεντρική του συχνότητα), αλλά να \textbf{μην} επιτρέπει τη διέλευση του ειδώλου (%
+	\( 1445-1455 \si{\kilo\hertz} \), δηλαδή \( 1445-990 = \SI{455}{\kilo\hertz} \)
+	πάνω από την κεντρική συχνότητα του φίλτρου
+	). Επομένως το εύρος ζώνης του φίλτρου πρέπει να είναι ακριβώς \( 2\cdot 455 = \SI{910}{\kilo\hertz} \)
+	για να αφήνει το σήμα να περάσει, και όχι το είδωλο.
 \end{enumgreekparen}
+
+\todo{Maybe improvise a graph?}
 
 \paragraph{Παράδειγμα}
 Δίνεται το παρακάτω διαμορφωμένο σήμα:
-\todo{Graph 91}
+
+\begin{tikzpicture}
+\begin{axis}[
+no markers, samples=4*\gsamples,
+axis y line=left,axis x line=bottom, xlabel=$t\ (\si{\second})$,
+%every axis y label/.style={at=(current axis.above origin),anchor=south},
+%every axis x label/.style={at=(current axis.right of origin),anchor=west},
+height=4cm, width=6cm,
+xtick={-2,0,2},ytick={0},
+enlargelimits=false, clip=false, xmax=4,xmin=-4,
+grid = major
+]
+\addplot [very thick,blue!80!green,domain=-3:3] {(1+0.5*sin(2*\x r))*sin(
+	(3+1*(sin(0.5*\x r+80)))
+	*\x r)};
+\end{axis}
+\end{tikzpicture}
 
 Να δείξετε (οπτικά) ότι είναι διαμορφωμένο και κατά πλάτος, και κατά φάση.
 \subparagraph{Λύση}
@@ -5307,7 +5672,6 @@ FM στενής ζώνης (Narrow Band FM ‒ NBFM).
 	\right]
 \end{align*}
 
-\begin{absolutelynopagebreak}
 Τα δύο σήματα φαίνονται παρόμοια, και μπορούμε να συγκρίνουμε τις υλοποιήσεις
 του διαμορφωτή και τα φάσματα εξόδου:
 
@@ -5375,7 +5739,6 @@ FM στενής ζώνης (Narrow Band FM ‒ NBFM).
 \end{scope}
 
 \end{tikzpicture}
-\end{absolutelynopagebreak}
 
 Αν παραστήσουμε την έκφραση του AM σε μορφή φασιθετών, θα έχουμε ένα διάνυσμα
 \( A_c \) που περιστρέφεται με ταχύτητα \( \omega_c = 2π f_c \), και στο τέλος
@@ -5467,90 +5830,6 @@ FM στενής ζώνης (Narrow Band FM ‒ NBFM).
 (1,0) to[bend right] ({atan(sqrt(2)/4)}:1);
 \end{tikzpicture}
 
-\subsubsection{Ισχύς}
-Έστω ένα σήμα διαμορφωμένο κατά DSB-SC:
-\[
-u(t) = A_c m(t) \cos (2πf_c t)
-\]
-
-Για την συνάρτηση αυτοσυσχέτισης του σήματος ισχύει:
-\begin{align*}
-	\mathcal R_{u(τ)}
-	&= \lim_{T\to \infty} \frac{1}{T} \int_{-\sfrac{T}{2} }^{\sfrac{T}{2} }
-	u(t)u(t-τ)\dif t \\
-	&= \lim_{Τ\to \infty}\frac{1}{T} \int_{\sfrac{-T}{2} }^{\sfrac{T}{2} }
-	A_c^2 m(t) m(t-τ) \cos(2πf_c t)\cos(2πf_c(t-τ)) \dif t
-	\\ &= \frac{A_c^2}{2} \lim_{T\to \infty}\frac{1}{T}
-	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } m(t)m(t-τ)
-	\left[ \cos(4πf_ct-2πf_cτ) + \cos(2πf_cτ) \right]\dif t
-\end{align*}
-
-Θα αναλύσουμε ξεχωριστά τον όρο \( \int_{-\infty}^{\infty} m(t)m(t-τ) \cos(
-4πf_ct - 2πf_c τ
-) \dif t \).
-
-Από το θεώρημα του Parseval ισχύει:
-\[
-\int_{-\infty}^{\infty} x(t) y^*(t)\dif t
-= \int_{-\infty}^{\infty} X(f) Y*(f)\dif f
-\]
-άρα έχουμε:
-\begin{align*}
-	&\hphantom{=}\int_{-\infty}^{\infty} m(t)m(t-τ) \cos (4πf_c t - 2πf_c τ)\dif τ\\ &=
-	\int_{-\infty}^{\infty} F\left[m(t-τ)\right] \left\lbrace 
-	    F\left[m(t)\cos(4πf_ct-2πf_cτ)\right]
-	 \right\rbrace^* \dif t
-	 \\ &= \int_{-\infty}^{\infty} e^{-j2πf_c t}M(f)
-	 \left[
-	      -\frac{M(f-2f_c)e^{-j2πf_ct}}{2}
-	      +\frac{M(f+2f_c)e^{-j2πf_ct}}{2}
-	 \right]^* \dif t
-\end{align*}
-
-Επειδή θεωρούμε το \( f_c \) πολύ μεγάλο, δεν υπάρχει περίπτωση ο πολλαπλασιασμός των δύο
-παραπάνω όρων να δώσει τιμή διαφορετική του 0 (αφού τα φάσματα βρίσκονται σε διαφορετικό
-σημείο \begin{tikzpicture}[baseline,scale=.4,every node/.style={scale=.5}]
-\draw (-4,0) -- (4,0);
-
-\draw [blue!50!cyan!90!orange,very thick]
-(-0.7,0) -- (0,1) node[above] {$M(f)$} -- (0.7,0);
-\draw [blue!90!cyan!80!orange,very thick]
-[xshift=-3cm] (-0.7,0) -- (0,1) -- (0.7,0)
-[xshift=6cm] (-0.7,0) -- (0,1) -- (0.7,0)
-;
-
-\foreach \x in {-3,0,...,3}
-\draw[dashed] (\x,0) -- ++(0,1);
-
-\draw (-3,0) node[below] {$-2f_c$};
-\draw (3,0)  node[below] {$+2f_c$};
-\end{tikzpicture} άρα το παραπάνω ολοκλήρωμα είναι 0).
-
-Επομένως:
-\begin{align*}
-	\mathcal R_{u}(τ) &= \frac{Ac^2}{2} \cos 2π f_c τ \lim_{T\to \infty}\frac{1}{T}
-	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } m(t) m (t-τ)\dif t
-	\\ &= \frac{A_c^2}{2} \mathcal{R}_m(τ)\cos 2πf_c τ
-\end{align*}
-
-Άρα για την \textbf{ισχύ} του σήματος ισχύει:
-\[
-P_u = \mathcal{R}_u(0) = \frac{A_c^2}{2}\mathcal{R}_u(0) = \frac{1}{2}A_c^2P_m
-\]
-όπου \( P_m \) η ισχύς του \( m(t) \).
-
-Θυμόμαστε τον ορισμό της ισχύος:
-\begin{align*}
-	P_u &= \lim_{T\to \infty} \frac{1}{T}
-	\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } A_c^2m^2(t) \cancelto{\frac{1}{2}+\frac{1}{2}\cos2π2f_ct}{cos^2 2πf_c t}\dif t
-	\\ &= \frac{A_c^2}{2} \cancelto{P_m}{\lim_{T\to \infty}\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } m^2(t)\dif t}
-	+ \frac{A_c^2}{2} \lim_{T\to \infty}\frac{1}{T}
-	\cancelto{0}{\int_{\sfrac{-T}{2} }^{\sfrac{T}{2} } m^2(t)\cos(2π2f_ct) \dif t}
-	\\ &= \frac{A_c^2}{2}P_m
-\end{align*}
-Το δεύτερο ολοκλήρωμα ήταν 0, αφού ήταν ολοκλήρωμα στο άπειρο με μία συμμετρική συνάρτηση
-(\( \cos \)) πολλαπλασιασμένη με μια πολύ αργή (άρα πρακτικά σταθερή).
-
 \subsubsection{Στο φάσμα της συχνότητας}
 Έστω ότι έχουμε ένα απλό ημιτονοειδές σήμα πληροφορίας:
 \[
@@ -5598,7 +5877,7 @@ s(t) &= \Re\left[ A_c \exp(j2πf_c t +jβ\sin 2π f_m t) \right]
 αλλά προκύπτει από \textbf{πίνακες} της ορισμένης ως εξής
 \textbf{συνάρτησης Bessel πρώτου είδους}:
 
-\begin{defn}{Συνάρτηση Bessel πρώτου είδους}
+\begin{defn}{Συνάρτηση Bessel πρώτου είδους}{}
 	Η \textbf{συνάρτηση Bessel πρώτου είδους} έχει \textbf{όρισμα} το \( β \) και ορίζεται
 	ως εξής:
 	\[
@@ -5714,7 +5993,7 @@ S(f) = \frac{A_c}{2}\sum_{n=-\infty}^{\infty} J_n(β)
 \]
 δηλαδή ισχύει \( J_n(β) = (-1)^n J_{-n}(β) \).
 
-\item Προσεγγιστικά για τις συναρτήσεις Bessel μπορούμε να θεωρήσουμε ότι:
+\item Προσεγγιστικά για τις συναρτήσεις Bessel μπορούμε να θεωρήσουμε ότι, για μικρά \( β \):
 \[
 \boxed{
 	\begin{aligned}
@@ -6050,14 +6329,14 @@ coordinates {(-1,0) (0,1.2) (1,0)};
 
 \paragraph{Παράδειγμα}
 Ποιό είναι το εύρος ζώνης ενός FM σήματος με μέγιστη απόκλιση \( Δf = \SI{75}{\kilo\hertz} \)
-όπου το εύρος ζώνης του εκπεμπόμενου σήματος είναι \( w=\SI{15}{\kilo\hertz} \).
+όπου το εύρος ζώνης του εκπεμπόμενου σήματος είναι \( w=\SI{15}{\kilo\hertz} \);
 
 \subparagraph{Λύση}
 Σύμφωνα με τον κανόνα του Carson:
 \[
 B_T = 2(D+1)w = 2\cdot(5+1)\cdot 15 = \SI{180}{\kilo\hertz}
 \]
-κάτι πολύ μεγαλύτερο από το αντίστοιχο εύρος ζώνης του FM.
+κάτι πολύ μεγαλύτερο από το αντίστοιχο εύρος ζώνης του AM.
 
 Αντίστοιχα, αν χρησιμοποιήσουμε τους κανόνες για 1\% του πλάτους ή το 98\% της ενέργειας,
 θα βρίσκαμε για \( D=5 \), χρησιμοποιώντας πίνακες, \( n_{\max} = 8 \), άρα
@@ -6098,12 +6377,12 @@ B_T = 2(D+1)w = 2\cdot(5+1)\cdot 15 = \SI{180}{\kilo\hertz}
 \draw (0,0) to[esource,l=$m(t)$] (0,1.5);
 \draw (0,1.5) to[C=$C_v$] (0,3);
 \draw (2,0) to[C=$C_0$] (2,3);
-\draw (4,0) to[L=$L_1+L_2$,mirror] (4,3);
+\draw (4,3) to[L=$L_1+L_2$] (4,0);
 \draw (0,0) to[short,-o] (6,0);
 \draw (0,3) to[short,-o] (6,3);
 \end{circuitikz}
 
-Αυτό το κύκλωμα έχει μια μεταβλητή συχνότητα που, με γνώσεις από ανάλυση κυκλωμάτων, είναι:
+Αυτό το κύκλωμα έχει μια μεταβλητή συχνότητα η οποία, με γνώσεις από ανάλυση κυκλωμάτων, είναι:
 \[
 f_i(t) = \frac{1}{2π\sqrt{(L_1+L_2)C(t)}}
 \]
