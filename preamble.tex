@@ -28,6 +28,7 @@
 %\usepackage{morefloats} % oh no!
 %\usepackage[linesnumbered,lined]{algorithm2e}
 \usepackage{glossaries}
+\usepackage{xifthen}
 
 
 \pgfplotsset{compat=1.13}
@@ -49,6 +50,8 @@
 \usetikzlibrary{shadings}
 
 \tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+\tcbuselibrary{xparse}
 
 \tikzset{cross/.style={cross out, draw,
         minimum size=2*(#1-\pgflinewidth),
@@ -173,6 +176,47 @@
 \newtcolorbox{infobox}[1]{colback=blue!5!white,%
     colframe=blue!75!black,fonttitle=\bfseries,title=#1}
 
+\tcbset{frogbox/.style={enhanced jigsaw,%
+		overlay first={\foreach \x in {0cm} {
+				\begin{scope}[shift={([xshift=-0.2cm]title.west)}]
+					\draw[very thick,green!65!black!50!white,latex-] (0,0) -- ++(-1.5,0);
+\end{scope}}}}}
+\tcbset{frogtitle/.style={
+attach boxed title to top left=
+{xshift=0mm,yshift=-0.50mm},
+boxed title style={skin=enhancedfirst jigsaw,
+	bottom=0mm,
+	interior style={fill=none,
+		left color=green!20!black,
+		right color=gray}}
+}}
+\DeclareTColorBox{exercise}{ O{} }{
+	enhanced jigsaw,
+	breakable,parbox=false,
+	%title style={left color=gray!50!white!50!green,opacity=.5,right color=white},
+	subtitle style={%boxrule=1pt,
+		colback=yellow!50!red!25!white,fontupper=\bfseries},
+	coltitle=black,colbacktitle=green!90!black!25!white,colframe=black,
+	frame hidden,
+	boxrule=0mm,
+	%boxrule=1mm,
+	leftrule=0.8pt,toprule=0.8pt,rightrule=0pt, %reserve space
+	borderline west={0.8pt}{0pt}{white!25!black},%---- draw line
+	borderline north={0.8pt}{0pt}{white!25!black},%---- draw line
+	interior hidden,
+	%frame style={left color=black,right color=white},
+	sharp corners=all,
+	%frogbox, %TODO: frogbox
+	before lower={\tcbsubtitle[before skip=\baselineskip]{Λύση}},lower separated=false,
+	before title={\textbf{Άσκηση\ifthenelse{\isempty{#1}}{}{: }}},
+	title={\ifthenelse{\isempty{#1}}{\hspace{0pt}}{#1}}%
+}
+% Useful reminders:
+% subtitle
+% before title
+% overlays
+
+
 \AtBeginDocument{%
 \let\arg\relax
 \let\Re\relax
@@ -224,7 +268,6 @@
 {colback=green!5,colframe=green!35!black,colbacktitle=green!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-7mm},width=.9\textwidth,arc=.7mm}{th}
 \newtcbtheorem[number within=section,list inside=defn]{defn}{Ορισμός}%
 {colback=blue!5,colframe=cyan!35!black,colbacktitle=blue!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-2mm}}{def}
-\newtcbtheorem[number within=section]{exercise}{Άσκηση}%
-{colback=gray!3,colframe=gray!35!black,colbacktitle=gray!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-2mm}}{exc}
+
 
 
