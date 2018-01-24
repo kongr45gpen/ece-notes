@@ -5119,7 +5119,7 @@ s^0 & 30+300κ & &
 g_M κ = 0.93 \implies \boxed{κ=0.31}
 \]
 
-\subsubsection{Διαγράμματα Nyquist}
+\subsection{Διαγράμματα Nyquist}
 Έστω η συνάρτηση μεταφοράς:
 \[
 \frac{1}{1+sτ} \quad \rightarrow \quad
@@ -5189,7 +5189,43 @@ A(j\omega) =
 
 Τότε, αντίστοιχα με παραπάνω, μπορούμε να βρούμε τα σημεία \todo{find points} και να σχεδιάσουμε το
 διάγραμμα Nyquist:
-\todo{Graph 95}
+
+\begin{tikzpicture}[scale=1]
+% Sage Math code used:
+% var('w')
+% assume(w,'real')
+
+\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+\draw[->] (0,-5) -- (0,2) node[left] {$\Im$};
+
+\def\t{2}
+
+\def\scale{0.5}
+\pgfmathdeclarefunction{f}{1}{%
+	\pgfmathparse{-1/(#1*(\t^2*(#1)^2+1))}%
+}
+
+%\pgfkeys{/pgf/fpu=true}
+\draw[blue!50!cyan,very thick]
+plot[variable=\x,domain=0.1:3,samples=\gsamples,smooth,scale=\scale]
+( {-\t/(\t^2*\x^2+1)}, {f(\x)} );
+
+\def\arrow{1}
+
+\pgfmathsetmacro\xa{\arrow}
+\pgfmathsetmacro\xb{\arrow + 0.1}
+\pgfmathsetmacro\fa{\scale*f(\xa/\scale)}
+\pgfmathsetmacro\fb{\scale*f(\xb/\scale)}
+
+\path[very thick,blue!60!cyan,xshift=-0.5pt,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (-0.88,-2.75) to (-0.86,-2.27);
+
+\filldraw[blue!70!cyan,fill=blue!80!cyan] (0,0) circle(2pt) node[above right] {$\omega\to \infty$};
+\filldraw[blue!70!cyan,fill=blue!80!cyan] (-1.5,-4) node[above] {$\omega \to 0$};
+
+\draw[dashed] (-\t*\scale,-5) -- ++(0,7);
+\draw (-\t*\scale,0) node[below left] {$-\tau$};
+
+\end{tikzpicture}
 
 \paragraph{}
 Γενικά για τα διαγράμματα Nyquist έχει σημασία το \textbf{κρίσιμο σημείο} \( \mathbf{-1+j0} \).
@@ -5198,7 +5234,43 @@ A(j\omega) =
 
 Πιο συγκεκριμένα, έστω μια συνάρτηση μεταφοράς \( A(j\omega) \) και το διάγραμμα
 Nyquist της:
-\todo{Graph 96}
+
+\begin{tikzpicture}[scale=1]
+% Sage Math code used:
+% var('w')
+% assume(w,'real')
+
+\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+\draw[->] (0,-5) -- (0,2) node[left] {$\Im$};
+
+\def\t{2}
+
+\def\scale{1}
+\pgfmathdeclarefunction{f}{1}{%
+	\pgfmathparse{-1/(#1*(\t^2*(#1)^2+1))}%
+}
+
+%\pgfkeys{/pgf/fpu=true}
+\draw[blue!50!cyan,very thick,postaction={decorate},decoration={markings,mark=at position 0.5 with {\arrow{>}}},mark position=0.148(c)]
+plot[smooth,scale=\scale,tension=1]
+coordinates {(-0.2,-4) (-0.5,-2)  (-2,0) (-1,1) (0,0)};
+
+\draw[thick,gray!80!brown] (0,0) circle (2.8cm);
+\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-2.8,0) circle (2.5pt) node[above right] {$-1$};
+\filldraw[top color=cyan,bottom color=blue,fill opacity=.5] (-2,0) circle (2pt) node[above right,opacity=1,color=blue] {$\omega_1$};
+\filldraw[top color=cyan,bottom color=blue,fill opacity=.5] (c) circle (2pt) node[above left,opacity=1,color=blue] {$\omega_c$};
+
+\draw[yellow!50!black,->] (-1,0) to[bend right] ++(-45:0.5) node[above right,scale=.7] {$\phi_M$};
+
+
+\draw[<->,gray] (-\t,1.5) -- ++(\t,0) node[midway,fill=white] {$a$};
+
+\filldraw[blue!70!cyan,fill=blue!80!cyan] (0,0) circle(2pt) node[above right] {$\omega\to \infty$};
+\filldraw[blue!70!cyan,fill=blue!80!cyan] (-1,-4) node[above] {$\omega \to 0$};
+
+\draw[dashed] (-\t*\scale,-5) -- ++(0,7);
+
+\end{tikzpicture}
 
 Στο παραπάνω διάγραμμα, το περιθώριο κέρδους εκφράζεται από τον αριθμό με τον
 οποίο μπορούμε να πολλαπλασιάσουμε το κέρδος της συνάρτησης στο σημείο τομής με τον
@@ -5206,17 +5278,273 @@ Nyquist της:
 φάσης εκφράζει το πόσο μπορούμε να περιστρέψουμε τη φάση της συνάρτησης για να
 έχουμε ευστάθεια, και αντιστοιχεί στη γωνία \( \phi_M \).
 
-\paragraph{Παράδειγμα}
+\paragraph{Παράδειγμα} \hspace{0pt}
 
-\todo{Graph 97}
+\begin{tikzpicture}[scale=0.8]
+% Sage Math code used:
+% var('w')
+% assume(w,'real')
+
+\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+\draw[->] (0,-5) -- (0,2) node[below left] {$\Im$};
+
+\def\t{2}
+
+\def\scale{1}
+\pgfmathdeclarefunction{f}{1}{%
+	\pgfmathparse{-1/(#1*(\t^2*(#1)^2+1))}%
+}
+
+%\pgfkeys{/pgf/fpu=true}
+\draw[blue!50!cyan,very thick,postaction={decorate},decoration={markings,mark=at position 0.5 with {\arrow{>}}},mark position=0.148(c)]
+plot[smooth,scale=\scale,tension=1]
+coordinates {(-0.2,-4) (-0.5,-2)  (-2,0) (-1,1) (0,0)};
+
+\draw[thick,gray!80!brown] (0,0) circle (2cm);
+\filldraw[top color=cyan,bottom color=blue,fill opacity=.5] (-2,0) circle (2pt) node[above right,opacity=1,color=blue] {$0.5$};
+
+
+\filldraw[blue!70!cyan,fill=blue!80!cyan] (0,0) circle(2pt) node[above right] {$\omega\to \infty$};
+\filldraw[blue!70!cyan,fill=blue!80!cyan] (-1,-4) node[above] {$\omega \to 0$};
+
+\draw[dashed] (-\t*\scale,-5) -- ++(0,7);
+
+\end{tikzpicture}
+
 Στο παραπάνω διάγραμμα φάσης το περιθώριο κέρδους είναι \( \frac{1}{0.5} = 2 \),
 δηλαδή μπορούμε να πολλαπλασιάσουμε το κέρδος με τον αριθμό 2 μέχρι να φτάσουμε
 στο κρίσιμο σημείο.
 
-\paragraph{Συνήθη διαγράμματα Nyquist}
-\todo{Graph 100}
+\newpage
 
-\paragraph{Γενικό κριτήριο Nyquist}
+\subsubsection{Συνήθη διαγράμματα Nyquist}
+\hspace{0pt}
+
+% Sage math code used:
+% print str(real(f(w))).replace('w','#1'); print str(imag(f(w))).replace('w','#1');
+
+\begin{center}
+\begin{tabular}{cc}
+	\(\displaystyle\ \frac{1}{1+j\omega\tau_1}\) & \begin{tikzpicture}[scale=1,baseline]
+	% Sage Math code used:
+	% var('w')
+	% assume(w,'real')
+	% f(w) = ...
+	% real(f(w))
+	% imag(f(w))
+	
+	\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+	\draw[->] (0,-2) -- (0,1.5) node[left] {$\Im$};
+	
+	\def\t{2}
+	
+	\def\scale{2}
+	\pgfmathdeclarefunction{fx}{1}{%
+		\pgfmathparse{1/(#1^2+1)}%
+	}
+	\pgfmathdeclarefunction{fy}{1}{%
+		\pgfmathparse{-#1/(#1^2+1)}%
+	}
+	
+	%\pgfkeys{/pgf/fpu=true}
+	\draw[blue!50!cyan,very thick]
+	plot[variable=\x,domain=0.001:10,samples=2*\gsamples,smooth,scale=\scale]
+	( {fx(\x)}, {fy(\x)} ) -- (0,0);
+	
+	\def\arrow{1}
+	
+	\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+	\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.1)}
+	\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+	\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
+	
+	\path[very thick,blue!60!cyan,xshift=-0.5pt,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+	
+	\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-\scale,0) circle (2.5pt) node[above right] {$-1$};
+	\end{tikzpicture}\\
+	\( \displaystyle
+	\frac{1}{(1+j\omega\tau_1)(1+j\omega\tau_2)}
+	\) & \begin{tikzpicture}[scale=1,baseline]
+	\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+	\draw[->] (0,-2) -- (0,1) node[left] {$\Im$};
+	
+	\def\t{2}
+	
+	\def\scale{2}
+	\pgfmathdeclarefunction{fx}{1}{%
+		\pgfmathparse{-2*#1^2/((4*#1^2 + 1)*(#1^2 + 1)) + 1/((4*#1^2 + 1)*(#1^2 + 1))}%
+	}
+	\pgfmathdeclarefunction{fy}{1}{%
+		\pgfmathparse{-3*#1/((4*#1^2 + 1)*(#1^2 + 1))}%
+	}
+	
+	%\pgfkeys{/pgf/fpu=true}
+	\draw[blue!50!cyan,very thick]
+	plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
+	( {fx(\x)}, {fy(\x)} ) -- (0,0);
+	
+	\def\arrow{1}
+	
+	\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+	\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.1)}
+	\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+	\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
+	
+	\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+	
+	\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-\scale,0) circle (2.5pt) node[above right] {$-1$};
+	\end{tikzpicture}
+	\\
+	\(
+	\displaystyle
+	\frac{1}{(1+j\omega\tau_1)(1+j\omega\tau_2)(1+j\omega\tau_3)}
+	\)
+	&
+	\begin{tikzpicture}[scale=1,baseline]
+	\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+	\draw[->] (0,-2) -- (0,1.5) node[left] {$\Im$};
+	
+	\def\scale{2}
+	\pgfmathdeclarefunction{fx}{1}{%
+		\pgfmathparse{
+			-6.38000000000000*#1^2/((4*#1^2 + 1)*(2.13160000000000*#1^2 + 1)*(#1^2 + 1)) + 1/((4*#1^2 + 1)*(2.13160000000000*#1^2 + 1)*(#1^2 + 1))
+		}%
+	}
+	\pgfmathdeclarefunction{fy}{1}{%
+		\pgfmathparse{7.92000000000000*#1^3/((4*#1^2 + 1)*(2.13160000000000*#1^2 + 1)*(#1^2 + 1)) - 4.46000000000000*#1/((4*#1^2 + 1)*(2.13160000000000*#1^2 + 1)*(#1^2 + 1))
+		}%
+	}
+	
+	%\pgfkeys{/pgf/fpu=true}
+	\draw[blue!50!cyan,very thick]
+	plot[variable=\x,domain=0.001:2,samples=\gsamples,smooth,scale=\scale]
+	( {fx(\x)}, {fy(\x)} ) -- (0,0);
+	
+	\def\arrow{0.5}
+	
+	\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+	\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.01)}
+	\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+	\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+	
+	\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+	
+	\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-\scale,0) circle (2.5pt) node[above right] {$-1$};
+	\end{tikzpicture}
+	\\
+	\(
+	\displaystyle
+	\frac{1}{j\omega(1+j\omega\tau_1)}
+	\)
+	&
+	\begin{tikzpicture}[scale=1,baseline]
+	\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+	\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+	
+	\def\scale{2}
+	\pgfmathdeclarefunction{fx}{1}{%
+		\pgfmathparse{
+			-1/(#1^2 + 1)
+		}%
+	}
+	\pgfmathdeclarefunction{fy}{1}{%
+		\pgfmathparse{
+			-1/((#1^2 + 1)*#1)
+		}%
+	}
+	
+	\draw[thick,gray!80!brown,opacity=.8] (0,0) circle (1.2cm);
+	\draw[gray!80!brown,opacity=.8,->] (190:1) to[bend right] (210:1);
+	
+	\draw[blue!50!cyan,very thick]
+	plot[variable=\x,domain=0.6:4,samples=\gsamples,smooth,scale=\scale]
+	( {fx(\x)}, {fy(\x)} ) -- (0,0);
+	
+	\def\arrow{0.8}
+	
+	\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+	\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.01)}
+	\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+	\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+	
+	\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+	\end{tikzpicture}
+	\\
+	\(
+	\displaystyle
+	\frac{1}{j\omega(1+j\omega\tau_1)(1+j\omega\tau_2)}
+	\)
+	&
+	\begin{tikzpicture}[scale=1,baseline]
+	\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+	\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+	
+	\def\scale{3}
+	\def\xscale{1}
+	\pgfmathdeclarefunction{fx}{1}{%
+		\pgfmathparse{
+			-5/((9*#1^2 + 1)*(4*#1^2 + 1))
+		}%
+	}
+	\pgfmathdeclarefunction{fy}{1}{%
+		\pgfmathparse{
+			6*#1/((9*#1^2 + 1)*(4*#1^2 + 1)) - 1/((9*#1^2 + 1)*(4*#1^2 + 1)*#1)
+		}%
+	}
+	
+	\draw[blue!50!cyan,very thick]
+	plot[variable=\x,domain=0.3:2,samples=\gsamples,smooth,yscale=\scale,xscale=\xscale]
+	( {fx(\x)}, {fy(\x)} ) -- (0,0);
+	
+	\def\arrow{0.8}
+	
+	\pgfmathsetmacro\xa{\xscale*fx(\arrow)}
+	\pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
+	\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+	\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+	
+	\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+	\end{tikzpicture}
+	\\
+	\(
+	\displaystyle
+	\frac{1}{(j\omega)^2(1+j\omega\tau_1)(1+j\omega\tau_2)}
+	\)
+	&
+	\begin{tikzpicture}[scale=1,baseline]
+	\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+	\draw[->] (0,-1) -- (0,2.5) node[left] {$\Im$};
+	
+	\def\scale{1}
+	\def\xscale{7}
+	\pgfmathdeclarefunction{fx}{1}{%
+		\pgfmathparse{
+			3/((9*#1^2 + 1)*(#1^2 + 1)) - 1/((9*#1^2 + 1)*(#1^2 + 1)*#1^2)
+		}%
+	}
+	\pgfmathdeclarefunction{fy}{1}{%
+		\pgfmathparse{
+			4/((9*#1^2 + 1)*(#1^2 + 1)*#1)
+		}%
+	}
+	
+	\draw[blue!50!cyan,very thick]
+	plot[variable=\x,domain=0.5:2,samples=\gsamples,smooth,yscale=\scale,xscale=\xscale]
+	( {fx(\x)}, {fy(\x)} ) -- (0,0);
+	
+	\def\arrow{0.6}
+	
+	\pgfmathsetmacro\xa{\xscale*fx(\arrow)}
+	\pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
+	\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+	\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+	
+	\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+	\end{tikzpicture}
+\end{tabular}
+\end{center}
+
+\subsubsection{Γενικό κριτήριο Nyquist}
 Παραπάνω παρουσιάστηκε το απλοποιημένο κριτήριο Nyquist, για το οποίο παίρναμε
 τιμές του \( \omega \) μεταξύ του 0 και του \( +\infty \).
 
@@ -5224,13 +5552,341 @@ Nyquist της:
 αλλά παίρνουμε τιμές του \( s \) από το 0 μέχρι το \( +j\infty \), μετά συνεχίζουμε με
 ένα ημικύκλιο άπειρης ακτίνας μέχρι το \( \omega = -j\infty \), για να επιστρέψουμε ξανά
 στο 0.
-\todo{Graph 101}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+
+\fill[brown,path fading=east,opacity=.6] (0,-2) rectangle (3,2);
+
+\draw[ultra thick,red,opacity=.8]
+(0,-1.9) -- (0,1.9)  arc (90:-90:1.9);
+\draw[very thick,black,opacity=1,postaction={decorate},decoration={markings,mark=at position 0.3 with {\arrow{>}},mark=at position 0.1 with {\arrow{>}},mark=at position 0.5 with {\arrow{>}}}]
+(0,-1.9) -- (0,1.9)  arc (90:-90:1.9);
+
+\draw[->,brown!50!black] (-2,0) -- (2.2,0) node[right] {$\Re$};
+\draw[->,brown!50!black] (0,-2) node[left,red!50!brown] {$-\infty$}
+-- (0,2) node[right] {$\Im$} node[left,red!50!brown] {$+\infty$};
+
+\draw[brown] (-1,-1) node[below left] {$s$};
+\filldraw[top color=brown,bottom color=white,opacity=.7] (0,0) circle (2.5pt);
+
+\draw[very thick,green!70!blue,->,xshift=-4pt] ([yshift=3pt]0,0) node[left,scale=.6] {$j\omega$} -- ++(0,1.7)
+node[scale=.7,midway,sloped,align=center,above] {(απλοποιημένο\\διάγραμμα)};
+
+\end{tikzpicture}
+\end{center}
 
 Τότε το διάγραμμα Nyquist γίνεται:
-\todo{Graph 102}
+
+\begin{tikzpicture}[scale=.5]
+% Sage Math code used:
+% var('w')
+% assume(w,'real')
+
+
+\draw[->] (-3,0) -- (5,0) node[right] {$\Re$};
+\draw[->] (0,-5) -- (0,5) node[left] {$\Im$};
+
+\def\t{2}
+
+\def\scale{1}
+\pgfmathdeclarefunction{f}{1}{%
+	\pgfmathparse{-1/(#1*(\t^2*(#1)^2+1))}%
+}
+
+%\pgfkeys{/pgf/fpu=true}
+\draw[blue!50!cyan,very thick,postaction={decorate},decoration={markings,
+	mark=at position 0.5 with {\arrow{>}},
+	mark=at position 0.7 with {\arrow{>}},
+	mark=at position 0.93 with {\arrow{>}},
+	mark=at position 0.97 with {\arrow{>}},
+}]
+plot[smooth,scale=\scale,tension=1,yscale=-1]
+coordinates {(0,0) (-1,1) (-2,0) (-0.5,-2) (-0.2,-4) (-0.2,-4.42)}
+--
+(0,4.41) arc(90:-90:4.41)
+--
+plot[smooth,scale=\scale,tension=1]
+coordinates {(-0.1,-4.42) (-0.2,-4) (-0.5,-2)  (-2,0) (-1,1) (0,0)}
+%--
+%plot[smooth,scale=\scale,tension=1,yscale=-1]
+%coordinates {(-0.2,-4) (-0.5,-2)  (-2,0) (-1,1) (0,0)}
+;
+
+\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-2.8,0) circle (2.5pt) node[above right] {$-1$};
+
+\end{tikzpicture}
 
 και τα παραπάνω συνήθη διαγράμματα:
-\todo{Graph 103}
+
+\begin{center}
+	\begin{tabular}{cc}
+		\(\displaystyle\ \frac{1}{1+j\omega\tau_1}\) & 
+		\begin{tikzpicture}[scale=1,baseline]
+		\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+		\draw[->] (0,-2) -- (0,1.5) node[left] {$\Im$};
+		
+		\def\t{2}
+		
+		\def\scale{2}
+		\pgfmathdeclarefunction{fx}{1}{%
+			\pgfmathparse{1/(#1^2+1)}%
+		}
+		\pgfmathdeclarefunction{fy}{1}{%
+			\pgfmathparse{-#1/(#1^2+1)}%
+		}
+		
+		%\pgfkeys{/pgf/fpu=true}
+		\draw[blue!50!cyan,very thick]
+		plot[variable=\x,domain=0.001:10,samples=2*\gsamples,smooth,scale=\scale]
+		( {fx(\x)}, {fy(\x)} ) -- (0,0);
+		\draw[blue!30!cyan,very thick,yscale=-1]
+		plot[variable=\x,domain=0.001:10,samples=2*\gsamples,smooth,scale=\scale]
+		( {fx(\x)}, {fy(\x)} ) -- (0,0);
+		
+		\def\arrow{1}
+		
+		\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+		\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.1)}
+		\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+		\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
+		
+		\path[very thick,blue!60!cyan,xshift=-0.5pt,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+		\path[very thick,blue!60!cyan,xshift=-0.5pt,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{<}}}] (\xa,-\fa) -- (\xb,-\fb);
+		
+		\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-\scale,0) circle (2.5pt) node[above right] {$-1$};
+		\end{tikzpicture}
+		\\
+		\( \displaystyle
+		\frac{1}{(1+j\omega\tau_1)(1+j\omega\tau_2)}
+		\) & \begin{tikzpicture}[scale=1,baseline]
+		\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+		\draw[->] (0,-1.5) -- (0,1.5) node[left] {$\Im$};
+		
+		\def\t{2}
+		
+		\def\scale{2}
+		\pgfmathdeclarefunction{fx}{1}{%
+			\pgfmathparse{-2*#1^2/((4*#1^2 + 1)*(#1^2 + 1)) + 1/((4*#1^2 + 1)*(#1^2 + 1))}%
+		}
+		\pgfmathdeclarefunction{fy}{1}{%
+			\pgfmathparse{-3*#1/((4*#1^2 + 1)*(#1^2 + 1))}%
+		}
+		
+		%\pgfkeys{/pgf/fpu=true}
+		\draw[blue!50!cyan,very thick]
+		plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
+		( {fx(\x)}, {fy(\x)} ) -- (0,0);
+		\draw[blue!30!cyan,very thick]
+		plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
+		( {fx(\x)}, {-fy(\x)} ) -- (0,0);
+		
+		\def\arrow{1}
+		
+		\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+		\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.1)}
+		\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+		\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
+		
+		\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+		\def\arrow{0.3}
+		
+		\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+		\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.1)}
+		\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+		\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
+		\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{<}}}] (\xa,-\fa) -- (\xb,-\fb);
+		
+		\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-\scale,0) circle (2.5pt) node[above right] {$-1$};
+		\end{tikzpicture}
+		\\
+		\(
+		\displaystyle
+		\frac{1}{(1+j\omega\tau_1)(1+j\omega\tau_2)(1+j\omega\tau_3)}
+		\)
+		&
+		\begin{tikzpicture}[scale=1,baseline]
+		\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+		\draw[->] (0,-2) -- (0,1.5) node[left] {$\Im$};
+		
+		\def\scale{2}
+		\pgfmathdeclarefunction{fx}{1}{%
+			\pgfmathparse{
+				-6.38000000000000*#1^2/((4*#1^2 + 1)*(2.13160000000000*#1^2 + 1)*(#1^2 + 1)) + 1/((4*#1^2 + 1)*(2.13160000000000*#1^2 + 1)*(#1^2 + 1))
+			}%
+		}
+		\pgfmathdeclarefunction{fy}{1}{%
+			\pgfmathparse{7.92000000000000*#1^3/((4*#1^2 + 1)*(2.13160000000000*#1^2 + 1)*(#1^2 + 1)) - 4.46000000000000*#1/((4*#1^2 + 1)*(2.13160000000000*#1^2 + 1)*(#1^2 + 1))
+			}%
+		}
+		
+		%\pgfkeys{/pgf/fpu=true}
+		\draw[blue!50!cyan,very thick]
+		plot[variable=\x,domain=0.001:2,samples=\gsamples,smooth,scale=\scale]
+		( {fx(\x)}, {fy(\x)} ) -- (0,0);
+		\draw[blue!30!cyan,very thick]
+		plot[variable=\x,domain=0.001:2,samples=\gsamples,smooth,scale=\scale]
+		( {fx(\x)}, {-fy(\x)} ) -- (0,0);
+		
+		\def\arrow{0.5}
+		
+		\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+		\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.01)}
+		\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+		\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+		
+		\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+		\def\arrow{0.2}
+		
+		\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+		\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.01)}
+		\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+		\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+		\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{<}}}] (\xa,-\fa) -- (\xb,-\fb);
+		
+		\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-\scale,0) circle (2.5pt) node[above right] {$-1$};
+		\end{tikzpicture}
+		\\
+		\(
+		\displaystyle
+		\frac{1}{j\omega(1+j\omega\tau_1)}
+		\)
+		&
+		\begin{tikzpicture}[scale=1,baseline]
+		\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+		\draw[->] (0,-2.5) -- (0,2.5) node[left] {$\Im$};
+		
+		\def\scale{2}
+		\pgfmathdeclarefunction{fx}{1}{%
+			\pgfmathparse{
+				-1/(#1^2 + 1)
+			}%
+		}
+		\pgfmathdeclarefunction{fy}{1}{%
+			\pgfmathparse{
+				-1/((#1^2 + 1)*#1)
+			}%
+		}
+		
+		\draw[blue!50!cyan,very thick]
+		plot[variable=\x,domain=0.6:4,samples=\gsamples,smooth,scale=\scale]
+		( {fx(\x)}, {fy(\x)} ) -- (0,0);
+		\draw[blue!30!cyan,very thick,yscale=-1]
+		plot[variable=\x,domain=0.6:4,samples=\gsamples,smooth,scale=\scale]
+		( {fx(\x)}, {fy(\x)} ) -- (0,0);
+		
+		\draw[blue!30!cyan,very thick,dashed,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}]
+		(70:2.5) arc (70:-70:2.5);
+		
+		\def\arrow{0.8}
+		
+		\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+		\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.01)}
+		\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+		\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+		
+		\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+		
+		\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{<}}}] (\xa,-\fa) -- (\xb,-\fb);
+		\end{tikzpicture}
+		\\
+		\(
+		\displaystyle
+		\frac{1}{j\omega(1+j\omega\tau_1)(1+j\omega\tau_2)}
+		\)
+		&
+		\begin{tikzpicture}[scale=1,baseline]
+		\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+		\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+		
+		\def\scale{3}
+		\def\xscale{1}
+		\pgfmathdeclarefunction{fx}{1}{%
+			\pgfmathparse{
+				-5/((9*#1^2 + 1)*(4*#1^2 + 1))
+			}%
+		}
+		\pgfmathdeclarefunction{fy}{1}{%
+			\pgfmathparse{
+				6*#1/((9*#1^2 + 1)*(4*#1^2 + 1)) - 1/((9*#1^2 + 1)*(4*#1^2 + 1)*#1)
+			}%
+		}
+		
+		\draw[blue!50!cyan,very thick]
+		plot[variable=\x,domain=0.3:2,samples=\gsamples,smooth,yscale=\scale,xscale=\xscale]
+		( {fx(\x)}, {fy(\x)} ) -- (0,0);
+		\draw[blue!30!cyan,very thick]
+		%plot[smooth] coordinates {(
+		%{\xscale*fx(0.3)}, {\scale*fy(0.3)} ) 
+		%(2.3,0) 
+		%({\xscale*fx(0.3)}, {-\scale*fy(0.3)}) 
+		%} --
+		plot[variable=\x,domain=0.3:2,samples=\gsamples,smooth,yscale=\scale,xscale=\xscale]
+		( {fx(\x)}, {-fy(\x)} ) -- (0,0);
+		
+		\draw[blue!30!cyan,very thick,dashed,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}]
+		(50:2.5) arc (50:-50:2.5);
+		
+		\def\arrow{0.8}
+		
+		\pgfmathsetmacro\xa{\xscale*fx(\arrow)}
+		\pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
+		\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+		\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+		
+		\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+		\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,-\fa) -- (\xb,-\fb);
+		\end{tikzpicture}
+		\\
+		\(
+		\displaystyle
+		\frac{1}{(j\omega)^2(1+j\omega\tau_1)(1+j\omega\tau_2)}
+		\)
+		&
+		\begin{tikzpicture}[scale=1,baseline]
+		\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+		\draw[->] (0,-2) -- (0,2.5) node[left] {$\Im$};
+		
+		\def\scale{1}
+		\def\xscale{7}
+		\pgfmathdeclarefunction{fx}{1}{%
+			\pgfmathparse{
+				3/((9*#1^2 + 1)*(#1^2 + 1)) - 1/((9*#1^2 + 1)*(#1^2 + 1)*#1^2)
+			}%
+		}
+		\pgfmathdeclarefunction{fy}{1}{%
+			\pgfmathparse{
+				4/((9*#1^2 + 1)*(#1^2 + 1)*#1)
+			}%
+		}
+		
+		\draw[blue!50!cyan,very thick]
+		plot[variable=\x,domain=0.5:2,samples=\gsamples,smooth,yscale=\scale,xscale=\xscale]
+		( {fx(\x)}, {fy(\x)} ) -- (0,0);
+		\draw[blue!30!cyan,very thick]
+		plot[variable=\x,domain=0.51:2,samples=\gsamples,smooth,yscale=\scale,xscale=\xscale]
+		( {fx(\x)}, {-fy(\x)} ) -- (0,0);
+		
+		\def\arrow{0.6}
+		
+		\pgfmathsetmacro\xa{\xscale*fx(\arrow)}
+		\pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
+		\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+		\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+		
+		\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+		
+		\def\arrow{0.7}
+		
+		\pgfmathsetmacro\xa{\xscale*fx(\arrow)}
+		\pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
+		\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+		\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+		
+		\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,-\fa) -- (\xb,-\fb);
+		\end{tikzpicture}
+	\end{tabular}
+\end{center}
 
 \paragraph{}
 Για το διάγραμμα Nyquist (στη γενικευμένη μορφή) ισχύει:
@@ -5256,7 +5912,7 @@ Nyquist της:
 \textit{κλειστού βρόχου}, ενώ, όπως αναφέραμε παραπάνω, δεν μπορούμε να χρησιμοποιήσουμε
 το απλοποιημένο κριτήριο, επειδή η \( A(s) \) έχει και ασταθείς πόλους.
 
-\subparagraph{Για να βρούμε τον αριθμό \( N \) των περικυκλώσεων}
+\paragraph{Για να βρούμε τον αριθμό \( N \) των περικυκλώσεων}
 Για να βρούμε τον αριθμό των περικυκλώσεων, παίρνουμε μια ημιευθεία με οποιαδήποτε κλίση από το κρίσιμο σημείο \( (-1) \).
 
 Για κάθε σημείο τομής της \textit{ημιευθείας} με το \textit{διάγραμμα}, αντιστοιχίζουμε
@@ -5264,7 +5920,34 @@ Nyquist της:
 το διάγραμμα τείνει να στρέψει την ευθεία κατά την \textit{αντιωρολογιακή} φορά,
 και \( +1 \) αν το διάγραμμα τείνει να στρέψει την ευθεία κατά την \textit{ωρολογιακή} φορά:
 
-\todo{Graph 103}
+\begin{tikzpicture}[scale=1.2]
+
+\draw[->] (-3,0) -- (5,0) node[right] {$\Re$};
+\draw[->] (0,-4) -- (0,4) node[left] {$\Im$};
+
+\def\scale{1}
+%\pgfkeys{/pgf/fpu=true}
+\draw[blue!50!cyan,opacity=.7,thick,postaction={decorate},decoration={markings,
+	mark=at position 0.35 with {\arrow{>}},%
+	mark=at position 0.5 with {\arrow{>}},%
+	mark=at position 0.8 with {\arrow{>}},%
+	mark=at position 0.97 with {\arrow{>}}
+},name path=(n)]
+plot[smooth cycle,scale=\scale,tension=.8]
+coordinates {(-0.3,0) (-1,1.5) (-2,2.5) (1,3) (3,0) (1,-3) (-2,-2.5) (-1,-1.5)};
+
+\draw[brown!50!red,thick,densely dotted,name path=(l)] (-1,0) -- ++(45:5);
+\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-1,0) circle (2.5pt) node[below left] {$-1$};
+
+\path [name intersections={of=(l) and (n)}];
+
+\filldraw[fill opacity=.8] (intersection-1) node[rounded corners=2pt,draw,top color=white,bottom color=brown] {};
+\filldraw[fill opacity=.8] (intersection-2) node[rounded corners=2pt,draw,top color=white,bottom color=brown] {};
+
+\draw[ultra thick,-stealth,brown!40!orange!80!black] (intersection-2) ++(45:0.3) ++(45-90:0.2) -- ++(45+90:0.8);
+\draw[ultra thick,-stealth,brown!40!orange!80!black] (intersection-1) ++(45:0.3) ++(45+90:0.3) -- ++(45-90:0.8);
+
+\end{tikzpicture}
 
 Το ζητούμενο \( N \) είναι το άθροισμα των αριθμών που αντιστοιχούμε στο κάθε σημείο τομής,
 δηλαδή:
@@ -5276,7 +5959,20 @@ N = -1 + 1 = 0
 
 \begin{exercise}
 Να σχεδιαστεί το πλήρες διάγραμμα Nyquist και να εξεταστεί η ευστάθεια του συστήματος:
-\todo{Graph 104}
+
+\begin{circuitikz}
+	\begin{scope}[every node/.style={rectangle,draw,minimum width=40pt}]
+		\draw (0,0) node[circle,minimum width=25pt] (a) {};
+		\draw  (a) ++ (2,0) node (h1) {$\displaystyle \frac{10}{s+2}$};
+		\draw (h1) ++(3,0) node (h2) {$\displaystyle \frac{5}{s-6}$};
+	\end{scope}
+	
+	\draw[<-] (a) -- ++(-2,0) node[near end,above] {$v$};
+	\draw[->] (a) -- (h1) node[near end, above] {$e$};
+	\draw[->] (h1) -- (h2);
+	\draw[->] (h2) -- ++(2,0) node[near end,above] {$y$} node[midway] (m) {};
+	\draw[->] (m.center) -- ++(0,-1.2) -| (a.south) node[right] {$-$};
+\end{circuitikz}
 
 \tcblower
 Κατ' αρχάς, παίρνω τη συνάρτηση ανοιχτού βρόχου:
