@@ -6002,19 +6002,178 @@ A(s) = \frac{50}{(s+2)(s-6)}
 	Παρατηρούμε ότι το φανταστικό μέρος (\( \frac{200\omega}{(\omega^2+12)^2} + 16\omega^2 \)) είναι θετικό, άρα το απλό διάγραμμα Nyquist βρίσκεται στην επάνω μεριά
 	του επιπέδου:
 	
-	\todo{Graph 105}
+	\begin{tikzpicture}[scale=1]
+	\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+	\draw[->] (0,-2) -- (0,2.5) node[left] {$\Im$};
+	
+	\def\scale{1}
+	\def\xscale{0.5}
+	
+	\pgfmathdeclarefunction{fx}{1}{%
+		{\pgfkeys{/pgf/fpu=true}%
+			\pgfmathsetmacro\f{%
+				-50*#1^2/((#1^2 + 36)*(#1^2 + 4)) - 600/((#1^2 + 36)*(#1^2 + 4))%
+			}%
+			\pgfkeys{/pgf/fpu=false}%
+			\xdef\ga{\f}%
+		}%
+		\pgfmathfloattofixed{\ga}%
+	}%
+	\pgfmathdeclarefunction{fy}{1}{%
+		{\pgfkeys{/pgf/fpu=true}%
+			\pgfmathsetmacro\f{%
+				200*#1/((#1^2 + 36)*(#1^2 + 4))			}%
+			\pgfkeys{/pgf/fpu=false}%
+			\xdef\ga{\f}%
+		}%
+		\pgfmathfloattofixed{\ga}%
+	}
+	
+	
+	\draw[blue!50!cyan,very thick]
+	plot[variable=\x,domain=0:20,samples=\gsamples,smooth,yscale=\scale,xscale=\xscale]
+	( {fx(\x)}, {fy(\x)} ) -- (0,0);
+
+	
+	\def\arrow{1.4}
+	
+	\pgfmathsetmacro\xa{\xscale*fx(\arrow)}
+	\pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
+	\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+	\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+	\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+	
+	\filldraw[top color=red,bottom color=blue,fill opacity=.5] (-4.16*\xscale,0) circle (2.5pt) node[below left,opacity=.7] {$-4.16$};
+
+	\end{tikzpicture}
 \end{itemize}
 
 Για να σχεδιάσουμε το πλήρες διάγραμμα Nyquist, λαμβάνουμε υπ' όψιν και τα αρνητικά
 \( \omega \), δηλαδή σχεδιάζουμε και το συζυγές του παραπάνω διαγράμματος:
-\todo{Graph 106}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+\draw[->] (0,-2) -- (0,2.5) node[left] {$\Im$};
+
+\def\scale{1}
+\def\xscale{0.5}
+
+\pgfmathdeclarefunction{fx}{1}{%
+	{\pgfkeys{/pgf/fpu=true}%
+		\pgfmathsetmacro\f{%
+			-50*#1^2/((#1^2 + 36)*(#1^2 + 4)) - 600/((#1^2 + 36)*(#1^2 + 4))%
+		}%
+		\pgfkeys{/pgf/fpu=false}%
+		\xdef\ga{\f}%
+	}%
+	\pgfmathfloattofixed{\ga}%
+}%
+\pgfmathdeclarefunction{fy}{1}{%
+	{\pgfkeys{/pgf/fpu=true}%
+		\pgfmathsetmacro\f{%
+			200*#1/((#1^2 + 36)*(#1^2 + 4))			}%
+		\pgfkeys{/pgf/fpu=false}%
+		\xdef\ga{\f}%
+	}%
+	\pgfmathfloattofixed{\ga}%
+}
+
+
+\draw[blue!50!cyan,very thick]
+plot[variable=\x,domain=0:20,samples=\gsamples,smooth,yscale=\scale,xscale=\xscale]
+( {fx(\x)}, {fy(\x)} ) -- (0,0);
+\draw[blue!50!cyan!70!red,very thick]
+plot[variable=\x,domain=0:20,samples=\gsamples,smooth,yscale=\scale,xscale=\xscale]
+( {fx(\x)}, {-fy(\x)} ) -- (0,0);
+
+\def\arrow{1.4}
+
+\pgfmathsetmacro\xa{\xscale*fx(\arrow)}
+\pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+
+\def\arrow{1.7}
+
+\pgfmathsetmacro\xa{\xscale*fx(\arrow)}
+\pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,-\fa) -- (\xb,-\fb);
+
+\filldraw[top color=red,bottom color=blue,fill opacity=.5] (-4.16*\xscale,0) circle (2.5pt) node[below left,opacity=.7] {$-4.16$};
+
+\end{tikzpicture}
 
 Όσον αφορά το ημικυκλικό κομμάτι που παρουσιάσαμε στη θεωρία, σε εκείνο ισχύει
 ότι για \( s \to \infty: \left|A(s)\right| = 0 \), οπότε αντιστοιχεί στο σημείο \( 0 \).
 
 Για να βρούμε αν το σύστημα κλειστού βρόχου είναι ασταθές, πρώτα θεωρούμε μια ημιευθεία
 γύρω από το -1:
-\todo{Graph 107}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-3,0) -- (3,0) node[right] {$\Re$};
+\draw[->] (0,-2) -- (0,2.5) node[left] {$\Im$};
+
+\def\scale{1}
+\def\xscale{0.5}
+
+\pgfmathdeclarefunction{fx}{1}{%
+	{\pgfkeys{/pgf/fpu=true}%
+		\pgfmathsetmacro\f{%
+			-50*#1^2/((#1^2 + 36)*(#1^2 + 4)) - 600/((#1^2 + 36)*(#1^2 + 4))%
+		}%
+		\pgfkeys{/pgf/fpu=false}%
+		\xdef\ga{\f}%
+	}%
+	\pgfmathfloattofixed{\ga}%
+}%
+\pgfmathdeclarefunction{fy}{1}{%
+	{\pgfkeys{/pgf/fpu=true}%
+		\pgfmathsetmacro\f{%
+			200*#1/((#1^2 + 36)*(#1^2 + 4))			}%
+		\pgfkeys{/pgf/fpu=false}%
+		\xdef\ga{\f}%
+	}%
+	\pgfmathfloattofixed{\ga}%
+}
+
+
+\draw[blue!50!cyan,very thick,name path=(n)]
+plot[variable=\x,domain=0:20,samples=\gsamples,smooth,yscale=\scale,xscale=\xscale)]
+( {fx(\x)}, {fy(\x)} ) -- (0,0);
+\draw[blue!50!cyan!70!red,very thick]
+plot[variable=\x,domain=0:20,samples=\gsamples,smooth,yscale=\scale,xscale=\xscale]
+( {fx(\x)}, {-fy(\x)} ) -- (0,0);
+
+\def\arrow{1.4}
+
+\pgfmathsetmacro\xa{\xscale*fx(\arrow)}
+\pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+
+\def\arrow{1.7}
+
+\pgfmathsetmacro\xa{\xscale*fx(\arrow)}
+\pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,-\fa) -- (\xb,-\fb);
+
+\filldraw[top color=red,bottom color=blue,fill opacity=.5] (-4.16*\xscale,0) circle (2.5pt) node[below left,opacity=.7] {$-4.16$};
+
+\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-1*\xscale,0) circle (2pt) node[below left] {$-1$};
+
+\draw[brown!50!red,thick,densely dotted,name path=(l)] (-1*\xscale,0) -- ++(70:2);
+
+\path [name intersections={of=(l) and (n)}];
+\filldraw[fill opacity=.8] (intersection-1) node[rounded corners=2pt,draw,inner sep=2pt,top color=white,bottom color=brown] {};
+\draw[ultra thick,-stealth,brown!40!orange!80!black] (intersection-1) ++(45:0.3) ++(45+90:0.3) -- ++(45-90:0.8);
+
+\end{tikzpicture}
 
 Αυτή τέμνει το διάγραμμα Nyquist σε ένα σημείο με ωρολογιακή φορά, οπότε αντιστοιχούμε σε
 αυτόν τον αριθμό 1. Επομένως, για το δείκτη Nyquist ισχύει:
@@ -6037,7 +6196,42 @@ N = Z-P \implies \boxed{Z = N+P = 2}
 \end{exercise}
 \begin{exercise}
 Δίνεται το παρακάτω διάγραμμα Nyquist:
-\todo{Graph 108}
+
+\begin{tikzpicture}[scale=1,baseline]
+\draw[->] (-2,0) -- (3,0) node[right] {$\Re$};
+\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+
+\def\t{2}
+
+\def\scale{2}
+\pgfmathdeclarefunction{fx}{1}{%
+	\pgfmathparse{-2*#1^2/((4*#1^2 + 1)*(#1^2 + 1)) + 1/((4*#1^2 + 1)*(#1^2 + 1))}%
+}
+\pgfmathdeclarefunction{fy}{1}{%
+	\pgfmathparse{-3*#1/((4*#1^2 + 1)*(#1^2 + 1))}%
+}
+
+%\pgfkeys{/pgf/fpu=true}
+\draw[blue!50!cyan,very thick]
+plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
+( {fx(\x)}, {fy(\x)} ) -- (0,0);
+\draw[thick,gray!80!brown] (0,0) circle (\scale*0.5cm);
+
+\def\arrow{1}
+
+\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.1)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
+
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+
+\filldraw[top color=white,bottom color=blue,fill opacity=.5] (0.5*\scale,0) circle (2pt) node[above right,scale=.9] {$1$};
+\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-0.5*\scale,0) circle (2.5pt) node[above right] {$-1$};
+
+\draw ({\scale*fx(0)},0) node[circle,inner sep=1pt,top color=cyan,bottom color=white,opacity=.4,draw=blue!50!white] {} node[above] {$2$};
+\draw (0,0) node[circle,inner sep=1pt,top color=cyan,bottom color=white,opacity=.4,draw=blue!50!white] {} node[above right] {$0$};
+\end{tikzpicture}
 
 Ποιό είναι το περιθώριο κέρδους; Σε ποιό διάστημα ανήκει το περιθώριο φάσης;
 \tcblower
@@ -6045,7 +6239,46 @@ N = Z-P \implies \boxed{Z = N+P = 2}
 να πολλαπλασιάσουμε το κέρδος της συνάρτησης για να φτάσει το σημείο -1.
 
 Για το περιθώριο φάσης, παίρνουμε το σημείο τομής της συνάρτησης με το μοναδιαίο κύκλο:
-\todo{Graph 109}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-2,0) -- (3,0) node[right] {$\Re$};
+\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+
+\def\t{2}
+
+\def\scale{2}
+\pgfmathdeclarefunction{fx}{1}{%
+	\pgfmathparse{-2*#1^2/((4*#1^2 + 1)*(#1^2 + 1)) + 1/((4*#1^2 + 1)*(#1^2 + 1))}%
+}
+\pgfmathdeclarefunction{fy}{1}{%
+	\pgfmathparse{-3*#1/((4*#1^2 + 1)*(#1^2 + 1))}%
+}
+
+%\pgfkeys{/pgf/fpu=true}
+\draw[blue!50!cyan,very thick]
+plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
+( {fx(\x)}, {fy(\x)} ) -- (0,0);
+\draw[thick,gray!80!brown] (0,0) circle (\scale*0.5cm);
+
+\def\arrow{1}
+
+\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.1)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
+
+\draw[very thick,green!70!black] (0,0) -- (-70:2);
+\draw[->,green!70!black] (-0.5,0) to[bend right] node[near start,left,scale=.8] {$\phi_M$} (-70:0.5);
+\draw[thick,left color=green,fill opacity=.5,right color=gray!80!brown] (-70:1) circle (2.5pt);
+
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+
+\filldraw[top color=white,bottom color=blue,fill opacity=.5] (0.5*\scale,0) circle (2pt) node[above right,scale=.9] {$1$};
+\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-0.5*\scale,0) circle (2.5pt) node[above right] {$-1$};
+
+\draw ({\scale*fx(0)},0) node[circle,inner sep=1pt,top color=cyan,bottom color=white,opacity=.4,draw=blue!50!white] {} node[above] {$2$};
+\draw (0,0) node[circle,inner sep=1pt,top color=cyan,bottom color=white,opacity=.4,draw=blue!50!white] {} node[above right] {$0$};
+\end{tikzpicture}
 
 Παρατηρούμε από το διάγραμμα ότι ισχύει \( \ang{90} < \phi_M < \ang{150} \).
 
