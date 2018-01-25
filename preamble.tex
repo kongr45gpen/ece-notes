@@ -34,7 +34,7 @@
 \pgfplotsset{compat=1.13}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{patterns}
-\usetikzlibrary{decorations.pathmorphing,patterns}
+\usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary{decorations.markings}
 \usetikzlibrary{backgrounds}
 \usetikzlibrary{shapes.misc}
@@ -269,5 +269,10 @@ boxed title style={skin=enhancedfirst jigsaw,
 \newtcbtheorem[number within=section,list inside=defn]{defn}{Ορισμός}%
 {colback=blue!5,colframe=cyan!35!black,colbacktitle=blue!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-2mm}}{def}
 
+% Locus plot utilities
+\tikzset{locus/.style={orange!50!red!70!brown}}
+\tikzset{locuspole/.style={draw=red!30!black,cross,inner sep=2.5pt,fill=white,fill opacity=.6,thick,label={[below]-90:#1}}}
+\tikzset{locuszero/.style={draw=red!30!black,circle,inner sep=2pt,fill=white,fill opacity=.6,thick,label={[below]-90:#1}}}
+\tikzset{locusbreak/.style={rounded corners=1.5pt,inner sep=2pt,draw,top color=brown,bottom color=black,fill opacity=.8,label={[below]-90:#1}}}
 
 
