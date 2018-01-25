@@ -6295,11 +6295,59 @@ plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
 \end{exercise}
 \begin{exercise}
 Δίνεται το διάγραμμα Bode της \( A(s) \):
-\todo{Graph}
+
+\begin{tikzpicture}[scale=1,xscale=1]
+\pgfplotsset{/pgf/number format/freq/.style={fixed}}
+\def\phasedown{-2}
+\def\phaseextra{-2}
+
+\draw[->] (0,\phasedown+\phaseextra) -- (0,3) node[below left,orange!90!blue!80!black] {$|A|_{\si{\decibel}}$};
+\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+
+\foreach \x in {} {
+	\draw[dashed] (\x,\phasedown) -- (\x,0);
+}
+
+\def\at{20}
+\draw[ultra thick,orange!90!blue!80!black]
+(0,2.5) -- (4,-1)
+;
+
+\foreach \x in {} {
+	%\pgfmathsetmacro\result{10^\x/100}
+	\draw (\x,-0.1) node[below] {$a=\frac{1}{τ}$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+\foreach \x in {} {
+	\pgfmathsetmacro\result{10^\x/100}
+	\draw (\x,\phasedown-0.1) node[below] {$\pgfmathprintnumber[freq]\result a$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+
+\draw (2.86,0) node[above right] {$\omega_c$};
+\draw[dashed] (2.857,\phasedown-1.7) -- (2.857,0);
+\draw[fill=green!50!black] (2.857,\phasedown-1.75) circle (2pt) node[right,blue!50!cyan!50!green!70!black] {$\measuredangle A(j\omega c)$}
+-- ++(0,-2) circle (1.5pt) node[right,scale=.8] {$-\ang{180}$} node[midway,blue!50!cyan!50!green!70!black,right] {$\phi_M$};
+
+\begin{scope}[yshift=\phasedown cm]
+\draw[->] (0,0) -- ++(4.5,0);
+\def\at{40}
+
+\draw (0,-0.2) node[left,scale=.8] {$-\ang{92}$};
+\draw[dashed] (0,-1.9) node[left,scale=.8] {$-\ang{102}$} -- ++(2.5,0);
+
+
+\draw[very thick,blue!50!cyan!50!green!70!black]
+plot[smooth,tension=.8] coordinates {(0,-0.2) (1,-0.5) (2.5,-1.9) (3.5,-0.7) (4.5, -0.4)};
+
+\draw (0,-1) node[left,blue!50!cyan!50!green!50!black] {$\measuredangle\ A(j\omega)$};
+\end{scope}
+
+\end{tikzpicture}
+
 Ποιό είναι το περιθώριο φάσης;
 
 \tcblower
-\todo{Graph}
 Αν \( \omega_c \) είναι η συχνότητα στην οποία η συνάρτηση έχει μηδενικό κέρδος, θα έχουμε:
 \[
 \phi_M = \measuredangle A(j\omega_c) - (\ang{-180}) = \ang{180} + \measuredangle A(j\omega_c)
@@ -6316,7 +6364,53 @@ plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
 \end{exercise}
 \begin{exercise}
 Δίνεται το διάγραμμα Bode της \( A(s) \):
-\todo{Graph}
+
+\begin{tikzpicture}[scale=1,xscale=1]
+\pgfplotsset{/pgf/number format/freq/.style={fixed}}
+\def\phasedown{-3}
+\def\phaseextra{-2}
+
+\draw[->] (0,\phasedown+\phaseextra) -- (0,3) node[below left,orange!90!blue!80!black] {$|A|_{\si{\decibel}}$};
+\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+
+\foreach \x in {} {
+	\draw[dashed] (\x,\phasedown) -- (\x,0);
+}
+
+\draw (2.86,0) node[above right] {$\omega_c$};
+
+\def\at{20}
+\draw[ultra thick,orange!90!blue!80!black]
+(0,2.5) -- (4,-1)
+;
+
+\foreach \x in {} {
+	%\pgfmathsetmacro\result{10^\x/100}
+	\draw (\x,-0.1) node[below] {$a=\frac{1}{τ}$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+\foreach \x in {} {
+	\pgfmathsetmacro\result{10^\x/100}
+	\draw (\x,\phasedown-0.1) node[below] {$\pgfmathprintnumber[freq]\result a$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+
+\draw (0,0) node[left] {$0$};
+
+\draw[dashed] (2.857,\phasedown-0.9) -- (2.857,0);
+\draw[fill=green!50!black] (2.857,\phasedown-0.9) circle (2pt) node[right,blue!50!cyan!50!green!70!black] {$\measuredangle A(j\omega c)$};
+
+\begin{scope}[yshift=\phasedown cm]
+\draw[->] (0,0) -- ++(4.5,0);
+\def\at{40}
+
+\draw (0,0) node[left] {$\ang{-180}$};
+
+\draw[very thick,blue!50!cyan!50!green!70!black]
+plot[smooth,tension=.5] coordinates {(0,0) (2,-0.05) (3,-1) (4.5,-1)};
+\end{scope}
+
+\end{tikzpicture}
 
 Είναι το σύστημα ευσταθές;
 
@@ -6335,7 +6429,58 @@ plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
 \end{exercise}
 \begin{exercise}
 Ποιό είναι το περιθώριο κέρδους για το παρακάτω διάγραμμα Bode;
-\todo{Graph}
+
+\begin{tikzpicture}[scale=1,xscale=1]
+\pgfplotsset{/pgf/number format/freq/.style={fixed}}
+\def\phasedown{-3}
+\def\phaseextra{-3}
+
+\draw[->] (0,\phasedown+\phaseextra) -- (0,1.5) node[below left,blue!50!cyan!70!black] {$|A|_{\si{\decibel}}$};
+\draw[->] (0,0) -- (4.5,0) node[above] {$\omega$};
+
+\foreach \x in {} {
+	\draw[dashed] (\x,\phasedown) -- (\x,0);
+}
+
+\def\at{20}
+\draw[ultra thick,blue!50!cyan!70!black]
+plot[smooth,tension=.7] coordinates
+{ (0,1) (1.5,0.7) (3,-1) (4.5,-2) }
+;
+
+\draw[dashed] (0,-1.57) node[left,scale=.8] {$\SI{-45}{\decibel}$} -- ++(3.74,0);
+\draw[dashed] (0,-1.9) node[left,scale=.8] {$\SI{-50}{\decibel}$} -- ++(4.3,0);
+
+\foreach \x in {} {
+	%\pgfmathsetmacro\result{10^\x/100}
+	\draw (\x,-0.1) node[below] {$a=\frac{1}{τ}$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+\foreach \x in {} {
+	\pgfmathsetmacro\result{10^\x/100}
+	\draw (\x,\phasedown-0.1) node[below] {$\pgfmathprintnumber[freq]\result a$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+
+\draw[dashed] (3.74,\phasedown-2.25) -- (3.74,-1.5);
+\draw[blue!50!cyan!70!black] (3.74,-1.5) -- (3.74,0) node[black,scale=.7,above] {$\omega_1$} node[midway,right] {$g_m$};
+\draw[fill=green!50!black] (3.74,\phasedown-2.25) circle (2pt) node[above right,blue!50!cyan!50!green!70!black] {$\omega_1$};
+
+\begin{scope}[yshift=\phasedown cm]
+\draw[->] (0,0) -- ++(4.5,0);
+\def\at{40}
+\draw (-1,\phasedown/2) node[left,blue!50!cyan!50!green!50!black] {$\measuredangle\ A(j\omega)$};
+
+\draw (0,0) node[left,scale=.8] {$\ang{0}$};
+\draw[dashed] (0,-2.5/2) node[left,scale=.8] {$-\ang{100}$} -- ++(2.2,0);
+\draw[dashed] (0,-2.5) node[left,scale=.8] {$-\ang{200}$} -- ++(4.5,0);
+\draw[dashed] (0,-2.25) node[left,scale=.8,green!30!black,yshift=2pt] {$-\ang{180}$} -- ++(3.7,0);
+
+\draw[very thick,blue!50!cyan!50!green!70!black]
+plot[smooth,tension=.8] coordinates {(0,0) (1,-0.9) (2,-1.2) (3,-1.7) (4,-2.4) (4.7,-2.5)};
+\end{scope}
+
+\end{tikzpicture}
 
 \tcblower
 Για το περιθώριο κέρδους ισχύει:
@@ -6474,7 +6619,42 @@ k&>0
 	G(s) = \frac{5}{s(s+2)}\frac{4}{s+5} = \frac{20}{s(s+2)(s+5)}
 	\]
 	
-	\todo{Graph}
+	\begin{tikzpicture}[scale=1,xscale=1]
+	\pgfplotsset{/pgf/number format/freq/.style={fixed}}
+	\def\phasedown{0}
+	\def\phaseextra{-0.5}
+	
+	\draw[->] (0,\phasedown+\phaseextra) -- (0,3) node[below left,orange!90!blue!80!black] {$|A|_{\si{\decibel}}$};
+	\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+	
+	\foreach \x in {} {
+		\draw[dashed] (\x,\phasedown) -- (\x,0);
+	}
+	
+	\def\at{22}
+	\draw[ultra thick,orange!90!blue!80!black]
+	(0,2.5)
+	-- ++(-1*\at:{1/cos(1*\at)}) node(c1) {} node[above right] {-20 dB/dec}
+	-- ++(-2*\at:{1/cos(2*\at)}) node(c2) {} node[above right] {-40 dB/dec}
+	-- ++(-3*\at:{1/cos(3*\at)}) node(c3) {} node[above right] {-60 dB/dec}
+	;
+	
+	\draw[dashed] (1,0) node[below] {$2$} -- (c1);
+	\draw[dashed] (2,0) node[below] {$5$} -- (c2);
+	
+	\foreach \x in {} {
+		%\pgfmathsetmacro\result{10^\x/100}
+		\draw (\x,-0.1) node[below] {$a=\frac{1}{τ}$} -- ++(0,0.2);
+		%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	}
+	\foreach \x in {} {
+		\pgfmathsetmacro\result{10^\x/100}
+		\draw (\x,\phasedown-0.1) node[below] {$\pgfmathprintnumber[freq]\result a$} -- ++(0,0.2);
+		%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	}
+	
+	
+	\end{tikzpicture}
 	
 	Βρίσκουμε την \( \omega_c \) ώστε \( \left|A(j\omega_c)\right| = 1 \):
 	\[
@@ -6523,7 +6703,46 @@ k&>0
 	
 	Μάλιστα, μπορούμε να σχεδιάσουμε αναλυτικά το προσεγγιστικό διάγραμμα Bode, υπολογίζοντας την τιμή για \( \omega=1 \),
 	η οποία προκύπτει \( 20\log 2 \si{\decibel} \):
-	\todo{Graph}
+	
+	\begin{tikzpicture}[scale=1,xscale=1]
+	\pgfplotsset{/pgf/number format/freq/.style={fixed}}
+	\def\phasedown{0}
+	\def\phaseextra{-0.5}
+	
+	\draw[->] (0,\phasedown+\phaseextra) -- (0,3) node[below left,orange!90!blue!80!black] {$|A|_{\si{\decibel}}$};
+	\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+	
+	\foreach \x in {} {
+		\draw[dashed] (\x,\phasedown) -- (\x,0);
+	}
+	
+	\def\at{22}
+	\draw[ultra thick,orange!90!blue!80!black]
+	(0,2.2)
+	-- ++(-1*\at:{1/cos(1*\at)}) node(c1) {} node[above right] {-20 dB/dec}
+	-- ++(-2*\at:{1/cos(2*\at)}) node(c2) {} node[above right] {-40 dB/dec}
+	-- ++(-3*\at:{1/cos(3*\at)}) node(c3) {} node[above right] {-60 dB/dec}
+	;
+	
+	\draw[dashed] (1,0) node[below] {$2$} -- (c1);
+	\draw[dashed] (2,0) node[below] {$5$} -- (c2) -- (c2 -| 0,0) node[left] {$0$};
+	\draw (3,0) node[below] {$10$};
+	
+	\draw[fill=yellow,fill opacity=.3] (0,2.2) circle (1.7pt) node[left,opacity=1] {$20\log 2$};
+	\draw[fill=yellow,fill opacity=.3] (c2) circle (1.7pt);
+	
+	\foreach \x in {} {
+		%\pgfmathsetmacro\result{10^\x/100}
+		\draw (\x,-0.1) node[below] {$a=\frac{1}{τ}$} -- ++(0,0.2);
+		%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	}
+	\foreach \x in {} {
+		\pgfmathsetmacro\result{10^\x/100}
+		\draw (\x,\phasedown-0.1) node[below] {$\pgfmathprintnumber[freq]\result a$} -- ++(0,0.2);
+		%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	}
+	
+	\end{tikzpicture}
 	
 	Συγκεκριμένα, έχουμε:
 	\[
@@ -6580,7 +6799,25 @@ k&>0
 	ευστάθεια.
 	
 	Για αυτό χρειάζεται να θεωρήσουμε το σύστημα:
-	\todo{Graph}
+	
+	\begin{tikzpicture}
+	\tikzstyle{transfer}=[rectangle,draw,minimum height=9mm]
+	\draw (1,0) node[rectangle,draw] (h0) {$k$};
+	\draw (3,0) node[transfer] (h1) {$\displaystyle \frac{5}{s(s+2)}$};
+	\draw (0,0) node[circle,draw,minimum size=5mm] (mix) {};
+	\draw (h1.south) ++(0,-1) node[transfer] (h2) {$\displaystyle \frac{4}{s+5}$};
+	
+	\draw[<-] (mix) -- ++(-1,0);
+	\draw[->] (mix) -- (h0);
+	\draw[->] (h0) -- (h1);
+	\draw[->] (h1.east) -- +(1,0) node[midway] (fb) {};
+	\draw[->] (fb.center) |- (h2) -| (mix.south) node[below right] {$-$};
+	\draw (mix.south);
+	
+	\draw [decorate,decoration={brace,amplitude=10pt},orange!20!black]
+	(h0.north west |- h1.north east) -- (h1.north east) node [midway,above,yshift=4mm] {$G(s)$};
+	\end{tikzpicture}
+	
 	με συνάρτηση μεταφοράς:
 	\[
 	H_c = \frac{G}{1+GF} = \frac{5k(s+5)}{s(s+2)(s+5)+k\cdot 20}
@@ -6640,10 +6877,130 @@ A(s) = \frac{s+2}{(s+3)(s+5)}
 
 Με τη μελέτη της μορφής του μιγαδικού, μπορούμε να καταλάβουμε ότι το μηδέν προσεγγίζεται από κάτω. Εναλλακτικοί τρόποι
 προσέγγισής του είναι οι εξής:
-\todo{Graph}
+
+\begin{tikzpicture}[scale=1,baseline]
+
+\draw[->] (-0.5,0) -- (2.5,0) node[right] {$\Re$};
+\draw[->] (0,-1.5) -- (0,1.5) node[left] {$\Im$};
+
+\def\t{2}
+
+\def\scale{2}
+\pgfmathdeclarefunction{fx}{1}{%
+	\pgfmathparse{1/(#1^2+1)}%
+}
+\pgfmathdeclarefunction{fy}{1}{%
+	\pgfmathparse{-#1/(#1^2+1)}%
+}
+
+%\pgfkeys{/pgf/fpu=true}
+\draw[blue!50!cyan,very thick]
+plot[variable=\x,domain=0.001:10,samples=0.5*\gsamples,smooth,scale=\scale]
+( {fx(\x)}, {fy(\x)} ) -- (0,0);
+
+\def\arrow{1}
+
+\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.1)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
+
+\path[very thick,blue!60!cyan,xshift=-0.5pt,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}[scale=1,baseline]
+\draw[->] (-1.5,0) -- (3,0) node[right] {$\Re$};
+\draw[->] (0,-2.5) -- (0,2) node[left] {$\Im$};
+
+\def\t{2}
+
+\def\scale{1}
+\pgfmathdeclarefunction{fx}{1}{%
+	\pgfmathparse{1/3*#1*sin(#1 r) - 1/30*sin(#1 r)}%
+}
+\pgfmathdeclarefunction{fy}{1}{%
+	\pgfmathparse{-1/3*#1*cos(#1 r) + 1/30*cos(#1 r)}%
+}
+
+%\pgfkeys{/pgf/fpu=true}
+\draw[blue!50!cyan,very thick]
+plot[variable=\x,domain=0.001:7.85398163397448,samples=\gsamples,smooth,scale=\scale]
+( {fx(\x)}, {fy(\x)} );
+
+\def\arrow{5}
+
+\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.1)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
+
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{<}}}] (\xa,\fa) -- (\xb,\fb);
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}[scale=1,baseline]
+\draw[->] (-1.5,0) -- (3,0) node[right] {$\Re$};
+\draw[->] (0,-1.5) -- (0,2) node[left] {$\Im$};
+
+\def\t{2}
+
+\def\scale{0.5}
+\pgfmathdeclarefunction{fx}{1}{%
+	\pgfmathparse{2/3*#1*cos(-#1 r) - 1/30*cos(-#1 r)}%
+}
+\pgfmathdeclarefunction{fy}{1}{%
+	\pgfmathparse{2/3*#1*sin(-#1 r) - 1/30*sin(-#1 r)}%
+}
+
+%\pgfkeys{/pgf/fpu=true}
+\draw[blue!50!cyan,very thick]
+plot[variable=\x,domain=0.001:6.28,samples=\gsamples,smooth,scale=\scale]
+( {fx(\x)}, {fy(\x)} );
+
+\def\arrow{5}
+
+\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.1)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
+
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{<}}}] (\xa,\fa) -- (\xb,\fb);
+\end{tikzpicture}
 
 Τελικά, το διάγραμμα Nyquist είναι:
-\todo{Graph}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-2,0) -- (3,0) node[right] {$\Re$};
+\draw[->] (0,-1.5) -- (0,1.5) node[left] {$\Im$};
+
+\def\t{2}
+
+\def\scale{2}
+\pgfmathdeclarefunction{fx}{1}{%
+	\pgfmathparse{1/(#1^2+1)}%
+}
+\pgfmathdeclarefunction{fy}{1}{%
+	\pgfmathparse{-#1/(#1^2+1)}%
+}
+
+%\pgfkeys{/pgf/fpu=true}
+\draw[blue!50!cyan,very thick]
+plot[variable=\x,domain=0.001:10,samples=0.5*\gsamples,smooth,scale=\scale]
+( {fx(\x)}, {fy(\x)} ) -- (0,0);
+
+\def\arrow{1}
+
+\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.1)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
+
+\path[very thick,blue!60!cyan,xshift=-0.5pt,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+
+\draw (0,0) node[above left] {$0$};
+\draw (\scale,0) node[above] {$0.133$};
+
+\end{tikzpicture}
 
 Αφού δεν περικυκλώνεται το -1, το σύστημα είναι ευσταθές.
 
@@ -6675,7 +7032,73 @@ A(j\omega) = \frac{10\left( 4\omega^2+68-j\omega(\omega^2-22) \right)}{\omega^4-
 Τέλος, παρατηρούμε ότι \( \Re\left[A(j\omega)\right] = 1.66 \), ότι για \( \omega \in [0,\ 4.69] \implies \omega^2-22 < 0
 \implies \Im\left[A(j\omega)\right] > 0 \), άρα προσεγγίζουμε από επάνω, και ότι στον φανταστικό άξονα πηγαίνουμε μόνο όταν
 \( \Re\left[A(j\omega)\right] = 0 \implies \omega \to \infty \):
-\todo{Graph}
+
+	\begin{tikzpicture}[scale=1]
+\draw[->] (-1,0) -- (3,0) node[right] {$\Re$};
+\draw[->] (0,-2) -- (0,2.5) node[left] {$\Im$};
+
+\def\scale{1.5}
+\def\xscale{1.5}
+
+\pgfmathdeclarefunction{fx}{1}{%
+	{\pgfkeys{/pgf/fpu=true}%
+		\pgfmathsetmacro\f{%
+			60*#1^2/(#1^4 - 32*#1^2 + 1156) - 20*(#1^2 - 34)/((#1^2 - 34)^2 +36*#1^2)%
+		}%
+		\pgfkeys{/pgf/fpu=false}%
+		\xdef\ga{\f}%
+	}%
+	\pgfmathfloattofixed{\ga}%
+}%
+\pgfmathdeclarefunction{fy}{1}{%
+	{\pgfkeys{/pgf/fpu=true}%
+		\pgfmathsetmacro\f{%
+			-10*#1^3/(#1^4 - 32*#1^2 + 1156) + 340*#1/(#1^4 - 32*#1^2 + 1156) -
+			120*#1/((#1^2 - 34)^2 + 36*#1^2)			}%
+		\pgfkeys{/pgf/fpu=false}%
+		\xdef\ga{\f}%
+	}%
+	\pgfmathfloattofixed{\ga}%
+}
+
+
+\draw[blue!50!cyan,very thick]
+plot[variable=\x,domain=0:80,samples=\gsamples,smooth,yscale=\scale,xscale=\xscale]
+( {fx(\x)}, {fy(\x)} ) -- (0,0);
+\draw[blue!50!cyan!50!red,very thick]
+plot[variable=\x,domain=0:80,samples=\gsamples,smooth,yscale=\scale,xscale=\xscale]
+( {fx(\x)}, {-fy(\x)} ) -- (0,0);
+
+
+\def\arrow{1.4}
+
+\pgfmathsetmacro\xa{\xscale*fx(\arrow)}
+\pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+
+\def\arrow{30}
+
+\pgfmathsetmacro\xa{\xscale*fx(\arrow)}
+\pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+
+\def\arrow{10}
+
+\pgfmathsetmacro\xa{\xscale*fx(\arrow)}
+\pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,-\fa) -- (\xb,-\fb);
+
+\draw(\xscale*0.388,0) node [below right,scale=.8] {$0.388$};
+\draw(\xscale*1.66,0) node [below left,scale=.8] {$1.66$};
+\filldraw[blue!70!cyan,fill=blue!80!cyan] (\xscale*1.66,0) node[above right,scale=.9] {$\omega \to 4.69$};
+
+\end{tikzpicture}
 
 Αφού το -1 δεν περικυκλώνεται, έχουμε \( N= 0\). Επειδή δεν υπάρχουν πόλοι δεξιά, ισχύει \( P = 0\). Άρα τελικά \( Z=0\), και
 το σύστημα είναι ευσταθές.
@@ -6683,7 +7106,22 @@ A(j\omega) = \frac{10\left( 4\omega^2+68-j\omega(\omega^2-22) \right)}{\omega^4-
 \end{exercise}
 \begin{exercise}
 Να σχεδιαστεί το διάγραμμα Nyquist και να εξεταστεί η ευστάθεια:
-\todo{Graph}
+
+\begin{tikzpicture}
+\tikzstyle{transfer}=[rectangle,draw,minimum height=9mm]
+\draw (1.2,0) node[transfer] (h0) {$\frac{6}{s+1}$};
+\draw (3,0) node[transfer] (h1) {$\displaystyle \frac{5}{s(s+2)}$};
+\draw (0,0) node[circle,draw,minimum size=5mm] (mix) {};
+\draw (h1.south) ++(-1,-1) node[transfer] (h2) {$\displaystyle \frac{4}{s+5}$};
+
+\draw[<-] (mix) -- ++(-1,0);
+\draw[->] (mix) -- (h0);
+\draw[->] (h0) -- (h1);
+\draw[->] (h1.east) -- +(1,0) node[midway] (fb) {};
+\draw[->] (fb.center) |- (h2) -| (mix.south) node[below right] {$-$};
+\draw (mix.south);
+\end{tikzpicture}
+
 \tcblower
 Η (ισοδύναμη) συνάρτηση μεταφοράς είναι:
 \[
@@ -6706,14 +7144,76 @@ A(j\omega) = \frac{336}{\omega^4-j8\omega^3-19\omega^2+j16\omega+4}
 \end{align*}
 
 Άρα το διάγραμμα γίνεται:
-\todo{Graph}
+
+\begin{tikzpicture}[scale=1,baseline]
+\draw[->] (-1.5,0) -- (3,0) node[right] {$\Re$};
+\draw[->] (0,-2) -- (0,2.5) node[left] {$\Im$};
+
+\def\t{2}
+
+\def\scale{2}
+\pgfmathdeclarefunction{fx}{1}{%
+	\pgfmathparse{-1/2*#1*cos(-#1 r)/pi + cos(-#1 r)}%
+}
+\pgfmathdeclarefunction{fy}{1}{%
+	\pgfmathparse{-1/2*#1*sin(-#1 r)/pi + sin(-#1 r)}%
+}
+
+%\pgfkeys{/pgf/fpu=true}
+\draw[blue!50!cyan,very thick,name path=(n)]
+plot[variable=\x,domain=0.001:6.28,samples=\gsamples,smooth,scale=\scale]
+( {fx(\x)}, {fy(\x)} );
+\draw[blue!50!cyan!50!red,very thick,name path=(nr)]
+plot[variable=\x,domain=0.001:6.28,samples=\gsamples,smooth,scale=\scale]
+( {fx(\x)}, {-fy(\x)} );
+
+\def\arrow{5}
+
+\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.1)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
+
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{<}}}] (\xa,\fa) -- (\xb,\fb);
+
+\filldraw[top color=red,bottom color=blue,fill opacity=.5] (-1,0) circle (2.5pt) node[below left,opacity=.7] (ins) {$-11.2$};
+\draw (ins.south) node[yshift=-2pt,scale=.5] {$\omega=\sqrt{2}$};
+
+\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-0.2,0) circle (1.5pt) node[below left] {$-1$};
+
+\draw[brown!50!red,thick,densely dotted,name path=(l)] (-0.2,0) -- ++(30:3);
+
+\path [name intersections={of=(l) and (n)}];
+\filldraw[fill opacity=.8] (intersection-1) node[rounded corners=2pt,draw,inner sep=2pt,top color=white,bottom color=brown] {};
+\draw[ultra thick,-stealth,brown!40!orange!80!black] (intersection-1) ++(45:0.3) ++(45+90:0.3) -- ++(45-90:0.8);
+\path [name intersections={of=(l) and (nr)}];
+\filldraw[fill opacity=.8] (intersection-1) node[rounded corners=2pt,draw,inner sep=2pt,top color=white,bottom color=brown] {};
+\draw[ultra thick,-stealth,brown!40!orange!80!black] (intersection-1) ++(45:0.3) ++(45+90:0.3) -- ++(45-90:0.8);
+
+\draw (2,0) node[above right,scale=.8] {$84$};
+\end{tikzpicture}
 
 Παρατηρούμε ότι έχουμε \( N=2 \) και \( P=0 \), άρα \( Z=2\), δηλαδή το σύστημα είναι ασταθές.
 
 \end{exercise}
 \subsection{Γεωμετρικός τόπος ριζών}
 Έστω ότι έχουμε το σύστημα:
-\todo{Graph 110}
+
+\begin{tikzpicture}
+\tikzstyle{transfer}=[rectangle,draw,minimum height=9mm]
+\draw (3,0) node[transfer] (h1) {$\displaystyle \frac{\kappa}{s(s+10)}$};
+\draw (0,0) node[circle,draw,minimum size=5mm] (mix1) {};
+\draw (1,0) node[circle,draw,minimum size=5mm] (mix2) {};
+\draw (h1.south) ++(-1,-0.7) node[draw,rectangle] (h2) {$bs$};
+
+\draw[<-] (mix1) -- ++(-1,0);
+\draw[->] (mix1) -- (mix2);
+\draw[->] (mix2) -- (h1);
+\draw[->] (h1.east) -- +(1,0) node[midway] (fb) {};
+\draw[->] (fb.center) |- (h2) -| (mix2.south) node[below right] {$-$};
+\draw[->] ([xshift=2mm]fb.center) -- ++(0,-2)  -| (mix1.south) node[below right] {$-$};
+\draw (mix1.south);
+\end{tikzpicture}
 
 Τότε η συνάρτηση μεταφοράς έχει τη μορφή
 \[

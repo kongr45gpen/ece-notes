@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+\begin{axis}[
+no markers, samples=3*\gsamples,
+axis y line=left,axis x line=bottom, xlabel=$t\ (\si{\second})$,
+%every axis y label/.style={at=(current axis.above origin),anchor=south},
+%every axis x label/.style={at=(current axis.right of origin),anchor=west},
+height=5cm, width=12cm,
+xtick={0,0.5,1,1.5,2},ytick={-1,0,1},
+enlargelimits=false, clip=false,
+grid = major
+]
+\addplot [very thick,orange!90!green,domain=0:2] {(1+0.2*sin(5*\x r))*sin(
+(60+10*(sin(3*\x r+80)))
+*\x r)};
+\end{axis}
+\end{tikzpicture}
+
