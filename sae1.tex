@@ -4039,10 +4039,10 @@ H(s) = \underset{\substack{\downarrow\\H_0}}{(10)}
 	\\ -40\log\omega + 40\log 2 \qquad &\text{για } \omega > 2
 	\end{cases} \) \\
 	\( φ =  \begin{cases}
-	0\degree &\qquad \text{αν } \omega< 0.2_n\\
-	90\degree +90\degree\log\frac{\omega}{2} &\qquad 
-	\text{αν }0.1\omega_n < \omega < 20 \\
-	180\degree &\qquad \text{αν } \omega>20
+	0\degree &\qquad \text{αν } \omega< 0.2\\
+	-90\degree -90\degree\log\frac{\omega}{2} &\qquad 
+	\text{αν }0.2 < \omega < 20 \\
+	-180\degree &\qquad \text{αν } \omega>20
 	\end{cases} \)
 	
 	\begin{tikzpicture}[scale=1,xscale=0.8]
@@ -4153,8 +4153,8 @@ H(s) = \underset{\substack{\downarrow\\H_0}}{(10)}
 }
 
 \draw[every node/.style={scale=.8}]
-(c1 -| 0,0) node[left] {$-\ang{153}$}
-(c3 -| 0,0) node[left] {$-\ang{243}$}
+(c1 -| 0,0) node[left] {$-\ang{166}$}
+(c3 -| 0,0) node[left] {$-\ang{297}$}
 (c4 -| 0,0) node[left] {$-\ang{270}$}
 ;
 \end{scope}
