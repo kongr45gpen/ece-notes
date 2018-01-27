@@ -8390,6 +8390,8 @@ A(s) = \frac{k(s+6)}{(s+3)(s+8)(s^2+4s+8)}
 
 \tcblower
 
+Η \( s^4+4s+8 \) έχει ρίζες \( -2 \pm 2j\).
+
 Έχουμε 4 πόλους, άρα 4 κλάδους, και 1 μηδενικό, άρα 3 ασύμπτωτες.
 \begin{align*}
 	\text{Αρ. Ασ. } &=\text{Αρ. Π. } - \text{ Αρ. Μ} = 3
@@ -8447,7 +8449,7 @@ plot[smooth] coordinates {(-0.4,-0.7) (-0.1,-0.4) (1,-1)}
 	με γωνίες \( \pm \ang{45} \) και \( \ang{180} \pm \ang{45} \) και κέντρο
 	\(\frac{-2-2-3+6-8-7}{4} = -4\).
 	
-	\begin{tikzpicture}[xscale=1,scale=1.4]
+	\begin{tikzpicture}[xscale=1,scale=1.7]
 	\draw[->] (-3,0) -- (1,0) node[right] {$\Re$};
 	\draw[->] (0,-1) -- (0,1) node[left] {$\Im$};
 	
@@ -8570,7 +8572,38 @@ plot[smooth] coordinates {(-0.4,-0.7) (-0.1,-0.4) (1,-1)}
 	\]
 	
 	Ο γεωμετρικός τόπος ριζών θα γίνει:
-	\todo{Graph 137}
+	
+	\begin{tikzpicture}[xscale=1,scale=1.4]
+	\draw[->] (-3,0) -- (1,0) node[right] {$\Re$};
+	\draw[->] (0,-1) -- (0,1) node[left] {$\Im$};
+	
+	\def\ang{29}
+	\def\dis{2}
+	\draw[green!50!black] (-1.1,-1) -- (-1.1,1);
+	\draw[green!50!black] (-1.1,0) node[below left,scale=.9] {$-3.5$};
+	
+	\draw[gray,dashed] (-0.0,0.5) node[right] {$j2$} -- ++(-0.6,0) (-0.6,-0.5) -- ++(0.6,0) node[right] {$-j2$};
+	
+	\draw[locus,ultra thick,postaction={decorate},
+	decoration={markings,	
+		mark=at position 0.12 with {\arrow{>}},%
+		mark=at position 0.30 with {\arrow{>}},%
+		mark=at position 0.55 with {\arrow{>}},%
+		mark=at position 0.85 with {\arrow{>}},%
+	}]
+	(-2.5,0) -- (-2,0)
+	(-1,0) -- (-0.6,0)
+	plot[smooth,tension=.7] coordinates {(-0.6,0.5) (-0.95,0.55) (-1.05,0.98)}
+	plot[smooth,tension=.7] coordinates {(-0.6,-0.5) (-0.95,-0.55) (-1.05,-0.98)}
+	;
+	
+	\draw (-0.6,0) node[locuszero=$-2$] {};
+	\draw (-1,0) node[locuspole=$-3$] {};
+	\draw (-2,0) node[locuszero=$-6$] {};
+	\draw (-2.5,0) node[locuspole=$-8$] {};
+	\draw (-0.6,0.5) node[locuspole] {};
+	\draw (-0.6,-0.5) node[locuspole] {};
+	\end{tikzpicture}
 	
 	Πράγματι, για μεγάλο κέρδος \( k \), ο πόλος που τείνει στο -2 εξουδετερώνεται από
 	το μηδενικό εκεί, και παραμένουν οι δύο κυρίαρχοι πόλοι που απομακρύνονται από τον
@@ -8588,7 +8621,7 @@ plot[smooth] coordinates {(-0.4,-0.7) (-0.1,-0.4) (1,-1)}
 \begin{exercise}
 Σε ποιά περιοχή τιμών θα επιλέξουμε το \( a \) έτσι ώστε να εξασφαλίζεται ότι για μεγάλα
 κέρδη στο σύστημα κλειστού βρόχου (με μοναδιαία αρνητική ανάδραση) θα έχουμε \( t_s <
-\SI{0.5}{\second} \), αν η συνάρτηση μεταφοράς είναι;
+\SI{0.5}{\second} \), αν η συνάρτηση μεταφοράς είναι:
 \[
 A(s) = \frac{k(s+a)}{s(s+4)}
 \]
@@ -8601,7 +8634,42 @@ A(s) = \frac{k(s+a)}{s(s+4)}
 
 Αν και δεν μας ζητείται, σχεδιάζουμε τον γεωμετρικό τόπο ριζών για να βοηθηθούμε στην
 επίλυση:
-\todo{Graph 139}
+
+\begin{tikzpicture}[xscale=1,scale=1.4]
+\draw[->] (-3,0) -- (1,0) node[right] {$\Re$};
+\draw[->] (0,-1) -- (0,1) node[left] {$\Im$};
+
+\coordinate (p0) at (0,0);
+\coordinate (p1) at (-1,0);
+\coordinate (p2) at (-2,0);
+\coordinate (p3) at (-3,0);
+
+\fill[fill=magenta!70!green,path fading=west,opacity=.7]
+(p2 |- current bounding box.north) rectangle (-3,-1 |- current bounding box.south);
+
+\draw[locus,ultra thick,postaction={decorate},
+decoration={markings,	
+	mark=at position 0.04 with {\arrow{<}},%
+	mark=at position 0.10 with {\arrow{>}},%
+	mark=at position 0.16 with {\arrow{>}},%
+	mark=at position 0.21 with {\arrow{<}},%
+	mark=at position 0.45 with {\arrow{>}},%
+	mark=at position 0.83 with {\arrow{<}},%
+}]
+(p2) -- (current bounding box.west |- 0,0)
+(p1) -- (p0)
+(-1.5,0) circle (1cm)
+;
+
+\draw (p0) node[locuspole] {};
+\draw (p1) node[locuspole=$-4$] {};
+\draw (p2) node[locuszero=$-8$] {};
+\draw (-2.5,0) node[locusbreak] {};
+\draw (-0.5,0) node[locusbreak] {};
+\end{tikzpicture}
+
+Όντως, για μεγάλα \( k \) οι πόλοι του συστήματος κλειστού βρόχου βρίσκονται αριστερά από το
+\( -8 \), και θα έχουμε σωστό χρόνο αποκατάστασης.
 
 \end{exercise}
 \begin{exercise}
@@ -8621,7 +8689,19 @@ G(s) = \frac{1}{s+2}
 
 Να σχεδιαστεί ο ελεγκτής σειράς \( H_c \) που να πληροί τις παραπάνω προδιαγραφές.
 
-\todo{Graph 140}
+\begin{tikzpicture}
+\tikzstyle{transfer}=[rectangle,draw,minimum size=9mm]
+\draw (1.2,0) node[transfer] (h0) {$H_c$};
+\draw (3,0) node[transfer] (h1) {$\displaystyle G(s)$};
+\draw (0,0) node[mixer,scale=.7] (mix) {};
+
+\draw[<-] (mix.west) -- ++(-1,0);
+\draw[->] (mix.east) -- (h0);
+\draw[->] (h0) -- (h1);
+\draw[->] (h1.east) -- +(1,0) node[midway] (fb) {};
+\draw[->] (fb.center) -- ++(0,-1.2) -| (mix.south) node[below right] {$-$};
+\draw (mix.south);
+\end{tikzpicture}
 
 \tcblower
 Αφού θέλουμε μηδενικό σφάλμα, χρειαζόμαστε έναν ολοκληρωτή, έναν πόλο στο 0. Για να μπορέσουμε
@@ -8633,7 +8713,34 @@ H_c = \frac{k_p(s+μ)}{s}
 όπου \( k_p \) και \( μ \) σταθερές που πρέπει να προσδιορίσουμε.
 
 Τότε ο γεωμετρικός τόπος ριζών είναι:
-\todo{Graph 141}
+
+\begin{tikzpicture}[xscale=1,scale=1.4]
+\draw[->] (-3,0) -- (1,0) node[right] {$\Re$};
+\draw[->] (0,-1) -- (0,1) node[left] {$\Im$};
+
+\draw[locus,yscale=1.3,ultra thick,postaction={decorate},
+decoration={markings,
+	mark=at position 0.03 with {\arrow{>}},%
+	mark=at position 0.08 with {\arrow{<}},%
+	mark=at position 0.225 with {\arrow{>}},%
+	mark=at position 0.245 with {\arrow[thick]{<}},%
+	mark=at position 0.45 with {\arrow{>}},%
+	mark=at position 0.82 with {\arrow{<}},%
+}]
+(-1.5,0) -- ++(-1.5,0)
+(-0.5,0) -- (0,0)
+(-1,0) circle (0.8cm)
+;
+
+\draw (0,0) node[locuspole] (p0) {};
+\draw (-0.5,0) node[locuspole=$-2$] (p1) {};
+\draw (-1.5,0) node[locuszero=$-\mu$] {};
+\draw (-1.8,0) node[locusbreak,scale=.7] {};
+\draw (-0.2,0) node[locusbreak,scale=.7] {};
+
+\draw[<-,opacity=.6] (p0) to[bend left] ++(-45:0.6) node[below right,scale=.8,align=center] {πόλος\\από PI};
+\draw[<-,opacity=.6] (p1) to[bend right] ++(180+45:0.6) node[below,scale=.7,align=center] {πόλος\\από $G(s)$};
+\end{tikzpicture}
 
 Παρατηρούμε ότι δεν έχουμε σημεία στα δεξιά, άρα το περιθώριο κέρδους είναι \( \infty \).
 Για τις υπόλοιπες δύο προδιαγραφές, θα επιλέξουμε κατάλληλα τις σταθερές \( k \) και
@@ -8715,7 +8822,19 @@ H_p(s) = \frac{9}{(s+4)(s+6)}
     \item \( \theta_m > \ang{30} \) (περιθώριο φάσης)
 \end{enumerate}
 
-\todo{Graph 142}
+\begin{tikzpicture}
+\tikzstyle{transfer}=[rectangle,draw,minimum size=9mm]
+\draw (1.2,0) node[transfer] (h0) {$H_c$};
+\draw (3,0) node[transfer] (h1) {$\displaystyle H_p$};
+\draw (0,0) node[mixer,scale=.7] (mix) {};
+
+\draw[<-] (mix.west) -- ++(-1,0);
+\draw[->] (mix.east) -- (h0);
+\draw[->] (h0) -- (h1);
+\draw[->] (h1.east) -- +(1,0) node[midway] (fb) {};
+\draw[->] (fb.center) -- ++(0,-1.2) -| (mix.south) node[below right] {$-$};
+\draw (mix.south);
+\end{tikzpicture}
 
 \tcblower
 \begin{itemize}
@@ -8828,7 +8947,37 @@ A(s) = \frac{k(s+p)}{(s+1)(s+3)(s+6)}
     \end{align*}
     Τα σημεία \( s_2 \) και \( s_3 \) απορρίπτονται αφού δεν ανήκουν στο γεωμετρικό τόπο.
     
-    \todo{Graph 143}
+    \begin{tikzpicture}[xscale=1,scale=1.3]
+    \draw[->] (-4.5,0) -- (2,0) node[right] {$\Re$};
+    \draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+    
+    \draw[green!50!black,opacity=.4,xshift=2pt] (0,2.2) -- (0,-2.2);
+    
+    \coordinate (p1) at (-0.7,0);
+    \coordinate (p2) at (-1.5,0);
+    \coordinate (p3) at (-3,0);
+    \coordinate (p4) at (-4,0);
+    \coordinate (b1) at (-1,0);
+    
+    \draw[locus,ultra thick,postaction={decorate},
+    decoration={markings,
+    	mark=at position 0.10 with {\arrow{>}},%
+    	mark=at position 0.22 with {\arrow{>}},%
+    	mark=at position 0.265 with {\arrow[very thick]{<}},%
+    	mark=at position 0.45 with {\arrow{<}},%
+    	mark=at position 0.85 with {\arrow{>}},%
+    }]
+    (p4) -- (p3)
+    (p2) -- (p1)
+    plot [smooth,tension=.6] coordinates {(-0.07,2) (-0.2,1) (b1) (-0.2,-1) (-0.07,-2)}
+    ;
+    
+    \draw (p1) node[locuspole=$-1$] {};
+    \draw (p2) node[locuspole=$-3$] {};
+    \draw (p3) node[locuspole=$-6$] {};
+    \draw (p4) node[locuszero=$-10$] {};
+    \draw (b1) node[locusbreak,label={[above,scale=.8,fill=white,fill opacity=.5,text opacity=1]90:$1.93$}] {};
+    \end{tikzpicture}
     
     \item Ο παρονομαστής/χαρακτηριστική εξίσωη της συνάρτησης μεταφοράς κλειστού βρόχου είναι:
     \[
@@ -8860,7 +9009,34 @@ A(s) = \frac{k(s+p)}{(s+1)(s+3)(s+6)}
    \implies s = -2 \text{ ή } \cancel{-4.66}
    \]
    
-   \todo{Graph 144}
+   \begin{tikzpicture}[xscale=0.8,scale=1.4]
+   \draw[->] (-5,0) -- (2,0) node[right] {$\Re$};
+   \draw[->] (0,-2.5) -- (0,2.5) node[left] {$\Im$};
+   
+   
+   \draw[locus,ultra thick,postaction={decorate},
+   decoration={markings,
+   	mark=at position 0.06 with {\arrow{>}},%
+   	mark=at position 0.15 with {\arrow{>}},%
+   	mark=at position 0.217 with {\arrow{<}},%
+   	mark=at position 0.45 with {\arrow{<}},%
+   	mark=at position 0.8 with {\arrow{<}},%
+   }]
+   (-4,0) -- +(-1,0)
+   (-2,0) -- (-0.7,0)
+   plot [smooth,tension=.4] coordinates {(0.75,2.5) (-1,0.4) (-1.2,0)}
+   plot [smooth,tension=.4] coordinates {(0.75,-2.5) (-1,-0.4) (-1.2,0)}
+   ;
+   
+   \draw[green!60!black] (-1.4,0) -- ++(50:3);
+   \draw[green!60!black] (-1.4,0) -- ++(-50:3);
+   
+   \draw (-0.7,0) node[locuspole=$-0.91$] {};
+   \draw (-2,0) node[locuspole=$-3.57$] {};
+   \draw (-4,0) node[locuspole=$-5.51$] {};
+   
+   \draw (-1.2,0) node[locusbreak] {};
+   \end{tikzpicture}
 \end{enumgreekpar}
 \end{exercise}
 
@@ -8896,7 +9072,31 @@ H(s) = \frac{10}{(s+6)(s+7)}
 	\]
 	όπως γνωρίζουμε για τις συναρτήσεις μεταφοράς κλειστού βρόχου.
 	
-	\todo{Graph 145}
+	\begin{tikzpicture}
+	\tikzstyle{transfer}=[rectangle,draw,minimum size=10mm]
+	\draw (1.5,0) node[transfer] (h1) {$H$};
+	\draw (0,0) node[mixer,scale=.7] (mix) {};
+	\draw (h1.south) ++(0,-1) node[transfer] (h2) {$G$};
+	
+	\draw[<-] (mix.west) node[above left] {$+$} -- ++(-1,0);
+	\draw[->] (mix.east) -- (h1);
+	\draw[->] (h1.east) -- +(1,0) node[midway] (fb) {};
+	\draw[->] (fb.center) |- (h2) -| (mix.south);
+	\draw (mix.south) node[below right] {$-$};
+	
+	\begin{scope}[xshift=6cm]
+	\tikzstyle{transfer}=[rectangle,draw,minimum width=12mm]
+	
+	\draw (1.5,0) node[transfer] (h1) {$A(s)$};
+	\draw (0,0) node[mixer,scale=.7] (mix) {};
+	
+	\draw[<-] (mix.west) node[above left] {$+$} -- ++(-1,0);
+	\draw[->] (mix.east) -- (h1);
+	\draw[->] (h1.east) -- +(1,0) node[midway] (fb) {};
+	\draw[->] (fb.center) -- (fb.center |- h2)  -| (mix.south);
+	\draw (mix.south) node[below right] {$-$};
+	\end{scope}
+	\end{tikzpicture}
 	
 	Η παραπάνω σχέση λύνεται ως προς \( A \):
 	\[
@@ -9000,7 +9200,31 @@ e_{\mathrm{ss}} = \frac{1}{1+ \lim_{s\to 0} A(s)}
 \]
 
 Σχεδιάζουμε γρήγορα το γεωμετρικό τόπο ριζών:
-\todo{Graph 146}
+
+\begin{tikzpicture}[xscale=1,scale=1.3]
+\draw[->] (-2,0) -- (1,0) node[right] {$\Re$};
+\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+
+\coordinate (p1) at (-0.5,0);
+\coordinate (p2) at (-1.5,0);
+\coordinate (b1) at (-1,0);
+
+\draw[locus,ultra thick,postaction={decorate},
+decoration={markings,
+	mark=at position 0.08 with {\arrow{<}},%
+	mark=at position 0.20 with {\arrow{<}},%
+	mark=at position 0.45 with {\arrow{>}},%
+	mark=at position 0.85 with {\arrow{>}},%
+}]
+(p1) -- (p2)
+(b1) -- ++(0,1.5)
+(b1) -- ++(0,-1.5)
+;
+
+\draw (p1) node[locuspole=$-1$] {};
+\draw (p2) node[locuspole=$-4$] {};
+\draw (b1) node[locusbreak] {};
+\end{tikzpicture}
 
 Για να έχουμε τον ταχύτερο δυνατό χρόνο αποκατάστασης, θέλουμε οι πόλοι μας να βρίσκονται
 επάνω στην κατακόρυφη ευθεία, διότι σε εκείνο το σημείο ο πιο αργός πόλος αποκτά την
