@@ -8079,12 +8079,37 @@ coordinates {(-0.93,2) (-0.8,1) (0,0) (-0.8,-1) (-0.93,-2)}
 	\end{itemize}
 	
 	Αν για παράδειγμα θέσουμε \( a = 10 \), τότε:
-	\todo{Graph 130 μαζί με σ.θλάσης}
+	
+	\begin{tikzpicture}[xscale=1.3,scale=1.3]
+	\draw[->] (-3,0) -- (1,0) node[right] {$\Re$};
+	\draw[->] (0,-1) -- (0,1) node[left] {$\Im$};
+	
+	\draw[locus,ultra thick,postaction={decorate},
+	decoration={markings,
+		mark=at position 0.04 with {\arrow{>}},%
+		mark=at position 0.08 with {\arrow{<}},%
+		mark=at position 0.14 with {\arrow{<}},%
+		mark=at position 0.19 with {\arrow{>}},%
+		mark=at position 0.30 with {\arrow{<}},%
+		mark=at position 0.60 with {\arrow{>}},%
+	}]
+	(-1.5,0) -- (-1,0)
+	(-2.5,0) -- ++(0.5,0)
+	plot[smooth cycle] coordinates {(-2.25,0) (-1.8,1)  (-1.25,0) (-1.8,-1)}
+	;
+	
+	\draw (-1,0) node[locuspole=$-4$] {};
+	\draw (-1.5,0) node[locuspole=$-6$] {};
+	\draw (-2,0) node[locuszero=$-8$] {};
+	\draw (-2.5,0) node[locuszero=$-10$] {};
+	\draw (-1.25,0) node[locusbreak,label={[above,scale=.8]90:$-5.27$}] {};
+	\draw (-2.25,0) node[locusbreak,label={[above,scale=.8]90:$-8.73$}] {};
+	\end{tikzpicture}
 	
 	Για να βρούμε ακριβώς το \( k \), βρίσκουμε τα σημεία θλάσης:
 	\begin{align*}
 		\od{k}{s} &= 8s^2 +112s+368 = 0 \implies \\
-		s &= -5.267 \text{ ή } =8.73
+		s &= -5.267 \text{ ή } = - 8.73
 	\end{align*}
 	
 	Άρα, για το συγκεκριμένο \( a \), ισχύει \( k > k_a \), όπου:
@@ -8096,7 +8121,22 @@ coordinates {(-0.93,2) (-0.8,1) (0,0) (-0.8,-1) (-0.93,-2)}
 
 \subsection{Ευαισθησία σε θόρυβο}
 Έστω ένα σύστημα με είσοδο θορύβου \( n \) και είσοδο διαταραχής \( d \):
-\todo{Graph 131}
+
+\begin{tikzpicture}[scale=1.2]
+\tikzstyle{transfer}=[rectangle,draw,minimum width=32pt]
+\draw (2,0) node[transfer] (h1) {$\displaystyle A(s)$};
+\draw (0,0) node[circle,draw,minimum size=5mm] (mix) {};
+\draw (4,0) node[circle,draw,minimum size=5mm] (d) {};
+
+\draw[<-] (mix) -- ++(-1,0) node[left] {$r$};
+\draw[->] (mix) -- (h1);
+\draw[->] (h1) -- (d);
+\draw[->] (d) ++(0,1) node[right] {$d$} -- (d.north) node[above right] {$+$};
+\draw[->] (d.east) -- +(1,0) node[midway] (fb) {} node[right] {$y$};
+\draw[->] (fb.center) -- ++(0,-1)  -| (mix);
+\draw (mix.south) node[below right] {$-$};
+\draw[<-] (mix.north) node[above right] {$+$} -- ++(0,1);
+\end{tikzpicture}
 
 Οι συναρτήσεις μεταφοράς για την είσοδο \( r \), την είσοδο θορύβου \( n \) και την
 είσοδο διαταραχής \( d \) είναι:
@@ -8118,7 +8158,7 @@ coordinates {(-0.93,2) (-0.8,1) (0,0) (-0.8,-1) (-0.93,-2)}
 	\left|H_{dn}(j\omega )\right| &\quad \text{για } \omega < 1
 \end{align*}
 
-\begin{exercise}{Παράδειγμα}
+\begin{exercise}[Παράδειγμα]
 Δίνεται η συνάρτηση μεταφοράς του παραπάνω συστήματος κλειστού βρόχου:
 \[
 A(s) = \frac{10k(s+3)}{(s+5)(s+10)}
