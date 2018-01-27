@@ -9300,7 +9300,69 @@ H_{yd} = \frac{1}{1+A}
 
 Για τον υπολογισμό περιθωρίου φάσης και κέρδους, μπορούμε να σχεδιάσουμε πρόχειρα ένα
 διάγραμμα Bode:
-\todo{Graph 147}
+
+\begin{tikzpicture}[scale=1,xscale=2]
+\pgfplotsset{
+	/pgf/number format/freq/.style={fixed},
+}
+\def\phasedown{-4}
+\def\phaseextra{-2}
+
+%\draw (-1,1) node[orange!90!blue!80!black] {$\displaystyle \left|H_p\cdot H_c\right|_{\si{\decibel}}$};
+
+\draw[->] (-0.3,\phasedown+\phaseextra) -- (-0.3,3);
+\draw[->] (-0.3,0) -- (3.5,0) node[above] {$\si{\radian/\second}$};
+
+\foreach \x in {1,1.6021} {
+	\draw[densely dotted] (\x,\phasedown) -- (\x,0);
+}
+
+\def\at{40}
+\draw[ultra thick,orange!90!blue!80!black]
+(-0.3,2.5)
+-- ++(1.3,0) node (c1) {}
+-- ++(-1*\at:{0.6021/cos(1*\at)}) node(c2) {} node[above right] {-20 dB/dec}
+-- ++(-1.8*\at:{1/cos(1.8*\at)}) node(c3) {} node[above right,midway] {-40 dB/dec}
+;
+
+\foreach \p in {c1,c2} {
+	\draw[densely dashed] (\p.center) -- (\p.center |- 0,0);
+}
+
+
+\foreach \x in {1,1.6021} {
+	\pgfmathsetmacro\result{10^\x/10}
+	\draw (\x,-0.1) node[below,fill=white,fill opacity=.75,text opacity=1] {$\pgfmathprintnumber[freq]\result$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+\foreach \x in {0,0.6021,1,1.6021,2,2.6021} {
+	\pgfmathsetmacro\result{10^\x/10}
+	\draw (\x,\phasedown-0.1) node[below,fill=white,fill opacity=.8,text opacity=1,scale=.75] {$\pgfmathprintnumber[freq]\result$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+
+\begin{scope}[yshift=\phasedown cm]
+%\draw (-1,-1) node[magenta,left] {$\phi$};
+\draw[->] (-0.3,0) -- (3.5,0);
+\def\at{30}
+
+\draw[ultra thick,magenta]
+(-0.3,2.5) -- ++ (0.3,0) node(c1) {}
+-- ++(-1*\at:{0.6021/cos(1*\at)}) node(c2) {} node[above right,midway,scale=.9] {$\ang{-45}$/dec}
+-- ++(-2*\at:{(2-0.6021)/cos(2*\at)}) node(c3) {} node[above right,midway,scale=.9] {$\ang{-90}$/dec}
+-- ++(-1*\at:{0.6021/cos(1*\at)}) node(c4) {} node[below,midway,scale=.9] {$\ang{-45}$/dec}
+-- ++(0.7,0)
+;
+
+\foreach \p in {c1,c2,c3,c4} {
+	\draw[dashed,gray] (\p.center) -- (\p.center |- 0,0);
+}
+
+\draw (c1 -| -0.3,0) node[left] {$\ang{0}$};
+\draw[dashed] (c4) -- (c4 -| -0.3,0) node[left] {$\ang{-180}$};
+\end{scope}
+
+\end{tikzpicture}
 
 Η συνάρτηση μεταφοράς τείνει ασυμπτωτικά στις \( \ang{180} \) για \( \omega \to \infty \), αλλά δεν φτάνει ποτέ εκεί, επομένως πάντα το περιθώριο κέρδους είναι \( \infty \).
 
@@ -9423,7 +9485,22 @@ K_p\sqrt{μ^2+1}
 \end{exercise}
 \begin{exercise}
 Δίνεται το σύστημα κλειστού βρόχου με μοναδιαία αρνητική ανάδραση:
-\todo{Graph 148}
+
+\begin{tikzpicture}
+\tikzstyle{transfer}=[rectangle,draw,minimum width=12mm]
+
+\draw (1.5,0) node[transfer] (h1) {$H_c(s)$};
+\draw (3.5,0) node[transfer] (h2) {$H_p(s)$};
+\draw (0,0) node[mixer,scale=.7] (mix) {};
+
+\draw[<-] (mix.west) node[above left] {$+$} -- ++(-1.5,0) node[near end,above] {$v$};
+\draw[->] (mix.east) -- (h1);
+\draw[->] (h1) -- (h2);
+\draw[->] (h2.east) -- +(1,0) node[midway] (fb) {} node[below right] {$y$};
+\draw[->] (fb.center) -- ++(0,-1.3)  -| (mix.south);
+\draw (mix.south) node[below right] {$-$};
+\end{tikzpicture}
+
 όπου:
 \[
 H_p(s) = \frac{3}{s^2-9}
@@ -9454,7 +9531,34 @@ H_p(s) = \frac{3}{s^2-9}
 	
 	Σχεδιάζουμε τον γεωμετρικό τόπο ριζών, δεδομένου ότι έχουμε 2 ασυμπτώτους, κέντρο
 	ασυμπτώτων \( \frac{\sum p -\sum z}{\text{Αρ. Ασ.}} = 0 \) με γωνίες \( \pm \ang{90} \).
-	\todo{Graph 149}
+	
+	\begin{tikzpicture}[xscale=1,scale=1.3]
+	\draw[->] (-1.5,0) -- (1.5,0) node[right] {$\Re$};
+	\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+	
+	\coordinate (p1) at (-1,0);
+	\coordinate (p2) at (+1,0);
+	\coordinate (b1) at (0,0);
+	
+	\draw[locus,ultra thick,postaction={decorate},
+	decoration={markings,
+		mark=at position 0.10 with {\arrow{>}},%
+		mark=at position 0.32 with {\arrow{<}},%
+		mark=at position 0.55 with {\arrow{>}},%
+		mark=at position 0.90 with {\arrow{>}},%
+	}]
+	(p1) -- (p2)
+	(b1) -- ++(0,1.5) node (pf1) {}
+	(b1) -- ++(0,-1.5) node (pf2) {}
+	;
+	
+	\draw[locus,ultra thick,path fading=north] (pf1.center) -- ++(0,0.5);
+	\draw[locus,ultra thick,path fading=south] (pf2.center) -- ++(0,-0.5);
+	
+	\draw (p1) node[locuspole=$-3$] {};
+	\draw (p2) node[locuspole=$+3$] {};
+	\draw (b1) node[locusbreak] {};
+	\end{tikzpicture}
 	
 	\textbf{Οριακή ευστάθεια} έχουμε όταν οι πόλοι βρίσκονται επάνω στον πραγματικό άξονα.
 	Για να βρούμε τα \( K_p \) για τα οποία οι πόλοι βρίσκονται σε αυτή τη θέση, θα μπορούσαμε
