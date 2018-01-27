@@ -8447,7 +8447,44 @@ plot[smooth] coordinates {(-0.4,-0.7) (-0.1,-0.4) (1,-1)}
 	με γωνίες \( \pm \ang{45} \) και \( \ang{180} \pm \ang{45} \) και κέντρο
 	\(\frac{-2-2-3+6-8-7}{4} = -4\).
 	
-	\todo{Graph 135}
+	\begin{tikzpicture}[xscale=1,scale=1.4]
+	\draw[->] (-3,0) -- (1,0) node[right] {$\Re$};
+	\draw[->] (0,-1) -- (0,1) node[left] {$\Im$};
+	
+	\def\ang{29}
+	\def\dis{2}
+	\draw[green!50!black] (-1.2,0) -- ++(\ang:\dis);
+	\draw[green!50!black] (-1.2,0) -- ++(\ang:-\dis);
+	\draw[green!50!black] (-1.2,0) -- ++(-\ang:\dis);
+	\draw[green!50!black] (-1.2,0) -- ++(-\ang:-\dis);
+	\draw[green!50!black] (-1.2,0) node[below,scale=.9] {$-4$};
+	
+	\draw[gray,dashed] (-0.0,0.9) node[right] {$j2$} -| (-0.4,-0.9) -- ++(0.4,0) node[right] {$-j2$};
+	
+	\draw[locus,ultra thick,postaction={decorate},
+	decoration={markings,
+		mark=at position 0.035 with {\arrow{>}},%
+		mark=at position 0.07 with {\arrow{<}},%		
+		mark=at position 0.15 with {\arrow{>}},%
+		mark=at position 0.30 with {\arrow{>}},%
+		mark=at position 0.50 with {\arrow{>}},%
+		mark=at position 0.70 with {\arrow{<}},%
+		mark=at position 0.9 with {\arrow{>}},%
+	}]
+	(-2.3,0) -- (-1.75,0)
+	(-0.6,0) -- (-1.5,0)
+	plot[smooth] coordinates {(-0.4,0.9) (-0.1,0.7) (0.5,0.99)}
+	plot[smooth] coordinates {(-0.4,-0.9) (-0.1,-0.7) (0.5,-0.99)}
+	plot[smooth] coordinates {(-3,0.92) (-2,0) (-3,-0.92)}
+	;
+	
+	\draw (-0.6,0) node[locuspole=$-3$] {};
+	\draw (-1.5,0) node[locuszero=$-6$] {};
+	\draw (-2.3,0) node[locuspole=$-8$] {};
+	\draw (-1.75,0) node[locuspole,label={[above]0:$-7$}] {};
+	\draw (-0.4,0.9) node[locuspole] {};
+	\draw (-0.4,-0.9) node[locuspole] {};
+	\end{tikzpicture}
 	
 	Το σημείο αναχώρησης των δύο αριστερών κλάδων μπορούμε να το βρούμε από τον αντίστοιχο
 	τύπο, αλλά δεν θα χρειαστεί.
@@ -8476,7 +8513,35 @@ plot[smooth] coordinates {(-0.4,-0.7) (-0.1,-0.4) (1,-1)}
 		Τότε το κέντρο των ασυμπτώτων είναι
 		\( \frac{-2-2-3+6-8+9}{2} = 0 \), δηλαδή οι ασύμπτωτες ταυτίζονται με
 		τον φανταστικό άξονα:
-		\todo{Graph 136}
+		
+		\begin{tikzpicture}[xscale=1,scale=1.4]
+		\draw[->] (-3,0) -- (1,0) node[right] {$\Re$};
+		\draw[->] (0,-1) -- (0,1) node[left] {$\Im$};
+		
+		\draw[green!50!black,xshift=2pt] (0,-1) -- (0,1);
+		
+		\draw[gray,dashed] (-0.0,0.7) node[right] {$j2$} -| (-0.4,-0.7) -- ++(0.4,0) node[right] {$-j2$};
+		
+		\draw[locus,ultra thick,postaction={decorate},
+		decoration={markings,
+			mark=at position 0.07 with {\arrow{>}},%
+			mark=at position 0.27 with {\arrow{>}},%
+			mark=at position 0.6 with {\arrow{>}},%
+			mark=at position 0.9 with {\arrow{>}},%
+		}]
+		(-2,0) -- ++(-0.4,0)
+		(-0.6,0) -- (-1.5,0)
+		plot[smooth,tension=.8] coordinates {(-0.4,0.7) (-0.1,0.4) (-0.03,1)}
+		plot[smooth,tension=.8] coordinates {(-0.4,-0.7) (-0.1,-0.4) (-0.03,-1)}
+		;
+		
+		\draw (-0.6,0) node[locuspole=$-3$] {};
+		\draw (-1.5,0) node[locuszero=$-6$] {};
+		\draw (-2,0) node[locuspole=$-8$] {};
+		\draw (-2.4,0) node[locuszero=$-9$] {};
+		\draw (-0.4,0.7) node[locuspole] {};
+		\draw (-0.4,-0.7) node[locuspole] {};
+		\end{tikzpicture}
 		
 		Τότε επιβεβαιώνουμε πως όντως το σύστημα είναι ευσταθές για κάθε κέρδος \( k \).
 	\end{itemize}
@@ -8498,7 +8563,7 @@ plot[smooth] coordinates {(-0.4,-0.7) (-0.1,-0.4) (1,-1)}
 	\implies z_x > -5.
 	\]
 	
-	Έτσι, αν για παράδειγμα τοποθετήσουμε το μιγαδικό του προηγούμενου ερωτήματος, αντί
+	Έτσι, αν για παράδειγμα τοποθετήσουμε το μηδενικό του προηγούμενου ερωτήματος, αντί
 	για τη -9, στη θέση:
 	\[
 	z_x = 2
@@ -8632,6 +8697,8 @@ H_c = \frac{k_p(s+μ)}{s}
 	
 	Έτσι, \textbf{επιλέγουμε} \( \underline{k_p = 50} \) για να ικανοποιήσουμε την 4\textsuperscript{η} προδιαγραφή.
 \end{itemize}
+
+\hspace{0pt}
 \end{exercise}
 
 \begin{exercise}[Παλιό θέμα (2 Ιουνίου 2013)]
