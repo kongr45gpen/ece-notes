@@ -8255,7 +8255,7 @@ H_p(s) = \frac{6(s+6)}{(s+3)(s+9)}
 \tcblower
 Η συνάρτηση είναι τύπου 0, επομένως έχει πεπερασμένο σφάλμα θέσης.
 
-Εισάγουμε έναν \textit{proportional} ελεγκτή \( \underline{H_c = k} (\) πριν από
+Εισάγουμε έναν \textit{proportional} ελεγκτή \( \underline{H_c = k} \) πριν από
 την \( H_p \) έτσι ώστε να προσθέσουμε μια παράμετρο που να μεταβάλλεται. Επομένως τελικά
 η συνάρτηση μεταφοράς είναι:
 \[
@@ -8275,7 +8275,75 @@ A(s) = H_cH_p = \frac{k\cdot 6(s+6)}{(s+3)(s+9)}
 	\right)}
 \]
 και σχεδιάζουμε ένα πρόχειρο διάγραμμα Bode:
-\todo{Graph 133}
+
+\begin{tikzpicture}[scale=1,xscale=2]
+\pgfplotsset{
+	/pgf/number format/freq/.style={fixed},
+}
+\def\phasedown{-4}
+\def\phaseextra{-3}
+
+\draw (-1,1) node[orange!90!blue!80!black] {$\displaystyle \left|H_p\cdot H_c\right|_{\si{\decibel}}$};
+
+\draw[->] (0,\phasedown+\phaseextra) -- (0,3);
+\draw[->] (0,0) -- (4.5,0) node[above] {$\si{\radian/\second}$};
+
+\foreach \x in {2,2.3010,2.4771} {
+	\draw[densely dotted] (\x,\phasedown) -- (\x,0);
+}
+
+\def\at{60}
+\draw[ultra thick,orange!90!blue!80!black]
+(0,2.5)
+-- ++(2,0) node (c1) {}
+-- ++(-1*\at:{0.3010/cos(1*\at)}) node(c2) {} node[above right] {-20 dB/dec}
+-- ++(0.4771-0.3010,0) node (c3) {}
+-- ++(-1*\at:{1.5/cos(1*\at)}) node(c4) {} node[above right] {-20 dB/dec}
+;
+
+\foreach \p in {c1,c2,c3} {
+	\draw[densely dashed] (\p.center) -- (\p.center |- 0,0);
+}
+
+\draw (0,2.5) node[left] {$20\log\left(\kappa\cdot\frac{36}{27}\right)$};
+
+
+\foreach \x in {2,2.3010,2.4771} {
+	\pgfmathsetmacro\result{3*10^\x/100}
+	\draw (\x,-0.1) node[below,fill=white,fill opacity=.75,text opacity=1] {$\pgfmathprintnumber[freq]\result$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+\foreach \x in {1,1.4771,2,2.3010,2.4771,3,3.301030,3.47715} {
+	\pgfmathsetmacro\result{3*10^\x/100}
+	\draw (\x,\phasedown-0.1) node[below,fill=white,fill opacity=.8,text opacity=1,scale=.75] {$\pgfmathprintnumber[freq]\result$} -- ++(0,0.2);
+	%\draw[dashed] (\x,0) |- (0,\x*3/4);
+}
+\draw (1.3010,\phasedown-0.1) node[below,scale=.75] {$0.6$} -- ++(0,0.2);
+
+\begin{scope}[yshift=\phasedown cm]
+\draw (-1,-1) node[magenta,left] {$\phi$};
+\draw[->] (0,0) -- ++(4.5,0);
+\def\at{60}
+
+\draw[ultra thick,magenta]
+(0,1.5) -- ++(1,0) node(c1) {}
+-- ++(-1*\at:{0.3010/cos(1*\at)}) node(c2) {} node[above right,scale=.9] {$\ang{45}$/dec}
+-- ++(0.4771-0.3010,0) node(c3) {}
+-- ++(-1*\at:{(1-0.4771+1)/cos(1*\at)}) node(c4) {} node[pos=.6,below left] {-$\ang{45}$/dec}
+-- ++(0.3010,0) node(c5) {}
+-- ++(-1*\at:{(0.4771-0.3010)/cos(1*\at)}) node(c6) {} node[pos=.6,below left] {-$\ang{45}$/dec}
+-- ++(0.7,0)
+;
+
+\foreach \p in {c1,c2,c3,c4,c5,c6} {
+	\draw[dashed,gray] (\p.center) -- (\p.center |- 0,0);
+}
+
+\draw (c1 -| 0,0) node[left] {$\ang{0}$};
+\draw[dashed] (c6) -- (c6 -| 0,0) node[left] {$\ang{-90}$};
+\end{scope}
+
+\end{tikzpicture}
 
 Το διάγραμμα φάσης παίρνει τιμές μόνο μεγαλύτερες από \( \ang{-90} \). Αφού όμως το
 περιθώριο φάσης είναι \( \ang{180} + \measuredangle A \), ισχύει:
@@ -8342,7 +8410,34 @@ A(s) = \frac{k(s+6)}{(s+3)(s+8)(s^2+4s+8)}
 = \frac{-4-3\,-3+6}{3} = -3
 \]
 
-\todo{Graph 134}
+\begin{tikzpicture}[xscale=1,scale=1.7]
+\draw[->] (-3,0) -- (1,0) node[right] {$\Re$};
+\draw[->] (0,-1) -- (0,1) node[left] {$\Im$};
+
+\draw[green!50!black] (-0.6,0) -- ++(30:2);
+\draw[green!50!black] (-0.6,0) -- ++(-30:2);
+
+\draw[gray,dashed] (-0.0,0.7) node[right] {$j2$} -| (-0.4,-0.7) -- ++(0.4,0) node[right] {$-j2$};
+
+\draw[locus,ultra thick,postaction={decorate},
+decoration={markings,
+	mark=at position 0.1 with {\arrow{>}},%
+	mark=at position 0.3 with {\arrow{>}},%
+	mark=at position 0.6 with {\arrow{>}},%
+	mark=at position 0.9 with {\arrow{>}},%
+}]
+(-2,0) -- ++(-1,0)
+(-0.6,0) -- (-1.5,0)
+plot[smooth] coordinates {(-0.4,0.7) (-0.1,0.4) (1,1)}
+plot[smooth] coordinates {(-0.4,-0.7) (-0.1,-0.4) (1,-1)}
+;
+
+\draw (-0.6,0) node[locuspole=$-3$] {};
+\draw (-1.5,0) node[locuszero=$-6$] {};
+\draw (-2,0) node[locuspole=$-8$] {};
+\draw (-0.4,0.7) node[locuspole] {};
+\draw (-0.4,-0.7) node[locuspole] {};
+\end{tikzpicture}
 
 Για μερικά \( k \) οι δύο κλάδοι στα δεξιά έχουν σημεία δεξιά του φανταστικού άξονα,
 επομένως για αυτά το σύστημα είναι ασταθές. Για να μην ισχύει αυτό προσθέτουμε έναν πόλο ή μηδενικό.
