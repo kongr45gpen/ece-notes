@@ -2280,6 +2280,16 @@ Js^2y(s) +Bsy(s) = u(s) \\
 	\end{itemize}
 \end{defn}
 
+\begin{theorem}[width=.7\textwidth]{Συντελεστής απόσβεσης συστημάτων 2\textsuperscript{ου} βαθμού}{}
+	\begin{itemize}
+		\item Αν \( \underline{ζ < 1} \), οι πόλοι του συστήματος είναι \textbf{μιγαδικοί συζυγείς}.
+		\item Αν \( \underline{ζ = 1} \), το σύστημα έχει έναν \textbf{διπλό πραγματικό πόλο}.
+		\item Αν \( \underline{ζ > 1} \), το σύστημα έχει δύο \textbf{πραγματικούς πόλους}.
+	\end{itemize}
+\end{theorem}
+
+\pagebreak[2]
+
 Μετά από πράξεις που δεν παρουσιάζονται, η έξοδος του συστήματος ξεχωρίζεται στις δύο παρακάτω περιπτώσεις:
 \begin{itemize}
 	\item Αν έχουμε \textbf{δύο πραγματικούς πόλους} \( p1,\ p2 \):\[
@@ -2306,6 +2316,25 @@ Js^2y(s) +Bsy(s) = u(s) \\
 	αποσβέσεων. Πρακτικά, παίζει ρόλο ο πόλος που προκαλεί την πιο αργή απόσβεση (ειδικά αν
 	οι πόλοι απέχουν αρκετά μεγάλη απόσταση μεταξύ τους), καθώς η άλλη απόσβεση εξαλείφεται
 	γρήγορα. Ο αργός πόλος επιβάλλει το ρυθμό του.
+	
+	\begin{tikzpicture}[scale=1.5]
+	\draw[->] (-0.5,0) -- (6,0) node[below right] {$t$};
+	\draw[->] (0,-0.5) -- (0,3) node[below left] {$y(t)$};
+	
+	\draw[thick,dashed] (0,2) node[left] {$y_\mathrm{ss}$} -- ++(6,0);
+	
+	\draw[ultra thick,blue,opacity=.7]
+	plot [variable=\t,domain=0:6,samples=\gsamples]
+	(\t,{1*(1-1*exp(-0.8*\t)) + 1*(1-1*exp(-4*\t)) });
+	
+	\draw[ultra thick,blue!50!cyan,path fading=east,opacity=.3]
+	plot [variable=\t,domain=0:6,samples=\gsamples]
+	(\t,{2*(1-1*exp(-4*\t)) });
+	
+	% not real but used for a nicer graph
+	\draw[dashed] (2.6,0) node[below] {$t_s$} -- ++(0,1.88);
+	\end{tikzpicture}
+	
 	\item Αν έχουμε \textbf{δύο μιγαδικές συζυγείς ρίζες} \( -σ \pm j\omega_d \):
 	\begin{align*}
 	y(t) &= y_{\mathrm{ss}}\left[
@@ -2319,7 +2348,6 @@ Js^2y(s) +Bsy(s) = u(s) \\
 	\cdot \sin\left(\omega_d t + \tan^{-1}\frac{\sqrt{1-ζ^2}}{ζ}\right)
 	\right]
 	\end{align*}
-
 	
 	Σε αυτήν την περίπτωση, η έξοδος του συστήματος μοιάζει κάπως έτσι:
 	
@@ -2355,7 +2383,7 @@ Js^2y(s) +Bsy(s) = u(s) \\
 	(\t,{2*(1+1*exp(-0.8*\t))});
 	
 	\draw[dashed] (0.84,0) node[below,xshift=2mm] {$t_p$}-- ++(0,3)
-	-- (0,3) node[left] {$M_p$};
+	-- (0,3) node[left,scale=.9] {$y_{\mathrm{ss}}\left(1+M_p\right)$};
 	\draw[dashed] (0.44,0) node[below] {$t_r$} -- ++(0,2);
 	
 	\filldraw[thick,draw=orange,draw opacity=.5,fill=white!90!orange,fill opacity=.6]
@@ -2405,13 +2433,20 @@ Js^2y(s) +Bsy(s) = u(s) \\
 	φτάσει έξω από κάποια όρια.
 	
 	\begin{defn}{Υπερύψωση}{}
-		Αποδεικνύεται ότι η πρώτη κορυφή φτάνει στην τιμή:
+		Αποδεικνύεται ότι το \textbf{ποσοστό υπερύψωσης} της πρώτης κορυφής είναι:
 		\[
 		M_p =
 		e^{-\left(
 			\frac{ζπ}{\sqrt{1-ζ^2}}
 			\right)}
 		= e^{-σ t_p}
+		\]
+		
+		\tcblower
+		
+		Η πρώτη κορυφή στην οποία έχουμε υπερύψωση φτάνει στην τιμή:
+		\[
+		y\left(t_p\right) = y_{ss}(1+M_p)
 		\]
 	\end{defn}
 	
@@ -2423,7 +2458,9 @@ Js^2y(s) +Bsy(s) = u(s) \\
 	\boxed{\cos θ = ζ}
 	\]
 \end{itemize}
-	
+
+\pagebreak[1]
+
 \paragraph{Παραδείγματα συστήματος δεύτερης τάξης} \hspace{0pt}
 
 \begin{enumgreekparen}
@@ -2574,9 +2611,15 @@ plot[variable=\t,domain=0:5,samples=\gsamples]
 \end{enumgreekparen}
 \tcblower
 
-Η σωστή απάντηση είναι η (β).
+Για την κάθε μία από τις παραπάνω συναρτήσεις έχουμε, από τους τύπους:
+\begin{enumgreekparen}
+	\item \( ζ = 1 \implies  \) δεν υπάρχει υπερύψυση!
+	\item \( ζ = \frac{1}{4} \implies M_p = e^{-\frac{ζπ}{\sqrt{1-ζ^2}}} \simeq 0.44 \)
+	\item \( ζ = 1 \implies \) δεν υπάρχει υπερύψωση!
+	\item \( ζ = \frac{1}{2} \implies M_p \simeq 0.16 \)
+\end{enumgreekparen}
 
-\todo{why?}
+Άρα η σωστή απάντηση είναι η \textbf{(β)}.
 \end{exercise}
 
 
@@ -2627,7 +2670,7 @@ plot[variable=\t,domain=0:5,samples=\gsamples]
 \end{tikzpicture} \\
 όπου \( \displaystyle H(s) = \frac{10}{(s+6)(s+7)} \).
 
-Θέλουμε να βρεθεί η περιοχή τιμών της σταθεράς \( k \), ώστε να ικανοποιούνται οι
+Θέλουμε να βρεθεί η \textbf{περιοχή τιμών} της σταθεράς \( k \), ώστε να ικανοποιούνται οι
 παρακάτω προδιαγραφές:
 \begin{align*}
 	e_{\mathrm{ss}} &< 0.5 \\
@@ -2637,8 +2680,7 @@ plot[variable=\t,domain=0:5,samples=\gsamples]
 
 \tcblower
 
-Έχουμε:
-\todo{πράξεις}
+Έχουμε, για κάθε προδιαγραφή:
 \begin{enumerate}
 	\item Για το \( e_{\mathrm{ss}} \):
 	\begin{align*}
@@ -2690,11 +2732,10 @@ plot[variable=\t,domain=0:5,samples=\gsamples]
 
 \subsubsection{Για συστήματα μεγαλύτερου βαθμού}
 Ένα σύστημα μεγαλύτερου από 2 βαθμού μπορεί να έχει τη μορφή:
-\todo{check}
 \[
 \frac{y(s)}{r(s)}
 = \frac{k(s+z_1)\cdots(s+z_n)}{(s+p_1)\cdots(s+p_n)\left[
-	(s+ζ_κ\omega_k)^2+(\omega_d)^2
+	(s+ζ_κ\omega_k)^2+(\omega_{d_k})^2
 	\right]}
 \]
 
@@ -2718,7 +2759,30 @@ plot[variable=\t,domain=0:5,samples=\gsamples]
 \[
 \mathlarger{e^{-2t}}, \quad \mathlarger{e^{-20t}}
 \]
-\todo{add a graph}%
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.5,0) -- (6,0) node[below right] {$t$};
+\draw[->] (0,-0.5) -- (0,3) node[below left] {$y(t)$};
+
+\draw[thick,dashed] (0,2) node[left] {$y_\mathrm{ss}$} -- ++(6,0);
+
+\draw[ultra thick,blue,opacity=.7,mark position=0.5(d)]
+plot [variable=\t,domain=0:6,samples=\gsamples]
+(\t,{1*(1-1*exp(-0.8*\t)) + 1*(1-1*exp(-20*\t)) });
+
+\draw[ultra thick,blue!30!cyan,path fading=east,opacity=.6,mark position=0.5(c)]
+plot [variable=\t,domain=0:6,samples=\gsamples,smooth]
+(\t,{2*(1-1*exp(-20*\t)) });
+\draw[blue!30!cyan] (c) node[above] {γρήγορη απόκριση};
+
+\draw[ultra thick,red!80!cyan,opacity=.6,mark position=0.7(c)]
+plot [variable=\t,domain=0:6,samples=\gsamples]
+(\t,{2*(1-1*exp(-0.8*\t)) });
+\draw[red!80!cyan] (c) node[below] {αργή απόκριση};
+
+\draw[blue!70!white,->] (d) to[bend right] ++(0.2,-1) node[below] {συνολική απόκριση};
+\end{tikzpicture}
+
 Η πιο \textit{αργή} απόκριση \( e^{-2t} \) κυριαρχεί τη \textit{γρηγορότερη} απόκριση
 \( e^{-20t} \), η οποία αποσβένεται γρήγορα και δεν επηρεάζει το τελικό αποτέλεσμα.
 
@@ -2732,16 +2796,26 @@ plot[variable=\t,domain=0:5,samples=\gsamples]
 	DC κέρδος} του απλοποιημένου συστήματος. Δηλαδή η απλοποιημένη συνάρτηση μεταφοράς θα
 προκύψει:
 \[
-\frac{1}{(s+2)^2+5}
+\frac{K}{(s+2)^2+5}
 \]
-\todo{πράξεις}
 
-\paragraph{Παράδειγμα}
-Έστω η συνάρτηση μεταφοράς:
+Για \( s=0 \), η αρχική συνάρτηση έχει κέρδος:
 \[
-H(s) = \frac{100(s+20)}{(s+2)(s+5)(s+50)(s+100)}
+\mathrm{gain}_1 = \frac{10}{(2^2+5)(0+10)} = \frac{1}{9}
 \]
-\todo{πράξεις}
+και η δική μας απλοποίηση έχει κέρδος:
+\[
+\mathrm{gain}_2 = \frac{K}{(0+2)^2+5} = \frac{K}{9}
+\]
+
+Επομένως, αφού \( \mathrm{gain}_1 = \mathrm{gain}_2 \), προκύπτει \( K = 1\).
+
+%\paragraph{Παράδειγμα}
+%Έστω η συνάρτηση μεταφοράς:
+%\[
+%H(s) = \frac{100(s+20)}{(s+2)(s+5)(s+50)(s+100)}
+%\]
+\todo{fill}
 
 \paragraph{Παράδειγμα}
 Έστω η συνάρτηση μεταφοράς:
@@ -2755,7 +2829,7 @@ H(s) = \frac{100(s+20)}{(s+2)(s+5)(s+50)(s+100)}
 Επομένως γενικά προσέχουμε:
 \begin{infobox}{Προϋποθέσεις απλοποίησης πόλου}
 \begin{enumpar}
-	\item Ίδιο DC κέρδος
+	\item Διατηρούμε ίδιο το DC κέρδος
 	\item Προσοχή στην κανονικότητα του συστήματος \todo{συμπλ} (διαφορά αριθμού ριζών αριθμητή και παρονομαστή)
 	\item Προσοχή σε μηδενικά κοντά σε πόλο
 \end{enumpar}
@@ -2778,7 +2852,7 @@ H(s) = \frac{100(s+20)}{(s+2)(s+5)(s+50)(s+100)}
 	\begin{align*}
 		y(s) &= \frac{3}{(s+3)s} = \frac{A_1}{s} - \frac{B_1}{s+3}
 		\\ &\overset{\cdots}{=} \frac{1}{s} - \frac{1}{s+3}
-		\intertext{Άρα}
+		\intertext{Άρα:}
 		y(t) &= 1-e^{-3t}
 	\end{align*}
 	
@@ -2801,16 +2875,42 @@ H(s) = \frac{100(s+20)}{(s+2)(s+5)(s+50)(s+100)}
 	
 	\item
 	Εικάζουμε ότι η απόκριση του συστήματος \( H_2 \) είναι παρόμοια με αυτήν του
-	\( H_1 \), αφού (αν κάνουμε τις πράξεις) έχουν ίδιο DC κέρδος, και απλώς προστέθηκε ένας
+	\( H_1 \), αφού έχουν ίδιο DC κέρδος (\(H_1\to \frac{3}{3}=1, H_2\to\frac{60}{3\cdot20} = 1  \),
+	και απλώς προστέθηκε ένας
 	μακρινός πόλος στη συνάρτηση μεταφοράς.
-	\todo{Πράξεις και graph}
 	
+	Με τον ίδιο τρόπο βρίσκουμε:
 	\[
-	y(t) = 1-1.17e^{-3t}+0.17e^{-20t}
+	y(t) = \mathscr{L}^{-1} \left\lbrace
+	\frac{A_2}{s} + \frac{B_2}{s+3} + \frac{C_2}{s+20}
+	\right\rbrace = \mathscr{L}^{-1} \left\lbrace
+	\frac{1}{s} + \frac{-1.18}{s+3} + \frac{0.18}{s+20}
+	\right\rbrace = 1-1.18e^{-3t}+0.18e^{-20t}
 	\]
 	
+	\begin{tikzpicture}[scale=1]
+	\draw[->] (-1,0) -- (5,0) node[below] {$t$};
+	\draw (0,-0.5) -- (0,3.4);
+	
+	\def\sqrtsix{2.45}
+	
+	\draw (0,2.5) node[left] {$1$};
+	\draw[dashed,path fading=east] (0,2.5) -- (4,2.5);
+	\draw[dashed] (3,0) -- (3,2.5);
+	\draw (2.2,0) node[circle,fill,inner sep=0.5pt] {} node[below] {$1$};
+	\draw (4.4,0) node[circle,fill,inner sep=0.5pt] {} node[below] {$2$};
+	
+	\draw[blue!70!cyan,very thick]
+	plot[smooth,samples=28,variable=\t,domain=0:5]
+	(\t,{2.5*(1-1.18*exp(-1.5*\t)+0.18*exp(-10*\t)))});
+	
+	\draw[blue!50!cyan,very thick,opacity=.3]
+	plot[smooth,samples=28,variable=\t,domain=0:5]
+	(\t,{2.5*(1-exp(-1.5*\t)))});
+	\end{tikzpicture}
+	
 	\item
-	Εδώ έχουμε ένα μηδενικό \( z=-3.2 \) κοντά στον πόλο \( p_1=-3 \), επομένως λύνουμε
+	Εδώ έχουμε ένα μηδενικό \( z=-3.2 \) \textbf{κοντά} στον πόλο \( p_1=-3 \), επομένως λύνουμε
 	αναλυτικά:
 	\begin{align*}
 		y(s) &= H_3\frac{1}{s} = \frac{A}{s} + \frac{B}{s+3} + \frac{Γ}{s+20}
@@ -3262,6 +3362,16 @@ coordinates {(0,0) (1.7,0.7)  (4.5,-0.3) (6,-0.5)};
 Προσοχή ότι η λογαριθμική κλίμακα στον οριζόντιο άξονα των συχνοτήτων δηλώνει ότι στην
 αρχή των αξόνων δεν έχουμε τη συχνότητα 0, αλλά απλώς μία μικρή συχνότητα.
 
+\begin{attnbox}{Δεκαδικός λογάριθμος}
+	\textbf{Προσοχή!} Με την πράξη \( \mathlarger{\log} \) εννοούμε τον \textbf{δεκαδικό} λογάριθμο,
+	και όχι τον φυσικό \( \ln \). Δηλαδή:
+	\[
+	\mathlarger{\mathlarger{ \log = \log_{10} }}
+	\]
+	
+	Επίσης ισχύει \( \displaystyle \log x = \frac{\ln x}{\ln 10} \).
+\end{attnbox}
+
 \subsubsection{Σε πρωτοβάθμια συστήματα}
 Ας ασχοληθούμε με το σύστημα \( \displaystyle H(s)=\frac{1}{1+sτ} \).
 
@@ -3532,7 +3642,7 @@ node[midway,below left] {-40 dB/dec};
 	\]
 \end{theorem}
 
-\begin{theorem}{Συχνότητα συντονισμού δευτεροβάθμιου συστήματος}
+\begin{theorem}{Συχνότητα συντονισμού δευτεροβάθμιου συστήματος}{}
 	Η \textbf{συχνότητα συντονισμού} \( \omega_r \), δηλαδή η συχνότητα κατά την οποία
 	έχουμε υπερύψωση, είναι:
 	\[
@@ -3615,7 +3725,8 @@ node[midway,below left] {-40 dB/dec};
 \end{circuitikz}
 
 Ζητείται να βρεθούν οι σταθερές \( k \) και \( a \), ώστε η υπερύψωση συχνότητας να είναι
-\( Μ_{\mathrm{pr}} = 1.04 \) για \( \omega_r = 11.54 \ \sfrac{\mathrm{rad}}{s} \). Και από
+\( Μ_{\mathrm{pr}} = 1.04 \) για συχνότητα συντονισμού
+\( \omega_r = 11.47 \ \sfrac{\mathrm{rad}}{s} \). Και από
 εκεί, ζητείται να προσδιοριστεί ο χρόνος αποκατάστασης \( t_s \) και το εύρος ζώνης
 \( \omega_b \).
 \tcblower
@@ -3627,18 +3738,32 @@ node[midway,below left] {-40 dB/dec};
 	\end{cases} \implies \cancel{ζ=0.8 } \text{ ή } \boxed{ζ=0.6}
 \end{align*}
 
-Απορρίπτουμε την περίπτωση \( ζ=0.8 \), αφού για να υπάρχει υπερύψωση στη συχνότητα πρέπει
+Απορρίπτουμε την περίπτωση \( ζ=0.8 \), αφού για να υπάρχει υπερύψωση \textbf{στη συχνότητα} πρέπει
 \( ζ < 0.707 \). Άρα \( ζ = 0.6 \).
 
 Τότε υπολογίζουμε ακόμα ότι
-\( \omega_n = \frac{\omega_r}{\sqrt{1-2ζ^2}} \).
+\( \omega_n = \frac{\omega_r}{\sqrt{1-2ζ^2}} \approx \SI{21.67}{\radian/\second}  \).
 
 Η συνάρτηση μεταφοράς του συστήματος βγαίνει μετά από πράξεις \( \displaystyle 
 \frac{k}{s^2+as+k}  = \frac{\omega_n^2}{s^2+2ζ\omega_n s + \omega_n^2} \).
 
 Άρα \( k=21.67^2=469.59 \), και \( a=2ζ\omega_n = 2\cdot 0.6\cdot 21.67 =26.00 \).
 
-\todo{ts,\omega_b}
+\subparagraph{}
+
+Ο χρόνος αποκατάστασης είναι (αφού έχουμε συζυγείς ρίζες, διότι \( ζ < 1 \)):
+\[
+t_s \approx \frac{4}{ζ\omega_n} = \frac{4}{13} \approx \SI{0.3077}{\second}
+\]
+
+Και το εύρος ζώνης:
+
+\[
+\omega_b = \omega_n \left[
+1-2ζ^2+\sqrt{2-4ζ^2+4ζ^4}
+\right]^{\sfrac{1}{2} }
+\approx \SI{24.88}{\radian/\second}
+\]
 \end{exercise}
 \subsubsection{Σε συστήματα μεγαλύτερου βαθμού}
 
@@ -3708,12 +3833,28 @@ plot[variable=\x,domain=0:4,samples=18,smooth]
 \begin{itemize}
 	\item \( H_0 = Gs^ν \)
 	\item \( \displaystyle H_1 = \left( \frac{s}{ρ}+1 \right) \) για \( p>0 \)
-	\item \( \displaystyle H_2 = \left( \frac{s^2}{\omega_n^2} + \frac{2Js}{\omega_n} + 1 \right) \) για \( \omega_n > 0 \) και \( 0<ζ<1 \).
+	\item \( \displaystyle H_2 = \left( \frac{s^2}{\omega_n^2} + \frac{2ζs}{\omega_n} + 1 \right) \) για \( \omega_n > 0 \) και \( 0<ζ<1 \).
 \end{itemize}
 
-Για παράδειγμα, \( \frac{s(s+3)}{(s+4)\left( (s+5)^2+4 \right)} \). \todo{solve}
+Για παράδειγμα, για την \(\frac{s(s+3)}{(s+4)\left( (s+5)^2+4 \right)} \):
+\[
+\frac{s(s+3)}{(s+4)\left( (s+5)^2+4 \right)}
+= \frac{  \overbrace{s}^{H_0}  \cdot  (s+3)
+}{
+	(s+4) \cdot \left(
+	\frac{s^2}{\omega_n^2} + \frac{2\zeta s}{\omega_n} + 1
+	\right)
+}
+= \frac{  \overbrace{s}^{H_0}  \cdot  3 \cdot \overbrace{\left(\frac{s}{3}+1\right)}^{H_1}
+}{
+	4 \cdot \underbrace{\left(\frac{s}{4}+1\right)}_{H_1} \cdot \underbrace{ \left(
+		\frac{s^2}{29} + \frac{2\cdot 0.928\cdot  s}{5.39} + 1
+		\right)
+	}_{H_2}
+}
+\]
 
-\todo{add warning above that log != ln}
+\pagebreak[1]
 Για καθεμία από αυτές, έχουμε:
 \begin{itemize}
 	\item
@@ -4917,7 +5058,7 @@ plot[variable=\x,domain=0:3,samples=\gsamples/2.5,smooth]
 \paragraph{Παράδειγμα}
 Έστω η συνάρτηση μεταφοράς με ένα μηδενικό:
 \[
-\frac{s-a}{a} = (1-sτ)
+\frac{s-a}{a} = (1\pm sτ)
 \]
 η οποία για τις φανταστικές συχνότητες γίνεται:
 \[
@@ -4977,7 +5118,16 @@ plot[variable=\x,domain=0:3,samples=\gsamples/2.5,smooth]
 \frac{N(s)\qquad{\mathsmaller{n}}}{D(s) \qquad \mathsmaller{m} }
 \]
 ισχύει:
-\todo{ToDO για \omega -> 0, \infty}
+\begin{align*}
+	\text{Για \( (1+j\omega\tau) \)} &: \begin{cases}
+	\omega \to 0 &\implies \phi = \ang{0}\\
+	\omega \to \infty &\implies \phi = \ang{90}
+	\end{cases} \\
+	\text{Για \( (1-j\omega\tau) \)} &: \begin{cases}
+	\omega \to 0 &\implies \phi = \ang{0}\\
+	\omega \to \infty &\implies \phi = \ang{-90}
+	\end{cases}
+\end{align*}
 και αυτά ονομάζονται \textit{Συστήματα μη ελάχιστης φάσης}.
 
 \paragraph{Σύστημα με καθυστέρηση}
@@ -5039,10 +5189,13 @@ A_1(s) = \frac{15(s+3)}{(s+1)(s+7)}
 να γίνει ασταθές;
 
 \tcblower
-\todo{Πράξεις}
-Με πράξεις βρίσκουμε ότι το σημείο στο οποίο η \( A_1 \) (και
+Με πράξεις βρίσκουμε ότι το σημείο \( \omega_c \) στο οποίο η \( A_1 \) (και
 ισοδύναμα η \( A \)) έχουν μέτρο 0 dB είναι:
 \[
+\left|A(j\omega_c)\right| = 0
+\iff \left|\frac{15(j\omega_c + 3)}{(j\omega_c+1)(j\omega_c+7)}\right| = 0
+\iff \frac{15\sqrt{\omega_c^2 + 3^2}}{\sqrt{\omega_c^2 + 1^2}\sqrt{\omega_c^2 + 7^2}}
+\iff
 \omega_c = 13.6 \cong 15
 \]
 
@@ -5189,6 +5342,13 @@ A(j\omega) =
 
 Τότε, αντίστοιχα με παραπάνω, μπορούμε να βρούμε τα σημεία \todo{find points} και να σχεδιάσουμε το
 διάγραμμα Nyquist:
+\begin{align*}
+	\text{Για } \omega = 0 &: A(j\omega) = -\frac{\tau}{1} - j\infty
+	\quad \text{(τείνει στο άπειρο με ασύμπτωτη την $x=-\tau$)} \\
+	\text{Για } \omega = \frac{1}{\tau} &: A(j\omega) = -\frac{\tau}{2} -j\frac{\tau}{2} \\
+	\text{Για } \omega = \infty &: A(j\omega) = -0 -j0
+\end{align*}
+Άρα το διάγραμμα είναι:
 
 \begin{tikzpicture}[scale=1]
 % Sage Math code used:
@@ -6702,7 +6862,7 @@ k&>0
 	\]
 	
 	Μάλιστα, μπορούμε να σχεδιάσουμε αναλυτικά το προσεγγιστικό διάγραμμα Bode, υπολογίζοντας την τιμή για \( \omega=1 \),
-	η οποία προκύπτει \( 20\log 2 \si{\decibel} \):
+	η οποία προκύπτει \( 20\log 2\, \si{\decibel} \):
 	
 	\begin{tikzpicture}[scale=1,xscale=1]
 	\pgfplotsset{/pgf/number format/freq/.style={fixed}}
@@ -6844,12 +7004,19 @@ k&>0
 	
 	Επομένως:
 	\[
-	g_m = k_{\max} = 3.5 \to 20\log\left( \frac{7}{2} \right) = 10.88
+	g_m = k_{\max} = 3.5 \to 20\log\left( \frac{7}{2} \right) = \SI{10.88}{\decibel}
 	\]
-	\todo{looks wrong}
+	
+	\subparagraph{}
+	Η διαφορά των \( \approx \SI{3}{\decibel} \) μεταξύ των δύο αποτελεσμάτων οφείλεται στο ότι
+	λάβαμε \textit{προσεγγιστικό} διάγραμμα Bode, το οποίο εισάγει ένα σφάλμα. Στην προκειμένη
+	περίπτωση, πιο σωστό είναι το αποτέλσμα που προέκυψε από το κριτήριο Routh.
 \end{enumgreekparen}
 
+\hspace{0pt}
+
 \end{exercise}
+
 \begin{exercise}
 Να σχεδιαστεί διαγραμμα Nyquist και να εξεταστεί η ευστάθεια του συστήματος κλειστού βρόχου, αν η συνάρτηση ανοιχτού βρόχου είναι:
 \[
@@ -7338,7 +7505,7 @@ decoration={markings,
 (-4,0) node[above] {$b\to\infty$};
 \end{tikzpicture}
 
-\paragraph{Κανόνες}
+\subsubsection{Κανόνες}
 Για να διευκολυνθούμε στο σχεδιασμό των διαγραμμάτων γεωμετρικών
 τόπων, ακολουθούμε μερικούς \textbf{κανόνες}:
 \begin{itemize}
@@ -7640,7 +7807,56 @@ plot [smooth,tension=.8] coordinates {(-1,2) (-1.2,0.5) (-1.4,0) (-1.2,-0.5) (-1
 			που δέχεται ως όρισμα το φανταστικό και το πραγματικό μέρος, ή από τη συνάρτηση
 			\( \arctan \), προσέχοντας όμως να αφαιρέσουμε ή να προσθέσουμε \( \ang{180} \) αν
 			χρειάζεται, ελέγχοντας αν η γωνία βρίσκεται στο σωστό τεταρτημόριο.
-			\todo{Συμπλήρωση}
+			
+			\begin{attnbox}{atan2}
+				Η συνάρτηση \( \displaystyle \mathlarger{\mathrm{atan2}} \) εκφράσει
+				το \textbf{όρισμα ενός μιγαδικού αριθμού}
+				\( x+jy \).
+				
+				Έχει την ίδια τιμή με την \( \arctan \) στο 1\textsuperscript{ο} τεταρτημόριο, αλλά
+				μπορεί να είναι \textbf{διαφορετική στα υπόλοιπα τεταρτημόρια}.
+				
+				Έχει 2 ορίσματα, και ορίζεται ως εξής:
+				\[
+				\mathrm{atan2}\,(y,\, x)= \measuredangle(x+jy) = \begin{cases}
+				\arctan\left|\frac{y}{x}\right|, \qquad & x,y>0 \\
+				\pi - \arctan\left|\frac{y}{x}\right|, \qquad & x<0,\ y>0 \\
+				-\pi + \arctan\left|\frac{y}{x}\right|, \qquad & x<0,\ y<0 \\
+				-\arctan\left|\frac{y}{x}\right|, \qquad & x>0,\ y<0
+				\end{cases}
+				\]
+				
+				\begin{center}
+					 \begin{tikzpicture}[scale=2]
+					\draw (-2,0) -- (2,0);
+					\draw (0,-2) -- (0,2);
+					
+					\draw(0,0) -- (1.5,1.5);
+					\draw[dashed] (0,0) -- (-1.5,0) -- (-1.5,-1.5) -- (0,-1.5);
+					\draw (0,0) -- (-1.5,-1.5);
+					\draw (-0.4,0) arc (180:225:.4) node[midway,left,yshift=-1mm] {$\mathsmaller{\theta_0}$};
+					\draw (0.7,0) arc (0:45:.7) node[midway,right] {$\theta_0$};
+					\draw[->,blue!50!cyan!50!black] (0.5,0) arc(360:225:.5) node[midway,below,yshift=-2pt,fill=white,fill opacity=0.7,text opacity=1] {$-\pi+\theta_0$};
+					
+					\draw[dashed] (0,0) -- (-1.5,1.5);
+					\draw[->,blue!50!cyan!50!black] (0.3,0) arc(0:180-45:.3) node[midway,above,yshift=2pt,xshift=-6pt,scale=.8,fill=white,fill opacity=0.7,text opacity=1] {$\pi-\theta_0$};
+					
+					\draw[dashed] (0,0) -- (1.5,-1.5);
+					\draw[->,blue!50!cyan!50!black] (0.8,0) arc(0:-45:.8) node[midway,right,scale=.9] {$-\theta_0$};
+					
+					\draw[top color=red,bottom color=blue,fill opacity=.7] (1.5,1.5) circle (3pt) node[above] {$x+jy$};
+					\draw[top color=red,bottom color=blue,fill opacity=.7] (-1.5,-1.5) circle (3pt) node[below] {$x+jy$};
+					
+					\draw[top color=red,bottom color=blue,fill opacity=.7] (-1.5,1.5) circle (3pt) node[above,scale=1] {$x+jy$};
+					\draw[top color=red,bottom color=blue,fill opacity=.7] (1.5,-1.5) circle (3pt) node[below,scale=1] {$x+jy$};
+					
+					\draw[dashed] (0,1.5) -- (1.5,1.5) -- (1.5,0);
+					
+					\draw (current bounding box.south) node[below] {$\displaystyle \theta_0=\arctan\left|\frac{y}{x}\right|$};
+					\end{tikzpicture}
+				\end{center}
+			\end{attnbox}
+			
 		\end{itemize}
 		
 		\item Τα βελάκια πηγαίνουν από τους πόλους προς το άπειρο ή προς τα μηδενικά.
@@ -9784,7 +10000,7 @@ G(s) = \frac{2(s+8)}{s(s+4)(s+6)}
 \begin{enumgreekparen}
 	\item Για τον ελεγκτή \( H(s) = k \) (\( k>0 \)), να σχεδιαστεί ο γεωμετρικός τόπος
 	ριζών και να βρεθεί ο χρόνος αποκατάστασης \( t_s \) για μεγάλο \( k \).
-	\item Για τον ελεγκτή \( H(s) = k(s+z) \) να τοποθετήσετε το μηδενικό και να σχεδιάζεται
+	\item Για τον ελεγκτή \( H(s) = k(s+z) \) να τοποθετήσετε το μηδενικό και να σχεδιάσετε
 	το γεωμετρικό τόπο ριζών έτσι ώστε \( t_s < \SI{0.5}{\second} \) για κατάλληλα \( k \).
 \end{enumgreekparen}
 
@@ -10105,14 +10321,77 @@ G(s) = \frac{2(s+8)}{s(s+4)(s+6)}
     	
     	Επομένως η λύση αυτή δεν είναι αποδεκτή.
     	
-    	\item \textbf{Για} \( z=8 \): Η συνάρτηση μεταφοράς γίνεται:
+    	\item \textbf{Για} \( z=8 \): 
+    	
+    	\begin{tikzpicture}[xscale=1,scale=1]
+    	\draw[->] (-5,0) -- (2,0) node[right] {$\Re$};
+    	\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+    	
+    	\coordinate (p0) at (0,0);
+    	\coordinate (p1) at (-1,0);
+    	\coordinate (p2) at (-2,0);
+    	\coordinate (p3) at (-3,0);
+    	\coordinate (p4) at (-1.5,0);
+    	\coordinate (b1) at (-0.5,0);
+    	\coordinate (b2) at (-4,0);
+    	
+    	\begin{scope}[locus,ultra thick]
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.25 with {\arrow{>}},%
+    		mark=at position 0.75 with {\arrow{<}},%
+    	}]
+    	let \p1=($(b1)$) in (\x1,0)
+    	let \p2=($(b2)$) in (\x2,0)
+    	($(b2)!0.5!(b1)$) circle (\x1/2-\x2/2)
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.30 with {\arrow{>}},%
+    		mark=at position 0.75 with {\arrow{<}},%
+    	}]
+    	(p0) -- (p1)
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.50 with {\arrow{>}},%
+    	}]
+    	(p2) -- (p3)
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.30 with {\arrow{<}},%
+    		mark=at position 0.80 with {\arrow{>}},%
+    	}]
+    	(p3) -- (current bounding box.west |- 0,0)
+    	;
+    	\end{scope}
+    	
+    	\draw (p0) node[locuspole,label={[below right]0:$0$}] {};
+    	\draw (p1) node[locuspole=$-4$] {};
+    	\draw (p2) node[locuspole=$-6$] {};
+    	\draw (p3) node[locuszero,scale=1.6] {};
+    	\draw (p3) node[locuszero=$-8$] {};
+    	\draw (b1) node[locusbreak] {};
+    	\draw (b2) node[locusbreak] {};
+    	\end{tikzpicture}
+    	
+    	Η συνάρτηση μεταφοράς κλειστού βρόχου γίνεται:
     	\[
     	\frac{2(s+8)}{s(s+4)(s+6)+2k(s+8)^2}
     	\]
     	
-    	\todo{solve}
+ 	    Σε αυτήν τη συνάρτηση, για αρκετά μεγάλα \( k \), το μηδενικό στο \( -8 \) εξουδετερώνεται
+ 	    από τον πόλο στο \( -8 \), αφού ο όρος \( s(s+4)(s+6) \) γίνεται αμελητέος. Επομένως
+ 	    παραμένουν πόλοι στη συνάρτηση κλειστού βρόχου μόνο αριστερά του \( -8 \), και προκύπτει
+ 	    το επιθυμητό αποτέλεσμα.
     \end{itemize}
 \end{enumgreekparen}
+
+\hspace{0pt}
 
 \end{exercise}
 \begin{exercise}[Θέμα Εξετάσεων]
@@ -10614,7 +10893,14 @@ G_1(s) = \frac{τs+1}{aτs+1},\quad \text{με } 0<a<1
 
 \newpage
 \appendix
-\tcblistof[\section*]{defn}{Ορισμοί}
-\tcblistof[\section*]{thm}{Θεωρήματα}
+
+\section*{Παράρτημα}
+\addcontentsline{toc}{section}{\protect\numberline{}Παράρτημα}
+
+\addcontentsline{toc}{subsection}{\protect\numberline{~}Ορισμοί}
+\tcblistof[\subsection*]{defn}{Ορισμοί}
+
+\addcontentsline{toc}{subsection}{\protect\numberline{~}Θεωρήματα}
+\tcblistof[\subsection*]{thm}{Θεωρήματα}
 
 \end{document}
