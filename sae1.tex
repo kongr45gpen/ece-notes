@@ -8118,6 +8118,8 @@ coordinates {(-0.93,2) (-0.8,1) (0,0) (-0.8,-1) (-0.93,-2)}
 	k_a = -\left.\frac{(s+4)(s+6)}{2(s+8)(s+10)}\right|_{s=-2.73} = 6.96
 	\]
 \end{enumgreekparen}
+
+\hspace{0pt}
 \end{exercise}
 
 \subsection{Ευαισθησία σε θόρυβο}
@@ -8328,11 +8330,11 @@ A(s) = H_cH_p = \frac{k\cdot 6(s+6)}{(s+3)(s+9)}
 
 \draw[ultra thick,magenta]
 (0,1.5) -- ++(1,0) node(c1) {}
--- ++(-1*\at:{0.3010/cos(1*\at)}) node(c2) {} node[above right,scale=.9] {$\ang{45}$/dec}
+-- ++(-1*\at:{0.3010/cos(1*\at)}) node(c2) {} node[above right,scale=.9] {$-\ang{45}$/dec}
 -- ++(0.4771-0.3010,0) node(c3) {}
--- ++(-1*\at:{(1-0.4771+1)/cos(1*\at)}) node(c4) {} node[pos=.6,below left] {-$\ang{45}$/dec}
+-- ++(-1*\at:{(1-0.4771+1)/cos(1*\at)}) node(c4) {} node[pos=.6,below left] {$-\ang{45}$/dec}
 -- ++(0.3010,0) node(c5) {}
--- ++(-1*\at:{(0.4771-0.3010)/cos(1*\at)}) node(c6) {} node[pos=.6,below left] {-$\ang{45}$/dec}
+-- ++(-1*\at:{(0.4771-0.3010)/cos(1*\at)}) node(c6) {} node[pos=.6,below left] {$-\ang{45}$/dec}
 -- ++(0.7,0)
 ;
 
@@ -9593,7 +9595,37 @@ H_p(s) = \frac{3}{s^2-9}
 	\]
 	
 	Μπορούμε να τοποθετήσουμε ένα μηδενικό στη θέση -4:
-	\todo{Graph 150}
+	
+	    \begin{tikzpicture}[xscale=1,scale=1.2]
+	\draw[->] (-4.5,0) -- (2,0) node[right] {$\Re$};
+	\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+	
+	\coordinate (p1) at (1,0);
+	\coordinate (p2) at (-1,0);
+	\coordinate (p3) at (-2,0);
+	\coordinate (b1) at (0.3,0);
+	\coordinate (b2) at (-3,0);
+	
+	\draw[locus,ultra thick,postaction={decorate},
+	decoration={markings,
+		mark=at position 0.04 with {\arrow{<}},%
+		mark=at position 0.10 with {\arrow{>}},%
+		mark=at position 0.195 with {\arrow{>}},%
+		mark=at position 0.265 with {\arrow{<}},%
+		mark=at position 0.50 with {\arrow{>}},%
+		mark=at position 0.85 with {\arrow{<}},%
+	}]
+	(p3) -- (current bounding box.west |- 0,0)
+	(p1) -- (p2)
+	($(b2)!0.5!(b1)$) circle (1.65cm)
+	;
+	
+	\draw (p1) node[locuspole=$3$] {};
+	\draw (p2) node[locuspole=$-3$] {};
+	\draw (p3) node[locuszero=$-4$] {};
+	\draw (b1) node[locusbreak] {};
+	\draw (b2) node[locusbreak] {};
+	\end{tikzpicture}
 	
 	Για \( z=4 \), η αντίστοιχη του κλειστού είναι:
 	\[
@@ -9653,7 +9685,65 @@ H_p(s) = \frac{3}{s^2-9}
 	
 	Τοποθετώ το μηδενικό πιο αριστερά από το -4 έτσι ώστε στο γεωμετρικό τόπο να ανήκουν
 	κομμάτια με πραγματικό μέρος πριν το -4. Ο γεωμετρικός τόπος θα γίνει:
-	\todo{Graph 158}
+	
+	\begin{tikzpicture}
+	\draw[->] (-4.7,0) -- (2,0) node[right] {$\Re$};
+	\draw[->] (0,-2.5) -- (0,2.5) node[left] {$\Im$};
+	
+	\coordinate (p0) at (0,0);
+	\coordinate (p1) at (+1.2,0);
+	\coordinate (p2) at (-1,0);
+	\coordinate (p3) at (-1.9,0);
+	\coordinate (p4) at (-3,0);
+	\coordinate (b1) at (0.5,0);
+	\coordinate (b2) at (-4,0);
+	
+	\fill[fill=magenta!70!green,path fading=west,opacity=.7]
+	(p3 |- current bounding box.north) rectangle (-4.7,-1 |- current bounding box.south);
+	
+	\begin{scope}[locus,ultra thick]
+	\draw[postaction={decorate},
+	decoration={markings,
+		mark=at position 0.25 with {\arrow{>}},%
+		mark=at position 0.75 with {\arrow{<}},%
+	}]
+	let \p1=($(b1)$) in (\x1,0)
+	let \p2=($(b2)$) in (\x2,0)
+	($(b2)!0.5!(b1)$) circle (\x1/2-\x2/2)
+	;
+	
+	\draw[postaction={decorate},
+	decoration={markings,
+		mark=at position 0.30 with {\arrow{>}},%
+		mark=at position 0.75 with {\arrow{<}},%
+	}]
+	(p0) -- (p1)
+	;
+	
+	\draw[postaction={decorate},
+	decoration={markings,
+		mark=at position 0.50 with {\arrow{>}},%
+	}]
+	(p2) -- (p3)
+	;
+	
+	\draw[postaction={decorate},
+	decoration={markings,
+		mark=at position 0.30 with {\arrow{<}},%
+		mark=at position 0.90 with {\arrow{>}},%
+	}]
+	(p4) -- (current bounding box.west |- 0,0)
+	;
+	\end{scope}
+	
+	\draw (p0) node[locuspole,label={[below right]-45:$0$}] {};
+	\draw (p1) node[locuspole=$+3$] {};
+	\draw (p2) node[locuspole=$-3$] {};
+	\draw (p3) node[locuszero=$-4$] {};
+	\draw (p4) node[locuszero] {};
+	\draw (b1) node[locusbreak] {};
+	\draw (b2) node[locusbreak] {};
+	\end{tikzpicture}
 	
 	Επιβεβαιώνουμε με τη συνάρτηση μεταφοράς ανοιχτού και κλειστού βρόχου:
 	\begin{align*}
@@ -9673,7 +9763,19 @@ H_p(s) = \frac{3}{s^2-9}
 \end{exercise}
 \begin{exercise}[Θέμα Εξετάσεων]
 Δίνεται το εξής σύστημα:
-\todo{Graph 151}
+
+\begin{tikzpicture}
+\tikzstyle{transfer}=[rectangle,draw,minimum height=9mm]
+\draw (1.5,0) node[transfer] (h1) {$\displaystyle G(s)$};
+\draw (0,0) node[circle,draw,minimum size=5mm] (mix) {};
+\draw (h1.south) ++(0,-1) node[transfer] (h2) {$\displaystyle H(s)$};
+
+\draw[<-] (mix) -- ++(-1,0);
+\draw[->] (mix) -- (h1);
+\draw[->] (h1.east) -- +(1,0) node[midway] (fb) {};
+\draw[->] (fb.center) |- (h2) -| (mix);
+\draw (mix.south);
+\end{tikzpicture}
 
 όπου \[
 G(s) = \frac{2(s+8)}{s(s+4)(s+6)}
@@ -9700,7 +9802,37 @@ G(s) = \frac{2(s+8)}{s(s+4)(s+6)}
 	Λύνοντας την εξίσωση \( \od{G(s)}{s} \) μπορούμε να βρούμε το σημείο απόσχισης στη
 	θέση \( \approx -1.84 \).
 	
-	\todo{Graph 152}
+	\begin{tikzpicture}[xscale=1,scale=1.2]
+	\draw[->] (-4.5,0) -- (2,0) node[right] {$\Re$};
+	\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+	
+	\coordinate (p0) at (0,0);
+	\coordinate (p1) at (-1,0);
+	\coordinate (p2) at (-2,0);
+	\coordinate (p3) at (-3,0);
+	\coordinate (b1) at (-0.7,0);
+	
+	\draw[green!50!black] (-0.5,-2) -- (-0.5,2) node[midway,below right,scale=.8] {$-1$};
+	
+	\draw[locus,ultra thick,postaction={decorate},
+	decoration={markings,
+		mark=at position 0.10 with {\arrow{<}},%
+		mark=at position 0.205 with {\arrow[very thick]{>}},%
+		mark=at position 0.275 with {\arrow{<}},%
+		mark=at position 0.50 with {\arrow{<}},%
+		mark=at position 0.85 with {\arrow{>}},%
+	}]
+	(p3) -- (p2)
+	(p1) -- (p0)
+	plot [smooth,tension=.6] coordinates {(-0.55,2) (-0.60,0.7) (b1) (-0.60,-0.7) (-0.55,-2)}
+	;
+	
+	\draw (p0) node[locuspole] {};
+	\draw (p1) node[locuspole=$-4$] {};
+	\draw (p2) node[locuspole=$-6$] {};
+	\draw (p3) node[locuszero=$-8$] {};
+	\draw (b1) node[locusbreak,label={[above]90:$-1.84$},scale=.9] {};
+	\end{tikzpicture}
 	
 	Αφού για \( k\to \infty \) οι κυρίαρχοι πόλοι στα δεξιά τείνουν σε πραγματικό μέρος
 	-1. Επομένως ο χρόνος αποκατάστασης είναι \( t_s \approx\frac{4}{p}=\SI{4}{\second} \).
@@ -9718,21 +9850,244 @@ G(s) = \frac{2(s+8)}{s(s+4)(s+6)}
     κάποια κατάλληλη, σχεδιάζοντας το γεωμετρικό τόπο
     (αφού πραγματοποιήσουμε την ανάλυση όπως γνωρίζουμε). Ενδεικτικά:
     \begin{itemize}
-    	\item \textbf{Για} \( z=10 \):\todo{Graph 153}
+    	\item \textbf{Για} \( z=10 \):
+    	
+    	\begin{tikzpicture}[xscale=1,scale=1]
+    	\draw[->] (-5,0) -- (2,0) node[right] {$\Re$};
+    	\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+    	
+    	\coordinate (p0) at (0,0);
+    	\coordinate (p1) at (-1,0);
+    	\coordinate (p2) at (-2,0);
+    	\coordinate (p3) at (-3,0);
+    	\coordinate (p4) at (-4,0);
+    	\coordinate (b1) at (-0.5,0);
+    	\coordinate (b2) at (-4.5,0);
+    	
+    	\begin{scope}[locus,ultra thick]
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.25 with {\arrow{>}},%
+    		mark=at position 0.75 with {\arrow{<}},%
+    	}]
+    	let \p1=($(b1)$) in (\x1,0)
+    	let \p2=($(b2)$) in (\x2,0)
+    	($(b2)!0.5!(b1)$) circle (\x1/2-\x2/2)
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.30 with {\arrow{>}},%
+    		mark=at position 0.75 with {\arrow{<}},%
+    	}]
+    	(p0) -- (p1)
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.50 with {\arrow{>}},%
+    	}]
+    	(p2) -- (p3)
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.30 with {\arrow{<}},%
+    		mark=at position 0.80 with {\arrow{>}},%
+    	}]
+    	(p4) -- (current bounding box.west |- 0,0)
+    	;
+    	\end{scope}
+    	
+    	\draw (p0) node[locuspole,label={[below right]0:$0$}] {};
+    	\draw (p1) node[locuspole=$-4$] {};
+    	\draw (p2) node[locuspole=$-6$] {};
+    	\draw (p3) node[locuszero=$-8$] {};
+    	\draw (p4) node[locuszero=$-10$] {};
+    	\draw (b1) node[locusbreak] {};
+    	\draw (b2) node[locusbreak] {};
+    	\end{tikzpicture}
     	
     	Εδώ θα κυριαρχήσει ο κοντινότερος στον φανταστικό άξονα πόλος. Οι πόλοι που
     	βρίσκονται στον κλάδο μεταξύ \( -8 \) και \( -6 \) οδηγούν σε αργή απόκριση επειδή
     	κυριαρχούν για οποιοδήποτε \( k \), και όχι σε κατάλληλο χρόνο αποκατάστασης.
-    	\item \textbf{Για} \( z=7 \): \todo{Graph 154}
+    	\item \textbf{Για} \( z=7 \):
+    	
+    	\begin{tikzpicture}[xscale=1,scale=1]
+    	\draw[->] (-5,0) -- (2,0) node[right] {$\Re$};
+    	\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+    	
+    	\coordinate (p0) at (0,0);
+    	\coordinate (p1) at (-1,0);
+    	\coordinate (p2) at (-2,0);
+    	\coordinate (p3) at (-3,0);
+    	\coordinate (p4) at (-2.5,0);
+    	\coordinate (b1) at (-0.5,0);
+    	\coordinate (b2) at (-4,0);
+    	
+    	\begin{scope}[locus,ultra thick]
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.25 with {\arrow{>}},%
+    		mark=at position 0.75 with {\arrow{<}},%
+    	}]
+    	let \p1=($(b1)$) in (\x1,0)
+    	let \p2=($(b2)$) in (\x2,0)
+    	($(b2)!0.5!(b1)$) circle (\x1/2-\x2/2)
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.30 with {\arrow{>}},%
+    		mark=at position 0.75 with {\arrow{<}},%
+    	}]
+    	(p0) -- (p1)
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.65 with {\arrow[very thick]{>}},%
+    	}]
+    	(p2) -- (p4)
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.30 with {\arrow{<}},%
+    		mark=at position 0.80 with {\arrow{>}},%
+    	}]
+    	(p3) -- (current bounding box.west |- 0,0)
+    	;
+    	\end{scope}
+    	
+    	\draw (p0) node[locuspole,label={[below right]0:$0$}] {};
+    	\draw (p1) node[locuspole=$-4$] {};
+    	\draw (p2) node[locuspole=$-6$] {};
+    	\draw (p3) node[locuszero=$-8$] {};
+    	\draw (p4) node[locuszero=$-7$] {};
+    	\draw (b1) node[locusbreak] {};
+    	\draw (b2) node[locusbreak] {};
+    	\end{tikzpicture}
     	
     	Εδώ ο κυρίαρχος πόλος θα είναι \(-7\) για μεγάλα \( k \), άρα η λύση είναι μη
     	αποδεκτή.
     	
-    	\item \textbf{Για} \( z=5 \): \todo{Graph 156}
+    	\item \textbf{Για} \( z=5 \):
+    	
+    	\begin{tikzpicture}[xscale=1,scale=1]
+    	\draw[->] (-5,0) -- (2,0) node[right] {$\Re$};
+    	\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+    	
+    	\coordinate (p0) at (0,0);
+    	\coordinate (p1) at (-1,0);
+    	\coordinate (p2) at (-2,0);
+    	\coordinate (p3) at (-3,0);
+    	\coordinate (p4) at (-1.5,0);
+    	\coordinate (b1) at (-0.5,0);
+    	\coordinate (b2) at (-4,0);
+    	
+    	\begin{scope}[locus,ultra thick]
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.25 with {\arrow{>}},%
+    		mark=at position 0.75 with {\arrow{<}},%
+    	}]
+    	let \p1=($(b1)$) in (\x1,0)
+    	let \p2=($(b2)$) in (\x2,0)
+    	($(b2)!0.5!(b1)$) circle (\x1/2-\x2/2)
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.30 with {\arrow{>}},%
+    		mark=at position 0.75 with {\arrow{<}},%
+    	}]
+    	(p0) -- (p1)
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.65 with {\arrow[very thick]{>}},%
+    	}]
+    	(p2) -- (p4)
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.30 with {\arrow{<}},%
+    		mark=at position 0.80 with {\arrow{>}},%
+    	}]
+    	(p3) -- (current bounding box.west |- 0,0)
+    	;
+    	\end{scope}
+    	
+    	\draw (p0) node[locuspole,label={[below right]0:$0$}] {};
+    	\draw (p1) node[locuspole=$-4$] {};
+    	\draw (p2) node[locuspole=$-6$] {};
+    	\draw (p3) node[locuszero=$-8$] {};
+    	\draw (p4) node[locuszero=$-5$] {};
+    	\draw (b1) node[locusbreak] {};
+    	\draw (b2) node[locusbreak] {};
+    	\end{tikzpicture}
     	
     	Ο κυρίαρχος πόλος \( -5 \) συνεχίζει να οδηγεί σε μη αποδεκτή λύση.
     	
-    	\item \textbf{Για} \( z=4 \): \todo{Graph 155}
+    	\item \textbf{Για} \( z=4 \):
+    	
+    	\begin{tikzpicture}[xscale=1,scale=1]
+    	\draw[->] (-5,0) -- (2,0) node[right] {$\Re$};
+    	\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+    	
+    	\coordinate (p0) at (0,0);
+    	\coordinate (p1) at (-1,0);
+    	\coordinate (p2) at (-2,0);
+    	\coordinate (p3) at (-3,0);
+    	\coordinate (p4) at (p1);
+    	\coordinate (b1) at (-0.5,0);
+    	\coordinate (b2) at (-4,0);
+    	
+    	\begin{scope}[locus,ultra thick]
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.25 with {\arrow{>}},%
+    		mark=at position 0.75 with {\arrow{<}},%
+    	}]
+    	let \p1=($(b1)$) in (\x1,0)
+    	let \p2=($(b2)$) in (\x2,0)
+    	($(b2)!0.5!(b1)$) circle (\x1/2-\x2/2)
+    	($(b2)!0.5!(b1)$) ++(140:\x1/2-\x2/2) node[circle,top color=magenta,draw=orange!30!black,inner sep=2.5pt,thick,bottom color=blue,fill opacity=.6] (a1) {}
+    	($(b2)!0.5!(b1)$) ++(-140:\x1/2-\x2/2) node[circle,top color=magenta,draw=orange!30!black,inner sep=2.5pt,thick,bottom color=blue,fill opacity=.6] (a2) {}
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.15 with {\arrow{>}},%
+    		mark=at position 0.40 with {\arrow[ultra thick]{<}},%
+    		mark=at position 0.75 with {\arrow{<}},%
+    	}]
+    	(p0) -- (p2)
+    	;
+    	
+    	\draw[postaction={decorate},
+    	decoration={markings,
+    		mark=at position 0.30 with {\arrow{<}},%
+    		mark=at position 0.80 with {\arrow{>}},%
+    	}]
+    	(p3) -- (current bounding box.west |- 0,0)
+    	;
+    	\end{scope}
+    	
+    	\draw (p0) node[locuspole,label={[below right]0:$0$}] {};
+    	\draw (p1) node[locuspole=$-4$] {};
+    	\draw (p2) node[locuspole=$-6$] {};
+    	\draw (p3) node[locuszero=$-8$] {};
+    	\draw (p4) node[locuszero,fill opacity=.4] {};
+    	\draw (b1) node[locusbreak] {};
+    	\draw (b2) node[locusbreak] {};
+    	
+    	\draw[magenta!50!blue] (a1.north) node[above] {$p_1$};
+    	\draw[magenta!50!blue] (a2.south) node[below] {$p_2$};
+    	\end{tikzpicture}
     	
     	Εδώ ο γεωμετρικός τόπος φαίνεται ότι ικανοποιεί τα κριτήρια και μπορούμε να βρούμε
     	δύο πόλους που να έχουν τον επιθυμητό χρόνο απόκρισης (όπως οι \( p_1 \) και
@@ -9762,7 +10117,21 @@ G(s) = \frac{2(s+8)}{s(s+4)(s+6)}
 \end{exercise}
 \begin{exercise}[Θέμα Εξετάσεων]
 Έστω το σύστημα ελέγχου:
-\todo{Graph 159}
+
+\begin{tikzpicture}
+\tikzstyle{transfer}=[rectangle,draw,minimum width=12mm,minimum height=9mm]
+
+\draw (1.5,0) node[transfer] (h1) {$G_c(s)$};
+\draw (4,0) node[transfer] (h2) {$\displaystyle \frac{s+2}{s^2+6s+25}$};
+\draw (0,0) node[mixer,scale=.7] (mix) {};
+
+\draw[<-] (mix.west) node[above left] {$+$} -- ++(-1.5,0);
+\draw[->] (mix.east) -- (h1);
+\draw[->] (h1) -- (h2);
+\draw[->] (h2.east) -- +(1,0) node[midway] (fb) {};
+\draw[->] (fb.center) -- ++(0,-1.6)  -| (mix.south);
+\draw (mix.south) node[below right] {$-$};
+\end{tikzpicture}
 
 \begin{enumlatin}
 	\item Για \( G(s) = k \) σχεδιάστε το γεωμετρικό τόπο ριζών. Τοποθετήστε τους πόλους
@@ -9789,7 +10158,41 @@ G(s) = \frac{2(s+8)}{s(s+4)(s+6)}
 \]
 
 Σχεδιάζουμε το γεωμετρικό τόπο ριζών:
-\todo{Graph 160}
+
+\begin{tikzpicture}
+\draw[->] (-5,0) -- (2,0) node[right] {$\Re$};
+\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+
+\coordinate (p1) at (-0.5,0);
+\coordinate (p2) at (-1,1.5);
+\coordinate (p3) at (-1,-1.5);
+\coordinate (b1) at (-3,0);
+
+\draw[gray,dashed] (p2 -| 0,0) node[right] {$j4$} -- (p2) -- (p3) node[midway,above] {$-3$} -- (p3 -| 0,0) node[right] {$-j4$};
+
+\begin{scope}[locus,ultra thick]
+\draw[postaction={decorate},
+decoration={markings,
+	mark=at position 0.25 with {\arrow{>}},%
+	mark=at position 0.75 with {\arrow{<}},%
+}]
+plot [smooth,tension=.9] coordinates {(p2) (-1.8,2) (b1) (-1.8,-2) (p3)}
+;
+
+\draw[postaction={decorate},
+decoration={markings,
+	mark=at position 0.30 with {\arrow{<}},%
+	mark=at position 0.80 with {\arrow{>}},%
+}]
+(p1) -- (current bounding box.west |- 0,0)
+;
+\end{scope}
+
+\draw (p1) node[locuszero=$-2$] {};
+\draw (p2) node[locuspole] {};
+\draw (p3) node[locuspole] {};
+\draw (b1) node[locusbreak] {};
+\end{tikzpicture}
 
 Για να βρούμε τα σημεία θλάσης, βρίσκουμε την \( A(s) = \frac{k(s+2)}{s^2+6s+25} \)
 (συνάρτηση μεταφοράς ανοιχτού βρόχου), και υπολογίζουμε τις λύσεις της εξίσωσης
@@ -9847,7 +10250,57 @@ H_{\text{κ}}
 	\end{aligned}}
 \)
 και ο γεωμετρικός τόπος ριζών γίνεται:
-\todo{Graph 161}
+
+\begin{tikzpicture}
+\draw[->] (-5,0) -- (2,0) node[right] {$\Re$};
+\draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
+
+\coordinate (p1) at (-0.5,0);
+\coordinate (p2) at (-1,1.5);
+\coordinate (p3) at (-1,-1.5);
+\coordinate (p4) at (-2.5,0);
+\coordinate (b1) at (-3.5,0);
+
+\draw[gray,dashed] (p2 -| 0,0) node[right] {$j4$} -- (p2) -- (p3) node[midway,above] {$-3$} -- (p3 -| 0,0) node[right] {$-j4$};
+
+\draw[magenta!50!red,densely dashed] (p4 |- 0,-1.5) -- (p4 |- 0,1.5);
+
+\begin{scope}[locus,ultra thick]
+\draw[postaction={decorate},
+decoration={markings,
+	mark=at position 0.15 with {\arrow{>}},%
+	mark=at position 0.85 with {\arrow{<}},%
+}]
+plot [smooth,tension=.9] coordinates {(p2) (-1.8,2) (b1) (-1.8,-2) (p3)}
+;
+
+\draw[postaction={decorate},
+decoration={markings,
+	mark=at position 0.20 with {\arrow{<}},%
+	mark=at position 0.70 with {\arrow{>}},%
+}]
+(p4) -- (current bounding box.west |- 0,0)
+;
+\end{scope}
+
+\begin{scope}[ultra thick,blue!50!magenta]
+\clip (p4 |- 0,-1.5) ++ (-0.6,0) rectangle (p4 |- 0,1.5);
+\draw[postaction={decorate},
+decoration={markings,
+	mark=at position 0.32 with {\arrow{>}},%
+	mark=at position 0.70 with {\arrow{<}},%
+}]
+plot [smooth,tension=.9] coordinates {(p2) (-1.8,2) (b1) (-1.8,-2) (p3)}
+;
+\end{scope}
+
+\draw (p1) node[locuspole] {};
+\draw (p1) node[locuszero=$-2$,fill opacity=.4] {};
+\draw (p2) node[locuspole] {};
+\draw (p3) node[locuspole] {};
+\draw (p4) node[locuszero=$-8$] {};
+\draw (b1) node[locusbreak] {};
+\end{tikzpicture}
 
 Παρατηρούμε βέβαια ότι λόγω του περιορισμού \( k \leq 15 \) υπάρχει ένα όριο στις
 τιμές που μπορούμε να επιλέξουμε. Λύνουμε τη χαρακτηριστική εξίσωση:
@@ -9868,6 +10321,8 @@ t_s = \frac{4}{10} = \underline{\SI{0.4}{\second}}.
 \]
 
 \end{enumlatin}
+
+\hspace{0pt}
 
 \end{exercise}
 
@@ -9897,7 +10352,20 @@ G_1(s) = \frac{τs+1}{aτs+1},\quad \text{με } 0<a<1
 	G(s) = \frac{4}{s(s+2)}
 	\]
 	
-	\todo{Graph 163}
+	\begin{tikzpicture}
+	\tikzstyle{transfer}=[rectangle,draw,minimum width=12mm,minimum height=9mm]
+	
+	\draw (1.5,0) node[transfer] (h1) {$G_c(s)$};
+	\draw (4,0) node[transfer] (h2) {$G(s)$};
+	\draw (0,0) node[mixer,scale=.7] (mix) {};
+	
+	\draw[<-] (mix.west) node[above left] {$+$} -- ++(-1.5,0);
+	\draw[->] (mix.east) -- (h1);
+	\draw[->] (h1) -- (h2);
+	\draw[->] (h2.east) -- +(1,0) node[midway] (fb) {};
+	\draw[->] (fb.center) -- ++(0,-1.4)  -| (mix.south);
+	\draw (mix.south) node[below right] {$-$};
+	\end{tikzpicture}
 	
 	Προσδιορίστε το \( K \) έτσι ώστε η σταθερά σφάλματος ταχύτητας να είναι
 	\( K_v = \SI{20}{\second^{-1}} \).
@@ -9915,7 +10383,79 @@ G_1(s) = \frac{τs+1}{aτs+1},\quad \text{με } 0<a<1
 	\]
 	
 	Σε αυτήν τη μορφή μπορούμε να σχεδιάσουμε το διάγραμμα Bode:
-	\todo{Graph 162}
+	
+	\begin{tikzpicture}[scale=1,xscale=1.5]
+	\pgfplotsset{
+		/pgf/number format/freq/.style={fixed},
+	}
+	\def\phasedown{-4}
+	\def\phaseextra{-2}
+	
+	%\draw (-1,1) node[orange!90!blue!80!black] {$\displaystyle \left|H_p\cdot H_c\right|_{\si{\decibel}}$};
+	
+	\draw[->] (-0.3,\phasedown+\phaseextra) -- (-0.3,3);
+	\draw[->] (-0.3,0) -- (3.5,0) node[above] {$\omega$};
+	
+	\foreach \x in {0,1,2} {
+		\draw[densely dotted] (\x,\phasedown) -- (\x,0);
+	}
+	
+	\def\at{60}
+	\draw[ultra thick,orange!90!blue!80!black]
+	(-0.3,0) -- (1,0) node(c1) {}
+	-- ++(1*\at:{1/cos(1*\at)}) node(c2) {} node[midway,above left] {-20 dB/dec}
+	-- ++(1.5,0)
+	;
+	
+	\foreach \p in {c1,c2} {
+		\draw[densely dashed] (\p.center) -- (\p.center |- 0,0);
+	}
+	
+	
+	\foreach \x in {1,2} {
+		\pgfmathsetmacro\result{10^\x/10}
+		\draw (\x,-0.1) node[below,fill=white,fill opacity=.75,text opacity=1] {$
+			\sfrac{\pgfmathprintnumber[freq]\result}{\tau}%
+			$} -- ++(0,0.2);
+		%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	}
+	\foreach \x in {0,1,2,3} {
+		\pgfmathsetmacro\result{10^\x/10}
+		\draw (\x,\phasedown-0.1) node[below,fill=white,fill opacity=.75,text opacity=1] {$
+			\sfrac{\pgfmathprintnumber[freq]\result}{\tau}%
+			$} -- ++(0,0.2);
+		%\draw[dashed] (\x,0) |- (0,\x*3/4);
+	}
+	
+	\begin{scope}[yshift=\phasedown cm]
+	%\draw (-1,-1) node[magenta,left] {$\phi$};
+	\draw[->] (-0.3,0) -- (4.5,0);
+	\def\at{30}
+	
+	\draw[thick,magenta,opacity=.2]
+	(-0.3,0) -- ++ (0.3,0)
+	-- ++(1*\at:{2/cos(1*\at)})
+	-- ++(2,0)
+	;
+	
+	\draw[ultra thick,magenta]
+	(-0.3,0) -- ++ (0.3,0) node(c1) {}
+	-- ++(1*\at:{1/cos(1*\at)}) node(c2) {} node[above,sloped,midway,scale=.9] {$\ang{45}$/dec}
+	-- ++(1,0) node(c3) {}
+	-- ++(-1*\at:{1/cos(1*\at)}) node(c4) {} node[sloped,rotate=9,above,midway,scale=.9] {$\ang{-45}$/dec}
+	-- ++(1,0)
+	;
+	
+	\foreach \p in {c1,c2,c3,c4} {
+		\draw[dashed,gray] (\p.center) -- (\p.center |- 0,0);
+	}
+	
+	\draw (c1 -| -0.3,0) node[left] {$\ang{0}$};
+	\draw[dashed] (c2) -- (c2 -| -0.3,0) node[left] {$\ang{45}$};
+	\end{scope}
+	
+	\end{tikzpicture}
+	
 	\item Έχουμε:
 	\[
 	\omega = \frac{1}{τ\sqrt{0.1}} = 3.16\frac{1}{τ} < 10\frac{1}{τ}
@@ -9954,7 +10494,78 @@ G_1(s) = \frac{τs+1}{aτs+1},\quad \text{με } 0<a<1
 	= \SI{60}{\decibel} \).
 	
 	Το διάγραμμα Bode είναι:
-	\todo{Graph 164}
+	
+	\begin{tikzpicture}[scale=1,xscale=1.5]
+	\pgfplotsset{
+		/pgf/number format/freq/.style={fixed},
+	}
+	\def\phasedown{-3}
+	\def\phaseextra{-3}
+	\def\xshift{0}
+	
+	%\draw (-1,1) node[orange!90!blue!80!black] {$\displaystyle \left|H_p\cdot H_c\right|_{\si{\decibel}}$};
+	
+	\draw[->] (\xshift,\phasedown+\phaseextra) -- (\xshift,3);
+	\draw[->,name path=xa] (\xshift,0) -- (4.5,0) node[above] {$\omega$};
+	
+	\foreach \x in {1,2,3} {
+		\draw[densely dotted] (\x,\phasedown) -- (\x,0);
+	}
+	
+	\def\at{32}
+	\draw[ultra thick,orange!90!blue!80!black,name path=g]
+	(0,2.5)
+	-- ++(-1*\at:{2/cos(1*\at)}) node(c1) {} node[midway,above right] {-20 dB/dec} node[midway] (c0) {}
+	-- ++(-2*\at:{1.8/cos(2*\at)}) node[near end,above right] {-40 dB/dec}
+	;
+	
+	\draw (0,2.5) node[left] {$20\log20-20\log0,02$};
+	\draw[dashed] (c0.center) -- (c0.center -| 0,0) node[left] {$\SI{40}{\decibel}$};
+	\draw[dashed] (c1.center) -- (c1.center -| 0,0) node[left] {$\SI{20}{\decibel}$};
+	
+	\draw[name intersections={of=g and xa}]
+	(intersection-1) node[circle,draw,fill=gray,inner sep=2pt,fill opacity=.5] (wc) {}
+	(wc) node[above right] {$\omega_c$};
+	
+	\foreach \p in {c0,c1} {
+		\draw[densely dashed] (\p.center) -- (\p.center |- 0,0);
+	}
+	
+	
+	\foreach \x in {0,1,2} {
+		\pgfmathsetmacro\result{2*10^\x/100}
+		\draw (\x,-0.1) node[below,fill=white,fill opacity=.75,text opacity=1] {$
+			\pgfmathprintnumber[freq]\result
+			$} -- ++(0,0.2);
+	}
+	\foreach \x in {0,1,2,3} {
+		\pgfmathsetmacro\result{2*10^\x/100}
+		\draw (\x,\phasedown-0.1) node[below,fill=white,fill opacity=.75,text opacity=1] {$
+			\pgfmathprintnumber[freq]\result
+			$} -- ++(0,0.2);
+	}
+	
+	\begin{scope}[yshift=\phasedown cm]
+	%\draw (-1,-1) node[magenta,left] {$\phi$};
+	\draw[->] (\xshift,0) -- (4.5,0);
+	\def\at{40}
+	
+	\draw[ultra thick,magenta]
+	(0,0) -- (1,0) node(c1) {}
+	-- ++(-1*\at:{2/cos(1*\at)}) node(c3) {} node[above right,pos=.56,yshift=-4pt,scale=.9] {$\ang{-45}$/dec} node[midway] (c2) {}
+	-- ++(1.5,0)
+	;
+	
+	\foreach \p in {c1,c2,c3} {
+		\draw[dashed,gray] (\p.center) -- (\p.center |- 0,0);
+	}
+	
+	\draw (c1 -| -0.3,0);
+	\draw[dashed] (c2) -- (c2 -| -0.3,0) node[left] {$\ang{-135}$};
+	\draw[dashed] (c3) -- (c3 -| -0.3,0) node[left] {$\ang{-180}$};
+	\end{scope}
+	
+	\end{tikzpicture}
 	
 	Παρατηρούμε ότι το \( \omega_c \) (συχνότητα όπου το κέρδος είναι \( \SI{0}{\decibel} \))
 	βρίσκεται μεταξύ \( \SI{2}{\radian/\second} \) και \( \SI{20}{\radian/\second} \).

@@ -1,0 +1,71 @@
+﻿\begin{tikzpicture}[scale=1,xscale=1.5]
+\pgfplotsset{
+	/pgf/number format/freq/.style={fixed},
+}
+\def\phasedown{-3}
+\def\phaseextra{-3}
+\def\xshift{0}
+
+%\draw (-1,1) node[orange!90!blue!80!black] {$\displaystyle \left|H_p\cdot H_c\right|_{\si{\decibel}}$};
+
+\draw[->] (\xshift,\phasedown+\phaseextra) -- (\xshift,3);
+\draw[->,name path=xa] (\xshift,0) -- (4.5,0) node[above] {$\omega$};
+
+\foreach \x in {1,2,3} {
+	\draw[densely dotted] (\x,\phasedown) -- (\x,0);
+}
+
+\def\at{32}
+\draw[ultra thick,orange!90!blue!80!black,name path=g]
+(0,2.5)
+-- ++(-1*\at:{2/cos(1*\at)}) node(c1) {} node[midway,above right] {-20 dB/dec} node[midway] (c0) {}
+-- ++(-2*\at:{1.8/cos(2*\at)}) node[near end,above right] {-40 dB/dec}
+;
+
+\draw (0,2.5) node[left] {$20\log20-20\log0,02$};
+\draw[dashed] (c0.center) -- (c0.center -| 0,0) node[left] {$\SI{40}{\decibel}$};
+\draw[dashed] (c1.center) -- (c1.center -| 0,0) node[left] {$\SI{20}{\decibel}$};
+
+\draw[name intersections={of=g and xa}]
+(intersection-1) node[circle,draw,fill=gray,inner sep=2pt,fill opacity=.5] (wc) {}
+(wc) node[above right] {$\omega_c$};
+
+\foreach \p in {c0,c1} {
+	\draw[densely dashed] (\p.center) -- (\p.center |- 0,0);
+}
+
+
+\foreach \x in {0,1,2} {
+	\pgfmathsetmacro\result{2*10^\x/100}
+	\draw (\x,-0.1) node[below,fill=white,fill opacity=.75,text opacity=1] {$
+\pgfmathprintnumber[freq]\result
+$} -- ++(0,0.2);
+}
+\foreach \x in {0,1,2,3} {
+	\pgfmathsetmacro\result{2*10^\x/100}
+	\draw (\x,\phasedown-0.1) node[below,fill=white,fill opacity=.75,text opacity=1] {$
+\pgfmathprintnumber[freq]\result
+$} -- ++(0,0.2);
+}
+
+\begin{scope}[yshift=\phasedown cm]
+%\draw (-1,-1) node[magenta,left] {$\phi$};
+\draw[->] (\xshift,0) -- (4.5,0);
+\def\at{40}
+
+\draw[ultra thick,magenta]
+(0,0) -- (1,0) node(c1) {}
+-- ++(-1*\at:{2/cos(1*\at)}) node(c3) {} node[above right,pos=.56,yshift=-4pt,scale=.9] {$\ang{-45}$/dec} node[midway] (c2) {}
+-- ++(1.5,0)
+;
+
+\foreach \p in {c1,c2,c3} {
+	\draw[dashed,gray] (\p.center) -- (\p.center |- 0,0);
+}
+
+\draw (c1 -| -0.3,0);
+\draw[dashed] (c2) -- (c2 -| -0.3,0) node[left] {$\ang{-135}$};
+\draw[dashed] (c3) -- (c3 -| -0.3,0) node[left] {$\ang{-180}$};
+\end{scope}
+
+\end{tikzpicture}
