@@ -7259,7 +7259,7 @@ plot[variable=\x,domain=0:80,samples=\gsamples,smooth,yscale=\scale,xscale=\xsca
 \pgfmathsetmacro\xb{\xscale*fx(\arrow + 0.01)}
 \pgfmathsetmacro\fa{\scale*fy(\arrow)}
 \pgfmathsetmacro\fb{\scale*fy(\arrow + 0.01)}
-\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,-\fa) -- (\xb,-\fb);
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{<}}}] (\xa,-\fa) -- (\xb,-\fb);
 
 \draw(\xscale*0.388,0) node [below right,scale=.8] {$0.388$};
 \draw(\xscale*1.66,0) node [below left,scale=.8] {$1.66$};
@@ -7277,9 +7277,9 @@ plot[variable=\x,domain=0:80,samples=\gsamples,smooth,yscale=\scale,xscale=\xsca
 \begin{tikzpicture}
 \tikzstyle{transfer}=[rectangle,draw,minimum height=9mm]
 \draw (1.2,0) node[transfer] (h0) {$\displaystyle \frac{6}{s+1}$};
-\draw (3,0) node[transfer] (h1) {$\displaystyle \frac{5}{s(s+2)}$};
+\draw (3.5,0) node[transfer] (h1) {$\displaystyle \frac{7}{s^2+5s+2}$};
 \draw (0,0) node[circle,draw,minimum size=5mm] (mix) {};
-\draw (h1.south) ++(-1,-1) node[transfer] (h2) {$\displaystyle \frac{4}{s+5}$};
+\draw (h1.south) ++(-1,-1) node[transfer] (h2) {$\displaystyle \frac{8}{s+2}$};
 
 \draw[<-] (mix) -- ++(-1,0);
 \draw[->] (mix) -- (h0);
@@ -7290,7 +7290,7 @@ plot[variable=\x,domain=0:80,samples=\gsamples,smooth,yscale=\scale,xscale=\xsca
 \end{tikzpicture}
 
 \tcblower
-Η (ισοδύναμη) συνάρτηση μεταφοράς είναι:
+Η (ισοδύναμη) συνάρτηση μεταφοράς \textit{ανοιχτού} βρόχου είναι:
 \[
 A(s) = \frac{6}{s+1}\frac{7}{s^2+5s+2}\frac{8}{s+2} = \frac{336}{s^4+8s^3+19s^2+16s+4}
 \]
