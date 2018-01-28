@@ -2997,7 +2997,7 @@ G_2 &= \frac{16}{5}\frac{s+5}{(s+2)(s+8)} \\
 G_3 &= \frac{16}{2+\Delta_z}\frac{s+2+\Delta_z}{(s+2)(s+8)}\\
 G_4 &= 16\frac{s+1}{(s+2)(s+8)}
 \end{align*}
-Να υπολογιστεί και να σχεδιαστεί η κρουστική απόκριση των παραπάνω συστημάτων.
+Να υπολογιστεί η κρουστική απόκριση των παραπάνω συστημάτων.
 \tcblower
 Ουσιαστικά θα πάρουμε έναν αντίστροφο μετασχηματισμό Laplace.
 
@@ -3091,6 +3091,35 @@ t_s = 4τ = 4\frac{1}{-p\mathrlap{\leftarrow \text{ πόλος}}}
 \hphantom{\leftarrow \text{ πόλος}} = \frac{1}{2} = 0.5
 \]
 
+\paragraph{\(G_4\)} Έχουμε:
+\[
+G_4 = 16 \cdot \frac{s+1}{(s+2)(s+8)} = \frac{A}{s+2} + \frac{B}{s+8}
+= \frac{-2.67}{s+2} + \frac{18.67}{s+8}
+\]
+οπότε η απόκριση στο χρόνο γίνεται:
+\[
+\mathscr{L}^{-1}\left\lbrace G_4 \right\rbrace =
+-2.67 e^{-2t} + 18.67 e^{-8t}
+\]
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (0,-0.5) -- (0,3);
+\draw[->] (0,0) -- (4.5,0) node[below] {t};
+
+\draw[dashed] (2.7,2.5) -- ++(0,-2.5) node[below] {0.5};
+
+\draw[thick,cyan!70!blue!70!black,mark position=0.5(a)]
+plot[domain=0:4,variable=\x,samples=18,smooth]
+(\x,{8/3*(exp(-2*\x)-exp(-8*\x))});
+\draw[cyan!70!blue!50!black,<-]
+([yshift=2pt]a) to[bend left] ++(0.5,0.5) node[above right] {$16\frac{1}{(s+2)(s+8)}$};
+\draw[ultra thick,cyan!50!blue!70!black,mark position=0.55(b)]
+plot[domain=0.17:4,variable=\x,samples=18,smooth]
+(\x,{8/3*(-exp(-2*\x)+7*exp(-8*\x))});
+\draw[cyan!70!blue!50!black,<-]
+([yshift=-2pt]b) to[bend left=20] ++(0.5,-0.5) node[below,xshift=-4mm] {$16\frac{s+1}{(s+2)(s+8)}$};
+\end{tikzpicture}
+
 \end{exercise}
 \begin{exercise}
 Ποιό από τα παρακάτω συστήματα έχει τη βηματική απόκριση που φαίνεται στο σχήμα;
@@ -3168,12 +3197,13 @@ plot[domain=0:6,variable=\x,samples=20,smooth]
 \draw[->] (0,-0.5) -- (0,4);
 \draw[->] (0,0) -- (5,0) node[below] {t};
 
-\draw[ultra thick,cyan!50!blue!70!black,mark position=0.9(b),mark position=0.57(a)]
+\draw[ultra thick,cyan!50!blue!70!black,mark position=0.9(b),mark position=0.57(a),mark position=0.99(c)]
 plot[domain=0:5,variable=\x,samples=14,smooth]
-(\x,{3.5*(1-exp(-0.8*\x))});
+(\x,{3.5*(1-exp(-1.2*\x))});
 
 \draw[dashed] (a |- 0,0) node[circle,fill,inner sep=1pt] {} node[below] {$0.6$} |- (a -| 0,0) node[circle,fill,inner sep=1pt] {} node[left] {$9$};
-\draw[dashed] (b |- 0,0) node[circle,fill,inner sep=1pt] {} node[below] {$1.2$} |- (b -| 0,0) node[circle,fill,inner sep=1pt] {} node[left] {$10$};
+\draw[dashed] (b |- 0,0) node[circle,fill,inner sep=1pt] {} node[below] {$1.2$} -- (b);
+\draw [dashed] ([yshift=1pt]c) -- ([yshift=1pt]c -| 0,0) node[circle,fill,inner sep=1pt] {} node[left] {$10$};
 \end{tikzpicture}
 
 \begin{enumlatin}
