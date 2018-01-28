@@ -86,7 +86,7 @@
 	τάση \( u \) εισόδου του κινητήρα για να πετύχουμε την επιθυμητή ταχύτητα.
 \end{itemize}
 
-Έχουμε και μία \textbf{είσοδο αναφοράς} που καθορίζει την επιθυμητή έξοδο του συστήματος.
+Έχουμε και μία \textbf{είσοδο αναφοράς} \( r \) που καθορίζει την επιθυμητή έξοδο του συστήματος.
 
 Στα πλαίσια των ΣΑΕ βρίσκουμε το μαθηματικό μοντέλο του συστήματος, καθώς και το μαθηματικό
 μοντέλο του ελεγκτή, και τα υλοποιούμε με φυσικό τρόπο (για παράδειγμα μέσω κυκλωματικών
@@ -261,9 +261,9 @@ m\ddot x_0 + b(\dot x_0 - \dot x_i) + \kappa (x_0-x_i) = 0
 	\item Έχει μηδενικό στο \( -9 \) και πόλους στα \( -2+j3 \) και \( -2-j3 \).
 	\item Έχει μόνο πόλο στο \( -2 \).
 \end{enumroman}
-\end{exercise}
 
 Η λύση αυτή μπορεί να προκύψει από τους ορισμούς του πόλου και του μηδενικού.
+\end{exercise}
 
 \subsection{Σύστημα κλειστού βρόγχου}
 
@@ -391,9 +391,9 @@ node[above,rectangle,align=center,scale=0.8]
 \draw (-1,0) -- (3,0);
 \draw (0,-2) -- (0,2);
 
-\draw [very thick, color=blue, domain=0:3,variable=\t, samples=\gsamples, smooth]
-plot (\t,{ 1-exp(-\t) }) node[below] {$-a$};
 \draw [very thick, color=yellow!50!brown!50!red, domain=0:3,variable=\t, samples=\gsamples, smooth]
+plot (\t,{ 1-exp(-\t) }) node[below] {$-a$};
+\draw [very thick, color=blue, domain=0:3,variable=\t, samples=\gsamples, smooth]
 plot (\t,{ 1-exp(-5*\t) }) node[above,xshift=-2cm] {$-a-k$};
 \end{scope}
 \end{tikzpicture}
