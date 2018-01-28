@@ -2064,7 +2064,8 @@ t_r = t_2-t_1 \implies \boxed{t_r = τ\ln 9 \approx 2.2τ}
 \end{defn}
 
 \begin{defn}{Χρόνος αποκατάστασης σε πρωτοβάθμιο σύστημα}{}
-Ορίζουμε το \textbf{χρόνο αποκατάστασης} \( t_s \) (steady), ως εξής:
+Ορίζουμε το \textbf{χρόνο αποκατάστασης} \( t_s \) (steady) ως τον χρόνο που
+απαιτείται μέχρι το σύστημα να φτάσει στο \( 98\% \) της εξόδου του:
 \[
 1-e^{\sfrac{-t_s}{τ} } = 0.98
 \implies \boxed{t_s \approx 4τ}
@@ -2634,7 +2635,7 @@ plot[variable=\t,domain=0:5,samples=\gsamples]
 και η υπερύψωση.
 
 Συνήθως το \( ζ \) ως προδιαγραφή είναι ανάμεσα στο 0.4 και 0.8, ενώ αν δεν θέλουμε καθόλου
-υπερύψωση, παίρνουμε \( ζ \geq 1 \), που οδηγεί πραγματικές ρίζες.
+υπερύψωση, παίρνουμε \( ζ \geq 1 \), που οδηγεί σε πραγματικές ρίζες.
 \end{exercise}
 
 
@@ -2743,21 +2744,21 @@ plot[variable=\t,domain=0:5,samples=\gsamples]
 	προκύπτει:
 	\[
 	s^2+
-	\underbrace{13}_{ζ\omega_n}s
+	\underbrace{13}_{2ζ\omega_n}s
 	+\underbrace{10k+42}_{\omega_n^2}
 	\]
 	
 	Επομένως θέλουμε:
 	\[
 	ζ = \frac{13}{2\sqrt{42+10k}} > 0.59
-	\implies \boxed{k < 8.3}
+	\implies \boxed{k < 7.9}
 	\]
 	
 	\item
 	Αν για τις παραπάνω προδιαγραφές υπολογίσουμε το χρόνο αποκατάστασης
 	\[
 	t_s \approx \frac{4}{ζ\omega_n}
-	= \frac{4}{13} \simeq 0.3077 \simeq 308\ \mathrm{ms}
+	= \frac{4}{\sfrac{13}{2} } \simeq 0.6154 \simeq 615\ \mathrm{ms}
 	\]
 	φαίνεται ότι ήδη πληροί την προδιαγραφή \( t_s < 660\ \mathrm{ms} \).
 	
@@ -3236,7 +3237,7 @@ plot [variable=\t,domain=0:6,samples=\gsamples]
 (\t,{2*(1-1*exp(-0.8*\t))});
 
 \draw[dashed] (0.84,0) node[below,xshift=2mm] {$t_p$}-- ++(0,3)
--- (0,3) node[left] {$M_p$};
+-- (0,3) node[left] {$y_{\mathrm{ss}_{M_p}}$};
 \draw[dashed] (0.44,0) node[below] {$t_r$} -- ++(0,2);
 
 \filldraw[thick,draw=orange,draw opacity=.5,fill=white!90!orange,fill opacity=.6]
