@@ -569,6 +569,7 @@ f(\infty) = \lim_{s\to 0} sF(s)
 
 Για να μελετήσουμε την ακρίβεια, ορίζουμε το σφάλμα:
 \begin{defn}{Σφάλμα}{}
+	Ορίζουμε το \textbf{σφάλμα} ως τη διαφορά της εξόδου από την είσοδο:
 	\[
 	e(s) = r(s) - y(s)
 	\]
@@ -576,27 +577,29 @@ f(\infty) = \lim_{s\to 0} sF(s)
 
 Χρησιμοποιούμε διάφορες εισόδους για να βρούμε διάφορα είδη σφαλμάτων του συστήματος:
 
+\begin{infobox}{Είσοδοι για μελέτη σφαλμάτων}
 \begin{alignat*}{5}
 \begin{tikzpicture}[scale=0.4,baseline]
 \draw (-0.2,0) -- (2,0);
 \draw (0,-0.2) -- (0,2);
 \draw [very thick, color=blue] (0,1.8) -- (2,1.8);
 \end{tikzpicture}\quad
-r(t) &= \mathrm u(t) &&\quad r(s) = \frac{1}{s} &\qquad e_{\mathrm ssp} & \quad{\text{σφάλμα θέσης}} \\
+r(t) &= \mathrm u(t) &&\quad r(s) = \frac{1}{s} &\qquad e_{\mathrm ssp} & \quad{\text{σφάλμα \textbf{θέσης}}} \\
 \begin{tikzpicture}[scale=0.4,baseline]
 \draw (-0.2,0) -- (2,0);
 \draw (0,-0.2) -- (0,2);
 \draw [very thick, color=blue] (0,0) -- (2,2);
 \end{tikzpicture}\quad
-r(t) &= t &&\quad r(s) = \frac{1}{s^2} &\qquad e_{\mathrm ssv} & \quad{\text{σφάλμα ταχύτητας}} \\
+r(t) &= t &&\quad r(s) = \frac{1}{s^2} &\qquad e_{\mathrm ssv} & \quad{\text{σφάλμα \textbf{ταχύτητας}}} \\
 \begin{tikzpicture}[scale=0.4,baseline]
 \draw (-0.2,0) -- (2,0);
 \draw (0,-0.2) -- (0,2);
 \draw [very thick, color=blue, domain=0:2,variable=\t, samples=\gsamples, smooth]
 plot (\t,\t^2/2);
 \end{tikzpicture}\quad
-r(t) &= \sfrac{t^2}{2} &&\quad r(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \quad{\text{σφάλμα επιτάχυνσης}}
+r(t) &= \sfrac{t^2}{2} &&\quad r(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \quad{\text{σφάλμα \textbf{επιτάχυνσης}}}
 \end{alignat*}
+\end{infobox}
 
 Για παράδειγμα, για το σύστημα κλειστού βρόγχου, θυμόμαστε ότι:
 
@@ -619,7 +622,9 @@ r(t) &= \sfrac{t^2}{2} &&\quad r(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \q
 	\text{όπου } H(s) &=
 	\frac{G(τ_{n+1}s+1)\cdots(τ_{n+m}s+1)}{s^N(1+sτ_1)\cdots(1+sτ_n)} \implies
 	\\
-	e(s) &= r(s)-y(s) = \frac{1}{1+H(s)}r(s) \\
+	e(s) &= r(s)-y(s) = \frac{1}{1+H(s)}r(s)
+\intertext{Τώρα μπορούμε να υπολογίσουμε το σφάλμα \textbf{σταθερής κατάστασης},
+	χρησιμοποιώντας το θεώρημα τελικής τιμής:}
 	e_{\mathrm{ss}} &= \lim_{s\to 0}se(s)
 \end{align*}
 (δηλαδή \( N \) είναι η τάξη του τυχόν πόλου στο 0).
@@ -662,6 +667,16 @@ r(t) &= \sfrac{t^2}{2} &&\quad r(s) = \frac{1}{s^3} &\qquad e_{\mathrm ssa} & \q
 \begin{defn}{Τύπος συστήματος}{}
 	Ο \textbf{τύπος του συστήματος} είναι ο αριθμός των ολοκληρωτών που έχει.
 \end{defn}
+\begin{attnbox}{Σφάλματα στο κλειστό σύστημα}
+	Στους παραπάνω τύπους χρησιμοποιήσαμε τη
+	\textbf{συνάρτηση μεταφοράς ανοιχτού βρόχου} \( H(s) \)
+	για να βρούμε το σφάλμα στην απόκριση του \textbf{κλειστού βρόχου}, σε σύστημα
+	\textbf{μοναδιαίας αρνητικής ανάδρασης}.
+	
+	Αν έχουμε στη διάθεσή μας μόνο τη συνάρτηση μεταφοράς του κλειστού βρόχου ή κάποια
+	άλλη μορφή συστήματος, θα πρέπει να καταφύγουμε στον τύπο \( e(s) = r(s) - y(s) \) ή
+	σε κάποιο άλλο μαθηματικό κόλπο.
+\end{attnbox}
 
 \paragraph{Παράδειγμα}
 Έστω το σύστημα:
@@ -688,6 +703,12 @@ node[right,xshift=1mm,yshift=-1mm] {$-$};
 διαταραχής;
 
 \subparagraph{}
+
+Αν δεν υπήρχε η διαταραχή, θα είχαμε σφάλμα θέσης μόνιμης κατάστασης
+\( e_{\mathrm{ssp}} = 0 \), αφού η \( H(s) \) έχει έναν ολοκληρωτή.
+
+Επομένως αγνοούμε την επίδραση της \( r(s) \), και υπολογίζουμε την έξοδο αν
+υπάρχει μόνο η διαταραχή.
 
 Γνωρίζουμε για το σύστημα κλειστού βρόχου ότι:
 \begin{align*}
@@ -802,12 +823,16 @@ Js^3+bs^2+κ = 0
 με \( K_P e(t) \) και ολοκληρώνουμε με
 \( K_I \int e(t) \).
 
-\begin{infobox}{Ελεγκτής PI}
+\begin{defn}{Ελεγκτής PI}{}
+Ο \textbf{ελεγκτής PI} (Proportional \& Integral) είναι ένας ολοκληρωτής που
+προσθέτει το αποτέλεσμα του \textbf{πολλαπλασιασμού} και της
+\textbf{ολοκλήρωσης} στην είσοδό του.
+	
 Σύμφωνα με την παραπάνω παράγραφο, η έξοδος \( u(t) \) ενός ελεγκτή PI είναι:
 \[
-u(t) = K_P\cdot e(t) + K_I \int e(t) \dif t
+u(t) = K_P\cdot r(t) + K_I \int r(t) \dif t
 \]
-(όπου \( e \) η είσοδος)
+(όπου \( r \) η είσοδος)
 και, μετασχηματίζοντας κατά Laplace:
 \[
 u(s) = \left( K_P + \frac{K_I}{s} \right) =
@@ -815,7 +840,10 @@ u(s) = \left( K_P + \frac{K_I}{s} \right) =
 = \frac{K_P(s+z)}{s}
 \]
 όπου \( z = \frac{K_P}{K_I} \) μία σταθερή τιμή.
-\end{infobox}
+
+Παρατηρούμε ότι ο ελεγκτής αυτός ουσιαστικά εισάγει έναν \textbf{ολοκληρωτή}
+και ένα \textbf{μηδενικό}.
+\end{defn}
 
 Στο συγκεκριμένο παράδειγμα, αντικαθιστούμε τη συνάρτηση μεταφοράς \( \sfrac{κ}{s}  \) με
 τη συνάρτηση:
@@ -831,7 +859,8 @@ x(s) = Js^3 + bs^2 + K_p s + K_I = 0
 
 \paragraph{Παράδειγμα} \hspace{0pt}
 
-Στο σύστημα χωρίς βρόγχο:
+Στο σύστημα χωρίς βρόχο, δεν μπορούμε να χρησιμοποιήσουμε τους τύπους, αλλά πρέπει
+να εκμεταλλευτούμε τον ορισμό του σφάλματος:
 
 \begin{tikzpicture}[scale=0.9]
 \draw[->] (0,0) -- (1.5,0) node[above,midway] {$r(s)$};
@@ -840,7 +869,10 @@ x(s) = Js^3 + bs^2 + K_p s + K_I = 0
 \end{tikzpicture}
 
 \begin{align*}
-	e_{\mathrm{ssp}} &= \lim_{s\to 0} se(s) = \lim_{s\to 0}\left(1-H_κ(s)\right) \\
+	e_{\mathrm{ssp}} &= \lim_{s\to 0} se(s)
+	= \lim_{s\to 0}s \left( r(s) - y(s) \right)
+	= \lim_{s\to 0}s\left( \frac{1}{s} - H_κ(s)\cdot \frac{1}{s} \right)
+	= \lim_{s\to 0}\left(1-H_κ(s)\right) \\
 	e_{\mathrm{ssv}} &= \lim_{s\to 0} \frac{1-H_κ(s)}{s} \\
 	e_{\mathrm{ssa}} &= \lim_{s\to 0} \frac{1-H_κ(s)}{s^2}
 \end{align*}
@@ -885,8 +917,8 @@ H(s) = \frac{s+9}{s^2+7s+3}
 
 \draw[->]  (3.6,0) -- ++(0,-1) -- (1.5,-1) -- (0.75,-1) -- ++(0,0.75) node[right,xshift=1mm,yshift=-1mm] {$-$};
 \end{tikzpicture}
-Στο παραπάνω σχήμα, θέτουμε:
 
+Στο παραπάνω σχήμα, θέτουμε:
 \[
 H(s) = \frac{2(s+10)}{s(s+2)(s+5)}
 \]
@@ -935,12 +967,14 @@ H(s) = \frac{1.8κ}{s(s+3.3)}
 
 
 \begin{exercise}
+Δίνεται η συνάρτηση μεταφοράς \textbf{κλειστού βρόχου} ενός συστήματος:
 \[
 H_{κ}(s) = \frac{κs+b}{s^2+as+b}
 \]
 
-Ποιά είναι τα σφάλματα του συστήματος, και ποιά είναι η συνάρτηση μεταφοράς, αν προέρχεται
-από σύστημα κλειστού βρόγχου \textit{μοναδιαίας αρνητικής ανάδρασης};
+Ποιά είναι τα σφάλματα του συστήματος, και ποιά είναι η συνάρτηση μεταφοράς
+\textbf{ανοιχτού βρόχου}, αν προέρχεται
+από σύστημα \textit{μοναδιαίας αρνητικής ανάδρασης};
 
 \tcblower
 
@@ -963,7 +997,7 @@ H_{κ}(s) = \frac{κs+b}{s^2+as+b}
 \draw[->]  (3.6,0) -- ++(0,-1.5) -- (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[right,xshift=1mm,yshift=-1mm] {$-$};
 \end{tikzpicture}
 
-Γνωρίζουμε ή βρίσκουμε ότι, για συστήματα κλειστού βρόγχου:
+Γνωρίζουμε ή βρίσκουμε ότι, για συστήματα κλειστού βρόχου:
 \[
 H_κ(s) = \frac{H(s)}{1+H(s)}
 \]
@@ -1238,6 +1272,8 @@ e_{\mathrm{ss}} = \lim_{s\to 0} se(s)
 Παρατηρούμε ότι η αλλαγή της θέσης του ολοκληρωτή \( \displaystyle \frac{1}{s} \) επηρεάζει
 και το σφάλμα του συστήματος.
 
+\todo{Σφάλματα ταχύτητας}
+
 \end{exercise}
 
 \subsubsection{Ασκήσεις (Παπαγεωργίου)}
@@ -1268,7 +1304,7 @@ e_{\mathrm{ss}} = \lim_{s\to 0} se(s)
 	Οι αριθμοί των ασκήσεων συνήθως δίνονται από το βιβλίο του \textbf{Πετρίδη}.
 \end{infobox}
 
-\begin{exercise}{3.8}
+\begin{exercise}[3.8]
 
 \begin{circuitikz}
 	\draw (2.5+0.2,-0.7) circle (0.2);
@@ -1469,7 +1505,8 @@ V_t = R_Ai_A +L_a\od{i_A}{t}
 \draw[->,gray!70!black!80!green] (3.2,0.9) node[above] {$J_L$}  to[bend right=10] (3.3,0.45);
 \end{tikzpicture}
 
-Ο μειωτήρας είναι το μηχανικό ισοδύναμο ενός ενισχυτή, που κατασκευάζεται ουσιαστικά με δύο
+Ο μειωτήρας είναι το μηχανικό ισοδύναμο ενός μετασχηματιστή,
+και κατασκευάζεται ουσιαστικά με δύο
 γρανάζια, ώστε να αυξηθεί η δύναμη μειώνοντας την ταχύτητα ή αντίστροφα:
 
 \begin{tikzpicture}[scale=0.7]
@@ -1913,12 +1950,13 @@ V_B = V_A = 0
 	\subparagraph{}
 	Τότε τα σφάλματα είναι:
 	\begin{align*}
-		e_{\mathrm{sv}} &= \lim_{s\to 0} \cancel{s}(1-H_c)\frac{1}{s^{\cancel{2}}} \\
-		K_v &= \lim_{s\to 0} Hs \\
-		e_{\mathrm{sv}} &= \frac{1}{K_v} \\
-		e_{\mathrm{sa}} &= \lim_{s\to 0} \frac{1}{\cancel{2}}s(1-H_c)\frac{\cancel{2}}{s^3} \\
-		K_a &= \lim_{s\to 0} H(s) \\
-		e_{\mathrm{sa}} &= \frac{1}{K_a}
+	    K_p &= \lim_{s\to 0}H(s) = \infty \\
+		e_{\mathrm{sv}} &= \lim_{s\to 0} \frac{1}{1+K_p} = \frac{1}{1+\infty} = 0 \\
+		K_v &= \lim_{s\to 0} sH(s) = \lim_{s\to 0} \frac{2(s+10)}{(s^2+2)(s+5)}
+		= \frac{2\cdot(0+10)}{(0^2+2)\cdot (0+5)} = 2 \\
+		e_{\mathrm{sv}} &= \frac{1}{K_v} = \frac{1}{2}\\
+		K_a &= \lim_{s\to 0} s^2 H(s) = 0\\
+		e_{\mathrm{sa}} &= \frac{1}{K_a} = \infty
 	\end{align*}
 \end{enumgreekparen}
 
