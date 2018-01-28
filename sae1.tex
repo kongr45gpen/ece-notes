@@ -6375,7 +6375,7 @@ N = Z-P \implies \boxed{Z = N+P = 2}
 \draw[blue!50!cyan,very thick]
 plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
 ( {fx(\x)}, {fy(\x)} ) -- (0,0);
-\draw[thick,gray!80!brown] (0,0) circle (\scale*0.5cm);
+\draw[thick,gray!80!brown] (0,0) circle (\scale*0.65cm);
 
 \def\arrow{1}
 
@@ -6386,8 +6386,8 @@ plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
 
 \path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
 
-\filldraw[top color=white,bottom color=blue,fill opacity=.5] (0.5*\scale,0) circle (2pt) node[above right,scale=.9] {$1$};
-\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-0.5*\scale,0) circle (2.5pt) node[above right] {$-1$};
+\filldraw[top color=white,bottom color=blue,fill opacity=.5] (0.65*\scale,0) circle (2pt) node[above right,scale=.9] {$1$};
+\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-0.65*\scale,0) circle (2.5pt) node[above right] {$-1$};
 
 \draw ({\scale*fx(0)},0) node[circle,inner sep=1pt,top color=cyan,bottom color=white,opacity=.4,draw=blue!50!white] {} node[above] {$2$};
 \draw (0,0) node[circle,inner sep=1pt,top color=cyan,bottom color=white,opacity=.4,draw=blue!50!white] {} node[above right] {$0$};
@@ -6400,7 +6400,7 @@ plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
 
 Για το περιθώριο φάσης, παίρνουμε το σημείο τομής της συνάρτησης με το μοναδιαίο κύκλο:
 
-\begin{tikzpicture}[scale=1]
+\begin{tikzpicture}[scale=1.2]
 \draw[->] (-2,0) -- (3,0) node[right] {$\Re$};
 \draw[->] (0,-2) -- (0,2) node[left] {$\Im$};
 
@@ -6418,7 +6418,7 @@ plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
 \draw[blue!50!cyan,very thick]
 plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
 ( {fx(\x)}, {fy(\x)} ) -- (0,0);
-\draw[thick,gray!80!brown] (0,0) circle (\scale*0.5cm);
+\draw[thick,gray!80!brown] (0,0) circle (\scale*0.65cm);
 
 \def\arrow{1}
 
@@ -6429,12 +6429,12 @@ plot[variable=\x,domain=0.001:3,samples=\gsamples,smooth,scale=\scale]
 
 \draw[very thick,green!70!black] (0,0) -- (-70:2);
 \draw[->,green!70!black] (-0.5,0) to[bend right] node[near start,left,scale=.8] {$\phi_M$} (-70:0.5);
-\draw[thick,left color=green,fill opacity=.5,right color=gray!80!brown] (-70:1) circle (2.5pt);
+\draw[thick,left color=green,fill opacity=.5,right color=gray!80!brown] (-70:0.65*\scale) circle (2.5pt);
 
 \path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
 
-\filldraw[top color=white,bottom color=blue,fill opacity=.5] (0.5*\scale,0) circle (2pt) node[above right,scale=.9] {$1$};
-\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-0.5*\scale,0) circle (2.5pt) node[above right] {$-1$};
+\filldraw[top color=white,bottom color=blue,fill opacity=.5] (0.65*\scale,0) circle (2pt) node[above right,scale=.9] {$1$};
+\filldraw[top color=white,bottom color=blue,fill opacity=.5] (-0.65*\scale,0) circle (2.5pt) node[above right] {$-1$};
 
 \draw ({\scale*fx(0)},0) node[circle,inner sep=1pt,top color=cyan,bottom color=white,opacity=.4,draw=blue!50!white] {} node[above] {$2$};
 \draw (0,0) node[circle,inner sep=1pt,top color=cyan,bottom color=white,opacity=.4,draw=blue!50!white] {} node[above right] {$0$};
