@@ -7439,7 +7439,16 @@ plot[variable=\x,domain=0.001:6.28,samples=\gsamples,smooth,scale=\scale]
 \pgfmathsetmacro\fa{\scale*fy(\arrow)}
 \pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
 
-\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{<}}}] (\xa,\fa) -- (\xb,\fb);
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{>}}}] (\xa,\fa) -- (\xb,\fb);
+
+\def\arrow{1}
+
+\pgfmathsetmacro\xa{\scale*fx(\arrow)}
+\pgfmathsetmacro\xb{\scale*fx(\arrow + 0.1)}
+\pgfmathsetmacro\fa{\scale*fy(\arrow)}
+\pgfmathsetmacro\fb{\scale*fy(\arrow + 0.1)}
+
+\path[very thick,blue!60!cyan,postaction={decorate},decoration={markings,mark=at position 0.2 with {\arrow{<}}}] (\xa,-\fa) -- (\xb,-\fb);
 
 \filldraw[top color=red,bottom color=blue,fill opacity=.5] (-1,0) circle (2.5pt) node[below left,opacity=.7] (ins) {$-11.2$};
 \draw (ins.south) node[yshift=-2pt,scale=.5] {$\omega=\sqrt{2}$};
