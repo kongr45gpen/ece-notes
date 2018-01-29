@@ -8448,7 +8448,7 @@ coordinates {(-0.93,2) (-0.8,1) (0,0) (-0.8,-1) (-0.93,-2)}
 \draw[->] (d.east) -- +(1,0) node[midway] (fb) {} node[right] {$y$};
 \draw[->] (fb.center) -- ++(0,-1)  -| (mix);
 \draw (mix.south) node[below right] {$-$};
-\draw[<-] (mix.north) node[above right] {$+$} -- ++(0,1);
+\draw[<-] (mix.north) node[above right] {$+$} -- ++(0,1) node[right] {$n$};
 \end{tikzpicture}
 
 Οι συναρτήσεις μεταφοράς για την είσοδο \( r \), την είσοδο θορύβου \( n \) και την
@@ -8468,7 +8468,7 @@ coordinates {(-0.93,2) (-0.8,1) (0,0) (-0.8,-1) (-0.93,-2)}
 σήμα να αποκόψουμε αυτές τις συχνότητες, δηλαδή για παράδειγμα:
 \begin{align*}
 	\left|H_{yn}(j\omega )\right| &\quad \text{για } \omega > 100\\
-	\left|H_{dn}(j\omega )\right| &\quad \text{για } \omega < 1
+	\left|H_{yd}(j\omega )\right| &\quad \text{για } \omega < 1
 \end{align*}
 
 \begin{exercise}[Παράδειγμα]
@@ -8502,7 +8502,7 @@ H_{yd}(s) = \frac{1}{1+A(s)}
 \]
 και αν αντικαταστήσουμε την \( A \) για \( s=j\omega \):
 \[
-\left|\frac{30k\left(1+\sfrac{j\omega }{3} \right)}{50\left(1+\frac{j\omega }{5}\right)\left( 1+\frac{j\omega }{10} \right)}\right|{\omega = 1}
+\left|\frac{30k\left(1+\sfrac{j\omega }{3} \right)}{50\left(1+\frac{j\omega }{5}\right)\left( 1+\frac{j\omega }{10} \right)}\right|
 \]
 
 Αν αγνοήσουμε τους όρους της μορφής \( \left( 1+\frac{j\omega }{p} \right) \) (αφού πριν
@@ -8536,7 +8536,7 @@ H_{yd}(s) = \frac{1}{1+A(s)}
 
 Το περιθώριο κέρδους είναι \( \infty \), αφού έχουμε δύο απλούς πόλους και ένα μηδενικό,
 άρα στο \( \omega\to \infty \), η συνάρτηση μεταφοράς φάσης του συστήματος γίνεται
-\( -\ang{90}-\ang{90}+\ang{90} = \ang{180} \), αλλά δεν φτάνει ποτέ την τιμή \( \ang{180} \).
+\( -\ang{90}-\ang{90}+\ang{90} = \ang{-90} \), και δεν φτάνει τις \( \ang{180} \).
 
 Αν υπολογίσουμε την τιμή της συνάρτησης μεταφοράς ώστε να έχει μέτρο 1, θα βρούμε ότι
 \( \underline{\omega_c = 145.8} \), και επομένως το περιθώριο φάσης είναι:
