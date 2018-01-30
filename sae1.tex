@@ -7212,10 +7212,10 @@ plot[variable=\x,domain=0.001:7.85398163397448,samples=\gsamples,smooth,scale=\s
 
 \def\scale{0.5}
 \pgfmathdeclarefunction{fx}{1}{%
-	\pgfmathparse{2/3*#1*cos(-#1 r) - 1/30*cos(-#1 r)}%
+	\pgfmathparse{2/3*#1*cos(-0.500000000000000*pi r - 0.750000000000000*#1 r)}%
 }
 \pgfmathdeclarefunction{fy}{1}{%
-	\pgfmathparse{2/3*#1*sin(-#1 r) - 1/30*sin(-#1 r)}%
+	\pgfmathparse{2/3*#1*sin(-0.500000000000000*pi r - 0.750000000000000*#1 r)}%
 }
 
 %\pgfkeys{/pgf/fpu=true}
