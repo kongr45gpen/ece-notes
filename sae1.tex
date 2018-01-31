@@ -4097,23 +4097,23 @@ plot[variable=\x,domain=0:4,samples=18,smooth]
 
 \subsubsection{Ασκήσεις}
 
-\begin{comment}
-	\paragraph{Παράδειγμα}
-	Έστω η συνάρτηση μεταφοράς \( \displaystyle\frac{(s+3)}{(s+1)(s+7)} \). Πώς μπορούμε να
-	κατασκευάσουμε το διάγραμμα Bode της;
-	
-	\subparagraph{Λύση}
-	Αρχικά προσπαθώ να τη μετασχηματίσω σε συνδυασμό των απλών μορφών που παρουσιάστηκαν παραπάνω:
-	\begin{align*}
-	\frac{(s+3)}{(s+1)(s+7)} &=
-	\frac{3\left(\frac{s}{3}+1\right)}{\left(\frac{s}{1} + 1\right)\cdot 7\left(\frac{s}{7} + 1\right)}
-	\\ &= \frac{3}{7} \frac{H_{1a}}{H_{1b}\cdot H_{1c}}
-	\intertext{όπου οι συναρτήσεις \( H_1 \) είναι της μορφής \( \left(\frac{s}{ρ}+1\right)
-	\), με \( p_a=3 \), \( p_b=1 \) και \( p_c=7 \)}
-	&= \frac{3}{7}\cdot \left( \frac{s}{3}+1 \right)
-	\cdot \left(\frac{1}{\frac{s}{7}+1}\right)\cdot \frac{1}{s+1}
-	\end{align*}
-\end{comment}
+%\begin{comment}
+%	\paragraph{Παράδειγμα}
+%	Έστω η συνάρτηση μεταφοράς \( \displaystyle\frac{(s+3)}{(s+1)(s+7)} \). Πώς μπορούμε να
+%	κατασκευάσουμε το διάγραμμα Bode της;
+%	
+%	\subparagraph{Λύση}
+%	Αρχικά προσπαθώ να τη μετασχηματίσω σε συνδυασμό των απλών μορφών που παρουσιάστηκαν παραπάνω:
+%	\begin{align*}
+%	\frac{(s+3)}{(s+1)(s+7)} &=
+%	\frac{3\left(\frac{s}{3}+1\right)}{\left(\frac{s}{1} + 1\right)\cdot 7\left(\frac{s}{7} + 1\right)}
+%	\\ &= \frac{3}{7} \frac{H_{1a}}{H_{1b}\cdot H_{1c}}
+%	\intertext{όπου οι συναρτήσεις \( H_1 \) είναι της μορφής \( \left(\frac{s}{ρ}+1\right)
+%	\), με \( p_a=3 \), \( p_b=1 \) και \( p_c=7 \)}
+%	&= \frac{3}{7}\cdot \left( \frac{s}{3}+1 \right)
+%	\cdot \left(\frac{1}{\frac{s}{7}+1}\right)\cdot \frac{1}{s+1}
+%	\end{align*}
+%\end{comment}
 
 \todo{continue or remove}
 
@@ -11007,10 +11007,170 @@ G_1(s) = \frac{τs+1}{aτs+1},\quad \text{με } 0<a<1
 \section*{Παράρτημα}
 \addcontentsline{toc}{section}{\protect\numberline{}Παράρτημα}
 
+\phantomsection
 \addcontentsline{toc}{subsection}{\protect\numberline{~}Ορισμοί}
 \tcblistof[\subsection*]{defn}{Ορισμοί}
 
-\addcontentsline{toc}{subsection}{\protect\numberline{~}Θεωρήματα}
+\phantomsection
 \tcblistof[\subsection*]{thm}{Θεωρήματα}
+\addcontentsline{toc}{subsection}{\protect\numberline{~}Θεωρήματα}
+
+\pagebreak[4]
+
+\begin{multicols}{2}[\phantomsection\subsection*{Τυπολόγιο}\addcontentsline{toc}{subsection}{\protect\numberline{~}Τυπολόγιο}]
+{\footnotesize
+	\setlength{\abovedisplayskip}{2pt}
+	%\setlength{\belowdisplayskip}{15pt}
+	%\setlength{\abovedisplayshortskip}{0pt}
+	%\setlength{\belowdisplayshortskip}{0pt}
+	\setitemize{itemsep=-10pt,topsep=0pt,parsep=0pt,partopsep=0pt}
+	%\setlength\itemsep{-15pt}
+	\paragraph{Συναρτήσεις μεταφοράς}
+	\begin{align*}
+	H(s) &= \frac{K(s+z_1)\cdots(s+z_m)}{(s+p_1)\cdots(s+p_n)} \\
+	H(s) &= \frac{G(1+s\tau_{n+1})\cdots(1+s\tau_{n+m})}{(1+s\tau_1)\cdots(1+s\tau_n)}
+	\quad \text{όπου } G=\frac{kz_1\cdots z_m}{p_1\cdots p_m}
+	\end{align*}
+	\begin{align*}
+	T(s) &= \frac{H}{1+HG} \\ T_d(s) &= \frac{1}{1+HG} \\ T_n(s) &= \frac{H}{1+HG}
+	\\ y &= T\cdot r + T_d\cdot d + T_n\cdot n
+	\end{align*}
+	
+	\paragraph{Σφάλματα (ΑΒ\(\to \)ΚΒ)}
+	\[
+	e(s) = r(s)-y(s)
+	\]
+	\begin{alignat*}{3}
+	e_{ssp} = \frac{1}{1+K_p} && e_{ssv} = \frac{1}{K_v} && e_{ssa} = \frac{1}{K_a} \\
+	K_p = \lim_{s\to 0}H(s) &&\quad K_v = \lim_{s\to 0}sH(s) && \quad K_a = \lim_{s\to 0}s^2H(s)\\
+	\sfrac{1}{s} && \sfrac{1}{s^2} && \sfrac{1}{s^3}
+	\end{alignat*}
+	
+	\paragraph{Πρωτοβάθμια συστήματα}
+	\begin{alignat*}{2}
+	\text{\tiny 10\%-90\% } && t_r &\approx 2.2τ \\
+	\text{\tiny 98\% } && t_s &\approx 4τ
+	\end{alignat*}
+	\paragraph{Δευτεροβάθμια συστήματα}
+	\[
+	\frac{\omega_n^2}{(s+σ)^2 + \omega_d^2} = \frac{\omega_n^2}{s^2+2ζ\omega_n s +\omega_n^2}
+	\]
+	με ρίζες \( -σ \pm j\omega_d \).
+	
+	\begin{tabular}{cc}
+		\(\displaystyle \begin{aligned}
+		σ &= ζ\omega_n \\
+		\omega_d &= \omega_n\sqrt{1-ζ^2}
+		\end{aligned}\) & \(\displaystyle\
+		\begin{cases}
+		ζ < 1 & \text{ συζυγείς}\\ζ=1 & \text{ διπλός } \mathbb R\\ζ > 1 & \text{ δύο πόλοι } \mathbb{R}
+		\end{cases}
+		\)
+	\end{tabular}
+	\[
+	\underset{ζ>1}{y(t)} = y_{\mathrm{ss}} \textstyle
+	\left[
+	1+\frac{p_1p_2}{p_1-p_2}
+	\left(
+	\frac{e^{p_1t}}{p_1}
+	-
+	\frac{e^{p_2t}}{p_2}
+	\right)
+	\right]
+	\]\[ \underset{ζ < 1}{y(t)}= \textstyle
+	y_{\mathrm{ss}}\left[
+	1 - \frac{e^{-ζ\omega_nt}}{\sqrt{1-ζ^2}}
+	\cdot \sin\left(\omega_d t + \tan^{-1}\frac{\sqrt{1-ζ^2}}{ζ}\right)
+	\right]\]
+	\subparagraph{Συζυγείς μιγαδικοί πόλοι}
+	\begin{align*}
+	t_s &\approx \frac{4}{ζ\omega_n}\\
+	t_r &= \frac{π-θ}{\omega_d} \quad \text{(1\textsuperscript{η} φορά $y_{ss}$)} \\
+	t_p &= \frac{π}{\omega_d}\\
+	M_p &=
+	e^{-
+		\frac{ζπ}{\sqrt{1-ζ^2}}
+	}
+	= e^{-σ t_p} \\
+	\cos θ &= ζ
+	\end{align*}
+	\paragraph{Περιθώρια}
+	\textbf{Φάσης}: \( \ang{180} + \measuredangle A(j\omega_c) \)\quad (θέλω \(>0\))\\
+	\textbf{Πλάτους}: Από κάτω προς τα πάνω στις \( \ang{-180} \)
+
+	\columnbreak
+	\setlength\parskip{-5pt}
+
+	\paragraph{Bode}
+	\subparagraph{Για ολοκληρωτή \(Gs^ν\)}
+	\begin{align*}
+	|H_0| &= 20\log G + 20ν\log ω \\
+	\measuredangle &= ν\cdot 90\degree
+	\end{align*}
+	\subparagraph{Πρώτου βαθμού \(\frac{s}{ρ}+1\)}
+	\begin{align*}
+	|H_1| &= \begin{cases}
+	0 \qquad & \text{αν } \omega < p \\
+	20\log ω -20\log p \qquad & \text{αν } \omega > p
+	\end{cases} \\
+	\measuredangle &= \begin{cases}
+	0\degree \qquad & \text{αν } \omega < 0.1p \\
+	45\degree + 45\degree \log\frac{\omega}{p} \qquad & \text{αν } 0.1p < \omega < 10p \\
+	90\degree \qquad & \text{αν } \omega > 10p
+	\end{cases}
+	\end{align*}
+	\subparagraph{Δεύτερου βαθμού \( \frac{s^2}{\omega_n^2}+\frac{2ζs}{\omega_n}+1 \)}
+	\begin{align*}
+	|H_2| &=  \begin{cases}
+	0&\qquad \text{αν } \omega < \omega_n \\
+	40\log \omega - 40\log \omega_n &\qquad \text{αν } \omega > \omega_n
+	\end{cases} \\
+	\measuredangle &= \begin{cases}
+	0\degree &\qquad \text{αν } \omega< 0.1\omega_n\\
+	90\degree +90\degree\log\frac{\omega}{\omega_n} &\qquad 
+	\text{αν }0.1\omega_n < \omega < 10\omega_n \\
+	180\degree &\qquad \text{αν } \omega>10\omega_n
+	\end{cases}\\
+	\omega_b &= \omega_n \left[
+	1-2ζ^2+\sqrt{2-4ζ^2+4ζ^4}
+	\right]^{\sfrac{1}{2} }\\
+	\omega_r &= \omega_n\sqrt{1-2ζ^2} \qquad ζ < 0.707\\
+	M_r &= \frac{1}{2ζ\sqrt{1-ζ^2}}
+	\end{align*}
+	\paragraph{Nyquist  (ΑΒ\(\to \)ΚΒ)}
+	\[
+	N=Z-P
+	\]
+	(\(N\) ωρολογιακές περικυκλώσεις \(+1\), \(Z\) \textbf{α}σταθείς \textbf{π}όλοι \textbf{κ}λειστού, \( P\) \textbf{α}σταθείς \textbf{π}όλοι \textbf{α}νοιχτού) 
+	\paragraph{Γ.Τ Ριζών  (ΑΒ\(\to \)ΚΒ)}
+	\begin{itemize}
+		\item Πλήθος πόλων = πλήθος κλάδων\\
+		\item Πλήθος μηδενικών = πλήθος κλάδων \( \to \) μηδενικό \\
+		\item Πόλοι \( - \) μηδενικά = κλάδοι \( \to\infty \) \\
+		\item Τμήματα \(\mathbb R \) άξονα \( \ni \) \textbf{δεξιά} αφήνουν περιττούς \( \times \) \& \( \circ \)
+		\vspace{-\itemsep}
+		\item Ασύμπτωτες: \[
+		\displaystyle \sigma_A = \frac{\sum pi - \sum z_i}{n-m}\qquad\theta_i=\frac{(2i+1)\cdot\ang{180}}{n-m}
+		\]
+		\vspace{2pt}
+		\item Σημεία θλάσης:
+		\[
+		\od{H_p}{s} = 0 \qquad \text{ή} \qquad \od{k}{s} = 0
+		\]
+		\vspace{2pt}
+		\item Γωνία αναχώρησης:
+		\[
+		\sum\measuredangle (s-z_i)-\sum\measuredangle(s-p_i) = \ang{180}
+		\]
+	\end{itemize}
+	
+	\paragraph{Χρήσιμες πληροφορίες}
+	\begin{gather*}
+	\tan^{-1}(x) + \tan^{-1}(y) = \tan^{-1} \left( \textstyle\frac{x+y}{1-xy} \right)	\\
+	\left|\frac{A}{1+A}\right| \approx |A| \quad\text{για μικρά |A|}\\
+	\left|\frac{1}{1+A}\right| \approx \frac{1}{|A|} \quad\text{για μεγάλα |A|}\\
+	\end{gather*}
+	}
+\end{multicols}
 
 \end{document}
