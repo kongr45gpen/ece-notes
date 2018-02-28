@@ -1,3 +1,4 @@
+% !TeX program = xelatex
 \documentclass[11pt,a4paper,notitlepage,fleqn,final]{article}
 
 \input{preamble.tex}
@@ -471,7 +472,16 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 \end{exercise}
 \begin{exercise}[Παράδειγμα]
 	Να γραφούν οι εξισώσεις κατάστασης του κυκλώματος:
-	\todo{Graph 5}
+	
+	\begin{circuitikz}[american]
+		\draw (0,0) to[V=$v_s(t)$] (0,2)
+		to[R=$R$,i>^=$i$] (2,2)
+		to[cute inductor=$L$] (4,2)
+		to[C=$C$] (4,0)
+		-- (0,0)
+		;
+	\end{circuitikz}
+	
 	\tcblower
 	Λύνουμε το σύστημα με βάση τη φυσική του (νόμοι Kirchoff)
 	\begin{align*}
