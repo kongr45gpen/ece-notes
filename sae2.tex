@@ -262,9 +262,21 @@ m\dot y = u - ay -mg\sin\phi
 \paragraph{Παράδειγμα} Θεωρούμε ένα φυσικό σύστημα με ένα ελατήριο \( k \) και έναν αποσβεστήρα \( c \). Ασκούμε και
 μία δύναμη \( u \). Σε αυτό θεωρούμε ότι η μεταβλητή \( q \) εκφράζει τη θέση του
 σώματος. Τότε η χρονική παράγωγός της, \( \dot q \), εκφράζει την ταχύτητα του σώματος.
-\todo{Graph 4}
 
-Από το θεμελιώδη νόμο της μηχανικής (2\textsuperscript{ος} Νόμος Νεύτωνας):
+\begin{circuitikz}
+	\fill[postaction={decorate},pattern=north east lines] (0,3) rectangle (-0.5,-0.5) rectangle (5,0);
+	
+	\draw (2,0) rectangle ++(2,2) node[midway] {$m$} node[midway] (m) {};
+	
+	\draw (2,1.6) to[damper,l_=$c(\dot q)$,invert] ++(-2,0);
+	\draw (2,0.4) to[spring,invert,l_=\raisebox{-1.5ex}{$k$}] ++(-2,0);
+	
+	\draw[thick] (0,3) |- (5,0);
+	
+	\draw[->] (m) ++ (0,1.4) |- ++(2,0.7) node[above,pos=.75,gray] {$q$};
+\end{circuitikz}
+
+Από το θεμελιώδη νόμο της μηχανικής (2\textsuperscript{ος} Νόμος Νεύτωνα):
 \[
 m\ddot q = -c(\dot q) - kq + u
 \]
@@ -547,7 +559,25 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 
 \begin{exercise}
 	Έστω το μηχανικό σύστημα:
-	\todo{Graph 6}
+	
+	\begin{circuitikz}
+		\fill[postaction={decorate},pattern=north east lines] (0,3) rectangle (-0.5,-0.5) rectangle (10,0);
+		
+		\draw (2,0) rectangle ++(2,2) node[midway] {$M_2$} node[midway] (m2) {};
+		\draw (6,0) rectangle ++(2,2) node[midway] {$M_1$} node[midway] (m1) {};
+		
+		\draw (2,0.4) to[damper,l_=$c_2$,invert] ++(-2,0);
+		\draw (2,1.6) to[spring,invert,l_=\raisebox{-1.5ex}{$k_2$}] ++(-2,0);
+		\draw (6,0.4) to[damper,l_=$c_1$,invert] ++(-2,0);
+		\draw (6,1.6) to[spring,invert,l_=\raisebox{-1.5ex}{$k_1$}] ++(-2,0);
+		
+		\draw[thick,->] (8,1) -- ++(1.5,0) node[right] {$u$};
+		
+		\draw[thick] (0,3) |- (10,0);
+		
+		\draw[->] (m2) ++ (0,1.4) |- ++(2,0.7) node[above,pos=.75,gray] {$q_2$};
+		\draw[->] (m1) ++ (0,1.4) |- ++(2,0.7) node[above,pos=.75,gray] {$q_1$};
+	\end{circuitikz}
 	
 	Να βρεθούν οι εξισώσεις κατάστασης, θεωρώντας ότι η έξοδος είναι η μετατόπιση του δεξιού
 	σώματος, δηλαδή:
@@ -777,6 +807,26 @@ x_1 = 0
 \begin{exercise}
 	Έστω ένα ποδήλατο σε κάτοψη:
 	\todo{Graph 7}
+	
+	\begin{circuitikz}
+		\draw (0,5) |- (5,0);
+		
+		\draw (2,2) node[very thick,
+		rectangle,draw,postaction={decorate},pattern=vertical lines,minimum height=1.2cm,rotate=-45
+		] (w1) {};
+		\draw (4,4) node[very thick,
+		rectangle,draw,postaction={decorate},pattern=north west lines,minimum height=1.2cm,rotate=-5
+		] (w2) {};
+		
+		\draw[dashed] (0,0) -- (w1);
+		\draw (0.5,0) to[bend right] node[right,midway,scale=.9] {$\theta$} (45:0.5);
+		
+		\path (w1) -- (w2) node[midway] (m) {};
+		\draw[red!30!orange!70!black,thick,->] (m.center) -- ++(90:1.2) node[left] {$u$} node[pos=.3] (u) {};
+		\draw[red!30!orange!30!black] (m) ++(45:0.3*1.2) to[bend right] node[pos=.3,above,scale=.8] {$\phi$} (u.center);
+		\draw[very thick] (w1) -- (w2) {};
+		
+	\end{circuitikz}
 	
 	Το ποδήλατο έχει κέντρο μάζας και περιστρέφεται γύρω από ένα σημείο \( O \).
 	\tcblower
