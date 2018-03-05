@@ -1,0 +1,25 @@
+\def\lowsamples{18}
+\def\hisamples{200}
+\def\timecolour{blue!50!cyan}
+
+\tikzstyle{timecolour}=[\timecolour]
+
+\begin{tikzpicture}
+
+\draw[->] (-0.5,0) -- (3,0) node[right] {$t$};
+\draw[->] (0,-0.5) -- (0,3) node[left] {$y$};
+\draw (0,0) node[below left,scale=.9] {$0$};
+
+\def\h{2}
+
+\draw[very thick,timecolour]
+plot [variable=\t,domain=0:3,samples=\lowsamples]
+(\t,{\h*  (1-e^(-2*\t)  )});
+
+\draw[very thick,\timecolour!70!blue]
+plot [variable=\t,domain=0:3,samples=\hisamples]
+(\t,{\h*(1-1*exp(-3*\t)*cos(20*\t r))});
+
+\draw[dashed] (3,\h) -- (0,\h) node[left] {$1$};
+
+\end{tikzpicture}
