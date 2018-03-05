@@ -8,7 +8,7 @@
 	{ 
 		\normalsize Συστήματα Αυτομάτου Ελέγχου II
 		\\
-		\normalsize Σημειώσεις από τις παραδόσεις
+		\normalsize Σημειώσεις από τις παραδόσεις\footnote{Όπως διδάσκονται στο τμήμα \textit{Ηλεκτρολόγων Μηχανικών και Μηχανικών Υπολογιστών} στο \textit{Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης}.}
 	}}
 \date{Φεβρουάριος 2018
 	\\
@@ -57,7 +57,7 @@
 σε αυτήν. Διαφορετικά, μετράν οι εξετάσεις κατά 100\%. Το εργαστήριο μετράει προσθετικά
 με μέγιστο βαθμό \( +3 \), εφ' όσον ο βαθμός της εξέτασης είναι από 4 και πάνω.
 
-Αν δηλωθεί η πρόοδος, ο βαθμός της μετράει όπως παραπάνω, και δεν υπάρχει δυνατότητα να
+Αν δηλωθεί η πρόοδος, ο βαθμός της μετράει απαραίτητα όπως παραπάνω, και δεν υπάρχει δυνατότητα να
 ακυρωθεί, ακόμα και αν ο φοιτητής δεν την παραδώσει.
 
 \newpage
@@ -147,8 +147,25 @@ hardware ή του software.
 Επιθυμούμε να σχεδιάσουμε έναν ελεγκτή \( u(t) \) που να ελέγχει τη δύναμη οδήγησης, ώστε
 το αυτοκίνητο να κινείται με σταθερή ταχύτητα.
 
-\subparagraph{Λύση}
-\todo{Graph 2}
+\subparagraph{Λύση}\hspace{0pt}
+
+\begin{tikzpicture}
+\def\ang{30}
+
+\draw (0,0) -- (0:3) node [pos=.2] (a1) {};
+\draw (0,0) -- (\ang:3.3) node[pos=.2] (a2) {} node [pos=.6] (bb) {};
+
+\draw (bb) node[rectangle,draw,minimum height=5mm,minimum width=10mm,anchor=south,rotate=\ang] (b) {};
+
+\draw[yellow!80!brown!50!black,thick,->] (b.center) -- ++(0,-0.7) node[below right] {$mg$};
+\draw[yellow!80!brown!50!black,thick,->] (b.center) -- ++(\ang:1) node[above right] {$u(t)$};
+\draw[yellow!10!brown!70!black,thick,->] (b.center) -- ++(180+\ang:1) node[left,scale=.8] {$ay(t)$};
+\draw (b.center) node[circle,fill,inner sep=.6pt] {};
+
+\draw[blue!50!green,->] (b.north east) ++ (\ang+90:0.4) --++(\ang:1) node[above,near end] {$y$};
+
+\draw (a1.center) to[bend right] node[midway,yshift=1pt,right,scale=.9] {$\phi$} (a2.center);
+\end{tikzpicture}
 
 Από το νόμο του Νεύτωνα \( \sum F = m\dot y \) έχουμε:
 \[
@@ -275,9 +292,13 @@ m\dot y = u - ay -mg\sin\phi
 Το σύνολο των τιμών των μεταβλητών κατάστασης ονομάζεται \textbf{σύνολο καταστάσεων}, και
 κάθε τιμή (ή διάνυσμα καταστάσεων) ονομάζεται \textbf{κατάσταση}.
 
-\paragraph{Παράδειγμα} Θεωρούμε ένα φυσικό σύστημα με ένα ελατήριο \( k \) και έναν αποσβεστήρα \( c \). Ασκούμε και
+\paragraph{Παράδειγμα}
+\phantomsection
+Θεωρούμε ένα φυσικό σύστημα με ένα ελατήριο \( k \) και έναν αποσβεστήρα \( c \). Ασκούμε και
 μία δύναμη \( u \). Σε αυτό θεωρούμε ότι η μεταβλητή \( q \) εκφράζει τη θέση του
 σώματος. Τότε η χρονική παράγωγός της, \( \dot q \), εκφράζει την ταχύτητα του σώματος.
+\label{sec:physical_ex0}
+
 
 \begin{circuitikz}
 	\fill[postaction={decorate},pattern=north east lines] (0,3) rectangle (-0.5,-0.5) rectangle (5,0);
@@ -469,7 +490,7 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 \end{itemize}
 
 \begin{exercise}[Παράδειγμα]
-	Στο παράδειγμα της προηγούμενης παραγράφου:
+	Στο παράδειγμα με το φυσικό σύστημα της προηγούμενης παραγράφου (\autoref{sec:physical_ex0}):
 	\[
 	m\ddot q + c\dot q + kq = u
 	\]
