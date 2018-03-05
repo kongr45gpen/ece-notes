@@ -243,7 +243,23 @@ m\dot y = u - ay -mg\sin\phi
 σχεδόν πάντα ένα \textbf{σφάλμα}. Το \textbf{σφάλμα μοντελοποίησης} \( e \) εκφράζει τη
 διαφορά της τιμής \( \hat y \) που εξάγει το μοντέλο, από την τιμή \( y \) που εξάγει το
 πραγματικό σύστημα.
-\todo{Graph 3}
+
+\begin{circuitikz}
+	\tikzstyle{system}=[rectangle,draw,minimum height=9mm,align=center,minimum width=32mm]
+	\draw (0,0) node[system] (rs) {Πραγματικό\\Σύστημα};
+	\draw (rs.north) node[system,anchor=south,yshift=10pt] (ms) {Μοντέλο};
+	
+	\draw[<-] (rs.west) -- ++(-1.5,0) node (sp) {} node[midway] (spm) {};
+	\draw[->] (spm.center) |- (ms);
+	
+	\draw[->] (ms.east) node[above right] {$\hat y$} -- ++(2,0) node[midway] (ap1) {};
+	\draw[->] (rs.east) node[below right] {$y$} -- ++(2,0) node[midway] (ap2) {};
+	\path (ap1) -- (ap2) node[midway,circle,draw,inner sep=5pt] (sum) {};
+	\draw[->] (ap1.center) -- (sum.north) node[above right,yshift=-2pt] {$+$};
+	\draw[->] (ap2.center) -- (sum.south) node[below right,yshift=2pt] {$-$};
+	\draw[->] (sum) -- ++ (1,0) node[midway,above] {$e$};
+\end{circuitikz}
+
 Στόχος της μοντελοποίησης είναι η ελαχιστοποίηση αυτού του σφάλματος, το οποίο εκφράζεται
 μέσα από την προδιαγραφή της ακρίβειας.
 
@@ -744,7 +760,7 @@ x_2 \\ -\frac{c}{m}x_2 - \frac{k}{m}x_1
 \[
 V(x_1,x_2) =
 \underbrace{\frac{1}{2}kx_1^2}_{\mathclap{\text{Δυναμική Εν.}}}
-+
+\quad +\quad
 \underbrace{\frac{1}{2}mx_2^2}_{\mathclap{\text{Κινητική Εν.}}}
 \]
 
@@ -806,33 +822,125 @@ x_1 = 0
 
 \begin{exercise}
 	Έστω ένα ποδήλατο σε κάτοψη:
-	\todo{Graph 7}
 	
 	\begin{circuitikz}
+		\def\rightsize{0.2}
+		\def\rang{9}
+		
 		\draw (0,5) |- (5,0);
+		
+		\draw[gray,mark position=0.8(d1),mark position=0.3(d1m)] (2,2) ++ (-45:0.1) -- ++(-45:2);
+		\draw[gray,mark position=0.78(dm)] (3,3) -- ++(-45:1);
+		\draw[gray,mark position=0.8(d2)] (4,4) ++ (-\rang:0.1) -- ++(-45:2);
+		\draw[gray,<->] (d1m) -- (dm) node[midway,sloped,fill=white] {$s$};
+		\draw[gray,<->] (d1) -- (d2) node[midway,sloped,fill=white] {$L$};
 		
 		\draw (2,2) node[very thick,
 		rectangle,draw,postaction={decorate},pattern=vertical lines,minimum height=1.2cm,rotate=-45
 		] (w1) {};
+		\draw (3,3) node (wm) {};
 		\draw (4,4) node[very thick,
-		rectangle,draw,postaction={decorate},pattern=north west lines,minimum height=1.2cm,rotate=-5
+		rectangle,draw,postaction={decorate},pattern=north west lines,minimum height=1.2cm,rotate=-\rang
 		] (w2) {};
 		
 		\draw[dashed] (0,0) -- (w1);
 		\draw (0.5,0) to[bend right] node[right,midway,scale=.9] {$\theta$} (45:0.5);
 		
-		\path (w1) -- (w2) node[midway] (m) {};
-		\draw[red!30!orange!70!black,thick,->] (m.center) -- ++(90:1.2) node[left] {$u$} node[pos=.3] (u) {};
-		\draw[red!30!orange!30!black] (m) ++(45:0.3*1.2) to[bend right] node[pos=.3,above,scale=.8] {$\phi$} (u.center);
+		\path (w1) -- (w2) node[pos=1] (b) {} node[midway] (m) {};
+		\draw[red!30!orange!70!black,thick,->] (wm.center) -- ++(90:1.2) node[left] {$u$} node[pos=.3] (u) {};
+		\draw[red!30!orange!30!black] (wm) ++(45:0.3*1.2) to[bend right] node[pos=.3,above,scale=.8] {$\phi$} (u.center);
 		\draw[very thick] (w1) -- (w2) {};
 		
+		\path (2,2) ++(90:0.15) node[inner sep=0,outer sep=0] (a) {};
+		%	\path (a) ++(45+90:4) node (O) {};
+		\begin{scope}[overlay]
+			\path [name path=(wpa)] (a) -- ++(45+90:8);
+			\path [name path=(wpb)] (b.center) -- ++(180-\rang:8);
+			\path [name intersections={of=(wpa) and (wpb),by=O}];
+		\end{scope}
+		
+		\draw[brown!50!gray,dashed] (O.center) -- (a.center) node[midway,above,sloped] {$r$};
+		\draw[brown!50!gray] (a.center) ++(45:\rightsize) -- ++(45+90:\rightsize) node (ram) {} -- ++(45+180:\rightsize);
+		\path (a) -- (ram.center) node[midway,fill=brown!50!gray,circle,inner sep=0.2pt] {};
+		\draw[brown!50!gray,dashed] (O.center) -- (b.center);
+		\draw[brown!50!gray] (b.center) ++(90-\rang:\rightsize) -- ++(180-\rang:\rightsize) node (ram) {} -- ++(-\rang-90:\rightsize);
+		\path (b.center) -- (ram.center) node[midway,fill=brown!50!gray,circle,inner sep=0.2pt] {};
+		\draw[brown!50!gray,dashed] (O.center) -- (wm.center);
+		
+		\draw[dashed] (w2) -- ++(90-\rang:1.5) node[midway] (w2m1) {};
+		\draw[dashed] (w2.north) -- ++(45:1) node[pos=.4] (w2m2) {}
+		(w2.north) edge[opacity=.1] ++(180+45:4);
+		\draw[red!30!orange!30!black] (w2m1.center) to[bend left] (w2m2.center) node[above,xshift=0mm,yshift=1mm,scale=.9] {$\delta$};
+		
+		\filldraw[bottom color=magenta!80!black,top color=black] (O) circle(2.5pt)
+		node[above,yshift=2pt] {$O$};
+		\draw (wm.center) node[circle,fill,inner sep=1.5pt] {};
 	\end{circuitikz}
 	
 	Το ποδήλατο έχει κέντρο μάζας και περιστρέφεται γύρω από ένα σημείο \( O \).
 	\tcblower
 	
 	Κυνηγούμε γωνίες και τις προσθέτουμε στο σχήμα:
-	\todo{Graph 8}
+	
+	\begin{circuitikz}
+		\def\rightsize{0.2}
+		\def\rang{9}
+		
+		\draw[<->] (0,6) node[left] {$y$} |- node[below left] {$O'$} (6,0) node[right] {$x$};
+		
+		\draw[gray,mark position=0.8(d1),mark position=0.3(d1m)] (2,2) ++ (-45:0.1) -- ++(-45:2);
+		\draw[gray,mark position=0.78(dm)] (3,3) -- ++(-45:1);
+		\draw[gray,mark position=0.8(d2)] (4,4) ++ (-\rang:0.1) -- ++(-45:2);
+		\draw[gray,<->] (d1m) -- (dm) node[midway,sloped,fill=white] {$s$};
+		\draw[gray,<->] (d1) -- (d2) node[midway,sloped,fill=white] {$L$};
+		
+		\draw (2,2) node[very thick,
+		rectangle,draw,postaction={decorate},pattern=vertical lines,minimum height=1.2cm,rotate=-45
+		] (w1) {};
+		\draw (3,3) node (wm) {};
+		\draw (4,4) node[very thick,
+		rectangle,draw,postaction={decorate},pattern=north west lines,minimum height=1.2cm,rotate=-\rang
+		] (w2) {};
+		
+		\draw[dashed] (0,0) -- (w1);
+		\draw (0.5,0) to[bend right] node[right,midway,scale=.9] {$\theta$} (45:0.5);
+		
+		\path (w1) -- (w2) node[pos=1] (b) {} node[midway] (m) {};
+		\draw[red!30!orange!70!black,thick,->] (wm.center) -- ++(90:1.2) node[left] {$u$} node[pos=.3] (u) {};
+		\draw[red!30!orange!30!black] (wm) ++(45:0.3*1.2) to[bend right] node[pos=.3,above,scale=.8] {$\phi$} (u.center);
+		\draw[very thick] (w1) -- (w2) {};
+		
+		\path (2,2) ++(90:0.15) node[inner sep=0,outer sep=0] (a) {};
+		%	\path (a) ++(45+90:4) node (O) {};
+		\begin{scope}[overlay]
+			\path [name path=(wpa)] (a) -- ++(45+90:8);
+			\path [name path=(wpb)] (b.center) -- ++(180-\rang:8);
+			\path [name intersections={of=(wpa) and (wpb),by=O}];
+		\end{scope}
+		
+		\draw[brown!50!gray,dashed,mark position=0.2(r1),mark position=0.4(r2)] (O.center) -- (a.center) node[near end,above,sloped] {$r$};
+		\draw[brown!50!gray] (a.center) ++(45:\rightsize) -- ++(45+90:\rightsize) node (ram) {} -- ++(45+180:\rightsize);
+		\path (a) -- (ram.center) node[midway,fill=brown!50!gray,circle,inner sep=0.2pt] {};
+		\draw[brown!50!gray,dashed,mark position=0.35(r3)] (O.center) -- (b.center);
+		\draw[brown!50!gray] (b.center) ++(90-\rang:\rightsize) -- ++(180-\rang:\rightsize) node (ram) {} -- ++(-\rang-90:\rightsize);
+		\path (b.center) -- (ram.center) node[midway,fill=brown!50!gray,circle,inner sep=0.2pt] {};
+		\draw[brown!50!gray,dashed, mark position=0.19(r4)] (O.center) -- (wm.center);
+		
+		\begin{scope}[thick,orange!50!red,opacity=.8]
+			\draw (r1) to[bend right] node[midway,right,yshift=-4pt] {$\phi$}  (r4) ;
+			\draw (r2) to[bend right] node[midway,below,xshift=2pt] {$\delta$} (r3) ;
+		\end{scope}
+		\draw[very thick,red!30!orange!70!black,->] ([yshift=1pt]w1.center) node[circle,fill,inner sep=1pt] {} -- ++(45:1) node[below right] {$u_0$};
+		
+		\draw[dashed] (w2) -- ++(90-\rang:1.5) node[midway] (w2m1) {};
+		\draw[dashed] (w2.north) -- ++(45:1) node[pos=.4] (w2m2) {}
+		(w2.north) edge[opacity=.1] ++(180+45:4);
+		\draw[red!30!orange!30!black] (w2m1.center) to[bend left] (w2m2.center) node[above,xshift=0mm,yshift=1mm,scale=.9] {$\delta$};
+		
+		\filldraw[bottom color=magenta!80!black,top color=black] (O) circle(2.5pt)
+		node[above,yshift=2pt] {$O$};
+		\draw (wm.center) node[circle,fill,inner sep=1.5pt] {} node[right,yshift=0mm,xshift=1mm,scale=.7] {$(x,y)$};
+	\end{circuitikz}
 	
 	Στα ορθογώνια τρίγωνα που προκύπτουν μεταξύ γωνιών και πλευρών, έχουμε:
 	\[
@@ -850,7 +958,7 @@ x_1 = 0
 	\]
 	
 	Τώρα πρέπει να βρούμε μια διαφορική εξίσωση που να περιγράαφει την κίνηση του
-	κέντρου βάρους ποδηλάτου. Έστω \( (x,y) \) οι συντεταγμένες του. Τότε:
+	κέντρου βάρους του ποδηλάτου. Έστω λοιπόν \( (x,y) \) οι συντεταγμένες του κέντρου. Τότε:
 	\begin{align*}
 		\Aboxed{\od{x}{t} &=
 		u \cos (\phi+\theta) = \frac{u_0\cos(\phi+\theta)}{\cos\phi}} \\
@@ -870,7 +978,27 @@ x_1 = 0
 	\]
 	
 	Για μία μικρή μεταβολή \( \Delta \phi \) του προσανατολισμού του ποδηλάτου:
-	\todo{Graph 9}
+	
+	\begin{tikzpicture}
+	\def\rightsize{0.15}
+	
+	\draw (0,0) node[circle,fill,inner sep=1pt] {} node[below right] {$O$};
+	\draw (0,0) -- ++(90:2) node (a) {} node[pos=.2] (aa) {};
+	\draw (0,0) -- ++(60:2) node (b) {} node[pos=.2] (ba) {};
+	
+	\draw[brown!50!gray] (a.center) ++(0:\rightsize) -- ++(-90:\rightsize) node (ram) {} -- ++(180:\rightsize);
+	\path (a.center) -- (ram.center) node[midway,fill=brown!50!gray,circle,inner sep=0.2pt] {};
+	\draw[brown!50!gray] (b.center) ++(180-30:\rightsize) -- ++(-30-90:\rightsize) node (ram) {} -- ++(-30:\rightsize);
+	\path (b.center) -- (ram.center) node[midway,fill=brown!50!gray,circle,inner sep=0.2pt] {};
+	
+	\draw[green!50!black,dashed] (-0.7,2.07) -- ++(-2:2) node[pos=.4] (ca) {};
+	\draw[green!50!black,dashed] (50:2.07) -- ++(150:2) node[pos=.7] (da) {};
+	
+	\draw[very thick,blue!60!black] (0,0) ++ (100:2) arc [start angle=100,end angle=50,radius=2cm];
+	
+	\draw[opacity=.8] (aa.center) to[bend left] node[midway,above,xshift=1.5pt,fill=white,fill opacity=.4,text opacity=1,scale=.7] {$\Delta\phi$} (ba.center);
+	\draw[opacity=.8,green!20!black] (ca.center) to[bend left] node[midway,left,yshift=1pt,fill=white,fill opacity=.4,text opacity=1,scale=.6] {$\theta$} (da.center);
+	\end{tikzpicture}
 	
 	Οι γωνίες \( \Delta \phi \) και \( \theta \) είναι μεταξύ τους κάθετες, άρα ίσες,
 	επομένως:
