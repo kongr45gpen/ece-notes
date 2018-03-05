@@ -211,11 +211,6 @@ boxed title style={skin=enhancedfirst jigsaw,
 	before title={\textbf{Άσκηση\ifthenelse{\isempty{#1}}{}{: }}},
 	title={\ifthenelse{\isempty{#1}}{\hspace{0pt}}{#1}}%
 }
-% Useful reminders:
-% subtitle
-% before title
-% overlays
-
 
 \AtBeginDocument{%
 \let\arg\relax
@@ -244,6 +239,7 @@ boxed title style={skin=enhancedfirst jigsaw,
 % Global amount of samples
 % Set to a higher value (e.g. 200) for nicer graphs
 % Set to a low value (e.g. 10) for performance
+% NOTE: Check the sample variables below for further measurements
 \newcommand*{\gsamples}{200}
 
 % Equals command as a workaround for CircuiTikZ bug
@@ -274,3 +270,11 @@ boxed title style={skin=enhancedfirst jigsaw,
 \tikzset{locuspole/.style={draw=red!30!black,cross,inner sep=2.5pt,fill=white,fill opacity=.6,thick,label={[below]-90:#1}}}
 \tikzset{locuszero/.style={draw=red!30!black,circle,inner sep=2pt,fill=white,fill opacity=.6,thick,label={[below]-90:#1}}}
 \tikzset{locusbreak/.style={rounded corners=1.5pt,inner sep=2pt,draw,top color=brown,bottom color=black,fill opacity=.8,label={[below]-90:#1}}}
+
+% New plotting utilities
+\def\lowsamples{18}
+\def\hisamples{40}
+\def\timecolour{blue!50!cyan}
+
+\tikzstyle{timecolour}=[\timecolour]
+
