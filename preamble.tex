@@ -272,6 +272,22 @@ boxed title style={skin=enhancedfirst jigsaw,
 \tikzset{locusbreak/.style={rounded corners=1.5pt,inner sep=2pt,draw,top color=brown,bottom color=black,fill opacity=.8,label={[below]-90:#1}}}
 
 % New plotting utilities
+\newcommand{\lecture}[2]{%
+	\nointerlineskip \vspace{.4\baselineskip}%\hspace{\fill}
+	\centerline{%\color{#1}
+		%\resizebox{1.1\linewidth}{\height}
+		\smash{{%
+				{\begin{tikzpicture}[xscale=2,baseline={([yshift=0ex]current bounding box.north)}]
+					\draw[brown,path fading=west] (0,0) -- (10.1,0);
+					\draw[yellow!70!brown,path fading=east] (0,0) -- (10.1,0);
+					\draw[>-,brown!90!yellow,>={LaTeX[scale=2]},draw opacity=1] (9.9,0) -- ++(0,-0.01);
+					\draw (9.9,-0.4) node[rectangle,align=center,scale=.7,brown!50!black,below]
+					{Διάλεξη #1\textsuperscript{η}\\#2};
+					\end{tikzpicture}}}}}%
+	%\hspace{\fill}
+	\par\nointerlineskip \vspace{.5\baselineskip}
+}
+
 \def\lowsamples{18}
 \def\hisamples{40}
 \def\timecolour{blue!50!cyan}

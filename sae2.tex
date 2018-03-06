@@ -65,7 +65,7 @@
 \tableofcontents
 
 \newpage
-
+\lecture{1}{21/2/2018}
 \subsection{Εισαγωγή}
 Στα Συστήματα Αυτόματου Ελέγχου 2 οι αναλύσεις γίνονται στο πεδίο του \textbf{χρόνου}
 και όχι της \textbf{συχνότητας}. Αυτό επιτρέπει να μελετηθούν συστήματα μη γραμμικά,
@@ -265,7 +265,7 @@ m\dot y = u - ay -mg\sin\phi
 	σφάλμα θέσης, που μπορούμε να εξαλείψουμε με έναν ολοκληρωτή.
 \end{itemize}
 
-\todo{Lesson 28/2/18, 2}
+\lecture{2}{28/2/2018}
 
 \subsection{Μοντελοποίηση Συστημάτων}
 Η μοντελοποίηση συστημάτων, όπως αναφέραμε σε μια παράγραφο παραπάνω, γίνεται είτε με
@@ -555,14 +555,14 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 	
 	\tcblower
 	Λύνουμε το σύστημα με βάση τη φυσική του (νόμοι Kirchoff)
-	\begin{align}
+	\begin{align*}
 		u_s(t) &=
 		iR + L\od{i}{t} + \frac{1}{C} \int_{0}^{t} i \dif\tau
+		\numberthis
 		\label{eq:ex0ceq}
 		\\
 		L\od[2]{i}{t} + R\od{i}{t} + \frac{1}{C} i &= \od{u_s(t)}{t}
-		\todo{Hide this eq nlabel}
-	\end{align}
+	\end{align*}
 	
 	Η είσοδος του συστήματος είναι η ανεξάρτητη τροφοδοσία \( u_s(t) \), και η έξοδος
 	το ρεύμα \( i \), δηλαδή:
@@ -578,20 +578,21 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 	
 	Αφού η είσοδος \( u \) είναι ανώτερης τάξης στη διαφορική αυτή, επιλέγουμε τις μεταβλητές
 	κατάστασης με βάση την παράγραφο \autoref{sec:nontd_highorder_system}:
-	\begin{align*}
-		x_1 &= y-\beta_0u,\qquad \beta_0 = 0\\
-		x_2 &= \dot y-\beta_0 \dot u -\beta_1 u,\qquad \beta_1 = \frac{1}{L}
-	\end{align*}
+	\begin{alignat*}{2}
+		x_1 &= y-\beta_0u,\qquad && \beta_0 = 0\\
+		x_2 &= \dot y-\beta_0 \dot u -\beta_1 u,\qquad && \beta_1 = \frac{1}{L}
+	\end{alignat*}
 	και εκτελώντας πράξεις:
 	\begin{align*}
 		x_1 = y &\implies \boxed{\dot x_1 = x_2 + \frac{1}{L}u} \\
 		x_2 = \dot x_1 - \beta_1 u \implies \dot x_2 = \ddot y - \frac{1}{L}\dot u
-		\implies \dot x_2 = -\frac{R}{L}\dot y-\frac{1}{LC}y + \frac{1}{L}\dot u
-			- \frac{1}{L} \dot u
+		&\implies \dot x_2 = -\frac{R}{L}\dot y-\frac{1}{LC}y + \frac{1}{L}\dot u
+			- \frac{1}{L} \dot u  \implies \\
 		&\implies\boxed{\dot x_2 = -\frac{R}{L}x_2 - \frac{R}{L^2}u-\frac{1}{LC}x}\\
 		\boxed{y=x_1}&
 	\end{align*}
 	
+	\lecture{3}{2/3/2018}
 	\paragraph{Με διαφορετική επιλογή μεταβλητών κατάστασης}
 	Στην παραπάνω λύση διαλέξαμε τις μεταβλητές κατάστασης όπως γνωρίζαμε από τη θεωρία
 	των ΣΑΕ, οι οποίες οδήγησαν σε ένα αποτέλεσμα, αλλά με αρκετές πράξεις.
