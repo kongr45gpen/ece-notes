@@ -86,6 +86,10 @@
 \tikzset{locuszero/.style={draw=red!30!black,circle,inner sep=2pt,fill=white,fill opacity=.6,thick,label={[below]-90:#1}}}
 \tikzset{locusbreak/.style={rounded corners=1.5pt,inner sep=2pt,draw,top color=brown,bottom color=black,fill opacity=.8,label={[below]-90:#1}}}
 
+\def\vlowsamples{8}
+\def\lowsamples{18}
+\def\hisamples{200}
+
 \begin{document}
 <>
 \end{document}
