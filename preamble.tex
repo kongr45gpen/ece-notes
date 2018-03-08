@@ -281,6 +281,7 @@ boxed title style={skin=enhancedfirst jigsaw,
 \newcommand{\lecture}[2]{%
 	\refstepcounter{lecture}
 	\addcontentsline{toclec}{lecture}{\protect\numberline{\thelecture}Διάλεξη #2}
+	\hypertarget{lecture_#1}{}
 	\nointerlineskip \vspace{.4\baselineskip}%\hspace{\fill}
 	\centerline{%\color{#1}
 		%\resizebox{1.1\linewidth}{\height}
@@ -295,6 +296,11 @@ boxed title style={skin=enhancedfirst jigsaw,
 	%\hspace{\fill}
 	\par\nointerlineskip \vspace{.5\baselineskip}
 }
+
+% Note: Latex requires a configuration flag for PDF named destinations to be stored:
+% In dvipdfmx.cfg search for Dvipdfmx Compatibility Flags, and add this line after %C  0x0000:
+%     C  0x0010
+%
 
 % New plotting utilities
 \def\vlowsamples{4}
