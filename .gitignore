@@ -1,5 +1,6 @@
 test*
 graphs/wip*
+*.toclec
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

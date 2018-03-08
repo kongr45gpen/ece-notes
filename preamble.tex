@@ -29,6 +29,7 @@
 %\usepackage[linesnumbered,lined]{algorithm2e}
 \usepackage{glossaries}
 \usepackage{xifthen}
+\usepackage{tocloft}
 
 
 \pgfplotsset{compat=1.13}
@@ -271,8 +272,15 @@ boxed title style={skin=enhancedfirst jigsaw,
 \tikzset{locuszero/.style={draw=red!30!black,circle,inner sep=2pt,fill=white,fill opacity=.6,thick,label={[below]-90:#1}}}
 \tikzset{locusbreak/.style={rounded corners=1.5pt,inner sep=2pt,draw,top color=brown,bottom color=black,fill opacity=.8,label={[below]-90:#1}}}
 
-% New plotting utilities
+% Lecture specifications
+
+\newcommand{\listlecturename}{Κατάλογος Διαλέξεων}
+\newlistof[chapter]{lecture}{toclec}{\listlecturename}
+\renewcommand{\cfttoclectitlefont}{\normalfont\Large\bfseries}
+
 \newcommand{\lecture}[2]{%
+	\refstepcounter{lecture}
+	\addcontentsline{toclec}{lecture}{\protect\numberline{\thelecture}Διάλεξη #2}
 	\nointerlineskip \vspace{.4\baselineskip}%\hspace{\fill}
 	\centerline{%\color{#1}
 		%\resizebox{1.1\linewidth}{\height}
@@ -288,6 +296,7 @@ boxed title style={skin=enhancedfirst jigsaw,
 	\par\nointerlineskip \vspace{.5\baselineskip}
 }
 
+% New plotting utilities
 \def\vlowsamples{4}
 \def\lowsamples{18}
 \def\hisamples{40}
