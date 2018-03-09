@@ -454,6 +454,7 @@ x_1\\x_2\\\vdots\\x_n
 \]
 
 \paragraph{Παράδειγμα με μεγαλύτερη τάξη εξόδου}
+\phantomsection
 \label{sec:nontd_highorder_system}
 Έστω το σύστημα:
 \[
@@ -1286,10 +1287,46 @@ plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3]
 	κυκλικό σχήμα. Εκφράζει γραμμικές ταλαντώσεις.
 \end{defn}
 
-Σε ένα μη γραμμικό σύστημα, δεν υπάρχει δεύτερη \textit{κλειστή περιοδική} τροχιά
+Με τον όρο \textit{κλειστή} τροχιά εννοούμε μια τροχιά η οποία καταλήγει
+εκεί απ' όπου ξεκίνησε.
+
+Σε ένα \textit{μη γραμμικό} σύστημα, δεν υπάρχει δεύτερη \textit{κλειστή περιοδική} τροχιά
 \textit{γειτονικά} από μια πρώτη \textit{κλειστή περιοδική} τροχιά, κάτι που μπορεί να ισχύει
 στα γραμμικά συστήματα. Μπορούν βέβαια να υπάρχουν ανοιχτές τροχιές που να συγκλίνουν ή να
 αποκλίνουν από τον οριακό κύκλο.
+
+\begin{center}
+\begin{tikzpicture}[scale=.8]
+\draw[->] (-3,0) -- (3,0) node[below] {$x_1$};
+\draw[->] (0,-3) -- (0,3) node[right] {$x_2$};
+
+\draw[gray,dashed] (0,0) -- (40:0.6);
+\draw[gray,dashed] (0,0) -- (250:2.4);
+
+\draw[very thick,green!70!blue]
+(0,0) circle (0.6cm);
+\draw[very thick,green!75!blue]
+(0,0) circle (1.2cm);
+\draw[very thick,green!80!blue]
+(0,0) circle (2.4cm);
+
+\draw (current bounding box.south) node[below] {γραμμικό σύστημα};
+
+\begin{scope}[xshift=10cm,local bounding box=scope1]
+\draw[->] (-3,0) -- (3,0) node[below] {$x_1$};
+\draw[->] (0,-3) -- (0,3) node[right] {$x_2$};
+
+\draw[very thick,green!70!blue]
+(0,0) circle (0.9cm);
+\draw[very thick,green!80!blue]
+plot[smooth,samples=\midsamples,variable=\t,domain=0:2*pi]
+({(0.9+\t/6.28)*sin(-\t r)},{(0.9+\t/6.28)*cos(\t r)})
+;
+
+\draw (scope1.south) node[below] {μη γραμμικό σύστημα};
+\end{scope}
+\end{tikzpicture}
+\end{center}
 
 \begin{exercise}[Παράδειγμα]
 	\begin{align*}
@@ -1335,12 +1372,41 @@ plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3]
 	\]
 \end{defn}
 
-Πρακτικά, ξεκινάμε \textit{κοντά} από το σημείο ισορροπίας, και παραμένουμε \textit{κοντά}
-σε αυτό ( \( \left|x_0-x^*\right| < \delta \) ). Δηλαδή, για να ικανοποιείται ο ορισμός, θα
+Πρακτικά, ξεκινάμε \textit{κοντά} από το σημείο ισορροπίας ( \( \left|x_0-x^*\right| < \delta \) ), και παραμένουμε \textit{κοντά}
+σε αυτό. Δηλαδή, για να ικανοποιείται ο ορισμός, θα
 πρέπει και το σημείο που φτάνουμε \( x(t; x_0) \) να είναι αρκετά κοντά στο σημείο ισορροπίας
-\( x^* \).
+\( x^* \), \textit{όσο προχωράει ο χρόνος}.
 
-Ο παραπάνω ορισμός εκφράζει την έννοια της ευστάθειας του \textbf{σημείου ισορροπίας}, όχι ολόκληρου του συστήματος.
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+\draw[->] (-3,0) -- (3,0) node[below] {$x_1$};
+\draw[->] (0,-3) -- (0,3) node[right] {$x_2$};
+
+\def\xox{-0.5};
+\def\xoy{-0.5};
+\coordinate (x0) at (\xox,\xoy);
+
+\def\r{  (sqrt(  (\xox*\xox + \xoy*\xoy) ))  * (1+0.2*\t)   }
+\def\phi{atan2(\xoy,\xox)}
+\draw[ultra thick,green!50!blue,->]
+plot[smooth,samples=\midsamples,variable=\t,domain=0:3*pi]
+({\r*cos(-\t r + \phi)},{\r*sin(-\t r + \phi)})
+node[circle,fill opacity=.5,fill,draw,inner sep=1.5pt,thick,opacity=.1,anchor=north west] {}
+;
+
+\path (0,0) node[circle,fill opacity=.5,fill,draw,inner sep=2pt,thick,fill=red!50!black] (O) {};
+\path (x0) node[circle,fill opacity=.5,fill,draw,inner sep=1.2pt] {};
+\draw (O) node[above right] {$x^*$};
+\draw (x0) node[below left] {$x_0$};
+
+\draw[green,thick,dashed] (0,0) circle (1cm);
+\draw[green,thick,dashed] (0,0) circle (2.4cm);
+\draw[densely dashed,blue!20!green!50!black] (0,0) -- (-50:1) node[above,midway,sloped] {$\delta$};
+\draw[densely dashed,blue!20!green!50!black] (0,0) -- (165:2.4) node[above,midway,sloped] {$\varepsilon$};
+\end{tikzpicture}
+\end{center}
+
+Ο παραπάνω ορισμός εκφράζει την έννοια της ευστάθειας μόνο του \textbf{σημείου ισορροπίας}, όχι ολόκληρου του συστήματος.
 Το \textbf{σύστημα} ονομάζεται \textbf{ευσταθές} αν όλα τα σημεία ισορροπίας του είναι \textit{ευσταθή}.
 
 \begin{defn}{Ασυμπτωτικά ευσταθές σημείο ισορροπίας}{}
@@ -1353,7 +1419,41 @@ plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3]
 		\]
 	\end{enumerate}
 \end{defn}
-\todo{Graph 16}
+
+\begin{tikzpicture}[scale=1.1]
+\draw[->] (-3,0) -- (3,0) node[below] {$x_1$};
+\draw[->] (0,-3) -- (0,3) node[right] {$x_2$};
+
+\def\xox{-1.5};
+\def\xoy{-1.5};
+\coordinate (x0) at (\xox,\xoy);
+
+\def\rate{0.08}
+\def\r{  (sqrt(  (\xox*\xox + \xoy*\xoy) ))  * (1-\rate*\t)   }
+\def\phi{atan2(\xoy,\xox)}
+\draw[ultra thick,green!50!blue,
+%mark position=0.2(c1),mark position=0.2001(c2),
+%mark position=0.5(c3),mark position=0.501(c4),
+%mark position=0.91009(c5),mark position=0.91015(c6)
+]
+plot[smooth,samples=\midsamples,variable=\t,domain=0:1/\rate]
+({\r*cos(-\t r + \phi)},{\r*sin(-\t r + \phi)})
+node[circle,fill opacity=.5,fill,draw,inner sep=1.5pt,thick,opacity=.1,anchor=north west] {}
+;
+%\draw[green!50!blue,very thick,->] %(c1) -- (c2)
+% (c3) -- (c4); %(c5) -- (c6);
+
+\path (0,0) node[circle,fill opacity=.5,fill,draw,inner sep=2pt,thick,fill=red!50!black] (O) {};
+\path (x0) node[circle,fill opacity=.5,fill,draw,inner sep=1.2pt] {};
+\draw (O) node[below left] {$x^*$};
+\draw (x0) node[above right] {$x_0$};
+
+%\draw[green,thick,dashed] (0,0) circle (1cm);
+\draw[green,thick,dashed] (0,0) circle (2.4cm);
+%\draw[densely dashed,blue!20!green!50!black] (-50:1) node[above] {$\delta$};
+\draw[densely dashed,blue!20!green!50!black] (165:2.4) node[below left] {$\varepsilon$};
+\end{tikzpicture}
+
 Πρακτικά σημαίνει ότι το σύστημα προσεγγίζει το σημείο ισορροπίας, όσο το \( t\to \infty \).
 
 \begin{defn}{Εκθετικά ευσταθές σημείο ισορροπίας}{}
@@ -1390,13 +1490,27 @@ plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3]
 	\exists M,T(\xi) > 0
 	\quad : \quad
 	\left|x_0\right| < \xi \implies \left|
-	x(t;x_0) < M
-	\right|, \quad \forall t > T(\xi)
+	x(t;x_0)\right| < M
+	, \quad \forall t > T(\xi)
 	\]
 \end{defn}
 Πρακτικά ο ορισμός αυτός σημαίνει ότι, από κάποιον χρόνο και μετά (που
 εξαρτάται από την αρχική τιμή μέσω του \( \xi \)), η λύση είναι φραγμένη
 από κάποια τιμή.
+
+\begin{tikzpicture}[scale=1,xscale=1.4]
+\draw[->] (-0.5,0) -- (4,0) node[right] {$t$};
+\draw[->] (0,-0.5) -- (0,2.5);
+
+\draw (0,0) node[below left] {$O$};
+
+\draw[dashed] (0,2) node[left] {$\xi$} -- ++(4,0);
+\draw[dashed] (0,0.5) node[left] {$M$} -- ++(4,0);
+
+\draw[very thick,blue!50!cyan] plot [smooth] coordinates {(0,1.8) (0.7,1.7) (1,1.25) (1.5,1.1) (2,0.5) (3,0.2) (3.9,0.10)};
+
+\path (0,1.8) node[circle,fill opacity=.5,fill,draw,inner sep=1.2pt] {} node[below left] {$x_0$};
+\end{tikzpicture}
 
 Η έννοια αυτή είναι σημαντική, επειδή μπορούμε να ελέγχουμε την τιμή του \( M \) ώστε να
 πετύχουνμε σύγκλιση στο 0.
