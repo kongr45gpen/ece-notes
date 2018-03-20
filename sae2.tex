@@ -1542,9 +1542,9 @@ x^* = 0
 
 Για να είναι το σύστημα ευσταθές,
 πρέπει όλες οι ιδιοτιμές του (λύσεις της εξίσωσης \( \det(sI-A)=0 \)) να έχουν
-αρνητικό πραγματικό μέρος. Τότε είναι \textbf{ασυμπτωτικά ευσταθές}.
-\todo{Really asymptotically?}
-Σε περίπτωση που έστω και μία έχει θετικό πραγματικό
+\textbf{αρνητικό πραγματικό μέρος}. Τότε είναι πάντα \textbf{ασυμπτωτικά ευσταθές}.
+
+Σε περίπτωση που έστω και μία έχει \textbf{θετικό} πραγματικό
 μέρος, το σύστημα είναι \textit{ασταθές}. \footnote{Για πραγματικό μέρος
 	\( =0 \) έχουμε την οριακή ευστάθεια.}
 % TODO check
@@ -1569,7 +1569,6 @@ x^* = 0
 \[
 x(t) = e^{\lambda_i t} \cdot x_i(0)
 \]
-%TODO check above equation
 
 Φαίνεται ότι για να έχουμε \textit{ευστάθεια}, πρέπει να ισχύει για όλους τους
 συντελεστές \( \lambda \):
@@ -1582,24 +1581,34 @@ x(t) = e^{\lambda_i t} \cdot x_i(0)
 με \textbf{κατάλληλη επιλογή μεταβλητών κατάστασης}.
 
 \subsubsection{Ειδική περίπτωση: Πίνακας \( A \) μπλοκ-διαγώνιος}
+\begin{defn}{Μπλοκ-διαγώνιος πίνακας}{}
+Ένας \textbf{μπλοκ διαγώνιος} πίνακας έχει ουσιαστικά
+επιμέρους διδιάστατους πίνακες στις
+διαγωνίους του:
 \[
 \dot x = \left[
 \begin{matrix}
 \begin{matrix}
 \sigma_1 & \omega_1 \\ \omega_1 & \sigma_1
-\end{matrix} & 0 & \cdots & 0 \\
-0 & \begin{matrix}
+\end{matrix} & \mathlarger{\mathlarger{0}} & \cdots & \mathlarger{\mathlarger{0}} \\
+\mathlarger{\mathlarger{0}} & \begin{matrix}
 \sigma_2 & \omega_2 \\ \omega_2 & \sigma_2
-\end{matrix} & \cdots & 0 \\
+\end{matrix} & \cdots & \mathlarger{\mathlarger{0}} \\
 \vdots & \vdots & \ddots & \vdots\\
-0 & 0 & \cdots & \begin{matrix}
+\mathlarger{\mathlarger{0}} & \mathlarger{\mathlarger{0}} & \cdots & \begin{matrix}
 \sigma_\nu & \omega_\nu \\ \omega_\nu & \sigma_\nu
 \end{matrix}
 \end{matrix}
 \right]x
+= \left[\begin{matrix}
+\sigma_1 & \omega_1 & \cdots & 0 & 0\\
+-\omega_1 & \sigma_1 & \cdots & 0 & 0\\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+0 & 0 & \cdots & \sigma_\nu & \omega_\nu \\
+0 & 0 & \cdots & -\omega_\nu & \sigma_\nu
+\end{matrix}\right]x
 \]
-%TODO Move to definition
-%TODO write equivalent in precise format
+\end{defn}
 
 Τότε λειτουργούμε αντίστοιχα με παραπάνω, με τους συντελεστές \( \lambda \)
 να είναι:
