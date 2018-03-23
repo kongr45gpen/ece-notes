@@ -270,6 +270,11 @@ boxed title style={skin=enhancedfirst jigsaw,
 \newtcbtheorem[number within=section,list inside=defn]{defn}{Ορισμός}%
 {colback=blue!5,colframe=cyan!35!black,colbacktitle=blue!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-2mm}}{def}
 
+\makeatletter
+\def\tcb@cnt@theoremautorefname{Θεώρημα}
+\def\tcb@cnt@defnautorefname{Ορισμός}
+\makeatother
+
 % Locus plot utilities
 \tikzset{locus/.style={orange!50!red!70!brown}}
 \tikzset{locuspole/.style={draw=red!30!black,cross,inner sep=2.5pt,fill=white,fill opacity=.6,thick,label={[below]-90:#1}}}
