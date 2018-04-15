@@ -1,5 +1,5 @@
 % !TeX program = xelatex
-\documentclass[11pt,a4paper,notitlepage,fleqn,final]{article}
+\documentclass[11pt,a4paper,notitlepage,fleqn]{article}
 
 \input{preamble.tex}
 
@@ -28,6 +28,9 @@
 \newfontfamily\greekfont[Script=Greek,Scale=1.00]{Liberation Serif}
 
 \hypersetup{pdftitle = {ΣΑΕ 2}}
+
+\let\mytodo\todo
+\renewcommand{\todo}[1]{\par\mytodo[inline,noline]{#1}}
 
 
 \begin{document}
@@ -298,7 +301,7 @@ m\dot y = u - ay -mg\sin\phi
 	\draw[->] (sum) -- ++ (1,0) node[midway,above] {$e$};
 \end{circuitikz}
 
-Στόχος της μοντελοποίησης είναι η ελαχιστοποίηση αυτού του σφάλματος, το οποίο εκφράζεται
+Στόχος της μοντελοποίησης είναι η ελαχιστοποίηση \textit{αυτού} του σφάλματος, το οποίο εκφράζεται
 μέσα από την προδιαγραφή της ακρίβειας.
 
 Για παράδειγμα, μπορεί να θέλουμε να προσεγγίσουμε την έξοδο ενός πραγματικού συστήματος
@@ -550,8 +553,8 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 	Να γραφούν οι εξισώσεις κατάστασης του κυκλώματος:
 	
 	\begin{circuitikz}[american]
-		\draw (0,0) to[V=$v_s(t)$] (0,2)
-		to[R=$R$,i>^=$i$] (2,2)
+		\draw (0,2) to[V=$v_s(t)$] (0,0);
+		\draw (0,2) to[R=$R$,i>^=$i$] (2,2)
 		to[cute inductor=$L$] (4,2)
 		to[C=$C$] (4,0)
 		-- (0,0)
@@ -593,7 +596,7 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 		x_2 = \dot x_1 - \beta_1 u \implies \dot x_2 = \ddot y - \frac{1}{L}\dot u
 		&\implies \dot x_2 = -\frac{R}{L}\dot y-\frac{1}{LC}y + \frac{1}{L}\dot u
 			- \frac{1}{L} \dot u  \implies \\
-		&\implies\boxed{\dot x_2 = -\frac{R}{L}x_2 - \frac{R}{L^2}u-\frac{1}{LC}x}\\
+		&\implies\boxed{\dot x_2 = -\frac{R}{L}x_2 - \frac{R}{L^2}u-\frac{1}{LC}x_1}\\
 		\boxed{y=x_1}&
 	\end{align*}
 	
@@ -852,7 +855,7 @@ V\left( x_1(0),\ x_2(0) \right) &\geq \frac{1}{2}m x_x^2 \implies \\
 
 \paragraph{}
 Παραπάνω είδαμε ένα πρόβλημα στο οποίο \( \dot V(x_1,x_2) \leq 0 \). Η δυνατότητα ισότητας
-(\( \leq \)) με το 0 δηλώνει ότι η συνάρτηση είναι απλά \textit{φθίνουσα}, και όχι
+(\( = \)) με το 0 δηλώνει ότι η συνάρτηση είναι απλά \textit{φθίνουσα}, και όχι
 \textit{γνησίως φθίνουσα}, που σημαίνει ότι υπάρχουν διαστήματα στα οποία η παράγωγος
 της ενέργειας είναι 0, και η ενέργεια παραμένει σταθερή χωρίς να μειώνεται. Έστω ένα τέτοιο
 διάστημα στο παραπάνω σύστημα:
@@ -1064,7 +1067,7 @@ x_1 = 0
 \end{align*}
 όπου στόχος μας είναι να έχουμε κατάλληλη είσοδο \( u \) ώστε να
 πετύχουμε έξοδο \( y \), όπου \( x \) είναι οι μεταβλητές κατάστασης.
-%TODO wrap right graph of closed loop system?
+\todo{wrap right graph of closed loop system?}
 
 
 Αρχικά, επιλέγουμε η είσοδος να \textbf{εξαρτάται μόνο από την κατάσταση του συστήματος}. Αυτή είναι η πιο απλή μορφή ανάδρασης,
@@ -1142,7 +1145,7 @@ x(t_0) = x_0
 την ύπαρξη και τη μοναδικότητα των λύσεων.
 
 \begin{theorem}{Συνέχεια κατά Lipschitz}{}
-	Εισάγουμε την έννοια της τοπικής \textbf{συνέχειας κατά Lipschitz}, που ικανοποιείται ότανν:
+	Εισάγουμε την έννοια της τοπικής \textbf{συνέχειας κατά Lipschitz}, που ικανοποιείται ότανν\footnote{όταν και μόνο όταν}:
 	% Not a typo!
 	\[
 	\left|
@@ -1193,7 +1196,7 @@ plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3]
 
 \paragraph{}
 \textbf{Ικανή συνθήκη} (αλλά όχι και \textit{αναγκαία}) για να ικανοποιείται η συνέχεια
-κατά Lipschtz είναι η \textbf{ιακωβιανή ορίζουσα} \( \od{F}{x} \) να είναι φραγμένη σε κάποιον χώρο \( \Omega \).
+κατά Lipschtz σε κάποιον χώρο \( \Omega \) είναι η \textbf{ιακωβιανή ορίζουσα} \( \od{F}{x} \) να είναι φραγμένη εκεί.
 
 \subsubsection{Σημείο ισορροπίας}
 \begin{defn}{Σημείο Ισορροπίας}{}
@@ -1209,7 +1212,7 @@ plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3]
 	Ένα σύστημα μπορεί να έχει μηδέν, ένα, πολλαπλά ή άπειρα σημεία ισορροπίας.
 \end{defn}
 
-Τα σημεία ισορροπίας είναι σημαντικά, επειδή δηλώνουν ότι σε αυτά τα σημεία, το σύστημα
+Τα σημεία ισορροπίας είναι σημαντικά, επειδή δηλώνουν πώς όταν φτάσει σε αυτά τα σημεία, το σύστημα
 \( \dot x = F(x) \) που \textit{δεν εξαρτάται από το χρόνο και από εξωτερικές επιρροές},
 τότε το σύστημα δεν πρόκειται να μεταβληθεί. Δηλαδή \textit{ισορροπεί} στο \( x^* \).
 
@@ -1419,6 +1422,7 @@ node[circle,fill opacity=.5,fill,draw,inner sep=1.5pt,thick,opacity=.1,anchor=no
 		\[
 		\lim_{t \to +\infty}x(t;x_0) = x^*
 		\]
+		για \( x_0 \) κοντά στο \(  x^* \).
 	\end{enumerate}
 \end{defn}
 
@@ -1592,14 +1596,14 @@ x(t) = e^{\lambda_i t} \cdot x_i(0)
 \dot x = \left[
 \begin{matrix}
 \begin{matrix}
-\sigma_1 & \omega_1 \\ \omega_1 & \sigma_1
+\sigma_1 & \omega_1 \\ -\omega_1 & \sigma_1
 \end{matrix} & \mathlarger{\mathlarger{0}} & \cdots & \mathlarger{\mathlarger{0}} \\
 \mathlarger{\mathlarger{0}} & \begin{matrix}
-\sigma_2 & \omega_2 \\ \omega_2 & \sigma_2
+\sigma_2 & \omega_2 \\ -\omega_2 & \sigma_2
 \end{matrix} & \cdots & \mathlarger{\mathlarger{0}} \\
 \vdots & \vdots & \ddots & \vdots\\
 \mathlarger{\mathlarger{0}} & \mathlarger{\mathlarger{0}} & \cdots & \begin{matrix}
-\sigma_\nu & \omega_\nu \\ \omega_\nu & \sigma_\nu
+\sigma_\nu & \omega_\nu \\ -\omega_\nu & \sigma_\nu
 \end{matrix}
 \end{matrix}
 \right]x
@@ -1769,7 +1773,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	
 	Τα σημεία ισορροπίας του συστήματος είναι τα \( (0,0) \) και
 	\( (π,0) \). Να μελετηθεί
-	η τοπική ευστάθεια γύρω από αυτά
+	η τοπική ευστάθεια γύρω από αυτά.
 	
 	\tcbsubtitle{Λύση για \( (0,0) \)}
 	Το σύστημα είναι μη γραμμικό, λόγω της ύπαρξης του \textit{ημιτόνου}.
@@ -1783,9 +1787,9 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	να αντικαταστήσουμε το ημίτονο με το προσεγγιστικά ισοδύναμό του,
 	και έχουμε:
 	\[
-	\dot x = \left[
+	\dot x = \left[\begin{matrix}
 	x_2 \\ x_1-γx_2
-	\right] = \underbrace{\left[\begin{matrix}
+	\end{matrix}\right] = \underbrace{\left[\begin{matrix}
 	0 & 1 \\ 1 & -\gamma
 	\end{matrix}\right]}_A \left[\begin{matrix}
 	x_1 \\ x_2
@@ -1794,7 +1798,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	
 	Μελετάμε τις ιδιοτιμές του \( A \):
 	\[
-	\det(sI-A) = 0 \implies \dots \implies s^ + \gamma s - 1 = 0
+	\det(sI-A) = 0 \implies \dots \implies s^2 + \gamma s - 1 = 0
 	\]
 	το οποίο έχει μία λύση με αρνητικό πραγματικό μέρος, και μία με θετικό.
 	Συνεπώς, το σύστημα σε εκείνο το σημείο είναι
@@ -1823,10 +1827,10 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
     \]
     άρα η γραμμικοποίηση είναι:
     \[
-    \dot z = \left[
+    \dot z = \left[\begin{matrix}
     z_2 \\ -z_1-\gamma z_2
-    \right] = \left[\begin{matrix}
-    0 & 1 \\ -1 -\gamma
+    \end{matrix}\right] = \left[\begin{matrix}
+    0 & 1 \\ -1 &-\gamma
     \end{matrix}
     \right]\left[\begin{matrix}
     z_1 \\ z_2
@@ -1834,8 +1838,10 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
     \]
     με ιδιοτιμές:
     \[
-    \det(sI-A) = 0 \implies s^2 + \gamma s + 1 =0
+    \det(sI-A) = 0 \implies s^2 + \gamma s + 1 =0 \xRightarrow{\cdots} s_{1,2} = \frac{-\gamma \pm \sqrt{\gamma^2-4}}{2}
     \]
+    
+    Οι ιδιοτιμές αυτές είναι πάντα αρνητικές, επομένως το σύστημα είναι τοπικά ευσταθές στο \( (π,0) \).
 \end{exercise}
 
 \subsubsection{Με το 2\textsuperscript{ο} θεώρημα Lyapunov}
@@ -1889,9 +1895,13 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		%\[
 		%V(0) = 0
 		%\]
-		\todo{Check if the 3rd condition is present}
+		
+		% Note: The required V(0) = 0 for a positive/negative SEMI-definite function
+		% is not mentioned in the lecture notes, but it is specified on other
+		% textbooks.
 	\end{enumerate}
-\end{defn}
+\end{defn}\footnote{Η απαίτηση \( V(0) = 0 \) για θετικά/αρνητικά \textbf{ημι}ορισμένες συναρτήσεις δεν αναφέρεται στις σημειώσεις του
+μαθήματος, αλλά υπάρχει γενικότερα στη βιβλιογραφία.}
 Αντίστοιχα ορίζεται η \textit{αρνητικά ημιορισμένη} συνάρτηση.
 
 \begin{exercise}[Παράδειγμα]
@@ -1915,7 +1925,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		V_1(x) \succ 0
 		\]
 		\item Η \( V_2 \) είναι μηδενική για \( (x_1,x_2) = 0\), όμως είναι μηδενική επιπλέον και για όλα
-		τα \( x= (0,a), \quad a\neq 0 \). Επομένως \textit{δεν} είναι θετικά ορισμένη.
+		τα \( x= (0,a), \) \quad \( a \neq 0 \). Επομένως \textit{δεν} είναι θετικά ορισμένη.
 		
 		Είναι όμως θετικά ημιορισμένη, αφού δεν λαμβάνει
 		αρνητικές τιμές. Άρα:
@@ -1929,7 +1939,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	Έστω ένα σύστημα: \[
 	\dot x = F(x)
 	\]
-	και μία μια αρνητική συνάρτηση \( V \) που ορίζεται ως
+	και μία \textbf{μη}-αρνητική συνάρτηση \( V \) που ορίζεται ως
 	εξής:
 	\[
 	\dot V = \pd{V^T}{x} \dot x = \pd{V^T}{x} F(x)
@@ -1941,9 +1951,11 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	B_r(0) = \left\lbrace x\in \mathbb R^n :\ |x|<r \right\rbrace
 	\]
 	
-	\todo{...}
+	Αν υπάρχει \( r > 0 \) τέτοιο ώστε \( V \) \textbf{θετικά ορισμένη}
+	και \( \dot V \) \textbf{αρνητικά ημιορισμένη} στη σφαίρα, τότε το \( x \) είναι τοπικά
+	ευσταθές σημείο ισορροπίας.
 	
-	Αν \( V < 0 \), τότε το σημείο είναι ασυμπτωτικά ευσταθές.
+	Αν η \( \dot V \) είναι αρνητικά ορισμένη, τότε το σημείο είναι \textbf{ασυμπτωτικά} ευσταθές.
 	
 	Η συνάρτηση \( V \) ονομάζεται \textbf{συνάρτηση Lyapunov}.
 \end{theorem}
@@ -2075,7 +2087,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\[
 	V(x_1,x_2)
 	= \underbrace{1-\cos x_1}_{\mathclap{\text{δυναμική }(mgh)}}
-	+ \underbrace{\frac{1}{2}x^2}_{\mathclap{\text{κινητική}}}
+	+ \underbrace{\frac{1}{2}x_2^2}_{\mathclap{\text{κινητική}}}
 	\]
 	
 	Παραγωγίζουμε:
@@ -2083,7 +2095,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		\dot V &= \dot x_1\sin x_1 + x_2\dot x_2 \\
 		&= x_2\sin x_1 - x_2\sin x_1 \\ &= 0
 	\end{align*}
-	και το αποτέλεσμα είναι μηδενικό, δηλαδή \( \dot V \preccurlyeq 0 \)
+	και το αποτέλεσμα είναι μηδενικό, δηλαδή η \( \dot V \) είναι αρνητικά ημιορισμένη.
 	
 	Το αποτέλεσμα αυτό έχει και φυσική σημασία, αφού εκφράζει
 	μηδενική χρονική παράγωγο ενέργειας, δηλαδή ότι η ενέργεια
@@ -2113,7 +2125,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 
 \begin{defn}{Αμετάβλητο σύνολο}{}
  	Έστω ένα σύνολο \( M \in \mathbb R^n \). Το \( M \) ονομάζεται
- 	\textbf{αμετάβλητο σύνολο} ανν:
+ 	\textbf{αμετάβλητο σύνολο} ανν\footnote{αν και μόνο αν}:
  	\[
  	\forall a \in M \implies x(t;a) \in M
  	\]
@@ -2129,16 +2141,15 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 
 \begin{theorem}{Θεώρημα LaSalle}{}
 	Έστω \( V \) μια \textbf{τοπικά θετικά ορισμένη} συνάρτηση,
-	τέτοια ώστε: \[ \dot V(x) \curlyeqprec 0
+	τέτοια ώστε σε μία σφαίρα \( \Omega_r \) να ισχύει: \[ \dot V(x) \leq 0,
 	\quad \forall x \in \Omega_r = \left\lbrace 
-	x\in\mathbb R^n : V(x)<r, r >0
-	 \right\rbrace \].
-	Επίσης, έστω ένα σύνολο σημείων:
+	x\in\mathbb R^n : V(x) \leq r, r >0
+	 \right\rbrace \]
+	Επίσης, έστω το σύνολο των σημείων όπου η \( \dot V \) μηδενίζεται:
 	\[
 	S = \left\lbrace x \in \Omega_r : \dot V(x) = 0 \right\rbrace
 	\]
 	 
-	\todo{fix}
 	\todo{Graph 20 wrap right}
 	
 	Τότε, καθώς \( t\to \infty \), η λύση του συστήματος θα
@@ -2156,10 +2167,13 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\tcblower
 	Πρώτα βρίσκουμε τα σημεία ισορροπίας. Έχουμε:
 	\begin{align*}
-		\dot x_1 &= 0 \implies
+		\dot x_1 = 0 &\implies
 		-x_1 + x_2(1+x_1x_2^2) = 0
-		\implies -x_1(1+x_1x_2^2) = 0
-		\xRightarrow{1+x_1x_2^2 = 0} x_1 = 0
+		\implies -x_1^2 + x_2(x_1+x_1^2x_2^2) = 0
+		\xRightarrow{\dot x_2 = 0} -x_1^2 = 0
+		\\
+		&\implies x_1 = 0
+		\xRightarrow{\dot x_1 = 0} x_2 = 0
 	\end{align*}
 	
 	Και ως υποψήφια συνάρτηση Lyapunov επιλέγουμε:
@@ -2168,17 +2182,17 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\]
 	με παράγωγο (που προκύπτει από πράξεις \& αντικαταστάσεις):
 	\begin{align*}
-		\dot V &= x_1\dot x_1 + x_2\dot x_2 \\ &= -x_1^2\curlyeqprec 0
+		\dot V &= x_1\dot x_1 + x_2\dot x_2 \\ &= -x_1^2 \quad \text{αρνητικά ημιορισμένη}
 	\end{align*}
-	Επομένως το σημείο είναι \textbf{ολικά ευσταθές}.
+	Επομένως το σημείο ισορροπίας \( (0,0) \) είναι \textbf{ολικά ευσταθές}.
 	
 	\paragraph{}
 	Εναλλακτικά, μπορούμε να εφαρμόσουμε το \textbf{θεώρημα
-		LaSalle}
+		LaSalle.}
 		
 	Βρίσκουμε το σύνολο \( S \):
 	\[
-	S \ \left\lbrace  x\in\mathbb R_n : \dot V(x) = 0 \right\rbrace
+	S = \left\lbrace  x\in\mathbb R_n : \dot V(x) = 0 \right\rbrace
 	= \left\lbrace x \in \mathbb R^n : x_1 = 0 \right\rbrace
 	\]
 	
@@ -2188,12 +2202,15 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\end{align*}
 	
 	Δηλαδή τα \textit{αρχικά} σημεία είναι της μορφής \( (x_1,x_2) = (0,a) \). Αν
-	υποθέσουμε \( a > 0 \implies x_2 > 0 \xRightarrow{\dot x_1 = x_2} \dot x_1 > 0 \implies x_1 > 0 \neq 0 \), που σημαίνει ότι
+	υποθέσουμε \( a > 0 \implies x_2 > 0 \xRightarrow{\dot x_1 = x_2} \dot x_1 > 0 \implies
+	x_1 > 0 \neq 0 \), \footnote{Αφού η παράγωγος $\dot x1$ είναι θετική, αυτό σημαίνει ότι όσο περνάει ο χρόνος, η τιμή του  $x_1$  αυξάνεται και γίνεται μεγαλύτερη του 0.} που σημαίνει ότι
 	τα σημεία \( x \), όσο προχωράει ο χρόνος, αποκτούν
 	\( x_1 \neq 0 \). Δηλαδή τα σημεία δεν ανήκουν στο \( S \), αφού
 	\( x \notin S \). Άρα το μέγιστο αμετάβλητο σύνολο αποτελείται από
 	το σημείο
 	\( (0,0) \).
+	
+	Επομένως, σύμφωνα με το θεώρημα LaSalle, η λύση του συστήματος στο \( t \to \infty \) θα συγκλίνει στο \( (0,0) \)
 \end{exercise}
 
 \lecture{7}{16/3/2018}
@@ -2252,11 +2269,11 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\]
 	με \( a > \sfrac{1}{2}  \).
 	
-	Παραγωγίζοντας τη \( V(x) \), μετά τις πράξεις, προκύπτει:
+	Παραγωγίζοντας την αρχική \( V(x) \), μετά τις πράξεις, προκύπτει:
 	\[
-	\dot V = x_2(u+a\sin x_1)\cos x_1
+	\dot V = x_2(u+2a\sin x_1)\cos x_1
 	\]
-	Σκοπός μου είναι να επιλέξω το \( u \) ώστε \( \dot V \curlyeqprec 0 \) ή, ακόμα καλύτερα, \( \dot V \prec 0 \).
+	Σκοπός μου είναι να επιλέξω το \( u \) ώστε η \( \dot V \) να είναι αρνητικά ημιορισμένη, ή, ακόμα καλύτερα, αρνητικά ορισμένη.
 	
 	Έτσι, \textit{επιλέγουμε} αυθαίρετα την:
 	\[
@@ -2269,7 +2286,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	
 	Η παραπάνω \( \dot V \) μηδενίζεται και σε σημεία εκτός
 	του \( (0,0) \) (π.χ. \( (1,0) \)). Επομένως είναι αρνητικά
-	\textbf{ημι}ορισμένη, δηλαδή \( \dot V \curlyeqprec 0 \). Άρα
+	\textbf{ημι}ορισμένη. Άρα
 	το \( (0,0) \) είναι \textbf{τοπικά} ευσταθές σημείο
 	ισορροπίας (αφού θεωρήσαμε σημεία κοντά στο 0).
 	
@@ -2281,8 +2298,8 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\[
 	S = \left\lbrace x \in \omega \subset \mathbb R^2 : \dot V = 0 \right\rbrace
 	= \left\lbrace X \in \Omega \subset \mathbb R^2 : x_2 = 0 \right\rbrace
+	\footnote{Αγνοούμε τα σημεία όπου \( \cos x_1 = 0 \) επειδή βρίσκονται μακριά από το $(0,0)$.}
 	\]
-	%TODO Why take only x2=0?
     
     και, για \( x_2=0 \), το σύστημα γίνεται:
     \begin{align*}
@@ -2331,10 +2348,11 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	
 	Για την παράγωγό της ισχύει:
 	\[
-	\dot V = g(x)\dot x = -g^2(x) \prec 0
+	\dot V = g(x)\dot x = -g^2(x) \text{ αρνητικά ορισμένη}
 	\]
 	
-	Επομένως, αφού είναι αρνητικά ορισμένη, το σημείο ισορροπίας είναι \textbf{ασυμπτωτικά ευσταθές}. Δεν αναφέρουμε πως το σημείο είναι \textit{μόνον τοπικά} ευσταθές, αφού δεν εισάγαμε κάποιον περιορισμό στο πεδίο ορισμού.
+	Επομένως, αφού είναι αρνητικά ορισμένη, το σημείο ισορροπίας είναι \textbf{ασυμπτωτικά ευσταθές}.
+	%Δεν αναφέρουμε πως το σημείο είναι \textit{μόνον τοπικά} ευσταθές, αφού δεν εισάγαμε κάποιον περιορισμό στο πεδίο ορισμού.
 	
 	Ως παράδειγμα, θα μπορούσαμε να επιλέξουμε μια \( g(x) \) που να ικανοποιεί τα
 	παραπάνω:
@@ -2355,9 +2373,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	
 	\tcblower
 	
-	\textit{Επιλέγω} ως συνάρτηση Lyapunov (με βάση θεωρία που θα δούμε αργότερα%
-	%TODO: When αργότερα comes, add reference%
-	):
+	\textit{Επιλέγω} ως συνάρτηση Lyapunov (με βάση θεωρία που θα δούμε αργότερα \textemdash~\autoref{sec:linear_lyapunov}):
 	\[
 	V(x) = a\int_{0}^{x_1} \sin z \dif z + \frac{1}{2} x^{\mathrm T} Px
 	\]
@@ -2370,7 +2386,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		Ένας πίνακας ονομάζεται \textbf{θετικά ορισμένος} όταν ισχύει οποιαδήποτε
 		από τις παρακάτω ισοδύναμες ιδιότητες:
 		\begin{enumerate}
-			\item \( x^{\mathrm T} P x \prec 0 \), δηλαδή: \begin{itemize}
+			\item \( x^{\mathrm T} P x \) αρνητικά ορισμένη, δηλαδή: \begin{itemize}
 				\item \( x^{\mathrm T} P x = 0 \) μόνο για \( x = 0 \)
 				\item \( x^{\mathrm T} P x > 0 \) για \( x \neq 0 \)
 			\end{itemize}
@@ -2387,9 +2403,13 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	x_1 & x_2
 	\end{matrix}\right]\left[
 	\begin{matrix}
-	P_{11} & P_{12} & P_{12} & P_{22}
+	P_{11} & P_{12} \\ P_{12} & P_{22}
 	\end{matrix}
-	\right] = P_{11} x_1^2 + P_{22}x_2^2 + 2P_{12}x_1x_2
+	\right] \left[
+	\begin{matrix}
+	x_1 \\ x_2
+	\end{matrix}
+	\right]= P_{11} x_1^2 + P_{22}x_2^2 + 2P_{12}x_1x_2
 	\]
 	όπου πρέπει, από τη συνθήκη των κύριων ελάσσονων οριζουσών (υπενθυμίζουμε ότι ο πίνακας είναι συμμετρικός):
 	\begin{align*}
@@ -2465,7 +2485,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		\text{ άτοπο}
 		\]
 		\item Ομοίως για \( (0,b) \)
-		\item Ομοίως για \( (a,0) \) %TODO: Πράξεις
+		\item Ομοίως για \( (a,0) \) \todo{Πράξεις}
 		\item Για \( (0,0) \), οι συναρτήσεις στα δεξιά μέλη είναι προφανώς 0.
 	\end{itemize}
 	
@@ -2518,6 +2538,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 
 \lecture{8}{23/3/2018}
 \subsection{Ειδική περίπτωση: Γραμμικά συστήματα}
+\label{sec:linear_lyapunov}
 Έστω ότι έχουμε γραμμικά συστήματα, δηλαδή συστήματα της μορφής:
 \[
 \dot x = Ax
@@ -2531,7 +2552,7 @@ V(x) = x^{\mathrm T} P x > 0
 \]
 όπου \( P \) ένας \textbf{συμμετρικός} και \textbf{θετικά ορισμένος} πίνακας:
 \[
-P = P^{\mathrm{T}} \succ 0
+P = P^{\mathrm{T}}
 \]
 
 Για την εφαρμογή του θεωρήματος χρειαζόμαστε την παράγωγο της \( V(x) \), η οποία
@@ -2545,14 +2566,14 @@ P = P^{\mathrm{T}} \succ 0
 \end{align*}
 
 Για ευκολία, ορίζουμε έναν επιπλέον πίνακα \( Q \), \textbf{θετικά ορισμένο} και
-\textbf{συμμετρικό} \( Q = Q^{\mathrm T} \succ 0 \), ως εξής:
+\textbf{συμμετρικό} \( Q = Q^{\mathrm T} \), ως εξής:
 \[
 -Q = A^{\mathrm T}P + PA
 \]
 
 Επομένως, από την \eqref{eq:linear_lyapunov_vd} προκύπτει:
 \[
-\dot V = -x^{\mathrm T Q} x \prec 0
+\dot V = -x^{\mathrm T} Q x \text{ αρνητικά ορισμένος}
 \]
 
 Για τη λύση του \textit{γραμμικού} συστήματος εφαρμόζουμε το
@@ -2761,7 +2782,7 @@ y(t;\ x_0,u)
 		
 		\item \textbf{Ιδιότητα της ομογένειας}%
 		\todo{is it really called like that?}
-\\
+
 		\[
 		y\left(y;\ ax_0,\gamma u\right)
 		= ay(t;\ x_0,\ 0) + \gamma y(t; 0,\ u)
@@ -3292,10 +3313,10 @@ M_0 = -CA^{-1}B + D
 	
 	Οι διαφορικές εξισώσεις του συστήματος, όπως προκύπτουν από το
 	μηχανικό και το ηλεκτρικό κομμάτι του, είναι αντίστοιχα:
-	\begin{align*}
-		\ddot x &= g - \frac{k}{m}\frac{i^2}{x} \\
-		L\od{i}{t} + Ri &= v
-	\end{align*}
+	\begin{gather*}
+		\ddot x = g - \frac{k}{m}\frac{i^2}{x} \\
+		L\od{i}{t} + Ri = v
+	\end{gather*}
 	όπου θεωρήσαμε ότι ο πυρήνας του ηλεκτρομαγνήτη δεν εισέρχεται σε
 	κορεσμό.
 	
@@ -3397,7 +3418,7 @@ M_0 = -CA^{-1}B + D
     αλλά σε επόμενο κεφάλαιο.
 \end{exercise}
 
-\begin{exercise}{Ποδήλατο}
+\begin{exercise}[Ποδήλατο]
 	Σε μια προηγούμενη άσκηση με το ποδήλατο, \todo{Add reference} είχαμε
 	βρει τις παρακάτω σχέσεις: \[
 	\left[\begin{matrix}
