@@ -3513,13 +3513,13 @@ M_0 = -CA^{-1}B + D
     	\end{matrix}\right],
     	\qquad
     	B &= \left. \pd{F}{\tilde u} \right|_{(0,0)} = \left[\begin{matrix}
-    	0 \\ 0 \\ \sfrac{1}{2} 
+    	0 \\ 0 \\ \sfrac{1}{L} 
     	\end{matrix}\right]\\
     	C &= \left[\begin{matrix}
     	1 & 0 & 0
     	\end{matrix}\right]
     \end{alignat*}
-    \todo{Check C}
+    \todo{Check A,B,C}
     
     Εφ' όσον \( x_1^* = x^* \) που είναι η συνιστώσα του σημείου ισορροπίας
     που δίνεται από την εκφώνηση, την διατηρούμε στις εξισώσεις του
@@ -3530,7 +3530,7 @@ M_0 = -CA^{-1}B + D
 \end{exercise}
 
 \begin{exercise}[Ποδήλατο]
-	Σε μια προηγούμενη άσκηση με το ποδήλατο, \todo{Add reference} είχαμε
+	Σε μια προηγούμενη άσκηση με το ποδήλατο, \todo{Add reference}\todo{Explain u,a,theta} είχαμε
 	βρει τις παρακάτω σχέσεις: \[
 	\left[\begin{matrix}
 	\dot x \\ \dot y \\ \dot \theta
@@ -3675,9 +3675,9 @@ M_0 = -CA^{-1}B + D
 	\[
 	q \in \mathbb R^n
 	\]
-	και \( M(q) \) ένας πίνακας που εξαρτάται από το \( q \), θετικά ορισμένος:
+	και \( M(q) \) ένας πίνακας που εξαρτάται από το \( q \), \textbf{θετικά ορισμένος}:
 	\[
-	M(q) \succ 0
+	M(q) \in \mathbb R^n
 	\]
 	και \( C(q,\dot q) \) ένας πίνακας που εξαρτάται από τα \( q \) και
 	\( \dot q \), και \( G(q) \) ένας πίνακας που εξαρτάται από το \( q \).
