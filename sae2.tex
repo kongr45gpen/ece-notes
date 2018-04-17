@@ -1,5 +1,5 @@
 % !TeX program = xelatex
-\documentclass[11pt,a4paper,notitlepage,fleqn]{article}
+\documentclass[11pt,a4paper,notitlepage,fleqn,draft]{article}
 
 \input{preamble.tex}
 
@@ -2386,7 +2386,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		Ένας πίνακας ονομάζεται \textbf{θετικά ορισμένος} όταν ισχύει οποιαδήποτε
 		από τις παρακάτω ισοδύναμες ιδιότητες:
 		\begin{enumerate}
-			\item \( x^{\mathrm T} P x \) αρνητικά ορισμένη, δηλαδή: \begin{itemize}
+			\item \( x^{\mathrm T} P x \) θετικά ορισμένη, δηλαδή: \begin{itemize}
 				\item \( x^{\mathrm T} P x = 0 \) μόνο για \( x = 0 \)
 				\item \( x^{\mathrm T} P x > 0 \) για \( x \neq 0 \)
 			\end{itemize}
@@ -2649,8 +2649,10 @@ P = P^{\mathrm{T}}
 	\end{matrix}\right]
 	\]
 	\tcblower
-	Το παραπάνω σύστημα είναι προφανώς ασυμπτωτικά ευσταθές \todo{why},
-    αλλά θα το λύσουμε με την παραπάνω μέθοδο.
+	Το παραπάνω σύστημα είναι προφανώς ασυμπτωτικά ευσταθές,
+	αφού εύκολα μπορούμε να βρούμε τις ιδιοτιμές του και να διαπιστώσουμε πως έχουν
+	αρνητικό πραγματικό μέρος,
+    αλλά θα το λύσουμε με τη μέθοδο κατά Lyapunov.
     
     \begin{itemize}
     \item	Θα δοκιμάσουμε να λειτουργήσουμε \textbf{ανάποδα} για ευκολία:
@@ -2699,7 +2701,6 @@ P = P^{\mathrm{T}}
 	\[
 	\dot x = \tilde A x
 	\]
-	και για να έχουμε ευστάθεια θέλουμε \( \tilde A \succ 0 \).
 	
 	Από το \autoref{th:lyapunov_linear}, ψάχνουμε έναν πίνακα \( Q \)
 	για τον οποίο:
@@ -2731,7 +2732,7 @@ P = P^{\mathrm{T}}
 	πίνακα \( Q \), και \( \left\lVert P \right\rVert \) η
 	\textbf{νόρμα} του πίνακα \( P \).
 	
-	Θέλουμε \( \dot V \prec 0 \) για την εφαρμογή του θεωρήματος Lyapunov,
+	Θέλουμε \( \dot V \) να είναι αρνητικά ορισμένη για την εφαρμογή του θεωρήματος Lyapunov,
 	δηλαδή:
 	\[
 	|x| > \frac{\left\lVert P \right\rVert \bar d}{\lambda_{\min}(Q)}
@@ -2768,7 +2769,7 @@ y(t;\ x_0,u)
 
 \begin{defn}{Γραμμικό σύστημα}{}
 	Ένα σύστημα είναι \textbf{γραμμικό} ανν πληροί τις παρακάτω ιδιότητες:
-	\begin{itemize}
+	\begin{enumroman}
 		\item \textbf{Ιδιότητα της επαλληλίας} ως προς τις αρχικές τιμές.
 		%\begin{itemize}
 		%\item
@@ -2781,20 +2782,17 @@ y(t;\ x_0,u)
 		%\end{itemize}
 		
 		\item \textbf{Ιδιότητα της ομογένειας}%
-		\todo{is it really called like that?}
-
 		\[
 		y\left(y;\ ax_0,\gamma u\right)
 		= ay(t;\ x_0,\ 0) + \gamma y(t; 0,\ u)
 		\]
 		
 		\item \textbf{Ιδιότητα της επαλληλίας} ως προς την είσοδο.
-\\
 		\[
 		y\left(t;\ 0,\ \zeta u_1+\xi u_2\right)
 		= \zeta y(t;0,u_1) + \xi y(t; 0,u_2)
 		\]
-	\end{itemize}
+	\end{enumroman}
 \end{defn}
 
 Οι παραπάνω ιδιότητες μπορούν να επαληθευτούν και πειραματικά, έτσι ώστε
@@ -2836,7 +2834,7 @@ x(t) = e^{at}x(0)
 	\\ &= \sum_{k=0}^{\infty} \frac{1}{k!}x^k
 	\\[3em]
 	e^{At} &= I + At + \frac{1}{2}A^2t^2 + \frac{1}{3!}A^3t^3 + \dots
-	\\ &= \sum_{k=0}^{\infty} A^k t^k\\[3em]
+	\\ &= \sum_{k=0}^{\infty} \frac{1}{k!}A^k t^k\\[3em]
 	\od{e^{At}}{t} &= A + A^2t + \frac{1}{2}A^3t^2 + \dots
 	\\ &= A\sum_{k=0}^{\infty} \frac{1}{k!}A^kt^k
 	\\ &= Ae^{At}
@@ -2850,17 +2848,130 @@ x(t) = e^{At} x(0)
 \]
 
 \begin{exercise}[Παράδειγμα]
-	Έστω το σύστημα \( \ddot q = u,\quad y=q \) με μεταβλητές κατάστασης
-	\( x_1=q \), \( x_2 = \dot q \).
+	Έστω το σύστημα \( \ddot q = u, y=q \) με μεταβλητές κατάστασης
+	\( x_1=q \), \( x_2 = \dot q \). Να βρεθεί η έξοδός του.
 	\tcblower
 	
+	Όπως έχει οριστεί το σύστημα, φαίνεται ότι:
+	\begin{align*}
+		\dot x_1 &= x_2\\
+		\dot x_2 &= u\\
+		y &= x_1
+	\end{align*}
+	ή, σε μορφή πίνακα:
+	\begin{align*}
+		\dot x &= \left[\begin{matrix}
+		0 & 1 \\ 0 & 0
+		\end{matrix}\right]x + \left[\begin{matrix}
+		0 \\ 1
+		\end{matrix}\right]u\\
+		y &= \left[\begin{matrix}
+		1 & 0
+		\end{matrix}\right] x
+	\end{align*}
 	
-	\todo{what?}
+	Για να υπολογίσουμε την έξοδο του συστήματος, θα εκμεταλλευτούμε το γεγονός ότι
+	\( x(t) = e^{At} x(0) \). Πρώτα επομένως πρέπει να υπολογίσουμε τον πίνακα μετάβασης
+	\( e^{At} \):
+	\[
+	e^{At} = I + At + \frac{1}{2} A^2t^2 + \frac{1}{3!} A^3t^3 + \dots
+	\]
+	
+	Ισχύει:
+	\[
+	A^2 = AA = \left[\begin{matrix}
+	0 & 1 \\ 0 & 0
+	\end{matrix}\right]\left[\begin{matrix}
+	0 & 1 \\ 0 & 0
+	\end{matrix}\right] = 0
+	\]
+	άρα \( A^3 = A^2 A \), \( A^4 = 0,\ \dots \)
+	
+	Επομένως:
+	\[
+	e^{At} = I + At = \left[\begin{matrix}
+	1 & 0 \\ 0 & 1
+	\end{matrix}\right] + \left[\begin{matrix}
+	0 & 1 \\ 0 & 0
+	\end{matrix}\right] t = \left[\begin{matrix}
+	1 & t \\ 0 & 1
+	\end{matrix}\right]
+	\]
+	
+	Άρα τελικά:
+	\[
+	x(t) = \left[\begin{matrix}
+	1 & t \\ 0 & 1
+	\end{matrix}\right]\left[\begin{matrix}
+	x_1(0) \\ x_2(0)
+	\end{matrix}\right]
+	\]
+	που σημαίνει ότι:
+	\begin{align*}
+		y = x_1(t) &= x_1(0) + tx_2(0)\\
+		x_2(t) &= x_2(0)
+	\end{align*}
 	
 \end{exercise}
 
-\todo{what?}
-\todo{where are the notes?}
+\subsubsection{Πώς βρίσκουμε πίνακα μετάβασης;}
+
+Στο παραπάνω παράδειγμα η εύρεση του πίνακα μετάβασης ήταν εύκολη υπόθεση, επειδή γλιτώσαμε από τις άπειρες
+συνιστώσες, επειδή έτυχε \( A^2 = 0 \). Ο υπολογισμός του πίνακα μετάβασης όμως στη γενική περίπτωση είναι
+δύσκολος.
+
+Μπορούμε να τον πραγματοποιήσουμε θεωρώντας \textbf{μετασχηματισμό Laplace}:
+\begin{alignat*}{3}
+	&& \dot x &= Ax &&\implies \\
+	\implies && sX(s) - x(0) &= AX(s) &&\implies \\
+	\implies && (sI-A)X(s) &= x(0) &&\implies \\
+	\implies && X(s) &= (sI-A)^{-1} X(s) &&\implies \\
+	\implies && x(t) &= \mathscr L^{-1} \left\lbrace (sI-A)^{-1} \right\rbrace x(0)
+\end{alignat*}
+
+Επομένως τελικά:
+\[
+\boxed{e^{At} = \mathscr{L}^{-1} \left\lbrace (sI-A)^{-1} \right\rbrace}
+\]
+
+\paragraph{Για διαγώνιους \(A\)}
+Ο παραπάνω υπολογισμός είναι δύσκολος, εκτός από την περίπτωση στην οποία έχουμε διαγώνιους \( A \), οπότε ισχύει:
+\begin{align*}
+	A &= \left[\begin{matrix}
+	\lambda_1 & 0 & \hdots & 0 \\
+	0 & \lambda_2 & \hdots & 0 \\
+	\vdots & \vdots & \ddots & \vdots \\
+	0 & 0 & \hdots & \lambda_k
+	\end{matrix}\right] \\
+	e^{At} &= \left[\begin{matrix}
+	e^{\lambda_1t} & 0 & \hdots & 0 \\
+	0 & e^{\lambda_2t} & \hdots & 0 \\
+	\vdots & \vdots & \ddots & \vdots \\
+	0 & 0 & \hdots & e^{\lambda_kt}
+	\end{matrix}\right]\\
+	\dot x_i &= \lambda_i x_i
+\end{align*}
+
+Όμως πολύ σπάνια έχουμε διαγώνιους πίνακες \( A \). Μπορεί όμως να είναι χρήσιμο να βρούμε έναν ισοδύναμο διαγώνιο \( \tilde A \)
+που να λύνει το σύστημα.
+
+Στην παρακάτω σχέση, υπάρχει \textit{πάντα} ένας αντιστρέψιμος πίνακας \( T \) έτσι ώστε ο \( \tilde A \) να είναι διαγώνιος:
+\[
+\tilde A = TAT^{-1}
+\]
+
+Επομένως μπορούμε να ορίσουμε νέες μεταβλητές κατάστασης \( z \):
+\[
+\underline{z = Tx} \implies x = T^{-1}z
+\]
+και τότε:
+\[
+\dot z = T\dot x = T(Ax) = \left(TAT^{-1}\right)z = \tilde A
+\]
+όπου ο \( \tilde A \) είναι διαγώνιος, και το σύστημα έχει λύση:
+\[
+z_i(t) = e^{\lambda i} z_i (0)
+\]
 
 \lecture{9}{28/3/2018}
 
@@ -2875,7 +2986,7 @@ Av = λv
 \dot x = Ax + Bu
 \]
 
-Θα αναζητήσουμε τη λύση του ομογενούς συστήματος, \textit{συγκεκριμένα}
+Θα αναζητήσουμε τη λύση του \textbf{ομογενούς} συστήματος (\( u = 0 \implies \dot x = Ax \)), \textit{συγκεκριμένα}
 όταν η αρχική τιμή είναι \( x(0) = v \). Από την Ενότητα \ref{sec:linear_solution}, και αναπτύσσοντας κατά Taylor, η λύση του συστήματος αυτού θα είναι:
 \begin{align*}
 	x(t) &= e^{At} x(0) \\
