@@ -4091,4 +4091,471 @@ rank(M) = n_c < n
 από τις υπόλοιπες στήλες, έτσι ώστε \( \mathop{rank}(T) = n \).
 \todo{Graph 31}
 
+\subsection{Θέματα Προόδου 2018}
+
+\lecture{12}{20/4/2018}
+\begin{exercise}[1\textsuperscript{ο} Θέμα Προόδου 2018]
+	Δίνεται το σύστημα:
+	\[
+	\left[
+	\begin{matrix}
+	\dot x_1 \\ \dot x_2
+	\end{matrix}
+	\right] = \left[\begin{matrix}
+	-1 & 2 \\ 0 & 1
+	\end{matrix}\right]\left[\begin{matrix}
+	x_1 \\ x_2
+	\end{matrix}\right] + \left[\begin{matrix}
+	1 \\ 1
+	\end{matrix}\right]u
+	\]
+	
+	\begin{enumgreekparen}
+		\item Να δειχθεί ότι είναι ασταθές, για μηδενική \( u \).
+		\item Έστω ότι \( u=-k_1x_1-k_2x_2 \), όπου \( k_1>0,\ k_2>0 \).
+		
+		Ποιά συνθήκη πρέπει να ικανοποιούν τα \( k_1,k_2 \) ώστε το
+		σύστημα κλειστού βρόχου να είναι ασυμπτωτικά ευσταθές;
+		\item Στο σύστημα προστίθενται διαταραχές
+		\( d \in \mathbb R \) με μέγιστο μέτρο
+		\( \left|d(t)\right| \leq \bar d ,\ \forall t \geq 0 \) έτσι
+		ώστε το σύστημα να γίνει, για ένα διάνυσμα \( \Gamma \):
+		\[
+		\left[
+		\begin{matrix}
+		\dot x_1 \\ \dot x_2
+		\end{matrix}
+		\right] = \left[\begin{matrix}
+		-1 & 2 \\ 0 & 1
+		\end{matrix}\right]\left[\begin{matrix}
+		x_1 \\ x_2
+		\end{matrix}\right] + \left[\begin{matrix}
+		1 \\ 1
+		\end{matrix}\right]u + Γd
+		\]
+		
+		Χρησιμοποιώντας τον ελεγκτή του ερωτήματος \textit{(β)}, να
+		επαληθεύσετε ότι το σύστημα του κλειστού βρόχου είναι ευσταθές.
+	\end{enumgreekparen}
+	
+	\tcblower
+	\begin{enumgreekparen}
+		\item Ο πίνακας \( A = \left[\begin{matrix}
+		-1 & 2 \\ 0 & 1
+		\end{matrix}\right] \) είναι άνω τριγωνικός, άρα οι ιδιοτιμές
+		του βρίσκονται στην κύρια διαγώνιο. Αυτές είναι \( -1 \) και
+		\( 1 \), η μία εκ των οποίων είναι θετική, άρα το σύστημα είναι
+		ασταθές.
+		\item 
+		Το σύστημα γίνεται:
+		\begin{align*}
+			\dot x &= \left[\begin{matrix}
+			-1 & 2 \\ 0 & 1
+			\end{matrix}\right]x - \left[\begin{matrix}
+			1 \\ 1
+			\end{matrix}\right]\left[\begin{matrix}
+			k_1 & k_2
+			\end{matrix}\right]x
+			\\ &= \underbrace{\left[\begin{matrix}
+			-1-k_1 & 2-k_2 \\
+			-k_1 & 1-k_2
+			\end{matrix}\right]}_{\tilde A}x
+		\end{align*}
+		
+		Πρέπει, για να έχουμε ευστάθεια, να ισχύει:
+		\[
+		\det(sI-\tilde A) = 0
+		\]
+		το οποίο, με μερικές πράξεις, καταλήγει στο:
+		\[
+		s^2 + (k_1+k_2)s + (k_1+k_2 -1) = 0
+		\]
+		
+		Το πολυώνυμο είναι 2\textsuperscript{ου} βαθμού. Για να έχει
+		ρίζες (άρα ιδιοτιμές του \( \tilde A \)) στο αριστερό ημιεπίπεδο,
+		πρέπει οι συντελεστές να είναι ομόσημοι, δηλαδή:
+		\begin{gather*}
+			k_1 + k_2 > 0\\
+			k_1+k_2 > 1
+		\end{gather*}
+		άρα τελικά, συμπεριλαμβανομένων των \( k_1>0,\ k_2>0 \) από
+		την εκφώνηση (οι οποίες \textbf{έπρεπε να αναφερθούν}):
+		\begin{gather*}
+			k_1+k_2 > 1\\
+			k_1 > 0\\
+			k_2 > 0
+		\end{gather*}
+        \item Το σύστημα θα γίνει:
+        \[
+        \dot x = \tilde A x + Γd
+        \]
+        
+        Επειδή ο πίνακας \( \tilde A \) έχει ιδιοτιμές στο αριστερό
+        μιγαδικό ημιεπίπεδο (σύμφωνα με τα προηγούμενα), υπάρχει
+        \textit{συμμετρικός} και \textit{θετικά ορισμένος} πίνακας
+        \( P \), τέτοιος ώστε για δοσμένο \textit{συμμετρικό} και
+        \textit{θετικά ορισμένο} πίνακα \( Q \), να λύνεται η εξίσωση:
+        \[
+        \tilde A^{\mathrm T} P + P\tilde A = -Q
+        \]
+        
+        Ορίζουμε την \textit{υποψήφια} συνάρτηση Lyapunov:
+        \[
+        V = \frac{1}{2}x^{\mathrm T}Px
+        \]
+        που είναι θετικά ορισμένη, επειδή και ο \( P \) είναι θετικά
+        ορισμένος.
+        
+        Παραγωγίζουμε την παραπάνω συνάρτηση ως προς τον χρόνο:
+        \begin{align*}
+        	\dot V &= \frac{1}{2} \dot x^{\mathrm T} P x
+        	+ \frac{1}{2}x^{\mathrm T}P\dot x\\
+        	&= \frac{1}{2}\left(
+        	x^{\mathrm T}\tilde A^{\mathrm T} + Γ^{\mathrm T}d
+        	\right)Px + \frac{1}{2}x^{\mathrm T}P(\tilde Ax+Γd)
+        	\\ &= \frac{1}{2}x^{\mathrm T}\left(
+        	\tilde A^{\mathrm T} P + P\tilde A
+        	\right)x + \frac{1}{2}d\Gamma^{\mathrm T} P x
+        	+ \frac{1}{2}x^{\mathrm T} P Γd
+        	\\ &=
+        	\underbrace{-\frac{1}{2}x^{\mathrm T} Q x}
+        	+ x^{\mathrm T}PΓd
+        	\\ &\leq -\frac{1}{2}λ_{\min}(Q)|x^2|
+        	+ |x| \left\lVert P \right\rVert |Γ||d|
+        	\intertext{όπου $λ_{\min}(Q)$ η ελάχιστη ιδιοτιμή του $Q$}
+        	&\leq -\frac{1}{2}λ_{\min}(Q)|x^2|
+        	+ |x| \left\lVert P \right\rVert |Γ|\bar d
+        	\\ &= -|x|\left[\frac{1}{2}
+        	\lambda_{\min}(Q) |x| - \left\lVert P \right\rVert |Γ|\bar d
+        	\right]
+        \end{align*}
+        άρα τελικά, η απαίτηση για να έχουμε αρνητική παράγωγο
+        είναι:
+        \[
+        |x| > \frac{\lVert P \rVert |Γ| \bar d}{\frac{1}{2} λ_{\min}(Q)}
+        \]
+        και το \( x \) συγκλίνει, μετά από κάποιον πεπερασμένο
+        χρόνο, στη ζώνη:
+        \[
+        \Chi \overset{\triangle}{=} \left\lbrace 
+        x \in \mathbb R^2 : |x| \leq \frac{\lVert P \rVert |Γ|\bar d}{\frac{1}{2} λ_{\min}(Q)}
+         \right\rbrace
+        \]
+        δηλαδή η λύση είναι \textit{ομοιόμορφα τελικώς φραγμένη}.
+        
+        \textbf{Προσοχή!} Το σύστημα αυτό δεν είναι απαραίτητα
+        \textit{ευσταθές κατά Lyapunov}, αφού δεν έχουμε αποδείξει
+        πως ικανοποιεί τον ορισμό όπως τον δώσαμε. Για ένα \( \varepsilon  \) μικρότερο από το όριο του \( x \) που δηλώσαμε παραπάνω,
+        δεν έχουμε εγγυηθεί ότι δεν θα ξεφύγουμε από το \( \varepsilon \).
+        Όμως ικανοποιείται ο ορισμός της ευστάθειας, σύμφωνα με τον
+        οποίο για φραγμένη είσοδο, έχουμε φραγμένη έξοδο.
+	\end{enumgreekparen}
+\end{exercise}
+
+\begin{exercise}[2\textsuperscript{ο} θέμα προόδου 2018]
+	Δίνεται το σύστημα:
+	\[
+	\left[\begin{matrix}
+	\dot x_1 \\ \dot x_2
+	\end{matrix}\right] = \left[\begin{matrix}
+	x_1^2 -2x_1x_2 -x_2 \\ x_2^4
+	\end{matrix}\right]x + \left[\begin{matrix}
+	1 & x_1^2 \\ 0 & 1-\frac{1}{2}\sin x_2
+	\end{matrix}\right]\left[\begin{matrix}
+	u_1 \\ u_2
+	\end{matrix}\right]
+	\]
+	όπου τα \( x_1,x_2 \) είναι μετρήσιμα, \( u_1,u_2 \) εξωτερικές
+	είσοδοι ελέγχου. Ζητείται να σχεδιαστεί ελεγκτής τέτοιος ώστε το
+	σύστημα κλειστού βρόχου που προκύπτει να εμφανίζεται ως προς εξωτερική
+	είσοδο ελέγχου \( \upsilon \in \mathbb R \) γραμμικό και χρονικά
+	αμετάβλητο.
+	\tcblower
+	Σκοπός μας είναι ουσιαστικά να σχεδιάσουμε έναν ελεγκτή γραμμικοποίησης.
+	
+	\todo{Graph 31}
+	
+	Ορίζουμε ότι ο συντελεστής των \( u \) είναι
+	\( G(x) = 	\left[\begin{matrix}
+	1 & x_1^2 \\ 0 & 1-\frac{1}{2}\sin x_2
+	\end{matrix}\right] \).
+	
+	Βρίσκουμε τον αντίστροφο του συντελεστή της εισόδου (ο αντίστροφος
+	υπάρχει, αφού η ορίζουσα είναι θετική, καθώς οι όροι της διαγωνίου
+	είναι θετικοί):
+	\[
+	\left[\begin{matrix}
+	1 & x_1^2 \\ 0 & 1-\frac{1}{2}\sin x_2
+	\end{matrix}\right]^{-1} =
+	\frac{1}{1-\frac{1}{2}\sin x_2}\left[\begin{matrix}
+	1-\frac{1}{2}\sin x_2 & -x_1^2 \\ 0 & 1
+	\end{matrix}\right]
+	\]
+	
+	Σκοπός μας είναι να βρούμε έναν πίνακα που θα διώχνει τις
+	μη γραμμικότητες \( x_1^2 \), \( -2x_1x_2 \) και \( x_2^4 \) από
+	τον πίνακα των \( \dot x \).
+	
+	Χωρίς την είσοδο \( u \), το σύστημά μας έχει ουσιαστικά τη μορφή:
+	\[
+	f(x) = \underbrace{\left[
+	\begin{matrix}
+	x_1^2 - 2x_1x_2 \\ x_2^4
+	\end{matrix}
+	\right]}_{f_0(x)}
+    + \underbrace{\left[\begin{matrix}
+    0 & -1 \\ 0 & 0
+    \end{matrix}\right]}_{A_0}x
+	\]
+	
+	Σκοπός μας είναι να εξαλείψουμε τις γραμμικότητες, δηλαδή τον πίνακα
+	\( f_0(x) \). Επομένως μπορούμε για την είσοδο ελέγχου να θεωρήσουμε
+	ότι:
+	\[
+	u = G^{-1}(x)\left[
+	-f_0(x) + (Ax+Bv)
+	\right]
+	\]
+	όπου \( A,B \) ένας πίνακες συντελεστών, και \( \upsilon \) η
+	εξωτερική είσοδος ελέγχου που θα τοποθετηθεί μετά τη μελέτη μας.
+	
+	Επομένως, τελικά έχουμε:
+	\begin{align*}
+		\dot x &= A_0 x + Ax + Bυ\\
+		&= (A+A_0)x + Bυ
+	\end{align*}
+	
+	Βέβαια δεν ήταν απαραίτητο να συμπεριλάβουμε τον πίνακα \( Α \) ή
+	όλους τους συντελεστές του, αλλά ήταν σημαντικό να διατηρήσουμε
+	τον \( Bυ \), καθώς εκφράζει τον εξωτερικό ελεγκτή που ζητείται από
+	την εκφώνηση. Επίσης έπρεπε να διατηρηθεί ο \( A_0 \) (δηλαδή ο
+	όρος \( -x_2 \)), καθώς είναι ήδη γραμμικός.
+\end{exercise}
+
+\begin{exercise}[3\textsuperscript{ο} Θέμα Προόδου 2018]
+	Δίνεται ένα μηχανικό σύστημα:
+	\todo{Graph 32}
+	
+	Υπάρχουν δύο σώματα με μάζες \( m \), γραμμικά ελατήρια με σταθερές
+	\( k_1,k_2 \), μη γραμμικοί αποσβεστήρες με χαρακτηριστικές
+	\( c_1(z) = z^2 \) και \( c_2(z) = z^3 \), μετατοπίσεις
+	\( q_1,q_2 \), και εξωτερική δύναμη \( u \).
+	\tcblower
+	Πριν ορίσουμε τις μεταβλητές κατάστασης, θα πρέπει να βρούμε τις
+	εξισώσεις του συστήματος. Θεωρούμε θετική φορά προς τα δεξιά.
+	
+	Για το σώμα 1:
+	\begin{align*}
+		m\ddot q_1 &=
+		u - k_1q_1 - c_1(\dot q_1 -\dot q_2)
+		\\ &= u-k_1q_1 - (\dot q_1 - \dot q_2)^2 \\
+		\ddot q_1 &=
+		\frac{1}{m}u - \frac{k_1}{m}q_1 - \frac{1}{m}(\dot q_1 -\dot q_2)^2
+	\end{align*}
+	
+	Για το σώμα 2:
+	\begin{align*}
+	m\ddot q_2 &= -k_2q_2 - \dot q_2^3
+	- (\dot q_2 - \dot q_1)^2 \\
+	\ddot q_2 &= -\frac{k_2}{m}q_2 - \frac{1}{m}\dot q_2^3
+	- \frac{1}{m}(\dot q_2 - \dot q_1)^2
+	\end{align*}
+	
+	Η τάξη του συστήματος είναι \( n=2+2=4 \), επομένως πρέπει να επιλέξουμε 4 μεταβλητές κατάστασης.
+	
+	Αφού δεν εμφανίζονται ανώτερες παράγωγοι του \( u \), μπορούμε
+	άνετα να επιλέξουμε τις παρακάτω μεταβλητές κατάστασης:
+	\[
+	x_1=q_1,\ x_2 = \dot q_1,\ x_3 = q_2,\ x_4 = \dot q_2
+	\]
+	
+	Επομένως μπορούμε να γράψουμε τις εξισώσεις κατάστασης:
+	\begin{align*}
+		\dot x_1 &= x_2 \\
+		\dot x_2 &= \frac{1}{m} u -\frac{k_1}{m}x_1
+		-\frac{1}{m}(x_2-x_4)^2 \\
+		\dot x_3 &= x_4 \\
+		\dot x_4 &= -\frac{k_2}{m}x_3 - \frac{1}{m}x_4^3-\frac{1}{m}(x_4-x_2)^2
+	\end{align*}
+\end{exercise}
+
+\subsection{Εξισώσεις κατάστασης}
+Θα παρατηρήσουμε αργότερα ότι μια βολική μορφή για να γράφουμε τις εξισώσεις
+κατάστασης είναι η εξής:\todo{fix}
+\begin{align*}
+	\dot z &= \left[\begin{matrix}
+	-a_1 & -a_2 & -a_3 & \hdots  & -a_n \\
+	1& 0 & 0 & \hdots & 0\\
+	0 & 1 & 0 & \hdots & 0 \\
+	\vdots & \vdots & \ddots & \vdots & \vdots \\
+	0 & 0 & \hdots & 1 & 0
+	\end{matrix}\right]z + \left[\begin{matrix}
+	1 \\ 0 \\ 0 \\ \vdots \\ 0
+	\end{matrix}\right]u \\
+	x &= \left[\begin{matrix}
+	b_1 & b_2 & \dots & b_n
+	\end{matrix}\right]z + Du
+\end{align*}
+
+Αυτή η μορφή ονομάζεται \textbf{ελέγξιμη κανονική μορφή}.
+\todo{Είναι σίγουρα ελέγξιμη στον όρο;}
+Η παραπάνω μορφή έχει την ιδιότητα ότι μπορούμε να βρούμε πολύ εύκολα
+το \textbf{χαρακτηριστικό} της \textbf{πολυώνυμο}. Γενικότερα,
+το χαρακτηριστικό πολυώνυμο προκύπτει από την εξίσωση
+\( p(s)=\det(sI-\tilde A) \). Μετά από πράξεις, στον παραπάνω πίνακα
+θα προκύψει:
+\[
+p(s) =
+s^n + a_1s^{n-1} + \dots + a_{n-1}s+a_n
+\]
+
+Τα συστήματα όμως γενικά θα δίνονται στην περιγραφή:
+\begin{align*}
+	\dot x &= Ax+Bu \\
+	y &= Cx+Du
+\end{align*}
+όπου \( u\in\mathbb R,\ x\in \mathbb R^{n} \) και ο πίνακας
+ελεγξιμότητας είναι \( M = \left[\begin{matrix}
+B & AB & \hdots & A^{n-1}B
+\end{matrix}\right] \).
+
+Τα δύο παραπάνω συστήματα \( \dot x \) και \( \dot z \) είναι \textit{ισοδύναμα}, αν και έχουν διαφορετικές μεταβλητές κατάστασης.
+
+Μάλιστα, αποδεικνύεται ότι ο \textit{πίνακας ελεγξιμότητας}
+\( \tilde M = \left[\begin{matrix}
+\tilde B & \tilde A\tilde B & \hdots & \tilde A^{n-1}\tilde B
+\end{matrix}\right] \) του μετασχηματισμένου συστήματος \( \dot z \) είναι
+\textbf{άνω τριγωνικός} και τα στοιχεία στην \textbf{κύρια διαγώνιό} του
+είναι \textbf{\( 1 \)}.
+
+Ο μετασχηματισμός μεταξύ των δύο επιλογών μεταβλητών κατάστασης γίνεται, 
+όπως έχουμε δει στο Kεφάλαιο \todo{ref}, μέσω ενός πίνακα \( T \):
+\[
+z = Tx
+\]
+και ισχύει ακόμα:
+\begin{align*}
+	\dot z &= T\dot x\\
+	&= T(Ax+Bu)\\
+	&=\underbrace{(TAT^{-1})}_{\tilde A}z
+	+\underbrace{(TB)}_{\tilde B}u
+\end{align*}
+και για τον πίνακα ελεγξιμότητας:
+\begin{align*}
+	\tilde M &= \left[\begin{matrix}
+	TB & TAT^{-1}TB \hdots
+	\end{matrix}\right]
+	\\ &= \left[\begin{matrix}
+	TB & TAB & \hdots & TA^{n-1}B
+	\end{matrix}\right]
+	\\ &= T\left[\begin{matrix}
+	B & AB & \hdots & A^{n-1}B
+	\end{matrix}
+	\right]
+	\\ &= TM \implies \boxed{T = \tilde M M^{-1}}
+\end{align*}
+
+\paragraph{}
+
+\begin{theorem}{}{}
+	Αν το ζευγάρι \( (A,B) \) είναι \textbf{ελέγξιμο}, τότε υπάρχει
+	\textbf{μετασχηματισμός} \( z=Tx \) που να μετατρέπει το αρχικό
+	σύστημα στην \textit{ελέγξιμη κανονική μορφή} με χαρακτηριστικό
+	πολυώνυμο \[ p(s) =
+	s^n + a_1s^{n-1} + \dots + a_{n-1}s+a_n \].
+\end{theorem}
+
+\begin{exercise}[Παράδειγμα]
+	Δίνεται το σύστημα: \[
+	\dot x = \left[\begin{matrix}
+	a & \omega \\ -\omega  a
+	\end{matrix}\right]x + \left[\begin{matrix}
+	0 \\ 1
+	\end{matrix}\right]u
+	\] όπου \( (a,\omega ) \neq (0,0) \)
+	
+	Να το φέρετε στην ελέγξιμη κανονική μορφή.
+	\tcblower
+	Για την εφαρμογή του θεωρήματος, πρέπει πρώτα να αποδείξουμε ότι το
+	δοθέν σύστημα είναι ελέγξιμο.
+	Υπολογίζουμε τον πίνακα ελεγξιμότητας:
+	\[
+	M=\left[\begin{matrix}
+	B & AB
+	\end{matrix}\right] = \left[\begin{matrix}
+	0 & \omega & 1 & a
+	\end{matrix}\right]
+	\]
+	
+	Υπολογίζουμε την ορίζουσά του:
+	\[
+	\det(M) = -\omega  \neq 0
+	\]
+	επομένως, αφού είναι μη μηδενική, το σύστημα είναι ελέγξιμο.
+	\todo{really?}
+	
+	Άρα υπάρχει ο ζητούμενος μετασχηματισμός:
+	\begin{align*}
+		z &= Tx \\
+		T &= \tilde M M^{-1}
+	\end{align*}
+	
+	Για να βρούμε τους συντελεστές \( a_1, a_2 \), θα βρούμε το
+	\textbf{χαρακτηριστικό πολυώνυμο} του αρχικού συστήματος. Αφού το πρώτο
+	σύστημα θα πρέπει να είναι \textit{ισοδύναμο} με το τελικό, πρέπει
+	να έχουν ίδιο χαρακτηριστικό πολυώνυμο.
+	
+	Το αρχικό χαρακτηριστικό πολυώνυμο είναι:
+	\[
+	\det(sI-A) = \det\left(
+	\left[\begin{matrix}
+	s & 0 \\ 0 & s
+	\end{matrix}\right]-\left[\begin{matrix}
+	a & \omega  \\ -\omega &a
+	\end{matrix}\right]
+	\right) = s^2-2as + (a^2+\omega^2)
+	\]
+	και, εξισώνοντας τους συντελεστές με το \( p(s) = s^2 + a_1s^1 + a_2 \):
+	\begin{align*}
+		a_1 &= -2a \\
+		a_2 &= a^2+\omega_2
+	\end{align*}
+	
+	Άρα τελικά, οι πίνακες του ζητούμενου συστήματος είναι:
+	\begin{align*}
+		\tilde A &= \left[\begin{matrix}
+		-a_1 & -a_2 \\ 1 & 0
+		\end{matrix}\right] \\
+		\tilde B &= \left[\begin{matrix}
+		1 \\ 0
+		\end{matrix}\right]
+	\end{align*}
+	
+	Ως επαλήθευση, μπορούμε να βρούμε τον πίνακα ελεγξιμότητας του νέου
+	συστήματος, και να επαληθεύσουμε πως έχη μη μηδενική ορίζουσα:
+	\[
+	\tilde M = \left[\begin{matrix}
+	\tilde B & \tilde A \tilde B
+	\end{matrix}\right] = \left[\begin{matrix}
+	1 & -a_1 \\ 0 & 1
+	\end{matrix}\right]
+	\]
+	
+	Επιπλέον, ο πίνακας μετασχηματισμού \( T \) μπορεί να χρησιμοποιηθεί
+	ώστε να σχεδιάσουμε τον ελεγκτή μας (θυμόμαστε ότι οι μεταβλητές
+	\( x \) είναι μετρήσιμες, και \textit{όχι} οι (\( z \)), ή για
+	να βρούμε πώς συνδέεται η έξοδος (π.χ. \( y= x_1 \)) με τις νέες μεταβλητές κατάστασης.
+	Ο πίνακας μετασχηματισμού \( T \) του συστήματος προκύπτει:
+	\[
+	T = \tilde M M^{-1} = \dots = \left[\begin{matrix}
+	\frac{a}{\omega} & 1 \\ \frac{1}{\omega} & 0
+	\end{matrix}\right]
+	\]
+\end{exercise}
+
+\begin{infobox}{}
+	Αν δίνεται ένα σύστημα στην ελέγξιμη κανονική μορφή, τότε αυτό
+	είναι πάντα ελέγξιμο.
+\end{infobox}
+
 \end{document}
