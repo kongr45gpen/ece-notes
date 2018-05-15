@@ -2714,12 +2714,34 @@ P = P^{\mathrm{T}}
 	Τότε η παράγωγος της συνάρτησης Lyapunov θα γίνει:
 	\begin{align*}
 		\dot V &=
-		\underbrace{-x^{\mathrm T} Q x}_{-\lambda_{\min}(Q)|x|^2}
-		+ \underbrace{x^{\mathrm T} P d}_{\leq |x|\left\lVert P \right\rVert \bar d}
-		\\ &\leq -\lambda_{\min}(Q)|x|^2 + |x|\left\lVert P \right\rVert \bar d
-		\\ &= |x| \left[
-		\lambda_{\min}(Q) |x| - \left\lVert P \right\rVert \bar d
-		\right]
+		\od{}{t}\left( x^{\mathrm{T}} P x \right)
+		\\ &=
+		\dot x^{\mathrm T} P x + x^{\mathrm T} P\dot x
+		\\ &=
+		\left(
+		Ax + d(t)
+		\right)^{\mathrm T} P x
+		+ x^{\mathrm{T}}P\left(Ax+d(t)\right)
+		\\ &= \left(
+		x^{\mathrm{T}}A^{\mathrm T} + d^{\mathrm T}(t)
+		\right)Px + x^{\mathrm{T}} PAx
+		+x^{\mathrm{T}}P d(t)
+		\\ &= x^{\mathrm{T}}(A^{\mathrm{T}} P + PA)x
+		+ d^{\mathrm{T}}(t) P x + x^{\mathrm{T}}P d(t)
+		\\ &= 
+		\underbrace{-x^{\mathrm{T}} Q x}_{\leq\ -\lambda_{\min}(Q)|x|^2}
+		+ \underbrace{d^{\mathrm T}(t)Px}_{\leq\ 
+			\left\lvert d^{\mathrm{T}}(t) \right\rvert |x|\left\lVert P \right\rVert}
+		+ \underbrace{x^{\mathrm{T}} P d(t)}_{\leq\  |x^{\mathrm{T}}|\left\lVert P \right\rVert \left\lvert d(t) \right\rvert}
+		\\ &\leq
+		-\lambda_{\min}(Q)|x|^2 +
+		\left\lvert d^{\mathrm{T}}(t) \right\rvert |x|\left\lVert P \right\rVert + |x^{\mathrm{T}}|\left\lVert P \right\rVert \left\lvert d(t) \right\rvert
+		\\ &\leq
+		-\lambda_{\min}(Q)|x|^2 +
+	    \bar d |x|\left\lVert P \right\rVert + |x|\left\lVert P \right\rVert \bar d
+	    \\ &= -|x| \left(
+	    λ_{\min}(Q)|x| - 2\bar d \left\lVert P \right\rVert
+	    \right)
 	\end{align*}
 	όπου \( \lambda_{\min}(Q) \) η \textit{ελάχιστη ιδιοτιμή} του
 	πίνακα \( Q \), και \( \left\lVert P \right\rVert \) η
@@ -2728,18 +2750,23 @@ P = P^{\mathrm{T}}
 	Θέλουμε \( \dot V \) να είναι αρνητικά ορισμένη για την εφαρμογή του θεωρήματος Lyapunov,
 	δηλαδή:
 	\[
-	|x| > \frac{\left\lVert P \right\rVert \bar d}{\lambda_{\min}(Q)}
+	|x| > \frac{2\left\lVert P \right\rVert \bar d}{\lambda_{\min}(Q)}
 	\]
 	
 	Με την πάροδο του χρόνου, η \( |x| \) θα αποκτά τη μορφή
 	\todo{Graph 21}.\todo{explain better}
 	
-	Εδώ διαπιστώνουμε ότι το σύστημα παραμένει στην ευστάθεια, αλλά δεν
+	Εδώ διαπιστώνουμε ότι το σύστημα με την πάροδο του χρόνου παραμένει στην ευστάθεια, αλλά δεν
 	είναι απαραίτητα και \textit{ασυμπτωτικά} ευσταθές. Μόλις το
 	\( |x| \) ξεπεράσει την τιμή \( \frac{\left\lVert P \right\rVert \bar d}{\lambda_{\min}(Q)} \), θα παραμείνει αναγκαστικά εντός του
 	εύρους της. Για να ρυθμίσουμε ακριβώς το εύρος αυτό, πρέπει να
-	επιλέξουμε τους όρους του κλάσματος \( \frac{\left\lVert P \right\rVert}{\lambda_{\min}(Q)} \), κάτι που είναι δύσκολο, λόγω
+	επιλέξουμε τους όρους του κλάσματος \( 2\frac{\left\lVert P \right\rVert}{\lambda_{\min}(Q)} \), κάτι που είναι δύσκολο, λόγω
 	της εξάρτησης του \( P \) από το \( Q \).
+	
+	\todo{add defn reference}
+	Να σημειωθεί βέβαια πως η ευστάθεια που παρουσιάζει το σύστημα εδώ δεν συμφωνεί με τον ορισμό που έχουμε δώσει παραπάνω (κατά Lyapunov),
+	αλλά εκφράζει πως θα έχουμε πεπερασμένη είσοδο με
+	πεπερασμένη έξοδο, αφού η συνάρτηση είναι \textbf{ομοιόμορφα τελικώς φραγμένη}.
 \end{exercise}
 
 \section{Γραμμικά Συστήματα}
