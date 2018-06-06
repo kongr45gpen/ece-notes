@@ -1,5 +1,5 @@
 % !TeX program = xelatex
-\documentclass[11pt,a4paper,notitlepage,fleqn]{article}
+\documentclass[11pt,a4paper,notitlepage,fleqn,draft]{article}
 
 \input{preamble.tex}
 
@@ -107,7 +107,7 @@ ABS, σύστημα πρόσφυσης, διατήρηση ευστάθειας 
 
 Μια ακόμα χρήσιμη έννοια που μάθαμε είναι αυτή της ανάδρασης, στην οποία η έξοδος του συστήματος ανατροφοδοτείται στο σύστημα ως είσοδος, ίσως αφού περαστεί από έναν
 ελεγκτή \( C \). Σε αυτά μπορούμε να προσθέσουμε μια μετρητική διάταξη \( M \) και έναν
-ενεργοποιητή (actuator) που να μετατρέπει την έξοδο σε μορφή αποδεκτή από το σύστημα. Αυτά
+ενεργοποιητή (actuator) \( E \) που να μετατρέπει την έξοδο σε μορφή αποδεκτή από το σύστημα. Αυτά
 είναι και τα \textbf{συστήματα κλειστού βρόχου}.
 
 \begin{tikzpicture}
@@ -311,7 +311,8 @@ m\dot y = u - ay -mg\sin\phi
 Για τη μελέτη των συστημάτων χρησιμοποιούμε τις \textbf{μεταβλητές κατάστασης}, δηλαδή
 τις μεταβλητές που είναι απαραίτητο να γνωρίζουμε για να περιγράψουμε πλήρως τη λειτουργία
 του συστήματος. Ο ορισμός αυτός προέκυψε από τη μελέτη της κίνησης των πλανητών, η οποία
-μπορεί να περιγραφεί από τη θέση και την ταχύτητα του καθενός.
+μπορεί να περιγραφεί από τη θέση και την ταχύτητα του καθενός. Οι μεταβλητές αυτές μεταβάλλονται
+με το χρόνο.
 
 Το σύνολο των τιμών των μεταβλητών κατάστασης ονομάζεται \textbf{σύνολο καταστάσεων}, και
 κάθε τιμή (ή διάνυσμα καταστάσεων) ονομάζεται \textbf{κατάσταση}.
@@ -345,7 +346,7 @@ m\ddot q = -c(\dot q) - kq + u
 \[
 m\ddot q + c(\dot q) + kq = u
 \]
-Το σύστημα αυτό είναι αυτόνομο. Αν είχαμε κάποια εξωτερική δύναμη, θα ήταν μη αυτόνομο.
+Στην περίπτωση που \( u=0 \), το σύστημα αυτό είναι αυτόνομο. Αν είχαμε κάποια εξωτερική δύναμη, θα ήταν μη αυτόνομο.
 \begin{defn}{Αυτόνομα συστήματα}{}
 	Συστήματα στα οποία \textbf{δεν} ενεργούν \textbf{εξωτερικές δυνάμεις} ονομάζονται
 	\textbf{αυτόνομα}.
@@ -519,6 +520,7 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 	\[
 	m\ddot q + c\dot q + kq = u
 	\]
+	να γραφούν οι εξισώσεις κατάστασης του συστήματος σε μορφή πίνακα.
 	\tcblower
 	Η παραπάνω εξίσωση είναι η \textbf{διαφορική εξίσωση του συστήματος}.
 	
@@ -585,7 +587,7 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 	\]
 	
 	Αφού η είσοδος \( u \) είναι ανώτερης τάξης στη διαφορική αυτή, επιλέγουμε τις μεταβλητές
-	κατάστασης με βάση την παράγραφο \autoref{sec:nontd_highorder_system}:
+	κατάστασης με βάση τη σελ. \pageref{sec:nontd_highorder_system}:
 	\begin{alignat*}{2}
 		x_1 &= y-\beta_0u,\qquad && \beta_0 = 0\\
 		x_2 &= \dot y-\beta_0 \dot u -\beta_1 u,\qquad && \beta_1 = \frac{1}{L}
@@ -616,7 +618,7 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 	και από αυτά προκύπτει ότι:
 	\begin{align*}
 		\dot x_1 &= \frac{1}{C} x_2\\
-		\dot x_2 &= \frac{x_1-x_2 R}{L} \qquad \text{λόγω της \eqref{eq:ex0ceq}}
+		\dot x_2 &= \frac{x_1-x_2 R + u}{L} \qquad \text{λόγω της \eqref{eq:ex0ceq}}
 	\end{align*}
 \end{exercise}
 
@@ -725,7 +727,7 @@ b_0s^m = b_1s^{m-1} + \dots + b_{m-1}s+b_m
 Προκύπτει το ερώτημα του πώς μπορεί να προκύψει η συνάρτηση μεταφοράς από τις εξισώσεις
 κατάστασης, δηλαδή από την περιγραφή (σε μορφή πινάκων):
 \begin{align*}
-\dot x &= Ax	+ By\\
+\dot x &= Ax	+ Bu\\
 y &= Cx + Du
 \end{align*}
 όπου οι συντελεστές \( A,B,C,D \) είναι γνωστοί.
@@ -1062,7 +1064,7 @@ x_1 = 0
 
 Αφού ολοκληρωθεί η διαδικασία της μοντελοποίησης, οδηγούμαστε σε ένα σύστημα της μορφής:
 \begin{align*}
-	x' &= f(x,u) \\
+\dot x &= f(x,u) \\
 	y &= h(x,u)
 \end{align*}
 όπου στόχος μας είναι να έχουμε κατάλληλη είσοδο \( u \) ώστε να
@@ -1077,11 +1079,11 @@ u = a(x)
 \]
 τότε:
 \[
-x' = f\left(x,\ a(x)\right)
+\dot x = f\left(x,\ a(x)\right)
 \]
 ή, θέτοντας κατάλληλα:
 \[
-x' = F(x)
+\dot x = F(x)
 \]
 οπότε έχουμε να λύσουμε μια διαφορική εξίσωση:
 \[
@@ -1251,8 +1253,10 @@ plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3]
 	όπου το \( x_1 \) εκφράζει τη \textbf{γωνία} \( \theta \), το \( x_2 \) εκφράζει
 	τη \textbf{γωνιακή ταχύτητα} του εκκρεμούς, και το \( u \) εκφράζει την εξωτερική ροπή
 	που ασκείται σε αυτό.
+	
+	Να βρεθούν τα σημεία ισορροπίας του.
 	\tcblower
-	Πρώτα θα ψάξουμε τα \textbf{σημεία ισορροπίας} του συστήματος. Για αυτό, θεωρούμε
+	Για την εύρεση των σημείων ισορροπίας, θεωρούμε
 	\textbf{μηδενική εξωτερική επιρροή}, δηλαδή \( \underline{u=0} \), οπότε λύνουμε
 	την εξίσωση \( F(x^*) = 0 \):
 	\[
@@ -1505,21 +1509,23 @@ node[circle,fill opacity=.5,fill,draw,inner sep=1.5pt,thick,opacity=.1,anchor=no
 από κάποια τιμή.
 
 \begin{tikzpicture}[scale=1,xscale=1.4]
-\draw[->] (-0.5,0) -- (4,0) node[right] {$t$};
+\fill[blue!70!green,opacity=.18] (2,0) rectangle (6.09,0.5);
+
+\draw[->] (-0.5,0) -- (6,0) node[right] {$t$};
 \draw[->] (0,-0.5) -- (0,2.5);
 
 \draw (0,0) node[below left] {$O$};
 
-\draw[dashed] (0,2) node[left] {$\xi$} -- ++(4,0);
-\draw[dashed] (0,0.5) node[left] {$M$} -- ++(4,0);
+\draw[dashed] (0,2) node[left] {$\xi$} -- ++(6,0);
+\draw[dashed] (0,0.5) node[left] {$M$} -- ++(6.1,0);
 
-\draw[very thick,blue!50!cyan] plot [smooth] coordinates {(0,1.8) (0.7,1.7) (1,1.25) (1.5,1.1) (2,0.5) (3,0.2) (3.9,0.10)};
+\draw[very thick,blue!50!cyan] plot [smooth] coordinates {(0,1.8) (0.7,1.7) (1,1.25) (1.5,1.1) (2,0.5) (3,0.2) (3.9,0.10) (4.2, 0.2) (4.5, 0.4) (5,0.2) (5.5,0.3) (6,0.32)};
 
 \path (0,1.8) node[circle,fill opacity=.5,fill,draw,inner sep=1.2pt] {} node[below left] {$x_0$};
 \end{tikzpicture}
 
 Η έννοια αυτή είναι σημαντική, επειδή μπορούμε να ελέγχουμε την τιμή του \( M \) ώστε να
-πετύχουμε σύγκλιση στο 0.
+πετύχουμε αρκετά καλή σύγκλιση στο 0.
 
 \lecture{5}{9/3/2018}
 
@@ -1715,7 +1721,7 @@ x(t) = e^{\lambda_i t} \cdot x_i(0)
 \end{exercise}
 
 \subsection{Μελέτη ευστάθειας σε μη γραμμικά συστήματα}
-Έστω το σύστημα \( \dot x = F(x) \) με σημείο ισορροπίας.
+Έστω το σύστημα \( \dot x = F(x) \) με σημείο ισορροπίας \( x^* \).
 
 \subsubsection{Με γραμμικοποίηση}
 
@@ -1850,6 +1856,9 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 Η ιδέα της μεθόδου του Lyapunov είναι να βρούμε μια συνάρτηση που συγκλίνει
 στο σημείο ισορροπίας, και φθίνει συνεχώς κατά μήκος της διαδρομής του \( x \).
 
+\paragraph{}
+Πρώτα θα δώσουμε μερικούς βοηθητικούς ορισμούς.
+
 \begin{defn}{Θετικά ορισμένη συνάρτηση}{}
 	Μία συνάρτηση \( V(x) \) όπου \( V: \mathbb R^n \to \mathbb R \) ονομάζεται \textbf{θετικά
 		ορισμένη} όταν:
@@ -1884,7 +1893,8 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 
 \begin{defn}{Θετικά ημιορισμένη συνάρτηση}{}
 	Μία συνάρτηση \( V(x) \) όπου \( V: \mathbb R^n \to \mathbb R \) ονομάζεται \textbf{θετικά
-		ημιορισμένη} όταν:
+		ημιορισμένη} όταν:\footnote{Η απαίτηση \( V(0) = 0 \) για θετικά/αρνητικά \textbf{ημι}ορισμένες συναρτήσεις δεν αναφέρεται στις σημειώσεις του
+		μαθήματος, αλλά υπάρχει γενικότερα στη βιβλιογραφία.}
 	\begin{enumerate}
 		\item Είναι συνεχώς παραγωγίσιμη
 		\item Είναι {\color{orange!70!black}\textit{μη} αρνητική} για \( x\neq 0 \):
@@ -1900,8 +1910,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		% is not mentioned in the lecture notes, but it is specified on other
 		% textbooks.
 	\end{enumerate}
-\end{defn}\footnote{Η απαίτηση \( V(0) = 0 \) για θετικά/αρνητικά \textbf{ημι}ορισμένες συναρτήσεις δεν αναφέρεται στις σημειώσεις του
-μαθήματος, αλλά υπάρχει γενικότερα στη βιβλιογραφία.}
+\end{defn}
 Αντίστοιχα ορίζεται η \textit{αρνητικά ημιορισμένη} συνάρτηση.
 
 \begin{exercise}[Παράδειγμα]
@@ -2044,7 +2053,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	Οι πιο συνηθισμένες και απλές επιλογές συναρτήσεων Lyapunov είναι οι \textit{τετραγωνικές} μορφές. Επίσης, προσέχουμε στην επιλογή μας οι συναρτήσεις
 	να είναι συναρτήσεις όλων των μεταβλητών του συστήματός μας.
 	
-	Επομένως, εδώ μπορούμε να \textbf{επιλέξουμε} ως συνάρτηση Lyapunov την εξής:
+	Επομένως, εδώ μπορούμε να \textbf{επιλέξουμε} ως υποψήφια συνάρτηση Lyapunov την εξής:
 	\[
 	V(x_1,x_2) = \frac{1}{2}x_1^2 + \frac{1}{2}x_2^2
 	\]
@@ -2239,7 +2248,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	x_1 & x_2
 	\end{matrix}] \) το διάνυσμα μεταβλητών κατάστασης.
 
-	\textit{Επιλέγουμε} ως συνάρτηση Lyapunov την:
+	\textit{Επιλέγουμε} ως υποψήφια συνάρτηση Lyapunov την:
 	\begin{equation}
 	V(x) = \left( \cos x_1 -1 \right) + a\left( 1-\cos^2 x_1 \right)
 	+ \frac{1}{2}x_2^2
@@ -2662,7 +2671,7 @@ P = P^{\mathrm{T}}
     	\end{matrix}\right] \).
     	
     	Ο παραπάνω \( Q \) έχει μία θετική και μία \textit{αρνητική}
-    	ιδιοτιμή, επομένως \textit{δεν} είναι θετικά ορισμένος! Επομένως
+    	ιδιοτιμή, επομένως \textit{δεν} είναι θετικά ορισμένος! Άρα
     	δεν μπορούμε να εξάγουμε κανένα συμπέρασμα από την εφαρμογή
     	του Θεωρήματος \ref{th:lyapunov_linear}.
     	
@@ -2807,8 +2816,8 @@ y(t;\ x_0,u)
 		
 		\item \textbf{Ιδιότητα της ομογένειας}%
 		\[
-		y\left(y;\ ax_0,\gamma u\right)
-		= ay(t;\ x_0,\ 0) + \gamma y(t; 0,\ u)
+		y\left(τ;\ ax_0,\gamma u\right)
+		= ay(t;\ x_0,\ 0) + \gamma y(t;\ 0,\ u)
 		\]
 		
 		\item \textbf{Ιδιότητα της επαλληλίας} ως προς την είσοδο.
@@ -2949,7 +2958,7 @@ x(t) = e^{At} x(0)
 	&& \dot x &= Ax &&\implies \\
 	\implies && sX(s) - x(0) &= AX(s) &&\implies \\
 	\implies && (sI-A)X(s) &= x(0) &&\implies \\
-	\implies && X(s) &= (sI-A)^{-1} X(s) &&\implies \\
+	\implies && X(s) &= (sI-A)^{-1} x(0) &&\implies \\
 	\implies && x(t) &= \mathscr L^{-1} \left\lbrace (sI-A)^{-1} \right\rbrace x(0)
 \end{alignat*}
 
@@ -3056,8 +3065,8 @@ x(t) = e^{At} \sum_{i=1}^{n} a_iv_i
 και η τελική λύση προκύπτει, αφού κάνουμε αρκετές πράξεις στην
 \eqref{eq:linear_eigenvector_solution}:
 \[
-x(t) = e^{σt} \left[
-\left[u\cos \omega  t -w\sin \omega t\right]
+x(t) = e^{σt}
+\left[u\cos \omega  t -w\sin \omega t
 \right]+j\left[
 u\sin \omega t + w\cos \omega t
 \right]
@@ -3130,7 +3139,29 @@ z = Tx \qquad \implies x=T^{-1} z
 
 \begin{exercise}
 	Δίνεται το μηχανικό σύστημα:
-	\todo{Graph 22}
+	
+	\begin{circuitikz}
+		\fill[postaction={decorate},pattern=north east lines] (0,3) rectangle (-0.5,-0.5) rectangle (10,0);
+		\fill[postaction={decorate},pattern=north east lines] (10,2.5) rectangle (11,1);
+		
+		\draw (2,0) rectangle ++(2,2) node[midway] {$m$} node[midway] (m2) {};
+		\draw (6,0) rectangle ++(2,2) node[midway] {$m$} node[midway] (m1) {};
+		
+		\draw (2,1.6) to[damper,l_=$c$,invert] ++(-2,0);
+		\draw (2,0.4) to[spring,invert,l_=\raisebox{-1.5ex}{$k$}] ++(-2,0);
+		\draw (6,1) to[spring,invert,l_=\raisebox{-1.5ex}{$k$}] ++(-2,0);
+		
+		\draw (8,1.8) to[damper,l^=$c$] ++(2,0);
+		\draw (8,1.2) to[spring,l_=\raisebox{1.5ex}{$k$}] ++(2,0);
+		
+		\draw[thick,->] (8,0.4) -- ++(2.5,0) node[right] {$u$};
+		
+		\draw[thick] (0,3) |- (10,0);
+		\draw[thick] (10,2.5) -- (10,1);
+		
+		\draw[->] (m2) ++ (0,1.4) |- ++(2,0.7) node[above,pos=.75,gray] {$q_1$};
+		\draw[->] (m1) ++ (0,1.4) |- ++(2,0.7) node[above,pos=.75,gray] {$q_2$};
+	\end{circuitikz}
 	
 	Να γραφούν οι εξισώσεις κατάστασής του.
 	
@@ -3382,7 +3413,7 @@ M_0 = -CA^{-1}B + D
 \begin{exercise}[Παράδειγμα]
 	Δίνεται το σύστημα:
 	\[
-	\dot x = c_0 + c_1 x + c_2^2 + u,\ c_0 \neq 0
+	\dot x = c_0 + c_1 x + c_2 x^2 + u,\ c_0 \neq 0
 	\]
 	Να γραμμικοποιηθεί γύρω από το \( (x,u) = (0,0) \)
 	
@@ -3419,7 +3450,76 @@ M_0 = -CA^{-1}B + D
 	\( R \). Σε απόσταση \( x \) από αυτήν βρίσκεται μια σφαίρα μάζας
 	\( m \).
 	
-    \todo{Graph 24}
+    \begin{tikzpicture}[american voltages,scale=.7]
+    % Source: https://tex.stackexchange.com/a/32313
+    
+    \begin{scope}[rotate=90]
+    
+    % Define a formula for the coil.
+    % This is what the numbers mean:
+    % 0.3 ... how far the rings are apart
+    % 0.4 ... how much from the side the rings are seen (try 0 and the same as the radius)
+    % 1.5 ... radius of the rings
+    \def\coil#1{
+    	{0.55 * (2*#1 + \t) + 0.4*sin(\t * pi r))},
+    	{1.5 * cos(\t * pi r)}
+    }
+    
+    % Draw the part of the coil behind the rectangle
+    \foreach \n in {0,1,...,5} {
+    	\draw[domain={0:1},smooth,variable=\t,samples=15]
+    	plot (\coil{\n}); 
+    }
+    
+    % Draw the rectangle
+    \filldraw[fill=white] (-0.5,-1) rectangle (7,1);
+    
+    % Draw the part of the coil in front of the rectangle
+    \foreach \n in {0,1,...,5} {
+    	\draw[domain={1:2},smooth,variable=\t,samples=15,
+    	preaction={draw,white,line width=3pt}     % remove if undesired
+    	]
+    	plot (\coil{\n});
+    }
+    
+    \end{scope}
+    
+    \draw[	postaction={
+    	decorate,
+    	decoration={
+    		post length=1mm, % ??? Magic to fix "Dimension
+    		pre length=1mm, % ???  too large" errors.
+    		markings,
+    		mark=at position 0.5 with {\arrow{<}},
+    		mark=at position 0.5 with {\node[above]{$i$};}
+    	}
+    }] plot [smooth] coordinates {(-1.5,6.6) (-1.8,7) (-3,7)} (-3,7) node[fill,circle,inner sep=1pt] {};
+    
+    \draw[	postaction={
+    	decorate,
+    	decoration={
+    		post length=1mm, % ??? Magic to fix "Dimension
+    		pre length=1mm, % ???  too large" errors.
+    		markings,
+    		mark=at position 0.5 with {\arrow{>}}
+    	}
+    }] plot [smooth] coordinates {(-1.5,0) (-1.8,-0.6) (-3,-0.7)} (-3,-0.7) node[fill,circle,inner sep=1pt] {};
+    
+    \draw (-3,7) to[open,v=$V$] (-3,-0.7);
+    
+    \draw (2, 3.5) node[right] {$L,\ R$};
+    
+    \draw[very thick,gray,->] (4,5) -- (4,2) node[near end,right] {};
+    
+    \shade[ball color=blue,thick,blue,draw=black] (0,-2.5) circle (0.7cm);
+    
+    \draw[blue,opacity=.5] (0.7,-2.5) -- ++(0.7,0);
+    \draw[blue,opacity=.5] (0.7,-0.5) -- ++(0.7,0);
+    \draw[<->,blue,opacity=.5] (0.7+0.35,-2.4) -- (0.7+0.35,-0.6) node[midway,fill=white,opacity=1] {$x$};
+    
+    
+    
+    \end{tikzpicture}
 	
 	Ζητείται να σχεδιαστεί η είσοδος τάσης \( u \) ώστε η σφαίρα να παραμένει σε
 	σταθερή απόσταση \( x^* \) από τον ηλεκτρομαγνήτη.
@@ -3433,7 +3533,79 @@ M_0 = -CA^{-1}B + D
 	Οι δυνάμεις που ασκούνται επάνω στη μάζα είναι το βάρος \( mg \) λόγω
 	της βαρύτητας, και η δύναμη \( F \) που ασκείται από τον ηλεκτρομαγνήτη.
 	
-	\todo{Graph 25}
+	\begin{tikzpicture}[american voltages,scale=.5]
+	% Source: https://tex.stackexchange.com/a/32313
+	
+	\begin{scope}[rotate=90]
+	
+	% Define a formula for the coil.
+	% This is what the numbers mean:
+	% 0.3 ... how far the rings are apart
+	% 0.4 ... how much from the side the rings are seen (try 0 and the same as the radius)
+	% 1.5 ... radius of the rings
+	\def\coil#1{
+		{0.55 * (2*#1 + \t) + 0.4*sin(\t * pi r))},
+		{1.5 * cos(\t * pi r)}
+	}
+	
+	% Draw the part of the coil behind the rectangle
+	\foreach \n in {0,1,...,5} {
+		\draw[domain={0:1},smooth,variable=\t,samples=15]
+		plot (\coil{\n}); 
+	}
+	
+	% Draw the rectangle
+	\filldraw[fill=white] (-0.5,-1) rectangle (7,1);
+	
+	% Draw the part of the coil in front of the rectangle
+	\foreach \n in {0,1,...,5} {
+		\draw[domain={1:2},smooth,variable=\t,samples=15,
+		preaction={draw,white,line width=3pt}     % remove if undesired
+		]
+		plot (\coil{\n});
+	}
+	
+	\end{scope}
+	
+	\draw[	postaction={
+		decorate,
+		decoration={
+			post length=1mm, % ??? Magic to fix "Dimension
+			pre length=1mm, % ???  too large" errors.
+			markings,
+			mark=at position 0.5 with {\arrow{<}},
+			mark=at position 0.5 with {\node[above]{$i$};}
+		}
+	}] plot [smooth] coordinates {(-1.5,6.6) (-1.8,7) (-3,7)} (-3,7) node[fill,circle,inner sep=1pt] {};
+	
+	\draw[	postaction={
+		decorate,
+		decoration={
+			post length=1mm, % ??? Magic to fix "Dimension
+			pre length=1mm, % ???  too large" errors.
+			markings,
+			mark=at position 0.5 with {\arrow{>}}
+		}
+	}] plot [smooth] coordinates {(-1.5,0) (-1.8,-0.6) (-3,-0.7)} (-3,-0.7) node[fill,circle,inner sep=1pt] {};
+	
+	\draw (-3,7) to[open,v=$V$] (-3,-0.7);
+	
+	\draw (2, 3.5) node[right] {$L,\ R$};
+	
+	\draw[->,red!50!brown, opacity=.8, thick] (0,-2.5) -- ++ (0,1.4) node[right] {$F$};
+	\draw[->,red!30!brown, opacity=.8, thick] (0,-2.5) -- ++ (0,-1.4) node[right] {$mg$};
+	
+	\draw[very thick,gray,->] (4,5) -- (4,2) node[near end,right] {};
+	
+	\shade[ball color=blue,thick,blue,draw=black] (0,-2.5) circle (0.7cm);
+	
+	\draw[blue,opacity=.5] (0.7,-2.5) -- ++(0.7,0);
+	\draw[blue,opacity=.5] (0.7,-0.5) -- ++(0.7,0);
+	\draw[<->,blue,opacity=.5] (0.7+0.35,-2.4) -- (0.7+0.35,-0.6) node[midway,fill=white,opacity=1] {$x$};
+	
+	
+	
+	\end{tikzpicture}
 	
 	Σύμφωνα με την εκφώνηση, η \( F \) δίνεται από τον τύπο (μαζί με την
 	σταθερά αναλογίας \( k \)):
@@ -3738,7 +3910,23 @@ M_0 = -CA^{-1}B + D
 		όπου \( q,\ M(q),\ f(q,\dot q),\ k(q) \in \mathbb R \), και \( M(q) > 0 \).
 		
 		Ζητείται να διαμορφωθεί ώστε να εκφράζει ακριβώς ένα σύστημα ελατηρίου και αποσβεστήρα, με μοναδιαία μάζα.
-		\todo{Graph 27}
+		
+		\begin{circuitikz}[scale=.9]
+	
+			\fill[postaction={decorate},pattern=north east lines] (0,3) rectangle (-0.5,-0.5) rectangle (5,0);
+			
+			\draw (2,0) rectangle ++(2,2) node[midway] {$m=1$} node[midway] (m2) {};
+			
+			\draw (2,0.4) to[damper,l_=$b$,invert] ++(-2,0);
+			\draw (2,1.6) to[spring,invert,l_=\raisebox{-1.5ex}{$k_0$}] ++(-2,0);
+			
+			\draw[thick,->] (4,1) -- ++(1.5,0) node[right] {$F$};
+			
+			\draw[thick] (0,3) |- (5,0);
+			
+			\draw[->] (m2) ++ (0,1.4) |- ++(2,0.7) node[above,pos=.75,gray] {$q$};
+		\end{circuitikz}
+		
 		
 		Η επιτάχυνση \( \ddot q \) δεν θεωρείται γνωστή, ενώ η
 		ταχύτητα \( \dot q \) θεωρίεται γνωστή, επειδή υποτίθεται πως
