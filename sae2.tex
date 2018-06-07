@@ -4018,7 +4018,7 @@ c_{n-1}(τ)u(t-τ)\dif τ
 \phi_i(t) = \int_{0}^{t} c_i(τ)u(t-τ)\dif τ,\quad
 i=0,\dots,n-1
 \]
-και έναν πίνακα \( M \):
+και έναν πίνακα \( M \) που εκφράζει τους συντελεστές των \( \phi_i(t) \):
 \[
 M = \left[ \begin{matrix}
 B & AB & \dots & A^{n-1}B
@@ -4043,6 +4043,15 @@ B & AB & \dots & A^{n-1}B
 	ασκείται ηλεκτρεγερτική δύναμη \( u_e \), και αυτός περιστρέφει
 	φορτίο με ροπή αδράνειας \( I_L \), το οποίο βρίσκεται σε
 	γωνία \( \theta \).
+	
+	\begin{circuitikz}[american]
+		\ctikzset{voltage/american label distance=2}
+		\draw (0,0) to[R=$R_a$] (2,0) to[L=$L_a$] (4,0) to[open,v^=$u_e$]
+		(4,-2) -- (0,-2) to[open,v^>=$u_a$,*-*] (0,0);
+		\draw (4,-1) node[elmech](motor) {};
+		\draw (motor.north) -- (4,0) (motor.south) -- (4,-2);
+	\end{circuitikz}
+	
 	\todo{Graph 28}
 	
 	Επίσης πραγματοποιούμε τις παρακάτω παραδοχές:
@@ -4101,7 +4110,7 @@ B & AB & \dots & A^{n-1}B
 	\end{matrix}\right] = \dots = \left[\begin{matrix}
 	0 & 0 & \frac{k_i}{I_L L_a} \\
 	0 & \frac{k_i}{I_L L_a} & -\frac{k_iR_a}{I_L L_a} \\
-	\sfrac{1}{L_a}  & - \frac{R_a}{L_a} & \frac{R_a^2 I_L - k_bk_i L_a}{I_L L_a^3}
+	\frac{1}{L_a}  & - \frac{R_a}{L_a^2} & \frac{R_a^2 I_L - k_bk_i L_a}{I_L L_a^3}
 	\end{matrix}\right]
 	\]
 	για τον οποίο έχουμε:\[
