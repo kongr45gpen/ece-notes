@@ -734,7 +734,7 @@
 	\setlength{\mathindent}{-10cm}
     \begin{align*}
     f(t) &= \int_{-\infty}^{\infty}
-    \underbrace{2(1-\tau)}_{\mathclap{x(\tau)}}\left[\mathrm u(\tau)-\mathrm u(\tau+1) \right]\left[
+    \underbrace{2(1-\tau)}_{\mathclap{x(\tau)}}\left[\mathrm u(\tau)-\mathrm u(\tau-1) \right]\left[
     \mathrm u(t-\tau)-\mathrm u(t-\tau-2)
     \right] \dif\tau \\
     &= \int_{-\infty}^{\infty} x(\tau) \left[
@@ -742,7 +742,7 @@
     -\mathrm u(\tau)\mathrm u(t-\tau-2)+\mathrm u(\tau-1)\mathrm u(t-\tau-2)
     \right]\dif\tau \\
     &= \int_0^t x(\tau)\dif\tau\mathrm u(t)
-    -\int_1^x x(\tau)\dif\tau \mathrm u(t-1)
+    -\int_1^t x(\tau)\dif\tau \mathrm u(t-1)
     -\int_0^{t-2}x(\tau)\dif\tau \mathrm u(t-2)
     +\int_1^{t-2}x(\tau)\dif\tau\mathrm u(t-3)
     \\ &=
