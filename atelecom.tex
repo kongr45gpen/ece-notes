@@ -618,6 +618,7 @@ S(f) &= \mathsmaller{\mathsmaller{\frac{1}{2} A_c \left[
 δ(f+f_c+f_m)+δ(f+f_c-f_m)
 \right]}}
 \end{align*}
+όπου \( \mu \) είναι ουσιαστικά το \textbf{ποσοστό διαμόρφωσης} του σήματος.
 
 Γραφικά:\nopagebreak
 
@@ -753,9 +754,9 @@ node[scale=0.6,left] {$2\%$};
 \draw[->,black!80!brown] (2.61,0.82) to[bend right=20] ++(0.8,-0.5) node[right] {
 	Ισχύς πλευρικών συνιστωσών};
 
-\draw[very thick,black!80!brown,variable=\m,domain=0:3,samples=\gsamples]
+\draw[very thick,black!50!brown,variable=\m,domain=0:3,samples=\gsamples]
 plot ({\m}, {3*(\m/3)^2/(2+(\m/3)^2)});
-\draw[very thick,black!80!brown,variable=\m,domain=0:3,samples=\gsamples]
+\draw[very thick,black!50!brown,variable=\m,domain=0:3,samples=\gsamples]
 plot ({\m}, {3-3*(\m/3)^2/(2+(\m/3)^2)});
 \end{tikzpicture}
 
@@ -774,8 +775,8 @@ plot ({\m}, {3-3*(\m/3)^2/(2+(\m/3)^2)});
 	to[R=$R_L$] (4,0)
 	-- (0,0);
 	
-	\draw (2,2) to[open,v=$v_1(t)$,*-*] (2,0);
-	\draw (4,2) -- (5,2) to[open,v^=$v_2(t)$,o-o] (5,0) -- (4,0);
+	\draw (2,2) to[open,v=$u_1(t)$,*-*] (2,0);
+	\draw (4,2) -- (5,2) to[open,v^=$u_2(t)$,o-o] (5,0) -- (4,0);
 \end{circuitikz}
 
 Επίσης απαιτούμε το σήμα \( m(t) \) να έχει \textbf{αρκετά μικρότερο πλάτος} από το φέρον:
@@ -783,9 +784,9 @@ plot ({\m}, {3-3*(\m/3)^2/(2+(\m/3)^2)});
 \left\lvert  m(t) \right\rvert \ll A_c
 \]
 
-Τότε, η τάση \( u_1 \) γίνεται:
+Τότε, η τάση \( v_1 \) \textit{πριν τη δίοδο} γίνεται:
 \[
-u_1(t) = m(t)+A_c \cos(2πf_ct)
+v_1(t) = m(t)+A_c \cos(2πf_ct)
 \]
 
 \begin{tikzpicture}
@@ -813,7 +814,7 @@ u_1(t), &\quad \text{όταν } c(t) > 0 \\
 \end{cases}
 \]
 
-Εναλλακτικά, μπορούμε να εκφράσουμε την \( u_2(t) \) ως γινόμενο της
+Εναλλακτικά, μπορούμε να εκφράσουμε την \( u_2(t) \) στο χρόνο ως γινόμενο της
 εισόδου \( u_1(t) \) και μιας συνάρτησης \( g_{T_0} \) που μηδενίζεται για \( c(t) <0 \) και
 είναι μονάδα για \( c(t) > 0 \), δηλαδή μιας παλμοσειράς:
 
