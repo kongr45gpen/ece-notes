@@ -4448,7 +4448,7 @@ plot[smooth,tension=0.7] coordinates {
 	
 	\draw[<-] (m1.west) -- ++(-1.2,0) node[above,midway] {$m(t)$};
 	\draw[->] (m1.east) node[above right] {$A'$} -- (lpf);
-	\draw[<-] (m1.south) -- ++(0,-1) node[below] {$\cos 2\pi \cdot 900\cdot 10^3t$};
+	\draw[<-] (m1.south) -- ++(0,-1) node[below] {$\cos 2\pi \cdot 1000\cdot 10^3t$};
 
 	\draw[->] (lpf.east) node[above right] {$\Delta'$} -- ++(1,0);
 
@@ -4468,8 +4468,8 @@ plot[smooth,tension=0.7] coordinates {
 	;
 	
 	\draw[dashed] (0,\A) -- (\fa,\A);
-	\draw (\fb+\tz,0) node[below,scale=1] {$4.1$};
-	\draw[dashed] (\fb,0) node[below,scale=1] {$4$} -- ++(0,2);
+	\draw (\fb+\tz,0) node[below right,scale=0.8] {$4.1$};
+	\draw[dashed] (\fb,0) node[below left,scale=0.8] {$4$} -- ++(0,2);
 	\end{scope}
 	\end{tikzpicture}
 	
@@ -5308,7 +5308,8 @@ T, \qquad & |f| \leq \frac{1}{4T}\\
 \end{tikzpicture}
 
 Το σχήμα αυτό παρουσιάζει ένα αρχικό σήμα κατά DSB, ένα φίλτρο από το οποίο το περνάμε,
-και το τελικό σήμα μετά το φίλτρο.
+και το τελικό σήμα μετά το φίλτρο. Ο σκοπός της διαδικασίας αυτής είναι να διαμορφώσουμε
+το σήμα κατά VSB.
 
 Βρείτε το λάθος του παραπάνω σχήματος, και επιλέξτε ένα φίλτρο το οποίο να μπορεί να διαμορφώσει σωστά το σήμα. Σχεδιάστε το σωστά διαμορφωμένο σήμα.
 
@@ -5452,7 +5453,7 @@ plot[smooth,samples=\gsamples,variable=\t,domain=0:3]
 \end{defn}
 Η διαμόρφωση φάσης οδηγεί στη μαθηματική έκφραση και της στιγμιαίας συχνότητας:
 \[
-\boxed{f_i(t) = f_c + \frac{k_m}{2π} \od{m(t)}{t}}
+\boxed{f_i(t) = f_c + \frac{k_p}{2π} \od{m(t)}{t}}
 \]
 
 \begin{defn}{FM - Διαμόρφωση Συχνότητας}{}
@@ -5649,7 +5650,7 @@ m(t) = A_m\cos(2πf_m t)
 \frac{1}{2π} \od{\theta_i(t)}{t} = f_i(t)
 \implies \theta_i = 2π\int_0^t f_i(t) \dif t
 \]
-Άρα, για ημιτονοειδές σήμα:
+Άρα, για ημιτονοειδές σήμα, η φάση προκύπτει:
 \[
 \theta_i(t) = 2πf_c t + \frac{Δf\;f_m}{\sin 2π f_m t}
 \]
@@ -5902,7 +5903,7 @@ s(t) = A_c\cos(2πf_c t + β\sin 2πf_m t)
 \begin{defn}{Μιγαδική μορφή FM σήματος}{}
 \begin{align*}
 s(t) &= \Re\left[ A_c \exp(j2πf_c t +jβ\sin 2π f_m t) \right]
-\\ &= \Re\left[ \exp(jβ\sin 2πf_m t) \cdot \exp(j2πf_c t) \right]
+\\ &= \Re\left[ A_c \cdot \exp(jβ\sin 2πf_m t) \cdot \exp(j2πf_c t) \right]
 \\ &= \Re\left[ \tilde{s}(t) \exp(j2πf_c t) \right]
 \end{align*}
 όπου ορίσαμε τη \textbf{μιγαδική περιβάλλουσα} \( \tilde{s}(t) \) ως εξής:
@@ -5920,7 +5921,7 @@ s(t) &= \Re\left[ A_c \exp(j2πf_c t +jβ\sin 2π f_m t) \right]
 	\\ c_n &= f_mA_c \int_{-\sfrac{1}{2}f_m }^{\sfrac{1}{2} f_m }
 	\exp\left[ jβ\sin(2πf_m t) - j2πnf_m t \right]\dif t
 	\\ \Aboxed{c_n &= \frac{A_c}{2π}
-		\frac{-π}{π}\exp\left[ jβ\sin x - jnx \right] \dif x
+		\int_{-π}^{π}\exp\left[ jβ\sin x - jnx \right] \dif x
 		} \qquad \text{όπου θέσαμε } x=2πf_m t
 \end{align*}
 
