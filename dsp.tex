@@ -41,8 +41,8 @@
 
 \begin{infobox}{Λάθη \& Διορθώσεις}
 	Οι τελευταίες εκδόσεις των σημειώσεων βρίσκονται στο Github
-	(\url{https://github.com/kongr45gpen/ece-notes/raw/master/sae2.pdf}) ή
-	στη διεύθυνση \url{http://helit.org/ece-notes/sae2.pdf}.
+	(\url{https://github.com/kongr45gpen/ece-notes/raw/master/dsp.pdf}) ή
+	στη διεύθυνση \url{http://helit.org/ece-notes/dsp.pdf}.
 	
 	Περιέχουν διορθώσεις σε λάθη και τυχόν βελτιώσεις.
 	
@@ -80,14 +80,101 @@
 		να λάβουμε \textit{δείγματα} σε \textit{διακριτές} στιγμές του αρχικού
 		αναλογικού σήματος. Αφού ο υπολογιστής δεν μπορεί να αποθηκεύσει
 		άπειρες τιμές, αναγκαστικά θα λάβουμε ένα πεπερασμένο εύρος τους.
-		\todo{Graph 1}
+		
+		\begin{tikzpicture}
+		\def\points{(0,0) (0.2,0.2) (0.4,0.5) (0.6,0.7)
+			(0.8,0.9) (1,0.7) (1.2,0.6) (1.4,1) (1.6,0.8) (1.8,0.8) (2,1.1) (2.2,1.4)
+			(2.4, 1.2) (2.6,1.1) (2.8,1) (3,0.95)
+		}
+		\def\pointsc{(0,0),(0.2,0.2),(0.4,0.5),(0.6,0.7),(0.8,0.9),(1,0.7),(1.2,0.6),(1.4,1),(1.6,0.8),(1.8,0.8),(2,1.1),(2.2,1.4),(2.4, 1.2),(2.6,1.1),(2.8,1),(3,0.95)
+		}
+		\def\pointsr{(0,0),(0.2,0.21),(0.4,0.42),(0.6,0.63),(0.8,0.84),(1,0.63),(1.2,0.63),(1.4,1.05),(1.6,0.84),(1.8,0.84),(2,1.05),(2.2,1.47),(2.4, 1.26),(2.6,1.05),(2.8,1.05),(3,0.84)
+		}
+		
+		\draw[->] (0,0) -- (3,0) node[below] {$t$};
+		\draw[->] (0,0) -- (0,2) node[left] (xt) {$x(t)$} node[right,align=left,scale=.7] {αναλογικό\\σήμα};
+		\draw (xt.south) node[below,scale=.7,yshift=2mm] {$\in\mathbb R$};
+		
+		\draw[\timecolour,thick]
+		plot [smooth] coordinates \points;
+		
+		\foreach \p in \pointsc
+		\filldraw[red,top color=white,bottom color=blue,opacity=.4] \p circle(0.05);
+		
+		\draw[<->,thick,opacity=.9]
+		(3.75,1) -- ++(1,0);
+		
+		\begin{scope}[xshift=5.5cm]
+		\draw[->] (0,0) -- (3,0) node[below] {$n\in\mathbb N$};
+		\draw[->] (0,0) -- (0,2) node[left] (xn) {$x(n)$} node[right,align=left,scale=.7] {διακριτό\\σήμα};
+		
+		\draw (xn.south) node[below,scale=.7,yshift=2mm] {$\in\mathbb R$};
+		
+		\foreach \p in \pointsc
+		\filldraw[draw=black,top color=white,bottom color=blue,opacity=.4] \p circle(0.05);
+		\end{scope}
+		
+		\end{tikzpicture}
 		
 		Αυτό το σήμα ονομάζεται \textbf{διακριτό} (\textbf{discrete}).
 		\item \textbf{Κβάντωση}. Στον αναλογικό κόσμο, οι πεπερασμένες τιμές έχουν
 		άπειρη ακρίβεια. Όμως στον υπολογιστή δεν μπορούμε να αποθηκεύσουμε άπειρα
 		δεκαδικά ψηφία, αλλά πρέπει να τα αποθηκεύσουμε σε πεπερασμένες στάθμες
 		που μας επιτρέπεται να χρησιμοποιηθούν.
-		\todo{Graph 2}
+		
+		\begin{tikzpicture}
+		\def\points{(0,0) (0.2,0.2) (0.4,0.5) (0.6,0.7)
+			(0.8,0.9) (1,0.7) (1.2,0.6) (1.4,1) (1.6,0.8) (1.8,0.8) (2,1.1) (2.2,1.4)
+			(2.4, 1.2) (2.6,1.1) (2.8,1) (3,0.95)
+		}
+		\def\pointsc{(0,0),(0.2,0.2),(0.4,0.5),(0.6,0.7),(0.8,0.9),(1,0.7),(1.2,0.6),(1.4,1),(1.6,0.8),(1.8,0.8),(2,1.1),(2.2,1.4),(2.4, 1.2),(2.6,1.1),(2.8,1),(3,0.95)
+		}
+		\def\pointsr{(0,0),(0.2,0.21),(0.4,0.42),(0.6,0.63),(0.8,0.84),(1,0.63),(1.2,0.63),(1.4,1.05),(1.6,0.84),(1.8,0.84),(2,1.05),(2.2,1.47),(2.4, 1.26),(2.6,1.05),(2.8,1.05),(3,0.84)
+		}
+		
+		\draw[->] (0,0) -- (3,0) node[below] {$t$};
+		\draw[->] (0,0) -- (0,2) node[left] (xt) {$x(t)$} node[right,align=left,scale=.7] {αναλογικό\\σήμα};
+		\draw (xt.south) node[below,scale=.7,yshift=2mm] {$\in\mathbb R$};
+		
+		\draw[blue!50!cyan!80!brown,thick]
+		plot [smooth] coordinates \points;
+		
+		\foreach \p in \pointsc
+		\filldraw[red,top color=white,bottom color=blue,opacity=.4] \p circle(0.05);
+		
+		\draw[<->,thick,opacity=.9]
+		(3.75,1) -- ++(1,0);
+		
+		\begin{scope}[xshift=5.5cm]
+		\draw[->] (0,0) -- (3,0) node[below] {$n\in\mathbb N$};
+		\draw[->] (0,0) -- (0,2) node[left] (xn) {$x(n)$} node[right,align=left,scale=.7] {διακριτό\\σήμα};
+		
+		\draw (xn.south) node[below,scale=.7,yshift=2mm] {$\in\mathbb R$};
+		
+		\foreach \y in {0,0.21,...,1.6}
+		\draw[blue,opacity=.5,densely dashed] (0,\y) -- ++(3,0);
+		
+		\foreach \p in \pointsc
+		\filldraw[draw=black,top color=white,bottom color=blue,opacity=.4] \p circle(0.05);
+		\end{scope}
+		
+		\draw[->,thick,opacity=.9]
+		(9.5,1) -- ++(1,0);
+		
+		\begin{scope}[xshift=11.25cm]
+		\draw[->] (0,0) -- (3,0) node[below] {$n\in\mathbb N$};
+		\draw[->] (0,0) -- (0,2) node[left] (xn) {$x(n)$} node[right,align=left,scale=.7] {ψηφιακό\\σήμα};
+		
+		\draw (xn.south) node[below,scale=.9,yshift=1mm] {$\in\mathbb Z$};
+		
+		\foreach \y in {0,0.21,...,1.6}
+		\draw[blue,opacity=.5,densely dashed] (0,\y) -- ++(3,0);
+		
+		\foreach \p in \pointsr
+		\filldraw[draw=black,top color=white!50!red,bottom color=blue,opacity=.4] \p circle(0.05);
+		\end{scope}
+		
+		\end{tikzpicture}
 		
 		Αυτό το σήμα ονομάζεται \textbf{ψηφιακό} (\textbf{digital}).
 	\end{enumerate}
@@ -116,7 +203,64 @@
 \end{itemize}
 
 Σχηματικά:
-\todo{Graph 3}
+
+\begin{tikzpicture}
+
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{main,foreground}
+
+\draw[fill=yellow,draw opacity=.7,fill opacity=.15] (2.2,1.6) rectangle (5.2,-0.7) node[below,opacity=.7,circle,draw,inner sep=1pt,outer sep=2pt] {$A$};
+\draw[fill=yellow,draw opacity=.7,fill opacity=.15] (-0.4,-2.3) rectangle (8.39,-3.7) node[below,opacity=.7,circle,draw,inner sep=1pt,outer sep=2pt] {$B$};
+
+\draw (-2,0.5) node[scale=.9,align=center] {αναλογικός\\κόσμος};
+
+\draw (0,0) --(1,0);
+\draw (0,0) --(0,1);
+\draw[\timecolour] plot[variable=\x,domain=0:1,samples=10,smooth]
+(\x,{\x*((1+rand*0.3))});
+
+\ctikzset{bipoles/length=.6cm}
+
+\begin{pgfonlayer}{foreground}
+\begin{scope}[xshift=3cm,yshift=1cm,local bounding box=scope1]
+\draw (-0.1,0) node {};
+\draw (0,0) to[L] ++(0.5,0);
+\draw (0,-0.3) to[C] ++(0.5,0);
+\draw (0,-0.7) to[R] ++(0.5,0);
+\draw (0,-1.1) to[D] ++(0.5,0);
+
+\draw (1.2,0) node {$H(\omega)$};
+\draw (1.2,-0.4) node {$H(s)$};
+\draw (1.2,-0.8) node {$h(t)$};
+\draw (1.2,-1.2) node {???};
+\end{scope}
+\end{pgfonlayer}
+\draw[fill=white] (scope1.north west) rectangle (scope1.south east);
+
+\draw[<-] (scope1.west) -- ++(-1,0) node[left] {$x(t)$};
+\draw[->] (scope1.east) -- ++(1,0) node[right] {$y(t)$};
+
+\begin{scope}[xshift=6.5cm]
+\draw (0,0) --(1.1,0);
+\draw (0,0) --(0,1);
+\draw[\timecolour] plot[variable=\x,domain=0:1,samples=10,smooth]
+(\x,{(1-\x)*((0.9+rand*0.3))});
+\end{scope}
+
+\begin{scope}[yshift=-3cm]
+\draw (-2,0) node[scale=.9,align=center] {ψηφιακός\\κόσμος};
+
+\draw (1,0) node[rectangle,draw] (b1) {A$\to$D converter};
+\draw (4,0) node[rectangle,scale=.8,draw,align=center] (b2)
+{Algorithm\\Code\\ALU+Memory};
+\draw (7,0) node[rectangle,draw] (b3) {D$\to$A converter};
+
+\draw[<-] (b1.west) -- ++(-0.2,0) node[left,scale=.8] {$x(t)$};
+\draw[->] (b1) -- (b2);
+\draw[->] (b2) -- (b3);
+\draw[->] (b3.east) -- ++(0.2,0) node[right,scale=.8] {$y(t)$};
+\end{scope}
+\end{tikzpicture}
 
 Θέλουμε η διαδικασία \( A \) που είναι ένα \textbf{πραγματικό, φυσικό} φίλτρο ή κύκλωμα, να βγάζει
 περίπου ίδιο αποτέλεσμα με μια διαδικασία \( B \) που υλοποιούμε ψηφιακά, δηλαδή:
