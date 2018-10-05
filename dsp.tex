@@ -574,7 +574,7 @@ x(t) = x(t) * δ(t) = \int_{-\infty}^{\infty} x(τ)δ(t-τ) \dif τ
 x(n) = \sum_{-\infty}^{\infty} x(m) δ(n-m)
 \]
 
-\subsubsection{Σύστημα}
+\subsection{Συστήματα}
 Στον αναλογικό κόσμο, ένα σύστημα ήταν ένα κουτί που έπαιρνε σήματα εισόδου, τα επεξεργαζόταν, και έβγαζε σήματα εξόδου. Μαθηματικά, είναι μια απεικόνιση συναρτήσεων \( x(t) \) εισόδου σε συναρτήσεις εξόδους.
 
 Επομένως, μπορούμε να ορίσουμε το \textbf{ψηφιακό σύστημα} ως ένα σύστημα που απεικονίζει ακολουθίες
@@ -608,7 +608,7 @@ a_1T\left[x_1(n)\right]+a_2T\left[x_2(n)\right] = T\left[a_1x_1(n)+a_2x_2(n)\rig
 \paragraph{Αμετάβλητο Κατά τη Μετατόπιση Σύστημα (ΑΚΜ)}
 \begin{align*}
 	y(n) &= T\left[x(n)\right] \\
-	y(n-k) &= T\left[x(n-k)\right]
+	y(n-n_0) &= T\left[x(n-n_0)\right]
 \end{align*}
 δηλαδή, αν το ενοχλήσουμε τη στιγμή 2 ή τη στιγμή 50, θα δώσει την ίδια έξοδο, ξεκινώντας αντίστοιχα
 από τη στιγμή 2 ή τη στιγμή 50.
@@ -639,6 +639,296 @@ a_1T\left[x_1(n)\right]+a_2T\left[x_2(n)\right] = T\left[a_1x_1(n)+a_2x_2(n)\rig
 η \( R(t) \) είναι μια παράμετρος του συστήματος που δεν μπορεί να είναι ίση με τις διαφορετικές πιθανές
 εισόδους του. Παρομοίως, είναι \emph{λάθος} να θεωρήσουμε ότι \( R(x) = R(x(t)) = R(t) \implies y_2(t) = R(t)x(t) \ \text{(μη ΑΚΜ)} \) (δηλαδή ότι αφού η \( R \) εξαρτάται από το \( x \) και το \( x \) εξαρτάται από το χρόνο, άρα η \( R \) εξαρτάται μόνο από το χρόνο).
 
+\paragraph{}
+Πιο αυστηρά, ένα σύστημα \( y(n) = T\left[x(n)\right] \) είναι μία \textbf{απεικόνιση}
+από το σύνολο όλων των ακολουθιών \( x(n) \in \mathbb R \) (ή \( \mathbb C \))
+στο σύνολο όλων των ακολουθιών \( y(n) \in \mathbb C  \) (ή \( \mathbb{C} \))
 
+\subsubsection{Συνέλιξη}
+Θυμόμαστε ότι ένα \emph{ψηφιακό} σήμα είναι ίσο με την \emph{ψηφιακή} συνέλιξή του
+με την \( δ(n) \) (δέλτα Kroenecker):
+\begin{align*}
+	x(n) &= \sum_{k=-\infty}^{\infty} x(k)δ(n-k)
+	\intertext{Άρα, εφαρμόζοντας το σύστημα στη παραπάνω σχέση:}
+	y(n) &= T\left[x(n)\right] = T\left[
+	x(k)δ(n-k)
+	\right]
+	\intertext{Και, αν το $T$ είναι \textbf{γραμμικό}:}
+	y(n) &= \sum_{k=-\infty}^{\infty} T\left[x(k)δ(n-k)\right]
+	\\ &= \sum_{k=-\infty}^{\infty} x(k) \cdot T\left[δ(n-k)\right]
+\end{align*}
+Δηλαδή η \textbf{έξοδος} του συστήματος σε κάποια είσοδο \( x(n) \) είναι προκύπτει από τη συνέλιξη
+της εισόδου με την \textbf{κρουστική απόκριση} του συστήματος (απόκριση στη \( δ(n) \)), την οποία ορίζουμε:
+\begin{knowledgebox}{Κρουστική απόκριση}
+	Έστω ότι δίνουμε σε ένα σύστημα είσοδο το δέλτα του Kronecker \( δ(n) \).
+	
+	Τότε η έξοδός του \( T\left[δ(n)\right] \) είναι η κρουστική απόκριση, την οποία ονομάζουμε
+	\( h(n) \):
+	\begin{align*}
+		h(n) &= T\left[\delta(n)\right]
+		\intertext{Μάλιστα, αν θεωρήσουμε ότι το σύστημα είναι ΑΚΜ, ισχύει ακόμα:}
+		h(n-k) &= T\left[δ(n-k)\right]
+	\end{align*}
+\end{knowledgebox}
+άρα το παραπάνω σύστημα γράφεται:
+\[
+y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
+\]
+
+\begin{theorem}[title=Συμπέρασμα]
+	Αν ένα σύστημα \( T:x(n) \to y(n) \) είναι γραμμικό, τότε ορίζω την έννοια της
+	\textbf{κρουστικής απόκρισης} του \( t \) ως \( h(n) = T\left[δ(n)\right] \).
+	Αν επιπροσθέτως το \( T \) είναι ΑΚΜ, τότε για οποιαδήποτε είσοδο \( x(n) \) μπορώ να γράψω ότι
+	η έξοδος θα δίνεται ως:
+	\[
+	y(n) = \sum_{k=-\infty}^{\infty} x(k)h(n-k) = x(n) * h(n)
+	\quad \text{(συνέλιξη των διακριτών ακολουθιών)}
+	\]
+\end{theorem}
+
+\paragraph{Ιδιότητες}
+Οι ιδιότητες της διακριτής συνέλιξης είναι ίδιες με αυτές του πολλαπλασιασμού:
+\begin{enumgreekpar}
+	\item \textbf{Αντιμεταθετική}: \( x(n) * y(n) = y(n) * x(n) \)
+	\item \textbf{Προσεταιριστική}: \( x_1 * (x_2*x_3) = (x_1*x_2)*x_3 \)
+	\item \textbf{Επιμεριστική} με πρόσθεση: \( x_1 * (x_2+x_3) = x_1*x_2 + x_1*x_3 \)
+	\item \textbf{Ουδέτερο στοιχείο} η \( δ(n) \):\[
+	x(n) * δ(n) = x(n)
+	\]
+\end{enumgreekpar}
+
+\paragraph{Χρήσιμες πληροφορίες}
+\begin{itemize}
+	\item Μπορούμε να πούμε ότι ένα ψηφιακό σήμα έχει \textbf{διάρκεια}.
+	
+	Αν \emph{ξεκινάει} (πρώτο μη-0 στοιχείο) στο \( n=D_1 \) και \emph{τελειώνει} (τελευταίο μη-0 στοιχείο) στο \( n=U_1 \), τότε μπορούμε να πούμε ότι έχει διάρκεια:
+	\[
+	T = U_1-D_1 + 1
+	\]
+	(προσοχή στον όρο \( +1 \)!)
+	
+	\todo{graph 9 right}
+	
+	\item Έστω δύο σήματα:
+	\begin{align*}
+		x_1(n) \text{ έχει διάρκεια } & N_1\\
+		x_2(n) \text{ έχει διάρκεια } & N_2
+	\end{align*}
+	τότε η συνέλιξή τους έχει διάρκεια:
+	\[
+	T_3 = T_1+T_2-1
+	\]
+	
+	\begin{questionbox}{Άσκηση για το σπίτι}
+ 		Φανταστείτε ότι σας δίνονται αρχές \( U_1 \) και τέλη \( D_1 \). Για παράδειγμα, μια ακολουθία
+		ξεκινά από το 1813 και τελειώνει στο 1980. Γνωρίζουμε ότι αν συνελίξουμε τέτοιες ακολουθίες
+		μεταξύ τους, θα πάρουμε σήματα διάρκειας \( T_3 = T_1+T_2-1 \).
+		
+		Ζητείται να βρεθεί μια σχέση που, δεδομένων των \( U_1,U_2,D_1,D_2 \), να βρίσκει \textbf{από ποιό σημείο \( U_3 \)} ξεκινάει το αποτέλεσμα της συνέλιξης.
+	\end{questionbox}
+
+	\item \todo{??? See what happens with x(n) * u(n-k)}
+\end{itemize}
+
+\paragraph{Παραδείγματα}
+\begin{exercise}
+	Να συνελιχθούν οι συναρτήσεις:
+	\begin{align*}
+		x_1(n) &= δ(n) + 2δ(n-1) + 3δ(n-2) + 4δ(n-3)\\
+		x_2(n) &= δ(n+1) -2δ(n) + δ(n-1)
+	\end{align*}
+	\tcblower
+	Περιμένουμε η συνέλιξη, με βάση αυτά που είδαμε παραπάνω, να έχει διάρκεια:
+	\[
+	4+3-1=6
+	\]
+	
+	Πραγματοποιούμε τους υπολογισμούς:
+	\begin{align*}
+		x_1 * x_2 &=
+		x_1(n) * \left[ δ(n+1)-2δ(n)+δ(n+1) \right]
+		\\ &= x_1(n) * δ(n+1) - x_1(n)*\left( 2 δ(n) \right) + x_1(n)*δ(n-1)
+		\\ &= x_1(n+1) - 2x_1(n) + x_1(n-1)
+		\\ &= δ(n+1) + 2δ(n) + 3δ(n-1) + 4δ(n-2) - 2δ(n) - 4δ(n-1) - 6δ(n-2) - 8δ(n-3) + δ(n-1) +2δ(n-2) + 3δ(n-3)+4δ(n-4)
+		\\ &= δ(n+1) -5δ(n-3) + 4δ(n-4)
+	\end{align*}
+	κάτι που όντως έχει διάρκεια 6.
+\end{exercise}
+
+\begin{exercise}
+Έστω ότι έχουμε συναρτήσεις που ξεκινούν και τελειώνουν σε διάφορα σημεία:
+\begin{minipage}{.5\textwidth}
+	\[
+	y(n) = \begin{cases}
+	β^{n-n_0} &\quad n \geq n_0\\
+	0 &\quad n < n_0
+	\end{cases}
+	\]
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+	\[
+	x(n) = \begin{cases}
+	a^{n} &\quad 0 \geq n \geq N\\
+	0&\text{αλλού}
+	\end{cases}
+	\]
+\end{minipage}
+
+Να βρεθεί η συνέλιξή τους.
+
+\tcblower
+
+Μπορούμε να γράψουμε τις παραπάνω συναρτήσεις απλούστερα, εκμεταλλευόμενοι τη \textbf{βηματική step function}:
+\begin{align*}
+	y(n) &= β^{n-n_0} \cdot \mathrm u (n-n_0)\\
+	x(n) &= a^n \cdot \left[
+	\mathrm u(n) - \mathrm u(n-N-1)
+	\right]
+\end{align*}
+(με \textit{προσοχή} στον όρο \( -1 \) μέσα στη \( \mathrm{u} \))
+
+Άρα η συνέλιξη βρίσκεται:
+\begin{align*}
+	z(n) &= x(n) * y(n)
+	&= \sum_{k=-\infty}^{\infty} β^{n-n_0} \mathrm u (n-n_0)a^n \left[
+	\mathrm u(n) - \mathrm u(n-N-1)
+	\right]
+	\\ &= \sum_{k=-\infty}^{\infty} \left[
+	β^{k-n_0}u(k-n_0)\cdot a^{n-k} \left[ u(n-k)-u(n-k-N-1) \right]
+	\right]
+	\\ &= \sum_{k=-\infty}^{\infty} β^{k-n_0}
+	a^{n-k} u(k-n_0)u(n-k)
+	- \sum_{k=-\infty}^{\infty} β^{k-n_0}u(k-n_0)a^{n-k} u (n-k-N-1)
+	\\ &= β^{-n_0}a^n \sum_{k=n_0}^{n} β^k a^{-k} u (n-n_0)
+	- β^{-n_0}a^n \sum_{k=n_0}^{n-N-1}β^ka^{-k}u(n-N-1-n_0)
+	\intertext{Προσπαθώντας να φτάσουμε έναν όρο γεωμετρικής προόδου, θα κάνουμε το άθροισμα να ξεκινάει από το 0}
+	\\ &=
+	a^n β^{-n_0}\left[
+	\left(\frac{β}{a}\right)^{n_0}\sum_{k=0}^{n-n_0}\left(\frac{β}{a}\right)^k
+	u(n-n_0) - \left(\frac{β}{a}\right)^{n_0}
+	\sum_{k=0}^{n-n_0-N-1}\left(\frac{β}{a}\right)^k u(n-N-1-n_0)
+	\right]
+	\intertext{και ήρθε η ώρα να εκμεταλλευτούμε τους τύπους αθροίσματος γεωμετρικής προόδου}
+	\\ &= a^{n-n_0}\left[
+	\frac{\left(\frac{β}{a}\right)^{n-n_0+1}-1}{\frac{β}{a}-1}u(n-n_0)
+	- \frac{\left(\frac{β}{a}\right)^{n-N_0-1}}{\frac{β}{a}-1}u(n-N-1-n_0)
+	\right]
+\end{align*}
+
+\end{exercise}
+
+\begin{exercise}
+	Έστω η ακολουθία:
+	\[
+	x(n) = a^n\ \forall n
+	\]
+	και οι \( y(n), \ z(n) \) αυθαίρετες.
+	
+	Να δειχθεί ότι:
+	\[
+	\left[
+	x(n)y(n)
+	\right]*\left[
+	x(n)z(n)
+	\right] = x(n)\left[
+	y(n)*z(n)
+	\right]
+	\]
+	
+	\tcblower
+	
+	Το αριστερό μέλος της ζητούμενης σχέσης είναι:
+	\begin{align*}
+		\left[
+		x(n)y(n)
+		\right]*\left[
+		x(n)z(n)
+		\right] &=
+		\sum_{k=-\infty}^{\infty}
+		x(k)y(k)x(n-k)z(n-k)
+		\\ &= \sum_{k=-\infty}^{\infty} a^k y(k)a^{n-k} z(n-k)
+		\\ &= a^n \sum_{k=-\infty}^{\infty} y(k) z(n-k)
+		\\ &= x(n) \cdot \left[y(n) * z(n)\right]
+	\end{align*}
+\end{exercise}
+
+\begin{exercise}
+	Να υπολογιστεί η ενέργεια και η ισχύς του σήματος:
+	\[
+	x_1(n) = \left( \frac{1}{2} \right)^n u(n)
+	\]
+	\tcblower
+	Η ενέργεια δίνεται από τον τύπο:
+	\begin{align*}
+		E_{x_1} &=
+		\sum_{n=-\infty}^{\infty}x_1^2(n) = \sum_{n=-\infty}^{\infty}\left(\frac{1}{2}\right)^{2n}
+		u(n) = \sum_{n=0}^{\infty}\left( \frac{1}{4} \right)^n
+		\\ &= \frac{1}{1-\frac{1}{4}} = \frac{4}{3}
+	\end{align*}
+	
+	Έχουμε αποδείξει ότι το σήμα είναι σήμα ενέργειας, άρα σίγουρα δεν είναι σήμα ισχύος, δηλαδή η ισχύς του είναι:
+	\[
+	P=0
+	\]
+	
+	Εναλλακτικά, η ισχύς είναι η ενέργεια διά τη διάρκεια του σήματος, δηλαδή:
+	\[
+	P = \frac{\sfrac{4}{3} }{\infty} = 0
+	\]
+\end{exercise}
+
+\begin{exercise}
+	Να υπολογιστεί η ενέργεια \& η ισχύς του σήματος:
+	\[
+	x_2(n) = e^{j\left( n\frac{π}{2} + \frac{π}{8} \right)}
+	\]
+	\tcblower
+	Έχουμε:
+	\[
+	E_{x_2} = \sum_{n=-\infty}^{\infty} \left|x_2(n)\right|^2 = \sum_{n=-\infty}^{\infty} |1|^2 = \infty
+	\]
+	
+	Η ισχύς του σήματος είναι:
+	\[
+	P_a = \lim_{N\to \infty}\frac{1}{2N+1}
+	\sum_{n=-N}^{N} \cancelto{1}{\left|x_2(n)\right|^2}
+	= \lim_{N\to \infty}\frac{2N+1}{2N+1} = 1
+	\]
+\end{exercise}
+
+\begin{exercise}
+	\begin{align*}
+	x(n) &= 2^n u(-n-1)\\
+	y(n) &= 4^n u(-n-1)
+	\end{align*}
+	
+	Να βρείτε τη συνέλιξή τους:
+	\[
+	x(n) * y(n) = z(n)
+	\]
+	
+	\tcblower
+	Έχουμε:
+	\begin{align*}
+		z(n) &= \sum_{k=-\infty}^{\infty} x(k)y(n-k)
+		\\ &= \sum_{k=-\infty}^{\infty}
+		2^k u(-k-1) 4^{n-k} u \left(-(n-k)-1\right)
+		\\ &= 4^n\sum_{k=-\infty}^{\infty}\left(\frac{2}{4}\right)^k u(-k-1)u(-n-1+k)
+		\\ &= 4^n\sum_{k=n+1}^{-1} \left(\frac{1}{2}\right)^k u(-1-n-1)
+		\\ &= 4^n\left(\frac{1}{2}\right)^{n+1}\ \cdot \ \sum_{k=0}^{-n-2}\left(\frac{1}{2}\right)^k
+		u(-1-n-1)
+		\\ &= 4^n \left(\frac{1}{2}\right)^{n+1}
+		\frac{\left(\frac{1}{2}\right)^{-n-1}-1}{\frac{1}{2}-1}u(-n-2)
+		\\ &= \left(2^n-2^{2n+1}\right)u(-n-2)
+	\end{align*}
+\end{exercise}
+
+\begin{questionbox}{Άσκηση για το σπίτι}
+	Να γίνει η συνέλιξη των δύο ακολουθιών:
+	\begin{align*}
+		x(n) &= u(-n-1)\\
+		y(n) &= \left(\frac{1}{2}\right)^n u(n)
+	\end{align*}
+\end{questionbox}
 
 \end{document}
