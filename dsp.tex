@@ -258,7 +258,7 @@
 \draw[<-] (b1.west) -- ++(-0.2,0) node[left,scale=.8] {$x(t)$};
 \draw[->] (b1) -- (b2);
 \draw[->] (b2) -- (b3);
-\draw[->] (b3.east) -- ++(0.2,0) node[right,scale=.8] {$y(t)$};
+\draw[->] (b3.east) -- ++(0.15,0) node[right,scale=.8] {$y(t)$};
 \end{scope}
 \end{tikzpicture}
 
@@ -319,14 +319,73 @@ A \simeq B
 να φαντασεί ότι και η \( \cos(\omega n) \) είναι \textit{περιοδικό διακριτό σήμα}. Αν το δούμε μαθηματικά:
 Έστω \( \exists N \in \mathbb Z:\ \cos(\omega n)=\cos\left( \omega (n+N) \right)
 \implies \omega n = \omega n + \omega N + kπ \implies N = \frac{π}{\omega } \notin \mathbb Z \).
-\todo{Add a fancy graph}
+
+\begin{tikzpicture}[scale=.8]
+\def\freq{0.5}
+
+\draw (0,0) node[left,align=right,scale=.8] {περιοδικό\\ψηφιακό\\σήμα};
+
+\draw (0,0) -- (10,0);
+\draw (0,-1.5) -- (0,1.5);
+
+\begin{scope}[green!50!black,opacity=.6]
+\draw (0.5,1) -- (0.5,-1.5);
+\draw (1,0) -- (1,-1.5);
+\draw[<->] ([xshift=-1mm]1,-1.3) -- ([xshift=1mm]0.5,-1.3) node[below,yshift=-3mm,scale=.6,midway] {$f_s=2\;\mathrm{Hz}$};
+\end{scope}
+
+\draw[thick,timecolour]
+plot[domain=0:9,samples=\lowsamples,smooth] (\x,{sin(\freq*2*pi*\x r)});
+
+\foreach \x in {0.5,1,...,9} {
+	\def\sample{sin(\freq*2*pi*\x r)}
+	\draw[dashed,orange] (\x,0) -- (\x,{\sample});
+	\filldraw[fill opacity=.8,fill=orange!50!white] (\x,{\sample}) circle (2.5pt);
+}
+
+\begin{scope}[yshift=-4cm]
+\draw (0,0) node[left,align=right,scale=.8] {\emph{μη} περιοδικό\\ψηφιακό\\σήμα};
+
+\draw (0,0) -- (10,0);
+\draw (0,-1.5) -- (0,1.5);
+
+\begin{scope}[green!50!black,opacity=.6]
+\draw (0.55,{sin(\freq*2*pi*0.55 r)}) -- (0.55,-1.5);
+\draw (1.1,{sin(\freq*2*pi*1.1 r)}) -- (1.1,-1.5);
+\draw[<->] ([xshift=-1mm]1.1,-1.3) -- ([xshift=1mm]0.55,-1.3) node[below,yshift=-3mm,scale=.6,midway] {$f_s=1.28\sqrt{2}\;\mathrm{Hz}$};
+\end{scope}
+
+\draw[thick,timecolour]
+plot[domain=0:9,samples=\lowsamples,smooth] (\x,{sin(\freq*2*pi*\x r)});
+
+\foreach \x in {0.55,1.1,...,9} {
+	\def\sample{sin(\freq*2*pi*\x r)}
+	\draw[dashed,red] (\x,0) -- (\x,{\sample});
+	\filldraw[fill opacity=.8,fill=red!50!white] (\x,{\sample}) circle (2.5pt);
+}
+\end{scope}
+\end{tikzpicture}
+
 Πρακτικά, δειγματοληπτούμε σε διαφορετικά σημεία, άσχετα ίσως από την περίοδο του σήματος. Γενικότερα,
 όταν δειγματοληπτούμε περιοδικά αναλογικά σήματα, δεν θα παίρνουμε πάντα περιοδικά διακριτά πίσω.
 
 Μάλιστα, κάτι άλλο περίεργο όταν δειγματοληπτούμε είναι πως για διαφορετικά αναλογικά σήματα, μπορεί
 να πάρουμε το ίδιο ψηφιακό!
-\todo{Graph 4}
-Στο παραπάνω σχήμα, δειγματοληπτώντας στις κορυφές και στα μηδενικά, θα πάρουμε το ίδιο πράγμα.
+
+\begin{tikzpicture}
+\draw (0,1.5) -- (0,-1.5);
+\draw[->] (0,0) -- (5,0) node[below] {$t$};
+
+\draw[\timecolour!40!black,very thick]
+plot[samples=\lowsamples,smooth,domain=0:4,variable=\x]
+(\x,{1.1*sin((\x*1.25*pi) r)});
+\draw[\timecolour,very thick]
+(0,0) -- (1/4*1.6,1) -- (3/4*1.6,-1) -- (5/4*1.6,1) -- (7/4*1.6,-1)
+-- (9/4*1.6,1);
+\end{tikzpicture}
+
+Στο παραπάνω σχήμα, δειγματοληπτώντας στις κορυφές και στα μηδενικά, θα πάρουμε το ίδιο πράγμα από
+τα δύο σήματα.
 
 \paragraph{Άρτιες \& Περιττές ακολουθίες}
 \begin{align*}
@@ -370,45 +429,131 @@ A \simeq B
 	 \)
 \end{enumerate}
 
+\pagebreak[3]
+
 \subsubsection{Χρήσιμες ακολουθίες}
 \begin{enumpar}
 	\item \textbf{Εκθετική ακολουθία}: \todo{Box this in a cool way}
-	\[
-	x(n) = Ae^{sn} = Aa^{(\sigma + j \omega )n}
-	\]
-	
-	για την οποία λαμβάνουμε τις εξής περιπτώσεις για τις σταθερές:
-	\begin{itemize}
-		\item \( a=e \) και \( s = \sigma < 0 \):
-		\[
-		x(n) = Ae^{-|σ|n}
+	\begin{minipage}{.5\textwidth}
+		\begin{knowledgebox}{Εκθετική ακολουθία}
+		\[ \displaystyle
+		x(n) = Ae^{sn} = Aa^{(\sigma + j \omega )n}
 		\]
-		(γεωμετρική πρόοδος με λόγο \( e^{-|σ|} \))
-		\item \( a=e \) και \( s = \pm j\omega  \):
-		\[
-		x(n) = A\left[
-		cos(\omega n) \pm j \sin(\omega n)
-		\right]
-		\]
+		\end{knowledgebox}
+
+		για την οποία λαμβάνουμε τις εξής περιπτώσεις για τις σταθερές:
+		\begin{itemize}
+			\item \( a=e \) και \( s = \sigma < 0 \):
+			\[
+			x(n) = Ae^{-|σ|n}
+			\]
+			(γεωμετρική πρόοδος με λόγο \( e^{-|σ|} \))
+			\item \( a=e \) και \( s = \pm j\omega  \):
+			\[
+			x(n) = A\left[
+			cos(\omega n) \pm j \sin(\omega n)
+			\right]
+			\]
+			
+			Είναι περιοδική \textit{μόνο} εάν \( \frac{\pi}{\omega } \in \mathbb Q \)
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}{.5\textwidth}
+		\begin{tikzpicture}
+		\tikzstyle{sample}=[bottom color=orange,top color=\timecolour,fill opacity=.7,rounded corners=2.5pt,thick]
 		
-		Είναι περιοδική \textit{μόνο} εάν \( \frac{\pi}{\omega } \in \mathbb Q \)
-	\end{itemize}
+		\draw[->] (-3,0) -- (3.5,0);
+		\draw[->] (0,0) -- (0,2)  node[right] {$x(n)$};
+		
+		\def\sf{0.7}
+		\def\sx{0.11}
+		\def\sy{0.09}
+		
+		\foreach \x in {-4,-3,...,4} {
+			\draw (\x*\sf-0.1,0.1) -- (\x*\sf+0.1,-0.1);
+			\draw (\x*\sf,-0.1) node[below,scale=.9] {$\x$};
+		}
+		
+		\foreach \x in {-4,-3,...,4} {
+			\filldraw[sample] (\x*\sf + \sx,{exp(\x/3)/2 + \sy}) rectangle ++(-\sx*2,-\sy*2);
+		}
+		\end{tikzpicture}
+	\end{minipage}
     \item \textbf{Δέλτα του Kronecker}:
-    \[
-    \delta(n) = \begin{cases}
-    1 &\quad n=0\\
-    0 &\quad n\neq 0
-    \end{cases}
-    \]
-    \todo{Graph 5}
+
+    \begin{minipage}{.5\textwidth}
+    	\begin{knowledgebox}{Δέλτα του Kronecker}
+    		\[ \displaystyle
+    		\delta(n) = \begin{cases}
+    		1 &\quad n=0\\
+    		0 &\quad n\neq 0
+    		\end{cases}
+    		\]
+    	\end{knowledgebox}
+    \end{minipage}
+	\begin{minipage}{.5\textwidth}
+		\begin{tikzpicture}
+		\tikzstyle{sample}=[bottom color=orange,top color=\timecolour,fill opacity=.7,rounded corners=2.5pt,thick]
+		
+		\draw[->] (-3,0) -- (3.5,0);
+		\draw[->] (0,0) -- (0,2)  node[right] {$\delta(n)$};
+		
+		\def\sf{0.7}
+		\def\sx{0.11}
+		\def\sy{0.09}
+		
+		\foreach \x in {-4,-3,...,4} {
+			\draw (\x*\sf-0.1,0.1) -- (\x*\sf+0.1,-0.1);
+			\draw (\x*\sf,-0.1) node[below,scale=.9] {$\x$};
+		}
+		
+		\foreach \x in {1,2,...,4} {
+			\filldraw[sample] (\x*\sf + \sx,0 + \sy) rectangle ++(-\sx*2,-\sy*2);
+			\filldraw[sample] (-\x*\sf + \sx,0 + \sy) rectangle ++(-\sx*2,-\sy*2);
+		}
+		\filldraw[sample] ( + \sx,1 + \sy) rectangle ++(-\sx*2,-\sy*2);
+		\draw (0+0.15,1) node[right] {$1$};
+		
+		\end{tikzpicture}
+	\end{minipage}
     \item \textbf{Βηματική ακολουθία step}:
-    \[
-    u(n) = \begin{cases}
-    1 &\quad n \geq 0\\
-    0 &\quad n < 0
-    \end{cases}
-    \]
-    \todo{Graph 6}
+    
+    \begin{minipage}{.5\textwidth}
+    \begin{knowledgebox}{Βηματική ακολουθία}
+    	\[
+    	u(n) = \begin{cases}
+    	1 &\quad n \geq 0\\
+    	0 &\quad n < 0
+    	\end{cases}
+    	\]
+    \end{knowledgebox}
+    
+	\end{minipage}
+	\begin{minipage}{.5\textwidth}
+		\begin{tikzpicture}
+		\tikzstyle{sample}=[bottom color=orange,top color=\timecolour,fill opacity=.7,rounded corners=2.5pt,thick]
+		
+		\draw[->] (-3,0) -- (3.5,0);
+		\draw[->] (0,0) -- (0,2)  node[right] {$\mathrm u(n)$};
+		
+		\def\sf{0.7}
+		\def\sx{0.11}
+		\def\sy{0.09}
+		
+		\foreach \x in {-4,-3,...,4} {
+			\draw (\x*\sf-0.1,0.1) -- (\x*\sf+0.1,-0.1);
+			\draw (\x*\sf,-0.1) node[below,scale=.9] {$\x$};
+		}
+		
+		\foreach \x in {1,2,...,4} {
+			\filldraw[sample] (\x*\sf + \sx,1 + \sy) rectangle ++(-\sx*2,-\sy*2);
+			\filldraw[sample] (-\x*\sf + \sx,0 + \sy) rectangle ++(-\sx*2,-\sy*2);
+		}
+		\filldraw[sample] ( + \sx,1 + \sy) rectangle ++(-\sx*2,-\sy*2);
+		\draw (0-\sx,1) node[left] {$1$};
+		
+		\end{tikzpicture}
+	\end{minipage}
     
     Μάλιστα, ισχύει ότι:
     \[
@@ -435,7 +580,13 @@ x(n) = \sum_{-\infty}^{\infty} x(m) δ(n-m)
 Επομένως, μπορούμε να ορίσουμε το \textbf{ψηφιακό σύστημα} ως ένα σύστημα που απεικονίζει ακολουθίες
 σε ακολουθίες.
 
-\todo{Graph 7}
+ \begin{tikzpicture}[scale=.8]
+\draw (0,0) node[rectangle,inner sep=18pt,draw] (s) {Σύστημα};
+\draw[->] (s.east) -- ++(1,0) node[right] {$y(n)$};
+\draw[<-] (s.west) -- ++(-1,0) node[left] {$x(n)$};
+
+\draw[->,gray!50!brown!50!black] (s) ++(0.2,-2) node[below] {Νόμος $T$} to[bend left] (s);
+\end{tikzpicture}
 
 Αντίστοιχα, ένα \textbf{υβριδικό σύστημα} απεικονίζει συναρτήσεις σε ακολουθίες. Δηλαδή έχει είσοδο αναλογικό σήμα, και έξοδο ψηφιακό.
 
@@ -469,5 +620,25 @@ a_1T\left[x_1(n)\right]+a_2T\left[x_2(n)\right] = T\left[a_1x_1(n)+a_2x_2(n)\rig
 \end{itemize}
 
 Το σύστημα που προκύπτει από μία διαφορική εξίσωση είναι αμετάβλητο κατά τη μετατόπιση όταν οι συντελεστές των παραγώγων του δεν εξαρτώνται από το χρόνο.
+
+\paragraph{Λίγη προσοχή}
+Χρειάζεται κάποια προσοχή στο χειρισμό ΑΚΜ και γραμμικών συστημάτων.
+
+Έστω τα συστήματα που εκφράζουν το νόμο του \emph{Ohm} (\( V=IR \)) σε μια \emph{αντίσταση}:
+\begin{align*}
+	y_1(t) &= R(t) \cdot x(t)\\
+	y_2(t) &= R(x) \cdot x(t)
+\end{align*}
+
+Στο πρώτο σύστημα η αντίσταση εξαρτάται από το χρόνο (π.χ. διάβρωση), και στο δεύτερο εξαρτάται από την είσοδο (π.χ. αύξηση θερμοκρασίας \( \implies \) αλλαγή αντίστασης για μεγαλύτερα ρεύματα).
+
+Το πρώτο σύστημα είναι γραμμικό αλλά \emph{όχι} ΑΚΜ, αφού η \( R(t) \) εξαρτάται από το χρόνο.
+Το δεύτερο σύστημα είναι ΑΚΜ αλλά \emph{όχι} γραμμικό, αφού η \( R(x) \) εξαρτάται από την είσοδο.
+
+Είναι \textbf{λάθος} να πούμε πως έστω \( R(t)=x(t) \implies y_1(t)=x^2(t)\ \text{(μη γραμμικό)} \), καθώς
+η \( R(t) \) είναι μια παράμετρος του συστήματος που δεν μπορεί να είναι ίση με τις διαφορετικές πιθανές
+εισόδους του. Παρομοίως, είναι \emph{λάθος} να θεωρήσουμε ότι \( R(x) = R(x(t)) = R(t) \implies y_2(t) = R(t)x(t) \ \text{(μη ΑΚΜ)} \) (δηλαδή ότι αφού η \( R \) εξαρτάται από το \( x \) και το \( x \) εξαρτάται από το χρόνο, άρα η \( R \) εξαρτάται μόνο από το χρόνο).
+
+
 
 \end{document}

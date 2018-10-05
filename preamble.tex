@@ -177,6 +177,11 @@
 	colframe=red!75!black,fonttitle=\bfseries,title=#1}
 \newtcolorbox{infobox}[1]{colback=blue!5!white,%
     colframe=blue!75!black,fonttitle=\bfseries,title=#1}
+\newtcolorbox{knowledgebox}[2][]{colbacktitle=red!10!white,
+	colback=blue!10!white,coltitle=blue!70!black,
+	attach title to upper,after title={:\ },
+	title={#2},fonttitle=\bfseries,#1}
+%TODO: Knowledge titles to left
 
 \tcbset{frogbox/.style={enhanced jigsaw,%
 		overlay first={\foreach \x in {0cm} {
@@ -314,9 +319,9 @@ boxed title style={skin=enhancedfirst jigsaw,
 
 % New plotting utilities
 \def\vlowsamples{4}
-\def\lowsamples{18}
-\def\midsamples{28}
-\def\hisamples{40}
+\def\lowsamples{40}
+\def\midsamples{60}
+\def\hisamples{80}
 \def\timecolour{blue!50!cyan!80!brown}
 
 \tikzstyle{timecolour}=[\timecolour]
