@@ -725,6 +725,9 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 		μεταξύ τους, θα πάρουμε σήματα διάρκειας \( T_3 = T_1+T_2-1 \).
 		
 		Ζητείται να βρεθεί μια σχέση που, δεδομένων των \( U_1,U_2,D_1,D_2 \), να βρίσκει \textbf{από ποιό σημείο \( U_3 \)} ξεκινάει το αποτέλεσμα της συνέλιξης.
+		
+		\tcblower
+		Η απάντηση θα είναι \( U_3 = U_1+U_2 \) και \( D_3 = D_1+D_2 \)
 	\end{questionbox}
 
 	\item \todo{??? See what happens with x(n) * u(n-k)}
@@ -931,4 +934,123 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 	\end{align*}
 \end{questionbox}
 
+\subsubsection{Ευστάθεια}
+Την ευστάθεια μπορούμε να την ορίσουμε με διαφορετικούς ασύμβατους τρόπους.
+
+Εμείς θα χρησιμοποιούμε την \textbf{ευστάθεια κατά ΦΕΦΕ (Φραγμένη Είσοδος \textendash~Φραγμένη Έξοδος)} (BIBO \textemdash~ Bounded Input \textendash~Bounded Output).
+
+\begin{defn}{Φραγμένη ακολουθία}{}
+	Μια \textbf{φραγμένη} ακολουθία \( x(n) \)είναι αυτή που δεν πιάνει τιμές μέχρι το άπειρο:
+	\[
+	\left|x(n)\right| < M < \infty \ \forall n \in \mathbb Z
+	\]
+\end{defn}
+
+\begin{defn}{Ευστάθεια συστήματος κατά ΦΕΦΕ}{}
+	Αν \( \forall x(n) \) φραγμένη είσοδο, η έξοδος \( y(n) \) ενός συστήματος 
+	είναι \textbf{φραγμένη}, τότε το σύστημα είναι \textbf{ευσταθές κατά ΦΕΦΕ (BIBO)}.
+\end{defn}
+
+\begin{theorem}{Πόρισμα}{}
+	Αν το σύστημα γνωρίζουμε ότι είναι \emph{γραμμικό} και \emph{ΑΚΜ} (άρα \( \exists\ h(n) \), δηλαδή υπάρχει η κρουστική του απόκριση), τότε το σύστημα είναι \textbf{ευσταθές} ανν
+	\[
+	\sum_{n=-\infty}^{\infty} \left|h(n)\right| < \infty
+	\]
+\end{theorem}
+\subparagraph{Απόδειξη}
+Για τις δύο κατευθύνσεις:
+\begin{itemize}
+	\item Εξετάζω ότι \( \sum_{n=-\infty}^{\infty} \left|h(n)\right| < \infty \implies \text{ευστάθεια κατά BIBO} \):
+	
+	Αφού το άθροισμα της κρουστικής απόκρισης είναι φραγμένο, θα ισχύει \( \displaystyle
+	\sum_{n=-\infty}^{\infty} \left|h(n) \right| < L \) για κάποιο (μεγάλο) \( L \).
+	
+	Έστω \( x(n) \) φραγμένη είσοδος \( \iff \left|x(n)\right| < M \ \forall n \), η έξοδος θα είναι:
+	\begin{align*}
+		y(n) &= \sum_{k=-\infty}^{\infty} h(k)x(n-k)
+		\\ \implies \left|y(n)\right| &= \left|\sum_{k=-\infty}^{\infty} h(k)x(n-k) \right|
+		\leq \sum_{k=-\infty}^{\infty} \left|h(k)\right|\left|x(n-k)\right|
+		\\ \implies \left|y(n)\right| &< M \sum_{k=-\infty}^{\infty} \left|h(n)\right|
+		= N
+	\end{align*}
+	
+	Άρα \( \left|y(n)\right| < N \), άρα η έξοδος είναι φραγμένη.
+	
+	\item Εξετάζω ότι \( \text{BIBO} \implies \sum_{n=-\infty}^{\infty} \left|h(n)\right| < \infty \).
+	
+	Εναλλακτικά θα εξετάσω το \textit{αντιθετοαντίστροφο}, δηλαδή ότι
+	\( \displaystyle \sum_{n=-\infty}^{\infty} \left|h(n)\right| = \infty \implies
+	\text{όχι BIBO} \)
+	
+	Ορίζω μία νέα ακολουθία \( x(n) \) ως εξής:
+	\[
+	x(n) = 
+	\begin{cases}
+	\frac{h^*(-n)}{\left| h(-n) \right|} 
+ &\quad \text{αν } h(-n) \neq 0\\
+	 0 &\quad \text{αλλού}
+	 \end{cases}
+	\]
+	
+	Η \( x(n) \) είναι φραγμένη, αφού έχει μοναδιαίο ή μηδενικό μέτρο παντού. Επομένως είναι \emph{φραγμένη}. Θα την πετάξουμε ως είσοδο στο σύστημα για να αποδείξουμε ότι αυτό
+	δίνει \textbf{μη φραγμένη έξοδο, για φραγμένη είσοδο}, άρα είναι ασταθές κατά BIBO:
+	
+	\begin{align*}
+		y(n) &= \sum_{k=-\infty}^{\infty} h(k)x(n-k) \\
+		\left|y(n)\right| &= \left| \sum_{k=-\infty}^{\infty} h(k)x(n-k) \right|\\
+		\left|y(n)\right| &= 
+	\end{align*}
+	
+	\todo{blablabla}
+\end{itemize}
+
+\subsubsection{Αιτιατότητα}
+\begin{defn}{Αιτιατό σύστημα}{}
+	Ένα σύστημα είναι \textbf{αιτιατό} αν η έξοδος εξαρτάται μόνο από \textbf{παρελθούσες τιμές} της εισόδου ή/και την τρέχουσα (παρούσα).
+	
+	Μαθηματικά:
+	\[
+	y(n) = f\left( x(k),x(λ),x(ξ), \dots, x(p) \right)
+	\]
+	όπου \( κ,λ,ξ,\dots,p \leq n \)
+\end{defn}
+
+\begin{theorem}{}{}
+	Ένα γρ. ΑΚΜ σύστημα θα είναι \textbf{αιτιατό} αν:
+	\[
+	h(n) = 0 \ \forall n<0
+	\]
+	δηλαδή αν η κρουστική απόκριση είναι \textbf{αιτιατή ακολουθία}
+\end{theorem}
+\subparagraph{Απόδειξη}
+Η έξοδος του συστήματος θα είναι:
+\begin{align*}
+	y(n) &= \sum_{k=-\infty}^{\infty} h(k)x(n-k)
+\end{align*}
+Εμείς θέλουμε ο δείκτης του \( x \) να μην είναι ποτέ \emph{μεγαλύτερος} από το \( n \),
+διότι σε αυτήν την περίπτωση η έξοδος θα εξαρτιόταν από το \emph{μέλλον} του \( x(n) \). Δηλαδή
+το \( y(n) \) θα εξαρτάται από τα \( x(n+1), x(n+2), \dots \). Άρα θέλουμε \( k > 0 \).
+
+Αυτό εξασφαλίζεται όταν \( h(k) = 0\ \forall k < 0 \). Τότε η έξοδος θα είναι:
+\begin{align*}
+	y(n) &= \sum_{k=0}^{\infty} h(k)x(n-k)
+\end{align*}
+
+Το παραπάνω βέβαια, δεδομένου του ορισμού της συνέλιξης, γράφεται και ως εξής:
+\begin{align*}
+	y(n) &= h(n) * x(n) = x(n) * h(n)
+	\\ &= \sum_{k=-\infty}^{\infty}x(k)h(n-k)
+	\\ &= \sum_{k=-\infty}^{n} x(k)h(n-k)
+\end{align*}
+
+\subsubsection{Μερικοί χρήσιμοι ορισμοί για ακολουθίες}
+\begin{enumgreekpar}
+	\item \textbf{Αιτιατή ακολουθία:} \( x(n) = 0 \quad \forall\ n<0 \)
+	\item \textbf{Ακολουθία δεξιάς πλευράς:} \( \exists \ M \in \mathbb Z:\ x(n) = 0 \quad \forall \ n<M \)
+	\item \textbf{Ακολουθία αντιαιτιατή:} \( x(n) = 0\quad \forall\ n \geq 0 \)
+	\item \textbf{Ακολουθία αριστερής πλευράς:} \( \exists\ M \in \mathbb Z : \ x(n) = 0 \quad \forall \ n>M \)
+	\item \textbf{Ακολουθία πεπερασμένης διάρκειας:} \( \exists \ M,N\ M<N:\ \forall n < M \text{ ή } n>N:\ x(n) = 0 \)
+\end{enumgreekpar}
+
+Κάθε αιτιατή ακολουθία είναι δεξιάς πλευράς.
 \end{document}
