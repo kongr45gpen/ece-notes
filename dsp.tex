@@ -792,7 +792,7 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 
 Άρα η συνέλιξη βρίσκεται:
 \begin{align*}
-	z(n) &= x(n) * y(n)
+	z(n) &= x(n) * y(n) \\
 	&= \sum_{k=-\infty}^{\infty} β^{n-n_0} \mathrm u (n-n_0)a^n \left[
 	\mathrm u(n) - \mathrm u(n-N-1)
 	\right]
@@ -1053,4 +1053,164 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 \end{enumgreekpar}
 
 Κάθε αιτιατή ακολουθία είναι δεξιάς πλευράς.
+
+\subsubsection{Απόκριση γραμμικού ΑΚΜ συστήματος σε εκθετική είσοδο}
+Μελετάμε την απόκριση συστήματος σε είσοδο:
+\[
+x(n) = a^n
+\]
+όπου \( a\in\mathbb{C} \).
+
+Τότε η έξοδος είναι:
+\todo{fix spacing}
+\begin{align*}
+	y(n) = h(n) * x(n)  &= \sum_{k=-\infty}^{\infty} h(k) x(n-k)
+	\\ &= \sum_{k=-\infty}^{\infty} h(k) a^{n-k}
+	\\ &= a^n \sum_{k=-\infty}^{\infty} h(k)a^{-k}
+	\\ &= x(n) \cdot \sum_{k=-\infty}^{\infty} \underbrace{h(k)a^{-k}}_{\mathclap{\text{αριθμός που δεν εξαρτάται από το $n$}}}
+	\\ &= x(n) \cdot H
+\end{align*}
+
+Το τελικό αποτέλεσμα δηλαδή θα είναι η είσοδος \textbf{πολλαπλασιασμένη με έναν αριθμό} που
+εξαρτάται από την κρουστική απόκριση του συστήματος και τη βάση \( a \) της εισόδου.
+\begin{itemize}
+	\item
+Έστω ότι:
+\[
+\infoboxed{a = e^{j\omega }} \quad \implies x(n) = e^{j\omega n}
+\]
+για \( \omega \in \mathbb R \) μία συνεχή μεταβλητή.
+
+Άρα η έξοδος θα είναι:
+\[
+y(n) = x(n) \cdot \boxed{\sum_{k=-\infty}^{\infty} h(k) e^{-j\omega k}}
+\]
+το πλαίσιο είναι ουσιαστικά μία συνάρτηση που εξαρτάται από το \( e^{j\omega}  \), ή
+πρακτικά μόνο από το \( \omega  \). Ονομάζουμε αυτήν τη συνάρτηση \( H(\omega ) \):
+\[
+H(\omega ) = \sum_{k=-\infty}^{\infty} h(k)e^{-j\omega k}
+\]
+αυτή ουσιαστικά είναι η \textbf{απόκριση συχνότητας του συστήματος}.
+
+Υπενθυμίζουμε ότι το \( \omega  \) είναι \textbf{συνεχής μεταβλητή}. Μπορούμε να ορίσουμε
+έναν συνεχή μετασχηματισμό Fourier ως εξής:
+\[
+x(n) \rightarrow X(\omega ) = \sum_{n=-\infty}^{\infty} x(n) e^{-j\omega n}
+\]
+\item
+Έστω ότι:
+\[
+\infoboxed{a = z}
+\]
+δηλαδή το \( a \) ανήκει οπουδήποτε στο μιγαδικό επίπεδο
+Τότε:
+\[
+y(n) = x(n) \cdot \boxed{\sum_{k=-\infty}^{\infty} h(k) z^{-k}}
+\]
+\end{itemize}
+
+\begin{defn}{Απόκριση συχνότητας}{}
+	Ως \textbf{απόκριση συχνότητας} του συστήματος ορίζουμε τη συνάρτηση:
+	\begin{align*}
+		H\left(e^{j\omega }\right) &= \sum_{k=-\infty}^{\infty}h(k)e^{-j\omega k}
+		\\ &= H_R\left(e^{j\omega }\right) + j H_I\left(e^{j\omega }\right)
+		\\ &=
+		\underbrace{\left|H\left(e^{j\omega }\right)\right|}_{\mathclap{\text{απόκριση πλάτους}}}
+		\exp\underbrace{\left[j \mathop{arg} \left(H\left(e^{j\omega t}\right)\right)\right]}_{\mathclap{\text{απόκριση φάσης}}}
+	\end{align*}
+\end{defn}
+
+\subsubsection{Απόκριση συστήματος σε ημιτονοειδείς συναρτήσεις}
+Έστω η είσοδος:
+\[
+x(n) = A\cos\left( \omega_0 n + \phi \right)
+\]
+
+Υπενθυμίζουμε ότι η είσοδος εν γένει \textbf{δεν είναι περιοδική}.
+
+Αντικαθιστούμε το συνημίτονο:
+\[
+x(n) = A\frac{e^{j\phi}e^{j\omega_0 n} + e^{-j\phi}e^{-j\omega_0n}}{2}
+\]
+οπότε κατά τα παραπάνω, η έξοδος θα είναι:
+\begin{align*}
+	y(n) &= \frac{A}{2}e^{j\phi}e^{j\omega_0 n} H\left(e^{j\omega_0}\right)
+	+ \frac{A}{2}e^{-j\phi}e^{-j\omega_0 n} H\left(e^{-j\omega_0}\right)
+\end{align*}
+
+Εφ' όσον θεωρηθεί ότι \( h(n) \in \mathbb R \), τότε θα ισχύει \( H\left( e^{j\omega_0} \right) = H^*\left(e^{-j\omega_0}\right) \). Άρα τελικά:
+\begin{align*}
+	y(n) &= \frac{A}{2} e^{j\phi} e^{j\omega_0 n} \left| H\left(e^{j\omega_0}\right) \right|
+	\exp \left[j \mathop{arg}\left( H\left(e^{j\omega_0}\right) \right)\right]
+	+ \frac{A}{2} e^{j\phi} e^{-j \omega_0 n}
+	\left| H\left(e^{j\omega_0}\right) \right| \exp \left[-j\mathop{arg} \left(
+	H\left(e^{j\omega_0}\right)
+	\right)\right]
+	\\ &= A\left| H\left( e^{j\omega_0} \right) \right|
+	\cos\left( \omega_0 n + \phi + \mathop{arg}\left(H\left(e^{j\omega_0}\right)\right) \right)
+\end{align*}
+
+\begin{exercise}
+	Να βρεθεί η απόκριση συχνότητας του συστήματος με μοναδιαία απόκριση \( h(n) = a^n \mathrm{u}(n) \) για \( |a| < 1 \).
+	
+	\tcblower
+	Εύκολα φαίνεται ότι το σύστημα είναι αιτιατό και ευσταθές.
+	
+	Για την απόκρισή του, από τον ορισμό της έχουμε:
+	\begin{align*}
+		H\left(e^{j\omega }\right)
+		&= \sum_{n=-\infty}^{\infty} h(n) e^{-j\omega n}
+		\\ &= \sum_{n=0}^{\infty} a^n e^{-j\omega n}
+		\\ &= \sum_{n=0}^{\infty}\left( ae^{-j\omega } \right)^n
+		\intertext{Σε αυτό το σημείο εκμεταλλευόμαστε το άθροισμα άπειρων όρων γεωμετρικής προόδου}
+		&= \frac{1}{1-ae^{-j\omega }} \quad \text{(επειδή $\left|ae^{-j\omega }\right|=|a|<1$)}
+		\intertext{Άρα η απόκριση πλάτους \& συχνότητας θα είναι}:
+		\left| H\left(e^{j\omega }\right) \right|
+		&= \frac{1}{\left(1+a^2-2a\cos \omega \right)^{\sfrac{1}{2} }}
+		\\
+		\mathop{arg}\left(H\left(e^{j\omega }\right)\right)
+		&= \cdots
+	\end{align*}
+	\todo{συμπλήρωση}
+\end{exercise}
+
+\begin{exercise}
+	Δίνεται γρ. ΑΚΜ σύστημα με:\[
+	h(n) = \frac{1}{2}δ(n) + δ(n-1) + \frac{1}{2}δ(n-2)
+	\]
+	
+	Να χαρακτηριστεί και να βρεθεί η απόκριση συχνότητάς του.
+	\tcblower
+	Το σύστημα είναι αιτιατό \& ευσταθές.
+	
+	Σύμφωνα με τον ορισμό, έχουμε:
+	\begin{align*}
+		H\left(e^{j\omega }\right) &= \sum_{n=-\infty}^{\infty}
+		h(n) e^{-j\omega n}
+		\\ &= \sum_{n=-\infty}^{\infty}
+		\left[
+		\frac{1}{2}δ(n) + δ(n-1) + \frac{1}{2}δ(n-2)
+		\right]e^{-j\omega n}
+		\\ &= \frac{1}{2}e^{-j\omega 0}
+		+ e^{-j\omega 1}
+		+ \frac{1}{2}e^{-j\omega 2}
+		\\ &= e^{-j\omega } \left[ \frac{1}{2}e^{j\omega } + 1 + \frac{1}{2}e^{-j\omega }  \right]
+		\\ &= e^{-j\omega } (1 + \cos \omega)
+		\intertext{Άρα σε πλάτος και φάση:}
+		\left|
+		H\left(e^{j\omega }\right)
+		\right| &= \left|1+\cos \omega \right| = 1 + \cos \omega 
+		\\
+		\mathop{arg}\left[H\left(e^{j\omega }\right)\right]
+		&= \mathop{arg} \left[
+		e^{-j\omega(1+\cos \omega) }
+		\right]
+		= \mathop{arg}\left[e^{-j\omega}\right] +\underbrace{ \mathop{arg}\left[1+\cos\omega\right]}_{\mathclap{\text{επειδή $1+\cos\omega \geq 0$}}}
+		= -\omega + 0 = -\omega
+	\end{align*}
+	
+	\todo{Diagrams: Plot and phase of above}
+\end{exercise}
+
+
 \end{document}
