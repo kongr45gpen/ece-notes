@@ -570,6 +570,7 @@ plot[samples=\lowsamples,smooth,domain=0:4,variable=\x]
 x(t) = x(t) * δ(t) = \int_{-\infty}^{\infty} x(τ)δ(t-τ) \dif τ
 \]
 και στο ψηφιακό, μπορούμε να έχουμε κάτι αντίστοιχο: \todo{Add a cool box}
+\todo{Clarify and prove}
 \[
 x(n) = \sum_{-\infty}^{\infty} x(m) δ(n-m)
 \]
@@ -1211,6 +1212,337 @@ x(n) = A\frac{e^{j\phi}e^{j\omega_0 n} + e^{-j\phi}e^{-j\omega_0n}}{2}
 	
 	\todo{Diagrams: Plot and phase of above}
 \end{exercise}
+
+\subsubsection{Μετασχηματισμός Fourier}
+Παραπάνω ορίσαμε το συνεχή μετασχηματισμό Fourier στο διακριτό σήμα ως εξής:
+\[
+H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
+\]
+και, αν το σύστημα είναι ευσταθές κατά BIBO, έχουμε:
+\begin{align*}
+	h(n) \text{ ευσταθές}
+	&\iff \sum_{n=-\infty}^{\infty} \left|h(n)\right| < \infty
+	\\ &\iff \sum_{n=-\infty}^{\infty} \left|h(n)\right|\left|e^{-j\omega n}\right| < \infty
+	\\ &\iff \left|h(n)e^{-j\omega n}\right| < \infty
+	\implies \sum_{n=-\infty}^{\infty}h(n)e^{-j\omega n} < \infty
+	\implies \exists \text{ } H\left(e^{j\omega }\right)
+\end{align*}
+
+Πρακτικά, διαπιστώνουμε ότι \textit{αν το σύστημα είναι ευσταθές}, τότε \textit{το σύστημα έχει απόκριση
+συχνότητας}, δηλαδή ορίζεται ο μετασχηματισμός Fourier του.
+
+Ένα ερώτημα που προκύπτει είναι αν ισχύει το αντίστροφο, δηλαδή αν η ύπαρξη του \( H\left(e^{j\omega }\right) \implies \) ότι το σύστημα είναι \emph{ευσταθές}. Για να το διαπιστώσουμε αυτό, θεωρούμε
+ένα αντιπαράδειγμα (\emph{χαμηλοπερατού φίλτρου}):
+\begin{minipage}{.5\textwidth}
+	\[
+	H\left(e^{j\omega }\right)
+	\begin{cases}
+		1 &\quad |\omega | < \omega_c\\
+		0 &\quad \text{αλλού}
+	\end{cases}
+	\]
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+	\todo{Plot H(e^jw) continuously (LPF)}
+\end{minipage}
+
+Το παραπάνω σύστημα \textbf{δεν είναι ευσταθές}! Πράγματι, η αντίστοιχη κρουστική απόκρισή του είναι
+\( h(n) = \frac{\sin\omega_c n}{\pi n} \). Το σύστημα δεν είναι αιτιατό (αφού \( h(n)\neq 0 \impliedby n <0 \)), και το άθροισμα \( \displaystyle S = \sum_{n=-\infty}^{\infty} \left| \frac{\sin\omega_c n}{\pi n} \right| \) τείνει στο \( \infty \).
+
+Επομένως, η ύπαρξη του μετασχηματισμού Fourier \emph{δεν} συνεπάγεται την ευστάθεια του συστήματος.
+
+\subsubsection{Ιδιότητες της απόκρισης συχνότητας}
+Ο \emph{συνεχής} μετασχηματισμός Fourier στο διακριτό σήμα:
+\begin{enumerate}
+	\item Είναι συνάρτηση \textbf{συνεχούς} μεταβλητής \( \omega \in (-\infty,\infty) \)
+	\item Η \( H\left( e^{j\omega } \right) \) είναι \textbf{περιοδική} με περίοδο \( 2π \).
+\end{enumerate}
+
+\todo{Check 2,3,4}
+
+Επιπλέον, αν για το αρχικό σήμα στο χρόνο ισχύει \( h(n)\in\mathbb R \):
+\begin{enumerate}
+	\item[3] Η \( \left|H\left(e^{j\omega }\right)\right| \) είναι \textbf{άρτια} συνάρτηση του \( \omega  \) και συμμετρική ως προς τον άξονα \( π \).
+	\todo{Graph 11 (optional)}
+	\item[4] Το \( \arg H\left(e^{j\omega }\right) \) είναι \textbf{περιττή} συνάρτηση του \( \omega  \)
+	και αντισυμμετρική ως προς τον άξονα \( \omega = \pi \).
+	\todo{Graph 12 (optional)}
+\end{enumerate}
+
+\begin{questionbox}{Άσκηση για το σπίτι}
+	Να αποδειχθούν οι ιδιότητες \textbf{3}, \textbf{4}.
+\end{questionbox}
+
+\begin{exercise}
+	Να βρεθεί ο συνεχής Μ/Σ Fourier της:
+	\[
+	h(n) = \begin{cases}
+	1 & \quad 0 \leq n < N\\
+	0 & \quad \text{αλλού}
+	\end{cases}
+	\]
+	\tcblower
+	Η δοθείσα συνάρτηση γράφεται απλούστερα ως:
+	\[
+	h(n) = u(n) - u(n-N)
+	\]
+	
+	Επομένως μπορούμε να υπολογίσοουμε αναλυτικά το μετασχηματισμό της:
+	\begin{align*}
+		H\left(e^{j\omega }\right)
+		&= \sum_{n=-\infty}^{\infty} h(n) e^{-j\omega n}
+		\\ &= \sum_{n=0}^{N-1} 1 e^{-j\omega n}
+		\\ &= \frac{1-e^{-j\omega n}}{1-e^{-j\omega }}
+%		\\ &= \frac{e^{-j\omega \sfrac{N}{2} } \left(
+%			e^{j\omega \sfrac{N}{2} }-e^{-j\omega \sfrac{N}{2} }
+%			\right) }{ e^{-j\sfrac{\omega }{2} }  \left( e^{j\sfrac{\omega }{2}  }\right)
+%		-e^{-j\sfrac{\omega }{2} 	}}
+%		}
+	\\ &= 	\frac{\sin\left(\frac{\omega N}{2}\right)}{\sin\left(\frac{\omega}{2}\right)}
+	\end{align*} \todo{fix}
+	Άρα:
+	\begin{align*}
+		\left|H\left(e^{j\omega }\right)\right|
+		 &= \left|
+		\frac{\sin\left(\frac{\omega N}{2}\right)}{\sin\left(\frac{\omega}{2}\right)}
+		\right|
+%		\\
+%		\arg\left(H\left(e\right)\right)
+	\end{align*}
+	\todo{Calculate argument}
+\end{exercise}
+
+\begin{enumerate}
+	\item[5.]
+	Μπορούμε να χωρίσουμε κάθε απόκριση συχνότητας σε ένα περιττό και ένα άρτιο κομμάτι:
+	\[
+	h(n) = h_o(n) + h_e(n)
+	\]
+	όπου \( h_o(n) = j\Im \left\lbrace H\left(e^{j\omega }\right)\right\rbrace \)
+	και \( h_e = \Re\left\lbrace H\left(e^{j\omega }\right) \right\rbrace \)
+\end{enumerate}
+
+\paragraph{Μετασχηματισμός σήματος}
+Ακριβώς όπως ορίσαμε το μετασχηματισμό της κρουστικής απόκρισης, μπορούμε να μετασχηματίσουμε
+και την είσοδο \( x(n) \):
+\[
+X\left(e^{j\omega }\right) = \sum_{-\infty}^{\infty} x(n)e^{-j\omega n}
+\]
+
+Τότε, μπορούμε δοθέντος του συνεχούς Μ/Σ Fourier ενός σήματος, να γυρίσουμε πίσω στο ίδιο το σήμα:
+\[
+x(n) = \frac{1}{2π} \int_{-π}^{π} X\left(e^{-j\omega }\right)e^{j\omega n}\dif \omega 
+\]
+
+Εδώ δίνουμε προσοχή στο ότι \textbf{ολοκληρώνουμε} και δεν αθροίζουμε, αφού στο μετασχηματισμό αυτόν
+η συχνότητα είναι \emph{συνεχής μεταβλητή}.
+
+\subparagraph{Απόδειξη}
+Έχουμε:
+\begin{align*}
+	X\left(e^{j\omega }\right) &= \sum_{k=-\infty}^{\infty} x(k)e^{-j\omega k}
+	\implies  \\ X\left(e^{j\omega }\right)e^{j\omega n} &= \sum_{k=-\infty}^{\infty} x(k)e^{j\omega (n-k)}
+	\\ \implies \int_{-π}^{π}X\left(e^{j\omega }\right) e^{j\omega n}\dif\omega
+	&= \sum_{k=-\infty}^{\infty} x(k) \int_{-π}^{π} e^{j\omega (n-k)}\dif\omega
+	= \sum_{k=-\infty}^{\infty} x(k) 2πδ(n-k) = 2\pi x(n).
+\end{align*}
+
+\paragraph{Θεώρημα Parseval}\hspace{0pt}
+
+\begin{theorem}{Parseval's Theorem}{}
+	Το θεώρημα του Parseval συνδέει την \textbf{ενέργεια} του σήματος με το Μ/Σ Fourier του:
+	\[
+	E = \sum_{n=-\infty}^{\infty} \left|x(n)\right|^2
+	= \frac{1}{2\pi} \int_{-π}^{π}X\left(e^{j\omega }\right)X^*\left(e^{j\omega }\right)\dif \omega 
+	\]
+\end{theorem}
+\begin{questionbox}{Άσκηση για το σπίτι}
+	Να αποδειχθεί το θεώρημα του Parseval.
+\end{questionbox}
+
+
+\paragraph{Πολλαπλασιασμός \& Συνέλιξη}
+Η \textbf{συνέλιξη} στο χρόνο είναι \textbf{πολλαπλασιασμός} στη συχνότητα.
+\todo{Add formula}
+
+\subparagraph{Απόδειξη}
+Έχουμε:
+\begin{align*}
+	y(n) &= \sum_{k=-\infty}^{\infty}
+	h(n-k)x(k)
+	\implies \\
+	\sum_{n=-\infty}^{\infty}y(n)e^{-j\omega n} &= \sum_{n=-\infty}^{\infty}
+	e^{-j\omega n}\sum_{k=-\infty}^{\infty} h(n-k)x(k)
+	\implies \\
+	Y\left(e^{j\omega }\right) &= \sum_{k=-\infty}^{\infty} x(k) \sum_{n=-\infty}^{\infty}e^{-j\omega n}h(n-k)
+    \\ &=
+    \sum_{k=-\infty}^{\infty}x(k)e^{-j\omega k}\sum_{n=-\infty}^{\infty}e^{-j\omega (n-k)}h(n-k)
+    \\ &= X\left(e^{j\omega }\right) H\left(e^{j\omega }\right)
+\end{align*}
+
+\section{Μετασχηματισμός Z}
+Ο \textbf{μετασχηματισμός Z} είναι μια επέκταση του μετασχηματισμού Fourier στον διακριτό κόσμο, που
+θα μπορούσε να μοιάσει με το μετασχηματισμό Laplace στο συνεχές σήμα.
+
+Θυμόμαστε ότι η έξοδος ενός συστήματος είναι:
+\[
+y(n) = h(n) * x(n)
+\]
+και για μία είσοδο εκθετικής μορφής:
+\[
+x(n) =a^n
+\]
+η έξοδος θα είναι:
+\[
+y(n) = a^n \underbrace{\sum_{k=-\infty}^{\infty} h(k)a^{-k}}_{H(a)}
+\]
+ή, θεωρώντας ότι το \( a \) είναι κάποιο μιγαδικό \( z \):
+\[
+y(n) = z^n \sum_{k=-\infty}^{\infty} h(k)z^{-k}
+\]
+
+Τώρα μπορούμε να ορίσουμε το μετασχηματισμό \( Z \) ως εξής:
+\begin{defn}{Μετασχηματισμός Z}{}
+	Ο μετασχηματισμός Z μιας συνάρτησης \( x(n) \) ορίζεται ως εξής:
+	\[
+	X(z) = \sum_{n=-\infty}^{\infty} x(n) z^{-n}
+	\]
+\end{defn}
+
+Για να έχει νόημα ο παραπάνω ορισμός, πρέπει να συγκλίνει το εξής άθροισμα:
+\[
+\sum_{n=-\infty}^{\infty} \left| x(n)z^{-n} \right| < \infty
+\]
+ή, ισοδύναμα:
+\[
+\sum_{n=-\infty}^{\infty} \left\lvert x(n) \right\rvert \left\lvert z\right\rvert^{-n} < \infty
+\]
+
+Αυτό που καθορίζει το αν θα συγκλίνουμε είναι το μέτρο \( |z| \). Οι περιοχές ίσου μέτρου ορίζουν
+κύκλους ή donuts στο μιγαδικό επίπεδο του \( z \):
+\todo{Graph 13}
+
+Από τη μιγαδική ανάλυση αποδεικνύεται πως η περιοχή σύγκλισης δεν μπορεί να έχει κάποια άλλη περίεργη
+μορφή:
+\todo{Graph 14}
+
+Επομένως, για το \( |z| \) θα ισχύει \( D < |z| < U \) για κάποια \( D, U \). Αυτά ορίζουν το \textbf{ROC} (Region Of Convergence) του μετασχηματισμού Z, χωρίς το οποίο ο μετασχηματισμός δεν έχει νόημα.
+
+\begin{exercise}
+	Να βρεθεί ο Z μετασχηματισμός του \( x(n) = a^n\mathrm u(n) \).\tcblower
+	\begin{align*}
+		X(z) &= \sum_{n=-\infty}^{\infty} x(n) z^{-n}
+		= \sum_{n=0}^{\infty} a^n z^{-n} = \sum_{n=0}^{\infty} \left(\frac{a}{z}\right)^n
+		\\ &= \frac{1}{1-\frac{a}{z}} = \frac{z}{z-a} \qquad \text{ αν $\left|\frac{a}{z}=1\right|$}
+	\end{align*}
+	
+	Άρα γράφουμε συμβολικά:
+	\[
+	x(n) = a^n\mathrm{u}(n) \xrightarrow{ZT} X(z) = \frac{z}{z-a}\qquad \text{ROC}: |z|>|a|
+	\]
+\end{exercise}
+
+\begin{exercise}
+	Να βρεθεί ο μετασχηματισμός Z του \( x(n)= -a^n \mathrm{u}(-n-1) \).
+	\tcblower
+	Έχουμε:
+	\begin{align*}
+		X(z) &= \sum_{n=-\infty}^{\infty} x(n) z^{-n}
+		= \sum_{n=-\infty}^{-1} -a^n z^{-n}
+		= \sum_{n=-\infty}^{-1} -\left(\frac{a}{z}\right)^n
+		\intertext{Προσπαθώ να ξεκινήσω την άθροιση από το 0 για να εφαρμόσω τύπο γεωμετρικής προόδου:}
+		 &=
+		\sum_{n=1}^{\infty} -\left(\frac{a}{z}\right)^{-n}
+		= -\sum_{n=1}^{\infty}\left(\frac{z}{a}\right)^n
+		= 1-\sum_{n=0}^{\infty}\left(\frac{z}{a}\right)^n
+		\\ &= 1 - \frac{1}{1-\frac{z}{a}} & \left|\frac{z}{a}\right|<1
+		\\ &= \frac{1-\frac{z}{a}-1}{1-\frac{z}{a}} = \frac{-\frac{z}{a}}{1-\frac{z}{a}}
+		= \frac{-z}{a-z} = \frac{z}{z-a}
+	\end{align*}
+	
+	Εδώ παρατηρούμε κάτι ενδιαφέρον: Ο τύπος του μετασχηματισμού Z είναι \textbf{ακριβώς ίδιος} με
+	αυτόν της προηγούμεης άσκησης, παρ' όλο που προέρχονται από διαφορετικές συναρτήσεις. Η διαφορά
+	εδώ βρίσκεται στην \textbf{περιοχή σύγκλισης} (ROC), που είναι διαφορετική στις δύο ασκήσεις.
+	Εδώ φαίνεται και η σημασία του δεδομένου της περιοχής σύγκλισης.
+\end{exercise}
+
+\begin{exercise}
+	Να βρεθεί ο μετασχηματισμός Z της συνάρτησης:\[
+	x(n) = a^n \mathrm{u}(n) - b^n \mathrm{u}(-n-1)
+	\]
+	\tcblower
+	Έχουμε:
+	\begin{align*}
+		X(z) &= \sum_{n=-\infty}^{\infty} x(n)z^{-n}
+		\\ &= \sum_{n=-\infty}^{\infty} \left[
+		a^n \mathrm{u}(n) - b^n \mathrm{u}(-n-1)
+		\right]z^{-n}
+		\\ &= \sum_{n=0}^{\infty} a^n z^{-n}
+		- \sum_{n=-\infty}^{-1}b^n z^{-n}
+		\\ &= \frac{z}{z-a} + \frac{z}{z-b} \qquad \text{για $|z|>|a|$ και $|z|<|b|$}
+	\end{align*}
+	
+	Η \( X(z) \) υπάρχει αν υπάρχει η περιοχή σύγκλισης (ROC): \( |a|<|z|<|b| \). Για να συμβαίνει
+	αυτό, πρέπει να ισχύει η συνθήκη \( |a|<|b| \). Διαφορετικά, δεν υπάρχει ο μετασχηματισμός.
+\end{exercise}
+
+\subsection{Περιοχή σύγκλισης}
+\begin{itemize}
+	\item Για \textbf{ακολουθίες δεξιάς πλευράς} \todo{link defn} \todo{slightly underline links} (\( x(n) = 0 \impliedby n<n_0 \)), αν \( n_0 \geq 0 \), η περιοχή σύγκλισης είναι:
+	\[
+	|z| > |z_1|
+	\]
+	\subparagraph{Απόδειξη}
+	Ο μετασχηματισμός \( Z \) της ακολουθίας θα είναι:
+	\[
+	\sum_{n=n_0 \geq 0}^{\infty} x(n)z^{-n}
+	\]
+	
+	Υποθέτουμε ότι συγκλίνει για κάποιο \( |z| = |z_1| \)
+	Θέλουμε η σειρά \( \sum_{n=n_0\geq 0}^{\infty} \left| x(n)z_1^{-n} \right| < \infty \) να συγκλίνει.
+	
+	\[
+	|z| > |z_1| \implies |z|^{-n} < |z_1|^{-n}
+	\]
+	αν \( n \geq 0 \) .
+	
+	\paragraph{}
+	Αν αντίθετα, \( n_0 < 0 \):
+	\[
+	\sum_{n=n_0}^{\infty} \cdots = \sum_{n=n_0}^{-1}\cdots + \sum_{n=0}^{\infty}
+	\]
+	που οδηγεί σε ένα αντίστοιχο αποτέλεσμα, πλην του κύκλου στο άπειρο:
+	\[
+	|z_1| < |z| < \infty
+	\]
+	\item Για \textbf{ακολουθίες αριστερής πλευράς} (\( x(n) = 0 \impliedby n > n_0 \)), τότε (αντίστοιχα με παραπάνω):
+	
+	\[
+	X(z) = \sum_{n=-\infty}^{n_0} x(n)z^{-n}
+	\]
+	
+	Τότε θα ισχύει:
+	\[
+	\begin{cases}
+	n_0 \leq 0 &\implies \text{ROC } =\ |z| < |z_1|\\
+	n_0 > 0 &\implies \text{ROC } =\ 0 < |z| < |z_1|
+	\end{cases}
+	\]
+	\item Για \textbf{ακολουθίες πεπερασμένου μήκους} (\( x(n) = 0\ \forall\ n<N,n>M,M>N \)), ο μετασχηματισμός Z θα είναι:
+	\[
+	X(z) = \sum_{n=N}^{M} x(n) z^{-n}
+	\]
+	
+	Εδώ δεν έχουμε άπειρο άθροισμα. Κινδυνεύουμε με απειρισμούς μόνον όταν \( z = 0 \) ή \( z = \infty \).
+	Πιο συγκεκριμένα:
+	\[
+	\begin{cases}
+	\text{Αν $N < 0$ \& $M > 0$} &\implies \text{ROC: } 0<|z|<\infty\\
+	\text{Αν $N > 0$ \& $M > 0$} &\implies \text{ROC: } 0<|z|\\
+	\text{Αν $N < 0$ \& $M < 0$} &\implies \text{ROC: } |z|<\infty
+	\end{cases}
+	\]
+\end{itemize}
 
 
 \end{document}
