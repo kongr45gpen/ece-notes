@@ -5,14 +5,14 @@
 
 \title{ΣΑΕ 2
 	\\
-	{ 
+	{
 		\normalsize Συστήματα Αυτομάτου Ελέγχου II
 		\\
 		\normalsize Σημειώσεις από τις παραδόσεις\footnote{Όπως διδάσκονται στο τμήμα \textit{Ηλεκτρολόγων Μηχανικών και Μηχανικών Υπολογιστών} στο \textit{Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης}.}
 	}}
 \date{Φεβρουάριος 2018
 	\\
-	{ 
+	{
 		\small Τελευταία ενημέρωση: \today
 	}
 }
@@ -43,15 +43,15 @@
 	Οι τελευταίες εκδόσεις των σημειώσεων βρίσκονται στο Github
 	(\url{https://github.com/kongr45gpen/ece-notes/raw/master/sae2.pdf}) ή
 	στη διεύθυνση \url{http://helit.org/ece-notes/sae2.pdf}.
-	
+
 	Περιέχουν διορθώσεις σε λάθη και τυχόν βελτιώσεις.
-	
+
 	\tcblower
-	
+
 	Μπορείτε να ενημερώνετε για οποιοδήποτε λάθος και πρόταση
 	μέσω PM στο forum, issue στο Github, ή οποιουδήποτε άλλου τρόπου!
 \end{infobox}
-	
+
 Το μάθημα περιλαμβάνει ένα μικρό προαιρετικό εργαστήριο. Η επιλογή γίνεται με βάση
 προαιρετικής προόδου (μπαίνουν οι πρώτοι 18, εφ' όσον έχουν γράψει βαθμό \( \geq 6 \)).
 
@@ -210,9 +210,9 @@ m\dot y = u - ay -mg\sin\phi
 	\[
 	u(t) = kr(t)
 	\]
-	
+
 	Και για απλότητα στους υπολογισμούς θεωρώ \( \phi = 0 \).
-	
+
 	Τότε, από το παραπάνω μοντέλο του συστήματος, προκύπτει η διαφορική εξίσωση:
 	\[
 	m\dot y = -ay + k\cdot25
@@ -230,12 +230,12 @@ m\dot y = u - ay -mg\sin\phi
 	παραμέτρους του ελεγχόμενου συστήματος. Συνήθως έχουμε μεγάλη μάζα \( m \) για το
 	αυτοκίνητο και μικρό αεροδυναμικό συντελεστή. Επομένως το πηλίκο \( \frac{a}{m} \) είναι
 	μικρό και η απόκριση λογικά αργή.
-	
+
 	Ακόμα δεν είναι γνωστή τις περισσότερες φορές η τιμή του συντελεστή \( a \). Αν για
 	παράδειγμα ανοίξουμε ένα παράθυρο, μεταβάλλεται ανάλογα με το πόσο το έχουμε ανοίξει.
 	Γενικότερα στη διαδικασία της σχεδίασης \textbf{δεν μπορούμε να χρησιμοποιήσουμε
 		μεγέθη που δεν είναι γνωστά}.
-	
+
 	Επίσης, στην περίπτωση που θεωρήσουμε ότι \( \phi \neq 0 \), η λύση θα προκύψει μετά
 	από πράξεις:
 	\[
@@ -250,16 +250,16 @@ m\dot y = u - ay -mg\sin\phi
 	φορά δεν είναι γνωστή.
 	\item Χρησιμοποιούμε \textbf{αναλογικό ελεγκτή κλειστού βρόχου}:
 	\[
-	u(t) = k \cdot \Big( r(t) - y(t) \Big), \qquad k > 0 
+	u(t) = k \cdot \Big( r(t) - y(t) \Big), \qquad k > 0
 	\]
-	
+
 	Τότε η λύση της διαφορικής εξίσωσης θα προκύψει, μετά από πράξεις:
 	\[
 	y(t) = \left(
 	\frac{25k - mg\sin\phi}{a+k}
 	\right)\left( 1-e^{-\left(\frac{a+k}{m}\right)t} \right)
 	\]
-	
+
 	Όσο μεγαλώνουμε το \( k \), ο παράγοντας στον εκθέτη αυξάνεται, άρα μεγαλώνει η ταχύτητα
 	σύγκλισης στη μόνιμη τιμή. Όσον αφορά τον πρώτο όρο, για \( k \) που φτάνει στο
 	\( \infty \), έχουμε:
@@ -267,7 +267,7 @@ m\dot y = u - ay -mg\sin\phi
 	\lim_{k \to \infty} \left( \frac{mg\sin\phi}{a+k} \right) = 0
 	\]
 	και ο πρώτος όρος γίνεται 25.
-	
+
 	Η μικρή διαφορά που υπάρχει για πεπερασμένες τιμές του \( k \) είναι ουσιαστικά το
 	σφάλμα θέσης, που μπορούμε να εξαλείψουμε με έναν ολοκληρωτή.
 \end{itemize}
@@ -289,10 +289,10 @@ m\dot y = u - ay -mg\sin\phi
 	\tikzstyle{system}=[rectangle,draw,minimum height=9mm,align=center,minimum width=32mm]
 	\draw (0,0) node[system] (rs) {Πραγματικό\\Σύστημα};
 	\draw (rs.north) node[system,anchor=south,yshift=10pt] (ms) {Μοντέλο};
-	
+
 	\draw[<-] (rs.west) -- ++(-1.5,0) node (sp) {} node[midway] (spm) {};
 	\draw[->] (spm.center) |- (ms);
-	
+
 	\draw[->] (ms.east) node[above right] {$\hat y$} -- ++(2,0) node[midway] (ap1) {};
 	\draw[->] (rs.east) node[below right] {$y$} -- ++(2,0) node[midway] (ap2) {};
 	\path (ap1) -- (ap2) node[midway,circle,draw,inner sep=5pt] (sum) {};
@@ -327,14 +327,14 @@ m\dot y = u - ay -mg\sin\phi
 
 \begin{circuitikz}
 	\fill[postaction={decorate},pattern=north east lines] (0,3) rectangle (-0.5,-0.5) rectangle (5,0);
-	
+
 	\draw (2,0) rectangle ++(2,2) node[midway] {$m$} node[midway] (m) {};
-	
+
 	\draw (2,1.6) to[damper,l_=$c(\dot q)$,invert] ++(-2,0);
 	\draw (2,0.4) to[spring,invert,l_=\raisebox{-1.5ex}{$k$}] ++(-2,0);
-	
+
 	\draw[thick] (0,3) |- (5,0);
-	
+
 	\draw[->] (m) ++ (0,1.4) |- ++(2,0.7) node[above,pos=.75,gray] {$q$};
 \end{circuitikz}
 
@@ -350,7 +350,7 @@ m\ddot q + c(\dot q) + kq = u
 \begin{defn}{Αυτόνομα συστήματα}{}
 	Συστήματα στα οποία \textbf{δεν} ενεργούν \textbf{εξωτερικές δυνάμεις} ονομάζονται
 	\textbf{αυτόνομα}.
-	
+
 	Συστήματα στα οποία ενεργούν \textbf{εξωτερικές δυνάμεις}, οι οποίες λειτουργούν ως
 	είσοδοι και μπορούμε να τις μεταβάλλουμε ώστε να αλλάξει η δυναμική συμπεριφορά του
 	συστήματος, ονομάζονται \textbf{μη αυτόνομα}.
@@ -363,7 +363,7 @@ m\ddot q + c(\dot q) + kq = u
 	q^{(n)},\ q^{(n-1)},\ \dots,\ \dot q,\ q,\ u
 	\right) = 0
 	\]
-	
+
 	Αυτή είναι διαφορική εξίσωση \textbf{τάξης \( n \)}, και μπορεί να αναλυθεί σε
 	επιμέρους απλούστερες διαφορικές εξισώσεις της μορφής:
 	\[
@@ -378,7 +378,7 @@ m\ddot q + c(\dot q) + kq = u
 		q \quad&\text{μία \textbf{μεταβλητή κατάστασης} ή άλλη παράμετρος του συστήματος}
 		\end{aligned}
 	\]
-	
+
 	Οι παραπάνω εξισώσεις εκφράζουν για κάθε στιγμή τη σχέση των μεταβλητών κατάστασης,
 	και ονομάζονται \textbf{εξισώσεις κατάστασης}.
 \end{defn}
@@ -480,7 +480,7 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 	&\vdots \\
 	x_n &= y^{(n-1)}
 	\end{align*}
-	
+
 	Με λύση:
 	\begin{align*}
 	\dot x_1 &= \dot y = x_2\\
@@ -501,7 +501,7 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
      	x_n &= \dot{x_{n-1}} - \beta_{n-1}u
      	&&= y^{(n-1)} - \beta_0u^{(n-1)} - \dots - \beta_{n-2}\dot u - \beta_{n-1}u
      \end{alignat*}
-     
+
      Οι όροι \( \beta_i \) δεν είναι ίδιοι με τους \( b_i \), αλλά ορίζονται ως εξής:
      \begin{align*}
      	\beta_0 &= b_0 \\
@@ -510,7 +510,7 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
      	&\vdots\\
      	\beta_n &= b_n - a_1\beta_{n-1}-\dots - a_{n-1}\beta_1 - a_n\beta_0
      \end{align*}
-     
+
      Το παραπάνω σύστημα μπορεί να λυθεί, και αποδεικνύεται ότι η κάθε εξίσωση περιέχει
      την είσοδο \( u \) χωρίς να είναι σε παράγωγο.
 \end{itemize}
@@ -523,10 +523,10 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 	να γραφούν οι εξισώσεις κατάστασης του συστήματος σε μορφή πίνακα.
 	\tcblower
 	Η παραπάνω εξίσωση είναι η \textbf{διαφορική εξίσωση του συστήματος}.
-	
+
 	Δεν εμφανίζονται ανώτερες παράγωγοι της εισόδου άρα χρησιμοποιούμε την απλή έκφραση
 	από επάνω (\autoref{sec:nontd_system}).
-	
+
 	Η τάξη της εξίσωσης είναι \textbf{2}, άρα έχουμε \textbf{μόνο 2} μεταβλητές κατάστασης.
 	Σύμφωνα με την παράγραφο \autoref{sec:nontd_system}, επιλέγουμε:
 	\begin{alignat*}{4}
@@ -553,7 +553,7 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 \end{exercise}
 \begin{exercise}[Παράδειγμα]
 	Να γραφούν οι εξισώσεις κατάστασης του κυκλώματος:
-	
+
 	\begin{circuitikz}[american]
 		\draw (0,2) to[V=$v_s(t)$] (0,0);
 		\draw (0,2) to[R=$R$,i>^=$i$] (2,2)
@@ -562,7 +562,7 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 		-- (0,0)
 		;
 	\end{circuitikz}
-	
+
 	\tcblower
 	Λύνουμε το σύστημα με βάση τη φυσική του (νόμοι Kirchoff)
 	\begin{align*}
@@ -573,7 +573,7 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 		\\
 		L\od[2]{i}{t} + R\od{i}{t} + \frac{1}{C} i &= \od{u_s(t)}{t}
 	\end{align*}
-	
+
 	Η είσοδος του συστήματος είναι η ανεξάρτητη τροφοδοσία \( u_s(t) \), και η έξοδος
 	το ρεύμα \( i \), δηλαδή:
 	\begin{align*}
@@ -585,7 +585,7 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 	\ddot y + \frac{R}{L}\dot y + \frac{1}{CL} y = \frac{1}{L} \dot u
 	= 0\ddot u + \frac{1}{L}\dot u + 0u
 	\]
-	
+
 	Αφού η είσοδος \( u \) είναι ανώτερης τάξης στη διαφορική αυτή, επιλέγουμε τις μεταβλητές
 	κατάστασης με βάση τη σελ. \pageref{sec:nontd_highorder_system}:
 	\begin{alignat*}{2}
@@ -601,12 +601,12 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 		&\implies\boxed{\dot x_2 = -\frac{R}{L}x_2 - \frac{R}{L^2}u-\frac{1}{LC}x_1}\\
 		\boxed{y=x_1}&
 	\end{align*}
-	
+
 	\lecture{3}{2/3/2018}
 	\paragraph{Με διαφορετική επιλογή μεταβλητών κατάστασης}
 	Στην παραπάνω λύση διαλέξαμε τις μεταβλητές κατάστασης όπως γνωρίζαμε από τη θεωρία
 	των ΣΑΕ, οι οποίες οδήγησαν σε ένα αποτέλεσμα, αλλά με αρκετές πράξεις.
-	
+
 	Εναλλακτικά, μπορούμε να διαλέξουμε διαφορετικές μεταβλητές κατάστασης. Στο συγκεκριμένο
 	πρόβλημα, επειδή ασχολούμαστε με ένα ηλεκτρικό κύκλωμα, επιλέγουμε τις \textbf{τυπικές
 		μεταβλητές} που αντιστοιχούν στην \textbf{τάση του πυκνωτή} \( x_1 \) και στο
@@ -624,48 +624,48 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 
 \begin{exercise}
 	Έστω το μηχανικό σύστημα:
-	
+
 	\begin{circuitikz}
 		\fill[postaction={decorate},pattern=north east lines] (0,3) rectangle (-0.5,-0.5) rectangle (10,0);
-		
+
 		\draw (2,0) rectangle ++(2,2) node[midway] {$M_2$} node[midway] (m2) {};
 		\draw (6,0) rectangle ++(2,2) node[midway] {$M_1$} node[midway] (m1) {};
-		
+
 		\draw (2,0.4) to[damper,l_=$c_2$,invert] ++(-2,0);
 		\draw (2,1.6) to[spring,invert,l_=\raisebox{-1.5ex}{$k_2$}] ++(-2,0);
 		\draw (6,0.4) to[damper,l_=$c_1$,invert] ++(-2,0);
 		\draw (6,1.6) to[spring,invert,l_=\raisebox{-1.5ex}{$k_1$}] ++(-2,0);
-		
+
 		\draw[thick,->] (8,1) -- ++(1.5,0) node[right] {$u$};
-		
+
 		\draw[thick] (0,3) |- (10,0);
-		
+
 		\draw[->] (m2) ++ (0,1.4) |- ++(2,0.7) node[above,pos=.75,gray] {$q_2$};
 		\draw[->] (m1) ++ (0,1.4) |- ++(2,0.7) node[above,pos=.75,gray] {$q_1$};
 	\end{circuitikz}
-	
+
 	Να βρεθούν οι εξισώσεις κατάστασης, θεωρώντας ότι η έξοδος είναι η μετατόπιση του δεξιού
 	σώματος, δηλαδή:
 	\[
 	y= q_1
 	\]
-	
+
 	\tcblower
-	
+
 	Εφαρμόζοντας το νόμο του Νεύτωνα για κάθε σώμα, και αθροίζοντας τις δυνάμεις που
 	ασκούνται στο καθένα, έχουμε:
 	\begin{align}
-		M_1\ddot q_1 &= u - k_1(q_1-q_2) - c_1(\dot q_1 - \dot q_2) 
+		M_1\ddot q_1 &= u - k_1(q_1-q_2) - c_1(\dot q_1 - \dot q_2)
 		\label{eq:ex0eq1}
 		\\
 		M_2\ddot q_2 &= -k_1(q_2-q_1) - c_1(\dot q_2 - \dot q_1)-k_2q_2-c_2\dot q_2
 		\label{eq:ex0eq2}
 	\end{align}
-	
+
 	Το σύστημα αυτό είναι \textbf{4\textsuperscript{ης}} τάξης και 1\textsuperscript{ου}
 	βαθμού, αφού έχουμε 2 εξισώσεις 2\textsuperscript{ης} τάξης. Επομένως πρέπει να βρούμε
 	4 μεταβλητές και εξισώσεις κατάστασης.
-	
+
 	Λαμβάνουμε τις μεταβλητές κατάστασης με βάση τη θεωρία:
 	\[
 	x_1 = q_1, \hfill x_2=\dot q_1, \hfill x_3=q_2,\hfill x_4=\dot q_2
@@ -681,7 +681,7 @@ b_0 u^{(n)} + b_1u^{(n-1)} + \dots + b_{n-1}\dot u + b_n u
 	    + \frac{c_1}{M_2}x_2 - \frac{k_2}{M_2}x_3 - \frac{c_2}{M_2}x_4
 	    \quad \text{(όπως προκύπτει από την \eqref{eq:ex0eq2})}
 	\end{align*}
-	
+
 	Σε μορφή πίνακα:
 	\[
 	\dot x = \left[\begin{matrix}
@@ -871,19 +871,19 @@ x_1 = 0
 
 \begin{exercise}
 	Έστω ένα ποδήλατο σε κάτοψη (το κοιτάμε από πάνω):
-	
+
 	\begin{circuitikz}
 		\def\rightsize{0.2}
 		\def\rang{9}
-		
+
 		\draw (0,5) |- (5,0);
-		
+
 		\draw[gray,mark position=0.8(d1),mark position=0.3(d1m)] (2,2) ++ (-45:0.1) -- ++(-45:2);
 		\draw[gray,mark position=0.78(dm)] (3,3) -- ++(-45:1);
 		\draw[gray,mark position=0.8(d2)] (4,4) ++ (-\rang:0.1) -- ++(-45:2);
 		\draw[gray,<->] (d1m) -- (dm) node[midway,sloped,fill=white] {$s$};
 		\draw[gray,<->] (d1) -- (d2) node[midway,sloped,fill=white] {$L$};
-		
+
 		\draw (2,2) node[very thick,
 		rectangle,draw,postaction={decorate},pattern=vertical lines,minimum height=1.2cm,rotate=-45
 		] (w1) {};
@@ -891,15 +891,15 @@ x_1 = 0
 		\draw (4,4) node[very thick,
 		rectangle,draw,postaction={decorate},pattern=north west lines,minimum height=1.2cm,rotate=-\rang
 		] (w2) {};
-		
+
 		\draw[dashed] (0,0) -- (w1);
 		\draw (0.5,0) to[bend right] node[right,midway,scale=.9] {$\theta$} (45:0.5);
-		
+
 		\path (w1) -- (w2) node[pos=1] (b) {} node[midway] (m) {};
 		\draw[red!30!orange!70!black,thick,->] (wm.center) -- ++(90:1.2) node[left] {$u$} node[pos=.3] (u) {};
 		\draw[red!30!orange!30!black] (wm) ++(45:0.3*1.2) to[bend right] node[pos=.3,above,scale=.8] {$\phi$} (u.center);
 		\draw[very thick] (w1) -- (w2) {};
-		
+
 		\path (2,2) ++(90:0.15) node[inner sep=0,outer sep=0] (a) {};
 		%	\path (a) ++(45+90:4) node (O) {};
 		\begin{scope}[overlay]
@@ -907,7 +907,7 @@ x_1 = 0
 			\path [name path=(wpb)] (b.center) -- ++(180-\rang:8);
 			\path [name intersections={of=(wpa) and (wpb),by=O}];
 		\end{scope}
-		
+
 		\draw[brown!50!gray,dashed] (O.center) -- (a.center) node[midway,above,sloped] {$r$};
 		\draw[brown!50!gray] (a.center) ++(45:\rightsize) -- ++(45+90:\rightsize) node (ram) {} -- ++(45+180:\rightsize);
 		\path (a) -- (ram.center) node[midway,fill=brown!50!gray,circle,inner sep=0.2pt] {};
@@ -915,34 +915,34 @@ x_1 = 0
 		\draw[brown!50!gray] (b.center) ++(90-\rang:\rightsize) -- ++(180-\rang:\rightsize) node (ram) {} -- ++(-\rang-90:\rightsize);
 		\path (b.center) -- (ram.center) node[midway,fill=brown!50!gray,circle,inner sep=0.2pt] {};
 		\draw[brown!50!gray,dashed] (O.center) -- (wm.center);
-		
+
 		\draw[dashed] (w2) -- ++(90-\rang:1.5) node[midway] (w2m1) {};
 		\draw[dashed] (w2.north) -- ++(45:1) node[pos=.4] (w2m2) {}
 		(w2.north) edge[opacity=.1] ++(180+45:4);
 		\draw[red!30!orange!30!black] (w2m1.center) to[bend left] (w2m2.center) node[above,xshift=0mm,yshift=1mm,scale=.9] {$\delta$};
-		
+
 		\filldraw[bottom color=magenta!80!black,top color=black] (O) circle(2.5pt)
 		node[above,yshift=2pt] {$O$};
 		\draw (wm.center) node[circle,fill,inner sep=1.5pt] {};
 	\end{circuitikz}
-	
+
 	Το ποδήλατο έχει κέντρο μάζας και περιστρέφεται γύρω από ένα σημείο \( O \).
 	\tcblower
-	
+
 	Κυνηγούμε γωνίες και τις προσθέτουμε στο σχήμα:\todo{fix the graph}
-	
+
 	\begin{circuitikz}
 		\def\rightsize{0.2}
 		\def\rang{9}
-		
+
 		\draw[<->] (0,6) node[left] {$y$} |- node[below left] {$O'$} (6,0) node[right] {$x$};
-		
+
 		\draw[gray,mark position=0.8(d1),mark position=0.3(d1m)] (2,2) ++ (-45:0.1) -- ++(-45:2);
 		\draw[gray,mark position=0.78(dm)] (3,3) -- ++(-45:1);
 		\draw[gray,mark position=0.8(d2)] (4,4) ++ (-\rang:0.1) -- ++(-45:2);
 		\draw[gray,<->] (d1m) -- (dm) node[midway,sloped,fill=white] {$s$};
 		\draw[gray,<->] (d1) -- (d2) node[midway,sloped,fill=white] {$L$};
-		
+
 		\draw (2,2) node[very thick,
 		rectangle,draw,postaction={decorate},pattern=vertical lines,minimum height=1.2cm,rotate=-45
 		] (w1) {};
@@ -950,15 +950,15 @@ x_1 = 0
 		\draw (4,4) node[very thick,
 		rectangle,draw,postaction={decorate},pattern=north west lines,minimum height=1.2cm,rotate=-\rang
 		] (w2) {};
-		
+
 		\draw[dashed] (0,0) -- (w1);
 		\draw (0.5,0) to[bend right] node[right,midway,scale=.9] {$\theta$} (45:0.5);
-		
+
 		\path (w1) -- (w2) node[pos=1] (b) {} node[midway] (m) {};
 		\draw[red!30!orange!70!black,thick,->] (wm.center) -- ++(90:1.2) node[left] {$u$} node[pos=.3] (u) {};
 		\draw[red!30!orange!30!black] (wm) ++(45:0.3*1.2) to[bend right] node[pos=.3,above,scale=.8] {$\phi$} (u.center);
 		\draw[very thick] (w1) -- (w2) {};
-		
+
 		\path (2,2) ++(90:0.15) node[inner sep=0,outer sep=0] (a) {};
 		%	\path (a) ++(45+90:4) node (O) {};
 		\begin{scope}[overlay]
@@ -966,7 +966,7 @@ x_1 = 0
 			\path [name path=(wpb)] (b.center) -- ++(180-\rang:8);
 			\path [name intersections={of=(wpa) and (wpb),by=O}];
 		\end{scope}
-		
+
 		\draw[brown!50!gray,dashed,mark position=0.2(r1),mark position=0.4(r2)] (O.center) -- (a.center) node[near end,above,sloped] {$r$};
 		\draw[brown!50!gray] (a.center) ++(45:\rightsize) -- ++(45+90:\rightsize) node (ram) {} -- ++(45+180:\rightsize);
 		\path (a) -- (ram.center) node[midway,fill=brown!50!gray,circle,inner sep=0.2pt] {};
@@ -974,23 +974,23 @@ x_1 = 0
 		\draw[brown!50!gray] (b.center) ++(90-\rang:\rightsize) -- ++(180-\rang:\rightsize) node (ram) {} -- ++(-\rang-90:\rightsize);
 		\path (b.center) -- (ram.center) node[midway,fill=brown!50!gray,circle,inner sep=0.2pt] {};
 		\draw[brown!50!gray,dashed, mark position=0.19(r4)] (O.center) -- (wm.center);
-		
+
 		\begin{scope}[thick,orange!50!red,opacity=.8]
 			\draw (r1) to[bend right] node[midway,right,yshift=-4pt] {$\phi$}  (r4) ;
 			\draw (r2) to[bend right] node[midway,below,xshift=2pt] {$\delta$} (r3) ;
 		\end{scope}
 		\draw[very thick,red!30!orange!70!black,->] ([yshift=1pt]w1.center) node[circle,fill,inner sep=1pt] {} -- ++(45:1) node[below right] {$u_0$};
-		
+
 		\draw[dashed] (w2) -- ++(90-\rang:1.5) node[midway] (w2m1) {};
 		\draw[dashed] (w2.north) -- ++(45:1) node[pos=.4] (w2m2) {}
 		(w2.north) edge[opacity=.1] ++(180+45:4);
 		\draw[red!30!orange!30!black] (w2m1.center) to[bend left] (w2m2.center) node[above,xshift=0mm,yshift=1mm,scale=.9] {$\delta$};
-		
+
 		\filldraw[bottom color=magenta!80!black,top color=black] (O) circle(2.5pt)
 		node[above,yshift=2pt] {$O$};
 		\draw (wm.center) node[circle,fill,inner sep=1.5pt] {} node[right,yshift=0mm,xshift=1mm,scale=.7] {$(x,y)$};
 	\end{circuitikz}
-	
+
 	Στα ορθογώνια τρίγωνα που προκύπτουν μεταξύ γωνιών και πλευρών, έχουμε:
 	\[
 	\left.
@@ -1000,12 +1000,12 @@ x_1 = 0
 	\end{aligned}\right\rbrace
 	\implies \tan\phi = \frac{S}{L}\tan\delta
 	\]
-	
+
 	Θεωρώντας ότι ο κάτω τροχός κινείται με ταχύτητα \( u_0 \), έχουμε:
 	\[
 	u\cos\phi = u_0
 	\]
-	
+
 	Τώρα πρέπει να βρούμε μια διαφορική εξίσωση που να περιγράφει την κίνηση του
 	κέντρου βάρους του ποδηλάτου. Έστω λοιπόν \( (x,y) \) οι συντεταγμένες του κέντρου. Τότε:
 	\begin{align*}
@@ -1014,9 +1014,9 @@ x_1 = 0
 		\Aboxed{\od{y}{t} &=
 		u \sin(\phi+\theta) = \frac{u_0\sin(\phi+\theta)}{\cos\phi}}
 	\end{align*}
-	
+
 	Επίσης πρέπει να βρούμε εξισώσεις κατάστασης για τον προσανατολισμό του ποδηλάτου.
-	
+
 	Η γωνιακή ταχύτητα δίνεται από τη σχέση:
 	\[
 	\omega = \frac{u_0}{r} \qquad \text{ή} \qquad \omega = \od{\phi}{t}
@@ -1025,30 +1025,30 @@ x_1 = 0
 	\[
 	\omega = \frac{u_0}{L}\tan\delta
 	\]
-	
+
 	Για μία μικρή μεταβολή \( \Delta \phi \) του προσανατολισμού του ποδηλάτου:
-	
+
 	\begin{tikzpicture}
 	\def\rightsize{0.15}
-	
+
 	\draw (0,0) node[circle,fill,inner sep=1pt] {} node[below right] {$O$};
 	\draw (0,0) -- ++(90:2) node (a) {} node[pos=.2] (aa) {};
 	\draw (0,0) -- ++(60:2) node (b) {} node[pos=.2] (ba) {};
-	
+
 	\draw[brown!50!gray] (a.center) ++(0:\rightsize) -- ++(-90:\rightsize) node (ram) {} -- ++(180:\rightsize);
 	\path (a.center) -- (ram.center) node[midway,fill=brown!50!gray,circle,inner sep=0.2pt] {};
 	\draw[brown!50!gray] (b.center) ++(180-30:\rightsize) -- ++(-30-90:\rightsize) node (ram) {} -- ++(-30:\rightsize);
 	\path (b.center) -- (ram.center) node[midway,fill=brown!50!gray,circle,inner sep=0.2pt] {};
-	
+
 	\draw[green!50!black,dashed] (-0.7,2.07) -- ++(-2:2) node[pos=.4] (ca) {};
 	\draw[green!50!black,dashed] (50:2.07) -- ++(150:2) node[pos=.7] (da) {};
-	
+
 	\draw[very thick,blue!60!black] (0,0) ++ (100:2) arc [start angle=100,end angle=50,radius=2cm];
-	
+
 	\draw[opacity=.8] (aa.center) to[bend left] node[midway,above,xshift=1.5pt,fill=white,fill opacity=.4,text opacity=1,scale=.7] {$\Delta\phi$} (ba.center);
 	\draw[opacity=.8,green!20!black] (ca.center) to[bend left] node[midway,left,yshift=1pt,fill=white,fill opacity=.4,text opacity=1,scale=.6] {$\theta$} (da.center);
 	\end{tikzpicture}
-	
+
 	Οι γωνίες \( \Delta \phi \) και \( \theta \) είναι μεταξύ τους κάθετες, άρα ίσες,
 	επομένως:
 	\[
@@ -1114,10 +1114,10 @@ x(t_0) = x_0
 	\[
 	x(t) = \frac{1}{1-t}
 	\]
-	
+
 	Όμως για \( t\to 1 \), το \( x(t) \) τείνει στο \( \infty \), δηλαδή το
 	σύστημα ουσιαστικά \textit{δεν έχει λύση} στο \( t = 1 \).
-	
+
 	Διαπιστώνουμε δηλαδή ότι η παραπάνω συνθήκη της θεωρίας δεν αρκεί για να
 	διαπιστώσουμε ότι υπάρχει εύλογη λύση του συστήματος.
 \end{exercise}
@@ -1134,11 +1134,11 @@ x(t_0) = x_0
 	(t-a)^2,\quad & \text{αν } t > a
 	\end{cases}
 	\] για \( a > 0 \).
-	
+
 	Εδώ παρατηρούμε πως εισάγεται στη λύση ένας συντελεστής \( a \), ο οποίος όμως δεν υπάρχει
 	στην αρχική διαφορική εξίσωση, αλλά εμφανίζεται απλώς στη λύση του συστήματος. Αυτό συμβαίνει
 	ακόμα και με την ύπαρξη της αρχικής συνθήκης \( x(0) = 0 \).
-	
+
 	Δηλαδή το σύστημα αυτό έχει άπειρες λύσεις, που εξαρτώνται από την τιμή του \( a \).
 	Όμως δεν μπορούμε να γνωρίζουμε εκ των προτέρων πώς θα αποκριθεί αυτό.
 \end{exercise}
@@ -1155,10 +1155,10 @@ x(t_0) = x_0
 	\right|
 	\leq \kappa |z_1-z_2|\qquad \forall z_1,z_2 \in \Omega \subset \mathbb R^n
 	\]
-	
+
 	Αυτή είναι μια ιδιαίτερα αυστηρή συνθήκη για μη γραμμικές διαφορικές εξισώσεις.
 	\tcblower
-	
+
 	Όταν η συνάρτηση \(  F \) είναι \textbf{συνεχής κατά Lipschitz}, τότε η λύση του συστήματος \textbf{υπάρχει} και
 	είναι \textbf{μοναδική}.
 \end{theorem}
@@ -1172,7 +1172,7 @@ x(t_0) = x_0
 
 \draw[red!50!orange!90!blue,very thick] (0,0) -- (45:4) node[midway,above left] {$k|z|$};
 \draw[blue!50!cyan,thick]
-plot [smooth,samples=8,variable=\x,domain=0:3] 
+plot [smooth,samples=8,variable=\x,domain=0:3]
 (\x,{\x/2*(rand+2)/2}) (2,0) node[above] {$F(x)$};
 \end{tikzpicture}
 
@@ -1187,7 +1187,7 @@ plot [smooth,samples=8,variable=\x,domain=0:3]
 \draw[red!50!orange!90!blue,very thick] (0,0) -- (45:5) node[midway,sloped,above left] {$k_2|z|$};
 \draw[red!30!orange!90!blue,very thick] (0,0) -- (25:5) node[pos=.85,sloped,above left] {$k_1|z|$};
 \draw[blue!50!cyan,thick]
-plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3] 
+plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3]
 (\x,{0.06*(exp(1.4*\x)-1)}) node[above] {$F(x)$};
 
 \coordinate (m) at (2.01,0.91);
@@ -1210,7 +1210,7 @@ plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3]
 	\[
 	F(x^*) = 0
 	\]
-	
+
 	Ένα σύστημα μπορεί να έχει μηδέν, ένα, πολλαπλά ή άπειρα σημεία ισορροπίας.
 \end{defn}
 
@@ -1226,9 +1226,9 @@ plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3]
 		\draw (0,0) node[circle,inner sep=2pt,fill] {};
 		\draw[very thick] (0,0) -- ++(90:1.5) node[circle,inner sep=2pt,fill=white,draw] {} node[pos=.5] (a) {};
 		\draw[very thick] (0,0) -- ++(70:1.5) node[circle,inner sep=2pt,fill=white,draw] {} node[pos=.5] (b) {};
-		
+
 		\draw[brown,->] (a.center) to[bend left] node[midway,above,xshift=1pt] {$\theta$} (b.center);
-		
+
 		\begin{scope}[opacity=.5,dashed]
 		\draw[thick] (0,0) -- ++(-90:1.5cm-2/2pt) node[circle,inner sep=2pt,fill=white,draw,anchor=north] {} node[pos=.2] (c) {};
 		\draw[brown,->] (0,0.3) arc [start angle=90,end angle=-90,radius=0.3];
@@ -1236,8 +1236,8 @@ plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3]
 		\end{tikzpicture}
 		\end{center}
 	\end{wrapfigure}
-	
-	
+
+
 	Ένα απλοποιημένο μοντέλο του αναστρεφόμενου εκκρεμούς, για μικρή γωνία \( \theta \), είναι:
 	\[
 	\left[
@@ -1253,7 +1253,7 @@ plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3]
 	όπου το \( x_1 \) εκφράζει τη \textbf{γωνία} \( \theta \), το \( x_2 \) εκφράζει
 	τη \textbf{γωνιακή ταχύτητα} του εκκρεμούς, και το \( u \) εκφράζει την εξωτερική ροπή
 	που ασκείται σε αυτό.
-	
+
 	Να βρεθούν τα σημεία ισορροπίας του.
 	\tcblower
 	Για την εύρεση των σημείων ισορροπίας, θεωρούμε
@@ -1273,25 +1273,25 @@ plot [smooth,samples=\vlowsamples,variable=\x,domain=0:3]
 	x_2 &= 0 \\
 	\sin x_1 &= 0 \implies x_1 = \kappa \pi \quad \kappa \in \mathbb Z
 	\end{cases}
-	\] 
-	
+	\]
+
 	Μαθηματικά, η παραπάνω εξίσωση έχει άπειρες λύσεις, αφού \( \kappa \in\mathbb Z \).
 	Όμως πρακτικά, αυτές οι τιμές αντιστοιχούν στις γωνίες \( \ang{0} \) και
 	\( \ang{180} \), δηλαδή στις δύο απέναντι κατακόρυφες θέσεις του εκκρεμούς.
-\end{exercise} 
+\end{exercise}
 
 \begin{defn}{Απομονωμένο Σημείο Ισορροπίας}{}
 	Ένα σημείο ισορροπίας ονομάζεται \textbf{απομονωμένο} αν υπάρχει κύκλος
 	με κέντρο το σημείο αυτό και ακτίνα μη μηδενική ο οποίος \textit{δεν} περιέχει άλλο
 	σημείο ισορροπίας.
-	
+
 	Πρακτικά δηλαδή όταν δεν υπάρχει άλλο σημείο ισορροπίας δίπλα στο πρώτο.
 \end{defn}
 
 \begin{defn}{Οριακός Κύκλος}{}
 	\textbf{Οριακός Κύκλος} ονομάζεται μια \textbf{κλειστή περιοδική} τροχιά των λύσεων του
 	συστήματος.
-	
+
 	Ο οριακός κύκλος είναι χαρακτηριστικό των μη γραμμικών συστημάτων. Δεν έχει απαραίτητα
 	κυκλικό σχήμα. Εκφράζει γραμμικές ταλαντώσεις.
 \end{defn}
@@ -1351,7 +1351,7 @@ plot[smooth,samples=\midsamples,variable=\t,domain=0:2*pi]
 	\sin t,\ \cos t
 	\right)
 	\]
-	
+
 	Ο οριακός κύκλος εξαρτάται από το δεξί μέλος των εξισώσεων, και στο συγκεκριμένο
 	παράδειγμα είναι όντως ένας κύκλος.
 \end{exercise}
@@ -1371,7 +1371,7 @@ plot[smooth,samples=\midsamples,variable=\t,domain=0:2*pi]
 	\[
 	x^*
 	\]
-	
+
 	Το σημείο \( x^* \) ονομάζεται \textbf{ευσταθές σημείο ισορροπίας} ανν:
 	\[
 	\forall \epsilon > 0,\quad
@@ -1554,11 +1554,11 @@ x^* = 0
 	Για να είναι το σύστημα ευσταθές,
 	πρέπει όλες οι ιδιοτιμές του (λύσεις της εξίσωσης \( \det(sI-A)=0 \)) να έχουν
 	\textbf{αρνητικό πραγματικό μέρος}. Τότε είναι πάντα \textbf{ασυμπτωτικά ευσταθές}.
-	
+
 	Σε περίπτωση που έστω και μία έχει \textbf{θετικό} πραγματικό
 	μέρος, το σύστημα είναι \textit{ασταθές}. \footnote{Για πραγματικό μέρος
 		\( =0 \) έχουμε την οριακή ευστάθεια.}
-	
+
 	% TODO check
 \end{theorem}
 
@@ -1653,16 +1653,16 @@ x(t) = e^{\lambda_i t} \cdot x_i(0)
 	\end{matrix}\right]
 	\end{align*}
 	όπου \( k_0,k_1,k_2,b_0 > 0 \).
-	
+
 	Να επιλεγεί είσοδος ώστε να έχουμε ευστάθεια, και \( y \to 0 \).
-	
+
 	\tcblower
-	
+
 	Επιλέγουμε αυθαίρετα τον παρακάτω ελεγκτή:
 	\[
 	u = -kx_2\qquad k>0
 	\]
-	
+
 	Πρακτικά δηλαδή μετατρέπουμε το σύστημα ανοιχτού βρόχου σε σύστημα κλειστού
 	βρόχου, αφού μεταφέρουμε μία παράμετρό του στην είσοδο. Μαθηματικά,
 	αντικαθιστούμε στον δοθέντα τύπο του \( \dot x \):
@@ -1682,7 +1682,7 @@ x(t) = e^{\lambda_i t} \cdot x_i(0)
 		x_1 \\ x_2
 		\end{matrix}\right]
 	\end{align*}
-	
+
 	Ο πίνακας \( A=\left[\begin{matrix}
 	-k_0 - k_1 & k_1-b_0k \\
 	k_2 & -k_2
@@ -1694,7 +1694,7 @@ x(t) = e^{\lambda_i t} \cdot x_i(0)
 	\right]\right) &= 0 \implies \\
 	s^2 + (k_0+k_1+k_2)s + k_2(b_0k + k_0) &= 0
 	\end{align*}
-	
+
 	Αντί να βρούμε αναλυτικά την τιμή των ιδιοτιμών, μπορούμε απλά να
 	απαιτήσουμε να έχουν αρνητικό πραγματικό μέρος. Αυτό μπορούμε να το
 	πετύχουμε με το \textbf{κριτήριο Routh - Hurwitz}, ή, εναλλακτικά, επειδή
@@ -1704,19 +1704,19 @@ x(t) = e^{\lambda_i t} \cdot x_i(0)
 		k_0+k_1+k_2 &> 0\\
 		k_2(b_0k+k_0) &> 0
 	\end{align*}
-	
+
 	Επομένως η συνθήκη που πρέπει να ικανοποιεί το \( k \) είναι:
 	\[
 	k > -\frac{k_0}{b_0} \impliedby k>0 \text{ που ήδη ισχύει}
 	\]
-	
+
 	Επίσης, ισχύει \( \det(A) = k_2(k_0+k_1)-k_2(k_1-b_0k) = k_2k_0(1+b_0) \neq 0 \), άρα το σημείο ισορροπίας βρίσκεται στη θέση \( x^* = 0 \).
 
 	Επειδή το σύστημα είναι \textit{ασυμπτωτικά ευσταθές}, σύμφωνα
 	με το \autoref{th:linear_stability}, το
 	\( x \) τείνει στο \( x^* = 0 \). Όμως η έξοδος \( y \) είναι \( y=0x_1 + 1x_2 \), όπως δίνεται από την εκφώνηση.
 	Άρα και \( y\to 0 \).
-	
+
 	Τελικά ικανοποιούνται τα ζητούμενα χρησιμοποιώντας τον ελεγκτή \( u=-kx_2 \).
 \end{exercise}
 
@@ -1776,19 +1776,19 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	x_2 \\ \sin x_1 - γ x_2 \end{matrix}
 	\right], \qquad γ > 0
 	\]
-	
+
 	Τα σημεία ισορροπίας του συστήματος είναι τα \( (0,0) \) και
 	\( (π,0) \). Να μελετηθεί
 	η τοπική ευστάθεια γύρω από αυτά.
-	
+
 	\tcbsubtitle{Λύση για \( (0,0) \)}
 	Το σύστημα είναι μη γραμμικό, λόγω της ύπαρξης του \textit{ημιτόνου}.
-	
+
 	Για \( x_1 \) \textit{κοντά} στο 0, ισχύει κατά τα γνωστά:
 	\[
 	\sin x_1 \equiv x_1
 	\]
-	
+
 	Αφού θέλουμε να γραμμικοποιήσουμε στη γειτονιά του \( (0,0) \), αρκεί
 	να αντικαταστήσουμε το ημίτονο με το προσεγγιστικά ισοδύναμό του,
 	και έχουμε:
@@ -1801,7 +1801,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	x_1 \\ x_2
 	\end{matrix}\right]
 	\]
-	
+
 	Μελετάμε τις ιδιοτιμές του \( A \):
 	\[
 	\det(sI-A) = 0 \implies \dots \implies s^2 + \gamma s - 1 = 0
@@ -1810,7 +1810,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	Συνεπώς, το σύστημα σε εκείνο το σημείο είναι
 	\textbf{τοπικά ασταθές}. Άλλωστε, αν μετακινήσουμε το εκκρεμές ελαφρά,
 	αυτό θα αρχίσει να κινείται χωρίς να σταματήσει.
-	
+
 	\tcbsubtitle{Λύση για \( (π,0) \)}
 	Ακολουθούμε τη θεωρία. Από τη σχέση \( z = x-x* \) υπολογίζουμε:
 	\begin{align*}
@@ -1846,7 +1846,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
     \[
     \det(sI-A) = 0 \implies s^2 + \gamma s + 1 =0 \xRightarrow{\cdots} s_{1,2} = \frac{-\gamma \pm \sqrt{\gamma^2-4}}{2}
     \]
-    
+
     Οι ιδιοτιμές αυτές είναι πάντα αρνητικές, επομένως το σύστημα είναι τοπικά ευσταθές στο \( (π,0) \).
 \end{exercise}
 
@@ -1905,7 +1905,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		%\[
 		%V(0) = 0
 		%\]
-		
+
 		% Note: The required V(0) = 0 for a positive/negative SEMI-definite function
 		% is not mentioned in the lecture notes, but it is specified on other
 		% textbooks.
@@ -1920,7 +1920,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	x_1 & x_2
 	\end{matrix}\right]^T
 	\]
-	
+
 	Να εξεταστούν οι συναρτήσεις ως προς τα παραπάνω:
 	\begin{align*}
 		V_1(x) &= x_1^2 + x_2^2 \\
@@ -1932,7 +1932,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		και στα υπόλοιπα σημεία είναι θετική. Επομένως είναι \textbf{θετικά ορισμένη}.
 		\item Η \( V_2 \) είναι μηδενική για \( (x_1,x_2) = 0\), όμως είναι μηδενική επιπλέον και για όλα
 		τα \( x= (0,a), \) \quad \( a \neq 0 \). Επομένως \textit{δεν} είναι θετικά ορισμένη.
-		
+
 		Είναι όμως \textbf{θετικά ημιορισμένη}, αφού δεν λαμβάνει
 		αρνητικές τιμές.
 	\end{enumparen}
@@ -1947,19 +1947,19 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\[
 	\dot V = \pd{V^T}{x} \dot x = \pd{V^T}{x} F(x)
 	\]
-	
+
 	Έστω επίσης μία σφαίρα πεπερασμένης ακτίνας \( r \) με
 	κέντρο το \(0\):
 	\[
 	B_r(0) = \left\lbrace x\in \mathbb R^n :\ |x|<r \right\rbrace
 	\]
-	
+
 	Αν υπάρχει \( r > 0 \) τέτοιο ώστε \( V \) \textbf{θετικά ορισμένη}
 	και \( \dot V \) \textbf{αρνητικά ημιορισμένη} στη σφαίρα, τότε το \( x \) είναι τοπικά
 	ευσταθές σημείο ισορροπίας.
-	
+
 	Αν η \( \dot V \) είναι αρνητικά ορισμένη, τότε το σημείο είναι \textbf{ασυμπτωτικά} ευσταθές.
-	
+
 	Η συνάρτηση \( V \) ονομάζεται \textbf{συνάρτηση Lyapunov}.
 \end{theorem}
 
@@ -1993,7 +1993,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\frac{2}{1+x} - x = 0 \implies \frac{2-x(1+x)}{1+x} = 0
 	\implies -x^2 -x +2 = 0 \implies x_{1,2} = -2,\ 1
 	\]
-	
+
 	\begin{itemize}
 		\item Για το \textbf{σημείο ισορροπίας} \( x^* = 1 \), έχουμε τις γνωστές
 		σχέσεις:
@@ -2005,12 +2005,12 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		\[
 		\dot z = \dot x \implies \dot z = \frac{2}{z+2} -z -1
 		\]
-		
+
 		\textbf{Επιλέγουμε} ως \textbf{\textit{υποψήφια} συνάρτηση Lyapunov} την:
 		\[
 		V(z) = \frac{1}{2} z^2
 		\]
-		
+
 		Πρέπει να επιβεβαιώσουμε ότι ικανοποιεί τις συνθήκες για να είναι όντως
 		συνάρτηση Lyapunov. Παραγωγίζουμε:
 		\begin{align*}
@@ -2018,24 +2018,24 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 			 &= \frac{2z}{z+2} - z(z+1) \\
 			&= \frac{2z-(z^2+z)(z+2)}{z+2} \numberthis \label{eq:sec1ex0l}
 		\end{align*}
-		
+
 		Πρέπει να μελετήσουμε το πρόσημο της \( \dot V \) για έναν κύκλο
 		μικρής ακτίνας \( r \) με κέντρο 0, που συμβολίζεται ως \( z \in B_r(0) \).
-		
+
 		Λόγω του όρου \( z+2 \) στον παρονομαστή, πρέπει \( z\neq -2 \). Για να υπάρχει
 		συνέχεια κοντά στο 0, πρέπει \( z+2 > 0 \), άρα ο κύκλος πρέπει να έχει ακτίνα
 		\( r < 2 \).
-		
+
 		Ελέγχουμε το \textit{πρόσημο} του \textbf{αριθμητή} του κλάσματος της \eqref{eq:sec1ex0l}. Ο αριθμητής είναι ίσος με \( -z^3-3z^2 \), άρα θέλουμε:
 		\[
 		-z^3 - 3z^2 < 0 \implies -z^2(z+3) < 0, \quad \text{ που ισχύει για $z$ < 2}.
 		\]
-		
+
 		Επομένως, αφού ισχύουν οι ζητούμενες συνθήκες, το σημείο είναι
 		\textbf{τοπικά ασυμπτωτικά ευσταθές}. Η \textit{τοπική} ευστάθεια εκφράζει πως το
 		σύστημα είναι ευσταθές μόνο όσο η διαταραχή ανήκει στον κύκλο \( B_r(0) \). Αν
 		ξεφύγει από αυτόν, τότε το σύστημα ίσως παρουσιάσει αστάθεια.
-		
+
 		\item Με αντίστοιχο τρόπο, βρίσκουμε ότι και το \( x_1 = -2 \) είναι σημείο
 		τοπικά ασυμπτωτικής ευστάθειας. Η απόδειξη αφήνεται ως άσκηση για το σπίτι.
 	\end{itemize}
@@ -2052,7 +2052,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\tcblower
 	Οι πιο συνηθισμένες και απλές επιλογές συναρτήσεων Lyapunov είναι οι \textit{τετραγωνικές} μορφές. Επίσης, προσέχουμε στην επιλογή μας οι συναρτήσεις
 	να είναι συναρτήσεις όλων των μεταβλητών του συστήματός μας.
-	
+
 	Επομένως, εδώ μπορούμε να \textbf{επιλέξουμε} ως υποψήφια συνάρτηση Lyapunov την εξής:
 	\[
 	V(x_1,x_2) = \frac{1}{2}x_1^2 + \frac{1}{2}x_2^2
@@ -2063,16 +2063,16 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\\ &= x_1x_2 - x_2\sin x_1
 	\\ &= x_2(x_1 - \sin x_1)
 	\end{align*}
-	
+
 	Στην περίπτωση που \( x_1 \simeq 0 \) ισχύει \( \sin x_1 \simeq x_1 \), άρα:
 	\begin{align*}
 		\dot V &= x_2(x_1-x_1) \\ &= 0
 	\end{align*}
-	
+
 	Η συνάρτηση είναι \textbf{αρνητικά ημι-ορισμένη}. Επίσης, λόγω
 	του περιορισμού ότι \( x_1 \) \textit{κοντά} στο 0, το σημείο
 	είναι \textbf{\textit{τοπικά}} ευσταθές.
-	
+
 	\paragraph{}
 	Όμως αυτή η προσέγγιση μας δίνει συμπεράσματα μόνο για την
 	\textit{τοπική} και όχι την \textit{ολική} ευστάθεια του συστήματος.
@@ -2080,9 +2080,9 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	μια συνάρτηση Lyapunov που προέρχεται από τη φυσική
 	σημασία του προβλήματος, και πιο συγκεκριμένα την
 	\textbf{ενέργειά} του.
-	
+
 	\todo{Graph 19}
-	
+
 	Η ενέργεια είναι το άθροισμα της κινητικής και της δυναμικής
 	ενέργειας του συστήματος (το οποίο είναι κανονικοποιημένο όσον
 	αφορά τη μάζα και το μήκος του εκκρεμούς):
@@ -2091,20 +2091,20 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	= \underbrace{1-\cos x_1}_{\mathclap{\text{δυναμική }(mgh)}}
 	+ \underbrace{\frac{1}{2}x_2^2}_{\mathclap{\text{κινητική}}}
 	\]
-	
+
 	Παραγωγίζουμε:
 	\begin{align*}
 		\dot V &= \dot x_1\sin x_1 + x_2\dot x_2 \\
 		&= x_2\sin x_1 - x_2\sin x_1 \\ &= 0
 	\end{align*}
 	και το αποτέλεσμα είναι μηδενικό, δηλαδή η \( \dot V \) είναι αρνητικά ημιορισμένη.
-	
+
 	Το αποτέλεσμα αυτό έχει και φυσική σημασία, αφού εκφράζει
 	μηδενική χρονική παράγωγο ενέργειας, δηλαδή ότι η ενέργεια
 	παραμένει σταθερή και διατηρείται, κάτι γνωστό. Το παραπάνω
 	σύστημα, όπως γνωρίζουμε και από τη φυσική μας εμπειρία, επειδή
 	δεν έχει απόσβεση, θα ταλαντώνεται συνέχεια χωρίς να σταματήσει.
-	
+
 	Πολλές φορές βέβαια δεν θα έχουμε την ευχέρεια να υπολογίσουμε
 	ακριβώς το πρόσημο μιας συνάρτησης, όμως συχνά θα μπορούμε να
 	το βρούμε \textit{κοντά} στο 0, χρησιμοποιώντας \textbf{ανάπτυγμα
@@ -2113,7 +2113,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\begin{align*}
 		\cos x_1 &= \cos(0) +
 		\cancelto{0}{\left(-\sin x_1\middle|_{x_1\to 0}\right)}
-		(x_1 - 0) 
+		(x_1 - 0)
 		+ \frac{1}{2}(x_1-0)^2
 			\cancelto{0}{\left(-\cos x_1\middle|_{x_1\to 0}\right)}
 		\\ &= 1 - \frac{1}{2}x_1^2
@@ -2131,7 +2131,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
  	\[
  	\forall a \in M \implies x(t;a) \in M
  	\]
- 	
+
  	Δηλαδή αν έχουμε αρχική τιμή \( a \), τότε το σύστημα παραμένει
  	στην ίδια περιοχή και δεν ξεφεύγει από αυτήν.
 \end{defn}
@@ -2144,16 +2144,16 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 \begin{theorem}{Θεώρημα LaSalle}{}
 	Έστω \( V \) μια \textbf{τοπικά θετικά ορισμένη} συνάρτηση,
 	τέτοια ώστε σε μία σφαίρα \( \Omega_r \) να ισχύει: \[ \dot V(x) \leq 0,
-	\quad \forall x \in \Omega_r = \left\lbrace 
+	\quad \forall x \in \Omega_r = \left\lbrace
 	x\in\mathbb R^n : V(x) \leq r, r >0
 	 \right\rbrace \]
 	Επίσης, έστω το σύνολο των σημείων όπου η \( \dot V \) μηδενίζεται:
 	\[
 	S = \left\lbrace x \in \Omega_r : \dot V(x) = 0 \right\rbrace
 	\]
-	 
+
 	\todo{Graph 20 wrap right}
-	
+
 	Τότε, καθώς \( t\to \infty \), η λύση του συστήματος θα
 	συγκλίνει στο μεγαλύτερο δυνατό αμετάβλητο υποσύνολο που
 	περιέχεται στον \( S \).
@@ -2165,7 +2165,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		\dot x_1 &= -x_1+x_2 + x_1x_2^3 \\
 		\dot x_2 &= -x_1 -x_1^2x_2^2
 	\end{align*}
-	
+
 	\tcblower
 	Πρώτα βρίσκουμε τα σημεία ισορροπίας. Έχουμε:
 	\begin{align*}
@@ -2177,7 +2177,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		&\implies x_1 = 0
 		\xRightarrow{\dot x_1 = 0} x_2 = 0
 	\end{align*}
-	
+
 	Και ως υποψήφια συνάρτηση Lyapunov επιλέγουμε:
 	\[
 	V(x) = \frac{1}{2}x_1^2 + \frac{1}{2}x_2^2
@@ -2187,22 +2187,22 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		\dot V &= x_1\dot x_1 + x_2\dot x_2 \\ &= -x_1^2 \quad \text{αρνητικά ημιορισμένη}
 	\end{align*}
 	Επομένως το σημείο ισορροπίας \( (0,0) \) είναι \textbf{ολικά ευσταθές}.
-	
+
 	\paragraph{}
 	Εναλλακτικά, μπορούμε να εφαρμόσουμε το \textbf{θεώρημα
 		LaSalle.}
-		
+
 	Βρίσκουμε το σύνολο \( S \):
 	\[
 	S = \left\lbrace  x\in\mathbb R_n : \dot V(x) = 0 \right\rbrace
 	= \left\lbrace x \in \mathbb R^n : x_1 = 0 \right\rbrace
 	\]
-	
+
 	Εντός του \( S \), το \( x \) παίρνει τη μορφή:
 	\begin{align*}
 		\dot x_1 &= x_2 \\ \dot x_2 &= 0
 	\end{align*}
-	
+
 	Δηλαδή τα \textit{αρχικά} σημεία είναι της μορφής \( (x_1,x_2) = (0,a) \). Αν
 	υποθέσουμε \( a > 0 \implies x_2 > 0 \xRightarrow{\dot x_1 = x_2} \dot x_1 > 0 \implies
 	x_1 > 0 \neq 0 \), \footnote{Αφού η παράγωγος $\dot x1$ είναι θετική, αυτό σημαίνει ότι όσο περνάει ο χρόνος, η τιμή του  $x_1$  αυξάνεται και γίνεται μεγαλύτερη του 0.} που σημαίνει ότι
@@ -2211,7 +2211,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\( x \notin S \). Άρα το μέγιστο αμετάβλητο σύνολο αποτελείται από
 	το σημείο
 	\( (0,0) \).
-	
+
 	Επομένως, σύμφωνα με το θεώρημα LaSalle, η λύση του συστήματος στο \( t \to \infty \) θα συγκλίνει στο \( (0,0) \)
 \end{exercise}
 
@@ -2225,12 +2225,12 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 			\draw (0,0) node[circle,inner sep=2pt,fill] {};
 			\draw[very thick] (0,0) -- ++(90:1.5) node[circle,inner sep=2pt,fill=white,draw] {} node[pos=.5] (a) {};
 			\draw[very thick] (0,0) -- ++(70:1.5) node[circle,inner sep=2pt,fill=white,draw] {} node[pos=.5] (b) {};
-			
+
 			\draw[brown,->] (a.center) to[bend left] node[midway,above,xshift=1pt] {$\theta$} (b.center);
 			\end{tikzpicture}
 		\end{center}
 	\end{wrapfigure}
-	
+
 	Δίνεται το σύστημα που αποτελεί απλοποιημένο μοντέλο αναστρεφόμενου εκκρεμούς:
 	\begin{align*}
 		\dot x_1 &= x_2 \\
@@ -2238,12 +2238,12 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\end{align*}
 	όπου \( u \) η \textbf{ροπή που ασκεί ο κινητήρας} στη βάση του εκκρεμούς,
 	\( x_1 \) η γωνία και \( x_2 \) η γωνιακή ταχύτητα.
-	
+
 	Να σχεδιαστεί ελεγκτής για την είσοδο \( u \) που να επιφέρει ισορροπία στην επάνω
 	κατακόρυφη θέση του εκκρεμούς.
-	
+
 	\tcblower
-	
+
 	Έστω \( x = [\begin{matrix}
 	x_1 & x_2
 	\end{matrix}] \) το διάνυσμα μεταβλητών κατάστασης.
@@ -2256,7 +2256,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\end{equation}
 	Φυσικά δεν απαιτείται να γνωρίζουμε από μόνοι μας αυτή τη συνάρτηση, αλλά πρέπει να
 	την έχουμε δει.
-	
+
 	Για τη μελέτη του προσήμου της παραγώγου, επειδή είναι σύνθετο να απαντήσουμε με
 	ακρίβεια, θα χρησιμοποιήσουμε το ανάπτυγμα Taylor. Αρχικά:
 	\begin{align*}
@@ -2271,7 +2271,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	V(x) = \left(a-\frac{1}{2}\right)x_1^2 + \frac{1}{2}x_2^2
 	\]
 	με \( a > \sfrac{1}{2}  \).
-	
+
 	Παραγωγίζοντας την αρχική \( V(x) \) της σχέσης \eqref{eq:sec3ex1lyapunov}, μετά τις πράξεις, προκύπτει:
 	\begin{align*}
 	\dot V &= -\dot x_1 \sin x_1 + 2a \dot x_1 \cos x_1\sin x_1 + x_2\dot x_2
@@ -2280,7 +2280,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\end{align*}
 
 	Σκοπός μου είναι να επιλέξω το \( u \) ώστε η \( \dot V \) να είναι αρνητικά ημιορισμένη, ή, ακόμα καλύτερα, αρνητικά ορισμένη.
-	
+
 	Έτσι, \textit{επιλέγουμε} αυθαίρετα την:
 	\[
 	u = -2a\sin x_1 - x_2\cos x_1
@@ -2289,34 +2289,34 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\[
 	\dot V = -x_2^2\cos^2x_1
 	\]
-	
+
 	Η παραπάνω \( \dot V \) μηδενίζεται και σε σημεία εκτός
 	του \( (0,0) \) (π.χ. \( (1,0) \)). Επομένως είναι αρνητικά
 	\textbf{ημι}ορισμένη. Άρα
 	το \( (0,0) \) είναι \textbf{τοπικά} ευσταθές σημείο
 	ισορροπίας (αφού θεωρήσαμε σημεία κοντά στο 0).
-	
+
 	\paragraph{}
 	Προχωρώντας, θα ψάξουμε αν υπάρχει συνάρτηση \( u \) που να καθιστά το σημείο
 	\textbf{ασυμπτωτικά} ευσταθές.
-	
+
 	Έχουμε το σύνολο των σημείων που μηδενίζουν τη συνάρτηση Lyapunov:
 	\[
 	S = \left\lbrace x \in \omega \subset \mathbb R^2 : \dot V = 0 \right\rbrace
 	= \left\lbrace X \in \Omega \subset \mathbb R^2 : x_2 = 0 \right\rbrace
 	\footnote{Αγνοούμε τα σημεία όπου \( \cos x_1 = 0 \) επειδή βρίσκονται μακριά από το $(0,0)$.}
 	\]
-    
+
     και, για \( x_2=0 \), το σύστημα γίνεται:
     \begin{align*}
     	\dot x_1 &= 0 \quad \text{μηδενίζεται για σημεία $(b,0)$ }\\
     	\dot x_2 &= \sin x_1 - 2a\sin x_1\cos x_1 \quad \text{μηδενίζεται για σημεία $(0,0)$}
     \end{align*}
-    
+
     Το μεγαλύτερο δυνατό αμετάβλητο υποσύνολο του \( S \) είναι το \( (0,0) \), επειδή
     τα σημεία \( (b,0) \) προκαλούν \( \dot x_2 \neq 0 \implies x_2 \neq 0 \implies
     x \notin S \), άρα βγαίνουν εκτός του συνόλου.
-    
+
     Επομένως, από το θεώρημα μεταβλητότητας LaSalle, η λύση του συστήματος μπορεί
     μόνο να συγκλίνει στο \( (0,0) \), άρα η συνάρτηση \( u \) που βρήκαμε παραπάνω
     οδηγεί σε σημείο ισορροπίας \textbf{τοπικής} και \textbf{ασυμπτωτικής} ευστάθειας.
@@ -2332,34 +2332,34 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	xg(x) > 0,\quad \forall x\neq 0,\quad x\in (-a,a)
 	\]
 	Να μελετηθεί η ευστάθεια στα σημεία ισορροπίας του.
-	
+
 	\tcblower
-	
+
 	Πρώτα πρέπει να βρούμε \textit{όλα τα σημεία ισορροπίας}, δηλαδή τα σημεία
 	στα οποία \( g(x) = 0 \). Δίνεται ότι \( g(0) = 0 \), άρα ένα σημείο ισορροπίας
 	είναι το \( (0,0) \). Επίσης δίνεται ότι \( xg(x) > 0 \), άρα \( \forall x \neq 0 \)
 	θα ισχύει \( g(x) > 0 \) ή \( g(x) <0 \), επομένως \( g(x) \neq 0 \). Τελικά,
 	το μοναδικό σημείο ισορροπίας είναι το \( (0,0) \).
-	
+
 	Ως υποψήφια συνάρτηση Lyapunov \textbf{επιλέγουμε} την παρακάτω:
 	\[
 	V(x) = \int_0^x g(y) \dif y
 	\]
-	
+
 	Η συνάρτηση αυτή είναι \textit{θετικά ορισμένη}, επειδή: \begin{inparaenum}[(a)]
 		\item Για \( x>0 \), \( xg(x) > 0 \implies g(x) > 0 \implies \int_{0}^{x} g(y)\dif y > 0\)
 		\item Για \( x<0 \), \( xg(x) > 0 \implies g(x) < 0 \implies \int_{0}^{x} g(y)\dif y > 0 \)
 		\item Για \( x=0 \), \( g(x) = 0 \implies \int_0^x g(y)\dif y = 0 \).
 	\end{inparaenum}
-	
+
 	Για την παράγωγό της ισχύει:
 	\[
 	\dot V = g(x)\dot x = -g^2(x) \text{ αρνητικά ορισμένη}
 	\]
-	
+
 	Επομένως, αφού είναι αρνητικά ορισμένη, το σημείο ισορροπίας είναι \textbf{ασυμπτωτικά ευσταθές}.
 	%Δεν αναφέρουμε πως το σημείο είναι \textit{μόνον τοπικά} ευσταθές, αφού δεν εισάγαμε κάποιον περιορισμό στο πεδίο ορισμού.
-	
+
 	Ως παράδειγμα, θα μπορούσαμε να επιλέξουμε μια \( g(x) \) που να ικανοποιεί τα
 	παραπάνω:
 	\[
@@ -2374,11 +2374,11 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		\dot x_2 &= -a\sin  x_1 - bx_2 \label{sec1ex2m2}
 	\end{align}
 	όπου \( a,b > 0 \), όπου \( x_1 \in \left(-\frac{π}{2},\frac{π}{2}\right) \) με μοναδικό σημείο ισορροπίας το \( (0,0) \).
-	
+
 	Να χαρακτηριστεί η ευστάθεια του σημείου αυτού.
-	
+
 	\tcblower
-	
+
 	\textit{Επιλέγω} ως συνάρτηση Lyapunov (με βάση θεωρία που θα δούμε αργότερα \textemdash~\autoref{sec:linear_lyapunov}):
 	\[
 	V(x) = a\int_{0}^{x_1} \sin z \dif z + \frac{1}{2} x^{\mathrm T} Px
@@ -2401,7 +2401,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 %			\item %TODO A=BB^T
 		\end{enumerate}
 	\end{infobox}
-	
+
 	Πρέπει να επιλέξουμε τα στοιχεία του πίνακα \( P \) έτσι ώστε να είναι θετικά
 	ορισμένος, αφού αυθαίρετα τον τοποθετήσαμε στη συνάρτηση Lyapunov:
 	\[
@@ -2421,7 +2421,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\begin{align*}
 		P_{11} &> 0 \text{ και} \\ P_{11}P_{22} - P_{12}^2 &> 0
 	\end{align*}
-	
+
 	Αντικαθιστώντας στη συνάρτηση Lyapunov, παραγωγίζοντας και εκτελώντας πράξεις, έχουμε:
 	\begin{equation}
 	\dot V =
@@ -2429,18 +2429,18 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	+ \underbrace{(P_{12}-bP_{22})x_2^2}_{<0} -\underbrace{aP_{12}x_1\sin x_1}_{>0}
 	\label{sec1ex2vdot}
 	\end{equation}
-	
+
 	Για να ικανοποιείται το θεώρημα Lyapunov, πρέπει να ελέγξουμε το πρόσημο της
 	παραγώγου αυτής. Για αυτό, πρέπει να φροντίσουμε ώστε τα πρόσημα όλων των
 	όρων στην έκφραση \eqref{sec1ex2vdot} να είναι \textit{αρνητικά}.
-	
+
 	Για να το πετύχουμε αυτό, \textit{επιλέγουμε} τις τιμές των σταθερών
 	\( P_{11},P_{12},P_{22} \)! Φροντίζουμε ώστε οι όροι \( ax_2\sin x_1(1-P_{22}) \)
 	και \( (P_{11}-bP_{12})x_1x_2 \) να \textit{μηδενιστούν}, επειδή το πρόσημό τους
 	εναλλάσσεται ανάλογα με τις τιμές των \( x \). Αντίθετα, στους όρους
 	\( (P_{12}-bP_{22})x_2^2 \) και \( aP_{12}x_1\sin x_1 \) το πρόσημο των όρων
 	που περιλαμβάνουν το \( x \) παραμένει σταθερό.
-	
+
 	Για αυτό, \textbf{επιλέγουμε} για τους μηδενικούς όρους:
 	\begin{itemize}
 		\item \( \boxed{P_{22} = 1 }\)
@@ -2455,13 +2455,13 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\[
 	\boxed{0 < P_{12} < b}
 	\]
-	
+
 	Ταυτόχρονα, πρέπει να ικανοποιούνται οι σχέσεις \eqref{sec1ex2m1} και \eqref{sec1ex2m2}, από τις οποίες προκύπτει η συνθήκη:
 	\[
 	\eqref{sec1ex2m2} \implies P_{11} > P_{12}^2
 	\implies \boxed{bP_{12} > P_{12}^2}
 	\]
-	
+
 	Ανάλογα με την τιμή του \( b \), μπορούμε να επιλέξουμε κατάλληλη τιμή των
 	σταθερών \( P \) ώστε να ικανοποιούνται οι 4 παραπάνω συνθήκες.
 \end{exercise}
@@ -2474,7 +2474,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		\dot x_2 &= -x_1+x_2 \left( 1-x_1^2 - x_2^2 \right)
 		\label{sec1ex3diff2}
 	\end{align}
-	
+
 	Να μελετηθεί η ευστάθεια των σημείων ισορροπίας.
 	\tcblower
 	Στο συγκεκριμένο παράδειγμα, χρειάζεται να λάβουμε περιπτώσεις για τα σημεία ισορροπίας:
@@ -2494,9 +2494,9 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		\item Ομοίως για \( (a,0) \) \todo{Πράξεις}
 		\item Για \( (0,0) \), οι συναρτήσεις στα δεξιά μέλη είναι προφανώς 0.
 	\end{itemize}
-	
+
 	Άρα το \( (0,0) \) είναι το μοναδικό σημείο ισορροπίας.
-	
+
 	\textbf{Επιλέγουμε} ως συνάρτηση Lyapunov την:
 	\[
 	V = \frac{1}{2} x_1^2 + \frac{1}{2} x_2^2
@@ -2506,33 +2506,33 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\dot V = x_1\dot x_1 + x_2\dot x_2
 	= (x_1^2+x_2^2)\left(1-x_1^2-x_2^2\right)
 	\]
-	
+
 	Εδώ επιλέγουμε το μοναδιαίο κυκλικό δίσκο ως πεδίο εφαρμογής του θεωρήματος Lyapunov, αφού
 	παρατηρήσουμε τον όρο \( 1-x_1^2-x_2^2 \) που επηρεάζει το πρόσημο της συνάρτησης:
 	\[
 	B_1(0) = \left\lbrace x\in\mathbb R^2 : x_1^2+x_2^2 \leq 1 \right\rbrace
 	\]
-	
+
 	\todo{Graph 19}
-	
+
 	Λαμβάνουμε περιπτώσεις για τις θέσεις των σημείων σε σχέση με τον κυκλικό δίσκο:
 	\begin{itemize}
 		\item \( x \notin B_1(0) \implies \dot V < 0 \)
-		
+
 		Αυτό σημαίνει ότι, ξεκινώντας εκτός του κύκλου, καταφτάνουμε στον μοναδιαίο
 		κύκλο
 		\item \( x \in B_1(0) - \left\lbrace x \in \mathbb R^2: x_1^2+x_2^2 = 1 \right\rbrace \implies \dot V > 0 \)
-		
+
 		Ξεκινώντας εντός του δίσκου, παραμένουμε μέσα σε αυτόν, φτάνοντας στον
 		εξωτερικό
-		\item \( x \in \left\lbrace x \in \mathbb R^2 : x_1^2+x_2^2 = 1 \right\rbrace 
+		\item \( x \in \left\lbrace x \in \mathbb R^2 : x_1^2+x_2^2 = 1 \right\rbrace
 		\implies \dot V = 0
 		\)
-		
+
 		Επάνω στον κύκλο, η συνάρτηση Lyapunov είναι μηδέν, άρα η κατάσταση του
 		συστήματος δεν ξεφεύγει από αυτόν τον οριακό κύκλο.
 	\end{itemize}
-	
+
 	Το σημείο ισορροπίας είναι \textbf{ασταθές}. Σύμφωνα με τον ορισμό της ευστάθειας,
 	\( \forall \varepsilon > 0 \exists \delta(\epsilon) :
 	|x_0-x^*| < \delta \implies |x(t;x_0)-x^*| < \epsilon \). Αν διαλέξουμε ένα
@@ -2604,10 +2604,10 @@ P = P^{\mathrm{T}}
 	0 & 1 \\ -1 & -2
 	\end{matrix}\right]
 	\]
-	
+
 	Να μελετηθεί η ευστάθειά του.
 	\tcblower
-	Πρέπει να βρούμε τον πίνακα \( P = P^{\mathrm T} 
+	Πρέπει να βρούμε τον πίνακα \( P = P^{\mathrm T}
 	= \left[\begin{matrix}
 	P_{11} & P_{12} \\ P_{12} & P_{22}
 	\end{matrix}\right]
@@ -2617,7 +2617,7 @@ P = P^{\mathrm{T}}
 	Q = I_2
 	\]
 	δηλαδή ο μοναδιαίος πίνακας.
-	
+
 	Τοποθετούμε τις τιμές των πινάκων στην εξίσωση \eqref{eq:lyapunov_linear} του θεωρήματος \ref{th:lyapunov_linear}:
 	\[
 	\left[\begin{matrix}
@@ -2629,18 +2629,18 @@ P = P^{\mathrm{T}}
 	\end{matrix}
 	\right]
 	\]
-	
+
 	Λύνοντας αυτό το (σύστημα) εξισώσεων, μετά από μερικές πράξεις,
 	προκύπτει:
 	\[
 	P = \left[
 	\begin{matrix}
 	\sfrac{3}{2}  & \sfrac{1}{2}  \\
-	\sfrac{1}{2} & \sfrac{1}{2} 
+	\sfrac{1}{2} & \sfrac{1}{2}
 	\end{matrix}
 	\right] \text{ θετικά ορισμένος}
 	\]
-	
+
 	Αφού ο πίνακας \( P \) είναι \textbf{θετικά ορισμένος}, όπως προκύψει
 	αν τον ελέγξουμε με οποιοδήποτε κριτήριο, το σύστημα είναι
 	\textbf{ασυμπτωτικά ευσταθές}.
@@ -2659,22 +2659,22 @@ P = P^{\mathrm{T}}
 	αφού εύκολα μπορούμε να βρούμε τις ιδιοτιμές του και να διαπιστώσουμε πως έχουν
 	αρνητικό πραγματικό μέρος,
     αλλά θα το λύσουμε με τη μέθοδο κατά Lyapunov.
-    
+
     \begin{itemize}
     \item	Θα δοκιμάσουμε να λειτουργήσουμε \textbf{ανάποδα} για ευκολία:
     	Δηλαδή θα θεωρήσουμε έναν \textit{δεδομένο} \( P=I_2 \), και
     	θα βρούμε τον \( Q \) από τη σχέση.
-    	
+
     	Έστω ότι \( P = I_2 \). Από την εξίσωση \eqref{eq:lyapunov_linear}
     	προκύπτει εύκολα \( Q = \left[\begin{matrix}
     	2 & -3 \\ -3 & 2
     	\end{matrix}\right] \).
-    	
+
     	Ο παραπάνω \( Q \) έχει μία θετική και μία \textit{αρνητική}
     	ιδιοτιμή, επομένως \textit{δεν} είναι θετικά ορισμένος! Άρα
     	δεν μπορούμε να εξάγουμε κανένα συμπέρασμα από την εφαρμογή
     	του Θεωρήματος \ref{th:lyapunov_linear}.
-    	
+
     	Αναγκαστικά πρέπει \textbf{πρώτα} να επιλέξουμε \textbf{οποιονδήποτε} συμμετρικό και θετικά ορισμένο πίνακα
     	\( Q \), και μετά, μέσω της \eqref{eq:lyapunov_linear}, να
     	ελέγξουμε αν το σύστημα είναι ασυμπτωτικά ευσταθές ή όχι.
@@ -2686,17 +2686,17 @@ P = P^{\mathrm{T}}
 	\[
 	\dot x = Ax + Bu
 	\]
-	
+
 	Να επιλεγεί ένας ελεγτής \( u \) έτσι ώστε το σύστημα να είναι
 	ασυμπτωτικά ευσταθές όταν κλείνει ο βρόχος. Να γίνει το ίδιο και
 	όταν υπάρχουν διαταραχές.
-	
+
 	\tcblower
 	\textbf{Επιλέγουμε} τον απλό ελεγκτή ανάδρασης:
 	\[
 	\underline{u = -kx}
 	\]
-	
+
 	Τότε το σύστημα γίνεται, από τη δοθείσα σχέση:
 	\[
 	\dot x = Ax - Bkx \implies
@@ -2707,23 +2707,23 @@ P = P^{\mathrm{T}}
 	\[
 	\dot x = \tilde A x
 	\]
-	
+
 	Από το \autoref{th:lyapunov_linear}, ψάχνουμε έναν πίνακα \( Q \)
 	για τον οποίο:
 	\begin{align*}
 		Q &= Q^{\mathrm T} \text{ θετικά ορισμένος} \\
 		-Q &= A^{\mathrm T}P + PA
 	\end{align*}
-	
+
 	\tcbsubtitle{\textbf{Λύση} με διαταραχές}
 	Το σύστημά μας με διαταραχή \( d(t) \) θα γίνει:
 	\[
 	\dot x = Ax+Bu+d(t)
 	\]
-	όπου οι διαταραχές έχουν ένα μέγιστο πλάτος \( \left|d(t)\right| 
+	όπου οι διαταραχές έχουν ένα μέγιστο πλάτος \( \left|d(t)\right|
 	\leq \bar d
 	\)
-	
+
 	Τότε η παράγωγος της συνάρτησης Lyapunov θα γίνει:
 	\begin{align*}
 		\dot V &=
@@ -2741,9 +2741,9 @@ P = P^{\mathrm{T}}
 		+x^{\mathrm{T}}P d(t)
 		\\ &= x^{\mathrm{T}}(A^{\mathrm{T}} P + PA)x
 		+ d^{\mathrm{T}}(t) P x + x^{\mathrm{T}}P d(t)
-		\\ &= 
+		\\ &=
 		\underbrace{-x^{\mathrm{T}} Q x}_{\leq\ -\lambda_{\min}(Q)|x|^2}
-		+ \underbrace{d^{\mathrm T}(t)Px}_{\leq\ 
+		+ \underbrace{d^{\mathrm T}(t)Px}_{\leq\
 			\left\lvert d^{\mathrm{T}}(t) \right\rvert |x|\left\lVert P \right\rVert}
 		+ \underbrace{x^{\mathrm{T}} P d(t)}_{\leq\  |x^{\mathrm{T}}|\left\lVert P \right\rVert \left\lvert d(t) \right\rvert}
 		\\ &\leq
@@ -2759,23 +2759,23 @@ P = P^{\mathrm{T}}
 	όπου \( \lambda_{\min}(Q) \) η \textit{ελάχιστη ιδιοτιμή} του
 	πίνακα \( Q \), και \( \left\lVert P \right\rVert \) η
 	\textbf{νόρμα} του πίνακα \( P \).
-	
+
 	Θέλουμε \( \dot V \) να είναι αρνητικά ορισμένη για την εφαρμογή του θεωρήματος Lyapunov,
 	δηλαδή:
 	\[
 	|x| > \frac{2\left\lVert P \right\rVert \bar d}{\lambda_{\min}(Q)}
 	\]
-	
+
 	Με την πάροδο του χρόνου, η \( |x| \) θα αποκτά τη μορφή
 	\todo{Graph 21}.\todo{explain better}
-	
+
 	Εδώ διαπιστώνουμε ότι το σύστημα με την πάροδο του χρόνου παραμένει στην ευστάθεια, αλλά δεν
 	είναι απαραίτητα και \textit{ασυμπτωτικά} ευσταθές. Μόλις το
 	\( |x| \) ξεπεράσει την τιμή \( \frac{\left\lVert P \right\rVert \bar d}{\lambda_{\min}(Q)} \), θα παραμείνει αναγκαστικά εντός του
 	εύρους της. Για να ρυθμίσουμε ακριβώς το εύρος αυτό, πρέπει να
 	επιλέξουμε τους όρους του κλάσματος \( 2\frac{\left\lVert P \right\rVert}{\lambda_{\min}(Q)} \), κάτι που είναι δύσκολο, λόγω
 	της εξάρτησης του \( P \) από το \( Q \).
-	
+
 	\todo{add defn reference}
 	Να σημειωθεί βέβαια πως η ευστάθεια που παρουσιάζει το σύστημα εδώ δεν συμφωνεί με τον ορισμό που έχουμε δώσει παραπάνω (κατά Lyapunov),
 	αλλά εκφράζει πως θα έχουμε πεπερασμένη είσοδο με
@@ -2813,13 +2813,13 @@ y(t;\ x_0,u)
 		+ by\left(t; x_2(0),\ 0\right)
 		\]
 		%\end{itemize}
-		
+
 		\item \textbf{Ιδιότητα της ομογένειας}%
 		\[
 		y\left(τ;\ ax_0,\gamma u\right)
 		= ay(t;\ x_0,\ 0) + \gamma y(t;\ 0,\ u)
 		\]
-		
+
 		\item \textbf{Ιδιότητα της επαλληλίας} ως προς την είσοδο.
 		\[
 		y\left(t;\ 0,\ \zeta u_1+\xi u_2\right)
@@ -2884,7 +2884,7 @@ x(t) = e^{At} x(0)
 	Έστω το σύστημα \( \ddot q = u, y=q \) με μεταβλητές κατάστασης
 	\( x_1=q \), \( x_2 = \dot q \). Να βρεθεί η έξοδός του.
 	\tcblower
-	
+
 	Όπως έχει οριστεί το σύστημα, φαίνεται ότι:
 	\begin{align*}
 		\dot x_1 &= x_2\\
@@ -2902,14 +2902,14 @@ x(t) = e^{At} x(0)
 		1 & 0
 		\end{matrix}\right] x
 	\end{align*}
-	
+
 	Για να υπολογίσουμε την έξοδο του συστήματος, θα εκμεταλλευτούμε το γεγονός ότι
 	\( x(t) = e^{At} x(0) \). Πρώτα επομένως πρέπει να υπολογίσουμε τον πίνακα μετάβασης
 	\( e^{At} \):
 	\[
 	e^{At} = I + At + \frac{1}{2} A^2t^2 + \frac{1}{3!} A^3t^3 + \dots
 	\]
-	
+
 	Ισχύει:
 	\[
 	A^2 = AA = \left[\begin{matrix}
@@ -2919,7 +2919,7 @@ x(t) = e^{At} x(0)
 	\end{matrix}\right] = 0
 	\]
 	άρα \( A^3 = A^2 A \), \( A^4 = 0,\ \dots \)
-	
+
 	Επομένως:
 	\[
 	e^{At} = I + At = \left[\begin{matrix}
@@ -2930,7 +2930,7 @@ x(t) = e^{At} x(0)
 	1 & t \\ 0 & 1
 	\end{matrix}\right]
 	\]
-	
+
 	Άρα τελικά:
 	\[
 	x(t) = \left[\begin{matrix}
@@ -2944,7 +2944,7 @@ x(t) = e^{At} x(0)
 		y = x_1(t) &= x_1(0) + tx_2(0)\\
 		x_2(t) &= x_2(0)
 	\end{align*}
-	
+
 \end{exercise}
 
 \subsubsection{Πώς βρίσκουμε πίνακα μετάβασης;}
@@ -3056,7 +3056,7 @@ x(t) = e^{At} \sum_{i=1}^{n} a_iv_i
 \paragraph{Σε μιγαδικές ιδιοτιμές}
 Αν έχουμε \textbf{μιγαδικές} ιδιοτιμές, αυτές θα έχουν τη μορφή:
 \[
-λ = σ \pm j\omega 
+λ = σ \pm j\omega
 \]
 και το ιδιοδιάνυσμα θα έχει τη μορφή:
 \[
@@ -3139,34 +3139,34 @@ z = Tx \qquad \implies x=T^{-1} z
 
 \begin{exercise}
 	Δίνεται το μηχανικό σύστημα:
-	
+
 	\begin{circuitikz}
 		\fill[postaction={decorate},pattern=north east lines] (0,3) rectangle (-0.5,-0.5) rectangle (10,0);
 		\fill[postaction={decorate},pattern=north east lines] (10,2.5) rectangle (11,1);
-		
+
 		\draw (2,0) rectangle ++(2,2) node[midway] {$m$} node[midway] (m2) {};
 		\draw (6,0) rectangle ++(2,2) node[midway] {$m$} node[midway] (m1) {};
-		
+
 		\draw (2,1.6) to[damper,l_=$c$,invert] ++(-2,0);
 		\draw (2,0.4) to[spring,invert,l_=\raisebox{-1.5ex}{$k$}] ++(-2,0);
 		\draw (6,1) to[spring,invert,l_=\raisebox{-1.5ex}{$k$}] ++(-2,0);
-		
+
 		\draw (8,1.8) to[damper,l^=$c$] ++(2,0);
 		\draw (8,1.2) to[spring,l_=\raisebox{1.5ex}{$k$}] ++(2,0);
-		
+
 		\draw[thick,->] (8,0.4) -- ++(2.5,0) node[right] {$u$};
-		
+
 		\draw[thick] (0,3) |- (10,0);
 		\draw[thick] (10,2.5) -- (10,1);
-		
+
 		\draw[->] (m2) ++ (0,1.4) |- ++(2,0.7) node[above,pos=.75,gray] {$q_1$};
 		\draw[->] (m1) ++ (0,1.4) |- ++(2,0.7) node[above,pos=.75,gray] {$q_2$};
 	\end{circuitikz}
-	
+
 	Να γραφούν οι εξισώσεις κατάστασής του.
-	
+
 	\tcblower
-	
+
 	Για να βρούμε τις εξισώσεις κατάστασης, πρέπει πρώτα να βρούμε τις
 	διαφορικές εξισώσεις του συστήματος. Για κάθε μάζα έχουμε:
 	\begin{align*}
@@ -3181,13 +3181,13 @@ z = Tx \qquad \implies x=T^{-1} z
 	\ddot q_2 &= -\frac{k}{m}(q_2-q_1) - \frac{k}{m}q_2 -\frac{c}{m}\dot q_2 + \frac{1}{m}u
 	\label{eq:sec4ex1b}
 	\end{align}
-	
+
 	Έχουμε σύστημα \( 2+2=4 \)\textsuperscript{ης} τάξης, και επιλέγουμε,
 	με βάση προηγούμενη θεωρία, τις μεταβλητές κατάστασης ως εξής:
 	\[
 	x_1=q_1,\quad x_2=q_2,\quad x_3 = \dot q_1,\quad x_4 = \dot q_2
 	\]
-	
+
 	Μετά από πράξεις, ο πίνακας των μεταβλητών κατάστασης του συστήματος γίνεται:
 	\[
 	\dot x = \left[\begin{matrix}
@@ -3201,7 +3201,7 @@ z = Tx \qquad \implies x=T^{-1} z
 	0\\ 0\\ 0 \\ \frac{1}{m}
 	\end{matrix}\right]u
 	\]
-	
+
 	Οι \textbf{εξισώσεις εξόδου} του συστήματος πρέπει ουσιαστικά να δηλώνουν τις θέσεις των δύο σωμάτων, δηλαδή τις μεταβλητές κατάστασης
 	\( x_1 \) και \( x_2 \):
 	\[
@@ -3209,12 +3209,12 @@ z = Tx \qquad \implies x=T^{-1} z
 	1 & 1 & 0 & 0
 	\end{matrix}\right]x
 	\]
-	
+
 	\paragraph{}
 	Αν μας ζητηθεί να \textbf{λύσουμε} το παραπάνω σύστημα, παρατηρούμε πως,
 	αν και είναι γραμμικό, είναι 4\textsuperscript{ης} τάξης. Αυτό σημαίνει
 	πως θα δυσκολευτούμε σημαντικά να το λύσουμε.
-	
+
 	Για αυτό, κάνουμε μια διαφορετική επιλογή μεταβλητών κατάστασης, ως
 	εξής:
 	\[
@@ -3235,7 +3235,7 @@ z = Tx \qquad \implies x=T^{-1} z
 	\]
 	όπως προκύπτει από πρόσθεση και αφαίρεση κατά μέλη των
 	\eqref{eq:sec4ex1a} και \eqref{eq:sec4ex1b}.
-	
+
 	Τότε, οι εξισώσεις κατάστασης του συστήματος, όπως προκύπτουν
 	από τις παραπάνω μεταβλητές, είναι:
 	\[
@@ -3243,13 +3243,13 @@ z = Tx \qquad \implies x=T^{-1} z
 	0 & 1 & 0 & 0\\
 	\sfrac{-k}{m} & \sfrac{-c}{m} & 0 & 0\\
 	0 & 0 & 0 & 1\\
-	0 & 0 & \sfrac{-3k}{m} & \sfrac{-c}{m} 
+	0 & 0 & \sfrac{-3k}{m} & \sfrac{-c}{m}
 	\end{matrix}\right]z + \left[\begin{matrix}
-	0 \\ \sfrac{1}{2m} \\ 0 \\ \sfrac{-1}{2m} 
+	0 \\ \sfrac{1}{2m} \\ 0 \\ \sfrac{-1}{2m}
 	\end{matrix}\right]u
 	\]
 	\todo{Matrix what rows/cols}
-	
+
 	Το σύστημα αυτό είναι αρκετά πιο απλό από το προηγούμενο. Πράγματι,
 	αυτό μπορεί να χωριστεί σε δύο ανεξάρτητα (\textbf{αποσυζευγμένα})
 	συστήματα \( 2\times2 \):
@@ -3257,27 +3257,27 @@ z = Tx \qquad \implies x=T^{-1} z
 		\left[\begin{matrix}
 		\dot z_1\\ \dot z_2
 		\end{matrix}\right] &= \left[\begin{matrix}
-		0 & 1 \\ \sfrac{-k}{m}  & \sfrac{-c}{m} 
+		0 & 1 \\ \sfrac{-k}{m}  & \sfrac{-c}{m}
 		\end{matrix}\right]\left[\begin{matrix}
 		z_1\\z_2
 		\end{matrix}\right] + \left[\begin{matrix}
-		0 \\ \sfrac{1}{2m} 
+		0 \\ \sfrac{1}{2m}
 		\end{matrix}\right]\left[\begin{matrix}
 		u_1 \\ u_2
 		\end{matrix}\right] \\
 		\left[\begin{matrix}
 		\dot z_3\\ \dot z_4
 		\end{matrix}\right] &= \left[\begin{matrix}
-		0 & 1 \\ \sfrac{-3k}{m}  & \sfrac{-c}{m} 
+		0 & 1 \\ \sfrac{-3k}{m}  & \sfrac{-c}{m}
 		\end{matrix}\right]\left[\begin{matrix}
 		z_3\\z_4
 		\end{matrix}\right] + \left[\begin{matrix}
-		0 \\ \sfrac{-1}{2m} 
+		0 \\ \sfrac{-1}{2m}
 		\end{matrix}\right]\left[\begin{matrix}
 		u_3 \\ u_4
 		\end{matrix}\right]
 	\end{align*}
-	
+
 	Βέβαια, αφού βρούμε τις τιμές των \( z \), θα πρέπει να υπολογιστεί
 	η έξοδος του συστήματος \( q_1 \) και \( q_2 \), ή να βρεθεί
 	ένας μετασχηματισμός ως προς \( x \). Συγκρίνοντας τις εξισώσεις
@@ -3305,7 +3305,7 @@ z = Tx \qquad \implies x=T^{-1} z
 	x_1 \\ x_2 \\ x_3 \\ x_4
 	\end{matrix}\right]
 	\]
-	
+
 	Πρέπει να ελέγξουμε αν ο μετασχηματισμός είναι ομογενής προτού
 	τον εφαρμόσουμε (\autoref{sec:linear_varmod}). Ο συγκεκριμένος πίνακας \( T \) είναι αντιστρέψιμος,
 	επομένως ο μετασχηματισμός έχει νόημα.
@@ -3416,14 +3416,14 @@ M_0 = -CA^{-1}B + D
 	\dot x = c_0 + c_1 x + c_2 x^2 + u,\ c_0 \neq 0
 	\]
 	Να γραμμικοποιηθεί γύρω από το \( (x,u) = (0,0) \)
-	
+
 	\tcblower
-	
+
 	Στο παραπάνω σύστημα παρατηρούμε ότι το \( (0,0) \) \textbf{δεν} είναι
 	σημείο ισορροπίας, αφού \( F(x,u) = \left. \dot x \right|_{{x=0}\atop{u=0}}
 	= c_0 \neq 0 \). Επομένως δεν μπορεί να εφαρμοστεί η μεθοδολογία
 	του \ref{sec:linear_linearization_point} (\nameref{sec:linear_linearization_point}).
-	
+
 	Μπορούμε όμως, για αρκετά μικρή είσοδο \( u \simeq 0 \) και μεταβλητή
 	κατάστασης \( x \simeq 0 \), να θεωρήσουμε πως ο όρος του τετραγώνου
 	γίνεται αρκετά μικρός και φεύγει:
@@ -3434,12 +3434,12 @@ M_0 = -CA^{-1}B + D
 	\[
 	\dot x = c_0 + c_1 x
 	\]
-	
+
 	Το \( \dot x = c_0 + c_1 x \) όμως \textbf{δεν} είναι γραμμικό σύστημα!
 	Αυτό συμβαίνει λόγω του σταθερού όρου \( c_0 \neq 0 \), ο οποίος δεν
 	ικανοποιεί ταυτόχρονα τις ιδιότητες της επαλληλίας και της ομογένειας.
 	\todo{which one is bad?}
-	
+
 	Επομένως το παραπάνω σύστημα δεν μπορεί να γραμμικοποιηθεί γύρω από
 	το \( (0,0) \) όπως ζητείται.
 \end{exercise}
@@ -3449,12 +3449,12 @@ M_0 = -CA^{-1}B + D
 	\( v \), με αυτεπαγωγή \( L \) και ωμική αντίσταση των τυλιγμάτων
 	\( R \). Σε απόσταση \( x \) από αυτήν βρίσκεται μια σφαίρα μάζας
 	\( m \).
-	
+
     \begin{tikzpicture}[american voltages,scale=.7]
     % Source: https://tex.stackexchange.com/a/32313
-    
+
     \begin{scope}[rotate=90]
-    
+
     % Define a formula for the coil.
     % This is what the numbers mean:
     % 0.3 ... how far the rings are apart
@@ -3464,16 +3464,16 @@ M_0 = -CA^{-1}B + D
     	{0.55 * (2*#1 + \t) + 0.4*sin(\t * pi r))},
     	{1.5 * cos(\t * pi r)}
     }
-    
+
     % Draw the part of the coil behind the rectangle
     \foreach \n in {0,1,...,5} {
     	\draw[domain={0:1},smooth,variable=\t,samples=15]
-    	plot (\coil{\n}); 
+    	plot (\coil{\n});
     }
-    
+
     % Draw the rectangle
     \filldraw[fill=white] (-0.5,-1) rectangle (7,1);
-    
+
     % Draw the part of the coil in front of the rectangle
     \foreach \n in {0,1,...,5} {
     	\draw[domain={1:2},smooth,variable=\t,samples=15,
@@ -3481,9 +3481,9 @@ M_0 = -CA^{-1}B + D
     	]
     	plot (\coil{\n});
     }
-    
+
     \end{scope}
-    
+
     \draw[	postaction={
     	decorate,
     	decoration={
@@ -3494,7 +3494,7 @@ M_0 = -CA^{-1}B + D
     		mark=at position 0.5 with {\node[above]{$i$};}
     	}
     }] plot [smooth] coordinates {(-1.5,6.6) (-1.8,7) (-3,7)} (-3,7) node[fill,circle,inner sep=1pt] {};
-    
+
     \draw[	postaction={
     	decorate,
     	decoration={
@@ -3504,40 +3504,40 @@ M_0 = -CA^{-1}B + D
     		mark=at position 0.5 with {\arrow{>}}
     	}
     }] plot [smooth] coordinates {(-1.5,0) (-1.8,-0.6) (-3,-0.7)} (-3,-0.7) node[fill,circle,inner sep=1pt] {};
-    
+
     \draw (-3,7) to[open,v=$V$] (-3,-0.7);
-    
+
     \draw (2, 3.5) node[right] {$L,\ R$};
-    
+
     \draw[very thick,gray,->] (4,5) -- (4,2) node[near end,right] {};
-    
+
     \shade[ball color=blue,thick,blue,draw=black] (0,-2.5) circle (0.7cm);
-    
+
     \draw[blue,opacity=.5] (0.7,-2.5) -- ++(0.7,0);
     \draw[blue,opacity=.5] (0.7,-0.5) -- ++(0.7,0);
     \draw[<->,blue,opacity=.5] (0.7+0.35,-2.4) -- (0.7+0.35,-0.6) node[midway,fill=white,opacity=1] {$x$};
-    
-    
-    
+
+
+
     \end{tikzpicture}
-	
+
 	Ζητείται να σχεδιαστεί η είσοδος τάσης \( u \) ώστε η σφαίρα να παραμένει σε
 	σταθερή απόσταση \( x^* \) από τον ηλεκτρομαγνήτη.
-	
+
 	Η δύναμη είναι ανάλογη του τετραγώνου του ρεύματος
 	\( i^2 \), και αντιστρόφως
 	ανάλογη της απόστασης \( x \).
-	
+
 	\tcblower
-	
+
 	Οι δυνάμεις που ασκούνται επάνω στη μάζα είναι το βάρος \( mg \) λόγω
 	της βαρύτητας, και η δύναμη \( F \) που ασκείται από τον ηλεκτρομαγνήτη.
-	
+
 	\begin{tikzpicture}[american voltages,scale=.5]
 	% Source: https://tex.stackexchange.com/a/32313
-	
+
 	\begin{scope}[rotate=90]
-	
+
 	% Define a formula for the coil.
 	% This is what the numbers mean:
 	% 0.3 ... how far the rings are apart
@@ -3547,16 +3547,16 @@ M_0 = -CA^{-1}B + D
 		{0.55 * (2*#1 + \t) + 0.4*sin(\t * pi r))},
 		{1.5 * cos(\t * pi r)}
 	}
-	
+
 	% Draw the part of the coil behind the rectangle
 	\foreach \n in {0,1,...,5} {
 		\draw[domain={0:1},smooth,variable=\t,samples=15]
-		plot (\coil{\n}); 
+		plot (\coil{\n});
 	}
-	
+
 	% Draw the rectangle
 	\filldraw[fill=white] (-0.5,-1) rectangle (7,1);
-	
+
 	% Draw the part of the coil in front of the rectangle
 	\foreach \n in {0,1,...,5} {
 		\draw[domain={1:2},smooth,variable=\t,samples=15,
@@ -3564,9 +3564,9 @@ M_0 = -CA^{-1}B + D
 		]
 		plot (\coil{\n});
 	}
-	
+
 	\end{scope}
-	
+
 	\draw[	postaction={
 		decorate,
 		decoration={
@@ -3577,7 +3577,7 @@ M_0 = -CA^{-1}B + D
 			mark=at position 0.5 with {\node[above]{$i$};}
 		}
 	}] plot [smooth] coordinates {(-1.5,6.6) (-1.8,7) (-3,7)} (-3,7) node[fill,circle,inner sep=1pt] {};
-	
+
 	\draw[	postaction={
 		decorate,
 		decoration={
@@ -3587,37 +3587,37 @@ M_0 = -CA^{-1}B + D
 			mark=at position 0.5 with {\arrow{>}}
 		}
 	}] plot [smooth] coordinates {(-1.5,0) (-1.8,-0.6) (-3,-0.7)} (-3,-0.7) node[fill,circle,inner sep=1pt] {};
-	
+
 	\draw (-3,7) to[open,v=$V$] (-3,-0.7);
-	
+
 	\draw (2, 3.5) node[right] {$L,\ R$};
-	
+
 	\draw[->,red!50!brown, opacity=.8, thick] (0,-2.5) -- ++ (0,1.4) node[right] {$F$};
 	\draw[->,red!30!brown, opacity=.8, thick] (0,-2.5) -- ++ (0,-1.4) node[right] {$mg$};
-	
+
 	\draw[very thick,gray,->] (4,5) -- (4,2) node[near end,right] {};
-	
+
 	\shade[ball color=blue,thick,blue,draw=black] (0,-2.5) circle (0.7cm);
-	
+
 	\draw[blue,opacity=.5] (0.7,-2.5) -- ++(0.7,0);
 	\draw[blue,opacity=.5] (0.7,-0.5) -- ++(0.7,0);
 	\draw[<->,blue,opacity=.5] (0.7+0.35,-2.4) -- (0.7+0.35,-0.6) node[midway,fill=white,opacity=1] {$x$};
-	
-	
-	
+
+
+
 	\end{tikzpicture}
-	
+
 	Σύμφωνα με την εκφώνηση, η \( F \) δίνεται από τον τύπο (μαζί με την
 	σταθερά αναλογίας \( k \)):
 	\[
 	F = k\frac{i^2}{x}
 	\]
-	
+
 	Σκοπός είναι ο σχεδιασμός ενός συστήματος που θα διατηρεί το \( x \)
 	σε σταθερή τιμή, έτσι ώστε να μην φεύγει από το πεδίο του ηλεκτρομαγνήτη
 	η σφαίρα. Αυτήν τη στιγμή δεν θα λύσουμε πλήρως την άσκηση, αλλά θα
 	φτάσουμε μέχρι ένα μεσαίο σημείο.
-	
+
 	Οι διαφορικές εξισώσεις του συστήματος, όπως προκύπτουν από το
 	μηχανικό και το ηλεκτρικό κομμάτι του, είναι αντίστοιχα:
 	\begin{gather*}
@@ -3626,7 +3626,7 @@ M_0 = -CA^{-1}B + D
 	\end{gather*}
 	όπου θεωρήσαμε ότι ο πυρήνας του ηλεκτρομαγνήτη δεν εισέρχεται σε
 	κορεσμό.
-	
+
 	Με λίγες πράξεις, οι διαφορικές εξισώσεις του συστήματος γίνονται:
 	\begin{gather}
 		\ddot x = g -\frac{k}{m}\frac{i^2}{x}
@@ -3634,7 +3634,7 @@ M_0 = -CA^{-1}B + D
 		\od{i}{t} + \frac{R}{L}i = \frac{1}{L} v
 		\label{eq:sec4ex2b}
 	\end{gather}
-	
+
 	Όπως και στα προηγούμενα προβλήματα, πρώτα πρέπει να βρούμε τις
 	μεταβλητές και τις εξισώσεις κατάστασης. Έχουμε σύστημα \textbf{3\textsuperscript{ης} τάξης} (1 ΔΕ 2\textsuperscript{ης} τάξης, 1 ΔΕ 1\textsuperscript{ης} τάξης, \( 2+1=3 \)), άρα
 	χρειαζόμαστε \( n=3 \) μεταβλητές κατάστασης. Σύμφωνα με τη θεωρία,
@@ -3642,7 +3642,7 @@ M_0 = -CA^{-1}B + D
 	\[
 	x_1=x,\qquad x_2=\dot x,\qquad x_3 = i
 	\]
-	
+
 	Τότε, με μερικές πράξεις από τις \eqref{eq:sec4ex2a}, \eqref{eq:sec4ex2b}	, οι μεταβλητές κατάστασης θα αποκτήσουν
 	τη μορφή:
 	\begin{align}
@@ -3656,18 +3656,18 @@ M_0 = -CA^{-1}B + D
 	\[
 	u = v
 	\]
-	
+
 	\todo{g nonlinear?}
     Το σύστημα αυτό είναι μη γραμμικό, λόγω του όρου \( x_3^2 \) που
     εμφανίζεται στην εξίσωση \( \dot x_2 \). Επομένως, προς
     διευκόλυνσή μας, θα γραμμικοποιήσουμε το σύστημα γύρω από το
     σημείο ισορροπίας του.
-    
+
     Αν και μπορούμε να βρούμε διάφορα σημεία ισορροπίας για το σύστημα,
     \todo{check if many points} θα μελετήσουμε αυτό που αφορά το
     \( \dot x = x_2^* = 0 \), δηλαδή θέλουμε η \textbf{ταχύτητα} της
     μάζας όταν ισορροπεί να είναι \textbf{μηδενική}.
-    
+
     Θεωρώντας λοιπόν ότι \( x_2^* = 0 \), για τις υπόλοιπες
     συνιστώσες του σημείου ισορροπίας έχουμε:
     \begin{align*}
@@ -3676,7 +3676,7 @@ M_0 = -CA^{-1}B + D
     	    	x_1^* & \in \mathbb R\\
     	u^* &= R\sqrt{\frac{mg}{k}x_1^*}
     \end{align*}
-    
+
     Εφαρμόζουμε τη διαδικασία του κεφαλαίου \ref{sec:linear_linearization_point}, και αλλάζουμε τις μεταβλητές:
     \begin{align*}
     	z_1 &= x_1 - x_1^* \\
@@ -3685,7 +3685,7 @@ M_0 = -CA^{-1}B + D
     	= x_3 - \sqrt{\frac{mg}{k}x_1^*}\\
     	\tilde u &= u - u^* = u-R\sqrt{\frac{mg}{k}x_1^*}
     \end{align*}
-    
+
     Επομένως, αντικαθιστώντας τις παραπάνω σχέσεις, έχουμε:
     \begin{align*}
     	\dot z_1 &= z_2\\
@@ -3693,7 +3693,7 @@ M_0 = -CA^{-1}B + D
     	\dot z_3 &= -\frac{R}{L}\left(z_3+\sqrt{\frac{mg}{k}x_1^*}\right)
     	+ \frac{1}{L}\left(\tilde{u} + R\sqrt{\frac{mg}{k}x_1^*}\right)
     \end{align*}
-    
+
     Ήρθε η ώρα να γραμμικοποιήσουμε το σύστημα, έτσι ώστε να φτάσει στην
     επιθυμητή μορφή:
     \begin{align*}
@@ -3709,18 +3709,18 @@ M_0 = -CA^{-1}B + D
     	\end{matrix}\right],
     	\qquad
     	B &= \left. \pd{F}{\tilde u} \right|_{(0,0)} = \left[\begin{matrix}
-    	0 \\ 0 \\ \sfrac{1}{L} 
+    	0 \\ 0 \\ \sfrac{1}{L}
     	\end{matrix}\right]\\
     	C &= \left[\begin{matrix}
     	1 & 0 & 0
     	\end{matrix}\right]
     \end{alignat*}
     \todo{Check A,B,C}
-    
+
     Εφ' όσον \( x_1^* = x^* \) που είναι η συνιστώσα του σημείου ισορροπίας
     που δίνεται από την εκφώνηση, την διατηρούμε στις εξισώσεις του
     συστήματος.
-    
+
     Μένει μόνο η υλοποίηση του ελεγκτή. Αυτό δεν θα το αναλύσουμε ακόμα,
     αλλά σε επόμενο κεφάλαιο.
 \end{exercise}
@@ -3736,18 +3736,18 @@ M_0 = -CA^{-1}B + D
 	\frac{u_0}{b}\tan δ
 	\end{matrix}\right]
 	\]
-	
+
 	Αν θεωρήσουμε ότι δεν θέλουμε να στρίβει το ποδήλατο, να γραμμικοποιηθεί
 	το σύστημα.
-	
+
 	\tcblower
-	
+
 	Το ότι δεν θέλουμε το ποδήλατο να στρίβει, σημαίνει πως η γωνιακή
 	του ταχύτητα είναι 0, δηλαδή:
 	\[
 	\dot{\theta} = 0 \implies \delta = 0
 	\]
-	
+
 	Για γραμμικοποίηση γύρω από το σημείο ισορροπίας, πρέπει πρώτα
 	να βρούμε το σημείο ισορροπίας του προβλήματος. Οι εξισώσεις του,
 	θεωρώντας ότι \( \delta = 0\) και \(\dot{\theta} = 0 \), είναι:
@@ -3763,16 +3763,16 @@ M_0 = -CA^{-1}B + D
     	u\cos(\theta) = 0\\
     	u\sin(\theta) = 0
     \end{align*}
-    
+
     Υψώνοντας στο τετράγωνο και προσθέτοντας τις εξισώσεις, έχουμε:
     \[
     u^2\underbrace{\left(\cos^2(\theta) + \sin^2(\theta)\right)}_{1} = 0
     \]
-    
+
     Για να ισχύει το παραπάνω, απαιτείται \( u=0 \), κάτι που δεν έχει
     νόημα επειδή δηλώνει μηδενική ταχύτητα ποδηλάτου, δηλαδή ότι δεν
     υπάρχει κίνηση στο ποδήλατο.
-    
+
     Επομένως δεν μπορούμε να γραμμικοποιήσουμε το σύστημα αυτό γύρω από το
     σημείο ισορροπίας.
 \end{exercise}
@@ -3796,19 +3796,19 @@ M_0 = -CA^{-1}B + D
 		\\
 		y &= x
 	\end{align*}
-	
+
 	Θέλουμε να συγκλίνει στο 0, εκθετικά με ρυθμό 5.
 	\tcblower
 	Εδώ θα σχεδιάσουμε έναν ελεγκτή \( u \), ο οποίος να καθιστά το σύστημα
 	γραμμικό.
-	
+
 	Παρατηρούμε την εξίσωση \eqref{eq:sec4ex3xd} του \( \dot x \). Σκεφτόμαστε να διαιρέσουμε με τον όρο \( (1+x^2) \), ώστε να
 	φύγει ο \textit{μη γραμμικός συντελεστής του \( u \)}.
-	
+
 	Επίσης αφαιρούμε το \( x^2 \) και το \( -2x \), για να το απλοποιήσουμε
 	ακόμα περισσότερο. Προσθέτουμε και έναν δικό μας όρο \( v \) για να μπορούμε
 	να επηρεάσουμε όπως θέλουμε τη συμπεριφορά του.
-	
+
 	Δηλαδή ο ελεγκτής \( u \) έχει γίνει:
 	\[
 	u = \frac{1}{1+x^2} \left( -x^2+2x+v \right)
@@ -3820,7 +3820,7 @@ M_0 = -CA^{-1}B + D
 	\dot x = v
 	\]
 	δηλαδή, το σύστημά μας έγινε γραμμικό!\footnote{Αφού \( \dot x = Ax+Bu \)}
-	
+
 	\paragraph{}
 	Για να ικανοποιήσουμε και την απαίτηση του εκθετικού ρυθμού μείωσης
 	5, θεωρούμε ότι:
@@ -3877,9 +3877,9 @@ M_0 = -CA^{-1}B + D
 	\]
 	και \( C(q,\dot q) \) ένας πίνακας που εξαρτάται από τα \( q \) και
 	\( \dot q \), και \( G(q) \) ένας πίνακας που εξαρτάται από το \( q \).
-	
+
 	Να σχεδιαστεί \( u \) που να γραμμικοποιεί το σύστημα.
-	
+
 	\tcblower
 	\textbf{Επιλέγω} έναν ελεγκτή \( \textbf{u} \), που εξαρτάται
 	\textbf{μόνο από γνωστά μεγέθη}\footnote{Αν δινόταν πως ένας πίνακας
@@ -3889,12 +3889,12 @@ M_0 = -CA^{-1}B + D
 	\[
 	u = C(q,\dot q)\dot q + G(q) + M(q) v
 	\]
-	
+
 	Επομένως, το σύστημά μας γίνεται:
 	\[
 	M(q)\ddot q = M(q) v
 	\]
-	
+
 	Το σύστημα αυτό δεν είναι γραμμικό. Όμως, επειδη ο \( M(q) \) είναι
 	\textbf{θετικά ορισμένος}, το παραπάνω σύστημα είναι ισοδύναμο με το:
 	\[
@@ -3908,30 +3908,30 @@ M_0 = -CA^{-1}B + D
 		M(q)\ddot q +f(q,\dot q)\dot q + k(q) = u
 		\]
 		όπου \( q,\ M(q),\ f(q,\dot q),\ k(q) \in \mathbb R \), και \( M(q) > 0 \).
-		
+
 		Ζητείται να διαμορφωθεί ώστε να εκφράζει ακριβώς ένα σύστημα ελατηρίου και αποσβεστήρα, με μοναδιαία μάζα.
-		
+
 		\begin{circuitikz}[scale=.9]
-	
+
 			\fill[postaction={decorate},pattern=north east lines] (0,3) rectangle (-0.5,-0.5) rectangle (5,0);
-			
+
 			\draw (2,0) rectangle ++(2,2) node[midway] {$m=1$} node[midway] (m2) {};
-			
+
 			\draw (2,0.4) to[damper,l_=$b$,invert] ++(-2,0);
 			\draw (2,1.6) to[spring,invert,l_=\raisebox{-1.5ex}{$k_0$}] ++(-2,0);
-			
+
 			\draw[thick,->] (4,1) -- ++(1.5,0) node[right] {$F$};
-			
+
 			\draw[thick] (0,3) |- (5,0);
-			
+
 			\draw[->] (m2) ++ (0,1.4) |- ++(2,0.7) node[above,pos=.75,gray] {$q$};
 		\end{circuitikz}
-		
-		
+
+
 		Η επιτάχυνση \( \ddot q \) δεν θεωρείται γνωστή, ενώ η
 		ταχύτητα \( \dot q \) θεωρίεται γνωστή, επειδή υποτίθεται πως
 		έχω όργανο για να την μετρήσω.
-		
+
 		\tcblower
 		Για το σύστημα μάζας-ελατηρίου ισχύει, από προηγούμενες
 		ασκήσεις:
@@ -3943,7 +3943,7 @@ M_0 = -CA^{-1}B + D
 		\[
 		\ddot q + b\dot q+ k_0 q = F
 		\]
-		
+
 		Γραμμικοποιούμε ακόμα το αρχικό σύστημα, επιλέγοντας έναν
 		ελεγκτή \( u \), όπως στην αμέσως προηγούμενη άσκηση: \todo{add ref to exerise}
 		\[
@@ -4043,7 +4043,7 @@ B & AB & \dots & A^{n-1}B
 	ασκείται ηλεκτρεγερτική δύναμη \( u_e \), και αυτός περιστρέφει
 	φορτίο με ροπή αδράνειας \( I_L \), το οποίο βρίσκεται σε
 	γωνία \( \theta \).
-	
+
 	\begin{circuitikz}[american]
 		\ctikzset{voltage/american label distance=2}
 		\draw (0,0) to[R=$R_a$] (2,0) to[L=$L_a$] (4,0) to[open,v^=$u_e$]
@@ -4051,36 +4051,36 @@ B & AB & \dots & A^{n-1}B
 		\draw (4,-1) node[elmech](motor) {};
 		\draw (motor.north) -- (4,0) (motor.south) -- (4,-2);
 	\end{circuitikz}
-	
+
 	\todo{Graph 28}
-	
+
 	Επίσης πραγματοποιούμε τις παρακάτω παραδοχές:
 	\begin{align*}
 		u_e &= k_b\dot{\theta} \\
 		T_k &= k_i i_a
 	\end{align*}
 	όπου \( T_k \) η ροπή του κινητήρα.
-	
+
 	Θεωρούμε επίσης ότι δεν ασχολούμαστε με τον στάτη, ο οποίος έχει
 	σταθερό ρεύμα και τάση.
-	
+
 	Να μελετηθεί η ελεγξιμότητα του συστήματος.
-	
+
 	\tcblower
-	
+
 	Από τις εξισώσεις του κυκλώματος και αυτές που δίνονται έχουμε:
 	\[
 	u_a = i_a R_a + L_a \od{i_a}{t} + k_b\dot{\theta}
 	\]
-	και από την εξίσωση κίνησης του φορτίου \( I_L\ddot{\theta} 
+	και από την εξίσωση κίνησης του φορτίου \( I_L\ddot{\theta}
 	= T_k
 	\):
 	\[
 	I_L\ddot{\theta} = k_i i_a
 	\]
-	
+
 	Η είσοδος ελέγχου είναι η τάση \( u_a = u \).
-	
+
 	Η τάξη του συστήματος είναι \( n=3 \), και επιλέγουμε ως μεταβλητές
 	κατάστασης τις:
 	\[
@@ -4099,10 +4099,10 @@ B & AB & \dots & A^{n-1}B
 	0 & 0 & \frac{k_i}{I_L} \\
 	0 & \frac{-k_b}{L_a} & \frac{-R_a}{L_a}
 	\end{matrix}\right]}_{A} x + \underbrace{\left[\begin{matrix}
-	0 \\ 0 \\ \sfrac{1}{L_a} 
+	0 \\ 0 \\ \sfrac{1}{L_a}
 	\end{matrix}\right]}_{B}u
 	\]
-	
+
 	Ο \textbf{πίνακας ελεγξιμότητας είναι}:
 	\[
 	M = \left[\begin{matrix}
@@ -4121,33 +4121,33 @@ B & AB & \dots & A^{n-1}B
 \end{exercise}
 \begin{exercise}
 	Να μελετηθεί η ελεγξιμότητα του συστήματος.
-	
-	
+
+
 	\begin{circuitikz}[american]
 		\draw (0,0) to[V=$u(t)$,invert] (0,3) -- ++(4,0);
 		\draw (2,3) to[R=$R_1$] (2,1.5) to[C=$C_1$] (2,0) -- (0,0);
 		\draw (4,3) to[R=$R_2$, i=$i_2$] (4,1.5) to[C=$C_2$] (4,0) -- (2,0);
 	\end{circuitikz}
-	
+
 	\tcblower
 	Από νόμους Kirchoff έχουμε:
 	\begin{align*}
 		u(t) &= i_1R_1 + \frac{1}{C_1} \int_{0}^{t} i_1(τ)\dif τ\\
 		u(t) &= i_2R_2 + \frac{1}{C_2} \int_{0}^{t} i_2(τ)\dif τ
 	\end{align*}
-	
+
 	Ως μεταβλητές κατάστασης ορίζουμε τις τάσεις των πυκνωτών:
 	\begin{align*}
 		x_1 &= \frac{1}{C_1} \int_{0}^{t} i_1(τ)\dif τ\\
 		x_2 &= \frac{1}{C_2} \int_{0}^{t} i_2(τ)\dif τ
 	\end{align*}
-	
+
 	Οπότε, από τις αρχικές εξισώσεις θα έχουμε:
 	\begin{align*}
 		u(t) &= i_1R_1 + x_1 \implies i_1 = \frac{u-x_1}{R_1} \\
 		u(t) &= i_2R_2 + x_2 \implies i_2 = \frac{u-x_2}{R_2}
 	\end{align*}
-	
+
 	Και τελικά:
 	\begin{align*}
 		\dot x_1 &= \frac{1}{C_1}i_1
@@ -4165,7 +4165,7 @@ B & AB & \dots & A^{n-1}B
 	\frac{1}{R_1C_1} \\ \frac{1}{R_2C_2}
 	\end{matrix}\right]
 	\]
-	
+
 	Για τον πίνακα ελεγξιμότητας και την ορίζουσά του έχουμε:
 	\begin{align*}
 	M &= \left[\begin{matrix}
@@ -4178,7 +4178,7 @@ B & AB & \dots & A^{n-1}B
 	\frac{1}{R_1C_1}-\frac{1}{R_2C_2}
 	\right)
 	\end{align*}
-	
+
 	Το σύστημα είναι ελέγξιμο για όλες τις τιμές \( RC \), εκτός από
 	αυτές για τις οποίες ισχύει \( R_1C_1 = R_2C_2 \) (οι δύο κλάδοι
 	δηλαδή έχουν την ίδια \textbf{σταθερά χρόνου}). Πρακτικά, δεν μπορούμε
@@ -4196,26 +4196,26 @@ B & AB & \dots & A^{n-1}B
 		to[twoport,t=$S_1$,>] (6,0) node[above] {$x_1$} to[short,i=$ $] ++(1,0)
 		;
 	\end{circuitikz}
-	
+
 	Δίνεται ένα σύστημα εν σειρά:
 	\begin{alignat*}{2}
 		s_1 &:\ \dot x_1=-x_2 \quad && x_1(0) = 0\\
 		s_2 &:\ \dot x_2= u   \quad && x_2(0) = 0
 	\end{alignat*}
 	και \( u = 0 \) για \( t < 0 \).
-	
+
 	Έστω ότι τη στιγμή \( t=0 \) εμφανίζεται μία αποσβεννύμενη διαταραχή
 	στην είσοδο.
-	
+
 	Να εξεταστεί αν το σύστημα είναι ελέγξιμο.
-	
+
 	\tcblower
 	Αφού εμφανίζεται \textbf{αποσβεννύμενη} εξωτερική διαταραχή, αυτή
 	σβήνει εκθετικά, δηλαδή:
 	\[
 	u(t) = e^{-t},\quad t \geq 0
 	\]
-	
+
 	Οι εξισώσεις κατάστασης του συστήματος γίνονται:
 	\begin{align*}
 		\dot x = \left[\begin{matrix}
@@ -4224,7 +4224,7 @@ B & AB & \dots & A^{n-1}B
 		0 \\ 1
 		\end{matrix}\right]u
 	\end{align*}
-	
+
 	και για τον \( M \):
 	\begin{align*}
     	n &= 2 \\
@@ -4236,10 +4236,10 @@ B & AB & \dots & A^{n-1}B
 		\det(M) &=1 \neq 0 \\
 		\mathop{rank}(M) &= 2 = n
 	\end{align*}
-	
+
 	Βέβαια, ενώ αποδείξαμε ότι το σύστημα είναι ελέγξιμο, δεν βρήκαμε
 	ακόμα τον κατάλληλο ελεγκτή ώστε να γίνει αυτό.
-	
+
 	Οι εξισώσεις κατάστασης, για \( u(t) = e^{-t} \), γίνονται:
 	\begin{align*}
 		x_2(t) &= \int_{0}^{t} e^{-τ}\dif t = 1-e^{-t},\
@@ -4248,7 +4248,7 @@ B & AB & \dots & A^{n-1}B
 		= -\int_{0}^{t}(1-e^{-τ})\dif τ = 1-e^{-t}-t,\
 		t \geq 0
 	\end{align*}
-	
+
 	\todo{Το συστημα δεν είναι ευσταθές.}
 \end{exercise}
 
@@ -4308,7 +4308,7 @@ B_1 \\ 0
 \begin{align*}
 	\dot z_1 &= \underbrace{(A_1z_1 + B_1 u)}_{\mathclap{\text{ελέγξιμο}}}
 	+ \underbrace{A_{12}z_2}_{\mathclap{\text{"διαταραχές"}}} \\
-    \dot z_2 &= A_2 z_2	
+    \dot z_2 &= A_2 z_2
 \end{align*}
 
 Το σύστημα \( \dot z_1 \) περιέχει ένα ελέγξιμο κομμάτι, και το \( A_{12}z_2 \) που προκύπτει άμεσα από το παρακάτω σύστημα, και παίζει το
@@ -4332,7 +4332,7 @@ rank(M) = n_c < n
 από τις υπόλοιπες στήλες, έτσι ώστε \( \mathop{rank}(T) = n \).
 \todo{Graph 31}
 
-\subsection{Θέματα Προόδου 2018}
+\subsection{\color{green!50!black!90!blue!50!white}Θέματα Προόδου 2018}
 
 \lecture{12}{20/4/2018}
 \begin{exercise}[1\textsuperscript{ο} Θέμα Προόδου 2018]
@@ -4350,11 +4350,11 @@ rank(M) = n_c < n
 	1 \\ 1
 	\end{matrix}\right]u
 	\]
-	
+
 	\begin{enumgreekparen}
 		\item Να δειχθεί ότι είναι ασταθές, για μηδενική \( u \).
 		\item Έστω ότι \( u=-k_1x_1-k_2x_2 \), όπου \( k_1>0,\ k_2>0 \).
-		
+
 		Ποιά συνθήκη πρέπει να ικανοποιούν τα \( k_1,k_2 \) ώστε το
 		σύστημα κλειστού βρόχου να είναι ασυμπτωτικά ευσταθές;
 		\item Στο σύστημα προστίθενται διαταραχές
@@ -4374,11 +4374,11 @@ rank(M) = n_c < n
 		1 \\ 1
 		\end{matrix}\right]u + Γd
 		\]
-		
+
 		Χρησιμοποιώντας τον ελεγκτή του ερωτήματος \textit{(β)}, να
 		επαληθεύσετε ότι το σύστημα του κλειστού βρόχου είναι ευσταθές.
 	\end{enumgreekparen}
-	
+
 	\tcblower
 	\begin{enumgreekparen}
 		\item Ο πίνακας \( A = \left[\begin{matrix}
@@ -4387,7 +4387,7 @@ rank(M) = n_c < n
 		του βρίσκονται στην κύρια διαγώνιο. Αυτές είναι \( -1 \) και
 		\( 1 \), η μία εκ των οποίων είναι θετική, άρα το σύστημα είναι
 		ασταθές.
-		\item 
+		\item
 		Το σύστημα γίνεται:
 		\begin{align*}
 			\dot x &= \left[\begin{matrix}
@@ -4402,7 +4402,7 @@ rank(M) = n_c < n
 			-k_1 & 1-k_2
 			\end{matrix}\right]}_{\tilde A}x
 		\end{align*}
-		
+
 		Πρέπει, για να έχουμε ευστάθεια, να ισχύει:
 		\[
 		\det(sI-\tilde A) = 0
@@ -4411,7 +4411,7 @@ rank(M) = n_c < n
 		\[
 		s^2 + (k_1+k_2)s + (k_1+k_2 -1) = 0
 		\]
-		
+
 		Το πολυώνυμο είναι 2\textsuperscript{ου} βαθμού. Για να έχει
 		ρίζες (άρα ιδιοτιμές του \( \tilde A \)) στο αριστερό ημιεπίπεδο,
 		πρέπει οι συντελεστές να είναι ομόσημοι, δηλαδή:
@@ -4430,7 +4430,7 @@ rank(M) = n_c < n
         \[
         \dot x = \tilde A x + Γd
         \]
-        
+
         Επειδή ο πίνακας \( \tilde A \) έχει ιδιοτιμές στο αριστερό
         μιγαδικό ημιεπίπεδο (σύμφωνα με τα προηγούμενα), υπάρχει
         \textit{συμμετρικός} και \textit{θετικά ορισμένος} πίνακας
@@ -4439,14 +4439,14 @@ rank(M) = n_c < n
         \[
         \tilde A^{\mathrm T} P + P\tilde A = -Q
         \]
-        
+
         Ορίζουμε την \textit{υποψήφια} συνάρτηση Lyapunov:
         \[
         V = \frac{1}{2}x^{\mathrm T}Px
         \]
         που είναι θετικά ορισμένη, επειδή και ο \( P \) είναι θετικά
         ορισμένος.
-        
+
         Παραγωγίζουμε την παραπάνω συνάρτηση ως προς τον χρόνο:
         \begin{align*}
         	\dot V &= \frac{1}{2} \dot x^{\mathrm T} P x
@@ -4478,12 +4478,12 @@ rank(M) = n_c < n
         και το \( x \) συγκλίνει, μετά από κάποιον πεπερασμένο
         χρόνο, στη ζώνη:
         \[
-        \Chi \overset{\triangle}{=} \left\lbrace 
+        \Chi \overset{\triangle}{=} \left\lbrace
         x \in \mathbb R^2 : |x| \leq \frac{\lVert P \rVert |Γ|\bar d}{\frac{1}{2} λ_{\min}(Q)}
          \right\rbrace
         \]
         δηλαδή η λύση είναι \textit{ομοιόμορφα τελικώς φραγμένη}.
-        
+
         \textbf{Προσοχή!} Το σύστημα αυτό δεν είναι απαραίτητα
         \textit{ευσταθές κατά Lyapunov}, αφού δεν έχουμε αποδείξει
         πως ικανοποιεί τον ορισμό όπως τον δώσαμε. Για ένα \( \varepsilon  \) μικρότερο από το όριο του \( x \) που δηλώσαμε παραπάνω,
@@ -4513,14 +4513,14 @@ rank(M) = n_c < n
 	αμετάβλητο.
 	\tcblower
 	Σκοπός μας είναι ουσιαστικά να σχεδιάσουμε έναν ελεγκτή γραμμικοποίησης.
-	
+
 	\todo{Graph 31}
-	
+
 	Ορίζουμε ότι ο συντελεστής των \( u \) είναι
 	\( G(x) = 	\left[\begin{matrix}
 	1 & x_1^2 \\ 0 & 1-\frac{1}{2}\sin x_2
 	\end{matrix}\right] \).
-	
+
 	Βρίσκουμε τον αντίστροφο του συντελεστή της εισόδου (ο αντίστροφος
 	υπάρχει, αφού η ορίζουσα είναι θετική, καθώς οι όροι της διαγωνίου
 	είναι θετικοί):
@@ -4532,11 +4532,11 @@ rank(M) = n_c < n
 	1-\frac{1}{2}\sin x_2 & -x_1^2 \\ 0 & 1
 	\end{matrix}\right]
 	\]
-	
+
 	Σκοπός μας είναι να βρούμε έναν πίνακα που θα διώχνει τις
 	μη γραμμικότητες \( x_1^2 \), \( -2x_1x_2 \) και \( x_2^4 \) από
 	τον πίνακα των \( \dot x \).
-	
+
 	Χωρίς την είσοδο \( u \), το σύστημά μας έχει ουσιαστικά τη μορφή:
 	\[
 	f(x) = \underbrace{\left[
@@ -4548,7 +4548,7 @@ rank(M) = n_c < n
     0 & -1 \\ 0 & 0
     \end{matrix}\right]}_{A_0}x
 	\]
-	
+
 	Σκοπός μας είναι να εξαλείψουμε τις γραμμικότητες, δηλαδή τον πίνακα
 	\( f_0(x) \). Επομένως μπορούμε για την είσοδο ελέγχου να θεωρήσουμε
 	ότι:
@@ -4559,13 +4559,13 @@ rank(M) = n_c < n
 	\]
 	όπου \( A,B \) ένας πίνακες συντελεστών, και \( \upsilon \) η
 	εξωτερική είσοδος ελέγχου που θα τοποθετηθεί μετά τη μελέτη μας.
-	
+
 	Επομένως, τελικά έχουμε:
 	\begin{align*}
 		\dot x &= A_0 x + Ax + Bυ\\
 		&= (A+A_0)x + Bυ
 	\end{align*}
-	
+
 	Βέβαια δεν ήταν απαραίτητο να συμπεριλάβουμε τον πίνακα \( Α \) ή
 	όλους τους συντελεστές του, αλλά ήταν σημαντικό να διατηρήσουμε
 	τον \( Bυ \), καθώς εκφράζει τον εξωτερικό ελεγκτή που ζητείται από
@@ -4576,7 +4576,7 @@ rank(M) = n_c < n
 \begin{exercise}[3\textsuperscript{ο} Θέμα Προόδου 2018]
 	Δίνεται ένα μηχανικό σύστημα:
 	\todo{Graph 32}
-	
+
 	Υπάρχουν δύο σώματα με μάζες \( m \), γραμμικά ελατήρια με σταθερές
 	\( k_1,k_2 \), μη γραμμικοί αποσβεστήρες με χαρακτηριστικές
 	\( c_1(z) = z^2 \) και \( c_2(z) = z^3 \), μετατοπίσεις
@@ -4584,7 +4584,7 @@ rank(M) = n_c < n
 	\tcblower
 	Πριν ορίσουμε τις μεταβλητές κατάστασης, θα πρέπει να βρούμε τις
 	εξισώσεις του συστήματος. Θεωρούμε θετική φορά προς τα δεξιά.
-	
+
 	Για το σώμα 1:
 	\begin{align*}
 		m\ddot q_1 &=
@@ -4593,7 +4593,7 @@ rank(M) = n_c < n
 		\ddot q_1 &=
 		\frac{1}{m}u - \frac{k_1}{m}q_1 - \frac{1}{m}(\dot q_1 -\dot q_2)^2
 	\end{align*}
-	
+
 	Για το σώμα 2:
 	\begin{align*}
 	m\ddot q_2 &= -k_2q_2 - \dot q_2^3
@@ -4601,15 +4601,15 @@ rank(M) = n_c < n
 	\ddot q_2 &= -\frac{k_2}{m}q_2 - \frac{1}{m}\dot q_2^3
 	- \frac{1}{m}(\dot q_2 - \dot q_1)^2
 	\end{align*}
-	
+
 	Η τάξη του συστήματος είναι \( n=2+2=4 \), επομένως πρέπει να επιλέξουμε 4 μεταβλητές κατάστασης.
-	
+
 	Αφού δεν εμφανίζονται ανώτερες παράγωγοι του \( u \), μπορούμε
 	άνετα να επιλέξουμε τις παρακάτω μεταβλητές κατάστασης:
 	\[
 	x_1=q_1,\ x_2 = \dot q_1,\ x_3 = q_2,\ x_4 = \dot q_2
 	\]
-	
+
 	Επομένως μπορούμε να γράψουμε τις εξισώσεις κατάστασης:
 	\begin{align*}
 		\dot x_1 &= x_2 \\
@@ -4669,7 +4669,7 @@ B & AB & \hdots & A^{n-1}B
 \textbf{άνω τριγωνικός} και τα στοιχεία στην \textbf{κύρια διαγώνιό} του
 είναι \textbf{\( 1 \)}.
 
-Ο μετασχηματισμός μεταξύ των δύο επιλογών μεταβλητών κατάστασης γίνεται, 
+Ο μετασχηματισμός μεταξύ των δύο επιλογών μεταβλητών κατάστασης γίνεται,
 όπως έχουμε δει στο Kεφάλαιο \todo{ref}, μέσω ενός πίνακα \( T \):
 \[
 z = Tx
@@ -4714,7 +4714,7 @@ z = Tx
 	0 \\ 1
 	\end{matrix}\right]u
 	\] όπου \( (a,\omega ) \neq (0,0) \)
-	
+
 	Να το φέρετε στην ελέγξιμη κανονική μορφή.
 	\tcblower
 	Για την εφαρμογή του θεωρήματος, πρέπει πρώτα να αποδείξουμε ότι το
@@ -4727,25 +4727,25 @@ z = Tx
 	0 & \omega \\ 1 & a
 	\end{matrix}\right]
 	\]
-	
+
 	Βρίσκουμε την ορίζουσά του:
 	\[
 	\det(M) = -\omega  \neq 0
 	\]
 	επομένως, αφού είναι μη μηδενική, το σύστημα είναι ελέγξιμο.
 	\todo{really?}
-	
+
 	Άρα υπάρχει ο ζητούμενος μετασχηματισμός:
 	\begin{align*}
 		z &= Tx \\
 		T &= \tilde M M^{-1}
 	\end{align*}
-	
+
 	Για να βρούμε τους συντελεστές \( a_1, a_2 \), θα βρούμε το
 	\textbf{χαρακτηριστικό πολυώνυμο} του αρχικού συστήματος. Αφού το πρώτο
 	σύστημα θα πρέπει να είναι \textit{ισοδύναμο} με το τελικό, πρέπει
 	να έχουν ίδιο χαρακτηριστικό πολυώνυμο.
-	
+
 	Το αρχικό χαρακτηριστικό πολυώνυμο είναι:
 	\[
 	\det(sI-A) = \det\left(
@@ -4761,7 +4761,7 @@ z = Tx
 		a_1 &= -2a \\
 		a_2 &= a^2+\omega^2
 	\end{align*}
-	
+
 	Άρα τελικά, οι πίνακες του ζητούμενου συστήματος είναι:
 	\begin{align*}
 		\tilde A &= \left[\begin{matrix}
@@ -4773,7 +4773,7 @@ z = Tx
 		1 \\ 0
 		\end{matrix}\right]
 	\end{align*}
-	
+
 	Ως επαλήθευση, μπορούμε να βρούμε τον πίνακα ελεγξιμότητας του νέου
 	συστήματος, και να επαληθεύσουμε πως έχη μη μηδενική ορίζουσα:
 	\[
@@ -4783,7 +4783,7 @@ z = Tx
 	1 & -a_1 \\ 0 & 1
 	\end{matrix}\right]
 	\]
-	
+
 	Επιπλέον, ο πίνακας μετασχηματισμού \( T \) μπορεί να χρησιμοποιηθεί
 	ώστε να σχεδιάσουμε τον ελεγκτή μας (θυμόμαστε ότι οι μεταβλητές
 	\( x \) είναι μετρήσιμες, και \textit{όχι} οι \( z \)), ή για
@@ -4973,9 +4973,9 @@ x = Tx \implies x = T^{-1}z
 		y &= C x
 	\end{align*}
 	με χαρακτηριστικό πολυώνυμο \( p(s) \) και πίνακα ελεγξιμότητας \( M \).
-	
+
 	Αν το σύστημα είναι ελέγξιμο, υπάρχει ελεγκτής της μορφής \( u = -k_x +k_r r \) ώστε το σύστημα να έχει χαρακτηριστικό πολυώνυμο \( P_d \).
-	
+
 	Τα κέρδη της ανάδρασης δίνονται από την πράξη \( \bar k = kT = k\tilde M M^{-1} \), όπου οι συντελεστές \( k_i = P_i - a_i \), και το κέρδος
 	\( k_r \) υπολογίζεται από το κέρδος μηδενικής συχνότητας:
 \[ \boxed{k_r = \frac{a_n+k_n}{b_n}} \]
@@ -5022,10 +5022,10 @@ x = Tx \implies x = T^{-1}z
 	\]
 	όπου παρατηρούμε ότι \( \mathop{rank}(M) = 2 = n \), άρα το σύστημα είναι
 	ελέγξιμο.
-	
+
 	Θα εφαρμόσουμε μία διαδικασία διαφορετική από την παραπάνω, η οποία
 	μπορεί να εφαρμοστεί σε συστήματα χαμηλής τάξης.
-	
+
 	Επιλέγουμε έναν ελεγκτή της μορφής:
 	\[
 	u = -kx + k_r r
@@ -5036,7 +5036,7 @@ x = Tx \implies x = T^{-1}z
 	\begin{align*}
 		u &= -k_1 x_1 - k_2 x_2 + k_r r
 	\end{align*}
-	
+
 	Επομένως, αν στο σύστημα κάνουμε αντικατάσταση (αφού γνωρίζουμε
 	από τη θεωρία ότι \( \dot x = (A-Bk)x +Bk_r r \)):
 	\[
@@ -5046,10 +5046,10 @@ x = Tx \implies x = T^{-1}z
 	γk_r \\ k_r
 	\end{matrix}\right]r
 	\]
-	
+
 	Μπορούμε να βρούμε το χαρακτηριστικό πολυώνυμο του συστήματος, χρησιμοποιώντας τον τύπο της ορίζουσας:
 	\begin{align*}
-		P_c(s) &= \det(sI-\tilde A) = \dots 
+		P_c(s) &= \det(sI-\tilde A) = \dots
 		= s^2 + (γk_1+k_2)s + k_1
 	\end{align*}
 	Το επιθυμητό χαρακτηριστικό πολυώνυμο έχει τη μορφή:
@@ -5061,10 +5061,10 @@ x = Tx \implies x = T^{-1}z
 		P_1 &= γk_1 + k_2 \implies \boxed{k_2 = P_1-γP_2} \\
 		\Aboxed{P_2 &= k_1}
 	\end{align*}
-	
+
 	\todo{συμπλήρωση if necessary}
 	\todo{kr = P2 why?}
-	
+
 	Άρα ο ελεγκτής θα γίνει:
 	\begin{align*}
 		u &= -k_1x_1 - k_2x_2 + k_r r \\
@@ -5074,31 +5074,31 @@ x = Tx \implies x = T^{-1}z
 		\intertext{Αν θέσουμε \( e = y-r \):}
 		&= -P_2 e - (P_1-γP_2)x_2
 	\end{align*}
-	
+
 	\lecture{14}{27/4/2018}
 	\paragraph{}
 	\todo{graph 34}
 	\todo{notes}
 	Θα προσπαθήσουμε να σχεδιάσουμε έναν ελεγκτή έτσι ώστε το κέρδος να είναι μικρότερο
 	του 1.
-	
+
 	Θεωρούμε πως πολλαπλασιάζουμε τον ελεγκτή \( u=-kx+k_rr \) με μια σταθερά \( \bar k \)
 	έτσι ώστε να έχουμε το επιθυμητό κέρδος.
-	
+
 	Τότε:
 	\begin{align*}
 		k_1 &= a_2 \\
 		k_2 &= a_1 - \gamma a_2 \\
 		k_r &= k_i = a_2
 	\end{align*}
-	
+
 	και
 	\begin{align*}
 		\bar k k_1 &= a_2\\
 		\bar k k_2 &= a_1 - \gamma a_2\\
 		\bar k k_r &= a_2
 	\end{align*}
-	
+
 	άρα:
 	\[
 	0 < k_1 = \frac{a_2}{\bar k} \leq 1 \implies \boxed{\begin{aligned}
@@ -5106,16 +5106,16 @@ x = Tx \implies x = T^{-1}z
 		0 < a_1 - \gamma a_2 \leq \bar k
 		\end{aligned}}
 	\]
-	
+
 	\tcbsubtitle{Με εξωτερικές διαταραχές}
 	Θα μελετήσουμε πώς θα ανταποκριθεί ο ελεγκτής αυτός με την παρουσία
 	διαταραχών, θεωρώντας ότι οι διαταραχές είναι φραγμένες (κάτι που
 	είναι λογικό για τα φυσικά συστήματα).
 	\todo{graph 35}
-	
+
 	Εδώ θα θεωρήσουμε ότι \( \bar k =1 \), δηλαδή δεν λαμβάνουμε
 	ουσιαστικά υπ' όψιν την παραπάνω ανάλυση, για απλοποίηση των πράξεων.
-	
+
 	Τότε, με τον ελεγκτή \( u \), το σύστημα θα αποκτήσει τη μορφή:
 	\begin{align*}
 		\dot x &= Ax + B \Big(
@@ -5124,12 +5124,12 @@ x = Tx \implies x = T^{-1}z
 		\\
 		\dot x &= (A-Bk)x + Bk_r r + Bd(t)
 	\end{align*}
-	
+
 	Αν θεωρήσουμε ότι \( d(t) = d \forall t \geq 0 \) \todo{why}, θα έχουμε:
 	\begin{align*}
 		\dot x &= (A-Bk)x + Bk_r r + Bd
 		\end{align*}
-		
+
     Για να βρούμε τον \( k_r \), ασχολούμαστε με τη μόνιμη κατάσταση,
     δηλαδή με το σημείο ισορροπίας: \[
     		x^* = - (A-Bk)^{-1} Bk_r r - (A-Bk)^{-1}Bd
@@ -5143,30 +5143,30 @@ x = Tx \implies x = T^{-1}z
 	y_s &= Cx^* = \left[
 	-C(A-Bk)^{-1}B
 	\right]k_r r - C(A-Bk)^{-1}Bd
-	\\ &= 
+	\\ &=
 	r - \underbrace{C(A-Bk)^{-1}Bd}_{\text{σφάλμα}}
 	\end{align*}
-	
+
 	Εδώ παρατηρούμε ότι δεν θα έχουμε στη μόνιμη κατάσταση έξοδο ίση
 	με την επιθυμητή \( r \), αλλά θα υπάρχει ένα σφάλμα που εξαρτάται από
 	τη διαταραχή, το οποίο είναι ίσο με τον όρο \( C(A-Bk)^{-1}Bd \).
-	
+
 	Ο όρος αυτός όμως είναι, στη συγκεκριμένη άσκηση:
 	\[
 	C(A-Bk)^{-1}Bd = -\frac{d}{k_1}
 	\]
-	
+
 	Παρατηρούμε δηλαδή ότι, για ένα μέγιστο πλάτος \( d \) των διαταραχών
 	που δίνεται από τη φυσική υλοποίηση του συστήματος, μπορούμε να
 	επηρεάσουμε την τιμή του σφάλματος, αλλάζοντας την τιμή του \( k_1 \).
 	Πρακτικά, για να μειώσουμε το σφάλμα, αυξάνουμε και το \( k_1 \).
 	Αυξάνοντας το \( k_1 \) οδηγούμαστε στη μετακίνηση των ιδιοτιμών
 	του συστήματος πιο αριστερά, όπως έχουμε δείξει παραπάνω. \todo{where?}
-	
+
 	Ουσιαστικά, μπορούμε να πραγματοποιήσουμε απόσβεση των διαταραχών
 	του συστήματος, μετακινώντας τις ιδιοτιμές προς τα αριστερά, άρα
 	καθιστώντας την απόκρισή του πιό γρήγορη.
-	
+
 	Ο λόγος βέβαια που στην πραγματικότητα δεν μπορούμε να αυξήσουμε το
 	\( k_1 \) κατά βούληση είναι η ύπαρξη θορύβου κατά τη μέτρηση των
 	μεταβλητών κατάστασης \( x \) από τις μετρητικές διατάξεις, η οποία
@@ -5213,14 +5213,14 @@ x = Tx \implies x = T^{-1}z
 	x(τ)^2
 	\right|\dif τ
 	\]
-	
+
 	Για την είσοδο ελέγχου:
 	\[
 	J_2 = \int_{t_0}^{t_f} \left|
 	u(t)
 	\right|^2\dif τ
 	\]
-	
+
 	Συνδυάζοντας τα δύο παραπάνω, δίνοντας έναν συντελεστή βαρύτητας \( λ \):
 	\[
 	J_3 = λ J_1 + (1-λ)J_2
@@ -5260,7 +5260,7 @@ x = Tx \implies x = T^{-1}z
 \begin{theorem}{}{}
 	Έστω το σύστημα \( \dot x = Ax+Bu \) με αρχική τιμή \( x(t_0) = x_0 \) με δείκτη επίδοσης
 	\( J \) όπως ορίστηκε παραπάνω. \todo{ref}
-	
+
 	Αν ο ελεγκτής \( u_0=-kx \) καθιστά ασυμπτωτικά ευσταθές
 	το παραπάνω σύστημα κλειστού βρόχου, και ικανοποιεί το παρακάτω:
 	\begin{equation}
@@ -5298,7 +5298,7 @@ x = Tx \implies x = T^{-1}z
 \[
 k = R^{-1}B^{\mathrm T}P
 \]
-όπου οι πίνακες \( R \) και \( B \) είναι γνωστοί, ενώ τον \( P \) 
+όπου οι πίνακες \( R \) και \( B \) είναι γνωστοί, ενώ τον \( P \)
 θα τον βρούμε παρακάτω.
 
 Εφαρμόζοντας το παραπάνω συμπέρασμα στη σχέση \eqref{eq:sec5linconc} έχουμε:
@@ -5336,7 +5336,7 @@ k = R^{-1}B^{\mathrm T}P
 		0 \\ 1
 		\end{matrix}\right]}u
 	\]
-	
+
 	Από τη θεωρία, γνωρίζουμε ότι ο επιθυμητός βέλτιστος τετραγωνικός
 	ρυθμιστής είναι ο:
 	\[
@@ -5348,7 +5348,7 @@ k = R^{-1}B^{\mathrm T}P
 	1
 	\end{matrix}\right] \) (από τη σχέση για το \( J \)), και \( P \)
 	ένας πίνακας που θα υπολογίσουμε από την εξίσωση Riccati.
-	
+
 	Έστω ότι \( P = \left[\begin{matrix}
 	P_{11} & P_{12} \\ P_{12} & P_{22}
 	\end{matrix}\right] \) (επειδή ο \( P \) είναι συμμετρικός).
@@ -5374,13 +5374,13 @@ k = R^{-1}B^{\mathrm T}P
 		0 & 0 \\ 0 & 0
 		\end{matrix}\right]
 	\end{gather*}
-	
+
 	Άρα τελικά:\[
 	P = \left[\begin{matrix}
 	\sqrt{\mu+2} & 1 \\ 1 & \sqrt{\mu + 2}
 	\end{matrix}\right] > 0
 	\]
-	
+
 	Επομένως, το αποτέλεσμα που ζητείται είναι:
 	\[
 	u_0 = -(R^{-1}B^{\mathrm T}P)x = \dots = \left[\begin{matrix}
@@ -5407,7 +5407,7 @@ k = R^{-1}B^{\mathrm T}P
 	\[
 	J = \int_{0}^{\infty} x^{\mathrm T}x\dif t
 	\]
-	
+
 	Να σχεδιαστεί ελεγκτής \( u \) τέτοιος ώστε η \textbf{φυσική συχνότητα} του συστήματος να είναι:
 	\[
 	\omega_n = 2 \ \mathrm{rad/s}
@@ -5428,7 +5428,7 @@ k = R^{-1}B^{\mathrm T}P
 		0 & 1 \\ -k_1 & -k_2
 		\end{matrix}\right]}_{A}x
 	\end{align*}
-	
+
 	Για να υπολογίσουμε τη φυσική συχνότητα του συστήματος, θεωρούμε τη χαρακτηριστική του εξίσωση, την
 	οποία βρίσκουμε ως εξής:
 	\begin{align*}
@@ -5436,23 +5436,23 @@ k = R^{-1}B^{\mathrm T}P
 		s(s+k_2) + k_1 &= 0\\
 		s^2 + k_2s + k_1 &= 0
 	\end{align*}
-	
+
 	Θυμόμαστε ότι η μορφή του χαρακτηριστικού πολυωνύμου ενός συστήματος
 	2\textsuperscript{ης} τάξης είναι:
 	\[
 	s^2 + 2ζ\omega_ns + \omega_n^2
 	\]
-	
+
 	Εξισώνοντας τους συντελεστές, ισχύει \( \omega_n^2 = k_1 \implies
 	k_1 = 2^2 = 4 \).
-	
+
 	\paragraph{}
 	Τώρα αρκεί να βρούμε το \( k_2 \) ώστε να ελαχιστοποιήσηουμε
 	τον \( J \). Για την παραπάνω διαδικασία θυμόμαστε ότι \( u_0
 	= R^{-1}B^{\mathrm T}Px \), όμως στη συγκεκριμένη άσκηση
 	ισχύει \( R=0 \), άρα ο \( R^{-1} \) δεν υπάρχει. Επομένως θα
 	ακολουθήσουμε μια ελαφρώς διαφορετική προσέγγιση.
-	
+
 	Έχουμε:
 	\[
 	\left.\od{V}{t}\right|_{u=u_0}
@@ -5466,24 +5466,24 @@ k = R^{-1}B^{\mathrm T}P
 	\frac{1}{8} & \frac{5}{8k_2}
 	\end{matrix}\right]
 	\]
-	
+
 	Από το γνωστό θεώρημα, δίνεται η ελάχιστη τιμή του \( J \), η οποία
 	είναι:
 	\begin{align*}
 		J_{\min}^{(k_2)} &= x^{\mathrm{T}}(0) P x(0)\\ &=
 		\left(\frac{k_2}{8} + \frac{5}{2k_2}\right)c^2
 	\end{align*}
-	
+
 	Στο σημείο όπου αποκτούμε την ελάχιστη τιμή έχουμε:
 	\[
 	\pd{J_{\min}}{k_2} = 0 \implies \dots \implies k_2 = \sqrt{20}
 	\]
-	
+
 	Επομένως, ο τελικός ελεγκτής προκυπτει:
 	\[
 	u  = -4x_1 - \sqrt{20}x_2
 	\]
-	
+
 	Η άσκηση αυτή δείχνει τη σημασία της κατανόησης της θεωρίας, η οποία
 	χρειάζεται για την άρση του περιορισμού που προκύπτει από τη
 	μη αντιστρεψιμότητα του \( R \).
@@ -5548,10 +5548,10 @@ x & z
 	\]
 	με αρχική τιμή \( x(0) = x_0 \), σταθερούς όρους \( b,b_0\neq 0 \),
 	έξοδο \( y=x \) και διαταραχές \( d \).
-	
+
 	Να σχεδιαστεί ελεγκτής τέτοιος ώστε η έξοδος \( y \) να οδηγείται
 	σε μια σταθερή τιμή \( y\to r \).
-	
+
 	Τι γίνεται αν έχουμε κάποια αβεβαιότητα για τις σταθερές
 	\( a \) και \( b \);
 	\tcblower
@@ -5580,10 +5580,10 @@ x & z
 	b_0 \\ 0
 	\end{matrix}\right]d
 	\]
-	
+
 	Σκοπός μας είναι να επιλέξουμε τα \( k \) και \( k_i \) έτσι ώστε
 	οι ιδιοτιμές του \( \tilde A \) να βρίσκονται στο αριστερό ημιεπίπεδο.
-	
+
 	Το χαρακτηριστικό πολυώνυμο είναι:
 	\begin{align*}
 	 P_c(s) &= \det(sI-\tilde A)
@@ -5600,7 +5600,7 @@ x & z
 			k_i &= \frac{a_2}{b}
 			\end{aligned}}
 	\]
-	
+
 	Λύνοντας τις εξισώσεις \( \dot x = 0 = \dot z \), το σημείο
 	ισορροπίας του συστήματος είναι το:
 	\[
@@ -5608,26 +5608,26 @@ x & z
 	\frac{b_0 d - a_2z^*}{a_1},\ z^*
 	\right)
 	\]
-	
+
 	\tcbsubtitle{Αβεβαιότητα σταθερών}
-	
+
 	Εδώ παρατηρούμε ότι η τιμή του \( b_0 \), δηλαδή και το πλάτος των
 	διαταραχών, δεν επηρεάζουν την επιλογή των σταθερών \( k,k_i \),
 	αφού δεν βρίσκονται στους τύπους τους. Όμως η επιλογή των σταθερών
 	εξαρτάται από τα χαρακτηριστικά του συστήματος \( a \) και \( b \).
-	
+
 	Πολλές φορές δεν θα γνωρίζουμε ακριβώς τις τιμές των παραμέτρων
 	αυτών, αλλά να έχουμε μια μικρή αβεβαιότητα, δηλαδή:
 	\begin{align*}
 		a &= \bar a + Δa \\
 		b &= \bar b + Δb
 	\end{align*}
-	
+
 	Επομένως στον ελεγκτή που θα
 	υλοποιήσουμε θα πρέπει να χρησιμοποιηθούν οι σταθερές
 	\( \bar a \) και \( \bar b \) που είναι οι μόνες γνωστές, ενώ το
 	χαρακτηριστικό πολυώνυμο θα περιέχει τις πλήρεις εκφράσεις.
-	
+
 	Μετά από πράξεις, το χαρακτηριστικό πολυώνυμο θα γίνει:
 	\[
 	P_c(s) = s^2 + \left[
@@ -5647,7 +5647,7 @@ x & z
 	a_1 + (Δb\,k-Δa)
 	\right]s + (a_2 + k_iΔb)
 	\]
-	
+
 	Η ύπαρξη ριζών μόνο στο αριστερό ημιεπίπεδο της παραπάνω έκφρασης
 	φαίνεται από την εφαρμογή του κριτηρίου Routh-Hurwitz, σύμφωνα
 	με το οποίο:
@@ -5655,11 +5655,11 @@ x & z
 		a_1 + Δb\, k - Δa &> 0 \\
 		a_2 + k_iΔb &>0
 	\end{align*}
-	
+
 	Για \textbf{μικρά σφάλματα}
 	\( Δa \) και \( Δb \) οι ανισώσεις θα ικανοποιούνται
 	και θα οδηγούμαστε στο ίδιο αποτέλεσμα.
-	
+
 	Αν και κάποιος μπορεί να θεωρήσει πως αυξάνοντας τις σταθερές
 	\( a_1,a_2 \) θα κάνει πιο σίγουρο το αποτέλεσμα των ανισώσεων,
 	αυτό δεν ισχύει απόλυτα, λόγω της εξάρτησης των \( k \) και
@@ -5766,7 +5766,7 @@ x_2(0) = x_1(0) + x^*
 		\end{matrix}\right]\\
 		C &= \left[\begin{matrix}3 & 0\end{matrix}\right]
 	\end{align*}
-	
+
 	Είναι παρατηρήσιμο;
 	\tcblower
 	Υπολογίζουμε τον πίνακα μετάβασης:\todo{add ref}
@@ -5775,12 +5775,12 @@ x_2(0) = x_1(0) + x^*
 		e^{-2t} & 0 \\ 0 & e^{-t}
 		\end{matrix}\right]
 	\end{align*}
-	
+
 	και: \todo{why?}
 	\[
 	x^* = \left[ \begin{matrix}0 & 1\end{matrix} \right]^{\mathrm T}
 	\]
-	
+
 	Τότε:
 	\[
 	ce^{At}x^* = \left[\begin{matrix}
@@ -5794,7 +5794,7 @@ x_2(0) = x_1(0) + x^*
 	\]
 	δηλαδή η κατάσταση \( x^* \) δεν είναι παρατηρήσιμη. Άρα και το σύστημα
 	\textbf{δεν είναι παρατηρήσιμο}.
-	
+
 	Στο σύστημα αυτό θεωρήσαμε μηδενική είσοδο \( u=0 \), αφού δεν
 	επηρεάζει την παρατηρησιμότητα. Το σύστημα που προκύπτει δηλαδή
 	είναι το:
@@ -5803,7 +5803,7 @@ x_2(0) = x_1(0) + x^*
 		\dot x_2 &= -x_2 \\
 		y &= 3x_1
 	\end{align*}
-	
+
 	Στο παραπάνω σύστημα μετράμε την έξοδο \( y=3x_1 \). Η έξοδος αυτή
 	εξαρτάται μόνο από το \( x_1 \), αφού η διαφορική εξίσωση του
 	\( x_1 \) περιέχει μόνο την ίδια την \( x_1 \). Επιπλέον, η διαφορική
@@ -5863,12 +5863,12 @@ C \\ CA \\ \vdots \\ CA^{n-1}
 	με έξοδο \( y= \left[\begin{matrix}
 	1 & 0
 	\end{matrix}\right]x \).
-	
+
 	Είναι παρατηρήσιμο;
 	\tcblower
 	Έχουμε 2 μεταβλητές κατάστασης, άρα η τάξη του συστήματος είναι
 	\( n = 2 \).
-	
+
 	Ο πίνακας παρατητησιμότητας είναι:
 	\[
 	W = \left[\begin{matrix}
@@ -5878,7 +5878,7 @@ C \\ CA \\ \vdots \\ CA^{n-1}
 	\end{matrix}\right]
 	\]
 	και η ορίζουσά του \( \det(W) = k_1 \).
-	
+
 	Αν \( \det(W) \neq 0 \iff k_1 \neq 0 \), τότε το σύστημα είναι παρατηρήσιμο.
 \end{exercise}
 
@@ -6175,7 +6175,7 @@ y &= Cx+Du
 	1 & 0
 	\end{matrix}\right]x
 	\end{align*}
-	
+
 	Να σχεδιαστεί παρατηρητής του.
 	\tcblower
 	Έστω ο πίνακας παρατηρησιμότητας του συστήματος:
@@ -6186,9 +6186,9 @@ y &= Cx+Du
 	1 & 0 \\ -k_0-k_1 & k_1
 	\end{matrix}\right]
 	\]
-	
+
 	Για να είναι το σύστημα παρατηρήσιμο, θα πρέπει \( \det(W) \neq 0 \iff k_1 \neq 0 \).
-	
+
 	Το χαρακτηριστικό πολυώνυμο του συστήματος είναι:
 	\begin{align*}
 		p(s) &= \det(sI-A) \\&=
@@ -6198,7 +6198,7 @@ y &= Cx+Du
 	\[
 	p_d(s) = s^2 + P_1 s + P_2
 	\]
-	
+
 	Για εφαρμογή του θεωρήματος πρέπει να υπολογίσουμε τους πίνακες
 	\( W^{-1} \) και \( \tilde W \):
 	\begin{align*}
@@ -6222,21 +6222,21 @@ y &= Cx+Du
 	\frac{P_2 - P_1k_2 + k_1k_2 + k_2^2}{k_1}
 	\end{matrix}\right]
 	\end{align*}
-	
+
 	Επομένως ο ελεγκτής του παρατηρητή είναι:
 	\[
 	\hat x = A\hat x + Bu + L(y-C\hat x)
 	\]
-	
+
 	Σε αυτό το σημείο βέβαια πρέπει να αναφέρουμε πως αν δεν υπήρχε ο
 	όρος \( k_1 \) στον παρονομαστή (που αποκλείει την περίπτωση
 	\( k_1 = 0 \)), θα έπρεπε να αναφέρουμε ρητά τον περιορισμό
 	\( k_1 \neq 0 \) που βρήκαμε παραπάνω, για να βεβαιωθούμε ότι το
 	αποτέλεσμα ισχύει και το αρχικό σύστημα είναι όντως ελέγξιμο.
-	
+
 	Ο παρατηρητής αυτός μπορεί να υλοποιηθεί φυσικά σε λογισμικό χρησιμοποιώντας
 	αριθμητικές μεθόδους επίλυσης διαφορικών εξισώσεων.
-	
+
 	Βέβαια ο παρατηρητής έχει σχεδιαστεί με την προϋπόθεση ότι όλο
 	το διάνυσμα κατάστασης είναι μη μετρήσιμο, επομένως κάνει επιπλέον
 	δουλειά, προσπαθώντας να υπολογίσει το \( x_1 \) το οποίο είναι
@@ -6255,30 +6255,30 @@ y &= Cx+Du
 		1 & 0
 		\end{matrix}\right]x
 	\end{align*}
-	
+
 	Να σχεδιαστεί παρατηρητής.
 	\tcblower
 	Για τον πίνακα παρατηρησιμότητας έχουμε:
 	\[
 			W = \left[\begin{matrix}
 			C \\ CA
-			\end{matrix}\right] = 
+			\end{matrix}\right] =
 	\]
 	για τον οποίο ισχύει:
 	\[
 	\rank(W) = 2 = n
 	\]
-	
+
 	Εδώ θα χρησιμοποιήσουμε μια πιο απλή διαδικασία για τον υπολογισμό
 	του παρατηρητή, χωρίς να αξιοποιήσουμε όλη την παραπάνω θεωρία.
-	
+
 	Έστω λοιπόν ότι:
 	\[
 	L = \left[\begin{matrix}
 	l_1 \\ l_2
 	\end{matrix}\right]
 	\]
-	
+
 	\[
 	A - LC = \left[\begin{matrix}
 	0 & 1 \\ 0 & 0
@@ -6345,7 +6345,7 @@ V(x) = \frac{1}{2} x^{\mathrm T} x
 \begin{align*}
 	\dot V &= x^{\mathrm T}(A-Bk)x
 	- \gamma\left| x^{\mathrm T}B \right|^2
-	+ x^{\mathrm T}f(x) 
+	+ x^{\mathrm T}f(x)
 	+ x^{\mathrm T}g(x)u
 	\\
     &=	\underbrace{x^{\mathrm T} \tilde A x}_{\leq \lambda_{\min} (\tilde A)|x|^2}
@@ -6529,7 +6529,7 @@ u_0 = \begin{cases}
 \end{align*}
 
 Θεωρώντας ότι ο \( A \) είναι συμμετρικός, ή ότι τον χωρίζουμε σε ένα
-αντισυμμετρικο και ένα αντισυμμετρικό μέρος, 
+αντισυμμετρικο και ένα αντισυμμετρικό μέρος,
 και επειδή \( |r(t)| \leq \bar r \) για μια μέγιστη τιμή \( \bar r \)
 που θεωρούμε,
 θα έχουμε:
@@ -6551,7 +6551,7 @@ u_0 = \begin{cases}
 
 Ορίζουμε το σύνολο που εκφράζει το εύρος τιμών εντός των οποίων θα κινείται \textbf{εγγυημένα} το σφάλμα \( e \) στη μόνιμη κατάσταση (μετά από πεπερασμένο χρόνο):
 \[
-\varepsilon = \left\lbrace 
+\varepsilon = \left\lbrace
 e \in \mathbb R^n :
 |e| \leq \sqrt{
 \frac{\delta \bar r}{\lambda_{\min} (A_d)}
@@ -6601,7 +6601,7 @@ e \in \mathbb R^n :
 \begin{exercise}
 	\todo{???}
 	Έστω το σύστημα με \textbf{μεταβαλλόμενη διαταραχή}.
-	
+
 	Να σχεδιαστεί ελεγκτής.
 	\tcblower
 	Επιλέγουμε τον ελεγκτή:
@@ -6614,7 +6614,7 @@ e \in \mathbb R^n :
 		u_0 &= -\gamma(PB)^{\mathrm T}x\\&= -\gamma cx - \gamma y
 	\end{align*}
 	για \( \gamma >0 \).
-	
+
 	Έστω η υποψήφια συνάρτηση Lyapunov:\[
 	V = x^{\mathrm T} P x
 	\]
@@ -6629,7 +6629,7 @@ e \in \mathbb R^n :
 		+x^{\mathrm T}(PB)u_0 + x^{\mathrm T} PB d(t)
 		\\ &= -\frac{1}{2}x^{\mathrm T}Qx - \gamma |y|^2 + yd(t)
 	\end{align*}
-	
+
 \end{exercise}
 
 \begin{exercise}
@@ -6646,11 +6646,11 @@ e \in \mathbb R^n :
 		0 & 1
 		\end{matrix}\right]x
 	\end{align*}
-	
+
 	Να σχεδιαστεί ελεγκτής έτσι ώστε η έξοδος να τείνει σε μια επιθυμητή είσοδο \( y \to r \), με τις διαταραχές \( d \) να έχουν εξαλειφθεί.
-	
+
 	Θεωρούμε ότι η διαταραχή \( d \) είναι σταθερή.
-	
+
 	\paragraph{}
 	Επίσης θεωρήστε πως υπάρχει μια ασάφεια στη σταθερά \( a_1 \).
 	Είναι γνωστή κάποιες τιμές \( \overline{a_1} \), αλλά η πραγματική σταθερά είναι:
@@ -6658,16 +6658,16 @@ e \in \mathbb R^n :
 	a_1 = \overline{a_1} + \delta
 	\]
 	όπου \( \delta \) ένας όρος ασάφειας.
-	
+
 	Να διαπιστωθεί ποιά είναι η μέγιστη τιμή του \( δ \) έτσι ώστε η σχεδίαση που πραγματοποιήσαμε παραπάνω να συνεχίζει να ισχύει.
-	
+
 	\tcblower
 	Για να δούμε αν μπορεί να σχεδιαστεί τέτοιος ελεγκτής, \textbf{πρέπει} πρώτα να εξετάσουμε
 	την ελεγξιμότητα του συστήματος.
-	
+
 	Το σύστημα βρίσκεται ήδη στην \textit{ελέγξιμη κανονική μορφή}, επομένως
 	είμαστε βέβαιοι πως είναι ελέγξιμο.
-	
+
 	Αφού θέλουμε το σύστημα να εξαλείφει εντελώς τις διαταραχές, θα χρησιμοποιήσουμε ελεγκτή \textit{δυναμικής ανάδρασης καταστάσεων},
 	δηλαδή:
 	\begin{align*}
@@ -6690,13 +6690,13 @@ e \in \mathbb R^n :
 	0 \\ 0 \\ -1
 	\end{matrix}\right]r
 	\]
-	
+
 	Τις σταθερές \( k_1,k_2,k_i \) μπορούμε να βρούμε τοποθετώντας τις ιδιοτιμές του πίνακα σε επιθυμητά σημεία. Χρησιμοποιούμε το χαρακτηριστικό πολυώνυμο του συστήματος κλειστού βρόχου, που είναι:
 	\[
 	p_c(s) = s^3 + (a_1+k_1)s^2 + (a_2+k_2)s + k_i
 	\]
 	και θέλουμε να είναι ίσο με ένα επιθυμητό πολυώνυμο \( p_d \).
-	
+
 	Εδώ θα επιλέξουμε για λόγους απλότητας το τελικό σύστημα να έχει 3
 	πόλους στο ίδιο σημείο \( -λ \), δηλαδή το επιθυμητό χαρακτηριστικό πολυώνυμο
 	να είναι της μορφής:
@@ -6710,7 +6710,7 @@ e \in \mathbb R^n :
 		a_2 + k_2 = 3λ^2 \implies \Aboxed{k_2 &= 3\lambda^2 - a_2} \\
 		\Aboxed{k_i &= \lambda^3}
 	\end{align*}
-	
+
 	\tcbsubtitle{Λύση με διαταραχές}
 	Αντικαθιστούμε στις τελευταίες σχέσεις:
 	\begin{align*}
@@ -6723,10 +6723,10 @@ e \in \mathbb R^n :
 	p_c(s) = s^3 + (δ+3λ)s^2 + 3λ^2s + λ^3
 	\]
 	το οποίο, όπως είναι αναμενόμενο, εξαρτάται από την επιλογή μας του \( λ \) και την αβεβαιότητα \( δ \).
-	
+
 	Το ότι ισχύει η σχεδίασή μας, σημαίνει ουσιαστικά πως οι πόλοι συνεχίζουν να παραμένουν στο αριστερό ημιεπίπεδο, έτσι ώστε να έχουμε
 	ευστάθεια. Για να το διαπιστώσουμε αυτό χρησιμοποιούμε κριτήριο Routh-Hurwitz.
-	
+
 	Από αυτό προκύπτει η τελική συνθήκη:
 	\[
 	\boxed{δ > -2.4λ}
@@ -6748,7 +6748,7 @@ e \in \mathbb R^n :
 		1 \\ 0 \\ 0
 		\end{matrix}\right]
 	\end{align*}
-	
+
 	\begin{itemize}
 		\item Να διαπιστωθεί η αστάθειά του.
 		\item Να σχεδιαστεί ο \textbf{απλούστερος} ελεγκτής γραμμικής ανάδρασης καταστάσεων:
@@ -6757,7 +6757,7 @@ e \in \mathbb R^n :
 		\]
 	    που να οδηγεί στην ασυμπτωτική ευστάθεια, με την πιο αργή ιδιοτιμή
 	    να έχει τιμή το πολύ \( -1 \).
-	    
+
 	    "\textit{Απλούστερος}" θεωρείται ο ελεγκτής που μετράει τις λιγότερες
 	    καταστάσεις.
 	\end{itemize}
@@ -6767,7 +6767,7 @@ e \in \mathbb R^n :
     	\[
     	1,\ -1,\ -2
     	\]
-    	
+
     	Η ιδιοτιμή \( +1 \) είναι η αιτία που το σύστημα είναι ασταθές.
     	\item Αντικαθιστώντας το \( u \), το σύστημά μας θα γίνει:
     	\[
@@ -6777,7 +6777,7 @@ e \in \mathbb R^n :
     	0 & 0 & -2
     	\end{matrix}\right]
     	\]
-    	
+
     	Οι ιδιοτιμές του θα είναι (αφού έχουμε άνω τριγωνικό πίνακα):
     	\[
     	1-k_1, \ -1,\ -2
@@ -6785,7 +6785,7 @@ e \in \mathbb R^n :
     	επομένως αρκεί να δώσουμε κάποια τιμή μόνο στο \( k_1 \) για να
     	καταστήσουμε ευσταθές το σύστημα, αφού οι παράγοντες \( k_2,k_3 \)
     	δεν επηρεάζουν τις ιδιοτιμές του. Επομένως θεωρούμε \( k_2 = 0, k_3 = 0 \).
-    	
+
     	Πρέπει να έχουμε το πολύ \( -1 \) ιδιοτιμή, άρα:
     	\[
     	1-k_1 < -1 \implies \boxed{k_1 > 2}
@@ -6803,7 +6803,7 @@ e \in \mathbb R^n :
         \dot x_1 &= -x_1 + x_2\\
         \dot x_2 &= (x_1+x_2)\sin x_1 - 3x_2
 	\end{align*}
-	
+
 	\begin{enumerate}
 		\item Να διαπιστωθεί ότι το \( (0,0) \) είναι το μοναδικό του σημείο ισορροπίας.
 		\item Να γραμμικοποιηθεί γύρω από το \( (0,0) \) και να αποδειχθεί
@@ -6826,7 +6826,7 @@ e \in \mathbb R^n :
     	\]
     	και επιβεβαιώνεται ότι το μοναδικό σημείο ισορροπίας είναι το
     	\( (0,0) \).
-    	
+
     	\item Για τη γραμμικοποίηση, θεωρούμε τις ιακωβιανές παραγώγους των πινάκων:
     	\begin{align*}
     		\pd{F}{x} = \left[\begin{matrix}
@@ -6836,9 +6836,9 @@ e \in \mathbb R^n :
     		-1 & 1 \\ 0 & -3
     		\end{matrix}\right]
     	\end{align*}
-    	
+
     	Ο πίνακας αυτός είναι άνω τριγωνικός με ιδιοτιμές \( -1 \), \( -3 \). Αφού είναι αρνητικές, το σύστημα είναι ασυμπτωτικά ευσταθές στη γειτονιά του \( (0,0) \).
-    	
+
     	\item Επιλέγουμε την υποψήφια συνάρτηση Lyapunov που είναι θετικά
     	ορισμένη:
     	\[
@@ -6874,14 +6874,14 @@ e \in \mathbb R^n :
     	1 & -\frac{1+\sin x_1}{2}\\
     	-\frac{1+\sin x_1}{2} & 2
     	\end{matrix}\right] \) να θετικά ορισμένος.
-    	
+
     	Πράγματι, οι κύριες ελάσσονες ορίζουσές του είναι:
     	\begin{gather*}
     		1 > 0\quad \checkmark\\
     		2 - \frac{(1+\sin x_1)^2}{4} > 0 \iff
     		8 > (1+\sin x_1)^2\quad \checkmark
     	\end{gather*}
-    	
+
     	Άρα το σημείο είναι ολικά ασυμπτωτικά ευσταθές.
     \end{enumerate}
 \end{exercise}
@@ -6954,7 +6954,7 @@ u = -ky
 \]
 και το σύστημα θα είναι \textbf{ομοιόμορφα τελικώς φραγμένο}, με τις καταστάσεις του να τείνουν στο σύνολο:
 \[
-Y \overset{\triangle}{=} \left\lbrace 
+Y \overset{\triangle}{=} \left\lbrace
 y \in \mathbb R: |y| \leq \frac{\bar{d}}{k-a}
  \right\rbrace
 \]
@@ -7061,10 +7061,10 @@ V = \frac{1}{2} x_1^2 +\frac{1}{2γ}(x_2 - c)^2
 Επίσης, θα εφαρμόσουμε το θεώρημα LaSalle για να εγγυηθούμε \textbf{σύγκλιση} στο 0, αφού δείξαμε μόνο ότι η \( \dot V \) είναι
 αρνητικά \textbf{ημι}ορισμένη. Θεωρούμε το σύνολο \( S \):
 \[
-S \overset{\triangle}{=} \left\lbrace 
+S \overset{\triangle}{=} \left\lbrace
 x \in \mathbb R^2:
 \dot V = 0
- \right\rbrace = \left\lbrace 
+ \right\rbrace = \left\lbrace
  x\in\mathbb R^2: x_1 = 0
   \right\rbrace
 \]
@@ -7109,11 +7109,11 @@ x \in \mathbb R^2:
 	\tcblower
 	Στο σύστημα αυτό οι \textbf{είσοδοι ελέγχου} είναι οι \( V_a \) και
 	\( V_f \).
-	
+
 	Ως \textbf{μεταβλητές κατάστασης} επιλέγουμε τις
 	\( I_a \), \( \Omega \) και \( \Phi \), ή την \( I_f \) έναντι
 	της \( \Phi \).
-	
+
 	Οι \( T_a \), \( T_m \), \( T_f \) και \( k_a \) είναι
 	\textbf{σταθερές} του συστήματος.
 \end{exercise}
