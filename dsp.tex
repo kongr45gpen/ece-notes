@@ -1592,5 +1592,258 @@ y(n) = z^n \sum_{k=-\infty}^{\infty} h(k)z^{-k}
 	\]
 \end{itemize}
 
+\lecture{5}{15/10/2018}
+
+\subsection{Αντίστροφος μετασχηματισμός Z}
+Ο ευθύς μετασχηματισμός Z είναι:
+\[
+X(z) \overset{\triangle}{=} \sum_{n=-\infty}^{\infty} x(n)z^{-n}
+\quad \mathcal{R}_{x(z)}
+\]
+
+Αποδεικνύεται ότι ο \textbf{αντίστροφος μετασχηματισμός Z} είναι:
+\[
+x(n) = \frac{1}{2 π j} \ointctrclockwise\limits_{c \in \mathcal{R}_{x(z)z^{n-1}}} x(z)z^{n-1} \dif z
+\]
+
+Η παραπάνω σχέση βασίζεται στο ολοκλήρωμα του Cauchy, \( \frac{1}{2πj} \ointctrclockwise z^{k-1}\dif z = \begin{cases}
+1 &\quad k=0 \\ 0&\quad k\neq 0
+\end{cases} \)
+
+\subsection{Μέθοδοι υπολογισμού μετασχηματισμού Z}
+\subsubsection{Ολοκληρωτικά υπόλοιπα}
+Με βάση τη μιγαδική ανάλυση, γνωρίζουμε ότι:
+\[
+x(n) = \sum \left\lbrace 
+\mathop{Res} \left[ x(z)z^{n-1} \right]
+ \right\rbrace
+\]
+για τους πόλους \textbf{εντός} του \( C \in \mathcal{R}_{x(z)z^{n-1}} \).
+\todo{Graph 15}
+Η παραπάνω σχέση συμπεριλαμβάνει και πόλους που βρίσκονται \emph{εκτός των ορίων περιοχής σύγκλισης} αλλά
+\emph{μέσα στα όρια του κύκλου που αυτές ορίζουν}.
+
+\paragraph{Παράδειγμα}
+Ένα σύστημα έχει 4 πόλους. Πόσες είναι οι μέγιστες δυνατές περιοχές σύγκλισης;
+\subparagraph{Απάντηση}
+Ένας πόλος, ως \emph{απομονωμένο} ανώμαλο σημείο, δεν μπορεί να βρίσκεται στην περιοχή σύγκλισης.
+
+Τοποθετούμε τους πόλους στο πραγματικό επίπεδο για ευκολία, και θεωρούμε περιοχές σύγκλισης με ανοιχτά
+όρια. Επειδή μια περιοχή σύγκλισης πρέπει να έχει πόλο στα όριά της, αλλά δεν μπορεί να περιέχει πόλο,
+οι δυνατές επιλογές θα μοιάζουν ως εξής:
+\todo{Graph 16 (5 graphs)}
+
+Άρα έχουμε 5 δυνατότητες για περιοχή σύγκλισης.
+
+\paragraph{Υπολογισμός ολοκληρωτικών υπολοίπων}
+Σύμφωνα με τη μιγαδική ανάλυση, τα ολοκληρωτικά υπόλοιπα που ψάχνουμε μπορούν να βρεθούν ως εξής:
+\[
+\mathop{Res}\left[
+X(z)z^{n-1} \ @\ z=z_0
+\right] = \frac{1}{(s-1)!} \left.\od[s-1]{}{z} A(z)\right|_{z=z_0}
+\]
+όπου \( z_0 \) ο πόλος, \( s \) η πολλαπλότητά του, και:
+\[
+A(z) = X(z)z^{n-1}(z-z_0)^s
+\]
+
+\begin{exercise}
+	Δίνεται ο μετασχηματισμός Z μιας ακολουθίας:\[
+	X(z) = \frac{1}{1-az^{-1}} \qquad |z|>|a|
+	\]
+	
+	Ποιά είναι η αρχική ακολουθία \( x(n) \);
+	\tcblower
+	Το \( X(z) \) γράφεται και ως:
+	\[
+	X(z) = \frac{z}{z-a}
+	\]
+	
+	Εξετάζω πόσο κάνει το \( X(z)z^{n-1} \):
+	\[
+	X(z)z^{n-1} = \frac{z^n}{z-a}
+	\]
+	που έχει \textbf{πόλο} στο \( z_0 = a \) με \textbf{πολλαπλότητα} \( s_0 = 1 \). Στην περίπτωση που \( n = -k <0 \), προστίθεται και ένας παραπάνω πόλος \( z_1=0 \) πολλαπλότητας
+	\( s_1 = |n|= k \).
+	
+	\begin{itemize}
+		\item \textbf{Αν \( n\geq 0 \)}, τότε:
+		έχουμε \textbf{1 πόλο} στο \( z_0=a \) πολλ/τας \( s_0=1 \). Άρα από τη θεωρία:
+		\todo{add relation}\begin{align*}
+			x(n) &= \res\left[
+			\frac{z^n}{z-a} \ @ \ z=a
+			\right] = \frac{1}{(s-1)^1} \left. \frac{\dif}{\dif \, z^{-1}} z^n \right|_{z=a}
+			\\ &= \cdots
+		\end{align*}
+		\todo{complete}
+		\item \textbf{Αν \( n < 0 \)}, τότε:
+		\todo{συμπλήρωση}
+		\begin{align*}
+			x(n) &= \res\left[
+			\frac{1}{(z-a)z^{-n}}\ @ \ z=a
+			\right] = \left.\frac{1}{z^{-n}}\right|_{z=a} = a^n
+			\\ &+ \res\left[
+			\frac{1}{(z-a)z^{-n}}\ @ \ z=0
+			\right] = \frac{1}{(k-1)!}\left.\od[k-1]{}{z} \frac{1}{z-a}\right|_{z=0}
+			\\ &= a^n + \frac{1}{(k-1)!}(-1)^{k-1}\left.\frac{1}{(z-a)^k}\right|_{z=0}
+			\\ &= a^n + (-1)^{k-1} \frac{1}{(-a)^k}
+			= a^n + (-1)^{k-1}(-a)^n = a^n - a^n = 0
+		\end{align*}
+	\end{itemize}
+
+    Τελικά, το αποτέλεσμα στο οποίο καταλήξαμε είναι το εξής:
+    \[
+    \left.\begin{aligned}
+    n \geq 0 &\quad x(n)=a^n\\
+    n < 0 &\quad x(n) = 0
+    \end{aligned} \right\rbrace \implies x(n) = a^n\mathrm{u}(n)
+    \]
+    ένα αποτέλεσμα ίδιο με αυτό της "αντίστροφης" άσκησης που λύσαμε προηγουμένως.
+    \todo{add ref}
+\end{exercise}
+
+\begin{exercise}
+	Να βρεθεί το αρχικό σήμα του μετασχηματισμού:
+	\[
+	X(z) = \frac{z(z-b) + z(z-a)}{(z-a)(z-b)}
+	\qquad \mathcal{R}_x : |a|<|z|<|b|
+	\]
+	\tcblower
+	Αν και η άσκηση λύνεται άμεσα μετά την παρατήρηση ότι \( X(z) = \frac{z}{z-a}+\frac{z}{z-b} \), εδώ
+	θα χρησιμοποιήσουμε τη μεθοδολογία των ολοκληρωτικών υπολοίπων.
+	
+	Έχουμε:
+	\begin{align*}
+		X(z)z^{n-1} &= \frac{(2z-a-b)}{(z-a)(z-b)}z^n
+		\intertext{Άρα:}
+		x(n) &= \frac{1}{2\pi j} \ointctrclockwise_C \frac{(2z-a-b)}{(z-a)(z-b)}z^n\dif z
+		= \frac{1}{2πj}\ointctrclockwise_C I(z)\dif z
+	\end{align*}
+	όπου ορίσαμε για ευκολία \( I(z) = \frac{(2z-a-b)}{(z-a)(z-b)}z^n \).
+	
+	Το \( I(z) \) έχει πόλους \( z \) πολλαπλότητας \( s \):
+	\[ I(z) \rightarrow
+	\begin{cases}
+	z_0 = a &\quad s_0=1\\
+	z_1 = b &\quad s_1=1
+	\end{cases}
+	\]
+	
+	\begin{itemize}
+		\item \textbf{Αν \( n\geq 0 \)}, τότε:
+		\[
+		x(n) = \res\left[
+		I(z) \ @ \ z=a
+		\right] =\left. \frac{z^n(2z-a-b)}{(z-b)}\right|_{z=a}
+		= \frac{a^n(2a+a-b)}{(a-b)} = a^n
+		\]
+		
+		Εδώ δεν συμπεριλάβαμε τον πόλο \( z_1=b \) επειδή είναι \emph{εκτός} του χωρίου που περικλείεται
+		από την περιοχή σύγκλισης.
+		
+		Επομένως: \[
+		x(u) = a^n \quad \text{όταν } n \geq 0
+		\]
+		\item \textbf{Αν \( n < 0 \)}, τότε οι πόλοι του \( I(z) \), λόγω του όρου \( z^n \), είναι:
+		\[
+		I(z) \rightarrow \begin{cases}
+		z_0 = a &\quad s_0 = 1\\
+		z_1 = b &\quad s_1 = 1\\
+		z_2 = 0 &\quad s_2 = -n = k
+		\end{cases}
+		\]
+		
+		Άρα η ακολουθία είναι:
+		\begin{align*}
+			x(n) &= \res\left[
+			I(z) \ @ \ z=a
+			\right] + \res\left[
+			I(z) \ @ \ z=0
+			\right]
+			\intertext{επειδή $a,0 \in \mathop{int}(C)$, ενώ $b \notin \mathop{int}(C)$}
+			&= \left. \frac{2z-a-b}{z^{-n}(z-b)} \right|_{z=a}
+			+ \frac{1}{(-n-1)!}\left. \od[-n-1]{}{z} \left( \frac{2z-a-b}{(z-a)(z-b)} \right)\right|_{z=0}
+		\end{align*}
+		
+		Για να υπολογίσουμε τη "δύσκολη" παραπάνω παράγωγο, εφαρμόζουμε ένα τρικ. Θέτουμε \( z = \sfrac{1}{ρ}  \), οπότε \( \dif z = -\frac{1}{ρz}\dif ρ \), και η περιοχή σύγκλισης γίνεται
+		\( |a|^{-1} > |ρ|> |b|^{-1} \). Και τότε:
+		\begin{align*}
+		I(z)\dif z &= -\frac{ρ^{-n}(2ρ^{-1}-a-b)}{\left( ρ^{-1}-a \right)\left( ρ^{-1}-b \right)}\frac{1}{ρ^2} \dif\rho
+		\\ &= -\frac{ρ^{-n}(2ρ^{-1}-a-b)}{(1-aρ)(1-bρ)}\dif ρ
+		\end{align*}
+		
+		Άρα τελικά:
+		\begin{align*}
+			x(n) &= \frac{1}{2πj} \ointclockwise_C \left[
+			-\frac{ρ^{-n}(2ρ^{-1}-a-b)}{(1-aρ)(1-bρ)}
+			\right]
+			\dif ρ
+		\end{align*}
+		
+		Στο νέο υπολογισμό με βάση το \( ρ \) και όχι το \( z \), έχει αλλάξει το επίπεδο όπου προβάλλουμε
+		τους πόλους. Η περιοχή σύγκλισης μοιάζει πάλι με donut, αλλά η καμπύλη \( C \) διαγράφεται τώρα
+		ωρολογιακά και όχι αντιωρολογιακά, λόγω της αλλαγής μεταβλητής \( \dif z = -\frac{1}{ρz}\dif ρ \).
+		
+		Άρα:
+		\begin{align*}
+			x(n) &= \frac{1}{2πj} \ointctrclockwise_C \left[
+			\frac{ρ^{-n}(2ρ^{-1}-a-b)}{(1-aρ)(1-bρ)}
+			\right]
+			\dif ρ
+			\\ &= \res\left[
+			-\frac{ρ^{-n}(2ρ^{-1}-a-b)}{(1-aρ)(1-bρ)} \ @ \ \rho = \frac{1}{b}
+			\right]
+			\\ &= \frac{1}{ab}\left[
+			   \frac{ρ^{-n-1}\left[ 2-(a+b)ρ \right]}{\left( ρ-\frac{1}{a} \right)\left(ρ-\frac{1}{b}\right)}
+			\right]\ @ \ \rho = \frac{1}{b}
+			\\ &= \left.\frac{1}{ab}\left[
+			\frac{ρ^{-n-1}\left( 2-(a+b)ρ \right)}{\left( ρ-\frac{1}{a} \right)}
+			\right]\right|_{\rho = \sfrac{1}{b} }
+			\\ &= \cdots = -b^n
+		\end{align*}
+		
+		Άρα τελικά:
+		\[
+		x(n) = -b^n \text{ για } n<0
+		\]
+	\end{itemize}
+
+    Επομένως, η ζητούμενη ακολουθία είναι:
+    \[
+    x(n) = a^n\mathrm{u}(n) - b^n \mathrm{u}(-n-1)
+    \]
+\end{exercise}
+
+\subsubsection{Μέθοδος συνεχούς διαίρεσης}
+\begin{exercise}
+	Δίνεται ο Μ/Σ Z:
+	\[
+	X(z) = \frac{2z^2 - (a+b)z}{z^2 - (a+b)z+ab}
+	\qquad |a|<|b|<|z|
+	\]
+
+	Να βρεθεί η \( x(n) \).
+	\tcblower
+	\begin{comment}
+	Έχουμε:
+	\begin{align*}
+		X(z) &= \frac{z}{z-a} + \frac{z}{z-b}
+	\end{align*}
+	Επομένως:
+	\[
+	x(n) = \left(a^n+b^n\right)\mathrm u(n)
+	\]
+	\end{comment}
+	
+	\todo{Graph 19 (optional)}
+	Η μέθοδος αυτή απαιτεί ένα είδος διαίρεσης των πολυωνύμων \( 2z^2 - (a+b)z \)
+	και \( z^2-(a+b)z + ab \).
+	Το πηλίκο θα προκύψει \( 2 + (a+b)z^{-1} + (a^2+b^2)z^{-2} + (a^3+b^3)z^{-3} + \dots \), κάτι
+	που μοιάζει με τον ορισμό του μετασχηματισμού Z: \( \sum x(n)z^{-n} \), επομένως η \( x(n) = \left(a^n+b^n\right)\mathrm{u}(n) \).
+	
+	Αντίστοιχα, για περιοχή σύγκλισης \( |z|<|a|<|b| \), θα βρίσκαμε \( x(n)=-\left(a^n+b^n\right)\mathrm{u}(-n-1) \). Όμως δεν μπορούμε να χρησιμοποιήσουμε τη μέθοδο αυτήν
+	για περιοχές της μορφής \( |a|<|z|<|b| \).
+\end{exercise}
+
 
 \end{document}
