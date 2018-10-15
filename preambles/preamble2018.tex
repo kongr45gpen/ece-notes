@@ -1,0 +1,334 @@
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{libs/commath2}
+\usepackage[table]{xcolor}
+\usepackage[hidelinks,draft=false]{hyperref}
+\usepackage[skins,theorems]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{libs/circuitikz} % use our own recent version to make sure some bugs are fixed
+\usepackage{pgfplots}
+\usepackage{mathtools}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs}
+\usepackage{wrapfig}
+%\usepackage{subcaption}
+%\usepackage{floatrow}
+\usepackage{esint}
+\usepackage{paralist}
+\usepackage{enumitem}
+%\usepackage{bm}
+\usepackage{relsize}
+\usepackage{xfrac}
+\usepackage{comment}
+\usepackage{siunitx}
+\usepackage{multicol}
+%\usepackage{MnSymbol}
+\usepackage[obeyDraft,textsize=tiny]{todonotes}
+%\usepackage{morefloats} % oh no!
+%\usepackage[linesnumbered,lined]{algorithm2e}
+\usepackage{glossaries}
+\usepackage{xifthen}
+\usepackage{tocloft}
+
+
+\pgfplotsset{compat=1.13}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{fadings}
+\usetikzlibrary{intersections}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+\usetikzlibrary{matrix}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes}
+\usetikzlibrary{shadings}
+
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+\tcbuselibrary{xparse}
+
+\tikzset{cross/.style={cross out, draw,
+        minimum size=2*(#1-\pgflinewidth),
+        inner sep=0pt, outer sep=0pt}}
+\tikzset{
+    mark position/.style args={#1(#2)}{
+        postaction={
+            decorate,
+            decoration={
+            	post length=1mm, % ??? Magic to fix "Dimension
+            	pre length=1mm, % ???  too large" errors.
+                markings,
+                mark=at position #1 with \coordinate (#2);
+            }
+        }
+    }
+}
+\tikzset{
+	arrow at/.style args={#1}{
+		postaction={
+			decorate,
+			decoration={
+				post length=1mm, % ??? Magic to fix "Dimension
+				pre length=1mm, % ???  too large" errors.
+				markings,
+				mark=at position #1 with {\arrow{>}};
+			}
+		}
+	}
+}
+\makeatletter
+\tikzset{
+  use path for main/.code={%
+    \tikz@addmode{%
+      \expandafter\pgfsyssoftpath@setcurrentpath\csname tikz@intersect@path@name@#1\endcsname
+    }%
+  },
+  use path for actions/.code={%
+    \expandafter\def\expandafter\tikz@preactions\expandafter{\tikz@preactions\expandafter\let\expandafter\tikz@actions@path\csname tikz@intersect@path@name@#1\endcsname}%
+  },
+  use path/.style={%
+    use path for main=#1,
+    use path for actions=#1,
+  }
+}
+\makeatother
+
+\pgfmathdeclarefunction{sinc}{1}{%
+	\pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
+	\ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%
+}
+\pgfmathdeclarefunction{gauss}{2}{%
+	\pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+%\usepackage[no-math]{fontspec}
+%\usepackage{fontspec}
+\usepackage{mathspec}
+%\usepackage{newtxtext,newtxmath}
+%\usepackage{unicode-math}
+%\setmainfont{texgyretermes-regular.otf}
+%\setsansfont{texgyreheros-regular.otf}
+%\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
+%\newfontfamily\greekfontsf[Script=Greek]{Linux Libertine O}
+\usepackage{polyglossia}
+%\newfontfamily\greekfont[Script=Greek]{texgyretermes-regular.otf}
+\newfontfamily\greekfontsf[Script=Greek]{texgyreheros-regular.otf}
+\newfontfamily\greekfonttt[Script=Greek]{Latin Modern Mono}
+%\usepackage[greek]{babel}
+\setdefaultlanguage{greek}
+\setotherlanguage{english}
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[greek]{babel}
+
+
+%\usepackage{tkz-euclide} % loads  TikZ and tkz-base
+%\usetkzobj{angles} % important you want to use angles
+
+\newlist{enumparen}{enumerate}{1}
+\setlist[enumparen]{label=(\arabic*)}
+\newlist{enumpar}{enumerate}{1}
+\setlist[enumpar]{label=\arabic*)}
+
+\newlist{enumgreek}{enumerate}{1}
+\setlist[enumgreek]{label=\alph*.}
+\newlist{enumgreekparen}{enumerate}{1}
+\setlist[enumgreekparen]{label=(\alph*)}
+\newlist{enumgreekpar}{enumerate}{1}
+\setlist[enumgreekpar]{label=\alph*)}
+
+
+\newlist{enumroman}{enumerate}{1}
+\setlist[enumroman]{label=(\roman*)}
+
+\newlist{enumlatin}{enumerate}{1}
+\setlist[enumlatin]{label=(\alph*)}
+
+\newlist{invitemize}{itemize}{1}
+\setlist[invitemize]{noitemsep,label=}
+
+\input{libs/fiximplies}
+%\input{libs/sphere}
+
+\makeatletter
+\let\anw@true\anw@false
+
+%\newcommand{\attnboxed}[1]{\textcolor{red}{\fbox{\normalcolor\m@th$\displaystyle#1$}}}
+\makeatother
+\tcbset{highlight math style={enhanced,colframe=red,colback=white,%
+        arc=0pt,boxrule=1pt,shrink tight,boxsep=1.5mm,extrude by=0.5mm}}
+\newcommand{\attnboxed}[1]{\tcbhighmath[colback=red!5!white,drop fuzzy shadow,arc=0mm]{#1}}
+\newcommand{\infoboxed}[1]{%
+	\tcbhighmath[colframe=blue!50!white,colback=blue!5!white,arc=0mm]{#1}}
+\titleformat{\section}{\bf\Large}{Κεφάλαιο \thesection}{1em}{}
+\newtcolorbox{attnbox}[1]{colback=red!5!white,%
+    colframe=red!75!black,fonttitle=\bfseries,title=#1}
+\newtcbox{quickattnbox}[1]{colback=red!5!white,%
+	colframe=red!75!black,fonttitle=\bfseries,title=#1}
+\newtcolorbox{infobox}[1]{colback=blue!5!white,%
+    colframe=blue!75!black,fonttitle=\bfseries,title=#1}
+\newtcolorbox{knowledgebox}[2][]{colbacktitle=red!10!white,
+	colback=blue!10!white,coltitle=blue!70!black,
+	attach title to upper,after title={:\ },
+	title={#2},fonttitle=\bfseries,#1}
+%TODO: Knowledge titles to left
+\newtcolorbox{questionbox}[2][]{
+beamer,title={#2},#1}
+
+\tcbset{frogbox/.style={enhanced jigsaw,%
+		overlay first={\foreach \x in {0cm} {
+				\begin{scope}[shift={([xshift=-0.2cm]title.west)}]
+					\draw[very thick,green!65!black!50!white,latex-] (0,0) -- ++(-1.5,0);
+\end{scope}}}}}
+\tcbset{frogtitle/.style={
+attach boxed title to top left=
+{xshift=0mm,yshift=-0.50mm},
+boxed title style={skin=enhancedfirst jigsaw,
+	bottom=0mm,
+	interior style={fill=none,
+		left color=green!20!black,
+		right color=gray}}
+}}
+\DeclareTColorBox{exercise}{ O{} }{
+	enhanced jigsaw,
+	breakable,parbox=false,
+	%title style={left color=gray!50!white!50!green,opacity=.5,right color=white},
+	subtitle style={%boxrule=1pt,
+		colback=yellow!50!red!25!white,fontupper=\bfseries},
+	coltitle=black,colbacktitle=green!90!black!25!white,colframe=black,
+	frame hidden,
+	boxrule=0mm,
+	%boxrule=1mm,
+	leftrule=0.8pt,toprule=0.8pt,rightrule=0pt, %reserve space
+	borderline west={0.8pt}{0pt}{white!25!black},%---- draw line
+	borderline north={0.8pt}{0pt}{white!25!black},%---- draw line
+	interior hidden,
+	%frame style={left color=black,right color=white},
+	sharp corners=all,
+	%frogbox, %TODO: frogbox
+	before lower={\tcbsubtitle[before skip=\baselineskip]{Λύση}},lower separated=false,
+	before title={\textbf{Άσκηση\ifthenelse{\isempty{#1}}{}{: }}},
+	title={\ifthenelse{\isempty{#1}}{\hspace{0pt}}{#1}}%
+}
+
+\AtBeginDocument{%
+\let\arg\relax
+\let\Re\relax
+\let\Im\relax
+\DeclareMathOperator{\arg}{arg}
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+}
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\erf}{erf}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\atand}{atan2}
+\DeclareMathOperator{\rank}{rank}
+
+\newenvironment{absolutelynopagebreak}
+{\par\nobreak\vfil\penalty0\vfilneg
+	\vtop\bgroup}
+{\par\xdef\tpd{\the\prevdepth}\egroup
+	\prevdepth=\tpd}
+
+\DeclareSIUnit \voltampere { VA } %apparent power 
+\DeclareSIUnit \var { VAr } %volt-ampere reactive - idle power 
+\DeclareSIUnit \decade { dec } %decade
+
+% Link colours
+\hypersetup{colorlinks,linkcolor={blue!40!black!95!green},citecolor={blue!50!black},urlcolor={cyan!70!black}}
+
+% Global amount of samples
+% Set to a higher value (e.g. 200) for nicer graphs
+% Set to a low value (e.g. 10) for performance
+% NOTE: Check the sample variables below for further measurements
+\newcommand*{\gsamples}{200}
+
+% Equals command as a workaround for CircuiTikZ bug
+% not allowing the = sign in labels
+\newcommand*{\equals}{=}
+
+\newcommand{\nesearrow}{%
+	\,%
+	\smash{\raisebox{-1.1ex}
+		{$%
+			\stackrel{\displaystyle\nearrow}{\displaystyle\searrow}%
+			$}}%
+}
+\newcommand{\degree}{^{\circ}} % not great
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % add an equation number to a number-less math environment
+
+% Provided commands
+\providecommand\dif{d}
+\providecommand\od[2]{\frac{#1}{#2}}
+
+\newtcbtheorem[number within=section,list inside=thm]{theorem}{Θεώρημα}%
+{colback=green!5,colframe=green!35!black,colbacktitle=green!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-7mm},width=.9\textwidth,arc=.7mm}{th}
+\newtcbtheorem[number within=section,list inside=defn]{defn}{Ορισμός}%
+{colback=blue!5,colframe=cyan!35!black,colbacktitle=blue!35!black,fonttitle=\bfseries,enhanced,attach boxed title to top left={yshift=-2mm,xshift=-2mm}}{def}
+
+\makeatletter
+\def\tcb@cnt@theoremautorefname{Θεώρημα}
+\def\tcb@cnt@defnautorefname{Ορισμός}
+\makeatother
+
+% Locus plot utilities
+\tikzset{locus/.style={orange!50!red!70!brown}}
+\tikzset{locuspole/.style={draw=red!30!black,cross,inner sep=2.5pt,fill=white,fill opacity=.6,thick,label={[below]-90:#1}}}
+\tikzset{locuszero/.style={draw=red!30!black,circle,inner sep=2pt,fill=white,fill opacity=.6,thick,label={[below]-90:#1}}}
+\tikzset{locusbreak/.style={rounded corners=1.5pt,inner sep=2pt,draw,top color=brown,bottom color=black,fill opacity=.8,label={[below]-90:#1}}}
+
+% Lecture specifications
+
+\newcommand{\listlecturename}{Κατάλογος Διαλέξεων}
+\newlistof[chapter]{lecture}{toclec}{\listlecturename}
+\renewcommand{\cfttoclectitlefont}{\normalfont\Large\bfseries}
+
+\newcommand{\lecture}[2]{%
+	\refstepcounter{lecture}
+	\addcontentsline{toclec}{lecture}{\protect\numberline{\thelecture}Διάλεξη #2}
+	\hypertarget{lecture_#1}{}
+	\nointerlineskip \vspace{.4\baselineskip}%\hspace{\fill}
+	\centerline{%\color{#1}
+		%\resizebox{1.1\linewidth}{\height}
+		\smash{{%
+				{\begin{tikzpicture}[xscale=2,baseline={([yshift=0ex]current bounding box.north)}]
+					\draw[blue!50!cyan,path fading=west] (0,0) -- (10.1,0);
+					\draw[blue!60!cyan!30!white,path fading=east] (0,0) -- (10.1,0);
+					\draw[>-,blue!60!cyan!70!white,>={LaTeX[scale=2]},draw opacity=1] (9.9,0) -- ++(0,-0.01);
+					\draw (9.9,-0.4) node[rectangle,align=center,scale=.7,blue!70!black,below]
+					{Διάλεξη #1\textsuperscript{η}\\#2};
+					\end{tikzpicture}}}}}%
+	%\hspace{\fill}
+	\par\nointerlineskip \vspace{.5\baselineskip}
+}
+
+% Note: Latex requires a configuration flag for PDF named destinations to be stored:
+% In dvipdfmx.cfg search for Dvipdfmx Compatibility Flags, and add this line after %C  0x0000:
+%     C  0x0010
+%
+
+% New plotting utilities
+\def\vlowsamples{4}
+\def\lowsamples{40}
+\def\midsamples{60}
+\def\hisamples{80}
+\def\timecolour{blue!50!cyan!80!brown}
+
+\tikzstyle{timecolour}=[\timecolour]
+
+\renewcommand*{\sectionautorefname}{Ενότητα}
+\renewcommand*{\subsectionautorefname}{Ενότητα}
+\renewcommand*{\subsubsectionautorefname}{Ενότητα}
+
