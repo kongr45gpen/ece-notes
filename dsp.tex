@@ -49,10 +49,12 @@
 	\tcblower
 	
 	Μπορείτε να ενημερώνετε για οποιοδήποτε λάθος και πρόταση
-	μέσω PM στο forum, issue στο Github, ή οποιουδήποτε άλλου τρόπου!
+	μέσω PM στο forum, issue στο Github, ή οποιουδήποτε άλλου τρόπου.
 \end{infobox}
 
 \section{Εισαγωγή}
+
+\lecture{1}{1/10/2018}
 	
 Στο μάθημα της \textbf{Ψηφιακής Επεξεργασίας Σήματος} ασχολούμαστε
 με προβλήματα όπως το εξής:
@@ -273,6 +275,10 @@ A \simeq B
 	y_{\mathrm{analog}}(t) &\simeq y_{\mathrm{digital}}(t)
 \end{align*}
 
+\paragraph{}
+Στο μάθημα θα ασχοληθούμε μόνο με \textbf{διακριτά}, όχι αυστηρά ψηφιακά σήματα. Παρακάτω στις σημειώσεις οι δύο όροι
+συχνά θα χρησιμοποιούνται εναλλάξ, αλλά θα αναφέρονται πάντα στο απλώς \emph{διακριτό} σήμα.
+
 \subsection{Ιδιότητες}
 Όταν μιλάμε για διακριτό σήμα, μιλάμε ουσιαστικά για μία ακολουθία, όπως τη γνωρίζουμε από τα μαθηματικά.
 
@@ -422,7 +428,7 @@ plot[samples=\lowsamples,smooth,domain=0:4,variable=\x]
 	\displaystyle
 	p = \overline{p(n)} = \frac{\displaystyle \sum_{n=0}^{N} x^2(n)}{N+1}
 	 \)
-	\item \textbf{Ενέργεια}:	\todo{Check}
+	\item \textbf{Ενέργεια}:
 	\( 
 	\displaystyle
 	W = \sum_{n=0}^{N} x^2(n) = (N+1)p
@@ -569,11 +575,25 @@ plot[samples=\lowsamples,smooth,domain=0:4,variable=\x]
 \[
 x(t) = x(t) * δ(t) = \int_{-\infty}^{\infty} x(τ)δ(t-τ) \dif τ
 \]
-και στο ψηφιακό, μπορούμε να έχουμε κάτι αντίστοιχο: \todo{Add a cool box}
-\todo{Clarify and prove}
-\[
-x(n) = \sum_{-\infty}^{\infty} x(m) δ(n-m)
-\]
+και στο ψηφιακό, μπορούμε να έχουμε κάτι αντίστοιχο: 
+\begin{equation}
+\label{eq:deltaconv}
+x(n) = \sum_{m=-\infty}^{\infty} x(m) δ(n-m)
+\end{equation}
+
+\begin{defn}{Συνέλιξη}{}
+	Η \textbf{συνέλιξη} δύο διακριτών σημάτων ορίζεται ως εξής:
+	\[
+	z(n) = x(n) * y(n) = \sum_{k=-\infty}^\infty x(k)y(n-k)
+	\]
+\end{defn}
+
+\paragraph{Απόδειξη σχέσης \eqref{eq:deltaconv}}
+Έχουμε:
+\begin{align*}
+	\sum_{m=-\infty}^{\infty} x(m)\delta(n-m) &=
+	\sum_{m=-\infty}^{n-1} x(m) \cdot 0 + x(n) \cdot \delta(n-n) + \sum_{m=n+1}^{-\infty} x(m) \cdot 0 = x(m)
+\end{align*}
 
 \subsection{Συστήματα}
 Στον αναλογικό κόσμο, ένα σύστημα ήταν ένα κουτί που έπαιρνε σήματα εισόδου, τα επεξεργαζόταν, και έβγαζε σήματα εξόδου. Μαθηματικά, είναι μια απεικόνιση συναρτήσεων \( x(t) \) εισόδου σε συναρτήσεις εξόδους.
@@ -640,14 +660,16 @@ a_1T\left[x_1(n)\right]+a_2T\left[x_2(n)\right] = T\left[a_1x_1(n)+a_2x_2(n)\rig
 η \( R(t) \) είναι μια παράμετρος του συστήματος που δεν μπορεί να είναι ίση με τις διαφορετικές πιθανές
 εισόδους του. Παρομοίως, είναι \emph{λάθος} να θεωρήσουμε ότι \( R(x) = R(x(t)) = R(t) \implies y_2(t) = R(t)x(t) \ \text{(μη ΑΚΜ)} \) (δηλαδή ότι αφού η \( R \) εξαρτάται από το \( x \) και το \( x \) εξαρτάται από το χρόνο, άρα η \( R \) εξαρτάται μόνο από το χρόνο).
 
+\lecture{2}{5/10/2018}
+
 \paragraph{}
 Πιο αυστηρά, ένα σύστημα \( y(n) = T\left[x(n)\right] \) είναι μία \textbf{απεικόνιση}
 από το σύνολο όλων των ακολουθιών \( x(n) \in \mathbb R \) (ή \( \mathbb C \))
-στο σύνολο όλων των ακολουθιών \( y(n) \in \mathbb C  \) (ή \( \mathbb{C} \))
+στο σύνολο όλων των ακολουθιών \( y(n) \in \mathbb R  \) (ή \( \mathbb{C} \))
 
 \subsubsection{Συνέλιξη}
 Θυμόμαστε ότι ένα \emph{ψηφιακό} σήμα είναι ίσο με την \emph{ψηφιακή} συνέλιξή του
-με την \( δ(n) \) (δέλτα Kroenecker):
+με την \( δ(n) \) \eqref{eq:deltaconv}:
 \begin{align*}
 	x(n) &= \sum_{k=-\infty}^{\infty} x(k)δ(n-k)
 	\intertext{Άρα, εφαρμόζοντας το σύστημα στη παραπάνω σχέση:}
@@ -676,7 +698,7 @@ a_1T\left[x_1(n)\right]+a_2T\left[x_2(n)\right] = T\left[a_1x_1(n)+a_2x_2(n)\rig
 y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 \]
 
-\begin{theorem}[title=Συμπέρασμα]
+\begin{theorem}[title=Συμπέρασμα]{}{}
 	Αν ένα σύστημα \( T:x(n) \to y(n) \) είναι γραμμικό, τότε ορίζω την έννοια της
 	\textbf{κρουστικής απόκρισης} του \( t \) ως \( h(n) = T\left[δ(n)\right] \).
 	Αν επιπροσθέτως το \( T \) είναι ΑΚΜ, τότε για οποιαδήποτε είσοδο \( x(n) \) μπορώ να γράψω ότι
@@ -731,10 +753,13 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 		Η απάντηση θα είναι \( U_3 = U_1+U_2 \) και \( D_3 = D_1+D_2 \)
 	\end{questionbox}
 
-	\item \todo{??? See what happens with x(n) * u(n-k)}
+	%\item
+	\todo{??? See what happens with x(n) * u(n-k)}
 \end{itemize}
 
 \paragraph{Παραδείγματα}
+\hspace{0pt}
+
 \begin{exercise}
 	Να συνελιχθούν οι συναρτήσεις:
 	\begin{align*}
@@ -753,7 +778,8 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 		x_1(n) * \left[ δ(n+1)-2δ(n)+δ(n+1) \right]
 		\\ &= x_1(n) * δ(n+1) - x_1(n)*\left( 2 δ(n) \right) + x_1(n)*δ(n-1)
 		\\ &= x_1(n+1) - 2x_1(n) + x_1(n-1)
-		\\ &= δ(n+1) + 2δ(n) + 3δ(n-1) + 4δ(n-2) - 2δ(n) - 4δ(n-1) - 6δ(n-2) - 8δ(n-3) + δ(n-1) +2δ(n-2) + 3δ(n-3)+4δ(n-4)
+		\\ &= δ(n+1) + 2δ(n) + 3δ(n-1) + 4δ(n-2) - 2δ(n) - 4δ(n-1)
+		\\ &\hphantom{=} - 6δ(n-2) - 8δ(n-3) + δ(n-1) +2δ(n-2) + 3δ(n-3)+4δ(n-4)
 		\\ &= δ(n+1) -5δ(n-3) + 4δ(n-4)
 	\end{align*}
 	κάτι που όντως έχει διάρκεια 6.
@@ -761,6 +787,7 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 
 \begin{exercise}
 Έστω ότι έχουμε συναρτήσεις που ξεκινούν και τελειώνουν σε διάφορα σημεία:
+
 \begin{minipage}{.5\textwidth}
 	\[
 	y(n) = \begin{cases}
@@ -777,6 +804,7 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 	\end{cases}
 	\]
 \end{minipage}
+\paragraph{}
 
 Να βρεθεί η συνέλιξή τους.
 
@@ -805,14 +833,14 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 	- \sum_{k=-\infty}^{\infty} β^{k-n_0}u(k-n_0)a^{n-k} u (n-k-N-1)
 	\\ &= β^{-n_0}a^n \sum_{k=n_0}^{n} β^k a^{-k} u (n-n_0)
 	- β^{-n_0}a^n \sum_{k=n_0}^{n-N-1}β^ka^{-k}u(n-N-1-n_0)
-	\intertext{Προσπαθώντας να φτάσουμε έναν όρο γεωμετρικής προόδου, θα κάνουμε το άθροισμα να ξεκινάει από το 0}
+	\intertext{Προσπαθώντας να φτάσουμε έναν όρο γεωμετρικής προόδου, θα κάνουμε το άθροισμα να ξεκινάει από το 0:}
 	\\ &=
 	a^n β^{-n_0}\left[
 	\left(\frac{β}{a}\right)^{n_0}\sum_{k=0}^{n-n_0}\left(\frac{β}{a}\right)^k
 	u(n-n_0) - \left(\frac{β}{a}\right)^{n_0}
 	\sum_{k=0}^{n-n_0-N-1}\left(\frac{β}{a}\right)^k u(n-N-1-n_0)
 	\right]
-	\intertext{και ήρθε η ώρα να εκμεταλλευτούμε τους τύπους αθροίσματος γεωμετρικής προόδου}
+	\intertext{και ήρθε η ώρα να εκμεταλλευτούμε τους τύπους αθροίσματος γεωμετρικής προόδου:}
 	\\ &= a^{n-n_0}\left[
 	\frac{\left(\frac{β}{a}\right)^{n-n_0+1}-1}{\frac{β}{a}-1}u(n-n_0)
 	- \frac{\left(\frac{β}{a}\right)^{n-N_0-1}}{\frac{β}{a}-1}u(n-N-1-n_0)
@@ -901,6 +929,8 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 \end{exercise}
 
 \begin{exercise}
+	Δίνονται τα σήματα:
+	
 	\begin{align*}
 	x(n) &= 2^n u(-n-1)\\
 	y(n) &= 4^n u(-n-1)
@@ -935,6 +965,8 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 	\end{align*}
 \end{questionbox}
 
+\lecture{3}{8/10/2018}
+
 \subsubsection{Ευστάθεια}
 Την ευστάθεια μπορούμε να την ορίσουμε με διαφορετικούς ασύμβατους τρόπους.
 
@@ -943,7 +975,7 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 \begin{defn}{Φραγμένη ακολουθία}{}
 	Μια \textbf{φραγμένη} ακολουθία \( x(n) \)είναι αυτή που δεν πιάνει τιμές μέχρι το άπειρο:
 	\[
-	\left|x(n)\right| < M < \infty \ \forall n \in \mathbb Z
+	\left|x(n)\right| < M < \infty \quad \forall n \in \mathbb Z
 	\]
 \end{defn}
 
@@ -994,15 +1026,15 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 	\]
 	
 	Η \( x(n) \) είναι φραγμένη, αφού έχει μοναδιαίο ή μηδενικό μέτρο παντού. Επομένως είναι \emph{φραγμένη}. Θα την πετάξουμε ως είσοδο στο σύστημα για να αποδείξουμε ότι αυτό
-	δίνει \textbf{μη φραγμένη έξοδο, για φραγμένη είσοδο}, άρα είναι ασταθές κατά BIBO:
+	δίνει \textbf{μη φραγμένη έξοδο, για φραγμένη είσοδο}, άρα είναι αυτό ασταθές κατά BIBO:
 	
 	\begin{align*}
-		y(n) &= \sum_{k=-\infty}^{\infty} h(k)x(n-k) \\
-		\left|y(n)\right| &= \left| \sum_{k=-\infty}^{\infty} h(k)x(n-k) \right|\\
-		\left|y(n)\right| &= 
+		y(n) &= \sum_{k=-\infty}^{\infty} h(k)x(n-k) =  \sum_{k=-\infty}^{\infty} \frac{h(k)h^*(k-n)}{\left|h(k-n)\right|}\\
+		\intertext{Θέτουμε συγκεκριμένα $y=0$:}
+		y(0) & =  \sum_{k=-\infty}^{\infty} \frac{h(k)h^*(k)}{\left|h(k)\right|}
+		= \sum_{k=-\infty}^{\infty} \left|h(k)\right|
+		= \infty.
 	\end{align*}
-	
-	\todo{blablabla}
 \end{itemize}
 
 \subsubsection{Αιτιατότητα}
@@ -1021,7 +1053,7 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 	\[
 	h(n) = 0 \ \forall n<0
 	\]
-	δηλαδή αν η κρουστική απόκριση είναι \textbf{αιτιατή ακολουθία}
+	δηλαδή αν η κρουστική απόκριση είναι \textbf{αιτιατή ακολουθία}.
 \end{theorem}
 \subparagraph{Απόδειξη}
 Η έξοδος του συστήματος θα είναι:
@@ -1055,7 +1087,9 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 
 Κάθε αιτιατή ακολουθία είναι δεξιάς πλευράς.
 
-\subsubsection{Απόκριση γραμμικού ΑΚΜ συστήματος σε εκθετική είσοδο}
+\section{Συνεχής μετασχηματισμός Fourier διακριτού σήματος (Discrete-Time Fourier Transform)}
+
+\subsection{Απόκριση γραμμικού ΑΚΜ συστήματος σε εκθετική είσοδο}
 Μελετάμε την απόκριση συστήματος σε είσοδο:
 \[
 x(n) = a^n
@@ -1063,12 +1097,13 @@ x(n) = a^n
 όπου \( a\in\mathbb{C} \).
 
 Τότε η έξοδος είναι:
-\todo{fix spacing}
 \begin{align*}
 	y(n) = h(n) * x(n)  &= \sum_{k=-\infty}^{\infty} h(k) x(n-k)
 	\\ &= \sum_{k=-\infty}^{\infty} h(k) a^{n-k}
 	\\ &= a^n \sum_{k=-\infty}^{\infty} h(k)a^{-k}
-	\\ &= x(n) \cdot \sum_{k=-\infty}^{\infty} \underbrace{h(k)a^{-k}}_{\mathclap{\text{αριθμός που δεν εξαρτάται από το $n$}}}
+	\\ &= x(n) \cdot \sum_{k=-\infty}^{\infty} \underbrace{h(k)a^{-k}}_{\mathclap{
+			\raisebox{-1.5ex}{\footnotesize\text{αριθμός που δεν εξαρτάται από το $n$}}
+		}}
 	\\ &= x(n) \cdot H
 \end{align*}
 
@@ -1128,6 +1163,7 @@ x(n) = A\cos\left( \omega_0 n + \phi \right)
 \]
 
 Υπενθυμίζουμε ότι η είσοδος εν γένει \textbf{δεν είναι περιοδική}.
+\todo{Add reference}
 
 Αντικαθιστούμε το συνημίτονο:
 \[
@@ -1163,16 +1199,15 @@ x(n) = A\frac{e^{j\phi}e^{j\omega_0 n} + e^{-j\phi}e^{-j\omega_0n}}{2}
 		&= \sum_{n=-\infty}^{\infty} h(n) e^{-j\omega n}
 		\\ &= \sum_{n=0}^{\infty} a^n e^{-j\omega n}
 		\\ &= \sum_{n=0}^{\infty}\left( ae^{-j\omega } \right)^n
-		\intertext{Σε αυτό το σημείο εκμεταλλευόμαστε το άθροισμα άπειρων όρων γεωμετρικής προόδου}
+		\intertext{Σε αυτό το σημείο εκμεταλλευόμαστε το άθροισμα άπειρων όρων γεωμετρικής προόδου:}
 		&= \frac{1}{1-ae^{-j\omega }} \quad \text{(επειδή $\left|ae^{-j\omega }\right|=|a|<1$)}
-		\intertext{Άρα η απόκριση πλάτους \& συχνότητας θα είναι}:
+		\intertext{Άρα η απόκριση πλάτους \& συχνότητας θα είναι:}
 		\left| H\left(e^{j\omega }\right) \right|
 		&= \frac{1}{\left(1+a^2-2a\cos \omega \right)^{\sfrac{1}{2} }}
 		\\
 		\mathop{arg}\left(H\left(e^{j\omega }\right)\right)
-		&= \cdots
+		&= -\arctan \left( \frac{a\sin\omega}{1-a\cos\omega} \right)
 	\end{align*}
-	\todo{συμπλήρωση}
 \end{exercise}
 
 \begin{exercise}
@@ -1213,7 +1248,8 @@ x(n) = A\frac{e^{j\phi}e^{j\omega_0 n} + e^{-j\phi}e^{-j\omega_0n}}{2}
 	\todo{Diagrams: Plot and phase of above}
 \end{exercise}
 
-\subsubsection{Μετασχηματισμός Fourier}
+\lecture{4}{12/10/2018}
+\subsection{Μετασχηματισμός Fourier}
 Παραπάνω ορίσαμε το συνεχή μετασχηματισμό Fourier στο διακριτό σήμα ως εξής:
 \[
 H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
@@ -1262,7 +1298,7 @@ H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
 
 Επιπλέον, αν για το αρχικό σήμα στο χρόνο ισχύει \( h(n)\in\mathbb R \):
 \begin{enumerate}
-	\item[3] Η \( \left|H\left(e^{j\omega }\right)\right| \) είναι \textbf{άρτια} συνάρτηση του \( \omega  \) και συμμετρική ως προς τον άξονα \( π \).
+	\item[3] Η \( \left|H\left(e^{j\omega }\right)\right| \) είναι \textbf{άρτια} συνάρτηση του \( \omega  \) και συμμετρική ως προς τον άξονα \( \omega = π \).
 	\todo{Graph 11 (optional)}
 	\item[4] Το \( \arg H\left(e^{j\omega }\right) \) είναι \textbf{περιττή} συνάρτηση του \( \omega  \)
 	και αντισυμμετρική ως προς τον άξονα \( \omega = \pi \).
@@ -1287,29 +1323,35 @@ H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
 	h(n) = u(n) - u(n-N)
 	\]
 	
-	Επομένως μπορούμε να υπολογίσοουμε αναλυτικά το μετασχηματισμό της:
+	Επομένως μπορούμε να υπολογίσουμε αναλυτικά το μετασχηματισμό της:
 	\begin{align*}
 		H\left(e^{j\omega }\right)
 		&= \sum_{n=-\infty}^{\infty} h(n) e^{-j\omega n}
 		\\ &= \sum_{n=0}^{N-1} 1 e^{-j\omega n}
 		\\ &= \frac{1-e^{-j\omega n}}{1-e^{-j\omega }}
-%		\\ &= \frac{e^{-j\omega \sfrac{N}{2} } \left(
-%			e^{j\omega \sfrac{N}{2} }-e^{-j\omega \sfrac{N}{2} }
-%			\right) }{ e^{-j\sfrac{\omega }{2} }  \left( e^{j\sfrac{\omega }{2}  }\right)
-%		-e^{-j\sfrac{\omega }{2} 	}}
-%		}
+		\\ &= \frac
+		{
+			e^{-j\omega \sfrac{N}{2} } 
+			\left(
+				e^{j\omega \sfrac{N}{2} }-e^{-j\omega \sfrac{N}{2} }
+			\right)
+		}
+		{ 
+			e^{-j\sfrac{\omega }{2} }  
+			\left( e^{j\sfrac{\omega }{2}  }\right)
+			-e^{-j\sfrac{\omega }{2} 	}
+		}
 	\\ &= 	\frac{\sin\left(\frac{\omega N}{2}\right)}{\sin\left(\frac{\omega}{2}\right)}
-	\end{align*} \todo{fix}
+	\end{align*}
 	Άρα:
 	\begin{align*}
 		\left|H\left(e^{j\omega }\right)\right|
 		 &= \left|
 		\frac{\sin\left(\frac{\omega N}{2}\right)}{\sin\left(\frac{\omega}{2}\right)}
 		\right|
-%		\\
-%		\arg\left(H\left(e\right)\right)
+		\\
+		\arg\left(H\left(e\right)\right) &= \mathop{atan2}\left(0, \frac{\sin\left(\frac{\omega N}{2}\right)}{\sin\left(\frac{\omega}{2}\right)}\right)
 	\end{align*}
-	\todo{Calculate argument}
 \end{exercise}
 
 \begin{enumerate}
@@ -1362,8 +1404,14 @@ x(n) = \frac{1}{2π} \int_{-π}^{π} X\left(e^{-j\omega }\right)e^{j\omega n}\di
 
 
 \paragraph{Πολλαπλασιασμός \& Συνέλιξη}
-Η \textbf{συνέλιξη} στο χρόνο είναι \textbf{πολλαπλασιασμός} στη συχνότητα.
-\todo{Add formula}
+\hspace{0pt}
+
+\begin{theorem}{}{}
+	Η \textbf{συνέλιξη} στο χρόνο είναι \textbf{πολλαπλασιασμός} στη συχνότητα του DTFT:
+	\[
+	x(k) * h(k) \leftrightarrow X\left(e^{j\omega }\right) H\left(e^{j\omega }\right)
+	\]
+\end{theorem}
 
 \subparagraph{Απόδειξη}
 Έχουμε:
