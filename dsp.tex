@@ -1845,5 +1845,355 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 	για περιοχές της μορφής \( |a|<|z|<|b| \).
 \end{exercise}
 
+\lecture{6}{19/10/2018}
+\subsection{Ιδιότητες του μετασχηματισμού Z}
+\begin{enumpar}
+	\item \textbf{Γραμμικότητα}
+	
+	Έστω οι \( N \) σε πλήθος ακολουθίες \( x_k(n) \) και οι μετασχηματισμοί Z τους:
+	\begin{align*}
+		x_k(n) &\xrightarrow{\mathcal{Z}T} X_k(z) \qquad k=1,2,\dots,N
+		\intertext{και έστω μία ακολουθία $y(n)$ που είναι γραμμικός συνδυασμός των παραπάνω:}
+		y(n) &= \sum_{k=1}^{N} a_kx_k(n) \qquad a_k \in \mathbb{C} \text{ σταθερές}
+		\intertext{με μετασχηματισμό Z:}
+		Y(z) &= \sum_{k=1}^{N} a_k X_k(z)
+		\intertext{ο οποίος έχει περιοχή σύγκλισης:}
+		\mathcal{R}_{Y(z)} &\supseteq \bigcap_{k=1}^N \mathcal{R}_{X_k(z)}
+	\end{align*}
+	δηλαδή η \emph{περιοχή σύγκλισης}
+	του γραμμικού συνδυασμού είναι \emph{τουλάχιστον} η τομή όλων των περιοχών σύγκλισης των
+	επιμέρους ακολουθιών. Ο όρος \emph{τουλάχιστον} (ή αντίστοιχα το σύμβολο \( \supset \)) εκφράζουν
+	ότι η περιοχή σύγκλισης της \( Y(z) \) μπορεί να είναι μεγαλύτερη των επιμέρους. Αυτό μπορεί για
+	παράδειγμα να συμβαίνει όταν προσθέτουμε τις ακολουθίες με \( \mathcal{Z}\mathrm{T} \): \( \frac{1}{z-1} - \frac{1}{z-1} = 0 \), ή τις ακολουθίες \( \frac{z}{z-1}-\frac{1}{z-1}=\frac{z-1}{z-1}=1 \) όπου απαλείφεται ο πόλος.
+	
+	\item \textbf{Μετατόπιση}
+	
+	Έστω η ακολουθία \( x(n) \) και ο μετασχηματισμός της:
+	\begin{align*}
+		x(n) &\xrightarrow{\mathcal{Z} T} X(z) \qquad \mathcal{R}_X
+		\intertext{και έστω ότι τη μετατοπίζουμε κατά \( n_0 \in \mathbb Z \) (είναι απαραίτητο ο \( n_0 \) να είναι \textbf{ακέραιος})}
+		\infoboxed{y(n) = x(n-n_0)} &\xrightarrow{\mathcal{Z} T} \infoboxed{z^{-n_0} X(z)}
+	\end{align*}
+	
+	\paragraph{Απόδειξη}
+	Έχουμε: \todo{ROC?}
+	\begin{align*}
+		Y(z) &= \mathcal{Z}T \left\lbrace y(n) \right\rbrace
+		= \sum_{n=-\infty}^{\infty} x(n-n_0)z^{-n} \underset{n-n_0 \leftarrow n}{=} \sum_{n=-\infty}^{\infty} x(n) z^{-(n+n_0)}
+		\\ &= z^{-n_0}\sum_{n=-\infty}^{\infty} x(n)z^{-n}
+		= z^{-n_0}X(z)
+	\end{align*}
+	
+	Η περιοχή σύγκλισης εξαρτάται από το ποιούς πόλους εξαφανίζει και εμφανίσει το \( z^{-n_0} \)
+	
+	\item \textbf{Πολλαπλασιασμός με εκθετική ακολουθία (εκθετικό σήμα)}
+	
+	Δίνεται η ακολουθία:
+	\begin{align*}
+		x(n) &\xrightarrow{\mathcal{Z}T} X(z) \qquad \mathcal{R}_x : r_- < |z| < z_+
+		\intertext{και την πολλαπλασιάζουμε με ένα εκθετικό $a^n$ όπου $a\in\mathbb{C}$:}
+		\infoboxed{y(n) = a^n x(n)} &\xrightarrow{\mathcal{Z}T} \infoboxed{Y(z) = X\left(\frac{z}{a}\right)}
+	\end{align*}
+	
+    \paragraph{Απόδειξη} Έχουμε:
+    \begin{align*}
+    	Y(z) &= \sum_{n=-\infty}^{\infty} a^n x(n) z^{-n} =
+    	\sum_{n=-\infty}^{\infty} x(n) \left(\frac{z}{a}\right)^{-n}
+    	= X\left(\frac{z}{a}\right)
+    \end{align*}
+    
+    Για να εκτελέσουμε την τελευταία πράξη, πρέπει να ισχύει:
+    \begin{gather*}
+    	\left|\frac{z}{a} \right|  \in \mathcal{R}_x \implies
+    	r_- < \left|\frac{z}{a}\right| < r_+ \implies
+    	\boxed{|a|r_- < |z| < |a|r_+}
+    \end{gather*}
+    
+    \item \textbf{Παραγώγιση του μετασχηματισμού}
+    \[
+    \infoboxed{nx(n) \xrightarrow{\mathcal{Z}T} -z\od{X(z)}{z}}
+    \]
+    
+    \paragraph{Απόδειξη}
+    \begin{align*}
+    	\mathcal{Z}T\left\lbrace nx(n) \right\rbrace
+    	&= \sum_{n=-\infty}^{\infty} nx(n)z^{-n}
+    	= \sum_{n=-\infty}^{\infty} x(n) \left( -z \od{z^{-n}}{z} \right)
+    	\\ &= -z\od{}{z}\left(\sum_{n=-\infty}^{\infty} x(n)z^{-n}\right)
+    	= -z\od{}{z}X(z)
+    \end{align*}
+    
+    \item \textbf{Χρονική αντιστροφή}
+    
+    Για την ακολουθία \( x(n) \):
+    \begin{align*}
+    	x(n) &\xrightarrow{\mathcal{Z}T} X(z) \qquad \mathcal{R}_x: r_- < |z| < r_+\\
+    	\infoboxed{y(n) = x(-n)} &\xrightarrow{\mathcal{Z}T} \infoboxed{Y(z) = X(z^{-1})}
+    \end{align*}
+    
+    \subparagraph{Απόδειξη}
+    Έχουμε:
+    \begin{align*}
+    	Y(z) &= \sum_{n=-\infty}^{\infty} x(-n)z^{-n}
+    	\underset{-n \leftarrow n}{=} \sum_{n=-\infty}^{\infty} x(n)z^{n}
+    	= \sum_{n=-\infty}^{\infty} x(n) \left(z^{-1}\right)^n
+    	\\ &= X\left( z^{-1} \right)
+    \end{align*}
+    
+    Με την απαίτηση για το πεδίο σύγκλισης:
+    \[
+    r_- < |z^{-1}| < r_+ \implies \boxed{\frac{1}{r_+} < |z| < \frac{1}{r_-}}
+    \]
+    
+    \item \textbf{Συνέλιξη στο χρόνο}
+    
+    Έχουμε τη συνέλιξη δύο ακολουθιών \( x \) και \( y \):
+    \begin{alignat*}{2}
+    	x(n) &\xrightarrow{\mathcal{Z}T} X(z), &&\qquad \mathcal{R}_x\\
+    	y(n) &\xrightarrow{\mathcal{Z}T} Y(z), &&\qquad \mathcal{R}_y\\
+    	\infoboxed{w(n) = x(n)*y(n)} &\xrightarrow{\mathcal{Z}T} \infoboxed{W(z) = X(z)Y(z)}, &&\qquad \boxed{\mathcal{R}_W \supseteq \mathcal{R}_x \cap \mathcal{R}_y}
+    \end{alignat*}
+    
+    \item \textbf{Γινόμενο σημάτων}
+    Έχουμε τον πολλαπλασιασμό δύο ακολουθιών \( x \) και \( y \):
+    \begin{alignat*}{2}
+    x(n) &\xrightarrow{\mathcal{Z}T} X(z), &&\qquad \mathcal{R}_x\\
+    y(n) &\xrightarrow{\mathcal{Z}T} Y(z), &&\qquad \mathcal{R}_y
+    \end{alignat*}
+    
+    Για τον υπολογισμό του στο πεδίο \( Z \), υπολογίζουμε, με βάση τον αντίστροφο μετασχηματισμό
+    Z: \todo{add ref}
+    \begin{align*}
+    W(z) &= \sum_{n=-\infty}^{\infty} x(n)y(n)z^{-n} 
+    = \sum_{n=-\infty}^{\infty} x(n) \frac{1}{2πj} \ointctrclockwise\limits_{C:υ\in\mathcal{R}_Y} Y(υ)υ^{n-1}\dif υ z^{-n}
+    \\ &= \frac{1}{2πj} \ointctrclockwise_{C:υ\in\mathcal{R}_Y}
+    Y(υ) υ^{-1} \sum_{n=-\infty}^{\infty} x(n) υ^n z^{-n} \dif υ\\
+    &\underset{\frac{Z}{υ} \in \mathcal{R}_x}{=} \frac{1}{2πj} \ointctrclockwise_{C:υ\in\mathcal{R}_Y} Y(υ)υ^{-1} X\left(\frac{z}{υ}\right)\dif υ
+    \\
+    W(z) &= \frac{1}{2πj} \ointctrclockwise_{C:\stackrel{υ\in\mathcal{R}_Y}{\frac{z}{υ}\in\mathcal{R}_x}}
+    Y(υ)υ^{-1} X\left( \frac{z}{υ} \right)\dif υ
+    \end{align*}
+    
+    Δεδομένων των περιορισμών, πρέπει:
+    \[
+    \left.
+    \begin{matrix}
+    r_-^Y < |υ| < r_+^Y\\
+    r_-^X < \left|\frac{z}{υ}\right| < r_+^X
+    \end{matrix}
+    \right\rbrace
+    \mathcal{R}_W: r_-^Xr_-^Y < |z| < r_+^Yr_+^X
+    \]
+\end{enumpar}
+
+\begin{exercise}
+	Να υπολογιστεί ο μετασχηματισμός Z του:
+	\[
+	x(n) = δ(n)
+	\]
+	\tcblower
+	Έχουμε:
+	\[
+	X(z) = \sum_{n=-\infty}^{\infty} δ(n)z^{-n} = 1 \quad \forall z\in \mathbb C 
+	\]
+\end{exercise}
+
+\begin{exercise}
+	Να υπολογιστεί ο μετασχηματισμός Z του:
+	\[
+	x(n) = δ(n-n_0)
+	\]
+	\tcblower
+	Έχουμε:
+	\[
+	X(z) = \sum_{n=-\infty}^{\infty} δ(n-n_0)z^{-n} = z^{-n_0}
+	\]
+	
+	Η περιοχή σύγκλισης εξαρτάται από το \( n_0 \) και είναι:
+	\[
+	\begin{cases}
+	n_0 > 0 &\quad 0 < |z|\\
+	n_0 < 0 &\quad |z| < \infty
+	\end{cases}
+	\]
+\end{exercise}
+
+\begin{exercise}
+	Να βρεθεί ο Μ/Σ Z:
+	\[
+	x(n) = u(n)
+	\]
+	\tcblower
+	Έχουμε:
+	\begin{align*}
+		X(z) &= \sum_{n=-\infty}^\infty u(n)z^{-n} = \sum_{n=0}^{\infty} z^{-n}
+		= \frac{1}{1-z^{-1}}
+	\end{align*}
+	
+	Πρέπει \( |z^{-1}| < 1 \), άρα η περιοχή σύγκλισης είναι ROC: \( |z|>1 \).
+\end{exercise}
+
+\begin{exercise}
+	Βρείτε Μ/Σ Z:
+	\[
+	x(n) = u(n-n_0)
+	\]
+	\tcblower
+	Εκμεταλλευόμενοι την ιδιότητα του μετασχηματισμού Z, έχουμε:
+	\begin{align*}
+		X(z) &=z^{-n_0} \cdot \mathcal{Z}T\left\lbrace u(n) \right\rbrace
+		= z^{-n_0}\frac{z}{z-1}
+		\\ &= \frac{z^{-n_0+1}}{z-1}
+	\end{align*}
+	
+	Για την περιοχή σύγκλισης, έχουμε \( |z|>1 \) από το μετασχηματισμό της
+	\( \mathrm{u}(t) \).
+	\begin{itemize}
+		\item Όταν ο εκθέτης είναι αρνητικός, δηλαδή \( -n_0+1 < 0 \iff n_0 > 1 \), έχουμε
+		πόλους στο 0 και στο 1. Επειδή αποκλείεται (λόγω του \( |z|>1 \)) να
+		βρισκόμαστε μέσα από τον μοναδιαίο κύκλο, αναγκαστικά το \( \mathcal{R}_X \) θα
+		είναι \( |z|>1 \).
+		\item Για \( -n_0 + 1 > 0 \iff n_0 < 1 \), έχουμε τον περιορισμό \( 1<|z|<\infty \) όταν
+		\( n_0 < 0 \). \todo{Explain}
+	\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+	Αν:
+	\[
+	X(z) = \frac{z}{3z^2-4z+1}
+	\]
+	να βρεθεί η \( x(n) \) για κάθε πιθανή ROC.
+	\tcblower
+	Πρώτα πρέπει να βρούμε τους \textbf{πόλους} της συνάρτησης, για να υπολογίσουμε τις πιθανές ROC.
+	
+	Έχουμε:
+	\begin{align*}
+	X(z) &= \frac{z}{3\left(z^2-\frac{4}{3}z+\frac{1}{3}\right)} = \frac{z}{3(z-1)\left(z-\frac{1}{3}\right)}\\
+	&= \frac{1}{2}\frac{z}{z-1} - \frac{1}{2}\frac{z}{z-\sfrac{1}{3} }
+		\end{align*}
+	
+	Επομένως έχουμε πόλους στα σημεία \( 1,\frac{1}{3} \).
+	
+	\todo{Graph 20}
+	
+	
+	%Για να υπολογίσουμε τα παρακάτω, χρησιμοποιούμε τους μετασχηματισμούς:
+	%\begin{align*}
+%		content...
+	%\end{align*}
+	\todo{Add samples}
+	
+	\begin{itemize}
+		\item \textbf{Αν ROC: \( |z|>1 \)}
+		
+		Τότε, δεδομένου του Μ/Σ Z της \( u(n) \) (\( U(z) = \frac{1}{1-\sfrac{1}{z} }, |z|>1 \)) έχουμε:
+		\todo{fix}
+		\[
+		x(n) = \frac{1}{2} \mathrm{u}(n) - \frac{1}{2}
+		-\frac{1}{2} \left(\frac{1}{3}\right)^n \mathrm{u}(n)
+		\]
+		\item \textbf{Αν ROC: \( |z| < \frac{1}{3} \)}:
+		\[
+		x(n) = -\frac{1}{2}\mathrm{u}(-n-1) + \frac{1}{2}\left(\frac{1}{3}\right)^n \mathrm{u}(-n-1)
+		\]
+		\item \textbf{Αν ROC: \( \frac{1}{3} < |z| < 1 \)}:
+		\[
+		x(n) = -\frac{1}{2} \mathrm{u}(-n-1) - \frac{1}{2}\left(\frac{1}{3}\right)^n \mathrm{u}(n)
+		\]
+	\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+	Να βρεθεί η \( x(n) \) του μετασχηματισμού Z:
+	\[
+	X(z) =\frac{z+1 }{3z^2-4z+1} \qquad |z|>1
+	\]
+	\tcblower
+	Έχουμε:
+	\begin{align*}
+		\frac{X(z)}{z} &= \frac{z+1}{3z(z-1)\left(z-\frac{1}{3}\right)}
+		= \frac{A}{z} + \frac{B}{z-1} + \frac{\Gamma}{z-\sfrac{1}{3} }
+		\intertext{όπου προκύπτει \( A=1,\quad B=1,\quad \Gamma = -2 \), άρα:}
+		X(z) &= 1 + \frac{z}{z-1} - 2\frac{z}{z-\sfrac{1}{3} } \implies\qquad |z| > 1 \\
+		x(n) &= δ(n) + u(n) - 2\left(\frac{1}{3}\right)^n \mathrm{u}(n)
+	\end{align*}
+	
+	\paragraph{}
+	Εναλλακτικά, χωρίς να διαιρέσουμε αυθαίρετα με το \( z \):
+	\begin{align*}
+		X(z) &= \frac{z+1}{3z^2-4z+1} = \frac{z}{3z^2 - 4z+1} + \frac{}{3z^2-4z+1}\implies \qquad |z|>1
+		\\ x(n) &= \frac{1}{2}\mathrm{u}(n) - \frac{1}{2}\left(\frac{1}{3}\right)^n \mathrm{u}(n)
+		+ \frac{1}{2}\mathrm{u}(n-1) -\frac{1}{2}\left(\frac{1}{3}\right)^{n-1} \mathrm{u}(n-1)
+	\end{align*}
+	
+	Εδώ, αν και φαινομενικά βγάλαμε διαφορετικά αποτελέσματα με τους δύο διαφορετικούς τρόπους προσέγγισης
+	του προβλήματος, στην πραγματικότητα τα αποτελέσματα είναι \emph{ίδια}. Πράγματι, θέτοντας \( n=0,n=1,\dots \) θα πρέπει να πάρουμε το ίδιο αποτέλεσμα.
+\end{exercise}
+
+\begin{exercise}
+	Να βρεθεί ο αντίστροφος μετασχηματισμός Laplace του:
+	\[
+	X(z) = \frac{z^4+z^2}{\left(z-\frac{1}{2}\right)\left(z-\frac{1}{4}\right)}
+	\qquad \frac{1}{2}<|z|<\infty
+	\]
+	\tcblower
+	Αυθαίρετα διαιρούμε με το \( z \), και έχουμε:
+	\begin{align*}
+		\frac{X(z)}{z} &= \frac{z^3+z}{\left(z-\frac{1}{2}\right)\left(z-\frac{1}{4}\right)}
+		= z + \frac{3}{4} + \frac{\frac{23}{16}z - \frac{3}{32}}{z^2-\frac{3}{4}z+\frac{1}{8}}
+		\\ &= z + \frac{3}{4} + \frac{\sfrac{5}{2} }{z-\sfrac{1}{2} } - \frac{\sfrac{17}{6} }{z-\sfrac{1}{4} }
+		\\ &= z^2 + \frac{3}{4}z + \frac{5}{2}\frac{z}{z-\sfrac{1}{2} } - \frac{17}{16}\frac{z}{z-\sfrac{1}{4} } \implies 
+		\hspace{60pt} \infty > |z| > \frac{1}{2}
+		\\
+		x(n) &= δ(n+2) + \frac{3}{4} δ(n+1) + \frac{5}{2} \left(\frac{1}{2}\right)^n \mathrm{u}(n)
+		-\frac{17}{16} \left(\frac{1}{4}\right)^n \mathrm{u(n)}
+	\end{align*}
+\end{exercise}
+
+\begin{exercise}
+	Να βρείτε το μετασχηματισμό Z της ακολουθίας:
+	\[
+	x(n) = (n-2)a^{(n-2)}\cos\left( \omega_0 (n-2) \right)
+	\mathrm{u}(n-2)
+	\]
+	\tcblower
+	Έχουμε:
+	\begin{align*}
+		\mathcal{Z}\left\lbrace x(n) \right\rbrace&= z^{-2}
+		\mathcal{Z} \left\lbrace n a^n \cos\left(\omega_0 n\right) \mathrm{u}(n)\right\rbrace
+		\\ &= z^{-2} \left[
+		-z \od{}{z} \left[ \mathcal{Z}
+		  \left\lbrace a^n\cos(\omega_0 n)\mathrm{u}(n) \right\rbrace
+		 \right]
+		\right]
+		\\ &= z^{-2}\left[
+		  -z \od{}{z}\left.\mathcal{Z}\left\lbrace \cos(\omega_0 n)\mathrm{u}(n) \right\rbrace\right|_{z=\frac{z}{a}}
+		\right]
+	\end{align*}
+	
+	Θέτουμε \( \phi(n) = \cos(\omega_0 n)\mathrm{u}(n) \), και θα βρούμε την \( \Phi(z) \). Έχουμε:
+	\begin{align*}
+		\mathrm{u}(n) \cos(\omega_0 n) &= \frac{e^{j\omega_0 n} + e^{-j\omega_0 n}}{2} \mathrm u(n)
+		\\
+		\mathrm{u(n)} e^{j\omega_0 n }&\xrightarrow{\mathcal{Z} T} \frac{1}{1-\frac{e^{j\omega_0}}{z}}
+		= \frac{z}{z-e^{j\omega_0}} \qquad \left| \frac{e^{j\omega_0}}{z} \right| < 1 \implies |z|>1
+		\\
+		\mathrm{u}(n) e^{-j\omega_0 n}&\xrightarrow{\mathcal{Z}} \frac{z}{z-e^{-j\omega_0}} \qquad |z|>1
+		\\
+		\mathrm{u}(n) \cos(\omega_0 n)&\xrightarrow{\mathcal{Z}} \frac{1}{2}\left[
+		\frac{z}{z-e^{j\omega_0}} + \frac{z}{z-e^{-j\omega_0}}
+		\right]
+		= \frac{z^2-z\cos\omega_0}{z^2-2z\cos\omega_0 + 1}\qquad |z|>1
+	\end{align*}
+	
+	Άρα τελικά:
+	\begin{align*}
+		X(z) &= -z\od{}{z} \left(
+		\frac{z^2-z\cos\omega_0}{z^2-2z\cos\omega_0+1}\middle|_{z=\frac{z}{a}}
+		\right)
+		\qquad |z|>|a|
+	\end{align*}
+\end{exercise}
 
 \end{document}
