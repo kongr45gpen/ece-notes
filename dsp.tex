@@ -2735,4 +2735,275 @@ H(z) = A
 	\todo{Really? Do maths.}
 \end{exercise}
 
+\lecture{9}{2/11/2018}
+
+\subsubsection{Σύνδεση συστημάτων}
+Είναι απλό να δούμε τι συμβαίνει με συστήματα που συνδέονται σε συγκεκριμένες συνδεσμολογίες, τις
+οποίες θέλουμε να μετατρέψουμε σε ένα σύστημα \( h(n) \).
+
+\paragraph{Εν σειρά (καταρράκτης)}
+\hspace{0pt}
+
+\begin{tikzpicture}
+	\draw (0,0) node[draw] (h1){$h_1(n)$};
+	\draw (2,0) node[draw] (h2){$h_2(n)$};
+	
+	\draw[->] (h1) -- (h2) node[midway] (m) {};
+	
+	\filldraw (m.center) circle (2pt) -- ++(0,0.5) node[above,opacity=.8] {$w(h)$};
+	
+	\draw[<-] (h1) -- ++(-1.5,0) node[above,midway] {$x(n)$};
+	\draw[->] (h2) -- ++(1.5,0) node[above,midway] {$y(n)$};
+\end{tikzpicture}
+\todo{make like graph 31}
+
+Έχουμε:
+\begin{align*}
+	w(n) &= x(n) * h_1(n)\\
+	y(n) &= w(n) * h_2(n) = \left( x(n)*h_1(n) \right)*h_2(n)
+	\\ &= x(n) * \left( h_1(n) * h_2(n \right)\\
+	Y(z) &= X(z) \cdot H(z) 
+\end{align*}
+
+\paragraph{Παράλληλη σύνδεση} \hspace{0pt}
+
+\todo{Graph 31}
+
+\begin{align*}
+	y(n) &= x(n) * h_1(n) \pm x(n) * h_2(n) \\ &= x(n) * \left( h_1(n) \pm h_2(n) \right) \\
+	Y(z) &= H(z)X(z) \qquad \text{ όπου } H(z) = H_1(z) \pm H_2(z)
+\end{align*}
+
+\begin{exercise}
+	Δίνεται το σύστημα:
+	
+	\begin{tikzpicture}
+		\draw (0,0) node[draw] (h1) {$h_1(n)$};
+		\draw (2,1) node[draw] (h2) {$h_2(n)$};
+		\draw (2,-1) node[draw] (h3) {$h_3(n)$};
+		\draw (3.5,-1) node[draw] (h4) {$h_4(n)$};
+		
+		\draw (5,0) node[draw,circle,scale=1.3] (a) {$+$};
+		
+		\draw[<-] (h1) -- ++(-2,0) node[left] {$x(n)$};
+		\draw[->] (h1.east) to[in=180,out=0] (h2.west);
+		\draw[->] (h1.east) to[in=180,out=0] (h3.west);
+		\draw[->] (h3) -- (h4);
+		\draw[->] (h2) -| (a.north) node[above left] {$+$};
+		\draw[->] (h4) -| (a.south) node[below left] {$-$};
+		
+		\draw[->] (a.east) -- ++(2,0) node[right] {$y(n)$};
+	\end{tikzpicture}
+	
+	\todo{Graph 32}
+	
+	με τις κρουστικές αποκρίσεις του κάθε μπλοκ:
+	\begin{align*}
+		h_1(n) &= \left\lbrace \frac{1}{2},\frac{1}{4},\frac{1}{2} \right\rbrace\\
+		h_2(n) &= h_3(n) = (n+1) \mathrm{u}(n)\\
+		h_4(n) &= \delta(n-2)
+	\end{align*}
+	
+	Να βρεθεί η ισοδύναμη \( h(n) \) του συστήματος.
+	
+	\tcblower
+	
+	Πρώτα, μετατρέπουμε την \( h_1(n) \) σε μια πιο "μαθηματική" μορφή:
+	\[
+	h_1(n) = \frac{1}{2}δ(n) + \frac{1}{4}δ(n-1) + \frac{1}{2}δ(n-2)
+	\]
+	
+	Άρα, με βάση τα παραπάνω, η κρουστική απόκριση του συστήματος θα είναι:
+	\todo{add ref 'παραπάνω'}
+	\begin{align*}
+		h(n) &= h_1(n) * {\color{red!80!black}\boxed{A}}
+		\\ &= h_1(n) * \left[ h_2(n) - {\color{green!80!black}\boxed{B}} \right]
+		\\ &= h_1(n) * \left[ h_2(n) - h_3(n) * h_4(n) \right]
+		\\ &= h_1(n) * \left[
+		n\mathrm{u}(n)+\mathrm{u}(n) - n\mathrm{u}(n-2) + \mathrm{u}(n-2)
+		\right]
+		\intertext{Εδώ, επειδή έχουμε διακριτά $n$, μπορούμε να μετατρέψουμε τη διαφορά \( nu(n)-nu(n-2) \) σε συναρτήσεις \( \delta \)}
+		&= h_1(n) * \left[
+		2\mathrm{u}(n) - \delta(n)
+		\right] = \left[\frac{1}{2}δ(n)+\frac{1}{4}δ(n-1)+\frac{1}{2}δ(n-2)\right]*\left[2\mathrm{u}(n)-\delta(n)\right]
+		\\
+		&= \frac{5}{2}\mathrm{u}(n-3)
+		+\frac{1}{2}δ(n) + \frac{5}{4}δ(n-1) + 2δ(n-2)
+    \end{align*}
+\end{exercise}
+
+\begin{exercise}
+	Για το σύστημα:
+	
+	\todo{Graph 33}
+	
+	ζητούνται:
+	\begin{enumpar}
+		\item Η εξίσωση διαφορών
+		\item Η \( H(z) \) του μαζί με τη ROC (περιοχή σύγκλισης)
+		\item Να μελετηθεί η ευστάθεια του συστήματος.
+	\end{enumpar}
+
+    \tcblower
+    \begin{enumpar}
+    	\item
+    Πρώτα, ασχολούμαστε με τη βοηθητική συνάρτηση \( v(n) \):
+    \begin{align*}
+    	v(n) &= x(n) * u(n) - x(n) * u(n-2) = x(n) * \left( u(n)-u(n-2) \right)
+    	\\ &= x(n) * \left[ δ(n)+δ(n-1) \right]
+    	= x(n) + x(n-1)
+    \end{align*}
+    
+    Προχωράμε και στο δεύτερο μέρος:
+    \begin{align*}
+    	y(n) &= w(n) * δ(n-1) \\
+    	&= \left[
+    	v(n) + 11δ(n-1) * y(n) + \left(2δ(n)-3δ(n-1\right)*y(n)
+    	\right]*δ(n-1)\\
+    	&= x(n-1) + (n-2) + \left[
+    	11y(n-1) + 2y(n) -3y(n-1)
+    	\right] * δ(n-1)
+    	\\ &= x(n-1)+x(n-2) + 8y(n-2) + 2y(n-1), \qquad \text{για } n \geq 0
+    \end{align*}
+    
+    \item
+    
+    Με βάση την παραπάνω έκφραση της \( H(z) \), έχουμε:
+    \begin{align*}
+    	Y(z) &= z^{-1}X(z) + z^{-2}X(z) + 8z^{-2} Y(z) + 2z^{-1}Y(z) \implies \\
+    	H(z) &= \frac{Y(z)}{X(z)} = \frac{z^{-1} + z^{-2}}{1-2z^{-1}-8z^{-2}} = \frac{z+1}{z^2-2z-8}
+    \end{align*}
+    
+    Οι πόλοι είναι \( z_1=4 \) και \( z_2=-2 \), με πιθανές περιοχές σύγκλισης:
+    \begin{itemize}
+    	\item \( |z|<2 \) \item \( 2<|z|<4 \) \item \( 4<|z| \)
+    \end{itemize}
+    \todo{plot poles with possible ROC on float-right minipage}
+    
+    Αφού το σύστημα είναι \textbf{αιτιατό}, το ROC τελικά είναι \( |z|>4 \).
+    
+    \item Αφού \( \left|e^{j\omega }\right| \notin \text{ROC} \), το σύστηα είναι ασταθές.
+    
+    \end{enumpar}
+\end{exercise}
+
+\todo{Better explanation and checks}
+\paragraph{Παράδειγμα "μονόπλευρου" μετασχηματισμού \( \mathcal{Z} \)}
+\begin{align*}
+	y(n) - \frac{1}{2}y(n-1) &= x(n) - \frac{1}{4}x(n-1) \qquad n \geq 0\\
+	y(n)z^{-n} - \frac{1}{2}y(n-1) z^{-n} &= x(n)z^{-n} - \frac{1}{4}x(n-1)z^{-n}\\
+	\sum_{n=0}^{\infty} y(n) z^{-n} - \frac{1}{2} \sum_{n=0}^{\infty}y(n-1)z^{-n}
+	&= \sum_{n=0}^{\infty} x(n)z^{-n} - \frac{1}{4}\sum_{n=0}^{\infty} x(n-1) z^{-n}\\
+	Y(z) - \frac{1}{2} \sum_{k=-1}^{\infty} y(k) z^{-k-1} &= X(z) -\frac{1}{4}\sum_{k=-1}^{\infty}
+	x(k)z^{-k-1}\\
+	Y(z) -\frac{1}{2}z^{-1} \sum_{k=-1}^{\infty} y(k)z^{-k} &= X(z) -\frac{1}{4}z^{-1} \sum_{k=-1}^{\infty} x(k)z^{-k}\\
+	Y(z) -\frac{1}{2}z^{-1} \left(
+	\sum_{k=0}^{\infty} y(k) z^{-k} + y(-1)z
+	\right) &= X(z) - \frac{1}{4}z^{-1} \left(
+	\sum_{k=0}^{\infty} x(k)z^{-k} + x(-1)z
+	\right)\\
+	Y(z) -\frac{1}{2} z^{-1} \left(
+	Y(z) + y(-1)z
+	\right) &= X(z) -\frac{1}{4} z^{-1} \left[
+	X(z) + x(-1)z
+	\right]
+	\\
+	Y(z) -\frac{1}{2}z^{-1} Y(z) - \frac{1}{2} y(-1) &=
+	X(z) - \frac{1}{4} z^{-1} X(z) - \frac{1}{4} x(-1)\\
+	Y(z) &= X(z) \underbrace{\frac{1-\frac{1}{4}z^{-1}}{1-\frac{1}{2}z^{-1}}}_{\text{εξαναγκασμένη απόκριση}} + \underbrace{\frac{\sfrac{1}{2}y(-1)-\sfrac{1}{4}x(-1)  }{1-\frac{1}{2}z^{-1}}}_{\text{ελεύθερη απόκριση}}
+\end{align*}
+\begin{questionbox}{Άσκηση για το σπίτι}
+	Ποιά είναι η \( y(n)=? \) όταν \( x(n) = \left(\frac{1}{3}\right)^n \mathrm{u}(n) \) για
+	\( y(-1) = 1 \) με το σύστημα που περιγράφεται από την παραπάνω εξίσωση διαφορών;
+	\tcblower
+	Η απάντηση θα είναι:
+	\[
+	y(n) = \left[
+	\left(\frac{1}{2}\right)^n \frac{3}{2} - \left(\frac{1}{3}\right)^n \frac{1}{2}
+	\right]\mathrm{u}(n) + \frac{1}{2}\left( \frac{1}{2} \right)^n \mathrm{u}(n)
+	\]
+\end{questionbox}
+
+\begin{exercise}
+	Δίνεται το σύστημα \( y(n) = (x(n)a^{-n}) * (h(n)a^n) \)
+	\todo{Graph 34}
+	όπου:
+	\[
+	H(z) = \frac{1-z^{-1}}{1-\frac{1}{2}z^{-1}}
+	\]
+	μία αιτιατή συνάρτηση.
+	
+	Να βρεθεί το ισοδύναμό του σύστημα \( g(n) \).
+	\tcblower
+	Από το διάγραμμα, παρατηρούμε ότι:
+	\begin{align*}
+		\left.\begin{array}{l}
+		r(n) = x(n)a^{-n}\\
+		w(n) = r(n)*h(n)\\
+		y(n) = w(n)a^n
+		\end{array}\right\rbrace
+		&\implies y(n) = a^n\left( r(n)*h(n) \right)
+	\end{align*}
+	
+	Άρα μπορούμε να εκτελέσουμε τις πράξεις:
+	\begin{align*}
+		y(n) &= a^n\left[
+		\left( a^{-n} x(n) \right) * h(n)
+		\right] = a^n \sum_{k=-\infty}^{\infty} h(k) a^{-(n-k)}x(n-k)
+		\\ &= a^n a^{-n} \sum_{k=-\infty}^{\infty} h(k) a^k x(n-k)
+		= x(n) * \left[h(n)a^n\right] = x(n) * g(n) \\
+		\text{Άρα } \quad g(n) &= a^n h(n) \implies \\
+		G(z) &= H\left(\frac{z}{a}\right) = \frac{1-\left(\frac{z}{a}\right)^{-1}}{1-\frac{1}{z}\left(
+			\frac{z}{a}
+			\right)^{-1}}
+	\end{align*}
+	
+	Για την περιοχή σύγκλισης, παρατηρούμε πως η \( H \) έχει πόλο στο \( \frac{1}{2} \). Άρα:
+	\[
+	\text{ROC}_{H}: \ |z|>\frac{1}{2} \implies
+	\text{ROC}_{G}: \ \left|\frac{z}{a}\right| > \frac{1}{2}
+	\]
+	άρα \( \displaystyle |z|>\frac{|a|}{2} \).
+	
+	Λαμβάνοντας υπ' όψιν το κριτήριο για τον μοναδιαίο κύκλο \( e^{j\omega } \): Αν \( \frac{|a|}{2} < 1 \), τότε \( G \) ευσταθές, διαφορετικά το \( G \) είναι ασταθές.
+\end{exercise}
+
+\begin{exercise}
+	Να βρεθεί η \( x(n) \), αν:
+	\[
+	x(n) = \text{I}\mathcal{Z}\text{T} \left\lbrace 
+	\log \left(1+az^{-1}\right)
+	 \right\rbrace \qquad |z|>|a|
+	\]
+	\tcblower
+	Μία ιδέα για να βρούμε τη \( x(n) \) θα ήταν να αξιοποιήσουμε τη \textbf{σειρά Taylor} του λογαρίθμου:
+	\begin{align*}
+		\log(1+x) &= x-\frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \dots \qquad -1<x<1\\
+		X(z) &= az^{-1} - \frac{a^2}{2}z^{-2} + \frac{a^3}{3}z^{-3} - \frac{a^4}{4} z^{-4} + \dots \\
+		x(n) &= \left\lbrace 
+		0, a , -\frac{a^2}{2}, \frac{a^3}{3},-\frac{a^4}{4},\dots
+		 \right\rbrace = (-1)^{n-1}\frac{a^n}{n}
+	\end{align*}
+	
+	Δηλαδή, βρίσκοντας τη σειρά Laurent της συνάρτησης, μπορούμε να βρούμε και τους όρους της ακολουθίας,
+	με βάση και τον ορισμό \( X(z) = \sum_{n=-\infty}^{\infty} x(n)z^{-n}. \)
+	
+	\paragraph{}
+	Εναλλακτικά, χωρίς τη σειρά Taylor, εκμεταλλευόμαστε τις σχέσεις:
+	\begin{align*}
+		nx(n) &\xrightarrow{\mathcal{Z}\text{T}} -z\od{x(z)}{z}
+		= -z\frac{1}{1+az^{-1}}(-az^{-2})=\frac{az^{-1}}{1+az^{-1}}
+		\\ &\hphantom{\xrightarrow{\mathcal{Z}\text{T}}} = az^{-1} \frac{z}{z+a}
+        \\
+        \frac{z}{z+a} &\xrightarrow{\text{I}\mathcal{Z}\text{T}} a^n \mathrm{u}(n) \qquad |z|>|a|\\
+        z^{-1}\frac{z}{z+a} &\xrightarrow{\text{I}\mathcal{Z}\text{T}}
+        (-a)^{n-1}\mathrm{u}(n-1)
+	\end{align*}
+	
+	Άρα \[
+	nx(n) = (-1)^{n-1}a^n\mathrm{u}(n-1)
+	\]
+\end{exercise}
+\todo{finish}
+
 \end{document}
