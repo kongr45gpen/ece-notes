@@ -864,9 +864,9 @@ u(t) = K_P\cdot r(t) + K_I \int r(t) \dif t
 (όπου \( r \) η είσοδος)
 και, μετασχηματίζοντας κατά Laplace:
 \[
-u(s) = \left( K_P + \frac{K_I}{s} \right) =
-\frac{K_P\left( s+\frac{K_I}{K_P} \right)}{s}
-= \frac{K_P(s+z)}{s}
+u(s) = \left( K_P + \frac{K_I}{s} \right) \cdot r(s) =
+\frac{K_P\left( s+\frac{K_I}{K_P} \right) \cdot r(s)}{s}
+= \frac{K_P(s+z)}{s} \cdot r(s)
 \]
 όπου \( z = \frac{K_P}{K_I} \) μία σταθερή τιμή.
 
@@ -1968,7 +1968,7 @@ V_B = V_A = 0
 	\begin{align*}
 		K_p &= \lim_{s\to 0} \cancel{8}
 		\frac{s+9}{s^2+7s+3} = 3\\
-		e_{\mathrm{ss}} &= \frac{1}{4} = 0.25\%
+		e_{\mathrm{ss}} &= \frac{1}{4} = 0.25
 	\end{align*}
 	\item
 	Έστω συνάρτηση μεταφοράς που συνδέεται σε μοναδιαία αρνητική ανάδραση:
@@ -1980,12 +1980,12 @@ V_B = V_A = 0
 	Τότε τα σφάλματα είναι:
 	\begin{align*}
 	    K_p &= \lim_{s\to 0}H(s) = \infty \\
-		e_{\mathrm{sv}} &= \lim_{s\to 0} \frac{1}{1+K_p} = \frac{1}{1+\infty} = 0 \\
+		e_{\mathrm{ssp}} &= \frac{1}{1+K_p} = \frac{1}{1+\infty} = 0 \\
 		K_v &= \lim_{s\to 0} sH(s) = \lim_{s\to 0} \frac{2(s+10)}{(s^2+2)(s+5)}
 		= \frac{2\cdot(0+10)}{(0^2+2)\cdot (0+5)} = 2 \\
-		e_{\mathrm{sv}} &= \frac{1}{K_v} = \frac{1}{2}\\
+		e_{\mathrm{ssv}} &= \frac{1}{K_v} = \frac{1}{2}\\
 		K_a &= \lim_{s\to 0} s^2 H(s) = 0\\
-		e_{\mathrm{sa}} &= \frac{1}{K_a} = \infty
+		e_{\mathrm{ssa}} &= \frac{1}{K_a} = \infty
 	\end{align*}
 \end{enumgreekparen}
 
@@ -5535,6 +5535,8 @@ coordinates {(-0.2,-4) (-0.5,-2)  (-2,0) (-1,1) (0,0)};
 πραγματικό άξονα μέχρι να συναντήσουμε το κρίσιμο σημείο, ενώ το περιθώριο
 φάσης εκφράζει το πόσο μπορούμε να περιστρέψουμε τη φάση της συνάρτησης για να
 έχουμε ευστάθεια, και αντιστοιχεί στη γωνία \( \phi_M \).
+
+\newpage
 
 \paragraph{Παράδειγμα} \hspace{0pt}
 
