@@ -3390,4 +3390,254 @@ X(f) * L(f) = \int_{-\infty}^{\infty} X(f-f') L(f)\dif f'
 	\todo{solve in another way}
 \end{exercise}
 
+\lecture{12}{12/11/2018}
+
+\subsection{Under-Sampling (Υποδειγματοληψία)}
+
+\todo{Graph 37}
+
+Έστω ότι έχουμε ένα σήμα σε μεγάλη συχνότητα, δηλαδή στο \( \SI{1}{\giga\hertz} \), το οποίο όμως έχει μικρό
+εύρος ζώνης, της τάξης των \( \SI{0.01}{\giga\hertz} \).
+
+Για να δειγματοληπτήσουμε αυτό το σήμα κανονικά, θα πρέπει να έχουμε συχνότητα δειγματοληψίας \( f_s \):
+\[
+f_s > 2 f_max = 2f_H = \SI{2.02}{\giga\hertz}
+\]
+
+Αυτή όμως η συχνότητα είναι τεράστια για ένα σήμα το οποίο έχει τόσο μικρό εύρος ζώνης! Επομένως θα προσπαθήσουμε
+να βρούμε ένα trick για να αποφύγουμε αυτόν τον περιορισμό, χωρίς να έχουμε επικάλυψη του δειγματοληπτημένου
+σήματος στο φάσμα.
+
+Αφού εφαρμοστεί η δειγματοληψία, αν δεν υπάρχει επικάλυψη, το φάσμα του δειγματοληπτημένου
+σήματος θα μοιάζει ως εξής:
+\todo{Graph 38}
+
+Εδώ υποθέτουμε ότι υπάρχει ένα δεξί "πλακίδιο" που περιβάλλεται από δύο αριστερά πλακίδια.
+Το αριστερό πλακίδιο προκύπτει από το \emph{αντίγραφο} του αρχικού
+\begin{tikzpicture}[scale=.3,baseline]
+	\draw(-2,0) -- (2,0);
+	\draw[opacity=.9] (0,0) -- (0,1.7);
+	\draw[very thick,fill=green,fill opacity=.4] (-1.5,0) node[black,opacity=1,below,scale=.6] {$-f_H$}-- (-0.5,1.4) -- (-0.5,0) node[black,opacity=1,below,scale=.6] {$-f_L$};
+\end{tikzpicture}
+που, λόγω της παλμοσειράς, μετατοπίστηκε κατά μια \emph{ακέραια} σταθερά \( κ \) και \( κ+1 \).
+
+Για να μην υπάρχει επικάλυψη, θα πρέπει να μην "χτυπούν" τα 3 πλακίδια:\[
+\begin{cases}
+	κf_s-f_L \leq f_L &\implies f_s \leq \frac{2f_L}{κ} \\
+	(κ+1)f_S - f_H \geq f_s &\implies \geq \frac{2f_H}{κ+1}
+\end{cases}
+\]
+άρα:\begin{align*}
+	\frac{2f_H}{κ+1} &\leq f_s \leq \frac{2f_L}{κ} \implies \\
+	\frac{2f_H}{κ+1} &\leq \frac{2f_L}{κ} \implies κf_H \leq (κ+1)f_L \implies  \\
+	κ(f_H-f_L) &\leq f_L \implies κ \leq \frac{f_L}{f_H-f_L} \in \mathbb N \\
+\end{align*}
+
+Αυτό που θέλουμε είναι να έχουμε \emph{ελάχιστη συχνότητα δειγματοληψίας \( f_s \)} (καθώς
+είναι πιο εύκολη η φυσική υλοποίηση), οπότε επιλέγουμε το μέγιστο \( κ \):
+\[
+κ^* = \left\lfloor \frac{f_L}{f_H - f_L} \right\rfloor
+\]
+και μπορούμε να επιλέξουμε απλώς μια \( f_s \) που να ικανοποιεί το κριτήριο που βρήκαμε
+παραπάνω:
+\[
+\frac{2f_H}{κ^*+1} \leq f_s \leq \frac{2f_L}{κ^*}
+\]
+
+\paragraph{Κριτήριο Nyquist}
+Για ένα χαμηλοπερατό σήμα (δηλαδή με ελάχιστη συχνότητα \( f_L = 0 \)), αν εφαρμόσουμε τον
+παραπάνω τύπο, θα πρέπει να λάβουμε το γνωστό κριτήριο του Nyquist. Πράγματι:
+
+\[
+κ^* = \left\lfloor \frac{f_L}{f_H - f_L} \right\rfloor = \left\lfloor \frac{1}{f_H} \right\rfloor = 0
+\]
+άρα η συχνότητα δειγματοληψίας είναι:
+\[
+\frac{2f_H}{0+1} \leq f_s \leq \frac{2f_L}{0} \implies \boxed{f_S \geq 2 f_H}
+\]
+
+\paragraph{}
+Στη γενική περίπτωση, αν \( κ^* = \left\lfloor\frac{f_L}{f_H-f_L}\right\rfloor > 0 \), τότε:
+\begin{gather*}
+\frac{2f_H}{\left\lfloor \frac{f_L}{f_H-f_L} \right\rfloor + 1} \leq f_s \leq \frac{2f_L}{\left\lfloor \frac{f_L}{f_H-f_L} \right\rfloor}\\
+\implies
+2(f_H-f_L) \leq f_s \leq 2(f_H+f_L) \implies \boxed{f_s > 2(f_H-f_L)}
+\text{ (γενικότερο κριτήριο Nyquist)}
+\end{gather*}
+\todo{check result}
+
+Αν βέβαια το floor δεν είναι 0. \todo{explain}
+
+Επομένως, στο παραπάνω παράδειγμα:
+\[
+f_H - f_L = 1.01 - 1 = \SI{10}{\mega\hertz}
+\]
+θα είναι \( f_s = 2(f_H-f_L) = \SI{20}{\mega\hertz} \)
+
+\begin{exercise}
+	Δίνεται η σχέση:
+	\[
+	\frac{x-1}{x-2} = \frac{x-a}{x-6}
+	\]
+	
+	Να βρεθούν οι ακέραιοι \( a \in \mathbb{Z} \), για τους οποίους η παραπάνω
+	σχέση να καθιστά το \( x \in \mathbb{Z} \) ακέραιο.
+	\tcblower
+	Κάνουμε πράξεις στη δοθείσα σχέση:
+	\[
+	(x-1)(x-6) = (x-2)(x-a)
+	\]
+	άρα έχουμε:
+	\begin{align*}
+		x^2 - 7x + 6 &= (-2-a)x+2a \implies x(a-5) = 2a-6 \implies \\
+		x&= \frac{2a-6}{a-5} = \frac{2a-10+4}{a-5} = 2+\underbrace{\frac{4}{a-5}}
+	\end{align*}
+	
+	Για να είναι ο \( x \) ακέραιος, θα πρέπει και το κλάσμα \( \frac{4}{a-5} \)
+	να είναι ακέραιο, δηλαδή το \( a-5 \) να είναι διαιρέτης του 4. Τα \( a \)
+	που το ικανοποιούν αυτό είναι:
+	\[
+	(a-5) = -4,-2, -1, 1, 2, 4 \implies \underline{a=1,3,4,6,7,9}
+	\]
+\end{exercise}
+
+\subsection{Διακριτές σχέσεις Kramers-Kronig}
+Έστω μια \emph{αιτιατή} ακολουθία \( x(n) \in \mathbb R \) (\( x(n) = 0 \quad \forall n >0 \))
+
+Γνωρίζουμε \todo{add ref} ότι ένα σήμα μπορεί να γραφτεί σαν άθροισμα ενός άρτιου και
+ενός περιττού μέρους:
+\[
+x(n) = x_e(n) + x_o(n)
+\]
+άρα, μετασχηματίζοντας κατά Fourier (που έχει ένα πραγματικό και ένα φανταστικό μέρος):
+\[
+X(e^{j\omega }) = X_R\left(e^{j\omega }\right) + jX_I\left(e^{j\omega }\right)
+= \sum_{n=-\infty}^{\infty} x_e(n)e^{-j\omega n} + \sum_{n=-\infty}^\infty x_o(n)e^{-j\omega n}
+\]
+
+Επιπλέον, εκμεταλλευόμενοι την αρτιότητα \& περιττότητα των \( \sin \) \& \( \cos \):
+\[
+\sum_{-\infty}^{\infty} x_e \cdot \cos \neq 0
+\qquad
+\sum_{-\infty}^{\infty} x_e \cdot \sin = 0
+\qquad 
+\sum_{-\infty}^{\infty} x_o \cdot \cos = 0
+\qquad
+\sum_{-\infty}^{\infty} x_o \cdot \sin =0
+\]
+
+Άρα τελικά:
+\begin{align*}
+	X_R\left(e^{j\omega }\right) &= \sum_{n=-\infty}^{\infty} x_e(n)e^{-j\omega n}
+	\implies x_e(n) = \frac{1}{2π}\int_{-π}^{π} X_R\left(e^{j\omega }\right)e^{j\omega n}\dif \omega 
+	\intertext{Ομοίως:}
+	jX_I\left(e^{j\omega }\right) &= \sum_{n=-\infty}^{\infty} x_o(n)e^{-j\omega n}
+	\implies x_0(n) = \frac{1}{2π} \int_{-π}^{π} jX_I\left(e^{j\omega }\right)e^{j\omega }
+	\dif\omega
+\end{align*}
+
+Άρα τελικά:
+\[
+\boxed{
+\begin{aligned}
+x(n) &= x_e(n) + x_o(n) \\
+x(-n) &= x_e(-n) + x_o(-n) = x_e(n)-x_o(n)
+\end{aligned}
+}
+\]
+
+Και, όταν το \( n \) είναι θετικό \( (n>0) \):
+\[
+\boxed{
+	\begin{aligned}
+	x(n) &= x_e(n) + x_o(n) \\
+	0 &= x_e(n) - x_o(n) = x_e(n)-x_o(n)
+	\end{aligned}
+} \implies \boxed{
+\begin{aligned}
+x(n) &= 2x_e(n)\\
+x(n) &= 2x_o(n)
+\end{aligned}
+}
+\]
+
+Ενώ, επάνω στο \( n=0 \), οι σχέσεις γίνονται:
+\[
+\left.
+\begin{aligned}
+x(0) &= x_e(0) + \cancelto{0}{x_o(0)} \\
+x(0) &= x_e(0) - \cancelto{0}{x_o(0)}
+\end{aligned}\right\rbrace \implies \boxed{x(0) = x_e(0)}
+\]
+
+Τελικά:
+\[
+\boxed{
+x(n) = \begin{cases}
+0 &\quad n < 0 \quad \text{(αιτιατότητα)} \\
+x_e(0) &\quad n=0\\
+2x_e(n) = 2x_o(n) &\quad n>0
+\end{cases}
+}
+\]
+
+Οι παραπάνω σχέσεις δηλώνουν πως γνωρίζοντας μόνο το άρτιο ή περιττό κομμάτι μιας αιτιατής
+\& πραγματικής ακολουθίας, μπορούμε να τη βρούμε ολόκληρη (εκτός από την τιμή \( n=0 \), που
+απαιτεί το άρτιο κομμάτι).
+
+Τα παραπάνω οδηγούν στο εξής συμπέρασμα:
+\begin{theorem}[title=Πόρισμα 4.1]{Πόρισμα}{}
+	Αν \( x(n) \in \mathbb R \) ένα \emph{αιτιατό} σήμα:
+	\begin{enumgreekpar}
+		\item Αν μας δίνεται μόνο το πραγματικό μέρος του μετασχηματισμού Fourier \( X_R\left(e^{j\omega }\right) \) του, τότε μπορώ να βρω το \( x(n) \) ως εξής:
+		\[
+		x(n) = \begin{cases}
+		2x_e(n) = \frac{1}{π} \displaystyle \int_{-π}^{π} X_R\left(e^{j\omega }\right)e^{j\omega n}\dif\omega &\quad n>0\\
+		x_e(0) = \frac{1}{2π}\displaystyle \int_{-π}^{π} X_R\left(e^{j\omega }\right)\dif \omega& \quad n=0
+		\end{cases}
+		\]
+		\item Αν μας δίνεται μόνο το φανταστικό μέρος του μετασχηματισμού Fourier \( X_I\left(e^{j\omega }\right) \), έχουμε:
+		\[
+		x(n) = \begin{cases}
+		2x_0(n) = \frac{j}{π}
+		\displaystyle\int_{-π}^{π} X_I\left(e^{j\omega }\right)e^{j\omega n}\dif\omega
+		&\quad n>0\\
+		x(0) = \text{άγνωστο} &\quad n=0
+		\end{cases}
+		\]
+	\end{enumgreekpar}
+\end{theorem}
+
+Τα παραπάνω δηλώνουν ότι αν έχουμε ένα \textbf{πραγματικό σήμα}, ο μετασχηματισμός Fourier
+του (που περιέχει πραγματικό+φανταστικό μέρος) περιέχει \textbf{διπλάσια πληροφορία απ' όση χρειάζεται}. Και αυτό, επειδή μπορούμε μόνο από το \textbf{πραγματικό μέρος} του Fourier να
+λάβουμε \textbf{ολόκληρο το σήμα}. Αυτό όμως δεν ισχύει σε μιγαδικά σήματα.
+
+\begin{exercise}
+	Έστω ένα πραγματικό αιτιατό σήμα με πραγματικό μέρος Fourier:
+	\[
+	X_R\left(e^{j\omega }\right) = \begin{cases}
+	1 &\quad |\omega | < \sfrac{π}{2}  \\
+	0 &\quad \sfrac{π}{2}  < |\omega  | < π
+	\end{cases}
+	\]
+	
+	Να ανακτηθεί το \( x(n) \).
+	\tcblower
+	Από το πόρισμα \todo{add ref}, έχουμε:
+	\begin{align*}
+		x(n) &= 2x_e(n) = \frac{1}{π} \int_{-π}^{π} X_R\left(e^{j\omega }\right) e^{j\omega n}
+		\dif \omega 
+		\\ &= \frac{1}{π} \int_{\sfrac{-π}{2} }^{\sfrac{π}{2} } e^{j\omega n}\dif\omega
+		= \left.\frac{1}{jnπ} e^{j\omega n} \right|_{\sfrac{-π}{2} }^{\sfrac{π}{2} }
+		\\ &=
+		\frac{1}{jnπ} \left( e^{jn\sfrac{π}{2} } - e^{-jn\sfrac{π}{2} } \right)
+		= \frac{2}{πn} \sin\left(n\frac{π}{2}\right)
+		\intertext{Και για την τιμή στο \( x(0) \):}
+		x(0) &= \frac{1}{2π}\displaystyle \int_{-π}^{π} X_R\left(e^{j\omega }\right)\dif \omega
+		= \frac{1}{2π} \int_{\sfrac{-π}{2} }^{\sfrac{π}{2} } 1 \dif\omega
+		= \frac{1}{2}.
+	\end{align*}
+	\todo{check calculations}
+\end{exercise}
+
 \end{document}
