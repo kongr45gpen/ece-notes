@@ -930,7 +930,6 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 
 \begin{exercise}
 	Δίνονται τα σήματα:
-	
 	\begin{align*}
 	x(n) &= 2^n u(-n-1)\\
 	y(n) &= 4^n u(-n-1)
@@ -2132,7 +2131,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 \end{exercise}
 
 \begin{exercise}
-	Να βρεθεί ο αντίστροφος μετασχηματισμός Laplace του:
+	Να βρεθεί ο αντίστροφος μετασχηματισμός Z του:
 	\[
 	X(z) = \frac{z^4+z^2}{\left(z-\frac{1}{2}\right)\left(z-\frac{1}{4}\right)}
 	\qquad \frac{1}{2}<|z|<\infty
@@ -2310,7 +2309,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
     \end{questionbox}
 \end{exercise}
 
-\begin{exercise}[Θέμα Σεπτεμβρίου] \todo{Which year?}
+\begin{exercise}[Θέμα 4 Σεπτεμβρίου 2018]
 	Δίνεται η κρουστική απόκριση ενός συστήματος:
 	\[
 	h(n) = \left(\frac{1}{2}\right)^n \mathrm{u}(n) + \left(-\frac{1}{3}\right)^n \mathrm{u}(n)
@@ -2329,7 +2328,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
     \tcblower
     \begin{enumerate}
     	\item Το σύστημα είναι \textbf{αιτιατό}, γιατί \( h(n) = 0 \) για \( n<0 \).
-    	\item Για να είναι το σύστημα ευσταθές κατά FEFE, η κρουστική απόκριση πρέπει να είναι απολύτως αθροίσιμη, δηλαδή να ελέγξουμε αν συγκλίνει το \( \sum_{n=-\infty}^{\infty} \left|h(n)\right| \).
+    	\item Για να είναι το σύστημα ευσταθές κατά ΦΕΦΕ, η κρουστική απόκριση πρέπει να είναι απολύτως αθροίσιμη, δηλαδή να ελέγξουμε αν συγκλίνει το \( \sum_{n=-\infty}^{\infty} \left|h(n)\right| \).
     	\todo{Add ref to this theorem}
     	
     	Έχουμε:
@@ -2413,7 +2412,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
     	X(z)\left(
     	2-\frac{1}{6}z^{-1}
     	\right) &= Y(z)\left(1-\frac{1}{2}z^{-1}-\frac{1}{6}z^{-2}\right)
-    	\intertext{Εφαρμόζουμε $\mathcal{Z}$ transform:}
+    	\intertext{Εφαρμόζουμε inverse $\mathcal{Z}$ transform:}
     	2x(n) - \frac{1}{6}x(n-1) &= y(n) - \frac{1}{2}y(n-1) - \frac{1}{6}y(n-2)\\
     	\Aboxed{
     	y(n) &= \frac{1}{2}y(n-1)+\frac{1}{6}y(n-2) + 2x(n) -\frac{1}{6}x(n-1)
