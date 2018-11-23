@@ -3639,4 +3639,182 @@ x_e(0) &\quad n=0\\
 	\todo{check calculations}
 \end{exercise}
 
+\lecture{14}{23/11/2018}
+\section{Σχεδίαση ψηφιακών φίλτρων}
+
+\subsection{Αναλογικά φίλτρα Butterworth}
+
+\begin{defn}{Αναλογικό φίλτρο Butterworth}{}
+	Το φίλτρο Butterworth τάξης \( n \) έχει απόκριση πλάτους:
+	\[
+	\left|
+	H_n(j\Omega)
+	\right|^2 = \frac{1}{1+\left( \frac{\Omega}{\Omega_c} \right)^{2n}}
+	\]
+\end{defn}
+
+\paragraph{Ιδιότητες}
+\begin{enumgreek}
+	\item
+	\( \displaystyle \left. \left| H_n(j\Omega)^2 \right| \right|_{\Omega = 0}  = 1 \quad \forall n \)
+	\item
+	\( \displaystyle \left. \left| H_n(j\Omega)^2 \right| \right|_{\Omega = \Omega_c}  = \frac{1}{2} \quad \forall n \)
+	 \item
+	\( \displaystyle \left. \left| H_n(j\Omega) \right| \right|_{\Omega = \Omega_c}  = 0.707 = \frac{\sqrt{2}}{2} \quad \forall n \)
+	
+	Δηλαδή η \( \Omega_c \) είναι η \textbf{συχνότητα ημίσειας ισχύος} του φίλτρου.
+	
+	\item Η \( 
+	\displaystyle \left|H_n(j\Omega)\right|^2
+	 \) είναι μονότονη φθίνουσα συνάρτηση του \( \Omega \).
+	\item Για \( 
+	\displaystyle \lim_{n\to \infty} \left| H_n(j\Omega) \right|^2
+	 \), το \( H_n(j\Omega) \) τείνει να γίνει \emph{ιδανικό φίλτρο}.
+	\item Η \(  \left|
+	\displaystyle H_n(j\Omega) \right|^2
+	 \) \textbf{μεγιστοποιείται} για \( \Omega = 0 \).
+\end{enumgreek}
+
+\todo{Graph 39}
+
+\paragraph{Κανονικοποίηση}
+Στη σχεδίαση, μπορούμε να δουλεύουμε σε ένα κανονικοποιημένο φίλτρο, με κεντρική συχνότητα \( 1 \).
+Πράγματι, αν ορίσουμε \( \Omega' = \frac{\Omega}{\Omega_c} \), τότε το φίλτρο έχει κέντρο στο
+\( \Omega_c' = 1 \).
+
+\begin{defn}{Κανονικοποιημένο Butterworth με \( \Omega_c = \SI{1}{\radian/\second} \)}{}
+	Το κανονικοποιημένο Butterworth είναι:\[
+	\left|H_n(j\Omega)\right|^2 = H_n(j\Omega) H_n(-j\Omega) = \frac{1}{1+\Omega^{2n}}
+	\]
+\end{defn}
+Στο πεδίο Laplace, αντικαθιστώντας με \( s = j\Omega \):
+\[
+\left| H_n(s) \right|^2 = \frac{1}{1+\left(\frac{s}{j}\right)^2}
+\]
+
+Για να παράξουμε το παραπάνω φίλτρο, χρειάζεται ο πολλαπλασιασμός των συναρτήσεων \( H_n(j\Omega) \) και
+\( H_n(-j\Omega) \). Αυτές πρέπει να έχουν τους ίδιους πόλους με τους πόλους του τελικού φίλτρου:
+\[
+1+\left(\frac{s}{j}\right)^{2n} = 0 \implies s^{2n} = -1(j)^{2n} = (-1)^{n+1}
+\]
+όπου θέτοντας το \( n \), μπορούμε γρήγορα να βρούμε τις ρίζες του παρανομαστή:
+\[
+\begin{cases}
+n\text{ odd} &\implies s_k = 1\angle{\sfrac{kπ}{n} } \quad k=0,1,\dots,2n-1\\
+n\text{ even} &\implies s_k = 1\angle{\frac{π}{2n} + \frac{kπ}{n}} \quad k=0,1,\dots,2n-1
+\end{cases}
+\]
+όπου μπορούμε να μοιράσουμε τις odd και even ρίζες μεταξύ των \( H_n(j\Omega) \) και \( H_n(-j\Omega) \).
+
+Άρα έχουμε:\[
+H_n(s) = \frac{1}{Π(s-s_k)}=\frac{1}{B_k}
+\]
+όπου, για να έχουμε ευστάθεια, οι \( s_k \) είναι στο \emph{αριστερό ημιεπίπεδο}, και \( B_n(s) \) το
+πολυώνυμο Butterworth.
+
+\paragraph{Επέκταση}
+Η συνάρτηση Butterworth που βρήκαμε παραπάνω είναι εξ' ορισμού \emph{χαμηλοπερατή}. Για το σχεδιασμό
+άλλων ειδών φίλτρων Butterworth, μπορούμε να συνδυάσουμε πολλά Butterworth φίλτρα κατάλληλα. Στα
+τυπολόγια, υπάρχουν εξισώσεις που πραγματοποιεί τη σχεδίαση του φίλτρου, δεδομένων των προδιαγραφών.
+
+\paragraph{Παράδειγμα σχεδιασμού}
+Μπορεί να μας ζητηθούν προδιαγραφές:
+\begin{quote}
+	\begin{itemize}
+		\item Για \( \Omega < \Omega_1 \): \( 
+		\leq 20\log\left|H_n(j\omega )\right| \geq k_1 \geq 0
+		 \)
+		\item Για \( \Omega > \Omega_2 \): \( 
+		\log\left|H_n(j\omega )\right| \leq k_2
+		\)
+	\end{itemize}
+\end{quote}
+Επομένως, λύνοντας τις παραπάνω ανισώσεις (θέτονας \( H(\Omega) = \frac{1}{1+\left(\frac{\Omega}{\Omega_c}\right)^{2n}} \)), θα προκύψει:
+\[
+n = \left\lceil
+\frac{\cdots}{2\log\left(\sfrac{\Omega_1}{\Omega_2} \right)}
+\right\rceil
+\]
+%TODO: Συμπλήρωση
+με τη δυνατότητα επιλογής οποιουδήποτε \( \Omega_c \) εντός της περιοχής:
+\[
+\frac{\Omega_1}{\left(10^{\sfrac{-k_1}{10} } - 1\right)^{\sfrac{1}{2n} }}
+\leq \Omega_c \leq 
+\frac{\Omega_2}{\left(10^{\sfrac{-k_2}{10} } - 1\right)^{\sfrac{1}{2n} }}
+\]
+
+\subsection{Αριθμητική επίλυση διαφορικής εξίσωσης}
+Τα αναλογικά φίλτρα και συστήματα εκφράζονται από διαφορικές εξισώσεις. Αν καταφέρουμε να μετασχηματίσουμε
+αυτά τα συστήματα με κάποιον τρόπο στον ψηφιακό κόσμο, θα μπορούμε να τα εφαρμόσουμε και στα ψηφιακά
+μας σήματα.
+
+Οι "αναλογικές" διαφορικές εξισώσεις έχουν γενικά την εξής μαθηματική μορφή:
+\[
+\sum_{k=0}^{N} c_k \od[k]{}{t} y_a(t) = \sum_{k=0}^{M} d_k \od[k]{}{t} x_a(t)
+\]
+και, εφαρμόζοντας μετασχηματισμό Laplace:
+\[
+H_a(s) = \frac{\displaystyle \sum_{k=0}^{M} d_k s^k}{\displaystyle \sum_{k=0}^{N} c_k s^k}
+\]
+
+\begin{defn}{Διαφορά $k$-τάξης}{}
+	Για την αριθμητική επίλυση των διαφορικών εξισώσεων, ορίζουμε αναδρομικά τις \textbf{διαφορές \( k \) τάξης}:\begin{align*}
+		\nabla^{(1)} \left[y(n)\right] &= \frac{y(n)-y(n-1)}{T}\\
+		\nabla^{(k)} \left[y(n)\right] &= \nabla^{(1)}\left[ \nabla^{(k-1)}\left[y(n)\right] \right]
+	\end{align*}
+\end{defn}
+
+Η χρησιμότητά τους έγκειται στο ότι μοιάζουν με τις κλασικές παραγώγους:
+\[
+\left. \od{}{t} y_a(t) \right|_{t=nT}
+\approx \frac{y(n) - y(n-1)}{T}
+\]
+επομένως προσεγγιστικά μπορούμε άμεσα να \emph{διακριτοποιήσουμε} την αρχική διαφορική εξίσωση:
+\begin{align*}
+	\sum_{k=0}^{N} c_k \nabla^{(k)} y_a(nT) &\approx \sum_{k=0}^{N} d_k \nabla^{(k)}x_a(nT) \\
+	\intertext{και, εφαρμόζοντας \textbf{μετασχηματισμό Z}:}
+	\mathcal{Z} \left\lbrace \nabla^{(1)} \left[y(n)\right] \right\rbrace
+	&= \mathcal{Z} \left[\frac{y(n)-y(n-1)}{T}\right] = Y(z) \left[\frac{1-z^{-1}}{T}\right]\\
+	\mathcal{Z}\left\lbrace \nabla^{(k)} \left[y(n)\right]\right\rbrace
+	&= Y(z)\left[\frac{1-z^{-1}}{T}\right]^k
+	\intertext{Δηλαδή τελικά:}
+	H(z) &= \frac{Y(z)}{X(z)} = \cdots
+\end{align*}
+\todo{fill}
+
+Από το παραπάνω αποτέλεσμα προκύπτει πως μπορούμε να γράψουμε το \( H(z) \) από το \( H(s) \) με μια
+απλή αντικατάσταση μεταβλητής:
+\[
+H(z) = \left. H(s) \right|_{s\leftarrow \frac{1-z^{-1}}{T}}
+\]
+
+\todo{Graph 43}
+Ο μετασχηματισμός που πραγματοποιούμε είναι ο εξής:
+\[
+s = \frac{1-z^{-1}}{T}
+\]
+και πραγματοποιούμε πράξεις:
+\begin{gather*}
+z = \frac{1}{1-sT} = \frac{1}{1-j\Omega T} = \frac{1}{1+\Omega^2 T^2} + j\frac{\Omega T}{1+\Omega^2 T^2} = \mathfrak{X}+j\mathfrak{Y}
+\end{gather*}
+όπου ισχύει \( \mathfrak{X}^2+\mathfrak{Y}^2 = x \) και \( \left(\mathfrak{X}-\frac{1}{2}\right)^2 + \mathfrak{Y}^2 = \frac{1}{y} \)
+
+Δεν υπάρχει ακριβής απεικόνιση των αναλογικών συχνοτήτων σε ψηφιακές. Όμως μπορεί να απαιτηθεί οι αναλογικές συχνότητες να είναι πολύ κοντά στο μοναδιαίο κύκλο, παίρνοντας τον ελάχιστο δυνατό χρόνο
+δειγματοληψίας \( T \). Επίσης, αν ένα αναλογικό σύστημα είναι ευσταθές, τότε αναγκαστικά και το ψηφιακό
+αντίστοιχο θα είναι ευσταθές.
+
+\paragraph{Σημείωση}
+Ορίζεται και η \emph{προς τα εμπρός} διαφορά:
+\begin{align*}
+	\Delta^{(1)} y(n) &= \frac{y(n+1)-y(n)}{T} \\
+	\left. \od{y(t)}{t} \right|_{t=nT} &\simeq \frac{y(n+1)-y(n)}{T}
+\end{align*}
+Η παραπάνω διαφορά ορίζει διαφορετική απεικόνιση στις ψηφιακές συχνότητες \( s\leftarrow \frac{z-1}{T} \),
+και δεν εγγυάται ευστάθεια και στον ψηφιακό κόσμο.
+
+Επιπλέον, ορίζονται κεντρικές διαφορές ως εξής:
+\[
+\left. \od{y(h)}{t} \right|_{t=nT} = \frac{y(n+1)-y(n-1)}{2T} \quad \text{ με } s \leftarrow \frac{z+z^{-1}}{T}
+\]
+
 \end{document}
