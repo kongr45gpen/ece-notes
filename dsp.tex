@@ -3890,4 +3890,188 @@ T < \frac{-2A}{B}
 	ανθρώπινη φωνή. Να ακουστεί η διαφορά της φωνής όταν εφαρμοστεί φίλτρο Butterworth σε αυτήν.
 \end{questionbox}
 
+\lecture{16}{30/11/2018}
+
+\subsection{Διγραμμικός Μετασχηματισμός}
+Έστω η διαφορικής εξίσωση:\[
+a_1 \od{}{t}y_a(t) + a_0 y_a(t) = b_0x(t)
+\]
+όπου το \( y_a \) δηλώνει ένα \emph{analog} σήμα εισόδου.
+
+Το σύστημα αυτό έχει, κατά Laplace, συνάρτηση μεταφοράς:
+\[
+H(s) = \frac{b_0}{a_1s+a_0}
+\]
+και η λύση του είναι:
+\[
+y_a(t) = \int_{t_0}^{t}y_a'(t) \dif t + y_a(t_0)
+\]
+όπου \( y_a'(t) = \od{y_a(t)}{y_t} \).
+
+Γενικότερα, η παράγωγος γράφεται (από τη ΔΕ) ως εξής:
+\[
+y_a'(t) = \frac{b_0x(t) - a_0y_a(t)}{a_1}
+\]
+
+\todo{Graph 47 float right}
+
+Μπορούμε να διακριτοποιήσουμε τη λύση του ως εξής:
+\[
+y_a(nT) = \int_{(n-1)T}^{nT} y_a'(t)\dif t + y_a\left[(n-1)T\right]
+\]
+και, μπορούμε αριθμητικά να προσεγγίσουμε το ολοκλήρωμα (με τη μέθοδο τραπεζίου):
+\begin{align*}
+y_a(nT) &= T\frac{y_a'\left( (n-1)T \right) +y_a'(nT) }{2} + y_a\left[ (n-1)T \right]
+\\ &= \frac{T}{2}\left\lbrace 
+-\frac{a_0}{a_1}y_a(nT) + \frac{b_0}{a_1} x(nT)
+- \frac{a_0}{a_1}y_a\left[ (n-1)T \right] + \frac{b_0}{a_1} x\left[(n-1)T\right]
+ \right\rbrace + y_a\left[(n-1)T\right]
+\end{align*}
+
+Στη συνέχεια, μετασχηματίζουμε κατά \( \mathcal{Z} \):
+\[
+Y(z) = \frac{T}{2}\left[
+-\frac{a_0}{a_1}Y(z) + \frac{b_0}{a_1}X(z) - \frac{a_0}{a_1}z^{-1}Y(z) + \frac{b_0}{a_1}z^{-1}X(z)
+\right] + z^{-1}Y(z)
+\]
+και με λίγες πράξεις μπορούμε να βρούμε και τη \emph{συνάρτηση μεταφοράς του ψηφιακού συστήματος}:
+\[
+H(z)=\frac{Y(z)}{X(z)} = \cdots = \frac{b_0}{a_1\left(\frac{2}{T}\right)\left(\frac{1-z^{-1}}{1+z^{-1}}\right)+a_0}
+\]
+
+Αν θυμηθούμε ότι στο αναλογικό σύστημα η συνάρτηση μεταφοράς ήταν \( H(s) = \frac{b_0}{a_1s+a_0} \),
+τότε ο διγραμμικός μετασχηματισμός μπορεί να περιγραφεί από την αντικατάσταση:
+\[
+\boxed{s \to \frac{2}{T} \frac{1-z^{-1}}{1+z^{-1}}}
+\]
+
+Ο \textbf{διγραμμικός μετασχηματισμός} επομένως είναι μία ακόμα μέθοδος αριθμητικής αναπαράστασης \&
+επίλυσης ενός αναλογικού συστήματος, ο οποίος μπορεί να προκύψει, όπως και οι παραπάνω μετασχηματισμοί,
+θέτοντας το \( s \) της συνάρτησης μεταφοράς σε μία κατάλληλη τιμή.
+
+\paragraph{Μελέτη απεικόνισης συχνοτήτων}
+Ένα ερώτημα που πρέπει να απαντήσουμε είναι αν απεικονίζονται όλες οι αναλογικές συχνότητες \( s=jΩ \)
+στον ψηφιακό κόσμο.
+
+Θέλουμε το \( j\Omega \) να απεικονιστεί στο \( e^{j\Omega} \). Τότε θέτουμε:
+\begin{align*}
+	jΩ &= \frac{2}{T} \frac{1-e^{-j\omega }}{1+e^{-j\omega }} = \frac{2}{T} \frac{1-\cos \omega +j\sin \omega}{1+\cos \omega - j \sin \omega}
+	\\ &= \frac{2}{T} \frac{
+	(1-\cos \omega + j\sin \omega)(1+\cos \omega + j \sin \omega)
+    }{(1+\cos \omega)^2 + \sin^2 \omega}
+    \\ &= \frac{(1+j\sin \omega)^2 - \cos^2\omega}{(1+\cos\omega)^2 + \sin^2\omega}
+    \\ &= \frac{2}{T} \frac{1-\sin^2\omega + 2j\sin\omega - \cos^2\omega}{(1+\cos\omega)^2 + \sin^2\omega}
+    \\ &= \frac{2}{T} \frac{\sin\omega}{1+\cos \omega} = \frac{2}{T} \tan\left(\frac{\omega}{2}\right)
+\end{align*}
+
+Επομένως υπάρχει απεικόνιση του \( j\Omega \to e^{j\omega} \), η οποία είναι η \( \Omega = \frac{2}{T}\left(\frac{\omega}{2}\right) \), ή αντιστρόφως \( \omega = 2\tan^{-1}\frac{\Omega T}{2} \).
+
+\todo{Graph 48}
+
+Μερικά παραδείγματα της συχνότητας \( \omega_{\mathrm{bl}} \) που προκύπτει από το διγραμμικό μετασχηματισμό
+(σε σύγκριση με τη συχνότητα \( \omega_{\mathrm{ST}} = \Omega T \) που προκύπτει από το θεώρημα
+δειγματοληψίας) είναι:
+\[
+\begin{array}{c|c|c}
+\Omega & \omega_{\mathrm{bl}} & \omega_{\mathrm{ST}} \\ \hline \hline
+0 & 0 & 0 \\ \hline
+\frac{2}{T} & \sfrac{\pi}{2}  & 2 \\ \hline
+\infty & \pi & \infty \\ \hline
+\Omega_s = \frac{2π}{T} & 2\tan^{-1}(π) \approx 2\cdot1.26262 \approx 2\cdot0.402π & 2π
+\end{array}
+\]
+
+Σε αυτόν το μετασχηματισμό, παρατηρούμε πως \emph{όλες οι συχνότητες} από το 0 ως το \( \infty \) απεικονίζονται
+από το 0 ως το \( π \). Αυτό βέβαια απαιτεί μια στρέβλωση και ανομοιομορφία.
+
+\paragraph{Μελέτη ευστάθειας}
+Έχουμε:
+\[
+s = \frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}} \implies z = \frac{1+\frac{sT}{2}}{1-\frac{sT}{2}}
+\]
+
+Έστω ότι υπάρχει ένας πόλος \( s_0 = a+jb \).
+
+\begin{align*}
+	z_0 &= \frac{1+s_0\frac{T}{2}}{1-s_0\frac{T}{2}}
+	= \frac{1+(a+jb)\frac{T}{2}}{1-(a+jb)\frac{T}{2}}
+	\\ &= \frac{\left(1+\frac{Ta}{2}\right)+j\frac{bT}{2}}{\left(1-\frac{Ta}{2}\right)-j\frac{bT}{2}}
+\end{align*}
+
+Αν έχουμε ένα \textit{ευσταθές} αναλογικό σύστημα, ο πόλος θα έχει \( a<0 \), οπότε:
+\[
+\left|z_0\right|^2 = \frac{\left(1+\frac{Ta}{2}\right)^2 + \frac{b^2T^2}{4}}{\left(1-\frac{Ta}{2}\right)^2 + \frac{b^2T^2}{4}}
+\]
+και, με λίγα μαθηματικά, ισχύει \underline{\( |z_0|<1 \)}. Επομένως, και το ψηφιακό σύστημα είναι
+ευσταθές.
+
+\paragraph{Άσκηση}
+Να σχεδιαστεί ψηφιακό φίλτρο με Διγραμμικό Μετασχηματισμό, το οποίο να αντικαταστήσει ένα αναλογικό
+χαμηλοπερατό, με μονότονη απόκριση:
+\begin{align*}
+	\Omega_c = 2π \cdot 500\, \si{\radian/\second} & \quad \SI{-3}{\decibel}\\
+	\Omega \geq \Omega_2 = 2π \cdot 750\, \si{\radian/\second} & \quad < k_2 = \SI{-15}{\decibel}
+\end{align*}
+\paragraph{}
+Θα υλοποιήσουμε ένα φίλτρο Butterworth, με χρόνο δειγματοληψίας \( Δt = 0.5 \cdot 10^{-3} \si{second} \),
+όπως προκύπτει από την \( Omega_c \).
+
+Έχουμε:
+\begin{align*}
+	\Omega_1 = 2π\cdot 500 &\quad k_1 = -3\\
+	\Omega_2 = 2π\cdot 750 &\quad k_2 = -15
+\end{align*}
+
+Από τον τύπο που βρήκαμε για το Butterworth, έχουμε:
+\begin{align*}
+	n &= \lceil \frac{\log\left( 10^{-\frac{k_1}{10}} -1 \right)/\left(10^{-\frac{k_2}{10}}-1\right)}{2\log\left(\frac{\Omega_1}{\Omega_2}\right)} \rceil
+	\\ &= \lceil 4.2254\dots \rceil = 5
+\end{align*}
+
+Άρα, από τυπολόγιο, το κανονικοποιημένο Butterworth είναι:
+\[
+H(s) = \frac{1}{(s+1)(s^2+0.618s+1)(s^2+1.618s+1)}
+\]
+και, αν θέλουμε την κανονική συχνότητα:
+\[
+\left. H_a(s) = H_s(s) \right|_{s\leftarrow\frac{s}{\Omega_c = 2\pi \cdot 500}}
+\]
+άρα:
+\[
+H_a(s) = \frac{1}{\left( \frac{s}{\Omega_0} \right) \left(
+	\left(\frac{s}{\Omega_0}\right)^2
+	+0.618\left(\frac{s}{\Omega_0}\right)+1
+	\right)\left( \left(\frac{s}{\Omega_0}\right)^2 + 1.618\left(\frac{s}{\Omega_0}\right)+1 \right) }
+\]
+
+Για να μετασχηματίσουμε στη συχνότητα και να βρούμε το \( H(z) \), αρκεί να θέσουμε \( s \leftarrow \frac{2}{Δt}\frac{1-z^{-1}}{1+z^{-1}} \) στο παραπάνω.
+
+\subparagraph{}
+Η σχεδίασή μας όμως αυτή μπορεί να οδηγήσει σε λάθος αποτέλεσμα, καθώς δεν λαμβάνει υπ' όψιν το
+μετασχηματισμό που προκύπτει από το διγραμμικό μετασχηματισμό για τη ψηφιοποίηση του
+συστήματος. Εφαρμόζοντας το μετασχηματισμό \( \Omega = \frac{2}{Δt}\tan\left(\frac{\omega}{2}\right) \)
+έχουμε:
+\begin{align*}
+	\Omega_1' &= \frac{2}{Δt} \tan\left(\frac{\omega_1}{2}\right) = \SI{4000}{\radian/\second} %TODO fix result
+	\\ \Omega_2' &= \frac{2}{Δt} \tan\left(\frac{\omega_2}{2}\right) = \SI{9000}{\radian/\second} %TODO fix result
+\end{align*}
+και η σχεδίαση μπορεί να γίνει:
+\[
+n = \left\lceil \frac{\log\left( 10^{-\frac{k_1}{10}} -1 \right)/\left(10^{-\frac{k_2}{10}}-1\right)}{2\log\left(\frac{\Omega_1'}{\Omega_2'}\right)} \right\rceil
+= \lceil 1.9438 \rceil = 2
+\]
+με συνάρτηση μεταφοράς (από τυπολόγιο):
+\[
+H_2(s) = \frac{1}{s^2+1.4142s+1}
+\]
+στη μη-κανονικοποιημένη συχνότητα:
+\[
+H_a'(s) = \left. H_2(s) \right|_{s\to\frac{s}{\Omega_c'}}
+\]
+και στην ψηφιακή:
+\[
+H(z) = \left. H_a'(s) \right|_{s\leftarrow \frac{2}{Δt} \frac{1-z^{-1}}{1+z^{-1}}}
+\]
+
+
 \end{document}
