@@ -4073,5 +4073,107 @@ H_a'(s) = \left. H_2(s) \right|_{s\to\frac{s}{\Omega_c'}}
 H(z) = \left. H_a'(s) \right|_{s\leftarrow \frac{2}{Δt} \frac{1-z^{-1}}{1+z^{-1}}}
 \]
 
+\lecture{17}{3/12/2018}
+
+\subsection{Συνελικτικά ολοκληρώματα}
+Κάποιες διαφορικές εξισώσεις, δεδομένων των γνώσεων που έχουμε για την \emph{κρουστική απόκριση},
+λύνονται ως εξής:
+\begin{align*}
+	y(t) &= \int_{-\infty}^{\infty} h(τ)\cdot x(t-τ) \dif τ \\
+	&= \int_{-\infty}^{\infty} x(τ)h(t-τ)\dif τ
+	=\int_{-\infty}^{t} x(τ) h(t-τ)\dif τ \text{ (για αιτιατό σύστημα)}
+\end{align*}
+
+Θα μπορούσαμε να σκεφτούμε να μετατρέψουμε σε άθροισμα το ολοκλήρωμα, θέτοντας \( t=nT \), άρα
+\( y(nT) = T\sum_{k=-\infty}^{n} x(kT)h(nT-kT) \implies y(n) = T\sum_{k=-\infty}^{n} x(k)h(n-k) = T x(n)*h(n) \). Δηλαδή, γνωρίζοντας την κρουστική απόκριση του αναλογικού συστήματος, και δειγματοληπτώντας
+κατάλληλα, μπορούμε να μοντελοποιήσουμε και το ψηφιακό σύστημα.
+
+Έστω ένα φίλτρο \( H_a(s) \):
+\[
+H_a(s) =\frac{1}{s+a}
+\]
+με κρουστική απόκριση:
+\[
+h_a(t) = e^{-at} \mathrm{u}(t)
+\]
+την οποία μπορούμε να δειγματοληπτήσουμε ως εξής:
+\[
+\boxed{h[n] = h_a(nT) = e^{-anT}\mathrm{u}(n)}
+\]
+
+Αφού το παραπάνω είναι η κρουστική απόκριση του ψηφιακού συστήματος, για να περιγράψουμε το ίδιο το
+σύστημα έχουμε:
+\begin{align*}
+H(z) &= \mathcal{Z}\mathrm{T}\left\lbrace h(n) \right\rbrace = \sum_{n=0}^{\infty} e^{-anT} z^{-n}
+\\&= \sum_{n=0}^{\infty} \left(\frac{e^{-aT}}{z}\right)^n
+=\frac{1}{1-\frac{e^{-aT}}{z}} \qquad \text{με } \left|\frac{e^{-aT}}{z}\right|<1
+\\ &= \frac{z}{z-e^{-aT}}
+\end{align*}
+
+Μελετώντας τους πόλους, παρατηρούμε ότι ο πόλος του αναλογικού συστήματος είναι \( (s_0) = -a \),
+και ο πόλος του ψηφιακού είναι \( (z_0) = e^{-at} \). Αν \( (s_0) < 0 \), τότε \( (z_0) < 1 \), άρα
+η ευστάθεια του αναλογικού συστήματος οδηγεί και στην ευστάθεια του ψηφιακού.
+
+Μελετώντας το σύστημα στη συχνότητα, παρατηρούμε ότι έχουμε αποτελέσματα αντίστοιχα με αυτά του θεωρήματος δειγματοληψίας, καθώς δειγματοληπτούμε την \( h(t) \). Δεν θα υπάρχει καμία στρέβλωση στη
+συχνότητα. \todo{Graph 50}
+
+\subsubsection{Ακρίβεια της ψηφιακής προσέγγισης}
+
+Έστω ένα σύστημα, που μετά από την αντικατάσταση \( z \leftarrow e^{j\omega } \), γίνεται:
+\begin{align*}
+	H\left(e^{j\omega }\right) = \frac{Ae^{j\omega }}{e^{j\omega }-e^{-aT}}
+\end{align*}
+και το ισοδύναμο δειγματοληπτημένο:
+\begin{align*}
+	H_{eq}(j\Omega) &= \left. H\left(e^{j\omega }\right) \right|_{\omega \leftarrow \Omega T}
+	= \frac{Ae^{j\Omega T}}{e^{j\Omega T}-e^{-aT}} \qquad \text{ με } \Omega < \frac{π}{T}
+	\\ H_a(j\Omega) &= \frac{A}{j\Omega + a}\\
+	H_{eq}(j\Omega) &= \frac{A}{1-(1-aT)\cos(\Omega T) + j(1-aT)\sin(\Omega T)}
+	\\ &= \frac{\sfrac{A}{T} }{1 + j\Omega - jT \Omega } = \frac{A}{T}\frac{1}{a+j\Omega}
+	\\ &= \frac{A}{1-1 + aT\cos(\Omega T) + j \sin(\Omega T) - jaT\sin(\Omega T)}
+	\\ &= \frac{1}{aT + j\Omega T - jaT^2 \Omega}
+\end{align*}
+Παρατηρούμε ότι μειώνοντας το χρόνο δειγματοληψίας \( T \), μειώνεται και η παραμόρφωση που προκαλείται
+λόγω της προσέγγισης μειώνεται.
+
+\paragraph{Παράδειγμα}
+Έστω ένα σύστημα \( h_a(t) \) με είσοδο \( u(t) \) και έξοδο \( s_a(t) \). Μέσω της παραπάνω διαδιασίας, μετατρέπουμε την \( h_a(t) \) σε \( h(n) \), για να πάρουμε έξοδο
+\( s(n) \), και το σύστημα να έχει μετασχηματισμό Z τον \( H(z) \).
+
+\subparagraph{Ερώτημα}
+
+Αν \( H(n) = h_a(nT) \), είναι ή όχι \( s(n) = \sum_{k=-\infty}^{n} h_a(kT) \);
+
+
+Έχουμε:
+\begin{align*}
+	u(n) &= \sum_{k=-\infty}^{n}δ(k) \xRightarrow{H(z)} s(n) = \sum_{k=-\infty}^{n} h(k) = \sum_{k=-\infty}^{\infty} h_a(kT)
+\end{align*}
+
+Άρα είναι.
+
+\subparagraph{Ερώτημα}
+
+Αν \( s(n) = s_a(nT) \), είναι ή όχι \( h(n) = h_a(nT) \);
+
+Έχουμε:
+\begin{align*}
+	δ(n) &= u(n) - u(n-1) \xRightarrow{H(z)} h(n) = s(n) - s(n-1)
+	\\ &= s_a(nT) - s_a\left( (n-1)T \right)
+\end{align*}
+όπου:
+\begin{align*}
+	s_a(nT) &= \int_{-\infty}^{nT}h(τ)u(nT-τ)\dif τ = \int_{-a}^{nT}h(τ)\dif τ\\
+	s_a\left( (n-1)T \right) &= \cdots = \int_{-\infty}^{(n-1)T} h(τ)\dif τ
+\end{align*}
+άρα:
+\[
+s_a(nT) - s_a\left((n-1)T\right) = \int_{(n-1)T}^{nT} h(τ)\dif τ \neq h_a(nT)
+\]
+δηλαδή η δοθείσα σχέση δεν ισχύει.
+
+\begin{questionbox}{Ερώτηση για το σπίτι}
+	Ποιό είναι το νόημα της παραπάνω άσκησης;
+\end{questionbox}
 
 \end{document}
