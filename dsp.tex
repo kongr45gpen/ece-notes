@@ -1764,7 +1764,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 			+ \frac{1}{(-n-1)!}\left. \od[-n-1]{}{z} \left( \frac{2z-a-b}{(z-a)(z-b)} \right)\right|_{z=0}
 		\end{align*}
 		
-		Για να υπολογίσουμε τη "δύσκολη" παραπάνω παράγωγο, εφαρμόζουμε ένα τρικ. Θέτουμε \( z = \sfrac{1}{ρ}  \), οπότε \( \dif z = -\frac{1}{ρz}\dif ρ \), και η περιοχή σύγκλισης γίνεται
+		Για να υπολογίσουμε τη "δύσκολη" παραπάνω παράγωγο, εφαρμόζουμε ένα τρικ. Θέτουμε \( z = \sfrac{1}{ρ}  \), οπότε \( \dif z = -\frac{1}{ρ^2}\dif ρ \), και η περιοχή σύγκλισης γίνεται
 		\( |a|^{-1} > |ρ|> |b|^{-1} \). Και τότε:
 		\begin{align*}
 		I(z)\dif z &= -\frac{ρ^{-n}(2ρ^{-1}-a-b)}{\left( ρ^{-1}-a \right)\left( ρ^{-1}-b \right)}\frac{1}{ρ^2} \dif\rho
@@ -1790,13 +1790,10 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 			\right]
 			\dif ρ
 			\\ &= \res\left[
-			-\frac{ρ^{-n}(2ρ^{-1}-a-b)}{(1-aρ)(1-bρ)} \ @ \ \rho = \frac{1}{b}
+			\frac{ρ^{-n}(2ρ^{-1}-a-b)}{(1-aρ)(1-bρ)} \ @ \ \rho = \frac{1}{b}
 			\right]
-			\\ &= \frac{1}{ab}\left[
-			   \frac{ρ^{-n-1}\left[ 2-(a+b)ρ \right]}{\left( ρ-\frac{1}{a} \right)\left(ρ-\frac{1}{b}\right)}
-			\right]\ @ \ \rho = \frac{1}{b}
 			\\ &= \left.\frac{1}{ab}\left[
-			\frac{ρ^{-n-1}\left( 2-(a+b)ρ \right)}{\left( ρ-\frac{1}{a} \right)}
+			\frac{ρ^{-n-1}\left[ 2-(a+b)ρ \right] }{\left( ρ-\frac{1}{a} \right)}
 			\right]\right|_{\rho = \sfrac{1}{b} }
 			\\ &= \cdots = -b^n
 		\end{align*}
