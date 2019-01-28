@@ -347,18 +347,18 @@ node[above,rectangle,align=center,scale=0.8]
 		\draw[->] (4,0) -- ++(1,0) node[above right] {$y$};
 		
 		\draw (4,0) -- ++(0,-1.5) -- (3,-1.5);
-		\draw (3,-1.5) -- (1.5,-1.5);
+		\draw (1.5,-2) rectangle (3,-1) node[midway] {$\displaystyle H(s)$};
 		\draw (1.5,-1.5) -- (0.75,-1.5) -- ++(0,1.25) node[below right] {$-$};
 		\end{tikzpicture}
 	\end{center}
 	
 	Σε ένα σύστημα με μοναδιαία αρνητική ανάδραση, όπως το παραπάνω, η
-	\textbf{συνάρτηση μεταφοράς ανοιχτού βρόχου} (ΣΜΑΒ) είναι η \( G(s) \), ενώ η
+	\textbf{συνάρτηση μεταφοράς ανοιχτού βρόχου} (ΣΜΑΒ) είναι η \( G(s)H(s) \), ενώ η
 	\textbf{συνάρτηση μεταφοράς κλειστού βρόχου} (ΣΜΚΒ) είναι η συνάρτηση μεταφοράς ολόκληρου
 	του συστήματος:
 	\begin{align*}
-	\text{\textbf{συνάρτηση μεταφοράς \textit{ανοιχτού} βρόχου}:} &\quad G(s)\\
-	\text{\textbf{συνάρτηση μεταφοράς \textit{κλειστού} βρόχου}:}&\quad T(s) = \frac{G}{1+G}
+	\text{\textbf{συνάρτηση μεταφοράς \textit{ανοιχτού} βρόχου}:} &\quad G(s)H(s)\\
+	\text{\textbf{συνάρτηση μεταφοράς \textit{κλειστού} βρόχου}:}&\quad T(s) = \frac{G}{1+GH}
 	\end{align*}
 \end{attnbox}
 
