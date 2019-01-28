@@ -83,6 +83,7 @@
 		αναλογικού σήματος. Αφού ο υπολογιστής δεν μπορεί να αποθηκεύσει
 		άπειρες τιμές, αναγκαστικά θα λάβουμε ένα πεπερασμένο εύρος τους.
 		
+		\begin{center}
 		\begin{tikzpicture}
 		\def\points{(0,0) (0.2,0.2) (0.4,0.5) (0.6,0.7)
 			(0.8,0.9) (1,0.7) (1.2,0.6) (1.4,1) (1.6,0.8) (1.8,0.8) (2,1.1) (2.2,1.4)
@@ -117,6 +118,7 @@
 		\end{scope}
 		
 		\end{tikzpicture}
+		\end{center}
 		
 		Αυτό το σήμα ονομάζεται \textbf{διακριτό} (\textbf{discrete}).
 		\item \textbf{Κβάντωση}. Στον αναλογικό κόσμο, οι πεπερασμένες τιμές έχουν
@@ -304,7 +306,7 @@ A \simeq B
 \( a\in\mathbb C \)).
 
 \textbf{Προσοχή} ότι η παραπάνω σχέση ισχύει μόνο όταν το \( n \) ξεκινάει από το 0. Για παράδειγμα,
-\( \sum_{n=1}^{\left(\frac{1}{2}\right)^n} = \frac{1}{1-\frac{1}{2}}-1 = 1 \).
+\( \sum_{n=1}^\infty {\left(\frac{1}{2}\right)^n} = \frac{1}{1-\frac{1}{2}}-1 = 1 \).
 
 Για \textbf{πεπερασμένο αριθμό όρων}:
 \[
@@ -395,8 +397,8 @@ plot[samples=\lowsamples,smooth,domain=0:4,variable=\x]
 
 \paragraph{Άρτιες \& Περιττές ακολουθίες}
 \begin{align*}
-	\text{άρτια (even)} &\quad \forall n \in \mathbb Z \ x_e(n) = x_e(-n) \\
-	\text{περιττή (odd)} &\quad \forall n \in \mathbb Z \ -x_o(n) = x_o(-n)
+	\text{άρτια (even)} &\quad \forall n \in \mathbb Z: \ x_e(n) = x_e(-n) \\
+	\text{περιττή (odd)} &\quad \forall n \in \mathbb Z: \ -x_o(n) = x_o(-n)
 \end{align*}
 
 Μπορούμε να μετατρέψουμε οποιαδήποτε ακολουθία σε ένα άρτιο και ένα περιττό μέρος:
@@ -667,6 +669,24 @@ a_1T\left[x_1(n)\right]+a_2T\left[x_2(n)\right] = T\left[a_1x_1(n)+a_2x_2(n)\rig
 από το σύνολο όλων των ακολουθιών \( x(n) \in \mathbb R \) (ή \( \mathbb C \))
 στο σύνολο όλων των ακολουθιών \( y(n) \in \mathbb R  \) (ή \( \mathbb{C} \))
 
+\begin{center}
+	\begin{tikzpicture}
+	\draw[scale=1.4,xscale=1.4]
+	(0,0) to[bend left] ++(0.4+0.2*rand,0.4+0.2*rand) to[bend left] ++(0.3+0.2*rand,0.3+0.2*rand) to[bend left] ++(0.4+0.2*rand,-0.3+0.2*rand) to[bend left]  ++(-0.3+0.2*rand,-0.2+0.2*rand) to[bend left] node[midway] (a) {} ++(0.3+0.2*rand,-0.4+0.2*rand) to[bend left] (-0.4+0.1*rand,-0.8+0.1*rand) to[bend left] (0,0);
+	\draw (0.8,0) node {$x(n)$};
+	
+	\draw (0,-1.7) node {Ακολουθίες $\in \mathbb R,\mathbb C$};
+	
+	\draw[xshift=3.5cm,scale=1.4]
+	(0,0) to[bend left] node[midway] (b) {}  ++(0.4+0.2*rand,0.4+0.2*rand) to[bend left]  ++(0.3+0.2*rand,0.3+0.2*rand) to[bend left] ++(0.4+0.2*rand,-0.3+0.2*rand) to[bend left]  ++(-0.3+0.2*rand,-0.2+0.2*rand) to[bend left] ++(0.3+0.2*rand,-0.4+0.2*rand) to[bend left] (-0.4+0.1*rand,-0.8+0.1*rand) to[bend left] (0,0);
+	\draw (4.2,0) node {$y(n)$};
+	
+	\draw[->] (a.center) to[bend left] node[midway, above] {$T\left[x(n)\right]$} (b.center);
+	
+	\draw (3.8,-1.7) node {Ακολουθίες $\in \mathbb R,\mathbb C$};
+	\end{tikzpicture}
+\end{center}
+
 \subsubsection{Συνέλιξη}
 Θυμόμαστε ότι ένα \emph{ψηφιακό} σήμα είναι ίσο με την \emph{ψηφιακή} συνέλιξή του
 με την \( δ(n) \) \eqref{eq:deltaconv}:
@@ -680,7 +700,7 @@ a_1T\left[x_1(n)\right]+a_2T\left[x_2(n)\right] = T\left[a_1x_1(n)+a_2x_2(n)\rig
 	y(n) &= \sum_{k=-\infty}^{\infty} T\left[x(k)δ(n-k)\right]
 	\\ &= \sum_{k=-\infty}^{\infty} x(k) \cdot T\left[δ(n-k)\right]
 \end{align*}
-Δηλαδή η \textbf{έξοδος} του συστήματος σε κάποια είσοδο \( x(n) \) είναι προκύπτει από τη συνέλιξη
+Δηλαδή η \textbf{έξοδος} του συστήματος σε κάποια είσοδο \( x(n) \) προκύπτει από τη συνέλιξη
 της εισόδου με την \textbf{κρουστική απόκριση} του συστήματος (απόκριση στη \( δ(n) \)), την οποία ορίζουμε:
 \begin{knowledgebox}{Κρουστική απόκριση}
 	Έστω ότι δίνουμε σε ένα σύστημα είσοδο το δέλτα του Kronecker \( δ(n) \).
@@ -724,13 +744,37 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 \begin{itemize}
 	\item Μπορούμε να πούμε ότι ένα ψηφιακό σήμα έχει \textbf{διάρκεια}.
 	
-	Αν \emph{ξεκινάει} (πρώτο μη-0 στοιχείο) στο \( n=D_1 \) και \emph{τελειώνει} (τελευταίο μη-0 στοιχείο) στο \( n=U_1 \), τότε μπορούμε να πούμε ότι έχει διάρκεια:
-	\[
-	T = U_1-D_1 + 1
-	\]
-	(προσοχή στον όρο \( +1 \)!)
+	\begin{minipage}{0.5\textwidth}
+			Αν \emph{ξεκινάει} (πρώτο μη-0 στοιχείο) στο \( n=D_1 \) και \emph{τελειώνει} (τελευταίο μη-0 στοιχείο) στο \( n=U_1 \), τότε λέμε ότι έχει διάρκεια:
+		\[
+		T = U_1-D_1 + 1
+		\]
+		(προσοχή στον όρο \( +1 \)!)
+	\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	\begin{tikzpicture}
+	\tikzstyle{sample}=[bottom color=orange,top color=\timecolour,fill opacity=.7,rounded corners=2.5pt,thick]
 	
-	\todo{graph 9 right}
+	\draw[->] (-3,0) -- (3.5,0);
+	\draw[->] (0,0) -- (0,2);
+	
+	\def\sf{0.7}
+	\def\sx{0.11}
+	\def\sy{0.09}
+	
+	\foreach \x in {-4,-3,...,1} {
+		\filldraw[sample] (\x*\sf + \sx,0 + \sy) rectangle ++(-\sx*2,-\sy*2);
+	}
+	
+	\draw (2*\sf,0) node[below] {$D_1$};
+	\draw (4*\sf,0) node[below] {$U_1$};
+	
+	\draw (3*\sf,0.9) node[scale=1.5] {\textellipsis};
+	
+	\filldraw[sample] ( 2*\sf+\sx,1 + \sy) rectangle ++(-\sx*2,-\sy*2);
+	\filldraw[sample] ( 4*\sf+\sx,0.8 + \sy) rectangle ++(-\sx*2,-\sy*2);
+	\end{tikzpicture}
+\end{minipage}
 	
 	\item Έστω δύο σήματα:
 	\begin{align*}
@@ -972,7 +1016,7 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 Εμείς θα χρησιμοποιούμε την \textbf{ευστάθεια κατά ΦΕΦΕ (Φραγμένη Είσοδος \textendash~Φραγμένη Έξοδος)} (BIBO \textemdash~ Bounded Input \textendash~Bounded Output).
 
 \begin{defn}{Φραγμένη ακολουθία}{}
-	Μια \textbf{φραγμένη} ακολουθία \( x(n) \)είναι αυτή που δεν πιάνει τιμές μέχρι το άπειρο:
+	Μια \textbf{φραγμένη} ακολουθία \( x(n) \) είναι αυτή που δεν πιάνει τιμές μέχρι το άπειρο:
 	\[
 	\left|x(n)\right| < M < \infty \quad \forall n \in \mathbb Z
 	\]
@@ -984,7 +1028,7 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 \end{defn}
 
 \begin{theorem}{Πόρισμα}{}
-	Αν το σύστημα γνωρίζουμε ότι είναι \emph{γραμμικό} και \emph{ΑΚΜ} (άρα \( \exists\ h(n) \), δηλαδή υπάρχει η κρουστική του απόκριση), τότε το σύστημα είναι \textbf{ευσταθές} ανν
+	Αν γνωρίζουμε ότι ένα σύστημα είναι \emph{γραμμικό} και \emph{ΑΚΜ} (άρα \( \exists\ h(n) \), δηλαδή υπάρχει η κρουστική του απόκριση), τότε το σύστημα είναι \textbf{ευσταθές} ανν:
 	\[
 	\sum_{n=-\infty}^{\infty} \left|h(n)\right| < \infty
 	\]
@@ -1024,7 +1068,7 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 	 \end{cases}
 	\]
 	
-	Η \( x(n) \) είναι φραγμένη, αφού έχει μοναδιαίο ή μηδενικό μέτρο παντού. Επομένως είναι \emph{φραγμένη}. Θα την πετάξουμε ως είσοδο στο σύστημα για να αποδείξουμε ότι αυτό
+	Η \( x(n) \) έχει μοναδιαίο ή μηδενικό μέτρο παντού. Επομένως είναι \emph{φραγμένη}. Θα την πετάξουμε ως είσοδο στο σύστημα για να αποδείξουμε ότι αυτό
 	δίνει \textbf{μη φραγμένη έξοδο, για φραγμένη είσοδο}, άρα είναι αυτό ασταθές κατά BIBO:
 	
 	\begin{align*}
@@ -1258,7 +1302,7 @@ H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
 	h(n) \text{ ευσταθές}
 	&\iff \sum_{n=-\infty}^{\infty} \left|h(n)\right| < \infty
 	\\ &\iff \sum_{n=-\infty}^{\infty} \left|h(n)\right|\left|e^{-j\omega n}\right| < \infty
-	\\ &\iff \left|h(n)e^{-j\omega n}\right| < \infty
+	\\ &\iff \sum_{n=-\infty}^{\infty} \left|h(n)e^{-j\omega n}\right| < \infty
 	\implies \sum_{n=-\infty}^{\infty}h(n)e^{-j\omega n} < \infty
 	\implies \exists \text{ } H\left(e^{j\omega }\right)
 \end{align*}
@@ -1298,7 +1342,19 @@ H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
 Επιπλέον, αν για το αρχικό σήμα στο χρόνο ισχύει \( h(n)\in\mathbb R \):
 \begin{enumerate}
 	\item[3] Η \( \left|H\left(e^{j\omega }\right)\right| \) είναι \textbf{άρτια} συνάρτηση του \( \omega  \) και συμμετρική ως προς τον άξονα \( \omega = π \).
-	\todo{Graph 11 (optional)}
+
+	\begin{tikzpicture}[scale=.5]
+	\tikzstyle{sample}=[bottom color=orange,top color=\timecolour,fill opacity=.7,rounded corners=2.5pt,thick]
+	
+	\draw[->] (-3,0) -- (3,0);
+	\draw[->] (0,0) -- (0,2);
+	
+	\draw[ultra thick,red!50!orange!90!brown,xshift=-1.5cm] plot [smooth,tension=1.5] coordinates {(-0.7,0) (0,1.2) (0.7,0)};
+	\draw[ultra thick,red!50!orange!90!brown,xshift=1.5cm] plot [smooth,tension=1.5] coordinates {(-0.7,0) (0,1.2) (0.7,0)};
+	
+	\draw[very thick,magenta!50!blue] (-2,-2) -- (2,2);
+	\end{tikzpicture}
+	\todo{Fix this bad graph}
 	\item[4] Το \( \arg H\left(e^{j\omega }\right) \) είναι \textbf{περιττή} συνάρτηση του \( \omega  \)
 	και αντισυμμετρική ως προς τον άξονα \( \omega = \pi \).
 	\todo{Graph 12 (optional)}
@@ -1467,11 +1523,66 @@ y(n) = z^n \sum_{k=-\infty}^{\infty} h(k)z^{-k}
 
 Αυτό που καθορίζει το αν θα συγκλίνουμε είναι το μέτρο \( |z| \). Οι περιοχές ίσου μέτρου ορίζουν
 κύκλους ή donuts στο μιγαδικό επίπεδο του \( z \):
-\todo{Graph 13}
 
-Από τη μιγαδική ανάλυση αποδεικνύεται πως η περιοχή σύγκλισης δεν μπορεί να έχει κάποια άλλη περίεργη
+\begin{tikzpicture}
+\draw[->] (0,-2) -- (0,2);
+\draw[->] (-2,0) -- (2,0) ;
+\filldraw[fill=green!50] (0,0) circle (1cm);
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\fill[inner color=green!50!black, outer color=green!5,fill=white]
+(0,0) circle (2);
+\draw[->] (0,-2) -- (0,2);
+\draw[->] (-2,0) -- (2,0) ;
+\filldraw[fill=white] (0,0) circle (1cm);
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\fill[green!50,even odd rule] (0,0) circle (0.8) -- (0,0) circle (1.5);
+
+\draw[->] (0,-2) -- (0,2);
+\draw[->] (-2,0) -- (2,0) ;
+
+\draw (0,0) circle (0.8) -- (0,0) circle (1.5);
+\end{tikzpicture}
+
+Από τη μιγαδική ανάλυση αποδεικνύεται πως η περιοχή σύγκλισης \textbf{δεν} μπορεί να έχει κάποια άλλη περίεργη
 μορφή:
-\todo{Graph 14}
+
+\begin{tikzpicture}[scale=.7]
+\fill[white,inner color=red!50!black,outer color=white,even odd rule] (0,0) circle (1.8) -- (0,0) circle (3);
+\draw[black] (0,0) circle(1.8);
+
+\filldraw[fill=red!50] (0,0) circle (0.9);
+
+\draw[->] (0,-3) -- (0,3);
+\draw[->] (-3,0) -- (3,0) ;
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}[scale=.7]
+
+\fill[white,inner color=red!50!black,outer color=white,even odd rule] (0,0) circle (2) -- (0,0) circle (3);
+\draw[black] (0,0) circle(2);
+
+\fill[red!50,even odd rule] (0,0) circle (0.6) -- (0,0) circle (1.3);
+
+\draw[->] (0,-3) -- (0,3);
+\draw[->] (-3,0) -- (3,0) ;
+
+\draw (0,0) circle (0.6) -- (0,0) circle (1.3);
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}[scale=.7]
+\fill[red!50,even odd rule] (0,0) circle (0.8) -- (0,0) circle (1.5);
+\draw (0,0) circle (0.8) -- (0,0) circle (1.5);
+
+\fill[red!50,even odd rule] (0,0) circle (2.2) -- (0,0) circle (2.8);
+\draw (0,0) circle (2.2) -- (0,0) circle (2.8);
+
+\draw[->] (0,-3) -- (0,3);
+\draw[->] (-3,0) -- (3,0) ;
+\end{tikzpicture}
 
 Επομένως, για το \( |z| \) θα ισχύει \( D < |z| < U \) για κάποια \( D, U \). Αυτά ορίζουν το \textbf{ROC} (Region Of Convergence) του μετασχηματισμού Z, χωρίς το οποίο ο μετασχηματισμός δεν έχει νόημα.
 
@@ -1611,26 +1722,70 @@ x(n) = \frac{1}{2 π j} \ointctrclockwise\limits_{c \in \mathcal{R}_{x(z)z^{n-1}
 
 \subsection{Μέθοδοι υπολογισμού μετασχηματισμού Z}
 \subsubsection{Ολοκληρωτικά υπόλοιπα}
-Με βάση τη μιγαδική ανάλυση, γνωρίζουμε ότι:
-\[
-x(n) = \sum \left\lbrace 
-\mathop{Res} \left[ x(z)z^{n-1} \right]
- \right\rbrace
-\]
-για τους πόλους \textbf{εντός} του \( C \in \mathcal{R}_{x(z)z^{n-1}} \).
-\todo{Graph 15}
+\begin{minipage}{.5\textwidth}
+	Με βάση τη μιγαδική ανάλυση, γνωρίζουμε ότι:
+	\[
+	x(n) = \sum \left\lbrace 
+	\mathop{Res} \left[ x(z)z^{n-1} \right]
+	\right\rbrace
+	\]
+	για τους πόλους \textbf{εντός} του \( C \in \mathcal{R}_{x(z)z^{n-1}} \).
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+	\centering
+	\begin{tikzpicture}
+	\fill[green!50,even odd rule] (0,0) circle (0.8) -- (0,0) circle (1.5);
+	\draw[dashed] (0,0) circle (0.8) -- (0,0) circle (1.5);
+	\draw[green!50!white!50!black,->] (45:1.2) to[bend left] ++(1,1) node[right,scale=1.2] {\textbf{ROC}};
+	
+	\draw (60:0.5) node[locuspole,red,ultra thick] {}
+	(30:0.2) node[locuspole,red,ultra thick] {}
+	(10:0.8) node[locuspole,red,ultra thick] {};
+	
+	\draw (170:1.8) node[locuspole,densely dotted,thin,opacity=1] {};
+	\draw (230:2) node[locuspole,densely dotted,thin,opacity=1] {};
+	\draw (190:2.2) node[locuspole,densely dotted,thin,opacity=1] {};
+	\draw (40:2.2) node[locuspole,densely dotted,thin,opacity=1] {};
+	
+	
+	\draw[->] (0,-2) -- (0,2);
+	\draw[->] (-2,0) -- (2,0) ;
+	\end{tikzpicture}
+\end{minipage}
+
+
+
+
 Η παραπάνω σχέση συμπεριλαμβάνει και πόλους που βρίσκονται \emph{εκτός των ορίων περιοχής σύγκλισης} αλλά
 \emph{μέσα στα όρια του κύκλου που αυτές ορίζουν}.
 
 \paragraph{Παράδειγμα}
 Ένα σύστημα έχει 4 πόλους. Πόσες είναι οι μέγιστες δυνατές περιοχές σύγκλισης;
 \subparagraph{Απάντηση}
-Ένας πόλος, ως \emph{απομονωμένο} ανώμαλο σημείο, δεν μπορεί να βρίσκεται στην περιοχή σύγκλισης.
+\textbf{Ένας πόλος, ως \emph{απομονωμένο} ανώμαλο σημείο, δεν μπορεί να βρίσκεται στην περιοχή σύγκλισης.}
 
 Τοποθετούμε τους πόλους στο πραγματικό επίπεδο για ευκολία, και θεωρούμε περιοχές σύγκλισης με ανοιχτά
 όρια. Επειδή μια περιοχή σύγκλισης πρέπει να έχει πόλο στα όριά της, αλλά δεν μπορεί να περιέχει πόλο,
 οι δυνατές επιλογές θα μοιάζουν ως εξής:
-\todo{Graph 16 (5 graphs)}
+
+\begin{tikzpicture}[scale=.5]
+\filldraw[fill=green!50] (0,0) circle (1);
+\filldraw[fill=green!80!red,even odd rule] (0,0) circle (1) -- (0,0) circle (2);
+\filldraw[fill=green!30!cyan,even odd rule] (0,0) circle (2) -- (0,0) circle (3);
+\filldraw[fill=green!80!blue,even odd rule] (0,0) circle (3) -- (0,0) circle (4);
+\fill[fill=white,even odd rule,inner color=green!60!black,outer color=green!5] (0,0) circle (4) -- (0,0) circle (5.5);
+\draw[thick] (0,0) circle (4);
+
+\draw (1,0) node[locuspole] {}
+(2,0) node[locuspole] {}
+(3,0) node[locuspole] {}
+(4,0) node[locuspole] {}
+;
+
+
+\draw[->] (0,-5) -- (0,5);
+\draw[->] (-5,0) -- (5,0) ;
+\end{tikzpicture}
 
 Άρα έχουμε 5 δυνατότητες για περιοχή σύγκλισης.
 
@@ -1720,6 +1875,20 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 	\end{align*}
 	όπου ορίσαμε για ευκολία \( I(z) = \frac{(2z-a-b)}{(z-a)(z-b)}z^n \).
 	
+	\begin{tikzpicture}
+	\filldraw[fill=green!50,even odd rule] (0,0) circle (0.8) -- (0,0) circle (1.5);
+	\draw[->] (45:1.5) to[bend left] ++(1,1) node[right,scale=1.2] {$|a|$};
+	\draw[->] (-45:0.8) to[bend right] ++(1,-1) node[right,scale=1.2] {$|b|$};
+	
+	\draw[ultra thick,blue,<-] plot [smooth,tension=0.7] coordinates {(100:1.2) (70:1.0) (25:1.2) ( -30:1.0) (-90:1.3) (-120:1.3) (-150:1.1) (180:1.3) (120:1.3) (100:1.2)} node[below] {$C$} -- (99:1.19);
+	
+	
+	\draw[->] (0,-2) -- (0,2);
+	\draw[->] (-2,0) -- (2,0) ;
+	
+	\draw (1.5,1) node[right] {$z$-plane};
+	\end{tikzpicture}
+	
 	Το \( I(z) \) έχει πόλους \( z \) πολλαπλότητας \( s \):
 	\[ I(z) \rightarrow
 	\begin{cases}
@@ -1743,6 +1912,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 		Επομένως: \[
 		x(u) = a^n \quad \text{όταν } n \geq 0
 		\]
+		
 		\item \textbf{Αν \( n < 0 \)}, τότε οι πόλοι του \( I(z) \), λόγω του όρου \( z^n \), είναι:
 		\[
 		I(z) \rightarrow \begin{cases}
@@ -1783,6 +1953,20 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 		τους πόλους. Η περιοχή σύγκλισης μοιάζει πάλι με donut, αλλά η καμπύλη \( C \) διαγράφεται τώρα
 		ωρολογιακά και όχι αντιωρολογιακά, λόγω της αλλαγής μεταβλητής \( \dif z = -\frac{1}{ρz}\dif ρ \).
 		
+		\begin{tikzpicture}
+		\filldraw[fill=green!50,even odd rule] (0,0) circle (0.8) -- (0,0) circle (1.5);
+		\draw[->] (45:1.5) to[bend left] ++(1,1) node[right,scale=1.2] {$\frac{1}{|a|}$};
+		\draw[->] (-45:0.8) to[bend right] ++(1,-1) node[right,scale=1.2] {$\frac{1}{|b|}$};
+		
+		\draw[ultra thick,blue,->] plot [smooth,tension=0.7] coordinates {(100:1.2) (70:1.0) (25:1.3) ( -30:1.0) (-90:1.0) (-130:1.3) (-150:1.2) (120:1.3) (100:1.2)} node[below] {$C$} -- (99:1.19);
+		
+		
+		\draw[->] (0,-2) -- (0,2);
+		\draw[->] (-2,0) -- (2,0) ;
+		
+		\draw (1.5,1) node[right] {$p$-plane};
+		\end{tikzpicture}
+		
 		Άρα:
 		\begin{align*}
 			x(n) &= \frac{1}{2πj} \ointctrclockwise_C \left[
@@ -1820,18 +2004,6 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 
 	Να βρεθεί η \( x(n) \).
 	\tcblower
-	\begin{comment}
-	Έχουμε:
-	\begin{align*}
-		X(z) &= \frac{z}{z-a} + \frac{z}{z-b}
-	\end{align*}
-	Επομένως:
-	\[
-	x(n) = \left(a^n+b^n\right)\mathrm u(n)
-	\]
-	\end{comment}
-	
-	\todo{Graph 19 (optional)}
 	Η μέθοδος αυτή απαιτεί ένα είδος διαίρεσης των πολυωνύμων \( 2z^2 - (a+b)z \)
 	και \( z^2-(a+b)z + ab \).
 	Το πηλίκο θα προκύψει \( 2 + (a+b)z^{-1} + (a^2+b^2)z^{-2} + (a^3+b^3)z^{-3} + \dots \), κάτι
@@ -2061,18 +2233,32 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 	\]
 	να βρεθεί η \( x(n) \) για κάθε πιθανή ROC.
 	\tcblower
-	Πρώτα πρέπει να βρούμε τους \textbf{πόλους} της συνάρτησης, για να υπολογίσουμε τις πιθανές ROC.
-	
-	Έχουμε:
-	\begin{align*}
-	X(z) &= \frac{z}{3\left(z^2-\frac{4}{3}z+\frac{1}{3}\right)} = \frac{z}{3(z-1)\left(z-\frac{1}{3}\right)}\\
-	&= \frac{1}{2}\frac{z}{z-1} - \frac{1}{2}\frac{z}{z-\sfrac{1}{3} }
+	\begin{minipage}{.5\textwidth}
+		Πρώτα πρέπει να βρούμε τους \textbf{πόλους} της συνάρτησης, για να υπολογίσουμε τις πιθανές ROC.
+		
+		Έχουμε:
+		\begin{align*}
+		X(z) &= \frac{z}{3\left(z^2-\frac{4}{3}z+\frac{1}{3}\right)} = \frac{z}{3(z-1)\left(z-\frac{1}{3}\right)}\\
+		&= \frac{1}{2}\frac{z}{z-1} - \frac{1}{2}\frac{z}{z-\sfrac{1}{3} }
 		\end{align*}
-	
-	Επομένως έχουμε πόλους στα σημεία \( 1,\frac{1}{3} \).
-	
-	\todo{Graph 20}
-	
+		
+		Επομένως έχουμε πόλους στα σημεία \( 1,\frac{1}{3} \).
+	\end{minipage}
+    \begin{minipage}{.5\textwidth}
+    	\centering
+    	\begin{tikzpicture}[scale=.5]
+    	\fill[fill=white,even odd rule,inner color=green!60!cyan,outer color=white] (0,0) circle (2) -- (0,0) circle (4.5);
+    	\filldraw[fill=green!70] (0,0) circle (1);
+    	\filldraw[fill=green!80!red!80!white,even odd rule] (0,0) circle (1) -- (0,0) circle (2);
+    	
+    	\draw (1,0) node[locuspole] {} node[below] {$\sfrac{1}{3}$}
+    	(2,0) node[locuspole] {} node[below] {$3$}
+    	;
+    	
+    	\draw[->] (0,-5) -- (0,5);
+    	\draw[->] (-5,0) -- (5,0) ;
+    	\end{tikzpicture}
+    \end{minipage}
 	
 	%Για να υπολογίσουμε τα παρακάτω, χρησιμοποιούμε τους μετασχηματισμούς:
 	%\begin{align*}
@@ -2222,15 +2408,34 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 \begin{itemize}
 	\item Αν \( n\geq 0 \) τότε υπάρχει ένας πόλος στο \( z_0=a \) με πολλαπλότητα \( s_0 = k \).
 	
+	\begin{minipage}{.7\textwidth}
 	Με βάση το θεώρημα των ολοκληρωτικών υπολοίπων, έχουμε:
 	\begin{align*}
 		x(n) &= \frac{1}{(k-1)!}\left.\od[k-1]{}{z} \left[z^n\right]\right|_{z=a}
 		\\ &= \frac{1}{(k-1)!}n(n-1)(n-2)\cdots\left(n-(k-2)\right)\left.z^{n-(k-1)}\right|_{z=a}
 		\\ &= \frac{n(n-1)(n-2)\cdots\left(n-(k-2)\right)}{(k-1)!}a^{n-k+1}
 	\end{align*}
+	\end{minipage}
+    \begin{minipage}{.3\textwidth}
+    	\centering
+    	\begin{tikzpicture}[scale=.5]
+    	\fill[fill=white,even odd rule,inner color=green!60!cyan,outer color=white] (0,0) circle (1.4) -- (0,0) circle (4.5);
+    	\draw[] (0,0) circle (1.4);
+    	\draw (45:1.6) node[scale=.9,below left] {$|a|$};
+    	
+    	\draw (2.5,1) node[right] {$z$-plane};
+    	
+    	\draw[ultra thick,blue] plot [smooth cycle,tension=0.9] coordinates {(0:2.5) (90:2.5) (180:2.5) (270:2.5)} node[below right] {$C$};
+    	
+    	\draw[->] (0,-4) -- (0,4);
+    	\draw[->] (-4,0) -- (4,0) ;
+    	\end{tikzpicture}
+    \end{minipage}
 	
 	\item Αν \( n<0 \), θέτω \( \rho = \frac{1}{z} \), άρα η περιοχή σύγκλισης γίνεται \( |ρ| < \frac{1}{|α|} \). Έχουμε:
 	
+	
+	\begin{minipage}{.7\textwidth}
 	\begin{align*}
 		x(n) &= \frac{1}{2πj} \ointctrclockwise_{C\in\text{ROC}} \frac{ρ^{-n}}{(ρ^{-1}-a)^k}\frac{1}{ρ^2}\dif\rho
 		\\
@@ -2239,6 +2444,21 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 		\intertext{Αφού \( n-k+2 < 0 \), ο πόλος βρίσκεται εκτός της καμπύλης \( C \), επομένως το παραπάνω ολοκλήρωμα γίνεται:}
 		x(n) &= 0
 	\end{align*}
+    \end{minipage}
+    \begin{minipage}{.3\textwidth}
+    	\centering
+    	\begin{tikzpicture}[scale=.45]
+    	\draw[fill=green!50] (0,0) circle (3);
+    	\draw (90+45:2.8) node[scale=1.2,above left] {$\frac{1}{|a|}$};
+    	
+    	\draw (2.5,2) node[right] {$p$-plane};
+    	
+    	\draw[ultra thick,blue] plot [smooth cycle,tension=0.9] coordinates {(0:1.6) (90:1.6) (180:1.6) (270:1.6)} node[below right] {$C$};
+    	
+    	\draw[->] (0,-4) -- (0,4);
+    	\draw[->] (-4,0) -- (4,0) ;
+    	\end{tikzpicture}
+    \end{minipage}
 \end{itemize}
 
 \begin{theorem}{Γενικός τύπος κλάσματος σε Μ/Σ \( \mathcal{Z} \)}{}
@@ -2381,14 +2601,27 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
     		&= \frac{e^{j\omega }}{e^{j\omega }-\sfrac{1}{2} } + \frac{e^{j\omega }}{e^{j\omega }+\sfrac{1}{3} }
     	\end{align*}
     	
-    	\item Το παραπάνω σύστημα εκφράζεται από τη σχέση: \todo{Graph 23}
-    	\[
-    	y(n) = x(n) * h(n)
-    	\]
-    	ή, στο πεδίο της συχνότητας:
-    	\[
-    	X(z)H(z) = Y(z)
-    	\]
+    	\item Το παραπάνω σύστημα εκφράζεται από τη σχέση:
+    	
+    \vspace{-1ex}
+     \begin{minipage}{.5\textwidth}
+    			\[
+    		y(n) = x(n) * h(n)
+    		\]
+    		ή, στο πεδίο της συχνότητας:
+    		\[
+    		X(z)H(z) = Y(z)
+    		\]
+    	\end{minipage}
+    	\begin{minipage}{.5\textwidth}
+    		\centering
+    		\begin{tikzpicture}[scale=.85]
+    		\draw (0,0) node[minimum width=1.7cm,minimum height=0.8cm,rectangle,draw] (h) {};
+    		\draw (h.north) node[above] {$h(n)$};
+    		\draw[<-] (h) -- ++(-2,0) node[above,midway] {$x(n)$};
+    		\draw[->] (h) -- ++(2,0) node[above,midway] {$y(n)$};
+    		\end{tikzpicture}
+    	\end{minipage}
     	
     	Θα προσπαθήσουμε, επεκτείνοντας την παραπάνω σχέση, να βρούμε μια σχέση μεταξύ \( x(n) \) και
     	\( y(n) \). Έχουμε:
@@ -2573,7 +2806,7 @@ H(z) = A
 	\[
 	H(z) = \frac{1-\frac{1}{a}}{z-a}
 	\]
-	(χωρίς να μας ενδιαφέρει η σταθερά \( Α \)) που μπαίνει από μπροστά.
+	(χωρίς να μας ενδιαφέρει η σταθερά \( Α \) που μπαίνει από μπροστά).
 	
 	Για να βρούμε την απόκριση συχνότητας, θεωρούμε \( z = e^{j\omega } \):
 	\begin{align*}
@@ -2593,11 +2826,8 @@ H(z) = A
 	
 	\paragraph{}
 	Εναλλακτικά, μπορούσαμε να έχουμε:
-	\[
-	H(z) = \frac{z-\frac{1}{a}}{z-a}
-	\]
-
 	\begin{align*}
+	H(z) &= \frac{z-\frac{1}{a}}{z-a}\\
 		\left|H(\omega )\right| &= \left|H(z)\right|_{z=e^{j\omega }}\\
 		&= \frac{\left| \left(z-\sfrac{1}{a} \right) \right|_{z=e^{j\omega }}}{
 	    \left| (z-a) \right|_{z=e^{j\omega }}
@@ -2642,7 +2872,22 @@ H(z) = A
 	
 	Αντίστοιχα, προσθέτοντας περισσότερα τέτοια ζευγάρια πόλων-μηδενικών μπορούμε να έχουμε πάλι
 	all-pass συστήματα:
-	\todo{Graph 27}
+	
+	\begin{tikzpicture}
+	\draw[thick,blue!50!green!50!black,fill=blue!50!green!50!black,fill opacity=.3]
+	plot [smooth cycle] coordinates {(45:-0.4) (70:1) (45:2.2) (20:1)} (45:2.1) node[opacity=1,above right] {all-pass};
+	\draw[thick,blue!50!green!50!black,fill=blue!50!green!50!black,fill opacity=.3]
+	plot [smooth cycle] coordinates {(45:-0.4) (-70:1) (-45:2.2) (-20:1)} (-45:2.1) node[opacity=1,below right] {all-pass};
+	
+	\draw (-2,0) -- (2,0);\draw (0,-1.4) -- (0,1.4);
+	\draw[dashed] (0,0) -- ++(45:0.6);
+	\draw[dashed] (0,0) -- ++(-45:{1/0.6});
+	\fill (45:0.6) circle (2pt) node[below,scale=.7] {$a$};
+	\fill (-45:0.6) circle (2pt) node[below,scale=.7] {$a$};
+	\draw (-45:{1/0.6}) circle(2pt) node[below,scale=.7] {$\frac{1}{a}$};
+	\draw (45:{1/0.6}) circle(2pt) node[above,scale=.7] {$\displaystyle \frac{1}{a^*}$};
+	\draw[very thick,magenta!50!black] (0,0) circle(1cm);
+	\end{tikzpicture}
 \end{exercise}
 
 \begin{exercise}
@@ -2669,6 +2914,8 @@ H(z) = A
 	\paragraph{}
 	
 	Έχουμε:
+	
+	\begin{minipage}{.6\textwidth}
 	\begin{align*}
 		S_1: \qquad Y_1(z) &= \frac{1}{2} \left( X(z) +z^{-1}X(z) \right)\\
 		H_1(z) &= \frac{Y_1(z)}{X(z)} = \frac{1}{2}\left( 1+z^{-1} \right)\\
@@ -2681,8 +2928,22 @@ H(z) = A
 		2\cos\frac{\omega }{2}
 		\right| = \left| \cos\frac{\omega }{2} \right|
 	\end{align*}
+	\end{minipage}\begin{minipage}{.4\textwidth}
+	\centering
+	\begin{tikzpicture}[scale=1.4]
+	\draw[brown,dashed] (2,0) -- ++(0,2);
+	\draw[brown,densely dashed] (1,0) -- ++(0,2);
 	
-	\todo{Graph 28}
+	\draw[->] (0,0) -- (3,0);
+	\draw[->] (0,0) -- (0,2) node[right] {$\left|H_1(\omega)\right|$};
+	
+	\draw[ultra thick,red!50!orange!90!brown] (1,0) sin (0,1.2) (1,0) sin (2,1.2);
+	
+	\fill (0,0) circle (2pt) node[below] {$0$};
+	\fill (1,0) circle (2pt) node[below] {$\vphantom{2}\pi$};
+	\fill (2,0) circle (2pt) node[below] {$2\pi$};
+	\end{tikzpicture}
+\end{minipage}
 	
 	\textbf{Για να εξάγουμε συμπέρασμα για το χαρακτήρα του συστήματος, κοιτάμε μόνο το κομμάτι
 	από \( 0 \) ως \( π \).} Επομένως το παραπάνω σύστημα είναι \textbf{low-pass}. Το δεξί κομμάτι
@@ -2690,15 +2951,32 @@ H(z) = A
     
     \paragraph{}
     Για το δεύτερο σύστημα:
-    \begin{align*}
-    	S_2 \qquad Y_2(z) &= \frac{X(z) - z^{-1}(z)}{2} \\
-    	H_2(z) &= \frac{Y_2(z)}{X(z)} = \frac{1}{2}(1-z^{-1})\\
-    	H_2(\omega ) &= \frac{1}{2} \left(1-e^{-j\omega }\right) = e^{-j\frac{\omega }{2}}
-    	\frac{1}{2} \left( e^{\frac{j\omega }{2}} - e^{-\frac{j\omega }{2}} \right)\\
-    	\left|H_2(\omega)\right| &= \left|\sin\left(\frac{\omega }{2}\right)\right|
+   
+    \begin{minipage}{.6\textwidth}
+        \begin{align*}
+    S_2 \qquad Y_2(z) &= \frac{X(z) - z^{-1}(z)}{2} \\
+    H_2(z) &= \frac{Y_2(z)}{X(z)} = \frac{1}{2}(1-z^{-1})\\
+    H_2(\omega ) &= \frac{1}{2} \left(1-e^{-j\omega }\right) = e^{-j\frac{\omega }{2}}
+    \frac{1}{2} \left( e^{\frac{j\omega }{2}} - e^{-\frac{j\omega }{2}} \right)\\
+    \left|H_2(\omega)\right| &= \left|\sin\left(\frac{\omega }{2}\right)\right|
     \end{align*}
-    
-    \todo{Graph 29}
+    \end{minipage}
+    \begin{minipage}{.4\textwidth}
+    	\centering
+    	\begin{tikzpicture}[scale=1]
+    	\draw[brown,dashed] (2,0) -- ++(0,2);
+    	\draw[brown,densely dashed] (1,0) -- ++(0,2);
+    	
+    	\draw[->] (0,0) -- (3,0);
+    	\draw[->] (0,0) -- (0,2) node[right] {$\left|H_2(\omega)\right|$};
+    	
+    	\draw[ultra thick,red!50!orange!90!brown] (1,1.2) cos (0,0) (1,1.2) cos (2,0);
+    	
+    	\fill (0,0) circle (2pt) node[below] {$0$};
+    	\fill (1,0) circle (2pt) node[below] {$\vphantom{2}\pi$};
+    	\fill (2,0) circle (2pt) node[below] {$2\pi$};
+    	\end{tikzpicture}
+    \end{minipage}
     
     Εδώ, κοιτώντας από \( 0 \) ως \( π \), διαπιστώνουμε ότι το σύστημα είναι \textbf{high pass}.
     
@@ -2751,7 +3029,6 @@ H(z) = A
 	\draw[<-] (h1) -- ++(-1.5,0) node[above,midway] {$x(n)$};
 	\draw[->] (h2) -- ++(1.5,0) node[above,midway] {$y(n)$};
 \end{tikzpicture}
-\todo{make like graph 31}
 
 Έχουμε:
 \begin{align*}
@@ -2763,7 +3040,29 @@ H(z) = A
 
 \paragraph{Παράλληλη σύνδεση} \hspace{0pt}
 
-\todo{Graph 31}
+        \begin{tikzpicture}[scale=1]
+\def\cr{4pt};
+
+\draw[->] (-1,0) -- (0,0) node[above,midway] {$x(n)$} ;
+\draw[->] (0,0) -- (0,0.75) -- ++(1,0);
+\draw (1,1) rectangle ++(1.3,-0.5) node[midway] {$h_1(n)$};
+\draw[->] (2.3,0.75) -- ++(1,0) -- (3.3,\cr);
+\draw[->] (0,0) -- (0,-0.75) -- ++(1,0);
+\draw (1,-1) rectangle ++(1.3,0.5) node[midway] {$h_2(n)$};
+\draw[->] (2.3,-0.75) -- ++(1,0) -- (3.3,-\cr);
+
+\draw (3.3,0) node {$+$} circle (\cr);
+\draw[->] (3.3cm+\cr,0) -- ++(1,0) node[above,midway] {$y(n)$};
+
+\draw ({(1+2.3)/2},-1.4)
+node {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\Updownarrow}}}}$};
+
+\begin{scope}[yshift=-2.1cm]
+\draw[->] (0,0) -- (1,0) node[above,midway] {$x(n)$} ;
+\draw (1,0.25) rectangle (2.3,-0.25) node[midway] {$\mathsmaller{h(n)}$};
+\draw[->] (2.3,0) -- (3.3,0) node[above,midway] {$y(n)$};
+\end{scope}
+\end{tikzpicture}
 
 \begin{align*}
 	y(n) &= x(n) * h_1(n) \pm x(n) * h_2(n) \\ &= x(n) * \left( h_1(n) \pm h_2(n) \right) \\
@@ -2774,24 +3073,25 @@ H(z) = A
 	Δίνεται το σύστημα:
 	
 	\begin{tikzpicture}
-		\draw (0,0) node[draw] (h1) {$h_1(n)$};
-		\draw (2,1) node[draw] (h2) {$h_2(n)$};
-		\draw (2,-1) node[draw] (h3) {$h_3(n)$};
-		\draw (3.5,-1) node[draw] (h4) {$h_4(n)$};
-		
-		\draw (5,0) node[draw,circle,scale=1.3] (a) {$+$};
-		
-		\draw[<-] (h1) -- ++(-2,0) node[left] {$x(n)$};
-		\draw[->] (h1.east) to[in=180,out=0] (h2.west);
-		\draw[->] (h1.east) to[in=180,out=0] (h3.west);
-		\draw[->] (h3) -- (h4);
-		\draw[->] (h2) -| (a.north) node[above left] {$+$};
-		\draw[->] (h4) -| (a.south) node[below left] {$-$};
-		
-		\draw[->] (a.east) -- ++(2,0) node[right] {$y(n)$};
-	\end{tikzpicture}
+	\draw (0,0) node[draw] (h1) {$h_1(n)$};
+	\draw (2,1) node[draw] (h2) {$h_2(n)$};
+	\draw (2,-1) node[draw] (h3) {$h_3(n)$};
+	\draw (3.5,-1) node[draw] (h4) {$h_4(n)$};
 	
-	\todo{Graph 32}
+	\draw (5,0) node[draw,circle,scale=1.3] (a) {$+$};
+	
+	\draw[<-] (h1) -- ++(-2,0) node[left] {$x(n)$};
+	\draw[->] (h1.east) to[in=180,out=0] (h2.west);
+	\draw[->] (h1.east) to[in=180,out=0] (h3.west);
+	\draw[->] (h3) -- (h4);
+	\draw[->] (h2) -| (a.north) node[above left] {$+$};
+	\draw[->] (h4) -| (a.south) node[below left] {$-$};
+	
+	\draw[->] (a.east) -- ++(2,0) node[right] {$y(n)$};
+	
+	\draw[red!80!black] (3.2,0) node [cloud, draw,cloud puffs=10,cloud puff arc=120, aspect=1.2, inner ysep=1.4cm] {} (4,2) node[above right] {\color{red!80!black}\boxed{A}};
+	\draw[green!80!black] (2.7,-1) node [cloud, draw,cloud puffs=10,cloud puff arc=120, aspect=1.8, inner ysep=0.6cm] {} (3.8,-0.4) node[above right] {\color{green!80!black}\boxed{B}};
+	\end{tikzpicture}
 	
 	με τις κρουστικές αποκρίσεις του κάθε μπλοκ:
 	\begin{align*}
@@ -2831,7 +3131,31 @@ H(z) = A
 \begin{exercise}
 	Για το σύστημα:
 	
-	\todo{Graph 33}
+\begin{tikzpicture}
+\draw (0,0) node[draw] (u) {$u(n)$};
+\draw (0,-1) node[draw] (u2) {$u(n-2)$};
+\draw (5,1) node[draw] (h1) {$11\delta(n-1)$};
+\draw (5,0) node[draw] (h2) {$\delta(n-1)$};
+\draw (5,-1) node[draw] (h3) {$2\delta(n)-3\delta(n-1)$};
+
+\draw (1.5,0) node[draw,circle,scale=1] (a) {$+$};
+\draw (3,0) node[draw,circle,scale=1] (b) {$+$};
+
+\draw[<-] (u) -- ++(-2.5,0) node[above,midway] {$x(n)$} node[midway] (m1) {};
+\draw[->] (m1.center) |- (u2);
+\draw[->] (u) -- (a);
+\draw[->] (u2) -| (a.south) node[below left] {$-$};
+\draw[->] (a) -- (b) node[midway] (m2) {};
+\draw (m2.center) node[circle,inner sep=1pt,fill] {} -- ++(0,1) node[above] {$v(n)$};
+\draw[->] (b) -- (h2);
+\draw[->] (h2) -- ++(2,0) node (f) {};
+\draw[->] (f.center) -- ++(1,0) node[above] {$y(n)$};
+\draw[->] (f.center) |- (h1);
+\draw[->] (h1) -| (b);
+\draw[->] (f.center) |- (h3);
+\draw[->] (h3) -| (b);
+\draw (current bounding box.south east) node[above right] {ΑΙΤΙΑΤΟ};
+\end{tikzpicture}
 	
 	ζητούνται:
 	\begin{enumpar}
@@ -2878,7 +3202,7 @@ H(z) = A
     
     Αφού το σύστημα είναι \textbf{αιτιατό}, το ROC τελικά είναι \( |z|>4 \).
     
-    \item Αφού \( \left|e^{j\omega }\right| \notin \text{ROC} \), το σύστηα είναι ασταθές.
+    \item Αφού \( \left|e^{j\omega }\right| \notin \text{ROC} \), το σύστημα είναι ασταθές.
     
     \end{enumpar}
 \end{exercise}
@@ -2921,8 +3245,8 @@ H(z) = A
 \end{questionbox}
 
 \begin{exercise}
+	\begin{minipage}{.5\textwidth}
 	Δίνεται το σύστημα \( y(n) = (x(n)a^{-n}) * (h(n)a^n) \)
-	\todo{Graph 34}
 	όπου:
 	\[
 	H(z) = \frac{1-z^{-1}}{1-\frac{1}{2}z^{-1}}
@@ -2930,6 +3254,28 @@ H(z) = A
 	μία αιτιατή συνάρτηση.
 	
 	Να βρεθεί το ισοδύναμό του σύστημα \( g(n) \).
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+	\begin{tikzpicture}[scale=.8]
+	\draw (0,0) node[draw] (h) {$h(n)$};
+	\draw (2,0) node[circle,draw] (m2) {$\times$};
+	\draw (-2,0) node[circle,draw] (m1) {$\times$};
+	
+	\draw[gray!50!black] (-3,-2.5) rectangle (3,1) node[above left] {$g(n)$};
+	
+	\draw[->] (m1) -- (h) node[midway] (m3) {};
+	\draw[->] (h) -- (m2) node[midway] (m4) {};
+	
+	\draw (m3) node[circle,fill,inner sep=1pt] {} node[below] {$r(n)$};
+	\draw (m4) node[circle,fill,inner sep=1pt] {} node[below,scale=.8] {$w(n)$};
+	
+	\draw[<-] (m1) -- ++(0,-1.5) node[below] {$a^{-n}$};
+	\draw[<-] (m2) -- ++(0,-1.5) node[below] {$a^n$};
+	
+	\draw[->] (m2) -- ++(2,0) node[right] {$y(n)$};
+	\draw[<-] (m1) -- ++(-2,0) node[left] {$x(n)$};
+	\end{tikzpicture}
+\end{minipage}
 	\tcblower
 	Από το διάγραμμα, παρατηρούμε ότι:
 	\begin{align*}
@@ -2954,12 +3300,31 @@ H(z) = A
 			\right)^{-1}}
 	\end{align*}
 	
-	Για την περιοχή σύγκλισης, παρατηρούμε πως η \( H \) έχει πόλο στο \( \frac{1}{2} \). Άρα:
-	\[
-	\text{ROC}_{H}: \ |z|>\frac{1}{2} \implies
-	\text{ROC}_{G}: \ \left|\frac{z}{a}\right| > \frac{1}{2}
-	\]
-	άρα \( \displaystyle |z|>\frac{|a|}{2} \).
+	\begin{minipage}{.5\textwidth}
+			Για την περιοχή σύγκλισης, παρατηρούμε πως η \( H \) έχει πόλο στο \( \frac{1}{2} \). Άρα:
+		\[
+		\text{ROC}_{H}: \ |z|>\frac{1}{2} \implies
+		\text{ROC}_{G}: \ \left|\frac{z}{a}\right| > \frac{1}{2}
+		\]
+		άρα \( \displaystyle |z|>\frac{|a|}{2} \).
+	\end{minipage}
+	\begin{minipage}{.5\textwidth}
+		\begin{center}
+		\begin{tikzpicture}[scale=.5]
+		\fill[fill=white,even odd rule,inner color=green!60!cyan,outer color=white] (0,0) circle (1) -- (0,0) circle (4.5);
+		\draw[] (0,0) circle (1) ;
+		
+		\draw (1,0) node[locuspole] (p) {} node[below right] {$\sfrac{1}{2}$}    	;
+		
+		\draw[thick,dashed,blue!50!black] circle (2) (2,0) node[opacity=.8,scale=.6,above right] {$1$};
+		
+		\draw[opacity=.9,<-] (p) to[bend left] ++(2,1) node[right,scale=.8] {ευσταθές γιατί $\left|e^{j\omega}\right| \in $ ROC};
+		
+		\draw[->] (0,-5) -- (0,5);
+		\draw[->] (-5,0) -- (5,0) ;
+		\end{tikzpicture}
+		\end{center}
+	\end{minipage}
 	
 	Λαμβάνοντας υπ' όψιν το κριτήριο για τον μοναδιαίο κύκλο \( e^{j\omega } \): Αν \( \frac{|a|}{2} < 1 \), τότε \( G \) ευσταθές, διαφορετικά το \( G \) είναι ασταθές.
 \end{exercise}
@@ -3086,19 +3451,71 @@ X\left(e^{j\omega }\right) \overset{\triangle}{=} \sum_{n=0}^{N-1} x(n)e^{-j\ome
 \underbrace{X(k)}_{\text{DFT}} = \left. \underbrace{X\left(e^{j\omega }\right)}_{CFT} \right|_{\omega = \frac{2π}{N}k},\quad k=0,\dots,N-1
 \]
 
-\todo{Graph 35}
+\begin{center}
+\begin{tikzpicture}[scale=.9]
+
+\def\pointsc{(0,0),(0.5,0.8),(1,1.4),(1.5,1.6),(2,1),(2.5,0)
+}
+\def\pointsr{(0,0),(0.2,0.4),(0.6,0.7),(0.8,1),(1,1.2),(1.2,1.5)
+}
+
+\draw[->] (0,0) -- (3,0);
+\draw[->] (0,0) -- (0,2) node[left] (xn) {$x(n)$};
+
+\foreach \p in \pointsc
+\filldraw[draw=black,top color=white,bottom color=blue,opacity=.4] \p circle(0.08);
+\draw (2.5,0) node[below] {5};
+\draw (2.5,-0.5) node[below right] {$N=6$};
+
+\draw[thick,->] (3,1.2) -- ++(1.5,1.3) node[midway,above,sloped] {CFT};
+\draw[thick,->] (3,0.8) -- ++(1.5,-1.3) node[midway,below,sloped] {DFT};
+
+
+\begin{scope}[xshift=5cm,yshift=1.5cm]
+\draw[->] (0,0) -- (4.5,0) node[right] {$\omega$};
+\draw[->] (0,0) -- (0,2);
+\draw[orange!50!black] plot [smooth] coordinates {(0,0) (0.2,0.4) (0.6,0.7) (0.8,1) (1,1.2) (1.2,1.5) (1.4,0)};
+\draw[orange!50!black,xshift=1.4cm] plot [smooth] coordinates {(0,0) (0.2,0.4) (0.6,0.7) (0.8,1) (1,1.2) (1.2,1.5) (1.4,0)};
+\draw[orange!50!black,xshift=2.8cm] plot [smooth] coordinates {(0,0) (0.2,0.4) (0.6,0.7) (0.8,1) (1,1.2) (1.2,1.5) (1.4,0)};
+\foreach \p in \pointsr
+\filldraw[draw=black,top color=white,bottom color=red!50!orange,opacity=.4] \p circle(0.06);
+\end{scope}
+\begin{scope}[xshift=5cm,yshift=-1.5cm]
+\draw[->] (0,0) -- (2,0);
+\draw[->] (0,0) -- (0,2);
+\foreach \p in \pointsr
+\filldraw[draw=black,top color=white,bottom color=red!50!orange,opacity=.4] \p circle(0.07);
+\end{scope}
+\end{tikzpicture}
+\end{center}
 
 Όπως παρατηρούμε, ο \textbf{DFT είναι στην πραγματικότητα ο δειγματοληπτημένος συνεχής μετασχηματισμός
 Fourier}.
 
 \subsection{Χρήσιμα Σήματα}
+
+\begin{minipage}{.5\textwidth}
 \paragraph{Παλμοσειρά δειγματοληψίας}
 Το αναλογικό σήμα που χρησιμοποιούμε για δειγματοληψία είναι το γνωστό τραίνο ώσεων:
 \[
 s_{Δt} = \sum_{n=-\infty}^{\infty} δ(t-nΔt)
 \]
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+	\begin{tikzpicture}[scale=.9]
+	\draw[->] (-3,0) -- (3,0) node[right] {$t$};
+	\draw[->] (0,0) -- (0,3);
+	
+	\draw[thick,blue,->] (-2,0) -- (-2,1.5);
+	\draw[thick,blue,->] (-1,0) -- (-1,1.5);
+	\draw[thick,blue,->] (0,0) -- (0,1.5);
+	\draw[thick,blue,->] (1,0) -- (1,1.5);
+	\draw[thick,blue,->] (2,0) -- (2,1.5);
+	
+	\draw[<->] (1,-0.2) --(2,-0.2) node[below,midway] {$\Delta t$};
+	\end{tikzpicture}
+\end{minipage}
 
-\todo{Graph 36 minipage}
 
 Αυτό, στο συνεχή κόσμο, έχει μετασχηματισμό Fourier όπως έχουμε αποδείξει:
 \[
@@ -3114,15 +3531,29 @@ s_{Δt} \xrightarrow{\text{CFT-C}} F_s S_{F_s}(f)
 \boxed{F_s = \frac{1}{Δt}}
 \]
 
-\paragraph{Παράθυρο}
-\[
-W_T(t) = \begin{cases}
-1 &\quad |t| < \frac{T}{2} \\
-0 &\quad |t| > \frac{T}{2}
-\end{cases}
-\]
-
-\todo{Graph 37 minipage}
+\begin{minipage}{.5\textwidth}
+	\paragraph{Παράθυρο}
+	\[
+	W_T(t) = \begin{cases}
+	1 &\quad |t| < \frac{T}{2} \\
+	0 &\quad |t| > \frac{T}{2}
+	\end{cases}
+	\]
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+	\begin{center}
+	    \begin{tikzpicture}[yscale=.7]
+	\draw[->] (0,-0.5) -- (0,3) node[right] {$\mathrm W_T(t)$};
+	\draw[->] (-2,0) -- (2,0) node[below] {$t$};
+	
+	\draw[very thick,blue]
+	(-1,0) node[below,black] {$\sfrac{-T}{2}$} --
+	(-1,1.5)  --
+	(1,1.5) node[above right,midway, black] {$1$} --
+	(1,0) node[below,black] {$\sfrac{T}{2}$};
+	\end{tikzpicture}
+	\end{center}
+\end{minipage}
 
 Και από το αναλογικό σήμα γνωρίζουμε ότι:
 \[
@@ -3130,18 +3561,32 @@ W_T(t) = \begin{cases}
 \]
 όπου \( \sinc(x)=\frac{\sin(πx)}{πx} \), και μάλιστα αν \( x\in\mathbb Z^* \implies \sinc(x) = 0 \), και \( x=0 \implies \sinc(x) = 1 \).
 
-\paragraph{Μετατοπισμένο Παράθυρο}
-Για να έχουμε ακολουθίες που ξεκινούν από \( n=0 \), χρησιμοποιούμε ένα παράθυρο που βρίσκεται λίγο
-πιο μπροστά:
-\[
-W_{0,T} = W_T\left(t-\frac{T}{2}\right)
- = \begin{cases}
- 1 &\quad 0\leq t < T\\
- 0 &\quad αλλού
- \end{cases}
-\]
-
-\todo{Graph me in a way}
+\begin{minipage}{.5\textwidth}
+	\paragraph{Μετατοπισμένο Παράθυρο}
+	Για να έχουμε ακολουθίες που ξεκινούν από \( n=0 \), χρησιμοποιούμε ένα παράθυρο που βρίσκεται λίγο
+	πιο μπροστά:
+	\[
+	W_{0,T} = W_T\left(t-\frac{T}{2}\right)
+	= \begin{cases}
+	1 &\quad 0\leq t < T\\
+	0 &\quad αλλού
+	\end{cases}
+	\]
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+	\begin{center}
+		    \begin{tikzpicture}[yscale=.7]
+		\draw[->] (0,-0.5) -- (0,3) node[right] {$\mathrm W_{0,T}(t)$};
+		\draw[->] (0,0) -- (2,0) node[below] {$t$};
+		
+		\draw[very thick,blue]
+		(0,1.8)  node[above right,black] {$1$}  --
+		(1.2,1.8) --
+		(1.2,0) node[below,black] {$T$};
+		\end{tikzpicture}
+		
+	\end{center}
+\end{minipage}
 
 Χρησιμοποιώντας ξανά ιδιότητες του αναλογικού σήματος, θα ισχύει:
 \[
@@ -3157,10 +3602,86 @@ W_{0,T} (t) \xrightarrow{\text{CFT-C}} T\sinc(Tf) e^{-j2πf\sfrac{T}{2}}
 	\item Να \textit{δειγματοληπτήσουμε} το σήμα, ώστε να γίνει διακριτό.
 \end{enumerate}
 
-\todo{Graph 39 (important!)}
+\begin{center}
+	\begin{tikzpicture}[yscale=0.7,scale=1.2]
+	\draw[->] (0,-0.5) -- (0,3) node[right] {$x(t)$};
+	\draw[->] (-1.5,0) -- (3,0) node[below] {$t$};
+	
+	\draw[very thick,blue!50!cyan] plot [smooth,tension=.8] coordinates {(-1,0.2) (-0.8,0.4) (0,0.4)  (1,1.8) (2.5,0.8) (3,1.0)};
+	
+	\draw (4,1.5) node[scale=2] {$\times$};
+	
+	\begin{scope}[xshift=5cm]
+	\draw[->] (0,-0.5) -- (0,3) node[right] {$\mathrm W_{0,T}(t)$};
+	\draw[->] (0,0) -- (2,0) node[below] {$t$};
+	
+	\draw[very thick,blue]
+	(0,1.8)  node[above right,black] {$1$}  --
+	(1.2,1.8) --
+	(1.2,0) node[below,black] {$T$};
+	\end{scope}
+	
+	\begin{scope}[yshift=-4cm]
+	\draw[->,thick] (-3,1.5) -- ++(1,0);
+	\draw[->] (0,-0.5) -- (0,3);
+	\draw[->] (-1.5,0) -- (3,0) node[below] {$t$};
+	
+	\draw[very thick,blue!50!cyan] (0,0) -- plot [smooth,tension=.8] coordinates {(0,0.4)  (0.7,1.8) (1.5,1.7)} -- (1.5,0) -- (2.9,0);
+	
+	\draw (4,1.5) node[scale=2] {$\times$};
+	\end{scope}
+	\begin{scope}[yshift=-4cm,xshift=6cm,xscale=0.5]
+	\draw[->] (-3,0) -- (3,0) node[right] {$t$};
+	\draw[->] (0,0) -- (0,3);
+	
+	\draw[thick,blue,->] (-2,0) -- (-2,1.5);
+	\draw[thick,blue,->] (-1,0) -- (-1,1.5);
+	\draw[thick,blue,->] (0,0) -- (0,1.5);
+	\draw[thick,blue,->] (1,0) -- (1,1.5);
+	\draw[thick,blue,->] (2,0) -- (2,1.5);
+	
+	\draw[<->] (1,-0.2) --(2,-0.2) node[below,midway] {$\Delta t$};
+	\end{scope}
+	\begin{scope}[yshift=-8cm]
+	\draw[->,thick] (-3,1.5) -- ++(1,0);
+	\draw[->] (0,-0.5) -- (0,3);
+	\draw[->] (-1.5,0) -- (3,0) node[below] {$t$};
+	
+	\draw[dashed,opacity=.4,blue!50!cyan] (0,0) plot [smooth,tension=.8] coordinates {(0,0.4)  (0.7,1.8) (1.5,1.7)};
+	
+	\draw[thick,blue,->] (0,0) -- ++(0,0.5);
+	\draw[thick,blue,->] (0.25,0) -- ++(0,1.0);
+	\draw[thick,blue,->] (0.5,0) -- ++(0,1.5);
+	\draw[thick,blue,->] (0.75,0) -- ++(0,1.8);
+	\draw[thick,blue,->] (1.00,0) -- ++(0,1.9);
+	\draw[thick,blue,->] (1.25,0) -- ++(0,1.84);
+	\draw[thick,blue,->] (1.50,0) -- ++(0,1.7);
+	\end{scope}
+	\end{tikzpicture}
+	
+\end{center}
 
 Το παραθυροποιημένο και δειγματοληπτημένο σήμα (\textbf{sampled \& windowed}) ονομάζεται \( x_{\text{SW}}(t) \). Να σημειωθεί ότι αυτό το σήμα είναι ακόμα αναλογικό, καθώς αποτελείται από
 συναρτήσεις \( δ \). Για να γίνει ψηφιακό, αρκεί να πάρουμε τις τιμές αυτών των \( δ \).
+
+\begin{center}
+	\begin{tikzpicture}[yscale=0.7,scale=1.5]
+	\tikzstyle{sample}=[draw,bottom color=orange!50!blue,top color=\timecolour,fill opacity=.7,inner sep=2pt,rounded corners=1.5pt]
+	\draw[->] (0,-0.5) -- (0,3) node[right] {$x(n)$};
+	\draw[->] (-1,0) -- (2.5,0) node[below] {$t$};
+	
+	\draw[dashed,opacity=.1,blue!50!cyan] (0,0) plot [smooth,tension=.8] coordinates {(0,0.4)  (0.7,1.8) (1.5,1.7)};
+	
+	\draw (0,0.5) node[sample] {};
+	\draw (0.25,0) ++(0,1.0) node[sample] {};
+	\draw (0.5,0) ++(0,1.5) node[sample] {};
+	\draw (0.75,0) ++(0,1.8) node[sample] {};
+	\draw (1.00,0) ++(0,1.9) node[sample] {};
+	\draw (1.25,0) ++(0,1.84) node[sample] {};
+	\draw (1.50,0) ++(0,1.7) node[sample] {};
+	\end{tikzpicture}
+	
+\end{center}
 
 \todo{capital S}
 
@@ -3201,7 +3722,59 @@ N\sinc(NΔtf)e^{-j2πfN\sfrac{Δt}{2} }
 \right] * S_{F_S}(f)
 \]
 
-\todo{Graph 41}
+\begin{center}
+	\begin{tikzpicture}
+	\draw (-2,0) -- (2,0);
+	\draw (0,0) -- (0,2);
+	\draw[orange!50!red,very thick]
+	plot [smooth,tension=1] coordinates {(-2,0) (0,1) (2,0)};
+	\draw (-2,0) node[below] {$-S_{L_{\mathrm{max}}}$};
+	\draw (2,0) node[below] {$S_{L_{\mathrm{max}}}$};
+	\draw (3,1) node[scale=3] {$*$};
+	
+	\begin{scope}[xshift=6cm]
+	\draw (-2,0) -- (2,0);
+	\draw (0,0) -- (0,2);
+	\draw[orange!50!red,very thick]
+	plot [smooth,variable=\x,domain=-2:2,samples=\midsamples] (\x,{1.5*sinc(10*\x)});
+	\draw (3,1) node[scale=3] {$=$};
+	\end{scope}
+	
+	\begin{scope}[xshift=12cm]
+	\draw (-2,0) -- (2,0);
+	\draw (0,0) -- (0,2);
+	\draw[orange!50!red,very thick]
+	plot [smooth,variable=\x,domain=-2:2,samples=\midsamples] (\x,{0.1+1.5*sinc(10*sin(\x^1.5 r/1.3))});
+	\end{scope}
+	
+	\begin{scope}[yshift=-4cm]
+	\draw (-2,0) -- (2,0);
+	\draw (0,0) -- (0,2);
+	\draw[orange!50!red,very thick]
+	plot [smooth,tension=1] coordinates {(-2,0) (0,1) (2,0)};
+	\draw (-2,0) node[below] {$-S_{L_{\mathrm{max}}}$};
+	\draw (2,0) node[below] {$S_{L_{\mathrm{max}}}$};
+	\draw (3,1) node[scale=3] {$*$};
+	
+	\begin{scope}[xshift=6cm]
+	\draw (-2,0) -- (2,0);
+	\draw (0,0) -- (0,2);
+	\foreach \x in {-2,-1,...,2}
+	\draw[very thick,orange!50!red,->] (\x,0) -- ++(0,1.2);
+	\draw (3,1) node[scale=3] {$=$};
+	\end{scope}
+	
+	\begin{scope}[xshift=12cm]
+	\draw (-2,0) -- (2,0);
+	\draw (0,0) -- (0,2);
+	\foreach \x in {-2,-1,...,2}
+	\draw[orange!50!red,very thick,xscale=.5,xshift={\x cm}]
+	plot [smooth,tension=1] coordinates {(-2,0) (0,1) (2,0)};
+	\end{scope}
+	\end{scope}
+	\end{tikzpicture}
+	
+\end{center}
 
 Παρατηρούμε ότι, αφού το σήμα είναι χρονοπερατό μετά την παραθύρωση, το φάσμα του θα είναι άπειρο. Επομένως,
 μετά από την εφαρμογή της παλμοσειράς, θα είναι βέβαιο ότι θα υπάρχει επικάλυψη. Για να μειωθεί,
@@ -3263,7 +3836,19 @@ X(f) *
 \]
 όπου ο όρος \( L(f) \) αναφέρεται στη φασματική διαρροή, και ο όρος \( A(f) \) αναφέρεται στο aliasing.
 
-\todo{Graph 42}
+\begin{tikzpicture}
+\draw (-0.1,0) -- (3.7,0) node[right] {$k$};
+\draw (0,-0.05) -- (0,2) node[right] {$X[k]$};
+
+\foreach \x in {0,1,...,5}
+\draw[thick,red!50!orange!80!green] (\x/2,0) node[below,black] {$\x$} -- ++(0,0.8) node[circle,fill,inner sep=1pt] {};
+\draw (3-0.075,0.4) node[scale=1] {$\cdots$};
+\draw[thick,red!50!orange!80!green] (6/2+0.3,0) node[below,black] {$N-1$} -- ++(0,0.8) node[circle,fill,inner sep=1pt] {};
+
+\draw[->] (0,-1) node[left] {$0$} -- ++(3.7,0) node[right] {$2\pi$} node[below,midway] {"ψηφιακή" συχνότητα};
+\end{tikzpicture}
+
+
 Ο DFT κινείται μεταξύ των τιμών \( 0 \) και \( N-1 \), οι οποίες αντιστοιχούν άμεσα στις "ψηφιακές"
 συχνότητες από \( 0 \) ως \( 2π \). Για να τις αντιστοιχήσουμε στις πραγματικές αναλογικές συχνότητες,
 πρέπει να γνωρίζουμε τη συχνότητα δειγματοληψίας. \todo{Add maths}
@@ -3348,6 +3933,21 @@ X(f) * L(f) = \int_{-\infty}^{\infty} X(f-f') L(f)\dif f'
 	\end{cases}
 	\]
 	
+	\begin{tikzpicture}[xscale=1.5]
+	\draw[->] (-0.1,0) -- (3,0);
+	\draw[->] (0,-0.05) -- (0,2);
+	
+	\foreach \x in {0.1,0.2,...,2}
+	\draw[red!50!orange!90!green] (\x,0) node[circle,fill,inner sep=0.7pt] {};
+	
+	\draw[thick,red!50!orange!90!green] (0.2,0) node[below,black] {$200$} -- ++(0,0.8) node[circle,fill,inner sep=1pt] {};
+	\draw[thick,red!50!orange!90!green] (0.8,0) node[below,black] {$800$} -- ++(0,0.8) node[circle,fill,inner sep=1pt] {};
+	\draw[thick,red!50!orange!90!green] (1.6,0) node[below,black] {$1600$} -- ++(0,0.8) node[circle,fill,inner sep=1pt] {};
+	\draw[thick,red!50!orange!90!green] (2.2,0) node[below,black,xshift=2mm] {$2200$} -- ++(0,0.8) node[circle,fill,inner sep=1pt] {};
+	
+	\end{tikzpicture}
+	
+	
 	Ποιές είναι οι μικρότερες πιθανές τιμές των \( f_1, f_2 \);
 	
 	\tcblower
@@ -3390,14 +3990,28 @@ X(f) * L(f) = \int_{-\infty}^{\infty} X(f-f') L(f)\dif f'
 
 \subsection{Under-Sampling (Υποδειγματοληψία)}
 
-\todo{Graph 37}
+\begin{center}
+\begin{tikzpicture}[scale=1]
+\draw[->] (-2,0) -- (2,0) node[right] {$f$};
+\draw[->] (0,0) -- (0,1.7);
+\draw[thick,fill=red!50!orange,fill opacity=.4] (-1.5,0) node[black,opacity=1,below,scale=.6] {$-f_H$}-- (-0.5,1.4) -- (-0.5,0) node[black,opacity=1,below,scale=.6] {$-f_L$};
+\draw (-0.75,0.7) node {Α};
+\draw[thick,fill=red!50!orange!50!yellow,fill opacity=.4] (1.5,0) node[black,opacity=1,below,scale=.6] {$f_H$}-- (0.5,1.4) -- (0.5,0) node[black,opacity=1,below,scale=.6] {$f_L$};
+\draw (0.75,0.7) node {Δ};
+
+\draw (current bounding box.east) node[right,xshift=1.4cm] {$\left.
+	\begin{aligned}f_L &= 1\;\mathrm{GHz}\\f_H &= 101\;\mathrm{GHz}
+	\end{aligned} \right\rbrace BW = 10\;\mathrm{MHz}
+	$};
+\end{tikzpicture}
+\end{center}
 
 Έστω ότι έχουμε ένα σήμα σε μεγάλη συχνότητα, δηλαδή στο \( \SI{1}{\giga\hertz} \), το οποίο όμως έχει μικρό
 εύρος ζώνης, της τάξης των \( \SI{0.01}{\giga\hertz} \).
 
 Για να δειγματοληπτήσουμε αυτό το σήμα κανονικά, θα πρέπει να έχουμε συχνότητα δειγματοληψίας \( f_s \):
 \[
-f_s > 2 f_max = 2f_H = \SI{2.02}{\giga\hertz}
+f_s > 2 f_{\max} = 2f_H = \SI{2.02}{\giga\hertz}
 \]
 
 Αυτή όμως η συχνότητα είναι τεράστια για ένα σήμα το οποίο έχει τόσο μικρό εύρος ζώνης! Επομένως θα προσπαθήσουμε
@@ -3406,7 +4020,40 @@ f_s > 2 f_max = 2f_H = \SI{2.02}{\giga\hertz}
 
 Αφού εφαρμοστεί η δειγματοληψία, αν δεν υπάρχει επικάλυψη, το φάσμα του δειγματοληπτημένου
 σήματος θα μοιάζει ως εξής:
-\todo{Graph 38}
+
+\begin{tikzpicture}[scale=1]
+\draw[->] (-2,0) -- (5,0) node[right] {$f$};
+%\draw[->] (0,0) -- (0,1.7);
+\draw[thick,fill=red!50!orange,fill opacity=.4] (-1.5,0) node[black,opacity=1,below,scale=.6] {$-f_H$}-- (-0.5,1.4) -- (-0.5,0) node[black,opacity=1,below,scale=.6] {$-\vphantom{-f_H}f_L$};
+\draw (-0.75,0.7) node {Α};
+
+\draw[opacity=.4] (-1,0.7) ellipse [x radius=0.8,y radius=1.2];
+\draw (-1,0.7) ++(90:1.2) node (a) {};
+\draw (-1,0.7) ++(-90:1.2) node (b) {};
+\draw[->,opacity=.4] (a.center) to[bend left=70] ++(2.3,-0.5);
+\draw[->,opacity=.4] (b.center) to[bend right=30] ++(4.2,0.3);
+
+\begin{scope}[xshift=2cm]
+\draw[thick,fill=red!50!orange,fill opacity=.4] (-1.5,0) -- (-0.5,1.4) -- (-0.5,0);
+\draw (-0.75,0.7) node {Α};
+\draw (-1,0) node[below,red!50!orange,opacity=.6] {$A_\kappa$};
+\draw[opacity=.7,dashed] (-0.5,0) -- ++(0,-1.5) node[below,xshift=-4mm] {$\kappa f_s -f_L$};
+\end{scope}
+\begin{scope}[xshift=4.5cm]
+\draw[thick,fill=red!50!orange,fill opacity=.4] (-1.5,0) -- (-0.5,1.4) -- (-0.5,0);
+\draw (-0.75,0.7) node {Α};
+\draw (-1,0) node[below,red!50!orange,opacity=.6,xshift=2mm] {$A_{\kappa+1}$};
+\draw[opacity=.7,dashed] (-1.5,0) -- ++(0,-1.5) node[below,xshift=4mm] {$(\kappa+1) f_s -f_H$};
+\end{scope}
+
+\begin{scope}[xshift=1.3cm]
+\draw[thick,fill=red!50!orange!50!yellow,fill opacity=.4] (1.5,0) -- (0.5,1.4) -- (0.5,0);
+\draw (0.75,0.7) node {Δ};
+\draw[opacity=.7,dashed] (0.5,0) -- ++(0,-1) node[below] {$f_L$};
+\draw[opacity=.7,dashed] (1.5,0) -- ++(0,-1) node[below] {$f_H$};
+\end{scope}
+
+\end{tikzpicture}
 
 Εδώ υποθέτουμε ότι υπάρχει ένα δεξί "πλακίδιο" που περιβάλλεται από δύο αριστερά πλακίδια.
 Το αριστερό πλακίδιο προκύπτει από το \emph{αντίγραφο} του αρχικού
@@ -3672,12 +4319,32 @@ x_e(0) &\quad n=0\\
 	 \) \textbf{μεγιστοποιείται} για \( \Omega = 0 \).
 \end{enumgreek}
 
-\todo{Graph 39}
-
 \paragraph{Κανονικοποίηση}
 Στη σχεδίαση, μπορούμε να δουλεύουμε σε ένα κανονικοποιημένο φίλτρο, με κεντρική συχνότητα \( 1 \).
 Πράγματι, αν ορίσουμε \( \Omega' = \frac{\Omega}{\Omega_c} \), τότε το φίλτρο έχει κέντρο στο
 \( \Omega_c' = 1 \).
+
+\begin{center}
+	\begin{tikzpicture}[scale=1.1]
+	\draw[->] (0,0) -- (3,0) node[right] {$\Omega$};
+	\draw[->] (0,0) -- (0,2) node[above] {};
+	
+	\draw[very thick,orange!50!red!90!green]
+	(0,1.5) cos (1.5,1) sin (3,0.4);
+	\draw (0,1.5) node[left] {$1$};
+	\draw[dashed] (1.5,0) node[below] {$\Omega_r$} |- (0,1) node[left] {$A_c=0.707$};
+	\draw[dashed] (2.4,0) node[below] {$\Omega_r$} |- (0,0.5) node[left] {$A_r$};
+	\end{tikzpicture}
+	\hfill
+	\begin{tikzpicture}[scale=1.1]
+	\draw[->] (0,0) -- (3,0) node[right] {$\Omega'$};
+	\draw[->] (0,0) -- (0,2) node[above] {};
+	
+	\draw[very thick,orange!50!red!90!green]
+	(0,1.5) cos (1.5,1) sin (3,0.4);
+	\draw[dashed] (1.5,0) node[below] {$1$} |- (0,1) node[left] {$A_c=0.707$};
+	\end{tikzpicture}
+\end{center}
 
 \begin{defn}{Κανονικοποιημένο Butterworth με \( \Omega_c = \SI{1}{\radian/\second} \)}{}
 	Το κανονικοποιημένο Butterworth είναι:\[
@@ -3716,16 +4383,33 @@ H_n(s) = \frac{1}{Π(s-s_k)}=\frac{1}{B_k}
 
 \paragraph{Παράδειγμα σχεδιασμού}
 Μπορεί να μας ζητηθούν προδιαγραφές:
-\begin{quote}
-	\begin{itemize}
-		\item Για \( \Omega < \Omega_1 \): \( 
-		\leq 20\log\left|H_n(j\omega )\right| \geq k_1 \geq 0
-		 \)
-		\item Για \( \Omega > \Omega_2 \): \( 
-		\log\left|H_n(j\omega )\right| \leq k_2
-		\)
-	\end{itemize}
-\end{quote}
+
+\begin{minipage}{.7\textwidth}
+	\begin{quote}
+		\begin{itemize}
+			\item Για \( \Omega < \Omega_1 \): \( 
+			\leq 20\log\left|H_n(j\omega )\right| \geq k_1 \geq 0
+			\)
+			\item Για \( \Omega > \Omega_2 \): \( 
+			\log\left|H_n(j\omega )\right| \leq k_2
+			\)
+		\end{itemize}
+	\end{quote}
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+	\begin{center}
+	\begin{tikzpicture}[scale=.8]
+	\draw[->] (0,0) -- (3,0) node[right] {};
+	\draw[->] (0,0) -- (0,2) node[above] {};
+	
+	\draw[very thick,orange!50!red!90!green]
+	(0,1.5) cos (1.5,1) sin (3,0.4);
+	\draw[dashed] (1.2,0) node[below] {$\Omega_1$} |- (0,1.16) node[left] {$k_1$};
+	\draw[dashed] (2.4,0) node[below] {$\Omega_2$} -- ++(0,0.5) ;
+	\end{tikzpicture}
+	\end{center}
+\end{minipage}
+
 Επομένως, λύνοντας τις παραπάνω ανισώσεις (θέτονας \( H(\Omega) = \frac{1}{1+\left(\frac{\Omega}{\Omega_c}\right)^{2n}} \)), θα προκύψει:
 \[
 n = \left\lceil
@@ -3785,7 +4469,24 @@ H_a(s) = \frac{\displaystyle \sum_{k=0}^{M} d_k s^k}{\displaystyle \sum_{k=0}^{N
 H(z) = \left. H(s) \right|_{s\leftarrow \frac{1-z^{-1}}{T}}
 \]
 
-\todo{Graph 43}
+\begin{tikzpicture}[scale=.8]
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+\draw (1,-1) node[below right] {$s$-plane};
+\draw[thick,opacity=.8,->,yshift=2mm] (2.5,0) -- ++(1,0);
+
+\begin{scope}[xshift=6cm]
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+\draw[green!50!blue,very thick] (0,0) circle (1.7);
+\draw[green!50!blue,very thick] (1.7/2,0) circle (1.7/2);
+\draw[green!50!blue,<-] (1.7/2,0) ++(60:1.7/2) to[bend left] ++(1,0.7) node[right] {$\Omega=\frac{1}{T}$};
+\fill[green!70!blue] circle (3pt);
+\draw[green!70!blue,<-] (0,0) ++(90+60:3pt) to[bend right] ++(90+60:2) node[left] {$\Omega=\infty$};
+\draw (1.2,-1) node[below right] {$z$-plane};
+\end{scope}
+\end{tikzpicture}
+
 Ο μετασχηματισμός που πραγματοποιούμε είναι ο εξής:
 \[
 s = \frac{1-z^{-1}}{T}
@@ -3819,7 +4520,32 @@ z = \frac{1}{1-sT} = \frac{1}{1-j\Omega T} = \frac{1}{1+\Omega^2 T^2} + j\frac{\
 Έστω ότι δειγματοληπτούμε ένα αναλογικό σήμα \( H_a(\Omega) \), με συχνότητα δειγματοληψίας \( \Omega_s \),
 που απεικονίζεται στον ψηφιακό κόσμο από \( 0 \) ως \( 2π \). Το \( \omega = 2π \) αντιστοιχεί στην
 αναλογική συχνότητα \( \Omega_s \), και το \( \omega = \pi \) αντιστοιχεί στην \( \frac{\Omega_s}{2} \).
+
 \todo{Graph 44}
+\hfill
+\begin{tikzpicture}[scale=.8]
+\draw[->] (-2,0) -- (2,0);
+\draw[->] (0,-2) -- (0,2);
+\draw (1,-1) node[below right] {$s$-plane};
+\draw[thick,opacity=.8,->,yshift=2mm] (2.5,0) -- ++(1,0);
+
+\draw[green!50!black] (0,1.8) node[circle,fill,inner sep=1.5pt] (a) {} node[right] {$\Omega_s$};
+\draw[green!50!black] (0,1.8/2) node[circle,fill,inner sep=1.5pt] (b) {} node[right] {$\frac{\Omega_s}{2}$};
+\draw[green!50!black] (0,0.3) node[circle,fill,inner sep=1.5pt] (c) {} node[left] {$\Omega_i$};
+\draw[green!50!black] (0,0) node[circle,fill,inner sep=1.5pt] (d) {} node[right] {$\Omega_s$};
+
+\begin{scope}[xshift=6cm]
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+\draw[green!50!blue,very thick] (0,0) circle (1.5) (180+45:1.5) node[below left] {$1$};
+\draw (1,-1) node[below right] {$z$-plane};
+
+\draw[green!50!blue!70!black,<-] (0:1.5) to[bend left=120] (d);
+\draw[green!70!blue!70!black,<-] (0:1.5) to[bend right=120] (a);
+\draw[green!90!blue!80!black,<-] (50:1.5) to[bend right=50] (c);
+\draw[green!40!blue!50!black,<-] (180:1.5) to[bend right=30] (b);
+\end{scope}
+\end{tikzpicture}
 
 Η σχέση που συνδέει την "αναλογική" με την "ψηφιακή" συχνότητα είναι γραμμική:
 \[
@@ -3832,7 +4558,26 @@ z = \frac{1}{1-sT} = \frac{1}{1-j\Omega T} = \frac{1}{1+\Omega^2 T^2} + j\frac{\
 
 \paragraph{Μετάφραση ψηφιακής σε αναλογική συχνότητα}
 Έστω ότι έχουμε ένα φίλτρο Butterworth. Το αρχικό αναλογικό φάσμα του είναι πολύ καθαρό:
-\todo{Graph 46}
+
+\begin{tikzpicture}[scale=.8,xscale=1.4]
+\draw[->] (0,0) -- (2,0) node[right] {$\omega$};
+\draw[->] (0,0) -- (0,2) node[left] {$H_a(s)$};
+\draw (0,0) node[left] {$0$};
+
+\draw[very thick,red!50!orange] plot[smooth,tension=.4] coordinates {(0,1.5) (0.4,1.7) (0.7,1.3) (1,0.4) (1.3,0.4) (1.4,0)};
+\draw (1.4,0) node[below] {$\pi$};
+
+\draw[thick,opacity=.8,->] (3,1) -- ++ (1,0) node[midway,above] {$\omega\to\Omega$};
+
+\begin{scope}[xshift=5cm]
+\draw[->] (0,0) -- (2,0) node[right] {$\Omega$};
+\draw[->] (0,0) -- (0,2) node[left] {$H_a'(\Omega)$};
+\draw (0,0) node[left] {$0$};
+
+\draw[very thick,red!50!orange] plot[smooth,tension=.4] coordinates {(0,1.5) (0.15,1.7) (0.3,1.3) (0.5,0.4) (0.9,0.4) (1.4,0)};
+\draw (1.4,0) node[below] {$\frac{\Omega_s}{2}$};
+\end{scope}
+\end{tikzpicture}
 
 Στον ψηφιακό κόσμο όμως, το φάσμα προκύπτει ελαφρά παραμορφωμένο. Αν μεταφράσουμε την ψηφιακή συχνότητα
 σε αναλογική με τη σχέση \( ω = \frac{2πΩ}{Ω_s} \), θα λάβουμε ένα εναφρά διαφορετικό σήμα \( H_a'(Ω) \),
@@ -3910,12 +4655,31 @@ y_a(t) = \int_{t_0}^{t}y_a'(t) \dif t + y_a(t_0)
 y_a'(t) = \frac{b_0x(t) - a_0y_a(t)}{a_1}
 \]
 
-\todo{Graph 47 float right}
-
+\begin{minipage}{.5\textwidth}
 Μπορούμε να διακριτοποιήσουμε τη λύση του ως εξής:
 \[
 y_a(nT) = \int_{(n-1)T}^{nT} y_a'(t)\dif t + y_a\left[(n-1)T\right]
 \]
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+	\begin{center}
+		\begin{tikzpicture}[scale=0.9]
+		\draw[] (0,0) -- (3,0) node[right] {$\omega$};
+		\draw[] (0,0) -- (0,3) node[left] {};
+		\draw (0,0) node[left] {$0$};
+		
+		{
+			\pgfmathsetseed{51398}
+			\draw[thick,blue] (0,0) -- plot [smooth,domain=0.2:3,samples=20] (\x,\x+0.14*rand)
+			(2.4,2) node[right] {$y_a'(t)$};
+		}
+		\filldraw[fill=blue,fill opacity=.4] (1.25,0) -- ++(0,1.15) -- (2.15,2.22) |- cycle;
+		
+		\draw (1.25,0) node[below,xshift=-3mm] {$(n-1)T$};
+		\draw (2.15,0) node[below,xshift=2mm] {$nT$};
+		\end{tikzpicture}
+	\end{center}
+\end{minipage}
 και, μπορούμε αριθμητικά να προσεγγίσουμε το ολοκλήρωμα (με τη μέθοδο τραπεζίου):
 \begin{align*}
 y_a(nT) &= T\frac{y_a'\left( (n-1)T \right) +y_a'(nT) }{2} + y_a\left[ (n-1)T \right]
