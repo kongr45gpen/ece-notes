@@ -3186,9 +3186,9 @@ node {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\Updownarrow}}}}$};
     \begin{align*}
     	y(n) &= w(n) * δ(n-1) \\
     	&= \left[
-    	v(n) + 11δ(n-1) * y(n) + \left(2δ(n)-3δ(n-1\right)*y(n)
+    	v(n) + 11δ(n-1) * y(n) + \left(2δ(n)-3δ(n-1)\right)*y(n)
     	\right]*δ(n-1)\\
-    	&= x(n-1) + (n-2) + \left[
+    	&= x(n-1) + x(n-2) + \left[
     	11y(n-1) + 2y(n) -3y(n-1)
     	\right] * δ(n-1)
     	\\ &= x(n-1)+x(n-2) + 8y(n-2) + 2y(n-1), \qquad \text{για } n \geq 0
