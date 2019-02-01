@@ -4521,8 +4521,34 @@ z = \frac{1}{1-sT} = \frac{1}{1-j\Omega T} = \frac{1}{1+\Omega^2 T^2} + j\frac{\
 που απεικονίζεται στον ψηφιακό κόσμο από \( 0 \) ως \( 2π \). Το \( \omega = 2π \) αντιστοιχεί στην
 αναλογική συχνότητα \( \Omega_s \), και το \( \omega = \pi \) αντιστοιχεί στην \( \frac{\Omega_s}{2} \).
 
-\todo{Graph 44}
-\hfill
+\begin{minipage}{.5\textwidth}
+	\begin{center}
+		\begin{tikzpicture}[scale=.6]
+		\draw[->] (-2,0) -- (3,0) node[below] {$\Omega$};
+		\draw[->] (0,0) -- (0,2) node[right] {$H_a(\Omega)$};
+		
+		\draw[very thick,red!50!orange] plot[smooth,tension=0.7]
+		coordinates {(-2,0.3) (0,1.5) (2,0.4) (3,0.15)};
+		\draw[dashed,red!10!black] (1,0) node[below] {$\Omega_i$} -- ++(0,1.08);
+		\draw[fill opacity=0.3,fill=white] (1,1.08) circle (2.4pt);
+		\draw (2.5,0.05) -- ++(0,-0.1) node[below] {$\Omega_s$};
+		
+		\begin{scope}[xshift=6cm]
+		\draw[->] (-2,0) -- (4,0) node[below] {$\omega$};
+		\draw[->] (0,0) -- (0,2);
+		
+		\draw[very thick,red!50!orange] plot[smooth,tension=0.7]
+		coordinates {(-2,0.3) (-0.6,0.7) (0,1.5) (0.6,0.7) (2,0.4) (3,0.15)};
+		\draw[very thick,red!70!orange,xshift=2.2cm,path fading=east] plot[smooth,tension=0.7]
+		coordinates {(-2,0.3) (-0.6,0.7) (0,1.5) (0.6,0.7) (2,0.4) (3,0.15)};
+		\draw (1.15,0.05) -- ++(0,-0.1) node[below] {$\vphantom{2}\pi$};
+		\draw (2.2,0.05) -- ++(0,-0.1) node[below] {$2\pi$};
+		\end{scope}
+		\end{tikzpicture}
+	\end{center}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale=.8]
 \draw[->] (-2,0) -- (2,0);
 \draw[->] (0,-2) -- (0,2);
@@ -4546,6 +4572,8 @@ z = \frac{1}{1-sT} = \frac{1}{1-j\Omega T} = \frac{1}{1+\Omega^2 T^2} + j\frac{\
 \draw[green!40!blue!50!black,<-] (180:1.5) to[bend right=30] (b);
 \end{scope}
 \end{tikzpicture}
+\end{center}
+\end{minipage}
 
 Η σχέση που συνδέει την "αναλογική" με την "ψηφιακή" συχνότητα είναι γραμμική:
 \[
@@ -4727,20 +4755,40 @@ H(z)=\frac{Y(z)}{X(z)} = \cdots = \frac{b_0}{a_1\left(\frac{2}{T}\right)\left(\f
 
 Επομένως υπάρχει απεικόνιση του \( j\Omega \to e^{j\omega} \), η οποία είναι η \( \Omega = \frac{2}{T}\left(\frac{\omega}{2}\right) \), ή αντιστρόφως \( \omega = 2\tan^{-1}\frac{\Omega T}{2} \).
 
-\todo{Graph 48}
+\begin{tikzpicture}
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+\draw[ultra thick, green!60!blue, decorate,
+decoration={snake,amplitude=.3mm}
+] (0,-2) -- (0,2);
+\draw (1,-1) node {$s$-plane};
+
+\begin{scope}[xshift=6cm]
+\draw (-2,0) -- (2,0);
+\draw (0,-2) -- (0,2);
+\draw[ultra thick, green!60!blue, decorate,
+decoration={snake,amplitude=.3mm}
+] circle (1);
+\draw (1,-1.2) node {$z$-plane};
+\end{scope}
+
+\end{tikzpicture}
 
 Μερικά παραδείγματα της συχνότητας \( \omega_{\mathrm{bl}} \) που προκύπτει από το διγραμμικό μετασχηματισμό
 (σε σύγκριση με τη συχνότητα \( \omega_{\mathrm{ST}} = \Omega T \) που προκύπτει από το θεώρημα
 δειγματοληψίας) είναι:
+\begin{ceqn}
 \[
-\begin{array}{c|c|c}
+\begin{array}{|c|c|c|}
+\hline
 \Omega & \omega_{\mathrm{bl}} & \omega_{\mathrm{ST}} \\ \hline \hline
 0 & 0 & 0 \\ \hline
 \frac{2}{T} & \sfrac{\pi}{2}  & 2 \\ \hline
 \infty & \pi & \infty \\ \hline
-\Omega_s = \frac{2π}{T} & 2\tan^{-1}(π) \approx 2\cdot1.26262 \approx 2\cdot0.402π & 2π
+\Omega_s = \frac{2π}{T} & 2\tan^{-1}(π) \approx 2\cdot1.26262 \approx 2\cdot0.402π & 2π \\ \hline
 \end{array}
 \]
+\end{ceqn}
 
 Σε αυτόν το μετασχηματισμό, παρατηρούμε πως \emph{όλες οι συχνότητες} από το 0 ως το \( \infty \) απεικονίζονται
 από το 0 ως το \( π \). Αυτό βέβαια απαιτεί μια στρέβλωση και ανομοιομορφία.
@@ -4766,14 +4814,32 @@ s = \frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}} \implies z = \frac{1+\frac{sT}{2}}{1-\f
 και, με λίγα μαθηματικά, ισχύει \underline{\( |z_0|<1 \)}. Επομένως, και το ψηφιακό σύστημα είναι
 ευσταθές.
 
-\paragraph{Άσκηση}
+\begin{exercise}{}
 Να σχεδιαστεί ψηφιακό φίλτρο με Διγραμμικό Μετασχηματισμό, το οποίο να αντικαταστήσει ένα αναλογικό
 χαμηλοπερατό, με μονότονη απόκριση:
-\begin{align*}
-	\Omega_c = 2π \cdot 500\, \si{\radian/\second} & \quad \SI{-3}{\decibel}\\
-	\Omega \geq \Omega_2 = 2π \cdot 750\, \si{\radian/\second} & \quad < k_2 = \SI{-15}{\decibel}
-\end{align*}
-\paragraph{}
+
+\begin{minipage}{.5\textwidth}
+	\begin{align*}
+		\Omega_c = 2π \cdot 500\, \si{\radian/\second} & \quad \SI{-3}{\decibel}\\
+		\Omega \geq \Omega_2 = 2π \cdot 750\, \si{\radian/\second} & \quad < k_2 = \SI{-15}{\decibel}
+	\end{align*}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+	\begin{center}
+		\begin{tikzpicture}[scale=1.2,every node/.style={scale=0.8}]
+		\draw[->] (0,0) --(0,2.2);
+		\draw[->] (0,0) -- (2.2,0);
+		
+		\draw[red!50!orange,very thick]
+		plot[smooth] coordinates {(0,1.5) (0.5,1.4) (1.2,0.5) (2,0.4)};
+		
+		\draw[dashed] (0,1.3) node[left] {$-3$} -| (0.56,0) node[below] {$\Omega_c$};
+		\draw[dashed] (0,0.6) node[left] {$-15$} -| (1.08,0) node[below] {$\Omega_2$};
+		\end{tikzpicture}
+	\end{center}
+\end{minipage}
+
+\tcblower
 Θα υλοποιήσουμε ένα φίλτρο Butterworth, με χρόνο δειγματοληψίας \( Δt = 0.5 \cdot 10^{-3} \si{second} \),
 όπως προκύπτει από την \( Omega_c \).
 
@@ -4833,6 +4899,7 @@ H_a'(s) = \left. H_2(s) \right|_{s\to\frac{s}{\Omega_c'}}
 \[
 H(z) = \left. H_a'(s) \right|_{s\leftarrow \frac{2}{Δt} \frac{1-z^{-1}}{1+z^{-1}}}
 \]
+\end{exercise}
 
 \lecture{17}{3/12/2018}
 
@@ -4876,7 +4943,47 @@ H(z) &= \mathcal{Z}\mathrm{T}\left\lbrace h(n) \right\rbrace = \sum_{n=0}^{\inft
 η ευστάθεια του αναλογικού συστήματος οδηγεί και στην ευστάθεια του ψηφιακού.
 
 Μελετώντας το σύστημα στη συχνότητα, παρατηρούμε ότι έχουμε αποτελέσματα αντίστοιχα με αυτά του θεωρήματος δειγματοληψίας, καθώς δειγματοληπτούμε την \( h(t) \). Δεν θα υπάρχει καμία στρέβλωση στη
-συχνότητα. \todo{Graph 50}
+συχνότητα.
+
+\begin{center}
+	\begin{tikzpicture}[scale=1]
+	\draw[->] (-2,0) -- (2,0) node[right] {$\Omega$};
+	\draw[->] (0,0) -- (0,2) node[right] {$H(s)$};
+	
+	\draw[orange!50!red,very thick]
+	(-1.8,0.2) .. controls (0.2,0) and (-0.2,1.5)  .. (0,1.5)
+	(0,1.5) .. controls (0.2,1.5) and (-0.2,0) .. (1.8,0.3);
+	
+	\begin{scope}[xshift=6cm]
+	\draw[->] (-2,0) -- (2,0) node[right] {$\Omega$};
+	\draw[->] (0,0) -- (0,2) node[right] {$H_{S_a}(s)$};
+	
+	\foreach \x in {-1,-0.5,...,1}
+	\draw[orange!50!red,very thick,xshift={\x cm}]
+	(-1.8,0.2) .. controls (0.2,0) and (-0.2,1.5)  .. (0,1.5)
+	(0,1.5) .. controls (0.2,1.5) and (-0.2,0) .. (1.8,0.3);
+	
+	\draw[dashed] (0.5,0) node[below] {$\Omega_s = \frac{2\pi}{\Delta t}$} -- (0.5,1.5) ;
+	
+	\end{scope}
+	
+	\begin{scope}[xshift=11cm]
+	\draw[->] (-2,0) -- (2,0) node[right] {$\omega$};
+	\draw[->] (0,0) -- (0,2) node[left] {$H\left(e^{j\omega}\right)$};
+	
+	\begin{scope}[xscale=1.8]
+	\clip (0,0) rectangle (0.5,1.5);
+	\foreach \x in {0,0.5}
+	\draw[orange!80!red,very thick,xshift={\x cm}]
+	(-1.8,0.2) .. controls (0.2,0) and (-0.2,1.5)  .. (0,1.5)
+	(0,1.5) .. controls (0.2,1.5) and (-0.2,0) .. (1.8,0.3);
+	\end{scope}
+	
+	\draw[dashed] (1.8*0.5,0) node[below] {$2\pi$} -- ++(0,1.6) ;
+	
+	\end{scope}
+	\end{tikzpicture}
+\end{center}
 
 \subsubsection{Ακρίβεια της ψηφιακής προσέγγισης}
 
