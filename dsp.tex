@@ -1489,7 +1489,7 @@ H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
 		H\left(e^{j\omega }\right)
 		&= \sum_{n=-\infty}^{\infty} h(n) e^{-j\omega n}
 		\\ &= \sum_{n=0}^{N-1} 1 e^{-j\omega n}
-		\\ &= \frac{1-e^{-j\omega n}}{1-e^{-j\omega }}
+		\\ &= \frac{1-e^{-j\omega N}}{1-e^{-j\omega }}
 		\\ &= \frac
 		{
 			e^{-j\omega \sfrac{N}{2} } 
@@ -1499,10 +1499,10 @@ H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
 		}
 		{ 
 			e^{-j\sfrac{\omega }{2} }  
-			\left( e^{j\sfrac{\omega }{2}  }\right)
-			-e^{-j\sfrac{\omega }{2} 	}
+			\left( e^{j\sfrac{\omega }{2}  }
+			-e^{-j\sfrac{\omega }{2} 	}\right)
 		}
-	\\ &= 	\frac{\sin\left(\frac{\omega N}{2}\right)}{\sin\left(\frac{\omega}{2}\right)}
+	\\ &= e^{-\frac{j\omega }{2} (N-1)}	\frac{\sin\left(\frac{\omega N}{2}\right)}{\sin\left(\frac{\omega}{2}\right)}
 	\end{align*}
 	Άρα:
 	\begin{align*}
@@ -1511,7 +1511,7 @@ H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
 		\frac{\sin\left(\frac{\omega N}{2}\right)}{\sin\left(\frac{\omega}{2}\right)}
 		\right|
 		\\
-		\arg\left(H\left(e\right)\right) &= \mathop{atan2}\left(0, \frac{\sin\left(\frac{\omega N}{2}\right)}{\sin\left(\frac{\omega}{2}\right)}\right)
+		\arg\left(H\left(e\right)\right) &= -\frac{\omega}{2}(N-1) + \mathop{atan2}\left(0, \frac{\sin\left(\frac{\omega N}{2}\right)}{\sin\left(\frac{\omega}{2}\right)}\right)
 	\end{align*}
 \end{exercise}
 
