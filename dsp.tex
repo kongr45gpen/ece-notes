@@ -1819,10 +1819,10 @@ X(z) \overset{\triangle}{=} \sum_{n=-\infty}^{\infty} x(n)z^{-n}
 
 Αποδεικνύεται ότι ο \textbf{αντίστροφος μετασχηματισμός Z} είναι:
 \[
-x(n) = \frac{1}{2 π j} \ointctrclockwise\limits_{c \in \mathcal{R}_{x(z)z^{n-1}}} x(z)z^{n-1} \dif z
+x(n) = \frac{1}{2 π j} \ointctrclockwise\limits_{c \in \mathcal{R}_{X(z)z^{n-1}}} x(z)z^{n-1} \dif z
 \]
 
-Η παραπάνω σχέση βασίζεται στο ολοκλήρωμα του Cauchy, \( \frac{1}{2πj} \ointctrclockwise z^{k-1}\dif z = \begin{cases}
+Η παραπάνω σχέση βασίζεται στο ολοκλήρωμα του Cauchy, \( \frac{1}{2πj} \ointctrclockwise z^{-k-1}\dif z = \begin{cases}
 1 &\quad k=0 \\ 0&\quad k\neq 0
 \end{cases} \)
 
@@ -1832,10 +1832,10 @@ x(n) = \frac{1}{2 π j} \ointctrclockwise\limits_{c \in \mathcal{R}_{x(z)z^{n-1}
 	Με βάση τη μιγαδική ανάλυση, γνωρίζουμε ότι:
 	\[
 	x(n) = \sum \left\lbrace 
-	\mathop{Res} \left[ x(z)z^{n-1} \right]
+	\mathop{Res} \left[ X(z)z^{n-1} \right]
 	\right\rbrace
 	\]
-	για τους πόλους \textbf{εντός} του \( C \in \mathcal{R}_{x(z)z^{n-1}} \).
+	για τους πόλους \textbf{εντός} του \( C \in \mathcal{R}_{X(z)z^{n-1}} \).
 \end{minipage}
 \begin{minipage}{.5\textwidth}
 	\centering
