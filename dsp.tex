@@ -1377,6 +1377,7 @@ H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
 
 Ένα ερώτημα που προκύπτει είναι αν ισχύει το αντίστροφο, δηλαδή αν η ύπαρξη του \( H\left(e^{j\omega }\right) \implies \) ότι το σύστημα είναι \emph{ευσταθές}. Για να το διαπιστώσουμε αυτό, θεωρούμε
 ένα αντιπαράδειγμα (\emph{χαμηλοπερατού φίλτρου}):
+
 \begin{minipage}{.5\textwidth}
 	\[
 	H\left(e^{j\omega }\right)
@@ -1387,7 +1388,28 @@ H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
 	\]
 \end{minipage}
 \begin{minipage}{.5\textwidth}
-	\todo{Plot H(e jw) continuously (LPF)}
+	\begin{center}
+	\begin{tikzpicture}[scale=.7]
+	\begin{axis}[
+	scale=.4,
+	title={$H\left(e^{j\omega}\right)$},
+	xmin=-2, xmax=2, ymax=1.4,
+	ytick={0,1},xtick={-1,0,1},
+	%xticklabels={$0$,$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$,$2\pi$},
+	%xtick={0,1.57079632679490,3.14159265358979,4.71238898038469,6.28318530717959},
+	axis lines=center,
+	ymajorgrids=true,
+	grid style=dashed,
+	]
+	\addplot[
+	style={very thick,const plot},
+	samples=\lowsamples,
+	color=orange!50!red,
+	variable=\x,
+	] coordinates {(-2,0) (-1,1) (1,0)};
+	\end{axis}
+	\end{tikzpicture}
+	\end{center}
 \end{minipage}
 
 Το παραπάνω σύστημα \textbf{δεν είναι ευσταθές}! Πράγματι, η αντίστοιχη κρουστική απόκρισή του είναι
@@ -1402,12 +1424,19 @@ H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
 	\item Η \( H\left( e^{j\omega } \right) \) είναι \textbf{περιοδική} με περίοδο \( 2π \).
 \end{enumerate}
 
-\todo{Check 2,3,4}
-
 Επιπλέον, αν για το αρχικό σήμα στο χρόνο ισχύει \( h(n)\in\mathbb R \):
-\begin{enumerate}
-	\item[3] Η \( \left|H\left(e^{j\omega }\right)\right| \) είναι \textbf{άρτια} συνάρτηση του \( \omega  \) και συμμετρική ως προς τον άξονα \( \omega = π \).
 
+\begin{minipage}{.5\linewidth}
+\begin{enumerate}
+	\item[3.] Η \( \left|H\left(e^{j\omega }\right)\right| \) είναι \textbf{άρτια} συνάρτηση του \( \omega  \) και συμμετρική ως προς τον άξονα \( \omega = π \).
+
+	\item[4.] Το \( \arg H\left(e^{j\omega }\right) \) είναι \textbf{περιττή} συνάρτηση του \( \omega  \)
+	και αντισυμμετρική ως προς τον άξονα \( \omega = \pi \).
+
+\end{enumerate}
+\end{minipage}
+\begin{minipage}{.49\linewidth}
+	\begin{center}
 	\begin{tikzpicture}[scale=.5]
 	\tikzstyle{sample}=[bottom color=orange,top color=\timecolour,fill opacity=.7,rounded corners=2.5pt,thick]
 	
@@ -1417,16 +1446,28 @@ H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
 	\draw[ultra thick,red!50!orange!90!brown,xshift=-1.5cm] plot [smooth,tension=1.5] coordinates {(-0.7,0) (0,1.2) (0.7,0)};
 	\draw[ultra thick,red!50!orange!90!brown,xshift=1.5cm] plot [smooth,tension=1.5] coordinates {(-0.7,0) (0,1.2) (0.7,0)};
 	
-	\draw[very thick,magenta!50!blue] (-2,-2) -- (2,2);
+	\draw[thick,magenta!50!blue] (1.5,1.5) -- ++(0,-2);
+	\draw (1.5,0) node[below right,scale=.8] {$\pi$};
 	\end{tikzpicture}
-	\todo{Fix this bad graph}
-	\item[4] Το \( \arg H\left(e^{j\omega }\right) \) είναι \textbf{περιττή} συνάρτηση του \( \omega  \)
-	και αντισυμμετρική ως προς τον άξονα \( \omega = \pi \).
-	\todo{Graph 12 (optional)}
-\end{enumerate}
+	~
+	\begin{tikzpicture}[scale=.5]
+	\tikzstyle{sample}=[bottom color=orange,top color=\timecolour,fill opacity=.7,rounded corners=2.5pt,thick]
+	
+	\draw[->] (-3,0) -- (3,0);
+	\draw[->] (0,0) -- (0,2);
+	
+	\draw[ultra thick,red!50!orange!50!green,xshift=-1.5cm] (-1,0) -- (0,-1.2) (0,1.2) -- (1,0);
+	\draw[thick,dashed,red!50!orange!50!green,xshift=-1.5cm] (0,-1.2) -- (0,1.2);
+	\draw[ultra thick,red!50!orange!50!green,xshift=1.5cm] (-1,0) -- (0,-1.2) (0,1.2) -- (1,0);
+	
+	\draw[thick,magenta!50!blue,dashed] (1.5,1.5) -- ++(0,-3);
+	\draw (1.5,0) node[below right,scale=.8] {$\pi$};
+	\end{tikzpicture}
+	\end{center}
+\end{minipage}
 
 \begin{questionbox}{Άσκηση για το σπίτι}
-	Να αποδειχθούν οι ιδιότητες \textbf{3}, \textbf{4}.
+	Να αποδειχθούν οι ιδιότητες \textbf{3}, \textbf{4}. Γιατί η ιδιότητα \textbf{2} δεν ισχύει στον Μ/Σ Fourier συνεχών σημάτων;
 \end{questionbox}
 
 \begin{exercise}
