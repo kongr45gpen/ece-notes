@@ -1,5 +1,5 @@
 % !TeX program = xelatex
-\documentclass[11pt,a4paper,notitlepage,fleqn]{article}
+\documentclass[11pt,a4paper,notitlepage,fleqn,draft]{article}
 
 \input{preamble.tex}
 
@@ -2602,12 +2602,23 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 
 \begin{theorem}{Γενικός τύπος κλάσματος σε Μ/Σ \( \mathcal{Z} \)}{}
 	Τα παραπάνω συνοψίζονται ως εξής:
-	\begin{align*}
+	\begin{itemize}
+		\item Για \( |z| > |a| \):
+		\begin{align*}
+		X(z) &= \frac{z}{(z-a)^k},\qquad |z|>|a| \qquad k \in \mathbb{N} - \left\lbrace 0,1 \right\rbrace
+		\\
+		x(n) &= -(-1)^k a^{-k+n+1}
+		\frac{(k-n-2)(k-n-3)\cdots(-n)}{(k-1)!}\mathrm{u}(n)
+		\end{align*}
+		\item Για \( |z| < |a| \):
+		\begin{align*}
 		X(z) &= \frac{z}{(z-a)^k},\qquad |z|<|a| \qquad k \in \mathbb{N} - \left\lbrace 0,1 \right\rbrace
 		\\
-		x(n) &= (-1)^k a^{-k}a^{n+1}
+		x(n) &= (-1)^k a^{-k+n+1}
 		\frac{(k-n-2)(k-n-3)\cdots(-n)}{(k-1)!}\mathrm{u}(-n-1)
-	\end{align*}
+		\end{align*}
+	\end{itemize}
+	
 \end{theorem}
 
 \begin{exercise}
@@ -2931,13 +2942,13 @@ H(z) = A
 \end{align*}
 
 \begin{exercise}
-	Δίνεται μία \( H(z) \) με πόλο \( z=a \) και μηδενικό \( z=\frac{1}{a} \). Ισχύει
+	Δίνεται μία \( H(z) \) με πόλο \( z=a \) και μηδενικό \( z=\frac{1}{a^*} \). Ισχύει
 	\( |a|<1 \), και το σύστημα είναι αιτιατό.
 	
 	Να βρεθεί η απόκριση συχνότητας του συστήματος.
 	
 	\tcblower
-	Θεωρούμε ότι \( a\in\mathbb R \). Για να έχουμε το δικαίωμα να βρούμε απόκριση συχνότητας (δηλαδή
+	\underline{Θεωρούμε ότι \( a\in\mathbb R \)}. Για να έχουμε το δικαίωμα να βρούμε απόκριση συχνότητας (δηλαδή
 	να βάλουμε το \( z=e^{j\omega } \)), πρέπει να επιβεβαιώσουμε ότι ο μοναδιαίος κύκλος ανήκει στην περιοχή σύγκλισης.
 	\todo{find roc}
 	
