@@ -2576,10 +2576,10 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 	
 	\begin{minipage}{.7\textwidth}
 	\begin{align*}
-		x(n) &= \frac{1}{2πj} \ointctrclockwise_{C\in\text{ROC}} \frac{ρ^{-n}}{(ρ^{-1}-a)^k}\frac{1}{ρ^2}\dif\rho
+		x(n) &= \frac{1}{2πj} \ointclockwise_{C\in\text{ROC}} \frac{ρ^{-n}}{(ρ^{-1}-a)^k}\frac{1}{ρ^2}\dif\rho
 		\\
-		&= \frac{1}{2πj}\ointctrclockwise_C \frac{ρ^{-n}ρ^{k-2}}{(1-aρ)^k}\dif\rho
-		= \frac{1}{2πj}\ointctrclockwise_C \frac{ρ^{-n+k-2}}{\left(-a\middle)^k\middle(ρ-\frac{1}{a}\right)^k}\dif\rho
+		&= - \frac{1}{2πj}\ointctrclockwise_C \frac{ρ^{-n}ρ^{k-2}}{(1-aρ)^k}\dif\rho
+		= - \frac{1}{2πj}\ointctrclockwise_C \frac{ρ^{-n+k-2}}{\left(-a\middle)^k\middle(ρ-\frac{1}{a}\right)^k}\dif\rho
 		\intertext{Αφού \( n-k+2 < 0 \), ο πόλος βρίσκεται εκτός της καμπύλης \( C \), επομένως το παραπάνω ολοκλήρωμα γίνεται:}
 		x(n) &= 0
 	\end{align*}
