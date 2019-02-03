@@ -1,5 +1,5 @@
 % !TeX program = xelatex
-\documentclass[11pt,a4paper,notitlepage,fleqn,draft]{article}
+\documentclass[11pt,a4paper,notitlepage,fleqn]{article}
 
 \input{preamble.tex}
 
@@ -51,6 +51,8 @@
 	Μπορείτε να ενημερώνετε για οποιοδήποτε λάθος και πρόταση
 	μέσω PM στο forum, issue στο Github, ή οποιουδήποτε άλλου τρόπου.
 \end{infobox}
+
+\todo{Add PDF links}
 
 {
 	\hypersetup{linkcolor=black}
@@ -417,7 +419,7 @@ plot[samples=\lowsamples,smooth,domain=0:4,variable=\x]
 \end{align*}
 
 \subsubsection{Χαρακτηριστικά Μεγέθη}
-\begin{minipage}{.6\textwidth}
+\begin{minipage}{.5\textwidth}
 \begin{enumerate}
 	\item \textbf{Μέση τιμή}:
 	\( \displaystyle
@@ -447,7 +449,7 @@ plot[samples=\lowsamples,smooth,domain=0:4,variable=\x]
 	 \)
 \end{enumerate}
 \end{minipage}
-\begin{minipage}{.4\textwidth}
+\begin{minipage}{.5\textwidth}
 	\begin{center}
 		Σημείωση: Για μιγαδικές ακολουθίες θεωρούμε το \textbf{μέτρο} των τιμών της ακολουθίας για τον υπολογισμό ισχύος \& ενέργειας.
 	\end{center}
@@ -484,6 +486,7 @@ plot[samples=\lowsamples,smooth,domain=0:4,variable=\x]
 		\end{itemize}
 	\end{minipage}
 	\begin{minipage}{.5\textwidth}
+		\begin{center}
 		\begin{tikzpicture}
 		\tikzstyle{sample}=[bottom color=orange,top color=\timecolour,fill opacity=.7,rounded corners=2.5pt,thick]
 		
@@ -503,6 +506,7 @@ plot[samples=\lowsamples,smooth,domain=0:4,variable=\x]
 			\filldraw[sample] (\x*\sf + \sx,{exp(\x/3)/2 + \sy}) rectangle ++(-\sx*2,-\sy*2);
 		}
 		\end{tikzpicture}
+		\end{center}
 	\end{minipage}
     \item \textbf{Δέλτα του Kronecker}:
 
@@ -517,6 +521,7 @@ plot[samples=\lowsamples,smooth,domain=0:4,variable=\x]
     	\end{knowledgebox}
     \end{minipage}
 	\begin{minipage}{.5\textwidth}
+		\begin{center}
 		\begin{tikzpicture}
 		\tikzstyle{sample}=[bottom color=orange,top color=\timecolour,fill opacity=.7,rounded corners=2.5pt,thick]
 		
@@ -540,6 +545,7 @@ plot[samples=\lowsamples,smooth,domain=0:4,variable=\x]
 		\draw (0+0.15,1) node[right] {$1$};
 		
 		\end{tikzpicture}
+		\end{center}
 	\end{minipage}
     \item \textbf{Βηματική ακολουθία step}:
     
@@ -555,6 +561,7 @@ plot[samples=\lowsamples,smooth,domain=0:4,variable=\x]
     
 	\end{minipage}
 	\begin{minipage}{.5\textwidth}
+		\begin{center}
 		\begin{tikzpicture}
 		\tikzstyle{sample}=[bottom color=orange,top color=\timecolour,fill opacity=.7,rounded corners=2.5pt,thick]
 		
@@ -578,6 +585,7 @@ plot[samples=\lowsamples,smooth,domain=0:4,variable=\x]
 		\draw (0-\sx,1) node[left] {$1$};
 		
 		\end{tikzpicture}
+		\end{center}
 	\end{minipage}
     
     Μάλιστα, ισχύει ότι:
@@ -1052,7 +1060,7 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 	είναι \textbf{φραγμένη}, τότε το σύστημα είναι \textbf{ευσταθές κατά ΦΕΦΕ (BIBO)}.
 \end{defn}
 
-\begin{theorem}{Πόρισμα}{}
+\begin{theorem}[label=thm:stableh]{Πόρισμα}{}
 	Αν γνωρίζουμε ότι ένα σύστημα είναι \emph{γραμμικό} και \emph{ΑΚΜ} (άρα \( \exists\ h(n) \), δηλαδή υπάρχει η κρουστική του απόκριση), τότε το σύστημα είναι \textbf{ευσταθές} ανν:
 	\[
 	\sum_{n=-\infty}^{\infty} \left|h(n)\right| < \infty
@@ -1359,6 +1367,7 @@ x(n) = A\frac{e^{j\phi}e^{j\omega_0 n} + e^{-j\phi}e^{-j\omega_0n}}{2}
 
 \lecture{4}{12/10/2018}
 \subsection{Μετασχηματισμός Fourier}
+\label{sec:dtft}
 Παραπάνω ορίσαμε το συνεχή μετασχηματισμό Fourier στο διακριτό σήμα ως εξής:
 \[
 H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
@@ -1467,6 +1476,8 @@ H(e^{j\omega }) = \sum_{n=-\infty}^{\infty} h(n)e^{-j\omega n}
 	\end{tikzpicture}
 	\end{center}
 \end{minipage}
+
+\subparagraph{}
 
 \begin{questionbox}{Άσκηση για το σπίτι}
 	Να αποδειχθούν οι ιδιότητες \textbf{3}, \textbf{4}. Γιατί η ιδιότητα \textbf{2} δεν ισχύει στον Μ/Σ Fourier συνεχών σημάτων;
@@ -1706,6 +1717,30 @@ y(n) = z^n \sum_{k=-\infty}^{\infty} h(k)z^{-k}
 	\item \( |z| > 0\), όταν \( n<0 \).
 \end{itemize}
 
+\subparagraph{}
+\phantomsection
+\label{sec:rocfourier}
+Αν στην περιοχή σύγκλισης ανήκει ο \textbf{μοναδιαίος κύκλος} \( |z|=1 \), τότε υπάρχει ο \textbf{μετασχηματισμός Fourier} της ακολουθίας.
+
+\textbf{Απόδειξη}:
+\[
+\sum_{n=-\infty}^{\infty}|x(n)||z|^{-n} < \infty
+\implies \sum_{n=-\infty}^{\infty}|x(n)||1|^{-n} < \infty
+\implies \sum_{n=-\infty}^{\infty}|x(n)|\left|e^{-j\omega n}\right|^{-n} < \infty
+\]
+\begin{center}
+	\begin{tikzpicture}[every node/.style={scale=.7}]
+	\fill[green!30,even odd rule] (0,0) circle (0.5) -- (0,0) circle (1.7);
+	
+	\draw[->,very thin] (0,-2) -- (0,2);
+	\draw[->,very thin] (-2,0) -- (2,0) ;
+	
+	\draw (0,0) circle (0.5) -- (0,0) circle (1.7);
+	
+	\draw[ultra thick,green!70!blue!80!black] (0,0) circle (1.2) (90:1.2) node[below,xshift=1mm] {$\left|e^{j\omega}\right|=1$};
+	\end{tikzpicture}
+\end{center}
+
 \begin{exercise}
 	\phantomsection
 	\label{sec:findz1}
@@ -1768,6 +1803,10 @@ y(n) = z^n \sum_{k=-\infty}^{\infty} h(k)z^{-k}
 \end{exercise}
 
 \todo{Slightly underline links}
+
+\phantomsection
+\label{sec:sequencez}
+
 \begin{itemize}
 	\item Για \textbf{ακολουθίες δεξιάς πλευράς} 
 	(\( x(n) = 0 \impliedby n<n_0 \), \autoref{sec:seqtypes}), αν \( n_0 \geq 0 \), η περιοχή σύγκλισης είναι:
@@ -2641,21 +2680,21 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 		\end{align*}
 		
 		Τώρα, αρκεί να υπολογίσουμε ξεχωριστά τον κάθε όρο, με βάση τα παραπάνω:
-		\begin{itemize}
+		\begin{itemize}[label={$\circ$}]
 			\item \( 
 			\displaystyle \frac{80z}{z-\frac{1}{2}}\
-			\xrightarrow{\mathcal{Z}}T \
+			\xrightarrow{\mathcal{Z}T} \
 			80\left(\frac{1}{2}\right)^n \mathrm{u}(n)
 			 \)
 			\item \( 
 			\displaystyle \frac{-80z}{z-\frac{1}{4}}\
-			\xrightarrow{\mathcal{Z}}T \
+			\xrightarrow{\mathcal{Z}T} \
 			-80\left(\frac{1}{4}\right)^n \mathrm{u}(n)
 			\)
 			\item \( 
 			\displaystyle
 			\frac{-20z}{\left(z-\frac{1}{2}\right)^2} + \frac{6z}{\left(z-\frac{1}{2}\right)^3}
-			\ \xrightarrow{\mathcal{Z}}T \ 
+			\ \xrightarrow{\mathcal{Z}T} \ 
 			-20n\left(\frac{1}{2}\right)^{n-1}\mathrm{u}(n) +
 			6\frac{n(n-1)}{2}\left(\frac{1}{2}\right)^{n-2}\mathrm{u}(n)
 			 \)
@@ -2695,8 +2734,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
     \tcblower
     \begin{enumerate}
     	\item Το σύστημα είναι \textbf{αιτιατό}, γιατί \( h(n) = 0 \) για \( n<0 \).
-    	\item Για να είναι το σύστημα ευσταθές κατά ΦΕΦΕ, η κρουστική απόκριση πρέπει να είναι απολύτως αθροίσιμη, δηλαδή να ελέγξουμε αν συγκλίνει το \( \sum_{n=-\infty}^{\infty} \left|h(n)\right| \).
-    	\todo{Add ref to this theorem}
+    	\item Για να είναι το σύστημα ευσταθές κατά ΦΕΦΕ, η κρουστική απόκριση πρέπει να είναι απολύτως αθροίσιμη, δηλαδή να ελέγξουμε αν συγκλίνει το \( \sum_{n=-\infty}^{\infty} \left|h(n)\right| \) (\autoref{thm:stableh}).
     	
     	Έχουμε:
     	\begin{align*}
@@ -2753,7 +2791,6 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
     	
     	\item Το παραπάνω σύστημα εκφράζεται από τη σχέση:
     	
-    \vspace{-1ex}
      \begin{minipage}{.5\textwidth}
     			\[
     		y(n) = x(n) * h(n)
@@ -2793,9 +2830,9 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
     	2-\frac{1}{6}z^{-1}
     	\right) &= Y(z)\left(1-\frac{1}{6}z^{-1}-\frac{1}{6}z^{-2}\right)
     	\intertext{Εφαρμόζουμε inverse $\mathcal{Z}$ transform:}
-    	2x(n) - \frac{1}{6}x(n-1) &= y(n) - \frac{1}{2}y(n-1) - \frac{1}{6}y(n-2)\\
+    	2x(n) - \frac{1}{6}x(n-1) &= y(n) - \frac{1}{6}y(n-1) - \frac{1}{6}y(n-2)\\
     	\Aboxed{
-    	y(n) &= \frac{1}{2}y(n-1)+\frac{1}{6}y(n-2) + 2x(n) -\frac{1}{6}x(n-1)
+    	y(n) &= \frac{1}{6}y(n-1)+\frac{1}{6}y(n-2) + 2x(n) -\frac{1}{6}x(n-1)
         } \qquad n\geq 0
     	\end{align*}
     	
@@ -2832,18 +2869,38 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 	\]
 	
 	Να βρεθούν οι πιθανές περιοχές σύγκλισης του μετασχηματισμού \( Z \) που εκφράζει η \( X(z) \).
-	\todo{Graph 24}
 	\tcblower
+	
+	\saveparinfo
+	\begin{minipage}{.7\textwidth}
+		\useparinfo
 	Ο μετασχηματισμός μπορεί να συγκλίνει είτε για \( |z|>|a| \) ή \( |z|<|a| \). Αν θέσω
 	\( z=a \), τότε ο μετασχηματισμός δεν θα ορίζεται λόγω του παρονομαστή, δηλαδή δεν θα συγκλίνει.
 	Όμως αν θέσω διαφορετικές τιμές \( z=a+0.1 \) ή \( z=a-0.1 \), τότε η \( X(z) \) θα δίνει ένα
-	φυσιολογικό νούμερο. Από αυτό, προκύπτει το ερώτημα γιατί πρέπει να κρατάμε μόνο μία περιοχή
+	φυσιολογικό νούμερο. Από αυτό, προκύπτει το \emph{ερώτημα} γιατί πρέπει να κρατάμε μόνο μία περιοχή
 	\( |z|>|a| \) ή \( |z|<|a| \) και όχι ολόκληρη τη \( |z|\neq|a| \).
+\end{minipage}
+	\begin{minipage}{.3\textwidth}
+		\begin{center}
+			\begin{tikzpicture}
+			\fill[green!50] (0,0) circle (1.5);
+			\draw[densely dashed,thick] (0,0) circle (1.5);
+			\fill[white,outer color=white,even odd rule,inner color=green!50!black] (0,0) circle (1.5) -- (0,0) circle (3);
+			
+			
+			\draw (0:1.5) node[locuspole,red,ultra thick] {};
+			
+			
+			\draw[->] (0,-2) -- (0,2);
+			\draw[->] (-2,0) -- (2,0) ;
+			\end{tikzpicture}
+		\end{center}
+	\end{minipage}
 	
 	Αυτό απαντάται λόγω του ότι η \( X(z) \) πρέπει να είναι \textbf{συνεχής}, γιατί μόνο τότε
 	μπορεί να εκφραστεί σαν το άπειρο άθροισμα των όρων που προκύπτει από τον ορισμό του
 	μετασχηματισμού \( Z \):\[
-	X(z) = \sum_{n=-\infty}{\infty} x(n)z^{-n}
+	X(z) = \sum_{n=-\infty}^{\infty} x(n)z^{-n}
 	\]
 	
 	Το παραπάνω αποτέλεσμα μοιάζει με τη σειρά \( \frac{1}{1+x} \), που έχει διαφορετικά αναπτύγματα για
@@ -2874,9 +2931,9 @@ y(n) - ay(n-1) = x(n)
 \]
 
 Για να έχει νόημα η εξίσωση διαφορών, πρέπει να ορίσουμε και την \textbf{περιοχή} στην οποία
-ορίζεται. Σε αυτό το παράδειγμα, θα μπορούσε να μας δοθεί:
+ορίζεται, καθώς και κάποιες αρχικές συνθήκες. Σε αυτό το παράδειγμα, θα μπορούσε να μας δοθεί:
 \[
-n \geq 0 \qquad y(n) = 0 \ \forall n < 0
+n \geq 0, \qquad y(n) = 0 \ \forall n < 0
 \]
 
 \subparagraph{}
@@ -2905,10 +2962,10 @@ h(n) = a^n \mathrm{u}(n)
 οπότε βρήκαμε τη λύση της εξίσωσης.
 
 \subparagraph{}
-Από τη μια μεριά, αν μας δινόταν ότι \( y(n) = 0\ \forall n \geq 0 \), τότε θα βρίσκαμε ότι
-\begin{gather}
+Από τη μια μεριά, αν μας δινόταν ότι \( y(n) = 0\ \forall n \geq 0 \) (\emph{διαφορετικές συνθήκες}), τότε θα βρίσκαμε ότι
+\begin{gather*}
 	h(0) = 0\\h(1) = 0 \\ \vdots
-\end{gather}
+\end{gather*}
 αλλά θα μπορούσαμε, υπολογίζοντας μελλοντικούς χρόνους, να βρούμε τι γίνεται για αρνητικά \( n \):
 \begin{align*}
 	y(n-1) &= \frac{1}{a}y(n) - \frac{x(n)}{a}\\
@@ -2950,7 +3007,7 @@ H(z) = A
 	\tcblower
 	\underline{Θεωρούμε ότι \( a\in\mathbb R \)}. Για να έχουμε το δικαίωμα να βρούμε απόκριση συχνότητας (δηλαδή
 	να βάλουμε το \( z=e^{j\omega } \)), πρέπει να επιβεβαιώσουμε ότι ο μοναδιαίος κύκλος ανήκει στην περιοχή σύγκλισης.
-	\todo{find roc}
+	Η περιοχή σύγκλισης είναι της μορφής \( |z|<|a| \) ή \( |z|>|a| \). \textbf{Επειδή το σύστημα είναι αιτιατό, δηλαδή η κρουστική του απόκρουση είναι ακολουθία \emph{δεξιάς πλευράς}, η περιοχή σύγκλισής του είναι της μορφής \( |z| > |a| \)} (\hyperref[sec:sequencez]{Σελίδα \pageref*{sec:sequencez}}). Αφού \( |a|<1 \), ο μοναδιαίος κύκλος ανήκει στην περιοχή σύγκλισης.
 	
 	Το σύστημα έχει τη μορφή:
 	\[
@@ -2967,38 +3024,44 @@ H(z) = A
 	\left( e^{j\omega } - a \right)	\left( e^{-j\omega } -a \right)
 	} = \frac{1+\frac{1}{a^2}-\frac{1}{a}\left( e^{j\omega }+e^{-j\omega } \right)}{1+a^2-a\left(
 	e^{j\omega }+e^{-j\omega }\right)}
-        \\ &= \frac{1+\frac{1}{a^2}-\frac{1}{a}2\cos \omega }{1+a^2-a^2\cos\omega} = \frac{1}{a^2}.
+        \\ &= \frac{1+\frac{1}{a^2}-\frac{1}{a}2\cos \omega }{1+a^2-a 2\cos\omega} = \frac{1}{a^2}.
+        \numberthis\label{eq:ex2constabs}
 	\end{align*}
 	
-	\todo{Graph 25: A straight line of |H(omega)|2 from 0 to 2pi}
-	
-	Όλες οι συχνότητες έχουν σταθερό κέρδος, άρα το σύστημα είναι \textbf{all-pass}.
+	Όλες οι συχνότητες έχουν \textbf{σταθερό κέρδος}, άρα το σύστημα είναι \textbf{all-pass}.
 	
 	\paragraph{}
+	\begin{minipage}{.5\textwidth}
 	Εναλλακτικά, μπορούσαμε να έχουμε:
 	\begin{align*}
 	H(z) &= \frac{z-\frac{1}{a}}{z-a}\\
-		\left|H(\omega )\right| &= \left|H(z)\right|_{z=e^{j\omega }}\\
-		&= \frac{\left| \left(z-\sfrac{1}{a} \right) \right|_{z=e^{j\omega }}}{
-	    \left| (z-a) \right|_{z=e^{j\omega }}
-	} = \frac{B}{A}
+	\left|H(\omega )\right| &= \left|H(z)\right|_{z=e^{j\omega }}\\
+	&= \frac{\left| \left(z-\sfrac{1}{a} \right) \right|_{z=e^{j\omega }}}{
+		\left| (z-a) \right|_{z=e^{j\omega }}
+	} = \frac{B}{A} \stackrel{\eqref{eq:ex2constabs}}{=} \frac{1}{a^2}
 	\end{align*}
+	\end{minipage}
+\begin{minipage}{.5\textwidth}
+	\begin{center}
+			\begin{tikzpicture}
+		\draw[blue] (0.765,0.644) -- (0.7,0) node[midway,sloped,above,scale=.6] {$A$};
+		\draw[blue] (0.765,0.644) -- (1.4,0) node[midway,sloped,above,scale=.6] {$B$};
+		
+		\draw (-2,0) -- (2,0);\draw (0,-1.4) -- (0,1.4);
+		\fill (0.7,0) circle (2pt) node[below] {$a$};
+		\fill (1.4,0) circle(2pt) node[below] {$\frac{1}{a}$};
+		\draw[very thick,magenta!50!black] (0,0) circle(1cm);
+		
+		\filldraw[opacity=.5,blue] (0.765,0.644) circle (1pt);
+		\end{tikzpicture}
+	\end{center}
+\end{minipage}
+	\subparagraph{}
 	
 	Το παραπάνω αποτέλεσμα εκφράζει ότι ο \emph{λόγος των αποστάσεων ενός σημείου του μοναδιαίου
 	κύκλου από τους δύο πόλους/μηδενικά είναι σταθερός}.
 	
-	\begin{tikzpicture}
-	\draw[blue] (0.765,0.644) -- (0.7,0) node[midway,sloped,above,scale=.6] {$A$};
-	\draw[blue] (0.765,0.644) -- (1.4,0) node[midway,sloped,above,scale=.6] {$B$};
-	
-	\draw (-2,0) -- (2,0);\draw (0,-1.4) -- (0,1.4);
-	\fill (0.7,0) circle (2pt) node[below] {$a$};
-	\fill (1.4,0) circle(2pt) node[below] {$\frac{1}{a}$};
-	\draw[very thick,magenta!50!black] (0,0) circle(1cm);
-	
-	\filldraw[opacity=.5,blue] (0.765,0.644) circle (1pt);
-	\end{tikzpicture}
-	
+
 	Για το παραπάνω υπάρχει και γεωμετρική απόδειξη που βασίζεται στο γενικευμένο πυθαγόρειο θεώρημα.
 	
 	\paragraph{}
@@ -3034,27 +3097,29 @@ H(z) = A
 	\draw[dashed] (0,0) -- ++(-45:{1/0.6});
 	\fill (45:0.6) circle (2pt) node[below,scale=.7] {$a$};
 	\fill (-45:0.6) circle (2pt) node[below,scale=.7] {$a$};
-	\draw (-45:{1/0.6}) circle(2pt) node[below,scale=.7] {$\frac{1}{a}$};
+	\draw (-45:{1/0.6}) circle(2pt) node[below,scale=.7] {$\frac{1}{a^*}$};
 	\draw (45:{1/0.6}) circle(2pt) node[above,scale=.7] {$\displaystyle \frac{1}{a^*}$};
 	\draw[very thick,magenta!50!black] (0,0) circle(1cm);
 	\end{tikzpicture}
 \end{exercise}
 
 \begin{exercise}
-	Να χαρακτηριστούν τα δύο συστήματα:
+	Να χαρακτηριστούν τα δύο συστήματα (ως προς ευστάθεια \& είδος απόκρισης):
 	\begin{align*}
 		S_1: \qquad & y_1(n) = \frac{x(n) + x(n-1)}{2}\\
 		S_2: \qquad & y_2(n) = \frac{x(n) - x(n-1)}{2}
 	\end{align*}
 	
 	\tcblower
-	Το σύστημα είναι \textbf{ευσταθές} όταν ο μοναδιαίος κύκλος ανήκει στην \textbf{περιοχή σύγκλισης}. Η κρουστική απόκριση
+	%Το σύστημα είναι \textbf{ευσταθές} όταν ο μοναδιαίος κύκλος ανήκει στην \textbf{περιοχή σύγκλισης}.
+	
+	Η κρουστική απόκριση
 	του συστήματος είναι \( h(n) = \frac{1}{2}δ(n) + \frac{1}{2}δ(n-1) \) (αφού \( y=x*h \)). Έχει δύο
 	όρους, πολύ λιγότερους από \( \infty \), άρα η ακολουθία είναι απολύτως αθροίσιμη. Επομένως το σύστημα είναι ευσταθές.
 	
 	Εναλλακτικά, το σύστημα είναι ευσταθές αφού η έξοδος προκύπτει από άθροιση πεπερασμένου πλήθους δειγμάτων της εισόδου χωρίς ανάδραση (προηγούμενες τιμές \( y \)).
 	
-	Αφού και τα δύο συστήματος είναι ευσταθή, ο μοναδιαίος κύκλος ανήκει στην περιοχή σύγκλισης, και
+	Αφού και τα δύο συστήματα είναι \textbf{ευσταθή}, \textbf{ο μοναδιαίος κύκλος ανήκει στην περιοχή σύγκλισης}, και
 	μπορούμε άφοβα να θέσουμε \( z=e^{j\omega } \).
 	
 	Το παραπάνω συμπέρασμα μοιάζει με αυτό που είχαμε εξάγει στο αναλογικό σήμα. Ότι δηλαδή το σύστημα
@@ -3148,20 +3213,48 @@ H(z) = A
 	y(n) = \frac{x(n) -2x(n-1) + x(n-2) }{6}
 	\]
 	\tcblower
+	\saveparinfo
+	\begin{minipage}{.6\textwidth}
+		\useparinfo
 	Ισχύει:
 	\[
 	y(n) = \frac{x(n) - x(n-1)}{6}
 	- \frac{x(n-1) - x(n-2)}{6}
 	\]
 	
-	Εδώ έχουμε ουσιαστικά \textbf{διαφορά πρώτης παραγώγου μείον δεύτερης παραγώγου}. Αφού η κάθε
-	παράγωγος είναι high pass, και το ίδιο το σύστημα είναι high pass.
-	\todo{Really? Do maths.}
+	Εδώ έχουμε ουσιαστικά διαφορά \emph{πρώτης παραγώγου} μείον \emph{πρώτη παράγωγο}. Η διαφορά δύο παραγώγων είναι η \textbf{δεύτερη παράγωγος}!
+	
+	Από το αναλογικό σήμα θυμόμαστε ότι η n-οστή παράγωγος είναι μια άνοδος κατά +20 dB/dec, επομένως το σύστημα είναι high pass.
+\end{minipage}
+	\begin{minipage}{.4\textwidth}
+		\begin{center}
+			\begin{tikzpicture}[scale=1]
+			\begin{axis}[
+			scale=.5,
+			title={$\left|H\left(e^{j\omega}\right)\right|$},
+			xmin=0, xmax=2*pi,
+			xticklabels={$0$,$\vphantom{2\pi}\pi$,$2\pi$},
+			xtick={0,3.14159265358979,6.28318530717959},
+			xmajorgrids=true,
+			grid style=dashed,
+			]
+			\addplot[
+			style={very thick,smooth},
+			samples=\lowsamples,
+			color=orange!50!red,
+			variable=\x,
+			domain=0:2*pi
+			] (\x,{2/3*(sin(\x r/2)^2});
+			\end{axis}
+			\end{tikzpicture}
+		\end{center}
+	\end{minipage}
 \end{exercise}
 
 \lecture{9}{2/11/2018}
 
 \subsubsection{Σύνδεση συστημάτων}
+\label{sec:systemconn}
 Είναι απλό να δούμε τι συμβαίνει με συστήματα που συνδέονται σε συγκεκριμένες συνδεσμολογίες, τις
 οποίες θέλουμε να μετατρέψουμε σε ένα σύστημα \( h(n) \).
 
@@ -3259,8 +3352,8 @@ node {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\Updownarrow}}}}$};
 	h_1(n) = \frac{1}{2}δ(n) + \frac{1}{4}δ(n-1) + \frac{1}{2}δ(n-2)
 	\]
 	
-	Άρα, με βάση τα παραπάνω, η κρουστική απόκριση του συστήματος θα είναι:
-	\todo{add ref 'παραπάνω'}
+	Άρα, με βάση την \autoref{sec:systemconn}, η κρουστική απόκριση του συστήματος θα είναι:
+
 	\begin{align*}
 		h(n) &= h_1(n) * {\color{red!80!black}\boxed{A}}
 		\\ &= h_1(n) * \left[ h_2(n) - {\color{green!80!black}\boxed{B}} \right]
@@ -3268,7 +3361,7 @@ node {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\Updownarrow}}}}$};
 		\\ &= h_1(n) * \left[
 		n\mathrm{u}(n)+\mathrm{u}(n) - n\mathrm{u}(n-2) + \mathrm{u}(n-2)
 		\right]
-		\intertext{Εδώ, επειδή έχουμε διακριτά $n$, μπορούμε να μετατρέψουμε τη διαφορά \( nu(n)-nu(n-2) \) σε συναρτήσεις \( \delta \)}
+		\intertext{Εδώ, επειδή έχουμε διακριτά $n$, μπορούμε να μετατρέψουμε τη διαφορά \( nu(n)-nu(n-2) \) σε συναρτήσεις \( \delta \):}
 		&= h_1(n) * \left[
 		2\mathrm{u}(n) - \delta(n)
 		\right] = \left[\frac{1}{2}δ(n)+\frac{1}{4}δ(n-1)+\frac{1}{2}δ(n-2)\right]*\left[2\mathrm{u}(n)-\delta(n)\right]
@@ -3345,19 +3438,37 @@ node {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\Updownarrow}}}}$};
     \end{align*}
     
     Οι πόλοι είναι \( z_1=4 \) και \( z_2=-2 \), με πιθανές περιοχές σύγκλισης:
-    \begin{itemize}
-    	\item \( |z|<2 \) \item \( 2<|z|<4 \) \item \( 4<|z| \)
-    \end{itemize}
-    \todo{plot poles with possible ROC on float-right minipage}
+    
+    \begin{minipage}{.5\textwidth}
+    	\begin{itemize}
+    		\item \( |z|<2 \) \item \( 2<|z|<4 \) \item \( 4<|z| \)
+    	\end{itemize}
+    \end{minipage}
+\begin{minipage}{.5\textwidth}
+	\begin{center}
+	\begin{tikzpicture}[scale=.3]
+	\fill[fill=white,even odd rule,inner color=green!60!cyan,outer color=white] (0,0) circle (2) -- (0,0) circle (4.5);
+	\filldraw[fill=green!70] (0,0) circle (1);
+	\filldraw[fill=green!80!red!80!white,even odd rule] (0,0) circle (1) -- (0,0) circle (2);
+	
+	\draw (-1,0) node[locuspole] {} node[below] {$-2$}
+	(2,0) node[locuspole] {} node[below] {$4$}
+	;
+	
+	\draw[->] (0,-5) -- (0,5);
+	\draw[->] (-5,0) -- (5,0) ;
+	\end{tikzpicture}
+	\end{center}
+\end{minipage}
+
     
     Αφού το σύστημα είναι \textbf{αιτιατό}, το ROC τελικά είναι \( |z|>4 \).
     
-    \item Αφού \( \left|e^{j\omega }\right| \notin \text{ROC} \), το σύστημα είναι ασταθές.
+    \item Αφού \( \left|e^{j\omega }\right| \notin \text{ROC} \), ο μετασχηματισμός Fourier του συστήματος δεν υπάρχει (\autopageref{sec:rocfourier}). Επομένως, το σύστημα είναι ασταθές (\autopageref{sec:dtft}).
     
     \end{enumpar}
 \end{exercise}
 
-\todo{Better explanation and checks}
 \paragraph{Παράδειγμα "μονόπλευρου" μετασχηματισμού \( \mathcal{Z} \)}
 \begin{align*}
 	y(n) - \frac{1}{2}y(n-1) &= x(n) - \frac{1}{4}x(n-1) \qquad n \geq 0\\
@@ -3382,6 +3493,7 @@ node {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\Updownarrow}}}}$};
 	X(z) - \frac{1}{4} z^{-1} X(z) - \frac{1}{4} x(-1)\\
 	Y(z) &= X(z) \underbrace{\frac{1-\frac{1}{4}z^{-1}}{1-\frac{1}{2}z^{-1}}}_{\text{εξαναγκασμένη απόκριση}} + \underbrace{\frac{\sfrac{1}{2}y(-1)-\sfrac{1}{4}x(-1)  }{1-\frac{1}{2}z^{-1}}}_{\text{ελεύθερη απόκριση}}
 \end{align*}
+\todo{Better explanation and checks}
 \begin{questionbox}{Άσκηση για το σπίτι}
 	Ποιά είναι η \( y(n)=? \) όταν \( x(n) = \left(\frac{1}{3}\right)^n \mathrm{u}(n) \) για
 	\( y(-1) = 1 \) με το σύστημα που περιγράφεται από την παραπάνω εξίσωση διαφορών;
@@ -3518,8 +3630,6 @@ node {$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\Updownarrow}}}}$};
 \todo{finish}
 
 \lecture{10}{5/11/2018}
-
-\todo{Add sampling PDF link}
 
 \section{Δειγματοληψία}
 Στο παρόν θα εξετάσουμε το μετασχηματισμό \textbf{Fourier} που δίνει ένα
@@ -5392,5 +5502,7 @@ s_a(nT) - s_a\left((n-1)T\right) = \int_{(n-1)T}^{nT} h(τ)\dif τ \neq h_a(nT)
     \]
 	\end{enumpar}
 \end{exercise}
+
+\listoftodos
 
 \end{document}

@@ -222,6 +222,15 @@ boxed title style={skin=enhancedfirst jigsaw,
 	title={\ifthenelse{\isempty{#1}}{\hspace{0pt}}{#1}}%
 }
 
+% Minipage utilities
+\newcommand{\saveparinfo}{%
+	\edef\myindent{\the\parindent}%
+	\edef\myparskip{\the\parskip}}
+
+\newcommand{\useparinfo}{%
+	\setlength{\parindent}{\myindent}%
+	\setlength{\parskip}{\myparskip}}
+
 \AtBeginDocument{%
 \let\arg\relax
 \let\Re\relax
@@ -316,6 +325,10 @@ boxed title style={skin=enhancedfirst jigsaw,
 	\par\nointerlineskip \vspace{.5\baselineskip}
 }
 
+%\newcommand{\autopageref}[1]{%
+%\hyperref[#1]{Σελίδα \pageref*{#1}}%
+%}
+
 % Note: Latex requires a configuration flag for PDF named destinations to be stored:
 % In dvipdfmx.cfg search for Dvipdfmx Compatibility Flags, and add this line after %C  0x0000:
 %     C  0x0010
@@ -332,6 +345,7 @@ boxed title style={skin=enhancedfirst jigsaw,
 \tikzstyle{timecolour}=[\timecolour]
 \tikzstyle{omegacolour}=[\omegacolour]
 
+\renewcommand*{\pageautorefname}{Σελίδα}
 \renewcommand*{\sectionautorefname}{Ενότητα}
 \renewcommand*{\subsectionautorefname}{Ενότητα}
 \renewcommand*{\subsubsectionautorefname}{Ενότητα}
