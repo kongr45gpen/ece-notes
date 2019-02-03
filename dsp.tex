@@ -4898,12 +4898,12 @@ H(z)=\frac{Y(z)}{X(z)} = \cdots = \frac{b_0}{a_1\left(\frac{2}{T}\right)\left(\f
 	\\ &= \frac{2}{T} \frac{
 	(1-\cos \omega + j\sin \omega)(1+\cos \omega + j \sin \omega)
     }{(1+\cos \omega)^2 + \sin^2 \omega}
-    \\ &= \frac{(1+j\sin \omega)^2 - \cos^2\omega}{(1+\cos\omega)^2 + \sin^2\omega}
-    \\ &= \frac{2}{T} \frac{1-\sin^2\omega + 2j\sin\omega - \cos^2\omega}{(1+\cos\omega)^2 + \sin^2\omega}
-    \\ &= \frac{2}{T} \frac{\sin\omega}{1+\cos \omega} = \frac{2}{T} \tan\left(\frac{\omega}{2}\right)
+    \\ &= \frac{2}{Τ} \frac{(1+j\sin \omega)^2 - \cos^2\omega}{(1+\cos\omega)^2 + \sin^2\omega}
+    \\ &= \frac{2}{T} \frac{1-\sin^2\omega + 2j\sin\omega - \cos^2\omega}{(1+\cos\omega)^2 + \sin^2\omega} \implies
+    \\ \Omega &= \frac{2}{T} \frac{\sin\omega}{1+\cos \omega} = \frac{2}{T} \tan\left(\frac{\omega}{2}\right)
 \end{align*}
 
-Επομένως υπάρχει απεικόνιση του \( j\Omega \to e^{j\omega} \), η οποία είναι η \( \Omega = \frac{2}{T}\left(\frac{\omega}{2}\right) \), ή αντιστρόφως \( \omega = 2\tan^{-1}\frac{\Omega T}{2} \).
+Επομένως υπάρχει απεικόνιση του \( j\Omega \to e^{j\omega} \), η οποία είναι η \( \Omega = \frac{2}{T}\tan\left(\frac{\omega}{2}\right) \), ή αντιστρόφως \( \omega = 2\tan^{-1}\frac{\Omega T}{2} \).
 
 \begin{tikzpicture}
 \draw (-2,0) -- (2,0);
