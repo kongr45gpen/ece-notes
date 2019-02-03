@@ -1,5 +1,5 @@
 % !TeX program = xelatex
-\documentclass[11pt,a4paper,notitlepage,fleqn,draft]{article}
+\documentclass[11pt,a4paper,notitlepage,fleqn]{article}
 
 \input{preamble.tex}
 
@@ -1613,14 +1613,16 @@ y(n) = z^n \sum_{k=-\infty}^{\infty} h(k)z^{-k}
 \]
 
 Τώρα μπορούμε να ορίσουμε το μετασχηματισμό \( Z \) ως εξής:
-\begin{defn}{Μετασχηματισμός Z}{}
+\begin{defn}[label=defn:ztrans]{Μετασχηματισμός Z}{}
 	Ο μετασχηματισμός Z μιας συνάρτησης \( x(n) \) ορίζεται ως εξής:
 	\[
 	X(z) = \sum_{n=-\infty}^{\infty} x(n) z^{-n}
 	\]
 \end{defn}
 
-Για να έχει νόημα ο παραπάνω ορισμός, πρέπει να συγκλίνει το εξής άθροισμα:
+\subsection{Περιοχή σύγκλισης}
+
+Για να έχει νόημα ο \autoref{defn:ztrans}, πρέπει να συγκλίνει το εξής άθροισμα:
 \[
 \sum_{n=-\infty}^{\infty} \left| x(n)z^{-n} \right| < \infty
 \]
@@ -1694,6 +1696,16 @@ y(n) = z^n \sum_{k=-\infty}^{\infty} h(k)z^{-k}
 
 Επομένως, για το \( |z| \) θα ισχύει \( D < |z| < U \) για κάποια \( D, U \). Αυτά ορίζουν το \textbf{ROC} (Region Of Convergence) του μετασχηματισμού Z, χωρίς το οποίο ο μετασχηματισμός δεν έχει νόημα.
 
+\subparagraph{}
+\phantomsection
+\label{sec:znroc}
+Στις περιοχές σύγκλισης θα εξετάζουμε και αν ανήκει το \( |z|=\infty \). Τονίζουμε ότι ο όρος \( z^{n} \) \textbf{ορίζεται} για:
+\begin{itemize}
+	\item \( |z| < \infty \), όταν \( n>0 \).
+	\item \( z \in \mathbb C \), όταν \( n = 0 \).
+	\item \( |z| > 0\), όταν \( n<0 \).
+\end{itemize}
+
 \begin{exercise}
 	\phantomsection
 	\label{sec:findz1}
@@ -1755,7 +1767,6 @@ y(n) = z^n \sum_{k=-\infty}^{\infty} h(k)z^{-k}
 	αυτό, πρέπει να ισχύει η συνθήκη \( |a|<|b| \). Διαφορετικά, δεν υπάρχει ο μετασχηματισμός.
 \end{exercise}
 
-\subsection{Περιοχή σύγκλισης}
 \todo{Slightly underline links}
 \begin{itemize}
 	\item Για \textbf{ακολουθίες δεξιάς πλευράς} 
@@ -1820,6 +1831,7 @@ y(n) = z^n \sum_{k=-\infty}^{\infty} h(k)z^{-k}
 \lecture{5}{15/10/2018}
 
 \subsection{Αντίστροφος μετασχηματισμός Z}
+\label{sec:invz}
 Ο ευθύς μετασχηματισμός Z είναι:
 \[
 X(z) \overset{\triangle}{=} \sum_{n=-\infty}^{\infty} x(n)z^{-n}
@@ -2168,7 +2180,6 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 	\end{align*}
 	
 	\paragraph{Απόδειξη}
-	Έχουμε: \todo{ROC?}
 	\begin{align*}
 		Y(z) &= \mathcal{Z}T \left\lbrace y(n) \right\rbrace
 		= \sum_{n=-\infty}^{\infty} x(n-n_0)z^{-n} \underset{n-n_0 \leftarrow n}{=} \sum_{n=-\infty}^{\infty} x(n) z^{-(n+n_0)}
@@ -2176,7 +2187,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 		= z^{-n_0}X(z)
 	\end{align*}
 	
-	Η περιοχή σύγκλισης εξαρτάται από το ποιούς πόλους εξαφανίζει και εμφανίζει το \( z^{-n_0} \).
+	Η περιοχή σύγκλισης εξαρτάται από το ποιούς πόλους εξαφανίζει και εμφανίζει το \( z^{-n_0} \). Είναι ίδια με την αρχική, ή συμπεριλαμβάνονται ή αφαιρούνται τα σημεία \( z=0 \) ή \( z=\infty \).
 	
 	\item \textbf{Πολλαπλασιασμός με εκθετική ακολουθία (εκθετικό σήμα)}
 	
@@ -2253,8 +2264,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
     y(n) &\xrightarrow{\mathcal{Z}T} Y(z), &&\qquad \mathcal{R}_y
     \end{alignat*}
     
-    Για τον υπολογισμό του στο πεδίο \( Z \), υπολογίζουμε, με βάση τον αντίστροφο μετασχηματισμό
-    Z: \todo{add ref}
+    Για τον υπολογισμό του στο πεδίο \( Z \), υπολογίζουμε, με βάση τον αντίστροφο μετασχηματισμό Z (\autoref{sec:invz}):
     \begin{align*}
     W(z) &= \sum_{n=-\infty}^{\infty} x(n)y(n)z^{-n} 
     = \sum_{n=-\infty}^{\infty} x(n) \frac{1}{2πj} \ointctrclockwise\limits_{C:υ\in\mathcal{R}_Y} Y(υ)υ^{n-1}\dif υ z^{-n}
@@ -2262,7 +2272,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
     Y(υ) υ^{-1} \sum_{n=-\infty}^{\infty} x(n) υ^n z^{-n} \dif υ\\
     &\underset{\frac{Z}{υ} \in \mathcal{R}_x}{=} \frac{1}{2πj} \ointctrclockwise_{C:υ\in\mathcal{R}_Y} Y(υ)υ^{-1} X\left(\frac{z}{υ}\right)\dif υ
     \\
-    W(z) &= \frac{1}{2πj} \ointctrclockwise_{C:\stackrel{υ\in\mathcal{R}_Y}{\frac{z}{υ}\in\mathcal{R}_x}}
+    W(z) &= \frac{1}{2πj} \ointctrclockwise_{C:\substack{υ\in\mathcal{R}_Y \\ \frac{z}{υ}\in\mathcal{R}_x}}
     Y(υ)υ^{-1} X\left( \frac{z}{υ} \right)\dif υ
     \end{align*}
     
@@ -2301,11 +2311,11 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 	X(z) = \sum_{n=-\infty}^{\infty} δ(n-n_0)z^{-n} = z^{-n_0}
 	\]
 	
-	Η περιοχή σύγκλισης εξαρτάται από το \( n_0 \) και είναι:
+	Η περιοχή σύγκλισης εξαρτάται από το \( n_0 \) και είναι (\hyperref[sec:znroc]{Σελίδα \pageref{sec:znroc}}):
 	\[
 	\begin{cases}
-	n_0 > 0 &\quad 0 < |z|\\
-	n_0 < 0 &\quad |z| < \infty
+	n_0 > 0: &\quad 0 < |z|\\
+	n_0 < 0: &\quad |z| < \infty
 	\end{cases}
 	\]
 \end{exercise}
@@ -2345,7 +2355,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 		πόλους στο 0 και στο 1. Επειδή αποκλείεται (λόγω του \( |z|>1 \)) να
 		βρισκόμαστε μέσα από τον μοναδιαίο κύκλο, αναγκαστικά το \( \mathcal{R}_X \) θα
 		είναι \( |z|>1 \).
-		\item Για \( -n_0 + 1 > 0 \iff n_0 < 1 \), έχουμε τον περιορισμό \( 1<|z|<\infty \).
+		\item Για \( -n_0 + 1 > 0 \iff n_0 < 1 \), έχουμε τον περιορισμό \( 1<|z|<\infty \) (βλ. \hyperref[sec:znroc]{Σελίδα \pageref{sec:znroc}}).
 	\end{itemize}
 \end{exercise}
 
@@ -2362,7 +2372,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 		Έχουμε:
 		\begin{align*}
 		X(z) &= \frac{z}{3\left(z^2-\frac{4}{3}z+\frac{1}{3}\right)} = \frac{z}{3(z-1)\left(z-\frac{1}{3}\right)}\\
-		&= \frac{1}{2}\frac{1}{z-1} - \frac{1}{2}\frac{1}{z-\sfrac{1}{3} }
+		&= \frac{1}{2}\frac{1}{z-1} - \frac{1}{6}\frac{1}{z-\sfrac{1}{3} }
 		\end{align*}
 		
 		Επομένως έχουμε πόλους στα σημεία \( 1,\frac{1}{3} \).
@@ -2383,20 +2393,22 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
     	\end{tikzpicture}
     \end{minipage}
 	
-	%Για να υπολογίσουμε τα παρακάτω, χρησιμοποιούμε τους μετασχηματισμούς:
-	%\begin{align*}
-%		content...
-	%\end{align*}
-	\todo{Add samples}
+	Για να υπολογίσουμε τα παρακάτω, χρησιμοποιούμε τους μετασχηματισμούς:
+	\begin{knowledgebox}{}
+	\begin{align*}
+		u(n) &\xrightarrow{\mathcal{Z}T} U(z) = \frac{z}{z-1},\quad |z|>1\\
+	a^n	u(n) &\xrightarrow{\mathcal{Z}T} U(z) = \frac{z}{z-a},\quad |z|>|a|\\
+	  - u(-n-1) &\xrightarrow{\mathcal{Z}T} U(z) = \frac{z}{z-1},\quad |z|<1\\
+	-a^nu(-n-1) &\xrightarrow{\mathcal{Z}T} U(z) = \frac{z}{z-a},\quad |z|<|a|
+	\end{align*}
+	\end{knowledgebox}
 	
 	\begin{itemize}
 		\item \textbf{Αν ROC: \( |z|>1 \)}
 		
-		Τότε, δεδομένου του Μ/Σ Z της \( u(n) \) (\( U(z) = \frac{1}{1-\sfrac{1}{z} }, |z|>1 \)) έχουμε:
-		\todo{fix}
+		Τότε, δεδομένου του μετασχηματισμού Z της \( u(n) \), έχουμε:
 		\[
-		x(n) = \frac{1}{2} \mathrm{u}(n) - \frac{1}{2}
-		-\frac{1}{2} \left(\frac{1}{3}\right)^n \mathrm{u}(n)
+		x(n) = \frac{1}{2} \mathrm{u}(n) - \frac{1}{6} \left(\frac{1}{3}\right)^n \mathrm{u}(n)
 		\]
 		\item \textbf{Αν ROC: \( |z| < \frac{1}{3} \)}:
 		\[
