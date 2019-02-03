@@ -1,5 +1,5 @@
 % !TeX program = xelatex
-\documentclass[11pt,a4paper,notitlepage,fleqn]{article}
+\documentclass[11pt,a4paper,notitlepage,fleqn,draft]{article}
 
 \input{preamble.tex}
 
@@ -1145,6 +1145,7 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 \end{align*}
 
 \subsubsection{Μερικοί χρήσιμοι ορισμοί για ακολουθίες}
+\label{sec:seqtypes}
 \begin{enumgreekpar}
 	\item \textbf{Αιτιατή ακολουθία:} \( x(n) = 0 \quad \forall\ n<0 \)
 	\item \textbf{Ακολουθία δεξιάς πλευράς:} \( \exists \ M \in \mathbb Z:\ x(n) = 0 \quad \forall \ n<M \)
@@ -1694,11 +1695,14 @@ y(n) = z^n \sum_{k=-\infty}^{\infty} h(k)z^{-k}
 Επομένως, για το \( |z| \) θα ισχύει \( D < |z| < U \) για κάποια \( D, U \). Αυτά ορίζουν το \textbf{ROC} (Region Of Convergence) του μετασχηματισμού Z, χωρίς το οποίο ο μετασχηματισμός δεν έχει νόημα.
 
 \begin{exercise}
+	\phantomsection
+	\label{sec:findz1}
+
 	Να βρεθεί ο Z μετασχηματισμός του \( x(n) = a^n\mathrm u(n) \).\tcblower
 	\begin{align*}
 		X(z) &= \sum_{n=-\infty}^{\infty} x(n) z^{-n}
 		= \sum_{n=0}^{\infty} a^n z^{-n} = \sum_{n=0}^{\infty} \left(\frac{a}{z}\right)^n
-		\\ &= \frac{1}{1-\frac{a}{z}} = \frac{z}{z-a} \qquad \text{ αν $\left|\frac{a}{z}=1\right|$}
+		\\ &= \frac{1}{1-\frac{a}{z}} = \frac{z}{z-a} \qquad \text{ αν $\left|\frac{a}{z}\right|=1$}
 	\end{align*}
 	
 	Άρα γράφουμε συμβολικά:
@@ -1752,34 +1756,38 @@ y(n) = z^n \sum_{k=-\infty}^{\infty} h(k)z^{-k}
 \end{exercise}
 
 \subsection{Περιοχή σύγκλισης}
+\todo{Slightly underline links}
 \begin{itemize}
-	\item Για \textbf{ακολουθίες δεξιάς πλευράς} \todo{link defn} \todo{slightly underline links} (\( x(n) = 0 \impliedby n<n_0 \)), αν \( n_0 \geq 0 \), η περιοχή σύγκλισης είναι:
+	\item Για \textbf{ακολουθίες δεξιάς πλευράς} 
+	(\( x(n) = 0 \impliedby n<n_0 \), \autoref{sec:seqtypes}), αν \( n_0 \geq 0 \), η περιοχή σύγκλισης είναι:
 	\[
 	|z| > |z_1|
 	\]
 	\subparagraph{Απόδειξη}
 	Ο μετασχηματισμός \( Z \) της ακολουθίας θα είναι:
 	\[
-	\sum_{n=n_0 \geq 0}^{\infty} x(n)z^{-n}
+	\sum_{n=n_0\; \geq 0}^{\infty} x(n)z^{-n}
 	\]
 	
 	Υποθέτουμε ότι συγκλίνει για κάποιο \( |z| = |z_1| \)
-	Θέλουμε η σειρά \( \sum_{n=n_0\geq 0}^{\infty} \left| x(n)z_1^{-n} \right| < \infty \) να συγκλίνει.
+	Θέλουμε η σειρά \(\displaystyle \sum_{n=n_0\geq 0}^{\infty} \left| x(n)z_1^{-n} \right| < \infty \) να συγκλίνει.
 	
+	Τότε, για ένα τυχαίο \( |z| > |z_1| \), θα ισχύει
 	\[
-	|z| > |z_1| \implies |z|^{-n} < |z_1|^{-n}
+	|z| > |z_1| \implies |z|^{-n} < |z_1|^{-n} \implies \left\lvert x(n) \middle\rvert \middle\lvert z^{-n} \right\rvert < \left\lvert x(n) \middle\rvert \middle\lvert z_1^{-n} \right\rvert < \infty
 	\]
-	αν \( n \geq 0 \) .
+	αν \( n \geq 0 \). Δηλαδή, η ακολουθία θα συγκλίνει για οποιοδήποτε \( |z| \) μεγαλύτερο κάποιου \( |z_1| \).
 	
-	\paragraph{}
-	Αν αντίθετα, \( n_0 < 0 \):
+	\begin{itemize}
+	\item Αν αντίθετα, \( n_0 < 0 \):
 	\[
-	\sum_{n=n_0}^{\infty} \cdots = \sum_{n=n_0}^{-1}\cdots + \sum_{n=0}^{\infty}
+	\sum_{n=n_0}^{\infty} x(n)z^{-n} = \underbrace{\sum_{n=n_0}^{-1} x(n)z^{-n}}_{\mathclap{\text{συγκλίνει ως πεπερασμένο}}} + \overbrace{  \sum_{n=0}^{\infty} x(n)z^{-n}}^{\mathclap{\text{συγκλίνει}}}
 	\]
 	που οδηγεί σε ένα αντίστοιχο αποτέλεσμα, πλην του κύκλου στο άπειρο:
 	\[
 	|z_1| < |z| < \infty
 	\]
+	\end{itemize}
 	\item Για \textbf{ακολουθίες αριστερής πλευράς} (\( x(n) = 0 \impliedby n > n_0 \)), τότε (αντίστοιχα με παραπάνω):
 	
 	\[
@@ -1793,7 +1801,7 @@ y(n) = z^n \sum_{k=-\infty}^{\infty} h(k)z^{-k}
 	n_0 > 0 &\implies \text{ROC } =\ 0 < |z| < |z_1|
 	\end{cases}
 	\]
-	\item Για \textbf{ακολουθίες πεπερασμένου μήκους} (\( x(n) = 0\ \forall\ n<N,n>M,M>N \)), ο μετασχηματισμός Z θα είναι:
+	\item Για \textbf{ακολουθίες πεπερασμένου μήκους} (\( x(n) = 0\ \forall\ n<N,\ n>M,\ M>N \)), ο μετασχηματισμός Z θα είναι:
 	\[
 	X(z) = \sum_{n=N}^{M} x(n) z^{-n}
 	\]
@@ -1815,20 +1823,21 @@ y(n) = z^n \sum_{k=-\infty}^{\infty} h(k)z^{-k}
 Ο ευθύς μετασχηματισμός Z είναι:
 \[
 X(z) \overset{\triangle}{=} \sum_{n=-\infty}^{\infty} x(n)z^{-n}
-\quad \mathcal{R}_{x(z)}
+\quad \mathcal{R}_{X(z)}
 \]
 
 Αποδεικνύεται ότι ο \textbf{αντίστροφος μετασχηματισμός Z} είναι:
 \[
-x(n) = \frac{1}{2 π j} \ointctrclockwise\limits_{c \in \mathcal{R}_{X(z)z^{n-1}}} x(z)z^{n-1} \dif z
+x(n) = \frac{1}{2 π j} \ointctrclockwise\limits_{c \in \mathcal{R}_{X(z)z^{n-1}}} X(z)z^{n-1} \dif z
 \]
 
 Η παραπάνω σχέση βασίζεται στο ολοκλήρωμα του Cauchy, \( \frac{1}{2πj} \ointctrclockwise z^{-k-1}\dif z = \begin{cases}
 1 &\quad k=0 \\ 0&\quad k\neq 0
 \end{cases} \)
 
-\subsection{Μέθοδοι υπολογισμού μετασχηματισμού Z}
+\subsection{Μέθοδοι υπολογισμού αντίστροφου μετασχηματισμού Z}
 \subsubsection{Ολοκληρωτικά υπόλοιπα}
+\label{sec:res}
 \begin{minipage}{.5\textwidth}
 	Με βάση τη μιγαδική ανάλυση, γνωρίζουμε ότι:
 	\[
@@ -1864,12 +1873,12 @@ x(n) = \frac{1}{2 π j} \ointctrclockwise\limits_{c \in \mathcal{R}_{X(z)z^{n-1}
 
 
 Η παραπάνω σχέση συμπεριλαμβάνει και πόλους που βρίσκονται \emph{εκτός των ορίων περιοχής σύγκλισης} αλλά
-\emph{μέσα στα όρια του κύκλου που αυτές ορίζουν}.
+\emph{μέσα στα όρια του κύκλου που αυτή ορίζει}.
 
 \paragraph{Παράδειγμα}
 Ένα σύστημα έχει 4 πόλους. Πόσες είναι οι μέγιστες δυνατές περιοχές σύγκλισης;
 \subparagraph{Απάντηση}
-\textbf{Ένας πόλος, ως \emph{απομονωμένο} ανώμαλο σημείο, δεν μπορεί να βρίσκεται στην περιοχή σύγκλισης.}
+\textbf{Ένας πόλος, ως \emph{απομονωμένο} ανώμαλο σημείο, δεν μπορεί να βρίσκεται \emph{μέσα} στην περιοχή σύγκλισης.}
 
 Τοποθετούμε τους πόλους στο πραγματικό επίπεδο για ευκολία, και θεωρούμε περιοχές σύγκλισης με ανοιχτά
 όρια. Επειδή μια περιοχή σύγκλισης πρέπει να έχει πόλο στα όριά της, αλλά δεν μπορεί να περιέχει πόλο,
@@ -1880,7 +1889,7 @@ x(n) = \frac{1}{2 π j} \ointctrclockwise\limits_{c \in \mathcal{R}_{X(z)z^{n-1}
 \filldraw[fill=green!80!red,even odd rule] (0,0) circle (1) -- (0,0) circle (2);
 \filldraw[fill=green!30!cyan,even odd rule] (0,0) circle (2) -- (0,0) circle (3);
 \filldraw[fill=green!80!blue,even odd rule] (0,0) circle (3) -- (0,0) circle (4);
-\fill[fill=white,even odd rule,inner color=green!60!black,outer color=green!5] (0,0) circle (4) -- (0,0) circle (5.5);
+\fill[fill=white,even odd rule,inner color=green!30!black,outer color=green!20] (0,0) circle (4) -- (0,0) circle (5.5);
 \draw[thick] (0,0) circle (4);
 
 \draw (1,0) node[locuspole] {}
@@ -1897,11 +1906,15 @@ x(n) = \frac{1}{2 π j} \ointctrclockwise\limits_{c \in \mathcal{R}_{X(z)z^{n-1}
 Άρα έχουμε 5 δυνατότητες για περιοχή σύγκλισης.
 
 \paragraph{Υπολογισμός ολοκληρωτικών υπολοίπων}
+\phantomsection
+\label{sec:rescalc}
 Σύμφωνα με τη μιγαδική ανάλυση, τα ολοκληρωτικά υπόλοιπα που ψάχνουμε μπορούν να βρεθούν ως εξής:
 \[
+\boxed{
 \mathop{Res}\left[
 X(z)z^{n-1} \ @\ z=z_0
 \right] = \frac{1}{(s-1)!} \left.\od[s-1]{}{z} A(z)\right|_{z=z_0}
+}
 \]
 όπου \( z_0 \) ο πόλος, \( s \) η πολλαπλότητά του, και:
 \[
@@ -1929,16 +1942,15 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 	
 	\begin{itemize}
 		\item \textbf{Αν \( n\geq 0 \)}, τότε:
-		έχουμε \textbf{1 πόλο} στο \( z_0=a \) πολλ/τας \( s_0=1 \). Άρα από τη θεωρία:
-		\todo{add relation}\begin{align*}
+		έχουμε \textbf{1 πόλο} στο \( z_0=a \) πολλ/τας \( s_0=1 \). Άρα από τη θεωρία (\hyperref[sec:rescalc]{Σελίδα \pageref*{sec:rescalc}}):
+		\begin{align*}
 			x(n) &= \res\left[
 			\frac{z^n}{z-a} \ @ \ z=a
-			\right] = \frac{1}{(s-1)^1} \left. \frac{\dif}{\dif \, z^{-1}} z^n \right|_{z=a}
-			\\ &= \cdots
+			\right] = \frac{1}{(s_0-1)!} \left. \frac{\dif^{s_0-1}}{\dif  z^{s_0-1}} z^n \right|_{z=a}
+			\\ &= \frac{1}{(1-1)!}\od[0]{}{z}\left. z^n \right|_{z=a}
+			= a^n
 		\end{align*}
-		\todo{complete}
-		\item \textbf{Αν \( n < 0 \)}, τότε:
-		\todo{συμπλήρωση}
+		\item \textbf{Αν \( n < 0 \)}, τότε έχουμε 1 πόλο \( z_0=a,\ s_0=1 \), και επιπλέον \( k \) πόλους \( z_1=0,\ s_0=k \):
 		\begin{align*}
 			x(n) &= \res\left[
 			\frac{1}{(z-a)z^{-n}}\ @ \ z=a
@@ -1959,8 +1971,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
     n < 0 &\quad x(n) = 0
     \end{aligned} \right\rbrace \implies x(n) = a^n\mathrm{u}(n)
     \]
-    ένα αποτέλεσμα ίδιο με αυτό της "αντίστροφης" άσκησης που λύσαμε προηγουμένως.
-    \todo{add ref}
+    ένα αποτέλεσμα ίδιο με αυτό της "αντίστροφης" άσκησης που λύσαμε προηγουμένως (\hyperref[sec:findz1]{Σελίδα \pageref*{sec:findz1}}).
 \end{exercise}
 
 \begin{exercise}
@@ -2017,7 +2028,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 		από την περιοχή σύγκλισης.
 		
 		Επομένως: \[
-		x(u) = a^n \quad \text{όταν } n \geq 0
+		x(n) = a^n \quad \text{όταν } n \geq 0
 		\]
 		
 		\item \textbf{Αν \( n < 0 \)}, τότε οι πόλοι του \( I(z) \), λόγω του όρου \( z^n \), είναι:
@@ -2058,7 +2069,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 		
 		Στο νέο υπολογισμό με βάση το \( ρ \) και όχι το \( z \), έχει αλλάξει το επίπεδο όπου προβάλλουμε
 		τους πόλους. Η περιοχή σύγκλισης μοιάζει πάλι με donut, αλλά η καμπύλη \( C \) διαγράφεται τώρα
-		ωρολογιακά και όχι αντιωρολογιακά, λόγω της αλλαγής μεταβλητής \( \dif z = -\frac{1}{ρz}\dif ρ \).
+		ωρολογιακά και όχι αντιωρολογιακά, λόγω της αλλαγής μεταβλητής \( \dif z = -\frac{1}{ρ^2}\dif ρ \).
 		
 		\begin{tikzpicture}
 		\filldraw[fill=green!50,even odd rule] (0,0) circle (0.8) -- (0,0) circle (1.5);
@@ -2085,8 +2096,12 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 			\right]
 			\\ &= \left.\frac{1}{ab}\left[
 			\frac{ρ^{-n-1}\left[ 2-(a+b)ρ \right] }{\left( ρ-\frac{1}{a} \right)}
-			\right]\right|_{\rho = \sfrac{1}{b} }
-			\\ &= \cdots = -b^n
+			\right]\right|_{\rho = \sfrac{1}{b} } = \frac{1}{ab} \left[
+			\frac{\left(\frac{1}{b}\right)^{-n-1}\left[
+				2-\frac{a+b}{b}
+				\right]}{\left(\frac{1}{b}-\frac{1}{a}\right)}
+			\right]
+			\\ &= \frac{b^{n}\left(2b-a-b\right)}{a-b} = \frac{b-a}{a-b} = -b^n
 		\end{align*}
 		
 		Άρα τελικά:
@@ -2125,12 +2140,14 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 \begin{enumpar}
 	\item \textbf{Γραμμικότητα}
 	
-	Έστω οι \( N \) σε πλήθος ακολουθίες \( x_k(n) \) και οι μετασχηματισμοί Z τους:
+	Έστω \( N \) σε πλήθος ακολουθίες \( x_k(n) \) και οι μετασχηματισμοί Z τους:
 	\begin{align*}
 		x_k(n) &\xrightarrow{\mathcal{Z}T} X_k(z) \qquad k=1,2,\dots,N
 		\intertext{και έστω μία ακολουθία $y(n)$ που είναι γραμμικός συνδυασμός των παραπάνω:}
 		y(n) &= \sum_{k=1}^{N} a_kx_k(n) \qquad a_k \in \mathbb{C} \text{ σταθερές}
-		\intertext{με μετασχηματισμό Z:}
+	\end{align*}
+	Τότε, η παραπάνω ακολουθία θα έχει μετασχηματισμό Z:
+	\begin{align*}
 		Y(z) &= \sum_{k=1}^{N} a_k X_k(z)
 		\intertext{ο οποίος έχει περιοχή σύγκλισης:}
 		\mathcal{R}_{Y(z)} &\supseteq \bigcap_{k=1}^N \mathcal{R}_{X_k(z)}
@@ -2147,7 +2164,7 @@ A(z) = X(z)z^{n-1}(z-z_0)^s
 	\begin{align*}
 		x(n) &\xrightarrow{\mathcal{Z} T} X(z) \qquad \mathcal{R}_X
 		\intertext{και έστω ότι τη μετατοπίζουμε κατά \( n_0 \in \mathbb Z \) (είναι απαραίτητο ο \( n_0 \) να είναι \textbf{ακέραιος})}
-		\infoboxed{y(n) = x(n-n_0)} &\xrightarrow{\mathcal{Z} T} \infoboxed{z^{-n_0} X(z)}
+		\infoboxed{y(n) = x(n-n_0)} &\xrightarrow{\mathcal{Z} T} \infoboxed{z^{-n_0}\, X(z)}
 	\end{align*}
 	
 	\paragraph{Απόδειξη}
