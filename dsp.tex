@@ -4188,6 +4188,7 @@ x(t) = e^{j2πf_0t} \rightarrow X(f) = δ(f-f_0)
 
 \subsection{Aliasing (φασματική επικάλυψη)}
 \todo{A graph if needed}
+\label{sec:aliasing}
 Ο παράγοντας \( A(f) \) αποτελεί ένα "παράσιτο" που εισάγεται στο σήμα μετά από τον πολλαπλασιασμό
 του με την παλμοσειρά των \( δ \). Στο ψηφιακό σήμα δεν μπορεί να γίνει 0, καθώς τα φάσματά μας είναι
 άπειρα, αφού τα σήματα είναι \emph{χρονοπερατά} (όπως αποδείχθηκε στο αναλογικό σήμα).
@@ -4283,7 +4284,7 @@ X(f) * L(f) = \int_{-\infty}^{\infty} X(f-f') L(f)\dif f'
 	\[
 	30 = x + κ360
 	\]
-	Δηλαδή για \( x=30,390,750,\dots \)
+	Δηλαδή για \( x=30,390,750,\dots \) Hz.
 	
 	\todo{solve in another way}
 \end{exercise}
@@ -4662,7 +4663,7 @@ x_e(0) &\quad n=0\\
 \[
 1+\left(\frac{s}{j}\right)^{2n} = 0 \implies s^{2n} = -1(j)^{2n} = (-1)^{n+1}
 \]
-όπου θέτοντας το \( n \), μπορούμε γρήγορα να βρούμε τις ρίζες του παρανομαστή:
+όπου θέτοντας το \( n \), μπορούμε με βάση τη μιγαδική ανάλυση να βρούμε τις ρίζες του παρανομαστή:
 \[
 \begin{cases}
 n\text{ odd} &\implies s_k = 1\angle{\sfrac{kπ}{n} } \quad k=0,1,\dots,2n-1\\
@@ -4672,7 +4673,7 @@ n\text{ even} &\implies s_k = 1\angle{\frac{π}{2n} + \frac{kπ}{n}} \quad k=0,1
 όπου μπορούμε να μοιράσουμε τις odd και even ρίζες μεταξύ των \( H_n(j\Omega) \) και \( H_n(-j\Omega) \).
 
 Άρα έχουμε:\[
-H_n(s) = \frac{1}{Π(s-s_k)}=\frac{1}{B_k}
+H_n(s) = \frac{1}{\prod (s-s_k)}=\frac{1}{B_k}
 \]
 όπου, για να έχουμε ευστάθεια, οι \( s_k \) είναι στο \emph{αριστερό ημιεπίπεδο}, και \( B_n(s) \) το
 πολυώνυμο Butterworth.
@@ -4689,10 +4690,10 @@ H_n(s) = \frac{1}{Π(s-s_k)}=\frac{1}{B_k}
 	\begin{quote}
 		\begin{itemize}
 			\item Για \( \Omega < \Omega_1 \): \( 
-			\leq 20\log\left|H_n(j\omega )\right| \geq k_1 \geq 0
+			10\log\left|H_n(j\omega )\right|^2 \geq k_1 \geq 0
 			\)
 			\item Για \( \Omega > \Omega_2 \): \( 
-			\log\left|H_n(j\omega )\right| \leq k_2
+			10\log\left|H_n(j\omega )\right|^2 \leq k_2 \leq 0
 			\)
 		\end{itemize}
 	\end{quote}
@@ -4706,18 +4707,22 @@ H_n(s) = \frac{1}{Π(s-s_k)}=\frac{1}{B_k}
 	\draw[very thick,orange!50!red!90!green]
 	(0,1.5) cos (1.5,1) sin (3,0.4);
 	\draw[dashed] (1.2,0) node[below] {$\Omega_1$} |- (0,1.16) node[left] {$k_1$};
-	\draw[dashed] (2.4,0) node[below] {$\Omega_2$} -- ++(0,0.5) ;
+	\draw[dashed] (2.4,0) node[below] {$\Omega_2$} |- ++(-2.4,0.5) node[left] {$k_2$};
 	\end{tikzpicture}
 	\end{center}
 \end{minipage}
 
-Επομένως, λύνοντας τις παραπάνω ανισώσεις (θέτονας \( H(\Omega) = \frac{1}{1+\left(\frac{\Omega}{\Omega_c}\right)^{2n}} \)), θα προκύψει:
+Επομένως, λύνοντας τις ανισώσεις των σημειώσεων (θέτονας \( H(\Omega) = \frac{1}{1+\left(\frac{\Omega}{\Omega_c}\right)^{2n}} \)), θα προκύψει:
 \[
 n = \left\lceil
-\frac{\cdots}{2\log\left(\sfrac{\Omega_1}{\Omega_2} \right)}
+\frac{
+\log\left[
+\frac{10^{\sfrac{-k_1}{10}}-1}{10^{\sfrac{-k_2}{10}}-1}
+\right]
+}{2\log\left(\sfrac{\Omega_1}{\Omega_2} \right)}
 \right\rceil
 \]
-%TODO: Συμπλήρωση
+\todo{Συμπλήρωση}
 με τη δυνατότητα επιλογής οποιουδήποτε \( \Omega_c \) εντός της περιοχής:
 \[
 \frac{\Omega_1}{\left(10^{\sfrac{-k_1}{10} } - 1\right)^{\sfrac{1}{2n} }}
@@ -4760,9 +4765,9 @@ H_a(s) = \frac{\displaystyle \sum_{k=0}^{M} d_k s^k}{\displaystyle \sum_{k=0}^{N
 	\mathcal{Z}\left\lbrace \nabla^{(k)} \left[y(n)\right]\right\rbrace
 	&= Y(z)\left[\frac{1-z^{-1}}{T}\right]^k
 	\intertext{Δηλαδή τελικά:}
-	H(z) &= \frac{Y(z)}{X(z)} = \cdots
+	H(z) &= \frac{Y(z)}{X(z)} = \frac{\sum_{k=0}^{N} d_k \left[\frac{1-z^{-1}}{T}\right]^k}{\sum_{k=0}^{N} c_k \left[\frac{1-z^{-1}}{T}\right]^k}
 \end{align*}
-\todo{fill}
+
 
 Από το παραπάνω αποτέλεσμα προκύπτει πως μπορούμε να γράψουμε το \( H(z) \) από το \( H(s) \) με μια
 απλή αντικατάσταση μεταβλητής:
@@ -4787,6 +4792,7 @@ H(z) = \left. H(s) \right|_{s\leftarrow \frac{1-z^{-1}}{T}}
 \draw (1.2,-1) node[below right] {$z$-plane};
 \end{scope}
 \end{tikzpicture}
+\todo{Improve this graph}
 
 Ο μετασχηματισμός που πραγματοποιούμε είναι ο εξής:
 \[
@@ -4819,7 +4825,7 @@ z = \frac{1}{1-sT} = \frac{1}{1-j\Omega T} = \frac{1}{1+\Omega^2 T^2} + j\frac{\
 \lecture{15}{26/11/2018}
 \paragraph{Ένα παράδειγμα}
 Έστω ότι δειγματοληπτούμε ένα αναλογικό σήμα \( H_a(\Omega) \), με συχνότητα δειγματοληψίας \( \Omega_s \),
-που απεικονίζεται στον ψηφιακό κόσμο από \( 0 \) ως \( 2π \). Το \( \omega = 2π \) αντιστοιχεί στην
+που απεικονίζεται στον ψηφιακό κόσμο μέσω της \(\omega \in [0,2π) \). Το \( \omega = 2π \) αντιστοιχεί στην
 αναλογική συχνότητα \( \Omega_s \), και το \( \omega = \pi \) αντιστοιχεί στην \( \frac{\Omega_s}{2} \).
 
 \begin{minipage}{.5\textwidth}
@@ -4883,7 +4889,7 @@ z = \frac{1}{1-sT} = \frac{1}{1-j\Omega T} = \frac{1}{1+\Omega^2 T^2} + j\frac{\
 
 Επίσης, αν φανταστούμε ότι το σήμα είχε μια συχνότητα \( Ω_H > \Omega_s \), μεγαλύτερη δηλαδή από το
 μισό της συχνότητας δειγματοληψίας, αυτή θα εμφανιζόταν σε λανθασμένο σημείο στο φάσμα, οδηγώντας
-σε παραπλανητικά αποτελέσματα.
+σε παραπλανητικά αποτελέσματα, όπως έχουμε δει στην \autoref{sec:aliasing}.
 
 \paragraph{Μετάφραση ψηφιακής σε αναλογική συχνότητα}
 Έστω ότι έχουμε ένα φίλτρο Butterworth. Το αρχικό αναλογικό φάσμα του είναι πολύ καθαρό:
@@ -4893,7 +4899,7 @@ z = \frac{1}{1-sT} = \frac{1}{1-j\Omega T} = \frac{1}{1+\Omega^2 T^2} + j\frac{\
 \draw[->] (0,0) -- (0,2) node[left] {$H_a(s)$};
 \draw (0,0) node[left] {$0$};
 
-\draw[very thick,red!50!orange] plot[smooth,tension=.4] coordinates {(0,1.5) (0.4,1.7) (0.7,1.3) (1,0.4) (1.3,0.4) (1.4,0)};
+\draw[very thick,red!50!orange] plot[smooth,tension=.6] coordinates {(0,1.5) (0.4,1.7) (0.7,1.3) (1.3,0.4) (1.4,0)};
 \draw (1.4,0) node[below] {$\pi$};
 
 \draw[thick,opacity=.8,->] (3,1) -- ++ (1,0) node[midway,above] {$\omega\to\Omega$};
@@ -4908,9 +4914,10 @@ z = \frac{1}{1-sT} = \frac{1}{1-j\Omega T} = \frac{1}{1+\Omega^2 T^2} + j\frac{\
 \end{scope}
 \end{tikzpicture}
 
+
 Στον ψηφιακό κόσμο όμως, το φάσμα προκύπτει ελαφρά παραμορφωμένο. Αν μεταφράσουμε την ψηφιακή συχνότητα
-σε αναλογική με τη σχέση \( ω = \frac{2πΩ}{Ω_s} \), θα λάβουμε ένα εναφρά διαφορετικό σήμα \( H_a'(Ω) \),
-που εν γένει θα είναι ελαφρά διαφορετικό από το αρχικό \( H_a(Ω) \).
+σε αναλογική με τη σχέση \( ω = \frac{2πΩ}{Ω_s} \), θα λάβουμε ένα άλλο σήμα \( H_a'(Ω) \),
+που εν γένει θα είναι ελαφρά \textbf{διαφορετικό} από το αρχικό \( H_a(Ω) \).
 
 \paragraph{Για τις forward διαφορές}
 Παραπάνω ορίσαμε ως εξής, πέρα από τις \emph{προς τα πίσω} διαφορές που χρησιμοποιήσαμε παραπάνω,
@@ -4920,23 +4927,22 @@ z = \frac{1}{1-sT} = \frac{1}{1-j\Omega T} = \frac{1}{1+\Omega^2 T^2} + j\frac{\
 \left. \od{y(t)}{t} \right|_{t=nT} &\simeq \frac{y(n+1)-y(n)}{T}
 \end{align*}
 
-Εδώ θα αποδείξουμε υπό συνθήκη (αλλά όχι πάντα) οδηγούν σε \emph{ευστάθεια} και του ψηφιακού συστήματος,
-αν το αντίστοιχο αναλογικό είναι ασταθές.
-
-Με πράξεις όπως και στις προς τα πίσω διαφορές, βρίσκουμε την αντιστοιχία μεταξύ των \( s \)-plane και
+Εδώ θα αποδείξουμε πως υπό συνθήκη (αλλά όχι πάντα) οδηγούν σε \emph{ευστάθεια} και του ψηφιακού συστήματος,
+αν το αντίστοιχο αναλογικό είναι \emph{ασταθές}.
+\todo{Fix the following section}
+Με πράξεις όπως και στις προς τα πίσω διαφορές, βρίσκουμε την αντιστοιχία μεταξύ των πόλων του \( s \)-plane και
 \( z \)-plane:
 \[
-s \leftarrow \frac{z - 1}{T}f
+s \leftarrow \frac{z - 1}{T} \quad \text{(όπου \( T=Δt \))}
 \]
-(όπου \( T=Δt \)).
 
 Έχουμε:
 \begin{align*}
     s &= \frac{z-1}{T} \implies z = sT + 1 = (a+jb)T + 1
-    \intertext{όπου το κριτήριο για ευστάθεια είναι \( a<0 \).}
+    \intertext{όπου η αναλογική ευστάθεια σημαίνει πως \( a<0 \).}
     z &= (aT+1) + jbT\\
     |z|^2 &= (aT+1)^2 + b^2T^2 = a^2T^2+2aT + 1 + b^2T^2
-    \intertext{Από τη θεωρία, το ψηφιακό σύστημα είναι ευσταθές αν \( |z|^2<1 \):}
+    \intertext{Από τη θεωρία, το ψηφιακό σύστημα είναι ευσταθές αν για τους πόλους του ισχύει \( |z|^2<1 \):}
     a^2T^2 + 2aT + 1 + b^2T^2 &< 1 \\
     T(a^2+b^2) &< -2a \implies T < \frac{-2a}{(a^2+b^2)}
 \end{align*}
@@ -4957,14 +4963,14 @@ T < \frac{-2A}{B}
 	Να παρασταθεί γεωμετρικά η απεικόνιση του φανταστικού άξονα από το \( s \)-plane στο \( z \)-plane.
 \end{questionbox}
 \begin{questionbox}{Παιχνίδι για το σπίτι}
-	Να εφαρμοστεί φίλτρο Butterworth (π.χ. της μορφής \( H(s)=\frac{1}{s+1} \)) και να εφαρμοστεί σε
+	Να υλοποιηθεί φίλτρο Butterworth (π.χ. της μορφής \( H(s)=\frac{1}{s+1} \)) και να τοποθετηθεί σε
 	ανθρώπινη φωνή. Να ακουστεί η διαφορά της φωνής όταν εφαρμοστεί φίλτρο Butterworth σε αυτήν.
 \end{questionbox}
 
 \lecture{16}{30/11/2018}
 
 \subsection{Διγραμμικός Μετασχηματισμός}
-Έστω η διαφορικής εξίσωση:\[
+Έστω η διαφορική εξίσωση:\[
 a_1 \od{}{t}y_a(t) + a_0 y_a(t) = b_0x(t)
 \]
 όπου το \( y_a \) δηλώνει ένα \emph{analog} σήμα εισόδου.
@@ -5043,7 +5049,7 @@ H(z)=\frac{Y(z)}{X(z)} = \cdots = \frac{b_0}{a_1\left(\frac{2}{T}\right)\left(\f
 Ένα ερώτημα που πρέπει να απαντήσουμε είναι αν απεικονίζονται όλες οι αναλογικές συχνότητες \( s=jΩ \)
 στον ψηφιακό κόσμο.
 
-Θέλουμε το \( j\Omega \) να απεικονιστεί στο \( e^{j\Omega} \). Τότε θέτουμε:
+Θέλουμε το \( j\Omega \) να απεικονιστεί στο \( e^{j\omega} \). Τότε θέτουμε:
 \begin{align*}
 	jΩ &= \frac{2}{T} \frac{1-e^{-j\omega }}{1+e^{-j\omega }} = \frac{2}{T} \frac{1-\cos \omega +j\sin \omega}{1+\cos \omega - j \sin \omega}
 	\\ &= \frac{2}{T} \frac{
@@ -5141,8 +5147,8 @@ s = \frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}} \implies z = \frac{1+\frac{sT}{2}}{1-\f
 \end{minipage}
 
 \tcblower
-Θα υλοποιήσουμε ένα φίλτρο Butterworth, με χρόνο δειγματοληψίας \( Δt = 0.5 \cdot 10^{-3} \si{second} \),
-όπως προκύπτει από την \( Omega_c \).
+Θα υλοποιήσουμε ένα φίλτρο Butterworth, με χρόνο δειγματοληψίας \( Δt = 0.5 \cdot 10^{-3}\ \si{\second} \),
+όπως προκύπτει από την \( \Omega_c \).
 
 Έχουμε:
 \begin{align*}
@@ -5175,13 +5181,15 @@ H_a(s) = \frac{1}{\left( \frac{s}{\Omega_0} \right) \left(
 Για να μετασχηματίσουμε στη συχνότητα και να βρούμε το \( H(z) \), αρκεί να θέσουμε \( s \leftarrow \frac{2}{Δt}\frac{1-z^{-1}}{1+z^{-1}} \) στο παραπάνω.
 
 \subparagraph{}
-Η σχεδίασή μας όμως αυτή μπορεί να οδηγήσει σε λάθος αποτέλεσμα, καθώς δεν λαμβάνει υπ' όψιν το
+Η σχεδίασή μας όμως αυτή μπορεί να οδηγήσει σε \textbf{λάθος} αποτέλεσμα, καθώς δεν λαμβάνει υπ' όψιν το
 μετασχηματισμό που προκύπτει από το διγραμμικό μετασχηματισμό για τη ψηφιοποίηση του
-συστήματος. Εφαρμόζοντας το μετασχηματισμό \( \Omega = \frac{2}{Δt}\tan\left(\frac{\omega}{2}\right) \)
+συστήματος.
+Πρώτα, υπολογίζουμε τις ψηφιακές συχνότητες \( \omega_1 = \Omega_1 \Delta t = 0.5\pi \), \( \omega_2 = \Omega_2 \Delta t = 0.75\pi \).
+Εφαρμόζοντας το μετασχηματισμό \( \Omega = \frac{2}{Δt}\tan\left(\frac{\omega}{2}\right) \)
 έχουμε:
 \begin{align*}
-	\Omega_1' &= \frac{2}{Δt} \tan\left(\frac{\omega_1}{2}\right) = \SI{4000}{\radian/\second} %TODO fix result
-	\\ \Omega_2' &= \frac{2}{Δt} \tan\left(\frac{\omega_2}{2}\right) = \SI{9000}{\radian/\second} %TODO fix result
+	\Omega_1' &= \frac{2}{Δt} \tan\left(\frac{\omega_1}{2}\right) = \SI{400}{\radian/\second}
+	\\ \Omega_2' &= \frac{2}{Δt} \tan\left(\frac{\omega_2}{2}\right) = \SI{965.7}{\radian/\second}
 \end{align*}
 και η σχεδίαση μπορεί να γίνει:
 \[
@@ -5214,7 +5222,7 @@ H(z) = \left. H_a'(s) \right|_{s\leftarrow \frac{2}{Δt} \frac{1-z^{-1}}{1+z^{-1
 \end{align*}
 
 Θα μπορούσαμε να σκεφτούμε να μετατρέψουμε σε άθροισμα το ολοκλήρωμα, θέτοντας \( t=nT \), άρα
-\( y(nT) = T\sum_{k=-\infty}^{n} x(kT)h(nT-kT) \implies y(n) = T\sum_{k=-\infty}^{n} x(k)h(n-k) = T x(n)*h(n) \). Δηλαδή, γνωρίζοντας την κρουστική απόκριση του αναλογικού συστήματος, και δειγματοληπτώντας
+\( \displaystyle y(nT) = T\sum_{k=-\infty}^{n} x(kT)h(nT-kT) \implies y(n) = T\sum_{k=-\infty}^{n} x(k)h(n-k) = T x(n)*h(n) \). Δηλαδή, γνωρίζοντας την κρουστική απόκριση του αναλογικού συστήματος, και δειγματοληπτώντας
 κατάλληλα, μπορούμε να μοντελοποιήσουμε και το ψηφιακό σύστημα.
 
 Έστω ένα φίλτρο \( H_a(s) \):
@@ -5300,10 +5308,10 @@ H(z) &= \mathcal{Z}\mathrm{T}\left\lbrace h(n) \right\rbrace = \sum_{n=0}^{\inft
 	H_{eq}(j\Omega) &= \frac{A}{1-(1-aT)\cos(\Omega T) + j(1-aT)\sin(\Omega T)}
 	\\ &= \frac{\sfrac{A}{T} }{1 + j\Omega - jT \Omega } = \frac{A}{T}\frac{1}{a+j\Omega}
 	\\ &= \frac{A}{1-1 + aT\cos(\Omega T) + j \sin(\Omega T) - jaT\sin(\Omega T)}
-	\\ &= \frac{1}{aT + j\Omega T - jaT^2 \Omega}
+	\\ &\cong \frac{A}{aT + j\Omega T - jaT^2 \Omega}
 \end{align*}
 Παρατηρούμε ότι μειώνοντας το χρόνο δειγματοληψίας \( T \), μειώνεται και η παραμόρφωση που προκαλείται
-λόγω της προσέγγισης μειώνεται.
+λόγω της προσέγγισης.
 
 \paragraph{Παράδειγμα}
 Έστω ένα σύστημα \( h_a(t) \) με είσοδο \( u(t) \) και έξοδο \( s_a(t) \). Μέσω της παραπάνω διαδιασίας, μετατρέπουμε την \( h_a(t) \) σε \( h(n) \), για να πάρουμε έξοδο
@@ -5311,7 +5319,7 @@ H(z) &= \mathcal{Z}\mathrm{T}\left\lbrace h(n) \right\rbrace = \sum_{n=0}^{\inft
 
 \subparagraph{Ερώτημα}
 
-Αν \( H(n) = h_a(nT) \), είναι ή όχι \( s(n) = \sum_{k=-\infty}^{n} h_a(kT) \);
+Αν \( H(n) = h_a(nT) \), είναι ή όχι \( \displaystyle s(n) = \sum_{k=-\infty}^{n} h_a(kT) \);
 
 
 Έχουμε:
@@ -5422,8 +5430,8 @@ s_a(nT) - s_a\left((n-1)T\right) = \int_{(n-1)T}^{nT} h(τ)\dif τ \neq h_a(nT)
 	\item
 	
 
-	Θα υπολογίσουμε την \( H(z) \) ως μετασχηματισμό Laplace της \( h(n) \) του πρώτου ερωτήματος.
-	Από τον ορισμό του μετασχηματισμού Laplace:
+	Θα υπολογίσουμε την \( H(z) \) ως μετασχηματισμό Z της \( h(n) \) του πρώτου ερωτήματος.
+	Από τον ορισμό του μετασχηματισμού Z:
 	
 	\begin{align*}
 		H(z) &= \sum_{n=-\infty}^{\infty} h(n)z^{-n} = \sum_{n=-\infty}^{\infty}\left(\frac{1}{2}\right)^n z^{-n}\mathrm{u}(n)
