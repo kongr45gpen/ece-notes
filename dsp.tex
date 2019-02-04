@@ -4266,7 +4266,7 @@ X(f) * L(f) = \int_{-\infty}^{\infty} X(f-f') L(f)\dif f'
 \draw (0.75,0.7) node {Δ};
 
 \draw (current bounding box.east) node[right,xshift=1.4cm] {$\left.
-	\begin{aligned}f_L &= 1\;\mathrm{GHz}\\f_H &= 101\;\mathrm{GHz}
+	\begin{aligned}f_L &= 1\;\mathrm{GHz}\\f_H &= 1.01\;\mathrm{GHz}
 	\end{aligned} \right\rbrace BW = 10\;\mathrm{MHz}
 	$};
 \end{tikzpicture}
@@ -4333,7 +4333,7 @@ f_s > 2 f_{\max} = 2f_H = \SI{2.02}{\giga\hertz}
 Για να μην υπάρχει επικάλυψη, θα πρέπει να μην "χτυπούν" τα 3 πλακίδια:\[
 \begin{cases}
 	κf_s-f_L \leq f_L &\implies f_s \leq \frac{2f_L}{κ} \\
-	(κ+1)f_S - f_H \geq f_s &\implies \geq \frac{2f_H}{κ+1}
+	(κ+1)f_s - f_H \geq f_H &\implies f_s \geq \frac{2f_H}{κ+1}
 \end{cases}
 \]
 άρα:\begin{align*}
