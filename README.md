@@ -1,3 +1,6 @@
+* [Συστήματα μεγαλο-υπολογιστών](https://github.com/kongr45gpen/ece-notes/raw/master/large-systems.pdf)
+* [Χαμηλές Τάσεις 3.3](https://github.com/kongr45gpen/ece-notes/raw/master/lv-3.3.pdf)
+* [Στοχαστικές Ανελίξεις σε Μη-Υψιπερατά Υπερβολικά Υπερ-Κυματίδια](https://github.com/kongr45gpen/ece-notes/raw/master/s.pdf)
 * [Ψηφιακή Επεξεργασία Σήματος](https://github.com/kongr45gpen/ece-notes/raw/master/dsp.pdf)
 * [Συστήματα Αυτομάτου Ελέγχου 2](https://github.com/kongr45gpen/ece-notes/raw/master/sae2.pdf)
 * [Συστήματα Αυτομάτου Ελέγχου 1](https://github.com/kongr45gpen/ece-notes/raw/master/sae1.pdf)
