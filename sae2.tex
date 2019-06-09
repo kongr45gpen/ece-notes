@@ -6452,11 +6452,11 @@ e = x - x_d
 \paragraph{}
 Για ανάλυση της ευστάθειας του συστήματος, θεωρούμε την υποψήφια συνάρτηση Lyapunov:
 \[
-V(e) = \frac{1}{2} e^{\mathrm T} \dot e
+V(e) = \frac{1}{2} e^{\mathrm T} e
 \]
 με χρονική παράγωγο:
 \[
-\dot V = e^{\mathrm T} e = e^{\mathrm T} A_d e +e^{\mathrm T} B(u_0 - r)
+\dot V = e^{\mathrm T} \dot e = e^{\mathrm T} A_d e +e^{\mathrm T} B(u_0 - r)
 \]
 
 Εδώ για τον όρο \( e^{\mathrm T} B \) επιλέγουμε δύο περιπτώσεις:
