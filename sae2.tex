@@ -6461,7 +6461,7 @@ V(e) = \frac{1}{2} e^{\mathrm T}e
 
 Εδώ για τον όρο \( e^{\mathrm T} B \) επιλέγουμε δύο περιπτώσεις:
 \begin{itemize}
-	\item Για \( e^{\mathrm T} B = 0 \), ισχύει \( \dot V = e^{\mathrm T} A_d < 0 \) θέτοντας ότι \( u_0 = 0 \) (αφού το \( u_0 \) μπορούμε εμείς να το επιλέξουμε), άρα το σύστημα είναι ευσταθές.
+	\item Για \( e^{\mathrm T} B = 0 \), ισχύει \( \dot V = e^{\mathrm T} A_d e< 0 \) θέτοντας ότι \( u_0 = 0 \) (αφού το \( u_0 \) μπορούμε εμείς να το επιλέξουμε), άρα το σύστημα είναι ευσταθές.
 	\item Για \( e^{\mathrm T} B \neq 0 \), θα \textbf{θέσουμε}:
 	\[
 	u_0 = -\frac{B^{\mathrm T} e}{\left| B^{\mathrm T} e \right|}|r|
@@ -6568,7 +6568,7 @@ e \in \mathbb R^n :
 \dot x = (A-Bk) x + Bu_0 + Bd(t)
 \]
 
-Θεωρούμε την υποψήφια LyapunovQ
+Θεωρούμε την υποψήφια Lyapunov
 \begin{align*}
 	V &= \frac{1}{2} x^{\mathrm T} x
 	\\
@@ -6728,7 +6728,7 @@ e \in \mathbb R^n :
 
 	Από αυτό προκύπτει η τελική συνθήκη:
 	\[
-	\boxed{δ > -2.4λ}
+	\boxed{δ > -\frac{8}{3}λ}
 	\]
 	\todo{check}
 \end{exercise}
