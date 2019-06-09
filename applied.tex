@@ -370,7 +370,7 @@
    \end{tikzpicture}
 
    \begin{align*}
-   \mathrm{Log}(3) &= \ln|-3| = i\arg(-3) \\ &= \ln3+i\pi
+   \mathrm{Log}(-3) &= \ln|-3| + i\arg(-3) \\ &= \ln3+i\pi
    \end{align*}
 
     \paragraph{}
@@ -870,7 +870,7 @@
 	Αν \( f(z)=e^z \), τότε \( (e^z)'=e^z\ \forall z\in\mathbb C  \)
 
 	\begin{align*}
-		f(z)= e^z &=e^{x+iy} = e^xe^{iy} = e^x(\cos y+\sin y)
+		f(z)= e^z &=e^{x+iy} = e^xe^{iy} = e^x(\cos y+i\sin y)
 		\\ &= \underbrace{e^x\cos y}_{\mathclap{u(x,y)}}
 		+ i \underbrace{(e^x\sin y)}_{\mathclap{v(x,y)}}
 	\end{align*}
@@ -904,7 +904,7 @@
 	\end{itemize}
 
 	\subparagraph{π.χ}
-	\( \mathrm{Log}z=\frac{1}{z}\ \forall z \in \mathbb C^* = \mathbb C -
+	\( (\mathrm{Log}z)'=\frac{1}{z}\ \forall z \in \mathbb C^* = \mathbb C -
 	\left\lbrace x+iy: x\leq0 \text{ και } y=0 \right\rbrace
 	\Big(
 	\text{υπό την προϋπόθεση ότι } \arg z \in (-\pi,\pi]\
@@ -1171,19 +1171,19 @@
             \item Θεωρώ την "κίνηση κατά μήκος του κάθετου άξονα" που διέρχεται
                   από το \( z_0=1 \), δηλαδή σημεία:
                   \[
-                  z=1+ix\quad (x\in\mathbb R )
+                  z=1+iy\quad (y\in\mathbb R )
                   \]
 
-                  Προφανώς για \( x\to0 \), έχω \( z\to z_0=1 \), και
+                  Προφανώς για \( y\to0 \), έχω \( z\to z_0=1 \), και
                   \begin{align*}
                   \lim_{z\to1} \frac{z^2-1}{\bar z^2-1}
                   &\overset{\text{κατα μήκος}}{%
                   	\underset{\text{του κατακόρυφου άξονα}}{=}}
-                  \lim_{x\to 0}\frac{(1+ix)^2-1}{(1-ix)^2-1}
-                  =\lim_{x\to0}
-                  \frac{\cancel{1}+2ix-x^2-\cancel{1}}{\cancel{1}-2ix-x^2-\cancel{1}}
-                  \\ &= \lim_{x\to0} \frac{2ix-x^2}{-2ix-x^2}
-                  =\lim_{x\to 0}\frac{2i-x}{-2i-x}=\frac{2i}{-2i}=-1
+                  \lim_{y\to 0}\frac{(1+iy)^2-1}{(1-iy)^2-1}
+                  =\lim_{y\to0}
+                  \frac{\cancel{1}+2iy-y^2-\cancel{1}}{\cancel{1}-2iy-y^2-\cancel{1}}
+                  \\ &= \lim_{y\to0} \frac{2iy-y^2}{-2iy-y^2}
+                  =\lim_{y\to 0}\frac{2i-y}{-2i-y}=\frac{2i}{-2i}=-1
                   \end{align*}
         \end{itemize}
         Εφόσον \( 1\neq -1 \) το όριο ΔΕΝ υπάρχει.
@@ -1242,7 +1242,7 @@
     \end{align*}
     \begin{gather*}
     \left|\begin{matrix}
-    u_x & -u_y \\ u_y & u_y
+    u_x & -u_y \\ u_y & u_x
     \end{matrix}\right| = u_x^2+u_y^2
     \end{gather*}
     και επειδή \( a^2+b^2\neq 0 \), πρέπει \( u_x^2+u_y^2=0 \) για να έχει λύση
@@ -1266,7 +1266,7 @@
 
 	    Έτσι η \( \mathrm{Log}(z-i) \) είναι μιγ. παραγ. στο σύνολο
 	    \begin{align*}
-	    &\mathbb C-\left\lbrace x+iy: \Re(z-i)\leq 0\text{ και }\Im(z-i)=1\right\rbrace
+	    &\mathbb C-\left\lbrace x+iy: \Re(z-i)\leq 0\text{ και }\Im(z-i)=0\right\rbrace
 	    \\ &\overset{\mathclap{z=x+iy}}{=}
 	    \mathbb C -\left\lbrace x+iy: x\leq 0 \text{ και }y-1=0 \right\rbrace
 	    \\ &= \mathbb C - \left\lbrace
