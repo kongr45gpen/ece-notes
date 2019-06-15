@@ -2020,10 +2020,10 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\frac{f\left(z_0+Re^{i\theta}\right)}{Re^{i\theta}}\dif\left(
     	z_0+Re^{i\theta}
     	\right) \\ &=
-    	\frac{1}{2\pi i}\int_{0}^{2\pi}
+    	\frac{1}{2\pi \cancel{i}}\int_{0}^{2\pi}
     	\frac{f\left(z_0+Re^{i\theta}\right)}{\cancel{Re^{i\theta}}}
-    	i\cancel{Re^{i\theta}}\dif\theta
-    	\\ &= \text{ ζητούμενο}
+    	\cancel{i}\cancel{Re^{i\theta}}\dif\theta
+    	\\ &= \frac{1}{2\pi} \int_{0}^{2\pi}f\left(z_0+Re^{i\theta}\right)\dif\theta = \text{ ζητούμενο}
     	\end{align*}
 
     	\item \textbf{Ανισότητα Cauchy}
