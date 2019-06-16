@@ -4354,21 +4354,21 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     	\item \( w = az+b \iff z = \frac{w-b}{a} \iff
     	x+ i y = \frac{u+iv-(b_0+ib_1)}{a_0+ia_1}
     	= \frac{\left[(u-b_0)+i(v-b_1)\middle]\middle[a_0-a_1i \right]}{|a|^2}
-    	= \frac{(u-b_0)a_0+a_1(v+b_1)}{|a|^2}+i
+    	= \frac{(u-b_0)a_0+a_1(v-b_1)}{|a|^2}+i
     	\frac{-a_1(u-b_0)+a_0(v-b_1)}{|a|^2}
     	 \)
     \end{itemize}
     Άρα:
     \begin{align*}
     x &= \frac{a_0u+a_1v-(a_0b_0+a_1b_1)}{|a|^2} \\
-    y &= \frac{-a_1u+a_0v-(a_1b_0+a_0b_1)}{|a|^2}
+    y &= \frac{-a_1u+a_0v+(a_1b_0-a_0b_1)}{|a|^2}
     \end{align*}
-    (μπορεί να είναι λάθος)
+    % (μπορεί να είναι λάθος)
 
     \begin{align*}
     & Ax+By+\Gamma = 0 \\ \iff &
-    A\left( a_0u+a_1v - (a_0b_0)-(a_0b_0+a_1b_1) \right)
-    + B\left( -a_1u+a_0v-(a_1b_0+a_0b_1) \right) +\Gamma|a|^2 = 0
+    A\left( a_0u+a_1v -(a_0b_0+a_1b_1) \right)
+    + B\left( -a_1u+a_0v+(a_1b_0-a_0b_1) \right) +\Gamma|a|^2 = 0
     \end{align*}
 
     \subsubsection[Αντιστροφή 1/z]{Αντιστροφή \( f(z)=\frac{1}{z} \quad (z \neq 0) \)}
