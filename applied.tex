@@ -3005,20 +3005,22 @@ decoration={markings,mark=at position 0 with \arrow{<}}
     		Τότε:
     		\[
     		\lim_{R\to +\infty} \int_{-R}^{R} f(x) \dif x = 2\pi i
-    		\sum_{j=1}^n \overbrace{\Res(f,z_j)}^{\mathclap{\text{άνω ημιεπίπεδο}}} + \pi i
+    		\sum_{j=1}^n
+                \overbrace{\Res(f,z_j)}^{\mathclap{\substack{\text{άνω}\\
+                      \text{ημιεπίπεδο}}}} + \pi i
     		\sum_{\lambda=1}^r
     		\overbrace{\Res(f,\zeta_\lambda)}^{%
-    			\mathclap{\text{απλοί πόλοι πάνω σε πραγμ. άξονα}}}
+    			\mathclap{\substack{\text{απλοί πόλοι πάνω}\\ \text{στον πραγμ. άξονα}}}}
     		\]
 
     		ή \textbf{ισοδύναμα}:
     		\[
     		\lim_{R\to +\infty} \int_{-R}^{R} f(x)\dif x =
     		-2\pi i \sum_{\mu = 1}^k
-    		\overbrace{\Res(f,w_\mu)}^{\mathclap{\text{κάτω ημιεπίπεδο}}}
+    		\overbrace{\Res(f,w_\mu)}^{\mathclap{\substack{\text{κάτω}\\ \text{ημιεπίπεδο}}}}
     		-\pi i \sum_{\lambda = 1}^{r}
     		\overbrace{\Res(f,\zeta_\lambda)}^{%
-    			\mathclap{\text{απλοί πόλοι πάνω σε πραγμ. άξονα}}}
+    			\mathclap{\substack{\text{απλοί πόλοι πάνω}\\ \text{στον πραγμ. άξονα}}}}
     		\]
     	\end{theorem*}
 
