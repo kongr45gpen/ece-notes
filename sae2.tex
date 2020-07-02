@@ -6533,17 +6533,17 @@ u_0 = \begin{cases}
 που θεωρούμε,
 θα έχουμε:
 \begin{align*}
-	\dot V &\leq - \lambda_{\min}(A_d) |e|^2 + \delta \bar r
+	\dot V &\leq - \lambda_{\min}(\frac{A_d + A_d^T}{2}) |e|^2 + \delta \bar r
 \end{align*}
 
 Για να είναι μη θετική η \( \dot V \), θέλουμε:
 \[
-|e|^2 > \frac{\delta \bar r}{\lambda_{\min}(A_d)}
+|e|^2 > \frac{\delta \bar r}{\lambda_{\min}(\frac{A_d + A_d^T}{2})}
 \]
 δηλαδή:
 \[
 |e| > \sqrt{\frac{
-	\delta \bar r}{\lambda_{\min} (A_d) }}
+	\delta \bar r}{\lambda_{\min} (\frac{A_d + A_d^T}{2}) }}
 \]
 το οποίο οδηγεί σε ένα σύστημα \textbf{ομοιόμορφα τελικώς φραγμένο}, όπως
 έχουμε δει και σε άλλα παραδείγματα.
@@ -6553,7 +6553,7 @@ u_0 = \begin{cases}
 \varepsilon = \left\lbrace
 e \in \mathbb R^n :
 |e| \leq \sqrt{
-\frac{\delta \bar r}{\lambda_{\min} (A_d)}
+\frac{\delta \bar r}{\lambda_{\min} (\frac{A_d + A_d^T}{2})}
 }
  \right\rbrace
 \]
