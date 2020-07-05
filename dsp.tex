@@ -722,7 +722,7 @@ a_1T\left[x_1(n)\right]+a_2T\left[x_2(n)\right] = T\left[a_1x_1(n)+a_2x_2(n)\rig
 \begin{align*}
 	x(n) &= \sum_{k=-\infty}^{\infty} x(k)δ(n-k)
 	\intertext{Άρα, εφαρμόζοντας το σύστημα στη παραπάνω σχέση:}
-	y(n) &= T\left[x(n)\right] = T\left[
+	y(n) &= T\left[x(n)\right] = T\left[\sum_{k=-\infty}^{\infty}
 	x(k)δ(n-k)
 	\right]
 	\intertext{Και, αν το $T$ είναι \textbf{γραμμικό}:}
@@ -1233,7 +1233,7 @@ y(n) = x(n) \cdot \boxed{\sum_{k=-\infty}^{\infty} h(k) z^{-k}}
 		\\ &= H_R\left(e^{j\omega }\right) + j H_I\left(e^{j\omega }\right)
 		\\ &=
 		\underbrace{\left|H\left(e^{j\omega }\right)\right|}_{\mathclap{\text{απόκριση πλάτους}}}
-		\exp\underbrace{\left[j \mathop{arg} \left(H\left(e^{j\omega t}\right)\right)\right]}_{\mathclap{\text{απόκριση φάσης}}}
+		\exp\underbrace{\left[j \mathop{arg} \left(H\left(e^{j\omega}\right)\right)\right]}_{\mathclap{\text{απόκριση φάσης}}}
 	\end{align*}
 \end{defn}
 
