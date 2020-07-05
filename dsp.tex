@@ -623,7 +623,7 @@ x(n) = \sum_{m=-\infty}^{\infty} x(m) δ(n-m)
 Έχουμε:
 \begin{align*}
 	\sum_{m=-\infty}^{\infty} x(m)\delta(n-m) &=
-	\sum_{m=-\infty}^{n-1} x(m) \cdot 0 + x(n) \cdot \delta(n-n) + \sum_{m=n+1}^{-\infty} x(m) \cdot 0 = x(m)
+	\sum_{m=-\infty}^{n-1} x(m) \cdot 0 + x(n) \cdot \delta(n-n) + \sum_{m=n+1}^{-\infty} x(m) \cdot 0 = x(n)
 \end{align*}
 
 \subsection{Συστήματα}
@@ -902,9 +902,7 @@ y(n)= \sum_{k=-\infty}^{\infty} x(k) \cdot h(n-k)
 Άρα η συνέλιξη βρίσκεται:
 \begin{align*}
 	z(n) &= x(n) * y(n) \\
-	&= \sum_{k=-\infty}^{\infty} β^{n-n_0} \mathrm u (n-n_0)a^n \left[
-	\mathrm u(n) - \mathrm u(n-N-1)
-	\right]
+	&= \sum_{k=-\infty}^{\infty} y(k) \cdot x(n-k) 
 	\\ &= \sum_{k=-\infty}^{\infty} \left[
 	β^{k-n_0}u(k-n_0)\cdot a^{n-k} \left[ u(n-k)-u(n-k-N-1) \right]
 	\right]
