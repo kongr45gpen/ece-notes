@@ -1097,7 +1097,7 @@
 			&= P\left\lbrace X\leq x_1, Y \leq y \right\rbrace
 			+ P\left\lbrace x_1<X\leq x_2,Y \leq y \right\rbrace\\
 			\Aboxed{P\left\lbrace x_1<X\leq x_2,Y\leq y \right\rbrace
-			&= F(x_2,y)  - F(x_1,y) \geq 0 \implies F(x_2,y)\geq
+			&= F(x_2,y)  - F(x_1,y) \leq 0 \implies F(x_2,y)\geq
 			F(x_1,y)}
 		\end{align*}
 
@@ -1277,7 +1277,7 @@
 		=\frac{P\left\lbrace x_1 < X\leq x_2,\ B \right\rbrace}{P(B)}
 		=F(x_2/B) - F(x_1/B) \)
 		\item \( \displaystyle f_X(x/B) = \frac{\dif F_X(x/B)}{\dif x} \)
-		\item \( f_X(x/B) \geq 0 \ \forall x \)
+		\item \( f_X(x/B) \qeq 0 \ \forall x \)
 		\item \( \displaystyle
 		\int_{-\infty}^{\infty} f_x(x/B) \dif x = F_X(\infty/B)
 		- F_X(-\infty/B) = 1 \)
@@ -1376,7 +1376,8 @@
     \begin{align*}
     	F_X(Y=y) &= \frac{
     		\sfrac{\partial F_{XY}(x,y)}{\partial\. y} }{
-    		\sfrac{\dif }{den} }\quad????
+    		\sfrac{\partial F_{Y}(x,y)  }{\partial y} } = \frac{\int_{-\infty}^{X} f(x,y)\dif x}{f_{y}(y)} \\
+    	f_x(x/Y=y) &= \frac{f(x,y)}{f_{y}(y)} = \frac{f(x,y)}{\int_{-\infty}^{\infty} f(x,y)\dif x}
     \end{align*}
 
     \subsection{Ανεξαρτησία Τυχαίων Μεταβλητών}
