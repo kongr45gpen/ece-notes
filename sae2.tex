@@ -333,6 +333,8 @@ m\dot y = u - ay -mg\sin\phi
 	\draw (2,1.6) to[damper,l_=$c(\dot q)$,invert] ++(-2,0);
 	\draw (2,0.4) to[spring,invert,l_=\raisebox{-1.5ex}{$k$}] ++(-2,0);
 
+\draw[thick,->] (4,1) -- ++(1.5,0) node[right] {$u$};
+
 	\draw[thick] (0,3) |- (5,0);
 
 	\draw[->] (m) ++ (0,1.4) |- ++(2,0.7) node[above,pos=.75,gray] {$q$};
@@ -825,7 +827,7 @@ V(x_1,x_2) =
 \end{align*}
 δηλαδή παρατηρούμε ότι η \textbf{παράγωγος} της ενέργειας είναι \textbf{αρνητική}, άρα η ενέργεια του
 συστήματος σχεδόν κάθε στιγμή μειώνεται (φθίνουσα)! Αυτό μπορούμε να το αντιληφθούμε αφού στο σύστημα δεν
-ασκούνται εξωτερικές δυνάμεις, και εκτελεί κάποια ταλάντωση με μια απόσβαση που συνεχώς
+ασκούνται εξωτερικές δυνάμεις, και εκτελεί κάποια ταλάντωση με μια απόσβεση που συνεχώς
 αφαιρεί ενέργεια.
 
 Δηλαδή κάθε στιγμή η ενέργεια είναι μικρότερη από την αρχική
@@ -2115,7 +2117,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 		\cancelto{0}{\left(-\sin x_1\middle|_{x_1\to 0}\right)}
 		(x_1 - 0)
 		+ \frac{1}{2}(x_1-0)^2
-			\cancelto{0}{\left(-\cos x_1\middle|_{x_1\to 0}\right)}
+			\cancelto{-1}{\left(-\cos x_1\middle|_{x_1\to 0}\right)}
 		\\ &= 1 - \frac{1}{2}x_1^2
 		\intertext{άρα:}
 		1-\cos x_1 &= \frac{1}{2}x_1^2
@@ -2261,8 +2263,8 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	ακρίβεια, θα χρησιμοποιήσουμε το ανάπτυγμα Taylor. Αρχικά:
 	\begin{align*}
 		\cos x&\simeq
-		\cos (0) + \cancelto{0}{\left[ 2\cos(-\sin x) \middle|_{x=0} \right]}(x-0)
-		+ \frac{1}{2} (x-0)(-\cos 0)(x-0)
+		\cos (0) + \cancelto{0}{\left[ (-\sin x) \middle|_{x=0} \right]}(x-0)
+		+ \frac{1}{2}\cancelto{-1}{ \left[(-\cos x) \middle|_{x=0} \right]}(x-0)^2
 		\\ &= 1 - \frac{1}{2}x^2 \\
 		\cos^2 x &\simeq 1-x^2
 	\end{align*}
@@ -2339,7 +2341,7 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	στα οποία \( g(x) = 0 \). Δίνεται ότι \( g(0) = 0 \), άρα ένα σημείο ισορροπίας
 	είναι το \( (0,0) \). Επίσης δίνεται ότι \( xg(x) > 0 \), άρα \( \forall x \neq 0 \)
 	θα ισχύει \( g(x) > 0 \) ή \( g(x) <0 \), επομένως \( g(x) \neq 0 \). Τελικά,
-	το μοναδικό σημείο ισορροπίας είναι το \( (0,0) \).
+	το μοναδικό σημείο ισορροπίας είναι το \( x^*=0 \).
 
 	Ως υποψήφια συνάρτηση Lyapunov \textbf{επιλέγουμε} την παρακάτω:
 	\[
@@ -2425,8 +2427,8 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	Αντικαθιστώντας στη συνάρτηση Lyapunov, παραγωγίζοντας και εκτελώντας πράξεις, έχουμε:
 	\begin{equation}
 	\dot V =
-	\underbrace{ax_2\sin x_1\left( 1-P_{22} \right)}_{???} + \underbrace{(P_{11} - bP_{12})x_1x_2}_{???}
-	+ \underbrace{(P_{12}-bP_{22})x_2^2}_{<0} -\underbrace{aP_{12}x_1\sin x_1}_{>0}
+	\underbrace{ax_2\sin x_1}_{???}\left( 1-P_{22} \right) + (P_{11} - bP_{12})\underbrace{x_1x_2}_{???}
+	+ (P_{12}-bP_{22})\underbrace{x_2^2}_{>0} -aP_{12}\underbrace{x_1\sin x_1}_{>0}
 	\label{sec1ex2vdot}
 	\end{equation}
 
@@ -2448,8 +2450,8 @@ A = \left. \pd{F}{x} \right|_{x=x^*}
 	\end{itemize}
 	και για τους μη μηδενικούς όρους:
 	\begin{itemize}
-		\item \( P_{12} - bP_{22} \xRightarrow{P_{12} > 0} P_{12} < b \)
 		\item \( P_{12} > 0 \)
+		\item \( P_{12} - bP_{22} < 0 \xRightarrow{P_{12} > 0} P_{12} < b \)
 	\end{itemize}
 	άρα μία ακόμα συνθήκη είναι:
 	\[
@@ -2712,13 +2714,13 @@ P = P^{\mathrm{T}}
 	για τον οποίο:
 	\begin{align*}
 		Q &= Q^{\mathrm T} \text{ θετικά ορισμένος} \\
-		-Q &= A^{\mathrm T}P + PA
+		-Q &= \tilde A^{\mathrm T}P + P\tilde A \text{ όπου P θετικά ορισμένος}
 	\end{align*}
 
 	\tcbsubtitle{\textbf{Λύση} με διαταραχές}
 	Το σύστημά μας με διαταραχή \( d(t) \) θα γίνει:
 	\[
-	\dot x = Ax+Bu+d(t)
+	\dot x = \tilde Ax+Bu+d(t)
 	\]
 	όπου οι διαταραχές έχουν ένα μέγιστο πλάτος \( \left|d(t)\right|
 	\leq \bar d
@@ -2732,14 +2734,14 @@ P = P^{\mathrm{T}}
 		\dot x^{\mathrm T} P x + x^{\mathrm T} P\dot x
 		\\ &=
 		\left(
-		Ax + d(t)
+		\tilde Ax + d(t)
 		\right)^{\mathrm T} P x
-		+ x^{\mathrm{T}}P\left(Ax+d(t)\right)
+		+ x^{\mathrm{T}}P\left(\tilde Ax+d(t)\right)
 		\\ &= \left(
-		x^{\mathrm{T}}A^{\mathrm T} + d^{\mathrm T}(t)
-		\right)Px + x^{\mathrm{T}} PAx
+		x^{\mathrm{T}}\tilde A^{\mathrm T} + d^{\mathrm T}(t)
+		\right)Px + x^{\mathrm{T}} P\tilde Ax
 		+x^{\mathrm{T}}P d(t)
-		\\ &= x^{\mathrm{T}}(A^{\mathrm{T}} P + PA)x
+		\\ &= x^{\mathrm{T}}(\tilde A^{\mathrm{T}} P + P\tilde A)x
 		+ d^{\mathrm{T}}(t) P x + x^{\mathrm{T}}P d(t)
 		\\ &=
 		\underbrace{-x^{\mathrm{T}} Q x}_{\leq\ -\lambda_{\min}(Q)|x|^2}
