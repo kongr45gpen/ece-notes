@@ -4049,7 +4049,7 @@ B & AB & \dots & A^{n-1}B
 	\begin{circuitikz}[american]
 		\ctikzset{voltage/american label distance=2}
 		\draw (0,0) to[R=$R_a$] (2,0) to[L=$L_a$] (4,0) to[open,v^=$u_e$]
-		(4,-2) -- (0,-2) to[open,v^>=$u_a$,*-*] (0,0);
+		(4,-2) -- (0,-2) to[open,v^>=$u_a$] (0,0);
 		\draw (4,-1) node[elmech](motor) {};
 		\draw (motor.north) -- (4,0) (motor.south) -- (4,-2);
 	\end{circuitikz}
